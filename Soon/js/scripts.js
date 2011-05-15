@@ -1,3 +1,5 @@
+// code is mostly crap but it works. kinda
+
 var bubbles = new Array;
 var drawInterval = "";
 var createInterval = "";
@@ -68,6 +70,11 @@ function generateBubbles() {
 	// get mouse position over the coming soon button
 }
 
+// preparese css to move gradient around
+function moveGradient(curX, curY) {
+	return 'background-image:-webkit-gradient(radial, '+curX+' '+curY+', 1, '+curX+' '+curY+', 30, from(rgba(0, 110, 166, 0.8)), color-stop(0.5, rgba(0, 153, 204, 0.6)), to(rgba(0, 153, 204, 0))); background: -moz-radial-gradient('+curX+'px '+curY+'px 0deg, circle, rgba(0, 110, 166, 0.8) 1px, rgba(0, 153, 204, 0.6) 20px, rgba(0, 153, 204, 0) 30px);';
+}
+
 $('document').ready(function() {
 	canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");	
@@ -88,13 +95,14 @@ $('document').ready(function() {
 		}
 		// track mouse
 		trackMouse = true;
+		$('#press').attr('style', moveGradient(e.pageX - this.offsetLeft-160, e.pageY - this.offsetTop));
 		$(this).mousemove(function(e) {
 			if (!trackMouse) return;
-			var curX = e.pageX - this.offsetLeft;
-			var curY = e.pageY - this.offsetTop;
-			console.log("{"+this.offsetLeft+","+this.offsetTop+"}, {"+e.pageX+","+e.pageY+"}, {"+curX+","+curY+"}");
+			// set css to move the gradient around
+			$('#press').attr('style', moveGradient(e.pageX - this.offsetLeft-160, e.pageY - this.offsetTop));
 		});
 	}).mouseup(function() {
+		$('#press').attr('style', '');
 		clearInterval(createInterval);
 		createInterval = "";
 		// stop tracking mouse

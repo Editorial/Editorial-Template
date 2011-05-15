@@ -83,8 +83,8 @@ body {
 #press:active {
 	width: 90px;
 	height: 90px;
-	background: -moz-radial-gradient(50% 50% 0deg, ellipse closest-side, rgba(0, 110, 166, 1), rgba(0, 153, 204, 1), rgba(0, 110, 166, 0));
-	background-image: -webkit-gradient(radial, center center, 0, center center, 40, from(#006ea6), to(rgba(0, 110, 166, 0)), color-stop(50%, #0099cc));
+	background: -moz-radial-gradient(55px 55px 0deg, circle, rgba(0, 110, 166, 0.8) 1px, rgba(0, 153, 204, 0.6) 20px, rgba(0, 153, 204, 0) 30px);
+	background-image: -webkit-gradient(radial, 55 55, 1, 55 55, 30, from(rgba(0, 110, 166, 0.8)), color-stop(0.5, rgba(0, 153, 204, 0.6)), to(rgba(0, 153, 204, 0)));
 	border-radius: 45px;
 }
 
@@ -95,6 +95,8 @@ body {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	user-select: none;
+   position: relative;
+   z-index: -1;
 }
 
 #canvas {
