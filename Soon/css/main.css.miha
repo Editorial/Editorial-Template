@@ -1,0 +1,213 @@
+body {
+	background: #f7f7f7 url(../images/visuals.jpg) no-repeat;
+	background-position: center 0;
+	font-family: "Helvetica", arial, sans-serif;
+	font-size: 12px;
+}
+
+*:focus {
+	outline: none;
+}
+
+#container {
+	width: 954px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#header {
+	padding: 360px 0 30px 0;
+	width: 462px;
+}
+
+#header h1 {
+	display: none;
+}
+
+#header h2 {
+	font-family: "Minion Pro", "Helvetica", arial, sans-serif;
+	font-size: 28px;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 35px;
+	color: #262121;
+}
+
+#header h2 span {
+	text-transform: uppercase;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	font-family: "Helvetica", arial, sans-serif;
+}
+
+#header h2 em {
+	font-style: normal;
+	color: #dc0000;
+}
+
+#soon {
+	position: absolute;
+	top: 59px;
+	right: 0;
+	width: 90px; 
+	height: 90px; 
+	background: #ff0000;
+	border-radius: 45px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #ffffff;
+	text-align: center;
+	background: #00CCFF; /* Old browsers */
+	background: -moz-linear-gradient(top, #00CCFF 0%, #00C0FF 36%, #0099CC 72%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00CCFF), color-stop(36%,#00C0FF), color-stop(72%,#0099CC)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #00CCFF 0%,#00C0FF 36%,#0099CC 72%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #00CCFF 0%,#00C0FF 36%,#0099CC 72%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #00CCFF 0%,#00C0FF 36%,#0099CC 72%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00CCFF', endColorstr='#0099CC',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #00CCFF 0%,#00C0FF 36%,#0099CC 72%); /* W3C */
+			
+	transform:rotate(-10deg);
+	-ms-transform:rotate(-10deg); /* IE 9 */
+	-moz-transform:rotate(-10deg); /* Firefox */
+	-webkit-transform:rotate(-10deg); /* Safari and Chrome */
+	-o-transform:rotate(-10deg); /* Opera */
+}
+
+#soon:active {
+	width: 90px; 
+	height: 90px; 
+	background: -moz-radial-gradient(40% 40% 0deg,ellipse closest-side, rgba(0, 110, 166, 1), rgba(0, 153, 204, 1), rgba(0, 110, 166, 0));
+	background: -webkit-gradient(radial, 64 64, 100, 100 44, 40, from(#fcfcfc), to(#cf0c13), color-stop(.6,#e88787));			
+}
+
+#soon h3 {
+	font-size: 15px;
+	font-weight: normal;
+	padding-top: 30px;
+}
+
+#canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#form {
+	float: left;
+	width: 420px;
+	margin: 0 0 66px 0;
+}
+
+#form legend {
+	color: #666;
+}
+
+#form input {
+	margin: 8px 0 0;
+}
+
+#form input[type="text"] {
+	width: 270px;
+	height: 40px;
+	border: 0;
+	background: url(../images/input.png) no-repeat;
+	padding: 0 15px;
+	color: #bfbfbf;
+	font-size: 14px;
+	margin-right: 2px;
+}
+
+#form input[type="submit"] {
+	width: 108px;
+	height: 48px;
+	background: url(../images/submit.png) no-repeat;
+	text-indent: -9999px;
+	border: 0;
+}
+
+#twitter {
+	width: 398px;
+	float: right;
+	margin: 11px 0 0 0;
+	padding: 23px 10px 20px 54px;
+	background: url(../images/twitter.png) no-repeat 0 23px;
+	color: #999;
+	line-height: 15px;
+	position: relative;
+}
+
+#tweet li {
+	list-style: none;
+}
+
+#twitter a {
+	color: #0099CC;
+	text-decoration: none;
+}
+
+#twitter a:hover {
+	text-decoration: underline;
+}
+
+#follow {
+	display: none;
+	position: absolute;
+	top: -84px;
+	left: 101px;
+	width: 256px;
+	height: 104px;
+	background: url(../images/follow.png) no-repeat;
+}
+
+#follow img {
+	border: 1px solid #e7e7e7;
+	position: absolute;
+	top: 11px;
+	left: 13px;
+}
+
+#follow a {
+	position: absolute;
+	font-size: 18px;
+	top: 24px;
+	left: 87px;
+}
+
+#follow em {
+	position: absolute;
+	top: 44px;
+	left: 87px;
+	color: #999;
+	font-style: normal;
+}
+
+#footer {
+	clear: both;
+	background: url(../images/separator.png) no-repeat;
+	padding: 21px 0;
+	color: #bfbfbf;
+}
+
+#footer li {
+	list-style: none;
+	float: left;
+	padding: 0 12px 0 0;
+}
+
+#footer li:first-child {
+	background: url(../images/dot.png) no-repeat right 3px;
+}
+
+#footer li:last-child {
+	padding: 0 0 0 6px;
+}
+
+#footer a {
+	color: #bfbfbf;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	text-decoration: underline;
+}
