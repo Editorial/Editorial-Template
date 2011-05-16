@@ -12,13 +12,35 @@
 class Editorial_Admin
 {
     /**
+     * Look & Feel page
+     */
+    const PAGE_LOOK = 'look';
+
+    /**
+     * Auhthors page
+     */
+    const PAGE_AUTHORS = 'authors';
+
+    /**
      * Pages users are allowed to include
      *
      * @var array
      */
     private $_pages = array(
-        'look',
-        'authors',
+        self::PAGE_LOOK,
+        self::PAGE_AUTHORS,
+    );
+
+    /**
+     * Valid options
+     *
+     * @var array
+     */
+    private $_options = array(
+        'logo-big',
+        'logo-small',
+        'typekit',
+        'black-and-white',
     );
 
     /**
@@ -66,13 +88,16 @@ class Editorial_Admin
             'Authors',
             'Authors',
             'administrator',
-            'editorial-authors',
+            'editorial-'.self::PAGE_AUTHORS,
             array($this, 'authors')
         );
-        add_option('editorial_options', '', '', 'yes');
+        add_option(EDITORIAL_OPTIONS, '', '', 'yes');
 
         // add font notice
-        add_action('admin_notices', array($this, 'fontNotice'));
+        if (!Editorial::get_option('typekit'))
+        {
+            add_action('admin_notices', array($this, 'fontNotice'));
+        }
     }
 
     /**
@@ -84,7 +109,7 @@ class Editorial_Admin
     public function lookAndFeel()
     {
         // show look & feel page
-        $this->_display('look');
+        $this->_display(self::PAGE_LOOK);
     }
 
     /**
@@ -95,7 +120,7 @@ class Editorial_Admin
      */
     public function authors()
     {
-        $this->_display('authors');
+        $this->_display(self::PAGE_AUTHORS);
     }
 
     /**
@@ -128,7 +153,29 @@ class Editorial_Admin
      */
     private function _save()
     {
-        dump($_POST);
+        foreach ($_POST as $key => $value)
+        {
+            // make sure only allowed settings get in
+            if (in_array($key, $this->_options))
+            {
+                Editorial::set_option($key, $value);
+            }
+        }
+
+        // on/off values are special
+        switch ($this->_page)
+        {
+            case self::PAGE_LOOK:
+                if (!isset($_POST['typekit']))
+                {
+                    Editorial::set_option('typekit', false);
+                }
+                if (!isset($_POST['black-and-white']))
+                {
+                    Editorial::set_option('black-and-white', false);
+                }
+                break;
+        }
     }
 
     /**
@@ -140,8 +187,8 @@ class Editorial_Admin
     public function fontNotice()
     {
         echo "<div class='updated fade'>
-            <p><strong>".__('Typekit fonts are currently disabled.')."</strong> "
-            .__('Enable them now ... or else.')."</p>
+            <p><strong>".__('Editorial Typekit fonts are currently disabled.')."</strong> "
+            .__('<a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.')."</p>
         </div>";
     }
 }

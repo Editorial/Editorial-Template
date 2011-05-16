@@ -12,7 +12,7 @@
 <div id="header">
     <h1 class="vcard">
         <a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL: get_bloginfo('url'); ?>" rel="home" class="url">
-            <img class="fn org logo" src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/lukeandphill-logo.png" width="356" height="70" alt="<?php bloginfo('name'); ?>" />
+            <img class="fn org logo" src="<?php echo Editorial::get_option('logo-big'); ?>" width="356" height="70" alt="<?php bloginfo('name'); ?>" />
             <?php bloginfo('name'); ?>
         </a>
     </h1>
