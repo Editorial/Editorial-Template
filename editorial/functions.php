@@ -6,6 +6,8 @@ function dump($object = '')
     echo '<pre style="border: 1px solid #ccc; background: #eee; padding: 15px; margin: 15px; font-family: "Courier New", Courier, monospace">'.print_r($object, true).'</pre>';
 }
 
+define ('EDITORIAL_VERSION', '1.0b');
+define ('EDITORIAL_UPDATE_CHECK', 'http://editorial.local/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 
 /**
@@ -50,7 +52,7 @@ class Editorial
      * @return mixed|false
      * @author Miha Hribar
      */
-    public static function get_option($option)
+    public static function getOption($option)
     {
         $options = get_option(EDITORIAL_OPTIONS);
         return (is_array($options) && isset($options[$option]))? $options[$option]: false;
@@ -64,7 +66,7 @@ class Editorial
      * @return void
      * @author Miha Hribar
      */
-    public static function set_option($option, $value)
+    public static function setOption($option, $value)
     {
         $options = get_option(EDITORIAL_OPTIONS);
         if (!is_array($options))

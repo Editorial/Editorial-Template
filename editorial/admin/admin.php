@@ -41,6 +41,7 @@ class Editorial_Admin
         'logo-small',
         'typekit',
         'black-and-white',
+        'disable-admin-notices'
     );
 
     /**
@@ -94,10 +95,12 @@ class Editorial_Admin
         add_option(EDITORIAL_OPTIONS, '', '', 'yes');
 
         // add font notice
-        if (!Editorial::get_option('typekit'))
+        if (!Editorial::getOption('typekit'))
         {
             add_action('admin_notices', array($this, 'fontNotice'));
         }
+        // check for update
+        $this->checkVersion();
     }
 
     /**
@@ -158,7 +161,7 @@ class Editorial_Admin
             // make sure only allowed settings get in
             if (in_array($key, $this->_options))
             {
-                Editorial::set_option($key, $value);
+                Editorial::setOption($key, $value);
             }
         }
 
@@ -168,11 +171,15 @@ class Editorial_Admin
             case self::PAGE_LOOK:
                 if (!isset($_POST['typekit']))
                 {
-                    Editorial::set_option('typekit', false);
+                    Editorial::setOption('typekit', false);
                 }
                 if (!isset($_POST['black-and-white']))
                 {
-                    Editorial::set_option('black-and-white', false);
+                    Editorial::setOption('black-and-white', false);
+                }
+                if (!isset($_POST['disable-admin-notices']))
+                {
+                    Editorial::setOption('disable-admin-notices', false);
                 }
                 break;
         }
@@ -186,9 +193,47 @@ class Editorial_Admin
      */
     public function fontNotice()
     {
+        // notices can be disabled
+        if (Editorial::getOption('disable-admin-notices')) return;
         echo "<div class='updated fade'>
             <p><strong>".__('Editorial Typekit fonts are currently disabled.')."</strong> "
             .__('<a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.')."</p>
+        </div>";
+    }
+
+    /**
+     * Check if an update is available
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public function checkVersion()
+    {
+        // notices can be disabled
+        if (Editorial::getOption('disable-admin-notices')) return;
+        $data = file_get_contents(EDITORIAL_UPDATE_CHECK);
+        if ($data !== false)
+        {
+            $data = json_decode($data, true);
+            $version = $data['version'];
+            if (EDITORIAL_VERSION != $version)
+            {
+                add_action('admin_notices', array($this, 'updateNotice'));
+            }
+        }
+    }
+
+    /**
+     * Add notice that an update is available
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public function updateNotice()
+    {
+        echo "<div class='updated fade'>
+            <p><strong>".__('Editorial theme update is available.')."</strong> "
+            .__('Log in to your account at <a href="http://editorialtemplate.com">editorialtemplate.com</a> to get the update.')."</p>
         </div>";
     }
 }

@@ -14,6 +14,12 @@
     margin: 5px;
 }
 
+#editorial #authors li {
+    cursor: move;
+    padding: 5px;
+    background: #E3E3E3;
+}
+
 </style>
 <div id="editorial" class="wrap">
     <div id="icon-themes" class="icon32"><br></div>
