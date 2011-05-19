@@ -182,6 +182,21 @@ class Editorial_Admin
                     Editorial::setOption('disable-admin-notices', false);
                 }
                 break;
+            case self::PAGE_AUTHORS:
+                // save current value for author ordering and titles
+                if (!count($_POST['author']) || !count($_POST['title']) || count($_POST['title']) != count($_POST['author']))
+                {
+                    // go away
+                    Editorial::setOption('authors', false);
+                    return;
+                }
+                $authors = array();
+                foreach ($_POST['author'] as $order => $id)
+                {
+                    $authors[$id] = $_POST['title'][$order];
+                }
+                Editorial::setOption('authors', $authors);
+                break;
         }
     }
 
@@ -235,6 +250,25 @@ class Editorial_Admin
             <p><strong>".__('Editorial theme update is available.')."</strong> "
             .__('Log in to your account at <a href="http://editorialtemplate.com">editorialtemplate.com</a> to get the update.')."</p>
         </div>";
+    }
+
+    /**
+     * Display user in administration. Outputs a list item.
+     *
+     * @param  Object $user
+     * @param  string $title
+     * @param  bool   $checked
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function displayUser($user, $title = '', $checked = true)
+    {
+        printf('<li id="user_%1$d">
+                    <span class="handle">handle</span>
+                    <input type="checkbox" name="author[]" value="%1$d"%4$s />
+                    <strong>%2$s</strong>
+                    <input type="text" name="title[]" value="%3$s" placeholder="Author title" />
+                </li>', $user->ID, $user->display_name, $title, $checked ? ' checked="checked"' : '');
     }
 }
 

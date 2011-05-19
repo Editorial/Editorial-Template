@@ -15,9 +15,34 @@
 }
 
 #editorial #authors li {
+    width: 80%;
+    padding: 10px;
+    background: #efefef;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+}
+
+#editorial #authors .handle {
+    display: block;
+    float: left;
     cursor: move;
-    padding: 5px;
-    background: #E3E3E3;
+    width: 15px;
+    height: 17px;
+    background: url(<?php echo get_bloginfo('template_directory'); ?>/assets/images/handle.png) no-repeat;
+    text-indent: -99999px;
+    outline: none;
+    margin-right: 10px;
+}
+
+#editorial #authors input {
+    float: left;
+    margin: 4px 10px 0 0;
+}
+
+#editorial #authors input[type="text"] {
+    margin-top: -3px;
+    width: 150px;
 }
 
 </style>
