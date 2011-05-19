@@ -95,11 +95,13 @@ $('document').ready(function() {
 		}
 		// track mouse
 		trackMouse = true;
-		$('#press').attr('style', moveGradient(e.pageX - this.offsetLeft-160, e.pageY - this.offsetTop));
+		var press = $('#press');
+		press.attr('style', moveGradient(e.pageX - press.offset().left, e.pageY - press.offset().top));
 		$(this).mousemove(function(e) {
 			if (!trackMouse) return;
 			// set css to move the gradient around
-			$('#press').attr('style', moveGradient(e.pageX - this.offsetLeft-160, e.pageY - this.offsetTop));
+			console.log(this.offsetLeft);
+			$('#press').attr('style', moveGradient(e.pageX - press.offset().left, e.pageY - press.offset().top));
 		});
 	}).mouseup(function() {
 		$('#press').attr('style', '');
