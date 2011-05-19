@@ -1,0 +1,636 @@
+/*
+Editorial theme
+Version: 0.1
+Based on: 320 and Up boilerplate extension
+*/
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+
+/* 0.RESET __________________________________________________________________________________________________________ */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,
+del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,
+label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,
+header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {margin:0;border:0;padding:0;
+font-size:100%;font:inherit;vertical-align:baseline;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+abbr[title] {border-bottom:1px dotted;cursor:help;}
+
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+
+html {overflow-y:scroll;background:#fff;}
+body {margin:0 auto;padding:30px 0;width:90%;font:100%/20px 'MinionProRegular',sans-serif;color:#333;
+background-color:transparent;}
+
+#primary,footer section,#single footer,#tabs {background:url(../images/bgr/lines.gif) repeat-x;}
+#find,#primary li,#primary .selected a,#rss,#rss li,.xoxo li,#media-count,footer nav .selected a
+{background:url(../images/bgr/sprite.png) no-repeat;}
+
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+h1,h2,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
+#home h1,.featured h2 {font-family:'MinionProSemibold',sans-serif;color:#d9d9d9;text-decoration:underline;}
+h1 a,h2 a {color:#262626;}
+h1 {margin:0 0 10px;font-size:35px;line-height:35px;}
+h2 {margin:0 0 5px;font-size:2em;line-height:1.2;}
+h3 {margin:0 0 10px;font-size:1.5em;line-height:1.3;}
+h4 {margin-bottom:1.25em;font-size:1.25em;line-height:1.25;}
+h5 {margin-bottom:1.5em;font-size:1em;}
+h6 {font-size:1em;}
+
+
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+
+@font-face {font-family:'MinionProSemibold';src:url('../fonts/minionpro-semibold.eot');
+src:url('../fonts/minionpro-semibold.eot?#iefix') format('embedded-opentype'),
+url('../fonts/minionpro-semibold.woff') format('woff'),url('../fonts/minionpro-semibold.ttf') format('truetype'),
+url('../fonts/minionpro-semibold.svg#MinionProSemibold') format('svg');font-weight:normal;font-style:normal;}
+
+@font-face {font-family:'MinionProRegular';src:url('../fonts/minionpro-regular.eot');
+src:url('../fonts/minionpro-regular.eot?#iefix') format('embedded-opentype'),
+url('../fonts/minionpro-regular.woff') format('woff'),url('../fonts/minionpro-regular.ttf') format('truetype'),
+url('../fonts/minionpro-regular.svg#MinionProRegular') format('svg');font-weight:normal;font-style:normal;}
+
+
+p,ol,ul,dl,address {margin:0 0 15px;font-size:16px;}
+/*ul,ol {margin:0 0 15px -24px;padding-left:24px;}*//* TODO dodat v content */
+/*ul {list-style-type:disc;}*/
+/*ol {list-style-type:decimal;}*/
+ul,ol,menu {list-style:none;}
+li ul,li ol,menu li {margin:0;font-size:1em;}
+dl,dd {margin-bottom:1.5em;}
+dt{font-weight:normal;}
+blockquote {margin:0 0 1.5em -24px;border-left:1px solid rgb(200,200,200);padding-left:24px;font-style:italic;}
+blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
+b,strong{font-weight:bold;}
+i,em {font-style:italic;}
+sup,sub {font-size:75%;line-height:0;position:relative;}
+sup {top:-.5em;}
+sub {bottom:-.25em;}
+address {font-style:normal;}
+pre {margin-bottom:1.5em;white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+pre,code {font:.875em 'andale mono','lucida console',monospace;line-height:1.5;}
+small {font-size:1em;}
+label,input[type='submit'] {cursor:pointer}
+input {font-family:sans-serif;}
+
+
+/* 4.LINKS __________________________________________________________________________________________________________ */
+
+a {color:#262626;text-decoration:none;}
+/*a:hover {outline:none;}*/
+/*a:active,a:focus {outline:none;}*/
+
+
+/* 5.FIGURES & IMAGES _______________________________________________________________________________________________ */
+
+figure img,figure object,figure embed {display:block;max-width:100%;}
+figcaption {font:12px/15px sans-serif;color:#999;display:block;font-weight:normal;}
+figcaption h3 {margin:0 0 5px;font:bold 12px/15px sans-serif;text-transform:uppercase;color:#999;}
+figcaption p {font:12px/15px sans-serif;color:#999;}
+
+
+/* 6.TABLES _________________________________________________________________________________________________________ */
+
+table {margin-bottom:1.4em;border-collapse:collapse;border-spacing:0;width:100%;font-size:.875em;}
+th {font-weight:bold;}
+th,td,caption {padding:.25em 10px .25em 5px;}
+tfoot {font-style:italic;}
+caption {background-color:transparent;}
+
+
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+
+/* 8.BANNER _________________________________________________________________________________________________________ */
+
+#header,.content {border-bottom:1px solid #bfbfbf;-moz-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
+-webkit-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);box-shadow:0 10px 10px -10px rgba(0,0,0,.3);}
+#header {margin:0 0 18px;}
+#brand {margin:0 0 15px;width:270px;}
+#brand img {margin:0;}
+#search {margin:0 0 15px;}
+#search fieldset {width:275px;position:relative;}
+#query {border:1px solid #a6a6a6;border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 30px 7px 4px;
+width:275px;height:30px;font-size:12px;}
+#find {border:none;width:30px;height:30px;background-position:7px -42px;position:absolute;top:-1px;right:1px;}
+
+
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+
+#primary {margin:0 0 7px;padding:8px 0 0;width:100%;float:left;}
+#primary ul {width:100%;display:inline;}
+#primary li,#rss li,#footer nav li,#tabs li {font:13px 'MinionProSemibold',sans-serif;letter-spacing:2px;
+text-transform:uppercase;background-position:-549px -40px;float:left;}
+#primary a,#rss a {padding:8px 12px 7px;display:block;}
+#primary .selected a,footer nav .selected a {padding-right:32px;background-position:right -77px;}
+#primary .selected a {color:#d00;}
+
+
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+
+.featured article {margin:0 0 15px;float:left;}
+.featured figure,#exposed figure {margin:0 0 13px;float:left;}
+.featured figure a,#exposed figure a {border:1px solid #ccc;padding:6px;display:block;}
+.featured figure {display:none;}
+.featured h2,#exposed h2 {font-size:19px;line-height:23px;}
+.featured p {display:none;}
+/*.featured .info,#exposed .detail {clear:both;}*/
+.featured footer,#exposed footer,#single footer {padding:0 0 8px;font:10px/12px sans-serif;text-transform:uppercase;}
+.featured footer a,#exposed footer a,#single footer a {color:#c00;}
+.featured time,#exposed time,#single time,#single footer em,#single footer em a {color:#999;}
+.featured time:before,#exposed time:before,#single time:before {content:'- ';}
+
+#exposed {margin:0 0 30px;border-bottom:1px solid #bfbfbf;width:100%;float:left;}
+#exposed figure {width:100%;}
+#exposed p {font-size:20px;line-height:25px;color:#262626;}
+#exposed footer {padding:12px 0 9px;}
+
+#single {margin:0 0 10px;overflow:hidden;}
+#intro .entry-summary {margin:0 0 13px;font-size:20px;line-height:26px;position:relative;}
+#intro .entry-summary:before,#intro .entry-summary:after {width:230px;height:230px;font-size:600px;line-height:600px;
+color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
+#intro .entry-summary:before {content:'“';left:-20px;top:-65px;}
+#intro .entry-summary:after {content:'”';right:-15px;bottom:-144px;}
+#single footer {padding-top:12px;}
+#single footer em {font-style:normal;}
+#single footer em a {font-weight:bold;}
+#single .social {margin:0;width:100%;float:left;}
+#single .social li {margin:10px 15px 0 0;float:left;}
+
+#media {margin:14px 0 0;width:100%;float:left;}
+#to-gallery {margin:0 0 10px;border:1px solid #ccc;padding:6px;font-size:18px;background:#fff;display:block;
+position:relative;}
+#media-count {padding:6px 11px 9px 43px;font-size:18px;color:#262626;font-style:normal;display:block;
+background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:0;right:0;}
+
+#tabs {margin:0 0 20px;padding:0 0 11px;background-position:bottom;overflow:hidden;}
+#tabs ul {margin:0 0 0 -3px;border-top:1px solid #a6a6a6;}
+#tabs li {-moz-box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);-webkit-box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
+box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);}
+#tabs a {margin:0 0 0 3px;border:1px solid #a6a6a6;border-width:0 1px 1px;padding:12px 14px 11px;color:#999;
+display:block;position:relative;}
+#tabs .selected {-moz-box-shadow:2px 1px 1px rgba(0,0,0,.1);-webkit-box-shadow:2px 1px 1px rgba(0,0,0,.1);
+box-shadow:7px 2px 2px rgba(0,0,0,.1);}
+#tabs .selected a {margin-top:-1px;padding-top:13px;color:#333;background:#fff;}
+#tabs em {padding:0 0 0 10px;font-style:normal;}
+
+
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+
+#footer {position:relative;}
+footer h3 {margin:15px 0 0;font:30px georgia,'times new roman',times,serif;color:#f2f2f2;font-weight:normal;
+text-decoration:none;}
+
+#rss {background-position:500px 500px;width:100%;float:left;}
+#rss li,#footer nav li {text-decoration:underline;color:#d9d9d9;}
+#rss a,#footer nav a {color:#000;}
+
+#footer nav {margin:15px 0 0;float:left;}
+#footer nav a {padding-right:0;}
+#footer section {margin:10px 0 0;padding:16px 0 0;width:100%;float:left;}
+
+#copyright {font:11px/15px sans-serif;color:#999;}
+#copyright a {font-weight:bold;color:#999;text-decoration:underline;}
+
+.xoxo {margin:0 0 5px -5px;width:100%;float:left;}
+.xoxo li {float:left;}
+.xoxo a {width:34px;height:34px;display:block;}
+
+.xoxo .twitter {background-position:5px -95px;}
+.xoxo .facebook {background-position:-29px -95px;}
+.xoxo .vimeo {background-position:-63px -95px;}
+.xoxo .flickr {background-position:-97px -95px;}
+
+
+
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+
+.clear:before,.clear:after {content:'\0020';height:0;display:block;overflow:hidden;}
+.clear:after {clear:both;}
+.clear {zoom:1;}
+
+
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+body {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+a:link {-webkit-tap-highlight-color:rgb(52,158,219);}
+::-webkit-selection {background:rgb(23,119,175);color:rgb(250,250,250);text-shadow:none;}
+::-moz-selection {background:rgb(23,119,175);color:rgb(250,250,250);text-shadow:none;}
+::selection {background:rgb(23,119,175);color:rgb(250,250,250);text-shadow:none;}
+input[type=search] {-webkit-appearance:none;}
+input[type='search']::-webkit-search-decoration,input[type='search']::-webkit-search-cancel-button {display:none;}
+::-webkit-input-placeholder {color:#999;}
+input:-moz-placeholder {color:#999;}
+div,input,textarea {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;
+box-sizing:border-box;}
+.ie7 img,.iem7 img {-ms-interpolation-mode:bicubic;}
+.ie6 #query,.ie7 #query {padding:4px 30px 7px 2px;width:238px;height:14px;}
+.ie6 #primary,.ie7 #primary {margin:0 0 -7px;}
+.ie6 #tabs em {position:absolute;top:13px;right:13px;}
+.ie6 #footer nav,.ie7 #footer nav {margin:15px 0 0;clear:both;}
+
+
+/* Non-semantic helper classes */
+
+/* Image replacement */
+.ir,.xoxo a {text-indent:-999em;line-height:99em;text-align:left;background-repeat:no-repeat;display:block;
+overflow:hidden;direction:ltr;}
+
+/* Hide for screenreaders and visual browsers */
+.hidden {display:none;visibility:hidden;}
+
+/* Hide visually */
+.v-hidden {margin:-1px;border:0;padding:0;width:1px;height:1px;overflow:hidden;position:absolute;
+clip:rect(0 0 0 0);}
+
+/* Allow an element to be focusable via keyboard  */
+.v-hidden.focusable:active,.v-hidden.focusable:focus {margin:0;width:auto;height:auto;overflow:visible;position:static;
+clip:auto;}
+
+/* Hide but maintain layout */
+.invisible {visibility:hidden;}
+
+
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+
+#goog-fixurl ul {list-style-type:none;}
+#goog-fixurl input  {margin-bottom:1.5em;}
+
+
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+
+
+
+/* MEDIA QUERIES */
+
+/*Print _____________________________________________________________________________________________________________ */
+
+@media print {
+* {color:black !important;text-shadow:none !important;background:transparent !important;filter:none !important;
+-ms-filter:none !important;}
+
+a,a:visited {color:#444 !important;text-decoration:underline;}
+a[href]:after {content:' (' attr(href) ')';}
+abbr[title]:after {content:' (' attr(title) ')';}
+a[href^='javascript:']:after,a[href^='#']:after {content:'';}
+pre,blockquote {border:1px solid #999;page-break-inside:avoid;}
+thead {display:table-header-group;}
+tr,img {page-break-inside:avoid;}
+@page {margin:.5cm;}
+p,h2,h3 {orphans:3;widows:3;}
+h2,h3 {page-break-after:avoid;}
+}/*/mediaquery*/
+
+
+/*480px [iPhone 3G/3GS (landscape), Meizu M8 (portrait), Nexus one (portrait)] ______________________________________ */
+
+@media only screen and (min-width:480px) {
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+
+body {width:93.5%;}
+
+
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+h1 {font-size:53px;line-height:53px;}
+#home h1 {font-size:48px;line-height:48px;}
+
+
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+
+/*#brand {margin:0 0 15px;width:auto;}*/
+#brand {margin:0 0 15px;width:45%;max-width:371px;float:left;}
+#search fieldset {width:auto;}
+#search {width:41%;max-width:275px;float:right;}	
+#query {width:100%;}
+
+
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+
+.featured h2,#exposed h2 {font-size:21px;line-height:25px;}
+.featured figure {width:25%;display:block;}
+#exposed figure {width:100%;max-width:628px;}
+.portrait-photo #exposed figure {max-width:460px;}
+.featured .info {padding-top:10px;width:69%;float:right;}
+.featured article {width:100%;}
+
+#single {padding:32px 0 0;}
+#intro .entry-summary {margin:0 0 21px;font-size:24px;line-height:30px;}
+#single .entry-content p {font-size:18px;line-height:25px;}
+
+#media figure {max-width:628px;}
+.portrait-photo #media figure {max-width:460px;}
+
+
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+
+}/*/mediaquery*/
+
+
+/*640px [iPhone 4G (portrait),  Meizu M8 (landscape)] _______________________________________________________________ */
+
+@media only screen and (min-width:540px) {
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+
+body {width:95.2%;}
+
+
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+
+.featured figure {width:20%;margin-right:20px;}
+.featured figure a {display:block;}
+#exposed .detail,#exposed p {width:100%;float:left;}
+.featured .info {width:32%;clear:none;float:left;}
+.featured p {width:40%;font-size:16px;line-height:20px;color:#7f7f7f;display:block;float:right;}
+
+#intro .entry-summary:after {content:'”';right:-15px;top:34px;}
+
+#tabs li {width:33.33%;}
+#tabs em {float:right;}
+
+
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie6 #tabs li {width:33%;}
+
+
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+
+}/*/mediaquery*/
+
+
+/*768px [iPad (portrait), iPhone 4G (landscape), Nexus one (landscape)] _____________________________________________ */
+
+@media only screen and (min-width:768px) {
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+
+body {width:96%;}
+
+
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+h1 {margin:0 0 21px;}
+
+
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+
+#brand {float:left;}
+#search {margin:-4px 0 14px;float:right;}
+#home #search {margin:25px 0 19px;}
+
+
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+
+#exposed {margin:0 0 15px;}
+.portrait-photo #exposed {margin:0;border:none;width:48%;float:left;}
+#exposed figure {margin:0 20px 20px 0;width:48%;}
+.portrait-photo #exposed figure {width:100%;}
+#exposed .detail,.featured .info,.featured p {width:48%;float:right;}
+.portrait-photo #exposed .detail {width:100%;}
+.featured {width:100%;float:left;}
+#home.portrait-photo .featured {width:48%;float:right;}
+.featured h3 {margin:0 0 21px;}
+.featured article {width:49%;min-height:260px;}
+#home.portrait-photo .featured article {width:100%;min-height:inherit;}
+.featured .f2,.featured .f4 {float:right;}
+.featured figure {width:48%;margin-right:0;}
+
+#single {margin:0 0 28px;}
+
+#media {margin-bottom:19px;}
+.portrait-photo #media {width:48%;float:right;}
+#media figcaption {clear:none;}
+.portrait-photo #single .entry-content {margin:14px 0 0;width:48%;float:left;}
+
+
+	#tabs {margin:0 0 47px;padding:0 0 11px;width:100%;background-position:bottom;overflow:hidden;float:left;}
+
+
+
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie7 #header {min-height:113px;}
+.ie6 .featured .info {height:150px;}
+
+
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+}/*/mediaquery*/
+
+
+/*992px [iPad (landscape), desktop, some laptops] ___________________________________________________________________ */
+
+@media only screen and (min-width:1015px) {
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+
+body {max-width:960px;}
+
+
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+.featured h2 {margin:0 0 15px;}
+
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+
+#brand {margin-left:6px;}
+
+
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+
+#primary {margin:0 0 9px;padding:11px 0 0;}
+#primary .selected a,footer nav .selected a {background-position:right -74px;}
+/* 100% : 6 (no. of categories) = 16.66% */
+#primary li {width:16.66%;}
+#primary a,#rss a,#footer nav a {padding:8px 12px 7px;}
+#footer nav a {display:block;}
+
+
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+
+#exposed article {padding:0 0 13px;width:100%;float:left;}
+.featured {margin:0 0 0 -16px;width:auto;float:left;}
+#home.portrait-photo .featured {width:472px;float:right;}
+.featured h3 {margin-left:16px;}
+.featured figure {width:100%;}
+
+.featured article {margin-left:16px;width:228px;min-height:530px;float:left;}
+#home.portrait-photo .featured article {margin:0;width:228px;min-height:480px;}
+.featured .f2,.featured .f4 {float:left;}
+#home.portrait-photo .featured .f2,#home.portrait-photo .featured .f4 {float:right;}
+.featured .info,.featured p {width:auto;}
+.featured .info {padding-top:0;}
+.portrait-photo .featured .info {width:auto;}
+
+.portrait-photo #intro {width:460px;float:left;}
+#intro .entry-summary,#single .entry-content {width:628px;float:left;}
+.portrait-photo #intro .entry-summary,.portrait-photo #single .entry-content {width:460px;}
+#single .photo,#to-gallery {width:616px;float:left;}
+.portrait-photo #single .photo,.portrait-photo #to-gallery {width:auto;}
+#intro .entry-summary:after {right:-20px;}
+#single footer,#single figcaption {width:296px;float:right;}
+.portrait-photo #single footer,.portrait-photo #single figcaption {width:auto;}
+.portrait-photo #single footer {padding:12px 0 27px;}
+.portrait-photo #single figcaption {float:none;}
+#single figcaption
+#single footer {margin-top:6px;}
+
+#media figure {max-width:none;}
+.portrait-photo #media {width:460px;}
+
+#tabs li {width:321px;}
+
+
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+
+#footer {float:left;}
+footer h3 {margin:0;font-size:80px;position:absolute;top:8px;left:0;z-index:-1;}
+#rss {margin:62px 0 0;padding:4px 0 0 34px;width:auto;background-position:0 0;}
+#rss li:first-child {padding-left:0;background:none;}
+#footer nav {margin:0;padding:66px 0 0;float:right;}
+#footer section {margin:18px 0 0;}
+#copyright {width:80%;float:left;}
+.xoxo {margin:-6px -5px 0 0;width:auto;float:right;}
+
+
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+/*.ie6 #header {height:124px;}*/
+.ie6 #primary,.ie7 #primary {margin:2px 0 0;}
+.ie6 .featured {margin:0 0 0 -32px;}
+.ie6 .featured article {overflow:hidden;}
+.ie6 .featured figure {padding-bottom:0;}
+.ie6 .featured p {height:184px;}
+.ie6 #tabs li {width:320px;}
+.ie6 #footer nav,.ie7 #footer nav {padding:51px 0 0;}
+.ie7 #header {min-height:90px;}
+.ie7 #home #header {min-height:124px;}
+.ie7 #header {min-height:124px;}
+.ie8 #home.portrait-photo {padding:10px 0;}
+.ie8 #header {min-height:1px;}
+
+
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+}/*/mediaquery*/
+
+
+/*1382px [MacBook Pro 15 inches (1440px) ] __________________________________________________________________________ */
+
+@media only screen and (min-width:1382px) {
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+}/*/mediaquery*/
+
+
+/*2x ________________________________________________________________________________________________________________ */
+
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-device-pixel-ratio:2) {
+
+/* 1.ROOT ___________________________________________________________________________________________________________ */
+/* 2.HEADINGS _______________________________________________________________________________________________________ */
+/* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+/* 4.LINKS __________________________________________________________________________________________________________ */
+/* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+/* 6.TABLES _________________________________________________________________________________________________________ */
+/* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
+/* 8.BANNER _________________________________________________________________________________________________________ */
+/* 9.NAVIGATION _____________________________________________________________________________________________________ */
+/* 10.CONTENT _______________________________________________________________________________________________________ */
+/* 11.MAIN __________________________________________________________________________________________________________ */
+/* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+/* 13.CONTENTINFO ___________________________________________________________________________________________________ */
+/* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+/* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+/* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+
+}/*/mediaquery*/
