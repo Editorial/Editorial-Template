@@ -30,7 +30,7 @@ del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,
 label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,
 header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {margin:0;border:0;padding:0;
 font-size:100%;font:inherit;vertical-align:baseline;}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,iframe {display:block;}
 abbr[title] {border-bottom:1px dotted;cursor:help;}
 
 
@@ -40,22 +40,24 @@ html {overflow-y:scroll;background:#fff;}
 body {margin:0 auto;padding:30px 0;width:90%;font:100%/20px 'MinionProRegular',sans-serif;color:#333;
 background-color:transparent;}
 
-#primary,footer section,#single footer,#tabs {background:url(../images/bgr/lines.gif) repeat-x;}
+#primary,footer section,#single footer,#tabs,#navigate {background:url(../images/bgr/lines.gif) repeat-x;}
 #find,#primary li,#primary .selected a,#rss,#rss li,.xoxo li,#media-count,footer nav .selected a
 {background:url(../images/bgr/sprite.png) no-repeat;}
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,h2,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
-#home h1,.featured h2 {font-family:'MinionProSemibold',sans-serif;color:#d9d9d9;text-decoration:underline;}
+#home h1,#home-portrait h1,.featured h2 {font-family:'MinionProSemibold',sans-serif;color:#d9d9d9;text-decoration:underline;}
+#embed h4 {font-family:'MinionProSemibold',sans-serif;}
 h1 a,h2 a {color:#262626;}
-h1 {margin:0 0 10px;font-size:35px;line-height:35px;}
-h2 {margin:0 0 5px;font-size:2em;line-height:1.2;}
+h1,h2 {margin:0 0 10px;font-size:35px;line-height:35px;}
+h3 {margin:0 0 10px;}
+/*
 h3 {margin:0 0 10px;font-size:1.5em;line-height:1.3;}
 h4 {margin-bottom:1.25em;font-size:1.25em;line-height:1.25;}
 h5 {margin-bottom:1.5em;font-size:1em;}
 h6 {font-size:1em;}
-
+*/
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
@@ -103,9 +105,10 @@ a {color:#262626;text-decoration:none;}
 /* 5.FIGURES & IMAGES _______________________________________________________________________________________________ */
 
 figure img,figure object,figure embed {display:block;max-width:100%;}
-figcaption {font:12px/15px sans-serif;color:#999;display:block;font-weight:normal;}
+#video {float:left;}
+figcaption {font:12px/15px sans-serif;color:#999;display:block;font-weight:normal;clear:both;}
 figcaption h3 {margin:0 0 5px;font:bold 12px/15px sans-serif;text-transform:uppercase;color:#999;}
-figcaption p {font:12px/15px sans-serif;color:#999;}
+figcaption p {font:12px/15px sans-serif;color:#a5a5a5;}
 
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
@@ -128,8 +131,9 @@ caption {background-color:transparent;}
 #brand img {margin:0;}
 #search {margin:0 0 15px;}
 #search fieldset {width:275px;position:relative;}
-#query {border:1px solid #a6a6a6;border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 30px 7px 4px;
-width:275px;height:30px;font-size:12px;}
+#query,#embed-code {border:1px solid #a6a6a6;border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;
+font-size:12px;}
+#query {padding-right:30px;width:275px;height:30px;}
 #find {border:none;width:30px;height:30px;background-position:7px -42px;position:absolute;top:-1px;right:1px;}
 
 
@@ -149,11 +153,10 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 
 .featured article {margin:0 0 15px;float:left;}
 .featured figure,#exposed figure {margin:0 0 13px;float:left;}
-.featured figure a,#exposed figure a {border:1px solid #ccc;padding:6px;display:block;}
+.featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img {border:1px solid #ccc;padding:6px;display:block;}
 .featured figure {display:none;}
 .featured h2,#exposed h2 {font-size:19px;line-height:23px;}
 .featured p {display:none;}
-/*.featured .info,#exposed .detail {clear:both;}*/
 .featured footer,#exposed footer,#single footer {padding:0 0 8px;font:10px/12px sans-serif;text-transform:uppercase;}
 .featured footer a,#exposed footer a,#single footer a {color:#c00;}
 .featured time,#exposed time,#single time,#single footer em,#single footer em a {color:#999;}
@@ -175,10 +178,10 @@ color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
 #single footer em a {font-weight:bold;}
 #single .social {margin:0;width:100%;float:left;}
 #single .social li {margin:10px 15px 0 0;float:left;}
+#gallery #single h1,#gallery-portrait #single h1,#feedback #single h1 {text-decoration:underline;color:#d9d9d9;}
 
 #media {margin:14px 0 0;width:100%;float:left;}
-#to-gallery {margin:0 0 10px;border:1px solid #ccc;padding:6px;font-size:18px;background:#fff;display:block;
-position:relative;}
+#to-gallery,#media span {margin:0 0 10px;font-size:18px;background:#fff;position:relative;}
 #media-count {padding:6px 11px 9px 43px;font-size:18px;color:#262626;font-style:normal;display:block;
 background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:0;right:0;}
 
@@ -195,6 +198,23 @@ box-shadow:7px 2px 2px rgba(0,0,0,.1);}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+
+#gallery aside,#gallery-portrait aside {width:100%;float:left;}
+#gallery aside h2,#gallery-portrait aside h2 {color:#bfbfbf;}
+
+#navigate {margin:0 0 23px;width:100%;float:left;background-position:bottom;}
+#navigate ul {max-width:298px;}
+#navigate li {margin:0 0 22px;width:130px;font:10px/12px sans-serif;text-transform:uppercase;}
+#navigate .previous {float:left;}
+#navigate .next {text-align:right;float:right;}
+#navigate img {margin:0 0 11px;}
+#navigate a {color:#c00;}
+
+#embed h4 {margin:0 0 12px;font-size:22px;line-height:25px;}
+#embed p {margin:0 0 9px;font-size:16px;line-height:20px;color:#7f7f7f;}
+#embed-code {margin:0 0 20px;color:#999;}
+
+
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
 #footer {position:relative;}
@@ -314,13 +334,16 @@ body {width:93.5%;}
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
-h1 {font-size:53px;line-height:53px;}
-#home h1 {font-size:48px;line-height:48px;}
+h1,h2 {font-size:53px;line-height:53px;}
+#home h1,#home-portrait h1 {font-size:48px;line-height:48px;}
 
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+
+#video iframe {width:421px;height:342px;}
+
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
 /* 8.BANNER _________________________________________________________________________________________________________ */
@@ -328,7 +351,7 @@ h1 {font-size:53px;line-height:53px;}
 /*#brand {margin:0 0 15px;width:auto;}*/
 #brand {margin:0 0 15px;width:45%;max-width:371px;float:left;}
 #search fieldset {width:auto;}
-#search {width:41%;max-width:275px;float:right;}	
+#search {width:41%;max-width:275px;float:right;}
 #query {width:100%;}
 
 
@@ -338,17 +361,15 @@ h1 {font-size:53px;line-height:53px;}
 
 .featured h2,#exposed h2 {font-size:21px;line-height:25px;}
 .featured figure {width:25%;display:block;}
-#exposed figure {width:100%;max-width:628px;}
-.portrait-photo #exposed figure {max-width:460px;}
+#exposed figure,#media figure {width:100%;max-width:628px;}
+#home-portrait #exposed figure,#inside-portrait #exposed figure,#inside-portrait #media figure,
+#gallery-portrait #media figure {max-width:460px;}
 .featured .info {padding-top:10px;width:69%;float:right;}
 .featured article {width:100%;}
 
 #single {padding:32px 0 0;}
 #intro .entry-summary {margin:0 0 21px;font-size:24px;line-height:30px;}
 #single .entry-content p {font-size:18px;line-height:25px;}
-
-#media figure {max-width:628px;}
-.portrait-photo #media figure {max-width:460px;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -375,6 +396,10 @@ body {width:95.2%;}
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+
+#video iframe {width:480px;height:390px;}
+
+
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
 /* 8.BANNER _________________________________________________________________________________________________________ */
@@ -426,13 +451,17 @@ h1 {margin:0 0 21px;}
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+
+#video iframe {width:395px;height:321px;}
+
+
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #brand {float:left;}
 #search {margin:-4px 0 14px;float:right;}
-#home #search {margin:25px 0 19px;}
+#home #search,#home-portrait #search {margin:25px 0 19px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -440,32 +469,41 @@ h1 {margin:0 0 21px;}
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
 #exposed {margin:0 0 15px;}
-.portrait-photo #exposed {margin:0;border:none;width:48%;float:left;}
+#home-portrait #exposed,#inside-portrait #exposed {margin:0;border:none;width:48%;float:left;}
 #exposed figure {margin:0 20px 20px 0;width:48%;}
-.portrait-photo #exposed figure {width:100%;}
+#home-portrait #exposed figure,#inside-portrait #exposed figure {width:100%;}
 #exposed .detail,.featured .info,.featured p {width:48%;float:right;}
-.portrait-photo #exposed .detail {width:100%;}
+#home-portrait #exposed .detail,#inside-portrait #exposed .detail {width:100%;}
 .featured {width:100%;float:left;}
-#home.portrait-photo .featured {width:48%;float:right;}
+#home-portrait .featured {width:48%;float:right;}
 .featured h3 {margin:0 0 21px;}
 .featured article {width:49%;min-height:260px;}
-#home.portrait-photo .featured article {width:100%;min-height:inherit;}
+#home-portrait .featured article {width:100%;min-height:inherit;}
 .featured .f2,.featured .f4 {float:right;}
 .featured figure {width:48%;margin-right:0;}
 
 #single {margin:0 0 28px;}
+#gallery #single h1,#gallery-portrait #single h1 {padding-right:100px;}
 
 #media {margin-bottom:19px;}
-.portrait-photo #media {width:48%;float:right;}
-#media figcaption {clear:none;}
-.portrait-photo #single .entry-content {margin:14px 0 0;width:48%;float:left;}
+#inside-portrait #media {width:48%;float:right;}
+#gallery #media,#gallery-portrait #media {width:55%;}
+#gallery-portrait #media figure {margin:0 auto;float:none;}
+
+#inside-portrait #single .entry-content {margin:14px 0 0;width:48%;float:left;}
 
 
-	#tabs {margin:0 0 47px;padding:0 0 11px;width:100%;background-position:bottom;overflow:hidden;float:left;}
+#tabs {margin:0 0 47px;padding:0 0 11px;width:100%;background-position:bottom;overflow:hidden;float:left;}
 
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+
+#gallery aside,#gallery-portrait aside {margin:14px 0 0;width:298px;float:right;position:relative;}
+#gallery aside h2,#gallery-portrait aside h2 {text-align:right;position:absolute;top:-88px;right:0;}
+#embed-code {width:298px;}
+
+
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
@@ -496,6 +534,10 @@ body {max-width:960px;}
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+
+#video iframe {width:480px;height:390px;}
+
+
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS css/mylibs/forms.css _____________________________________________________________________________________ */
 /* 8.BANNER _________________________________________________________________________________________________________ */
@@ -516,35 +558,42 @@ body {max-width:960px;}
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
+#exposed figure {width:628px;margin:0;}
+#exposed .detail {width:292px;}
 #exposed article {padding:0 0 13px;width:100%;float:left;}
 .featured {margin:0 0 0 -16px;width:auto;float:left;}
-#home.portrait-photo .featured {width:472px;float:right;}
+#home-portrait .featured {width:472px;float:right;}
 .featured h3 {margin-left:16px;}
 .featured figure {width:100%;}
 
 .featured article {margin-left:16px;width:228px;min-height:530px;float:left;}
-#home.portrait-photo .featured article {margin:0;width:228px;min-height:480px;}
+#home-portrait .featured article {margin:0;width:228px;min-height:480px;}
 .featured .f2,.featured .f4 {float:left;}
-#home.portrait-photo .featured .f2,#home.portrait-photo .featured .f4 {float:right;}
+#home-portrait .featured .f2,#home-portrait .featured .f4 {float:right;}
 .featured .info,.featured p {width:auto;}
 .featured .info {padding-top:0;}
-.portrait-photo .featured .info {width:auto;}
+#inside-portrait .featured .info {width:auto;}
 
-.portrait-photo #intro {width:460px;float:left;}
+#inside-portrait #intro {width:460px;float:left;}
 #intro .entry-summary,#single .entry-content {width:628px;float:left;}
-.portrait-photo #intro .entry-summary,.portrait-photo #single .entry-content {width:460px;}
-#single .photo,#to-gallery {width:616px;float:left;}
-.portrait-photo #single .photo,.portrait-photo #to-gallery {width:auto;}
+#inside-portrait #intro .entry-summary,#inside-portrait #single .entry-content {width:460px;}
+#single .photo,#to-gallery,#media span {width:614px;float:left;}
+#media #video,#media #video iframe {width:480px;}
+#inside-portrait #single .photo,#inside-portrait #to-gallery,#gallery-portrait #media span,
+#gallery-portrait #single .photo {width:auto;}
 #intro .entry-summary:after {right:-20px;}
 #single footer,#single figcaption {width:296px;float:right;}
-.portrait-photo #single footer,.portrait-photo #single figcaption {width:auto;}
-.portrait-photo #single footer {padding:12px 0 27px;}
-.portrait-photo #single figcaption {float:none;}
+#gallery #single figcaption,#gallery-portrait #single figcaption {width:100%;float:left;}
+#inside-portrait #single footer,#inside-portrait #single figcaption {width:auto;}
+#inside-portrait #single footer {padding:12px 0 27px;}
+#inside-portrait #single figcaption {float:none;}
 #single figcaption
 #single footer {margin-top:6px;}
 
-#media figure {max-width:none;}
-.portrait-photo #media {width:460px;}
+#media {width:100%;}
+#media figure {max-width:100%;float:left;}
+#media figure figcaption {clear:none;}
+#gallery #media,#gallery-portrait #media {width:63%;}
 
 #tabs li {width:321px;}
 
@@ -576,7 +625,7 @@ footer h3 {margin:0;font-size:80px;position:absolute;top:8px;left:0;z-index:-1;}
 .ie7 #header {min-height:90px;}
 .ie7 #home #header {min-height:124px;}
 .ie7 #header {min-height:124px;}
-.ie8 #home.portrait-photo {padding:10px 0;}
+.ie8 #home-portrait {padding:10px 0;}
 .ie8 #header {min-height:1px;}
 
 
