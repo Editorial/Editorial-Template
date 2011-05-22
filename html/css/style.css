@@ -41,8 +41,8 @@ body {margin:0 auto;padding:30px 0;width:90%;font:100%/20px 'MinionProRegular',s
 background-color:transparent;}
 
 #primary,footer section,#inside #single footer,#inside-portrait #single footer,#tabs,#navigate,.notice,#comments article,
-#paging {background:url(../images/bgr/lines.gif) repeat-x;}
-#find,#primary li,#primary .selected a,#rss,#rss li,.xoxo li,#media-count,footer nav .selected a
+#paging,#layout-list .featured article {background:url(../images/bgr/lines.gif) repeat-x;}
+#find,#primary li,#primary .selected a,#rss,#rss li,.xoxo li,#media-count,footer nav .selected a,#layout a
 {background:url(../images/bgr/sprite.png) no-repeat;}
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
@@ -52,6 +52,7 @@ h1,h2,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
 color:#d9d9d9;text-decoration:underline;}
 #embed h4,.message .lead {font-family:'MinionProSemibold',sans-serif;}
 h1 a,h2 a {color:#262626;}
+h1 em {color:#d00;font-style:normal;}
 h1,h2 {margin:0 0 10px;font-size:35px;line-height:35px;}
 h3 {font-size:28px;margin:0 0 10px;}
 /*
@@ -94,7 +95,7 @@ pre,code {font:.875em 'andale mono','lucida console',monospace;line-height:1.5;}
 small {font-size:1em;}
 label,input[type='submit'] {cursor:pointer}
 input,textarea {font-family:sans-serif;}
-.submit input {border:1px solid #fff;padding:10px 10px 7px;width:147px;font-family:'MinionProSemibold',sans-serif;font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;background:#eee;background:-moz-linear-gradient(top,#fff,#fff 50%,#d7d7d7);background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d7d7d7),color-stop(.5,#fff));-moz-box-shadow:0 0 4px rgba(0,0,0,.5);-webkit-box-shadow:0 0 4px rgba(0,0,0,.5);box-shadow:0 0 4px rgba(0,0,0,.5);}
+.submit input {border:1px solid #fff;padding:10px 10px 7px;width:147px;font-family:'MinionProSemibold',sans-serif;font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;background:#eee;background:-moz-linear-gradient(top,#fff,#fff 50%,#d7d7d7);background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d7d7d7),color-stop(.5,#fff));background:linear-gradient(top,#fff,#fff 50%,#d7d7d7);-moz-box-shadow:0 0 4px rgba(0,0,0,.5);-webkit-box-shadow:0 0 4px rgba(0,0,0,.5);box-shadow:0 0 4px rgba(0,0,0,.5);}
 
 /* 4.LINKS __________________________________________________________________________________________________________ */
 
@@ -133,7 +134,7 @@ border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;font-
 #comments-form {padding:37px 0 0;}
 fieldset ol {margin:0;}
 fieldset li {margin:0 0 15px;}
-fieldset li label {padding:0 0 5px;font:10px/14px sans-serif;color:#999;text-transform:uppercase;display:block;}
+fieldset li label,#layout p,#layout li {padding:0 0 5px;font:10px/14px sans-serif;color:#999;text-transform:uppercase;display:block;}
 fieldset .text input {width:100%;color:#333;}
 fieldset .area textarea {margin:0 0 8px;width:100%;height:158px;color:#333;}
 fieldset .riddle {width:100%;}
@@ -181,7 +182,8 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
-.featured article {margin:0 0 15px;float:left;}
+.featured article {margin:0 0 15px;}
+#layout-list .featured article {background-position:0 -100px;}
 .featured figure,#exposed figure {margin:0 0 13px;float:left;}
 .featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img {border:1px solid #ccc;padding:6px;display:block;}
 .featured figure {display:none;}
@@ -200,7 +202,6 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 #exposed p {font-size:20px;line-height:25px;color:#262626;}
 #exposed footer {padding:12px 0 9px;}
 
-/*#single {margin:0 0 10px;overflow:hidden;}*/
 #single {margin:0 0 10px;}
 #intro .entry-summary {margin:0 0 13px;font-size:20px;line-height:26px;position:relative;}
 #intro .entry-summary:before,#intro .entry-summary:after {width:230px;height:230px;font-size:600px;line-height:600px;
@@ -232,7 +233,8 @@ background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:
 #comments cite a,#comments .no-link {color:#333;}
 #comments time {display:block;}
 
-#paging {padding:18px 0 8px;background-position:bottom;}
+#paging {padding:18px 0 8px;}
+#feedback #paging {background-position:bottom;}
 #paging menu {font-size:18px;line-height:25px;}
 #paging p {padding:8px 0 0;}
 #paging strong {font-weight:normal;color:#d00;}
@@ -247,6 +249,15 @@ display:block;position:relative;}
 box-shadow:7px 2px 2px rgba(0,0,0,.1);}
 #tabs .selected a {margin-top:-1px;padding-top:13px;color:#333;background:#fff;}
 #tabs em {padding:0 0 0 10px;font-style:normal;}
+
+#layout {text-transform:uppercase;}
+#layout p {padding:9px 20px 0 0;}
+#layout menu {margin:0 0 20px;border-radius:3px;padding:2px;height:26px;background:#f3f3f3;background:-moz-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);background:-webkit-gradient(linear,left top,left bottom,from(#999),to(#e6e6e6),color-stop(0.5,#f3f3f3));background:linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);float:left;}
+#layout li {padding:0;border-radius:3px;opacity:.5;float:left;}
+#layout a {padding:7px 10px 5px 30px;color:#595959;text-shadow:1px 1px 0 #fff;display:block;}
+#layout .list {background-position:11px -153px;}
+#layout .grid {background-position:-89px -153px;}
+#layout .selected {opacity:1;background:#f6f6f6;background:-moz-linear-gradient(top,#fff,#fff 40%,#d6d6d6);background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d6d6d6),color-stop(0.4,#fff));box-shadow:0 0 2px rgba(0,0,0,.8);background:linear-gradient(top,#fff,#fff 40%,#d6d6d6);}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -415,21 +426,28 @@ h1 {margin:0 0 21px;}
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
+.featured article {float:left;}
+#layout-list .featured article {margin:0;}
 .featured h2,#exposed h2 {font-size:21px;line-height:25px;}
 .featured figure {width:25%;display:block;}
+#layout-list .featured figure {margin-bottom:10px;}
 #exposed figure,#media figure {width:100%;max-width:628px;}
 #home-portrait #exposed figure,#inside-portrait #exposed figure,#inside-portrait #media figure,
 #gallery-portrait #media figure {max-width:460px;}
 .featured .info {padding-top:10px;width:69%;float:right;}
 .featured article {width:100%;}
 
-#single {padding:32px 0 0;}
+#single {padding:32px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 21px;font-size:24px;line-height:30px;}
 #single .entry-content p {font-size:18px;line-height:25px;}
 
 #paging,.message,#comments-form {width:100%;float:left;}
+#layout-grid #paging,#layout-list #paging {padding-bottom:32px;}
 #paging menu {float:left;}
 #paging p {float:right;}
+
+#layout {width:100%;float:left;}
+#layout p {float:left;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -481,11 +499,13 @@ form .author {width:48%;float:right;}
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
+#layout-list .featured article {padding:11px 0 0;background-position:top;}
 .featured figure {width:20%;margin-right:20px;}
 .featured figure a {display:block;}
 #exposed .detail,#exposed p {width:100%;float:left;}
 .featured .info {width:32%;clear:none;float:left;}
 .featured p {width:40%;font-size:16px;line-height:20px;color:#7f7f7f;display:block;float:right;}
+#layout-list .featured p {padding:7px 0 0;}
 
 #intro .entry-summary:after {content:'”';right:-15px;top:34px;}
 
@@ -551,13 +571,18 @@ body {width:96%;}
 #exposed figure {margin:0 20px 20px 0;width:48%;}
 #home-portrait #exposed figure,#inside-portrait #exposed figure {width:100%;}
 #exposed .detail,.featured .info,.featured p {width:48%;float:right;}
+#layout-list .featured .info {width:34%;float:left;}
+#layout-list .featured p {width:47%;float:right;}
 #home-portrait #exposed .detail,#inside-portrait #exposed .detail {width:100%;}
 .featured {width:100%;float:left;}
 #home-portrait .featured {width:48%;float:right;}
 .featured article {width:49%;min-height:260px;}
+#layout-list .featured article {width:100%;min-height:inherit;}
 #home-portrait .featured article {width:100%;min-height:inherit;}
 .featured .f2,.featured .f4 {float:right;}
+#layout-list .featured .f2,#layout-list .featured .f4 {float:left;}
 .featured figure {width:48%;margin-right:0;}
+#layout-list .featured figure {width:13.3%;margin-right:20px;}
 
 #single {margin:0 0 28px;}
 #gallery #single h1,#gallery-portrait #single h1 {padding-right:100px;}
@@ -569,9 +594,9 @@ body {width:96%;}
 
 #inside-portrait #single .entry-content {margin:14px 0 0;width:48%;float:left;}
 
-
 #tabs {margin:0 0 47px;padding:0 0 11px;width:100%;background-position:bottom;overflow:hidden;float:left;}
 
+#layout {width:auto;position:absolute;top:45px;right:0;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -647,18 +672,23 @@ form .author {width:298px;}
 #exposed figure {width:628px;margin:0;}
 #exposed .detail {width:292px;}
 #exposed article {padding:0 0 13px;width:100%;float:left;}
-.featured {margin:0 0 0 -16px;width:auto;float:left;}
+.featured {margin:0 0 45px -16px;width:auto;float:left;}
 #home-portrait .featured {width:472px;float:right;}
+#layout-grid .featured,#layout-list .featured {margin-bottom:0;}
+#layout-list .featured {margin-left:0;}
 .featured h3 {margin-left:16px;}
 .featured figure {width:100%;}
 
-.featured article {margin-left:16px;width:228px;min-height:530px;float:left;}
+.featured article {margin-left:16px;width:228px;min-height:485px;/*min-height:530px;*/float:left;}
 #home-portrait .featured article {margin:0;width:228px;min-height:480px;}
+#layout-list .featured article {margin-left:0;}
 .featured .f2,.featured .f4 {float:left;}
 #home-portrait .featured .f2,#home-portrait .featured .f4 {float:right;}
 .featured .info,.featured p {width:auto;}
 .featured .info {padding-top:0;}
 #inside-portrait .featured .info {width:auto;}
+#layout-list .featured .info {padding-top:10px;}
+#layout-list .featured .info {width:34%;float:left;}
 
 #inside-portrait #intro {width:460px;float:left;}
 #intro .entry-summary,#single .entry-content {width:628px;float:left;}
