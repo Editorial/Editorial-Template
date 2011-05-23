@@ -41,7 +41,7 @@ body {margin:0 auto;padding:30px 0;width:90%;font:100%/20px 'MinionProRegular',s
 background-color:transparent;}
 
 #primary,footer section,#inside #single footer,#inside-portrait #single footer,#tabs,#navigate,.notice,#comments article,
-#paging,#layout-list .featured article {background:url(../images/bgr/lines.gif) repeat-x;}
+#paging,#layout-list .featured article,#team li {background:url(../images/bgr/lines.gif) repeat-x;}
 #find,#primary li,#primary .selected a,#rss,#rss li,.xoxo li,#media-count,footer nav .selected a,#layout a
 {background:url(../images/bgr/sprite.png) no-repeat;}
 
@@ -50,10 +50,11 @@ background-color:transparent;}
 h1,h2,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
 #home h1,#home-portrait h1,.featured h2,#comments cite,#paging menu {font-family:'MinionProSemibold',sans-serif;
 color:#d9d9d9;text-decoration:underline;}
-#embed h4,.message .lead {font-family:'MinionProSemibold',sans-serif;}
+#embed h4,.message .lead,#common h2,#team .fn,address .fn {font-family:'MinionProSemibold',sans-serif;}
 h1 a,h2 a {color:#262626;}
 h1 em {color:#d00;font-style:normal;}
 h1,h2 {margin:0 0 10px;font-size:35px;line-height:35px;}
+#common h2 {margin:7px 0 3px;font-size:22px;line-height:30px;}
 h3 {font-size:28px;margin:0 0 10px;}
 /*
 h3 {margin:0 0 10px;font-size:1.5em;line-height:1.3;}
@@ -185,7 +186,8 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 .featured article {margin:0 0 15px;}
 #layout-list .featured article {background-position:0 -100px;}
 .featured figure,#exposed figure {margin:0 0 13px;float:left;}
-.featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img {border:1px solid #ccc;padding:6px;display:block;}
+.featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img,#team img {border:1px solid #ccc;padding:6px;
+display:block;}
 .featured figure {display:none;}
 .featured h2,#exposed h2 {font-size:19px;line-height:23px;}
 .featured h3 {margin:0 0 21px;}
@@ -202,7 +204,7 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 #exposed p {font-size:20px;line-height:25px;color:#262626;}
 #exposed footer {padding:12px 0 9px;}
 
-#single {margin:0 0 10px;}
+#single,#common {margin:0 0 10px;}
 #intro .entry-summary {margin:0 0 13px;font-size:20px;line-height:26px;position:relative;}
 #intro .entry-summary:before,#intro .entry-summary:after {width:230px;height:230px;font-size:600px;line-height:600px;
 color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
@@ -259,6 +261,12 @@ box-shadow:7px 2px 2px rgba(0,0,0,.1);}
 #layout .grid {background-position:-89px -153px;}
 #layout .selected {opacity:1;background:#f6f6f6;background:-moz-linear-gradient(top,#fff,#fff 40%,#d6d6d6);background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d6d6d6),color-stop(0.4,#fff));box-shadow:0 0 2px rgba(0,0,0,.8);background:linear-gradient(top,#fff,#fff 40%,#d6d6d6);}
 
+#common .entry-content p {font-size:18px;line-height:25px;}
+#common address {padding:6px 0 0;font-size:18px;line-height:25px;}
+#common address .addr {display:block;}
+#common address .street-address {display:block;}
+#common address .tel {display:block;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
@@ -276,6 +284,16 @@ box-shadow:7px 2px 2px rgba(0,0,0,.1);}
 #embed h4 {margin:0 0 12px;font-size:22px;line-height:25px;}
 #embed p {margin:0 0 9px;font-size:16px;line-height:20px;color:#7f7f7f;}
 #embed-code {margin:0 0 20px;color:#999;}
+
+
+#team {margin:13px 0 30px;}
+#team li {padding:11px 0 0;}
+#team figure {}
+#team img {margin:0 10px 10px 0;}
+#team figcaption {}
+#team .title {margin:0 0 9px;font-family:'MinionProRegular',sans-serif;font-size:22px;line-height:24px;color:#c00;text-transform:uppercase;font-style:normal;display:block;}
+#team .fn {margin:0 0 4px;font-size:22px;line-height:24px;font-weight:normal;color:#333;display:block;}
+#team .email {margin:0 0 10px;font-size:12px;color:#333;display:block;}
 
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
@@ -437,7 +455,7 @@ h1 {margin:0 0 21px;}
 .featured .info {padding-top:10px;width:69%;float:right;}
 .featured article {width:100%;}
 
-#single {padding:32px 0 0;position:relative;}
+#single,#common {padding:32px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 21px;font-size:24px;line-height:30px;}
 #single .entry-content p {font-size:18px;line-height:25px;}
 
@@ -451,6 +469,12 @@ h1 {margin:0 0 21px;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
+
+#team,#team li {width:100%;float:left;}
+#team img {float:left;}
+#team figcaption {float:left;clear:none;}
+
+
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
@@ -584,7 +608,8 @@ body {width:96%;}
 .featured figure {width:48%;margin-right:0;}
 #layout-list .featured figure {width:13.3%;margin-right:20px;}
 
-#single {margin:0 0 28px;}
+#single,#common {margin:0 0 28px;}
+#common {width:100%;float:left;}
 #gallery #single h1,#gallery-portrait #single h1 {padding-right:100px;}
 
 #media {margin-bottom:19px;}
@@ -598,12 +623,16 @@ body {width:96%;}
 
 #layout {width:auto;position:absolute;top:45px;right:0;}
 
+#common .entry-content {width:48%;float:right;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
 #gallery aside,#gallery-portrait aside {margin:14px 0 0;width:298px;float:right;position:relative;}
 #gallery aside h2,#gallery-portrait aside h2 {text-align:right;position:absolute;top:-88px;right:0;}
 #embed-code {width:298px;}
+
+#common aside {width:48%;float:left;}
 
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
