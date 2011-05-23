@@ -82,4 +82,13 @@ Editorial::setup();
 
 include 'admin/admin.php';
 
+//add_action('publish_page', 'add_custom_field_automatically');
+add_action('publish_post', 'add_custom_field_automatically');
+function add_custom_field_automatically($post_ID) {
+    global $wpdb;
+    if(!wp_is_post_revision($post_ID)) {
+        add_post_meta($post_ID, 'field-name', 'custom value', true);
+    }
+}
+
 ?>
