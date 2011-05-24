@@ -29,7 +29,11 @@ class Editorial
      */
     public static function setup()
     {
+        // theme has custom menus
         add_action('init', array('Editorial', 'menus'));
+        // allow post thumnails
+        add_theme_support('post-thumbnails');
+        add_theme_support('post-formats');
     }
 
     /**
@@ -42,7 +46,7 @@ class Editorial
     {
         // we have main navigation and footer navigation
         register_nav_menu('main-nav', __( 'Main menu' ));
-        register_nav_menu('footer-nav', __( 'Footer menu' ));
+        //register_nav_menu('footer-nav', __( 'Footer menu' ));
     }
 
     /**
@@ -76,7 +80,61 @@ class Editorial
         $options[$option] = $value;
         update_option(EDITORIAL_OPTIONS, $options);
     }
+
+    /**
+     * Editorial author links
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function authorLink()
+    {
+        global $authordata;
+        $link = sprintf(
+            '<a href="%1$s" title="%2$s" class="fn n url">%3$s</a>',
+            get_author_posts_url( $authordata->ID, $authordata->user_nicename ),
+            esc_attr( sprintf( __( 'Posts by %s' ), get_the_author() ) ),
+            get_the_author()
+        );
+        echo apply_filters('the_author_posts_link', $link);
+    }
 }
+
+/**
+ * Custom Walker_Nav_Menu
+ * ----------------------
+ * Used to generate a custom navigation used to output the editorial template
+ *
+ * @package     Editorial
+ * @author      Miha Hribar
+ * @copyright   Copyright (c) 2011, ThirdFrameStudios
+ * @link        http://www.thirdframestudios.com
+ * @version     1.0
+ */
+class EditorialNav extends Walker_Nav_Menu
+{
+    function start_el(&$output, $item, $depth, $args)
+    {
+        global $wp_query;
+
+        $output .= '<li'.($item->current ? ' class="selected"' : '').'>';
+
+        $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+        $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+        $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+        $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+        $item_output = $args->before;
+        $item_output .= '<a'. $attributes .'>';
+        $item_output .= $args->link_before .$prepend.apply_filters( 'the_title', $item->title, $item->ID ).$append;
+        $item_output .= $args->link_after;
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+}
+
 
 Editorial::setup();
 

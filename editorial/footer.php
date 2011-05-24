@@ -1,34 +1,45 @@
-<div id="footer">
-    <h4>Naroči se</h4>
-    <ul class="rss">
-        <li class="first"><a href="/">Luke&amp;Phill</a></li>
-        <li><a href="/">Strojarna</a></li>
-        <li><a href="/">Stilizem</a></li>
-        <li><a href="/">Oblika</a></li>
-        <li><a href="/">Pojedina</a></li>
-        <li><a href="/">Domovanje</a></li>
-        <li><a href="/">Ravnovesje</a></li>
-    </ul>
-    <ul class="nav" id="global">
-        <li class="first"><a href="/" rel="tag">Kolofon</a></li>
-        <li><a href="/" rel="tag">Manifest</a></li>
-    </ul>
-    <ul class="social-networks xoxo">
-        <li class="twitter"><a href="/" title="Spremljaj nas na Twitterju">Twitter</a></li>
-        <li class="facebook"><a href="/" title="Obisci nas na Facebooku">Facebook</a></li>
-        <li class="vimeo"><a href="/" title="Oglej nase Vimeo video posnetke">Vimeo</a></li>
-        <li class="flickr"><a href="/" title="Oglej nase Flickr fotografije">Flickr</a></li>
-    </ul>
-    <p class="copyright">Vsa vsebina je zaščitena z licenco <strong><a href="http://creativecommons.org/licenses/by-sa/2.5/si/" rel="licence" class="external">
-    Creative Commons - Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji 2.5 Slovenija</a></strong>.<br />
-    Vsaki kraji se sodi po starodavnih slovanskih zakonih. Poganjata nas strast in WordPress.</p>
-</div>
+<footer id="footer" class="clear" role="contentinfo">
+    <h3>Subscribe</h3>
+    <menu id="rss">
+        <li><a href="/" title="Subscribe to all categories">All categories</a></li>
+        <li><a href="/" title="Subscribe to Machinery categories RSS">Machinery</a></li>
+        <li><a href="/" title="Subscribe to Styling categories RSS">Styling</a></li>
+        <li><a href="/" title="Subscribe to Design categories RSS">Design</a></li>
+        <li><a href="/" title="Subscribe to Feast categories RSS">Feast</a></li>
+        <li><a href="/" title="Subscribe to Being categories RSS">Being</a></li>
+        <li><a href="/" title="Subscribe to Equlibrium categories RSS">Equlibrium</a></li>
+    </menu>
+    <nav role="navigation">
+        <ul>
+            <li><a href="/">Colophon</a></li>
+        </ul>
+    </nav>
+    <section>
+        <menu class="xoxo">
+            <li class="twitter"><a href="/" title="Follow us on">Twitter</a></li>
+            <li class="facebook"><a href="/" title="Follow us on">Facebook</a></li>
+            <li class="vimeo"><a href="/" title="Follow us on Vimeo">Vimeo</a></li>
+            <li class="flickr"><a href="/" title="Follow us on Flickr">Flickr</a></li>
+        </menu>
+        <small id="copyright">Vsa vsebina je zaščitena z licenco <a href="http://creativecommons.org/licenses/by-sa/2.5/si/" rel="licence" target="_blank">
+        Creative Commons - Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji 2.5 Slovenija</a>.<br>
+        Vsaki kraji se sodi po starodavnih slovanskih zakonih. Poganjata nas strast in WordPress.</small>
+    </section>
+</footer>
 
-<script type="text/javascript">
-/*<![CDATA[*//*---->*/
-document.write(unescape('%3Cscript src="js/jquery.js" type="text/javascript"%3E%3C/script%3E'));
-document.write(unescape('%3Cscript src="js/functions.js" type="text/javascript"%3E%3C/script%3E'));
-/*--*//*]]>*/
-</script>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+<!--[if (lt IE 9) & (!IEMobile)]><script src="js/libs/DOMAssistantCompressed-2.8.js"></script><script src="js/libs/respond.min.js"></script><![endif]-->
+<!--<script>
+var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>-->
 <?php wp_footer(); ?>
+<noscript>Your browser does not support JavaScript!</noscript>
+</body>
+
+</html>
