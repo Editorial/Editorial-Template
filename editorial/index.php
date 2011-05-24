@@ -78,7 +78,7 @@ foreach ($posts as $Article)
                                 <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
                             </h1>
                         </header>
-                        <p class="entry-summary"><?php the_excerpt(); ?></p>
+                        <p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
                     </div>
                     <figure>
                         <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo $imageData[0]; ?>" alt="<?php the_title(); ?>"></a>
