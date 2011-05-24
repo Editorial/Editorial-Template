@@ -61,7 +61,7 @@ foreach ($posts as $Article)
             {
                 // show exposed
                 $exposed = true;
-                $imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'home' ? array(614, 459) : array(446, 595));
+                $imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait');
                 ?>
                 <article class="hentry">
                     <div class="detail">
@@ -111,7 +111,7 @@ foreach ($posts as $Article)
                             </h2>
                         </header>
                     </div>
-                    <p class="entry-summary"><?php the_excerpt(); ?></p>
+                    <p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
                 </article>
                 <?php
                 $i++;

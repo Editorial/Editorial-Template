@@ -31,9 +31,21 @@ class Editorial
     {
         // theme has custom menus
         add_action('init', array('Editorial', 'menus'));
-        // allow post thumnails
-        add_theme_support('post-thumbnails');
-        add_theme_support('post-formats');
+        if (function_exists('add_theme_support'))
+        {
+            // add post formats
+            add_theme_support('post-formats');
+            // allow post thumnails
+            add_theme_support('post-thumbnails');
+            // change default Post Thumbnail dimensions
+            set_post_thumbnail_size(214, 214, true);
+        }
+        // add special image sizes
+        if (function_exists('add_image_size'))
+        {
+            add_image_size('landscape', 614, 459); // landscape image
+            add_image_size('portrait', 446, 595);  // portrait image
+        }
     }
 
     /**
