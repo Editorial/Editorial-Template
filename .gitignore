@@ -1,2 +1,6 @@
 # OS X folder attributes
 .DS_Store
+
+# Eclipse folders and settings
+.project
+.settings

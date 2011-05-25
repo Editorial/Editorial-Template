@@ -25,6 +25,9 @@ $EditorialClass = 'clear';
 @include('header.php');
 $thumbId = get_post_thumbnail_id();
 $imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'inside' ? 'landscape' : 'portrait');
+$imageMeta = get_post($thumbId);
+$imageMeta->alt = get_post_meta($thumbId, '_wp_attachment_image_alt', true);
+$attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
 
 ?>
 <div class="content clear" role="main">
@@ -53,14 +56,15 @@ $imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'inside' ? 'l
         </section>
         <section id="media">
             <figure>
-                <a href="/" id="to-gallery">
-                    <img src="<?php echo $imageData[0]; ?>" alt="<?php the_title(); ?>" class="photo">
-                    <em id="media-count">1/14</em>
+                <a href="<?php echo get_attachment_link($thumbId); ?>" id="to-gallery">
+                    <img src="<?php echo $imageData[0]; ?>" alt="<?php echo $imageMeta->alt ?  $imageMeta->alt : $imageMeta->title; ?>" class="photo">
+                    <?php if ($attachmentsCount > 1) {?>
+                    <em id="media-count">1/<?php echo $attachmentsCount; ?></em>
+                    <?php } ?>
                 </a>
                 <figcaption>
-                    <h3>Futuristic bicycle concept</h3>
-                    <p>Curabitur sit amet ligula non elit consectetur faucibus non et nulla. Duis eleifend, leo vel suscipit tempus,
-                    justo massa sollicitudin felis, vel mollis lorem magna id dolor.</p>
+                    <h3><?php echo $imageMeta->post_title; ?></h3>
+                    <p><?php echo $imageMeta->post_content; ?></p>
                 </figcaption>
             </figure>
         </section>
@@ -70,14 +74,14 @@ $imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'inside' ? 'l
     </article>
     <nav id="tabs" role="navigation">
         <ul>
-            <li class="selected"><a href="/">Article</a></li>
-            <li><a href="/">Image gallery</a></li>
-            <li><a href="/">Feedback <em>128</em></a></li>
+            <li class="selected"><a href="<?php echo get_permalink(); ?>"><?php _e('Article', 'Editorial'); ?></a></li>
+            <li><a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Image gallery', 'Editorial'); ?></a></li>
+            <li><a href="<?php echo get_comments_link(); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount = get_comments_number($post->ID) ? '<em>'.$commentCount.'</em>' : ''; ?></a></li>
         </ul>
     </nav>
     <section class="featured">
         <header>
-            <h3>You might also enjoy</h3>
+            <h3><?php _e('You might also enjoy', 'Editorial'); ?></h3>
         </header>
         <article class="f1 hentry">
             <figure>

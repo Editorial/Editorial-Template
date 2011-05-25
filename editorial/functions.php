@@ -46,6 +46,8 @@ class Editorial
             add_image_size('landscape', 614, 459); // landscape image
             add_image_size('portrait', 446, 595);  // portrait image
         }
+        // spam prevention
+        add_action('check_comment_flood', array('Editorial', 'checkReferrer'));
     }
 
     /**
@@ -94,6 +96,21 @@ class Editorial
     }
 
     /**
+     * Simple spam prevention
+     *
+     * @return void
+     * @author Miha Hribar
+     * @see http://www.smashingmagazine.com/2009/07/23/10-wordpress-comments-hacks/
+     */
+    public static function checkReferrer()
+    {
+        if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == "")
+        {
+            wp_die( __('Please enable referrers in your browser, or, if you\'re a spammer, bugger off!') );
+        }
+    }
+
+    /**
      * Editorial author links
      *
      * @return void
@@ -109,6 +126,76 @@ class Editorial
             get_the_author()
         );
         echo apply_filters('the_author_posts_link', $link);
+    }
+
+    /**
+     * Post footer
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function postFooter()
+    {
+        ?>
+        <footer>
+            <?php the_category(', '); ?>
+            <time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
+                <span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
+                <?php the_time(get_option('date_format')); ?>
+            </time>
+            <em class="v-hidden author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+        </footer>
+        <?php
+    }
+
+    /**
+     * Post header
+     *
+     * @param  bool $h1 set to true if h1 is to be used
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function postHeader($h1 = true)
+    {
+        $heading = $h1 ? 'h1' : 'h2'
+        ?>
+        <header>
+            <<?php echo $heading; ?> class="entry-title">
+                <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+            </<?php echo $heading; ?>>
+        </header>
+        <?php
+    }
+
+    /**
+     * Post excerpt
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function postExcerpt()
+    {
+        ?>
+        <p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
+        <?php
+    }
+
+    /**
+     * Post figure
+     *
+     * @param  int $thumbId post thumbnail id
+     * @param  mixed $args thumbnail args (e.g 'landscape'|'portrait' or array(214,214))
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function postFigure($thumbId, $args)
+    {
+        $imageData = wp_get_attachment_image_src($thumbId, $args);
+        ?>
+        <figure>
+            <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo $imageData[0]; ?>" alt="<?php the_title(); ?>"></a>
+        </figure>
+        <?php
     }
 }
 
@@ -128,7 +215,6 @@ class EditorialNav extends Walker_Nav_Menu
     function start_el(&$output, $item, $depth, $args)
     {
         global $wp_query;
-
         $output .= '<li'.($item->current ? ' class="selected"' : '').'>';
 
         $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
