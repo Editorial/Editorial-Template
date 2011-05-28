@@ -72,39 +72,7 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
             <?php the_content(); ?>
         </section>
     </article>
-    <nav id="tabs" role="navigation">
-        <ul>
-            <li class="selected"><a href="<?php echo get_permalink(); ?>"><?php _e('Article', 'Editorial'); ?></a></li>
-            <li><a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Image gallery', 'Editorial'); ?></a></li>
-            <li><a href="<?php echo get_comments_link(); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount = get_comments_number($post->ID) ? '<em>'.$commentCount.'</em>' : ''; ?></a></li>
-        </ul>
-    </nav>
-    <section class="featured">
-        <header>
-            <h3><?php _e('You might also enjoy', 'Editorial'); ?></h3>
-        </header>
-        <article class="f1 hentry">
-            <figure>
-                <a href="/" rel="bookmark"><img src="images/_temp/article-thumb-01.jpg" alt="Image description"></a>
-            </figure>
-            <div class="info">
-                <footer>
-                    <a href="/styling/" rel="tag">Styling</a>
-                    <time class="published" pubdate datetime="2011-06-01T00:00">
-                        <span class="value-title" title="2011-06-01T00:00"> </span>
-                        1ST June
-                    </time>
-                    <em class="v-hidden author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
-                </footer>
-                <header>
-                    <h2 class="entry-title">
-                        <a href="/" rel="bookmark">Tilt-Shift Photography (Miniature Faking)</a>
-                    </h2>
-                </header>
-            </div>
-            <p class="entry-summary">Few months ago, I got a Kindle. It's a fascinating
-            device, unlike almost any other launched by a significant tech company.</p>
-        </article>
-    </section>
+    <?php Editorial::tabNavigation('article'); ?>
+    <?php Editorial::featured($post->ID); ?>
 </div>
 <?php @include('footer.php'); ?>

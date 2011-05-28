@@ -10,43 +10,105 @@
 // id depends on the type of the first posts image
 $EditorialId = 'gallery';
 $EditorialClass = 'clear';
+the_post();
+$parentId = $post->post_parent;
+$attachmentsCount = count(get_children(array('post_parent'=>$parentId)));
+$imageMeta = wp_get_attachment_image_src($post->ID);
+if ($imageMeta[1] < $imageMeta[2])
+{
+    // portrait
+    $EditorialId = 'gallery-portrait';
+}
+$imageMeta = wp_get_attachment_image_src($post->ID, $EditorialId == 'gallery' ? 'landscape' : 'portrait');
+$imageMeta['alt'] = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+$attachments = get_children(array('post_parent'=>$parentId));
+// sort attachments
+function sortAttachments($a, $b)
+{
+    if ($a->menu_order == $b->menu_order) return 0;
+    return ($a->menu_order < $b->menu_order) ? -1 : 1;
+}
+uasort($attachments, 'sortAttachments');
+// find current attachment in list
+$position = 0;
+$previous = 0;
+$next = 0;
+foreach ($attachments as $key => $attachment)
+{
+    if ($position != 0)
+    {
+        $next = $key;
+        break;
+    }
+    if ($post->ID == $attachment->ID)
+    {
+        $position = $attachment->menu_order;
+    }
+    if ($position == 0)
+    {
+        // save previous key
+        $previous = $key;
+    }
+}
+
 @include('header.php');
 ?>
 <div class="content clear" role="main">
     <article id="single" class="hentry">
         <header>
-            <h1 class="entry-title"><a href="/" rel="prev">Syncing wheel reinvented</a></h1>
+            <h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="prev"><?php the_title(); ?></a></h1>
         </header>
         <section id="media">
             <figure>
-                <span><img src="images/_temp/news-photo-01.jpg" class="photo" alt="Syncing wheel"></span>
+                <span><img src="<?php echo $imageMeta[0]; ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
                 <figcaption>
-                    <h3>Futuristic bicycle concept</h3>
-                    <p>Curabitur sit amet ligula non elit consectetur faucibus non et nulla. Duis eleifend, leo vel suscipit tempus,
-                    justo massa sollicitudin felis, vel mollis lorem magna id dolor.</p>
+                    <h3><?php the_title(); ?></h3>
+                    <p><?php the_content(); ?></p>
                 </figcaption>
             </figure>
         </section>
         <aside role="complementary">
             <header>
-                <h2>1/4</h2>
+                <h2><?php printf('%d/%d', $position, count($attachments)); ?></h2>
             </header>
+            <?php
+            $previous = $attachments[$previous]->ID == $post->ID ? false : $attachments[$previous];
+            $next     = $next ? $attachments[$next] : false;
+            if ($previous || $next) {
+            ?>
             <nav id="navigate" role="navigation">
                 <ul>
-                    <li class="previous">
-                        <a href="/" rel="prev">
-                            <img src="images/_temp/thumb-01.jpg" alt="Media thumbnail">
-                            Previous image
-                        </a>
-                    </li>
-                    <li class="next">
-                        <a href="/" rel="next">
-                            <img src="images/_temp/thumb-02.jpg" alt="Media thumbnail">
-                            Next image
-                        </a>
-                    </li>
+                    <?php
+                    if ($previous)
+                    {
+                        $imageMeta = wp_get_attachment_image_src($previous->ID, 'media-thumb');
+                        ?>
+                        <li class="previous">
+                            <a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
+                                <img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
+                                <?php _e('Previous image', 'Editorial'); ?>
+                            </a>
+                        </li>
+                        <?php
+                    }
+                    if ($next)
+                    {
+                        $imageMeta = wp_get_attachment_image_src($next->ID, 'media-thumb');
+                        ?>
+                        <li class="next">
+                            <a href="<?php echo get_permalink($next->ID); ?>" rel="next">
+                                <img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
+                                <?php _e('Next image', 'Editorial'); ?>
+                            </a>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </nav>
+            <?php
+            }
+            ?>
             <fieldset id="embed">
                 <h4><label for="embed-code">Embed code</label></h4>
                 <p>There’s no need for downloading and uploading it to your blog/website when you can easily embed it.</p>
@@ -54,107 +116,7 @@ $EditorialClass = 'clear';
             </fieldset>
         </aside>
     </article>
-    <nav id="tabs" role="navigation">
-        <ul>
-            <li><a href="/">Article</a></li>
-            <li class="selected"><a href="/">Image gallery</a></li>
-            <li><a href="/">Feedback <em>128</em></a></li>
-        </ul>
-    </nav>
-    <section class="featured">
-        <header>
-            <h3>You might also enjoy</h3>
-        </header>
-        <article class="f1 hentry">
-            <figure>
-                <a href="/" rel="bookmark"><img src="images/_temp/article-thumb-01.jpg" alt="Image description"></a>
-            </figure>
-            <div class="info">
-                <footer>
-                    <a href="/styling/" rel="tag">Styling</a>
-                    <time class="published" pubdate datetime="2011-06-01T00:00">
-                        <span class="value-title" title="2011-06-01T00:00"> </span>
-                        1ST June
-                    </time>
-                    <em class="v-hidden author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
-                </footer>
-                <header>
-                    <h2 class="entry-title">
-                        <a href="/" rel="bookmark">Tilt-Shift Photography (Miniature Faking)</a>
-                    </h2>
-                </header>
-            </div>
-            <p class="entry-summary">Few months ago, I got a Kindle. It's a fascinating
-            device, unlike almost any other launched by a significant tech company.</p>
-        </article>
-        <article class="f2 hentry">
-            <figure>
-                <a href="/" rel="bookmark"><img src="images/_temp/article-thumb-02.jpg" alt="Image description"></a>
-            </figure>
-            <div class="info">
-                <footer>
-                    <a href="/toyshop/" rel="tag">Toyshop</a>
-                    <time class="published" pubdate datetime="2011-06-01T00:00">
-                        <span class="value-title" title="2011-06-01T00:00"> </span>
-                        1ST June
-                    </time>
-                    <em class="v-hidden author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
-                </footer>
-                <header>
-                    <h2 class="entry-title">
-                        <a href="/" rel="bookmark">LG Prada — igrača za šminkerje</a>
-                    </h2>
-                </header>
-            </div>
-            <p class="entry-summary">Amazing : An organic sculptural landmark that responds
-            to human interaction and expresses context awareness using hundreds of sensors
-            and over 15,000 individually addressable optical fibers.</p>
-        </article>
-        <article class="f3 hentry">
-            <figure>
-                <a href="/" rel="bookmark"><img src="images/_temp/article-thumb-03.jpg" alt="Image descriptione"></a>
-            </figure>
-            <div class="info">
-                <footer>
-                    <a href="/machinery/" rel="tag">Machinery</a>
-                    <time class="published" pubdate datetime="2011-06-01T00:00">
-                        <span class="value-title" title="2011-06-01T00:00"> </span>
-                        1ST June
-                    </time>
-                    <em class="v-hidden author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
-                </footer>
-                <header>
-                    <h2 class="entry-title">
-                        <a href="/" rel="bookmark">Breakbeat Science Gear launched!</a>
-                    </h2>
-                </header>
-            </div>
-            <p class="entry-summary">With the economy looking like it may be fucked for a while,
-            Breakbeat Science Gear is launching a new limited edition, artist driven, street-wear
-            line, with a no-bullshit price tag!</p>
-        </article>
-        <article class="f4 hentry">
-            <figure>
-                <a href="/" rel="bookmark"><img src="images/_temp/article-thumb-04.jpg" alt="Image description"></a>
-            </figure>
-            <div class="info">
-                <footer>
-                    <a href="/" rel="tag">Designed</a>
-                    <time class="published" pubdate datetime="2011-06-01T00:00">
-                        <span class="value-title" title="2011-06-01T00:00"> </span>
-                        1ST June
-                    </time>
-                    <em class="v-hidden author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
-                </footer>
-                <header>
-                    <h2 class="entry-title">
-                        <a href="/" rel="bookmark">Sexy Limited Edition Prints</a>
-                    </h2>
-                </header>
-            </div>
-            <p class="entry-summary">A new limited edition set of prints by Igor Vasiliadis
-            - shot in Hong Kong and featuring Moscow based DJ project C.L.U.M.B.A and Maria Korabelnikova.</p>
-        </article>
-    </section>
+    <?php Editorial::tabNavigation('gallery'); ?>
+    <?php Editorial::featured($parentId); ?>
 </div>
 <?php @include('footer.php'); ?>
