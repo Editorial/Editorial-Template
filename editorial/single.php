@@ -7,6 +7,13 @@
  * @author     Miha Hribar
  */
 
+// comments are part on the same page but on a different url (for now)
+if (array_key_exists('comments', $_GET))
+{
+    @include('comments.php');
+    exit();
+}
+
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
 

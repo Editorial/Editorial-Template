@@ -49,6 +49,8 @@ class Editorial
         }
         // spam prevention
         add_action('check_comment_flood', array('Editorial', 'checkReferrer'));
+        // add comment redirect filter
+        add_filter('comment_post_redirect', array('Editorial', 'commentRedirect'));
     }
 
     /**
@@ -200,6 +202,27 @@ class Editorial
     }
 
     /**
+     * Comments link - comments are situated on a separate page.
+     *
+     * @param  int $postId
+     * @return string
+     * @author Miha Hribar
+     */
+    public static function commentsLink($postId)
+    {
+        $link = get_permalink($postId);
+        if (strpos($link, '?') === false)
+        {
+            $link .= '?comments';
+        }
+        else
+        {
+            $link .= '&comments';
+        }
+        return $link;
+    }
+
+    /**
      * Tab navigation
      *
      * @return void
@@ -212,9 +235,15 @@ class Editorial
         ?>
         <nav id="tabs" role="navigation">
             <ul>
-                <li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>><a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a></li>
-                <li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>><a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Image gallery', 'Editorial'); ?></a></li>
-                <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>><a href="<?php echo get_comments_link($postId); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount ? '<em>'.$commentCount.'</em>' : ''; ?></a></li>
+                <li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>>
+                    <a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
+                </li>
+                <li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
+                    <a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Image gallery', 'Editorial'); ?></a>
+                </li>
+                <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
+                    <a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount ? '<em>'.$commentCount.'</em>' : ''; ?></a>
+                </li>
             </ul>
         </nav>
         <?php
@@ -262,6 +291,19 @@ class Editorial
     public static function is_image($mime)
     {
         return self::is_a($mime, 'image');
+    }
+
+    /**
+     * Comment redirect filter
+     *
+     * @param  string $location
+     * @return string
+     * @author Miha Hribar
+     */
+    public static function commentRedirect($location)
+    {
+        // @todo http://editorial.local/2011/05/caron-butler/#comment-6
+        return $location;
     }
 }
 
