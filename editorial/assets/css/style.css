@@ -515,7 +515,7 @@ fieldset .riddle input {width:215px;float:left;}
 
 #comments-form .feedback,#comments-form .captcha {width:48%;float:left;}
 #comments-form .author,#comments-form .submit {width:48%;float:right;}
-#comments-form .submit {padding:5px 0 57px;}
+#comments-form .submit {padding:0 0 57px;}
 
 .message ol {padding:0 13px 0 105px;}
 .message p {padding:0 13px 0 85px;}
@@ -669,15 +669,19 @@ body {width:628px;}
 
 /*#navigate {margin:0 0 40px;width:48%;float:left;}*/
 /*#navigate h2 {margin:45px 20px 0 0;float:left;}*/
-#navigate ul {width:100%;float:left;}
+#navigate {width:48%;float:right;}
+
+#gallery #navigate h2, #gallery-portrait #navigate h2 {text-align:right;}
+#navigate ul {width:100%;float:right;}
 #navigate li {margin:0;}
 
-#embed {margin-top:63px;width:48%;float:right;}
+#embed {margin-top:63px;width:48%;float:left;}
+
 
 /*#common aside {width:48%;float:left;}*/
 
-#team>li:nth-child(n) {width:48%;float:left;}
-#team>li:nth-child(2n+1) {float:right;}
+#team>li:nth-of-type(even) {width:48%;float:left;}
+#team>li:nth-of-type(odd) {width:48%;float:right;}
 
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
@@ -685,7 +689,8 @@ body {width:628px;}
 footer h3 {margin:0;font:80px 'MinionProRegular',sans-serif;color:#f2f2f2;text-transform:none;position:absolute;
 top:16px;left:0;z-index:-1;}
 #rss {margin:62px 0 0;}
-	
+
+
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
@@ -820,9 +825,9 @@ fieldset .qa {float:right;}
 #embed {margin-top:0;width:100%;float:left;}
 
 #common aside {width:48%;float:left;}
-#team>li:nth-child(n) {width:100%;}
-#team>li:nth-child(2n+1) {float:left;}
 
+#team>li:nth-of-type(even) {width:100%;}
+#team>li:nth-of-type(odd) {width:100%;float:left;}
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
