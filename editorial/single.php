@@ -72,7 +72,7 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
             <?php the_content(); ?>
         </section>
     </article>
-    <?php Editorial::tabNavigation('article'); ?>
-    <?php Editorial::featured($post->ID); ?>
+    <?php Editorial::tabNavigation($post->ID, 'article'); ?>
+    <?php $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
 </div>
 <?php @include('footer.php'); ?>

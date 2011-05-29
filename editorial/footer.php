@@ -28,10 +28,14 @@
 </footer>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
-<script src="js/plugins.js"></script>
-<script src="js/script.js"></script>
-<!--[if (lt IE 9) & (!IEMobile)]><script src="js/libs/DOMAssistantCompressed-2.8.js"></script><script src="js/libs/respond.min.js"></script><![endif]-->
+<script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/plugins.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/script.js"></script>
+<?php if ($needsHTML5player) { ?>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/mediaelement-and-player.min.js"></script>
+<?php } ?>
+<!--[if (lt IE 9) & (!IEMobile)]><script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/DOMAssistantCompressed-2.8.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/respond.min.js"></script><![endif]-->
 <!--<script>
 var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;

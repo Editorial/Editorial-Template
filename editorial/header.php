@@ -31,6 +31,9 @@ Based on: 320 and Up boilerplate extension
 <link rel="apple-touch-startup-image" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/h/splash.png">
 <link rel="stylesheet" media="handheld" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/handheld.css?v=1">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.css?v=1">
+<?php if ($needsHTML5player) { ?>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/libs/mediaelementplayer.min.css">
+<?php } ?>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-1.7.min.js"></script>
 </head>
 
@@ -42,7 +45,7 @@ Based on: 320 and Up boilerplate extension
 <header id="header" class="clear" role="banner">
     <figure id="brand" class="vcard">
         <a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" rel="home" class="url">
-            <img class="fn org logo" src="<?php echo Editorial::getOption('logo-big'); ?>" alt="Editorial">
+            <img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small').'" width="133" height="19' ?>" alt="<?php bloginfo('name'); ?>">
         </a>
         <figcaption class="v-hidden"><?php bloginfo('name'); ?></figcaption>
     </figure>
@@ -54,18 +57,26 @@ Based on: 320 and Up boilerplate extension
             <input type="submit" id="find" class="ir" value="Search">
         </fieldset>
     </form>
-    <nav id="primary" role="navigation">
     <?php
-
-    wp_nav_menu(array(
+    $settings = array(
         'menu' => 'main-nav',
         'container' => false,
         'menu_class' => '',
         'menu_id' => '',
         'depth' => 1,
         'walker' => new EditorialNav(),
-    ));
-
+        'echo' => false,
+    );
+    $menu = wp_nav_menu($settings);
+    $menuItems = substr_count($menu,'<li');
+    if ($menuItems > 5)
+    {
+        // we're hoarding
+        $settings['class'] = 'hoarding';
+        $menu = wp_nav_menu($settings);
+    }
     ?>
+    <nav id="primary" role="navigation">
+        <?php echo $menu ?>
     </nav>
 </header>

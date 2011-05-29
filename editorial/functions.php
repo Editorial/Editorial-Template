@@ -200,82 +200,68 @@ class Editorial
     }
 
     /**
-     * Featured articles
-     *
-     * @return void
-     * @author Miha Hribar
-     */
-    public static function featured($postId)
-    {
-        // find featured
-        $categories = get_the_category($postId);
-        if ($categories)
-        {
-            ?>
-            <section class="featured">
-                <header>
-                    <h3><?php _e('You might also enjoy', 'Editorial'); ?></h3>
-                </header>
-                <?php
-                $categoryIds = array();
-                foreach($categories as $individual_category)
-                {
-                    $category_ids[] = $individual_category->term_id;
-                }
-
-                $args=array(
-                    'category__in' => $category_ids,
-                    'post__not_in' => array($postId),
-                    'showposts'=>4,
-                    'caller_get_posts'=>1
-                );
-                $query = new wp_query($args);
-                if( $query->have_posts() )
-                {
-                    $i = 1;
-                    while ($query->have_posts())
-                    {
-                        $query->the_post();
-                        $thumbId = get_post_thumbnail_id();
-                        ?>
-                        <article class="f<?php echo $i; ?> hentry">
-                            <?php Editorial::postFigure($thumbId, array(214, 214)); ?>
-                            <div class="info">
-                                <?php Editorial::postFooter(); ?>
-                                <?php Editorial::postHeader(false); ?>
-                            </div>
-                            <?php Editorial::postExcerpt(); ?>
-                        </article>
-                        <?php
-                        $i++;
-                    }
-                }
-
-                ?>
-            </section>
-            <?php
-        }
-    }
-
-    /**
      * Tab navigation
      *
      * @return void
      * @author Miha Hribar
      */
-    public static function tabNavigation($selected = 'article')
+    public static function tabNavigation($postId, $selected = 'article')
     {
-        $thumbId = get_post_thumbnail_id();
-        $commentCount = get_comments_number($post->ID);
+        $thumbId = get_post_thumbnail_id($postId);
+        $commentCount = get_comments_number($postId);
         ?>
         <nav id="tabs" role="navigation">
             <ul>
-                <li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>><a href="<?php echo get_permalink(); ?>"><?php _e('Article', 'Editorial'); ?></a></li>
+                <li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>><a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a></li>
                 <li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>><a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Image gallery', 'Editorial'); ?></a></li>
-                <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>><a href="<?php echo get_comments_link(); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount ? '<em>'.$commentCount.'</em>' : ''; ?></a></li>
+                <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>><a href="<?php echo get_comments_link($postId); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount ? '<em>'.$commentCount.'</em>' : ''; ?></a></li>
             </ul>
         </nav>
         <?php
+    }
+
+    /**
+     * Is a mime type o a specific type
+     *
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function is_a($mime, $type)
+    {
+        return strstr($mime, $type) !== false;
+    }
+
+    /**
+     * Is mime type a movie?
+     *
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function is_video($mime)
+    {
+        return self::is_a($mime, 'video');
+    }
+
+    /**
+     * Is mime type an audio?
+     *
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function is_audio($mime)
+    {
+        return self::is_a($mime, 'audio');
+    }
+
+    /**
+     * Is mime type an image?
+     *
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function is_image($mime)
+    {
+        return self::is_a($mime, 'image');
     }
 }
 
