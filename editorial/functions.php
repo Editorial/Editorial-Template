@@ -7,7 +7,7 @@ function dump($object = '')
 }
 
 define ('EDITORIAL_VERSION', '1.0b');
-define ('EDITORIAL_UPDATE_CHECK', 'http://editorial.local/version.json');
+define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 
 /**
