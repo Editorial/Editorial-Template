@@ -7,11 +7,35 @@
  * @author     Miha Hribar
  */
 
+session_start();
+
+// catpcha translations
+$translations = array(
+    __('first',  'Editorial'),
+    __('second', 'Editorial'),
+    __('third',  'Editorial'),
+    __('forth',  'Editorial'),
+    __('fifth',  'Editorial'),
+    __('sixth',  'Editorial'),
+);
+// captcha settings
+$captcha = strtoupper(substr(md5(microtime()),0,6));
+// select two random characters
+$all = array(0,1,2,3,4,5);
+$selected  = array_rand($all, 2);
+$_SESSION['riddle'] = array(
+    'captcha'  => $captcha,
+    'chars'    => array(
+        $selected[0] => $captcha[$selected[0]],
+        $selected[1] => $captcha[$selected[1]]
+    ),
+);
+
+// header settings
 $EditorialId = 'feedback';
 $EditorialClass = 'clear';
 @include('header.php');
-if (comments_open())
-{
+if (comments_open()) {
 ?>
 <div class="content clear" role="main">
     <article id="single">
@@ -68,41 +92,60 @@ if (comments_open())
             <?php
         }
 
+        // has errors?
+        $comment_name = $comment_email = $comment_url = $comment_content = '';
+        $errors = array();
+        if (isset($_SESSION['comment_errors']) && count($_SESSION['comment_errors']))
+        {
+            $errors = $_SESSION['comment_errors'];
+            echo Editorial::formErrors($errors);
+
+            // show originaly entered data
+            $comment_name    = $_SESSION['post']['name'];
+            $comment_email   = $_SESSION['post']['email'];
+            $comment_url     = $_SESSION['post']['url'];
+            $comment_content = $_SESSION['post']['comment'];
+
+            // remove errors from session
+            unset($_SESSION['comment_errors']);
+            unset($_SESSION['post']);
+        }
+
         ?>
-        <form id="comments-form" action="<?php echo get_bloginfo('url'); ?>/wp-comments-post.php" method="post">
+        <form id="comments-form" action="<?php echo get_bloginfo('url'); ?>/comment-post.php" method="post">
             <fieldset class="feedback">
                 <legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
                 <ol>
-                    <li class="area">
+                    <li class="area<?php echo in_array('comment', $errors) ? ' error' : ''; ?>">
                         <label for="comment"><?php _e('Comment', 'Editorial'); ?></label>
-                        <textarea id="comment" name="comment" cols="60" rows="9"></textarea>
+                        <textarea id="comment" name="comment" cols="60" rows="9"><?php echo esc_attr($comment_content); ?></textarea>
                     </li>
                 </ol>
             </fieldset>
             <fieldset class="author">
                 <legend class="v-hidden"><?php _e('Author', 'Editorial'); ?></legend>
                 <ol>
-                    <li class="text">
+                    <li class="text<?php echo in_array('name', $errors) ? ' error' : ''; ?>">
                         <label for="name"><?php _e('Your name', 'Editorial'); ?></label>
-                        <input type="text" id="name" name="author" value="<?php echo esc_attr($comment_author); ?>">
+                        <input type="text" id="name" name="name" value="<?php echo esc_attr($comment_name); ?>">
                     </li>
-                    <li class="text">
+                    <li class="text<?php echo in_array('email', $errors) ? ' error' : ''; ?>">
                         <label for="email"><?php _e('Your e-mail address', 'Editorial'); ?></label>
-                        <input type="email" id="email" name="email" value="<?php echo esc_attr($comment_author); ?>">
+                        <input type="email" id="email" name="email" value="<?php echo esc_attr($comment_email); ?>">
                     </li>
-                    <li class="text">
+                    <li class="text<?php echo in_array('url', $errors) ? ' error' : ''; ?>">
                         <label for="url"><?php _e('Link', 'Editorial'); ?></label>
-                        <input type="text" id="url" name="url" value="<?php echo esc_attr($comment_author_url); ?>">
+                        <input type="text" id="url" name="url" value="<?php echo esc_attr($comment_url); ?>">
                     </li>
                 </ol>
             </fieldset>
             <fieldset class="captcha">
                 <legend class="v-hidden"><?php _e('Captcha', 'Editorial'); ?></legend>
                 <ol>
-                    <li class="riddle">
-                        <label for="riddle">Please enter the <strong>second</strong> and <strong>third</strong> character</label>
+                    <li class="riddle<?php echo in_array('riddle', $errors) ? ' error' : ''; ?>">
+                        <label for="riddle"><?php printf(__('Please enter the <strong>%s</strong> and <strong>%s</strong> character', 'Editorial'), $translations[$selected[0]], $translations[$selected[1]]); ?></label>
                         <div class="qa">
-                            <span>C3TA8N</span>
+                            <span><?php echo $captcha; ?></span>
                             <input type="text" name="riddle" id="riddle">
                         </div>
                     </li>

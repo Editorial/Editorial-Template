@@ -43,14 +43,16 @@ class Editorial
         // add special image sizes
         if (function_exists('add_image_size'))
         {
-            add_image_size('landscape', 614, 459);    // landscape image
-            add_image_size('portrait', 446, 595);     // portrait image
+            add_image_size('landscape', 614, 9999);    // landscape image
+            add_image_size('portrait', 446, 9999);     // portrait image
             add_image_size('media-thumb', 116, 115, true);  // media thumb
         }
         // spam prevention
         add_action('check_comment_flood', array('Editorial', 'checkReferrer'));
         // add comment redirect filter
         add_filter('comment_post_redirect', array('Editorial', 'commentRedirect'));
+        // custom routing
+        add_action('template_redirect', array('Editorial', 'customRouting'));
     }
 
     /**
@@ -305,6 +307,66 @@ class Editorial
         // @todo http://editorial.local/2011/05/caron-butler/#comment-6
         return $location;
     }
+
+    /**
+     * Custom routing plugin (for comments etc.)
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public function customRouting()
+    {
+        global $wp_query;
+        // custom comments route
+        if ($wp_query->is_singular && array_key_exists('comments', $_GET))
+        {
+            // make sure it's not 404
+            $wp_query->is_404 = false;
+
+            // include comments
+            $file = get_template_directory().'/comments.php';
+            include($file);
+            exit();
+        }
+
+        if ($wp_query->is_404)
+        {
+            // check if this is comment post
+            $parts = explode('/', $_SERVER['REQUEST_URI']);
+            $last = array_pop($parts);
+            if ($last && $last == 'comment-post.php')
+            {
+                // make sure it's not 404
+                $wp_query->is_404 = false;
+
+                include('comment-post.php');
+                exit();
+            }
+        }
+    }
+
+    /**
+     * Show form errors
+     *
+     * @param  array $errors
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function formErrors(Array $errors)
+    {
+        // show form errors
+        $return = '<section id="errors" class="message">
+        <h3><span class="v-hidden">Warning</span>!</h3>
+        <p class="lead">Please correct following problems:</p>
+        <ol>';
+        foreach ($errors as $error)
+        {
+            $return .= sprintf('<li>%s</li>', __('comment_error_'.$error, 'Editorial'));
+        }
+        $return .= '</ol>
+        </section>';
+        return $return;
+    }
 }
 
 /**
@@ -340,7 +402,6 @@ class EditorialNav extends Walker_Nav_Menu
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
 }
-
 
 Editorial::setup();
 

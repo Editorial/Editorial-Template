@@ -21,24 +21,22 @@ Based on: 320 and Up boilerplate extension
 <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 -->
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/h/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/m/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="images/l/apple-touch-icon-precomposed.png">
-<link rel="shortcut icon" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/l/apple-touch-icon.png">
-<link rel="shortcut icon" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/ico/favicon.ico">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- For iPhone 4 with high-resolution Retina display: -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/touch/apple-touch-icon.png">
+<!-- For first-generation iPad: -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/touch/apple-touch-icon.png">
+<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<link rel="apple-touch-icon-precomposed" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/touch/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-startup-image" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/h/splash.png">
-<link rel="stylesheet" media="handheld" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/handheld.css?v=1">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.css?v=1">
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/libs/mediaelementplayer.min.css">
 <?php } ?>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-1.7.min.js"></script>
-</head>
-
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?>
+</head>
 
 <body id="<?php echo $EditorialId; ?>" class="<?php echo $EditorialClass; ?>">
 
