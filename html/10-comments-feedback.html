@@ -15,9 +15,9 @@ Based on: 320 and Up boilerplate extension
 <title>Editorial</title>
 <meta name="description" content="">
 <meta name="author" content="Editorial">
+<!-- invalid / enable if needed
 <meta name="handheldfriendly" content="true">
 <meta name="mobileoptimized" content="320">
-<!-- invalid / enable if needed
 <meta http-equiv="cleartype" content="on">
 <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 -->
@@ -39,7 +39,7 @@ Based on: 320 and Up boilerplate extension
 
 <header id="header" class="clear" role="banner">
 	<figure id="brand" class="vcard">
-		<a href="./" rel="home" class="url">
+		<a href="./" class="url">
 			<img class="fn org logo" src="images/editorial-logo-small.png" width="133" height="19" alt="Editorial">
 		</a>
 		<figcaption class="v-hidden">Editorial</figcaption>
@@ -81,8 +81,19 @@ Based on: 320 and Up boilerplate extension
 							1ST June 2011
 						</time>
 					</footer>
-					<aside role="complementary" class="favorize">
-						<img src="images/_temp/favorize.png" alt="Temp replacement">
+					<aside role="complementary">
+						<form class="favorize" method="post" action="..">
+							<fieldset>
+								<input type="radio" id="vote-for-106" name="vote-106" value="1">
+								<label class="vote-for" for="vote-for-106"><em>+1</em></label>
+								<input type="radio" id="vote-against-106" name="vote-106" value="-1">
+								<label class="vote-against" for="vote-against-106"><em>-1</em></label>
+							</fieldset>
+							<fieldset>
+								<input type="submit" name="submit-106" value="Go">
+								<strong id="score-106" class="score">+5</strong>
+							</fieldset>
+						</form>
 					</aside>
 				</section>
 				<header>
@@ -107,15 +118,29 @@ Based on: 320 and Up boilerplate extension
 						</time>
 					</footer>
 					<aside role="complementary" class="favorize">
-						<img src="images/_temp/favorize.png" alt="Temp replacement">
+						<form class="favorize" method="post" action="..">
+							<fieldset>
+								<input type="radio" id="vote-for-105" name="vote-105" value="1">
+								<label class="vote-for" for="vote-for-105"><em>+1</em></label>
+								<input type="radio" id="vote-against-105" name="vote-105" value="-1">
+								<label class="vote-against" for="vote-against-105"><em>-1</em></label>
+							</fieldset>
+							<fieldset>
+								<input type="submit" name="submit-105" value="Go">
+								<strong id="score-105" class="score negative">-15</strong>
+							</fieldset>
+						</form>
 					</aside>
 				</section>
 				<header>
 					<h2 class="entry-title"><span class="v-hidden">Feedback no.</span> 105.</h2>
 				</header>
-				<blockquote class="entry-content">
-					<p>Show hidden comment ...</p>
+				<blockquote id="#comment-106" class="bad-comment entry-content">
+					<p>WTF?!?!?!?!?!?!?!?!?!?!? OMFG?! Some of these are /a/ troll mockups, some of them
+					are just common Japanese phrases that sound weird in English (”He won’t die even if
+					you killed him”).</p>
 				</blockquote>
+				<p class="show"><a href="#comment-106"><span>to</span> comment</a> ...</p>
 			</article>
 			<article class="hentry">
 				<section>
@@ -129,15 +154,26 @@ Based on: 320 and Up boilerplate extension
 						</time>
 					</footer>
 					<aside role="complementary" class="favorize">
-						<img src="images/_temp/favorize.png" alt="Temp replacement">
+						<form class="favorize" method="post" action="..">
+							<fieldset class="disabled">
+								<input type="radio" id="vote-for-104" name="vote-104" value="1" checked disabled>
+								<label class="vote-for" for="vote-for-104"><em>+1</em></label>
+								<input type="radio" id="vote-against-104" name="vote-104" value="-1" disabled>
+								<label class="vote-against" for="vote-against-104"><em>-1</em></label>
+							</fieldset>
+							<fieldset>
+								<input type="submit" name="submit-104" value="Go">
+								<strong id="score-104" class="score negative">-9</strong>
+							</fieldset>
+						</form>
 					</aside>
 				</section>
 				<header>
 					<h2 class="entry-title"><span class="v-hidden">Feedback no.</span> 104.</h2>
 				</header>
 				<blockquote class="entry-content">
-					<p>Gordon Brown suffered a scathing first-anniversary verdict on his premiership early
-					this morning when Labour not only lost its deposit in the Henley byelection, winning
+					<p>Gordon Brown suffered a scathing first-anniversary verdict on his <a href="/">premiership early
+					this morning</a> when Labour not only lost its deposit in the Henley byelection, winning
 					less than 5% of the vote.</p>
 				</blockquote>
 			</article>
@@ -185,10 +221,9 @@ Based on: 320 and Up boilerplate extension
 				<header>
 					<h2 class="entry-title"><span class="v-hidden">Feedback no.</span> 102.</h2>
 				</header>
-				<blockquote class="entry-content">
-					<p>WTF?!?!?!?!?!?!?!?!?!?!? OMFG?! Some of these are /a/ troll mockups, some of them are
-					just common Japanese phrases that sound weird in English (”He won’t die even if you killed
-					him”). ... Hide hidden comment.</p>
+				<blockquote class="trackback entry-content">
+					<h4><a href="/" rel="nofollow" target="_blank">Can you imagine this bike being a reality? | john’s blog</a></h4>
+					<p>[...] Concept cars give automotive designers a chance to let their imaginations run wild, often with outlandish results. But even by that measure, BMW has come up with something as strange as it is innovative — a shape-shifting car covered with fabric.</p>
 				</blockquote>
 			</article>
 			<article class="hentry">
@@ -209,10 +244,8 @@ Based on: 320 and Up boilerplate extension
 				<header>
 					<h2 class="entry-title"><span class="v-hidden">Feedback no.</span> 101.</h2>
 				</header>
-				<blockquote class="entry-content">
-					<p>And now, I’d like to present the following card to the people responsible for these translations:
-					“The Dignity of the Retarded”<br>
-					<br>It’s a “permanent” card, apparently.</p>
+				<blockquote class="user-like entry-content">
+					<p>Likes “Syncing wheel reinvented”.</p>
 				</blockquote>
 			</article>
 			<article class="hentry">
@@ -233,8 +266,8 @@ Based on: 320 and Up boilerplate extension
 				<header>
 					<h2 class="entry-title"><span class="v-hidden">Feedback no.</span> 100.</h2>
 				</header>
-				<blockquote class="entry-content">
-					<p>Mass Naked Child Events are no laughing matter.</p>
+				<blockquote class="user-tweet entry-content">
+					<p>http://bit.ly/jENBbA — Syncing wheel reinvented. Futuristic concept design for an bicyle.</p>
 				</blockquote>
 			</article>
 			<article class="hentry">
@@ -306,17 +339,15 @@ Based on: 320 and Up boilerplate extension
 			</article>
 		</section>
 		<section id="paging">
-			<menu>
-				<a href="/">Display older comments ...</a>
-			</menu>
 			<p><strong>10 / 112</strong> - comments displayed</p>
+			<p class="more"><a href="/">Display older comments ...</a></p>
 		</section>
 		<form id="comments-form" action=".." method="post">
 			<fieldset class="feedback">
 				<legend class="v-hidden">Feedback</legend>
 				<ol>
 					<li class="area">
-						<label for="comment">Your comment</label>
+						<label for="comment">Your comment <em>* required field</em></label>
 						<textarea id="comment" name="comment" cols="60" rows="9"></textarea>
 					</li>
 				</ol>
@@ -325,11 +356,11 @@ Based on: 320 and Up boilerplate extension
 				<legend class="v-hidden">Author</legend>
 				<ol>
 					<li class="text">
-						<label for="name">Your name</label>
+						<label for="name">Your name <em>* required field</em></label>
 						<input type="text" id="name" name="name">
 					</li>
 					<li class="text">
-						<label for="email">Your e-mail address</label>
+						<label for="email">Your e-mail address <em>* required field</em></label>
 						<input type="email" id="email" name="email">
 					</li>
 					<li class="text">
@@ -346,6 +377,7 @@ Based on: 320 and Up boilerplate extension
 						<div class="qa">
 							<span>C3TA8N</span>
 							<input type="text" name="riddle" id="riddle">
+							<em>* required field</em>
 						</div>
 					</li>
 				</ol>
@@ -358,7 +390,7 @@ Based on: 320 and Up boilerplate extension
 	<nav id="tabs" role="navigation">
 		<ul>
 			<li><a href="/">Article</a></li>
-			<li><a href="/">Image gallery</a></li>
+			<li><a href="/">Gallery</a></li>
 			<li class="selected"><a href="/">Feedback <em>128</em></a></li>
 		</ul>
 	</nav>
@@ -461,7 +493,7 @@ Based on: 320 and Up boilerplate extension
 
 <footer id="footer" class="clear" role="contentinfo">
 	<h3>Subscribe</h3>
-	<menu id="rss">
+	<ul id="rss">
 		<li><a href="/" title="Subscribe to all categories">All categories</a></li>
 		<li><a href="/" title="Subscribe to Machinery categories RSS">Machinery</a></li>
 		<li><a href="/" title="Subscribe to Styling categories RSS">Styling</a></li>
@@ -469,23 +501,23 @@ Based on: 320 and Up boilerplate extension
 		<li><a href="/" title="Subscribe to Feast categories RSS">Feast</a></li>
 		<li><a href="/" title="Subscribe to Being categories RSS">Being</a></li>
 		<li><a href="/" title="Subscribe to Equlibrium categories RSS">Equlibrium</a></li>
-	</menu>
-	<nav role="navigation">
-		<ul>
-			<li><a href="/">Colophon</a></li>
-		</ul>
-	</nav>
+	</ul>
 	<section>
-		<menu class="xoxo">
-			<li class="twitter"><a href="/" title="Follow us on">Twitter</a></li>
-			<li class="facebook"><a href="/" title="Follow us on">Facebook</a></li>
-			<li class="vimeo"><a href="/" title="Follow us on Vimeo">Vimeo</a></li>
-			<li class="flickr"><a href="/" title="Follow us on Flickr">Flickr</a></li>
-		</menu>
-		<small id="copyright">Vsa vsebina je zaščitena z licenco <a href="http://creativecommons.org/licenses/by-sa/2.5/si/" rel="licence" target="_blank">
-		Creative Commons - Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji 2.5 Slovenija</a>.<br>
-		Vsaki kraji se sodi po starodavnih slovanskih zakonih. Poganjata nas strast in WordPress.</small>
+		<nav role="navigation">
+			<ul>
+				<li><a href="/">Colophon</a></li>
+			</ul>
+		</nav>
+		<ul class="xoxo">
+			<li><a href="/" title="Follow us on Twitter">Twitter</a></li>
+			<li><a href="/" title="Follow us on Facebook">Facebook</a></li>
+			<li><a href="/" title="Follow us on Vimeo">Vimeo</a></li>
+			<li><a href="/" title="Follow us on Flickr">Flickr</a></li>
+		</ul>
 	</section>
+	<small id="copyright">Vsa vsebina je zaščitena z licenco <a href="http://creativecommons.org/licenses/by-sa/2.5/si/" target="_blank">
+	Creative Commons - Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji 2.5 Slovenija</a>.<br>
+	Vsaki kraji se sodi po starodavnih slovanskih zakonih. Poganjata nas strast in WordPress.</small>
 </footer>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
