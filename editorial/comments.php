@@ -15,6 +15,7 @@ $riddle = Editorial::riddle();
 $EditorialId = 'feedback';
 $EditorialClass = 'clear';
 @include('header.php');
+//update_option('comments_per_page', 2);
 if (comments_open()) {
 ?>
 <div class="content clear" role="main">
@@ -24,26 +25,31 @@ if (comments_open()) {
         </header>
         <?php
         // show comments
-        $allComments = get_comments_number();
-        if ($allComments > 0)
+        //if (have_comments())
+        if (get_comments_number() > 0)
         {
-            // show comments
-
+            $allComments = get_comments_number();
+            // show notice
             ?>
             <p class="notice"><?php echo Editorial::commentNotice(); ?></p>
             <section id="comments">
             <?php
 
+            // show comments
             $page = (int)$_GET['page'];
-            $num = 10;
-            $comments = get_comments(array(
+            $num = get_option('comments_per_page');
+            $settings = array(
                 'post_id' => $post->ID,
                 'status' => 'approve',
-                'offset' => $page * $num,
-                'number' => $num,
-            ));
+            );
+            if ($num)
+            {
+                $settings['offset'] = $page * $num;
+                $settings['number'] = $num;
+            }
+            $comments = get_comments($settings);
 
-            $i = count($comments);
+            $i = count($comments) + $page*$num;
             foreach ($comments as $comment)
             {
                 echo Editorial::comment($comment, $i--);
@@ -51,7 +57,7 @@ if (comments_open()) {
             echo '</section>';
 
             // show comments only if there are enough of them
-            if ($num < $allComments)
+            if (get_comment_pages_count() > 1 && $num)
             {
                 printf('<section id="paging">
                         <p><strong>%d / %d</strong> - %s</p>

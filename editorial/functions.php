@@ -426,7 +426,7 @@ class Editorial
      * Show form errors
      *
      * @param  array $errors
-     * @return void
+     * @return string
      * @author Miha Hribar
      */
     public static function formErrors(Array $errors)
@@ -442,6 +442,29 @@ class Editorial
         }
         $return .= '</ol>
         </section>';
+        return $return;
+    }
+
+    /**
+     * Show form notice
+     *
+     * @param  bool $ok
+     * @return string
+     * @author Miha Hribar
+     */
+    public static function formNotice($ok)
+    {
+        $return = sprintf('<section id="success" class="message">
+                <h3>%s</h3>
+                <p class="lead">%s</p>
+                <p>%s</p>
+            </section>',
+            __('OK', 'Editorial'),
+            $ok ? __('Your comment has been successfully published.', 'Editorial')
+                : __('Your comment has been saved and is waiting for confirmation.', 'Editorial'),
+            __('Thanks!', 'Editorial')
+        );
+
         return $return;
     }
 

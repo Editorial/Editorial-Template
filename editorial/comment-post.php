@@ -14,6 +14,7 @@ if (isset($_POST) && count($_POST))
     // validate comment post
     $errors = array();
     $add = ''; // get appended at the end or url
+    $wpRejected = false;
     // validate name
     if (!array_key_exists('name', $_POST) || !strlen($_POST['name']))
     {
@@ -62,7 +63,7 @@ if (isset($_POST) && count($_POST))
     ))
     {
         // wordpress doesn't like it -> means that comment will be in queue
-        //$errors[] = 'wp';
+        //$wpRejected = true;
     }
 
     $comment; $i = 0;
@@ -114,8 +115,9 @@ if (isset($_POST) && count($_POST))
         }
         else
         {
-            $data['html']   = Editorial::comment($comment, $i);
-            $data['notice'] = Editorial::commentNotice();
+            $data['html']    = Editorial::comment($comment, $i);
+            $data['notice']  = Editorial::commentNotice();
+            $data['success'] = Editorial::formNotice(!$wpRejected);
         }
         // set new riddle
         $data['riddle'] = Editorial::riddle();

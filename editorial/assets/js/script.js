@@ -35,7 +35,7 @@ $(function(){
     // ajax comment post
     $('#comments-form').submit(function() {
         // use ajax to submit form
-        dataString = 'name='+$('#name').val()+'&email='+$('#email').val()+'&url='+$('#url').val()+'&comment='+$('#comment').val()+'&riddle='+$('#riddle').val();
+        dataString = 'name='+$('#name').val()+'&email='+$('#email').val()+'&url='+$('#url').val()+'&comment='+$('#comment').val()+'&riddle='+$('#riddle').val()+'&comment_post_ID='+$('#comment_post_ID').val();
         $.ajax({
             type: 'POST',
             url: $('#comments-form').attr('action'),
@@ -57,6 +57,8 @@ $(function(){
                     }
                 }
                 else {
+                    // add success notice
+                    $(response.success).insertBefore('#comments-form');
                     // add new comment to html
                     if ($('#comments').length > 0) {
                         // add to list
@@ -69,7 +71,7 @@ $(function(){
                     }
 
                     // scroll to new comment
-                    $('html,body').animate({scrollTop: $("#comments").offset().top},'slow');
+                    $('html,body').animate({scrollTop: $("#success").offset().top},'slow');
 
                     // reset form
                     $('#comment').val('');
