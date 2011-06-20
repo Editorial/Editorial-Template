@@ -61,10 +61,11 @@ if (isset($_POST) && count($_POST))
         'comment'
     ))
     {
-        // wordpress doesn't like it
-        $errors[] = 'wp';
+        // wordpress doesn't like it -> means that comment will be in queue
+        //$errors[] = 'wp';
     }
 
+    $comment; $i = 0;
     if (count($errors))
     {
         // if we have any errors save to session
@@ -80,7 +81,6 @@ if (isset($_POST) && count($_POST))
             'comment_author_email' => $_POST['email'],
             'comment_author_url' => $_POST['url'],
             'comment_content' => $_POST['comment'],
-            'comment_type' => 'comment',
             'comment_parent' => 0,
             //'user_id' => 1,
             'comment_author_IP' => $_SERVER['REMOTE_ADDR'],
@@ -90,7 +90,13 @@ if (isset($_POST) && count($_POST))
         );
 
         $id = wp_insert_comment($data);
-        $add = sprintf('#comment-%d', $id);
+        // load comment
+        $comments = get_comments(array('ID' => $id));
+        $comment  = current($comments);
+        // get comments count
+        $comments = get_comments('post_id=' . $post->ID . '&status=approve');
+        $i = count($comments);
+        $add = sprintf('#comment-%d', count($comments));
     }
 
     // ajax request?
@@ -108,13 +114,11 @@ if (isset($_POST) && count($_POST))
         }
         else
         {
-            $data['comment'] = array(
-                'name'    => $_POST['name'],
-                'email'   => $_POST['email'],
-                'url'     => $_POST['url'],
-                'comment' => $_POST['comment'],
-            );
+            $data['html']   = Editorial::comment($comment, $i);
+            $data['notice'] = Editorial::commentNotice();
         }
+        // set new riddle
+        $data['riddle'] = Editorial::riddle();
         echo json_encode($data);
         exit();
     }

@@ -92,7 +92,7 @@ foreach ($attachments as $key => $attachment)
                     controls="controls"
                     preload="none"></video>
                 <?php } ?>
-                <figcaption>
+                <figcaption<?php echo Editorial::is_video($post->post_mime_type) ? ' id="video-fc"' : ''; ?>>
                     <h3><?php the_title(); ?></h3>
                     <p><?php the_content(); ?></p>
                 </figcaption>

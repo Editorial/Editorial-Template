@@ -9,27 +9,7 @@
 
 session_start();
 
-// catpcha translations
-$translations = array(
-    __('first',  'Editorial'),
-    __('second', 'Editorial'),
-    __('third',  'Editorial'),
-    __('forth',  'Editorial'),
-    __('fifth',  'Editorial'),
-    __('sixth',  'Editorial'),
-);
-// captcha settings
-$captcha = strtoupper(substr(md5(microtime()),0,6));
-// select two random characters
-$all = array(0,1,2,3,4,5);
-$selected  = array_rand($all, 2);
-$_SESSION['riddle'] = array(
-    'captcha'  => $captcha,
-    'chars'    => array(
-        $selected[0] => $captcha[$selected[0]],
-        $selected[1] => $captcha[$selected[1]]
-    ),
-);
+$riddle = Editorial::riddle();
 
 // header settings
 $EditorialId = 'feedback';
@@ -44,45 +24,45 @@ if (comments_open()) {
         </header>
         <?php
         // show comments
-        if (get_comments_number() > 0)
+        $allComments = get_comments_number();
+        if ($allComments > 0)
         {
             // show comments
+
             ?>
-            <p class="notice"><?php _e('<strong>Got something to add?</strong> You can just <a href="#comments-form"><em>leave a comment</em></a>.', 'Editorial'); ?></p>
+            <p class="notice"><?php echo Editorial::commentNotice(); ?></p>
             <section id="comments">
             <?php
-            $comments = get_comments('post_id=' . $post->ID . '&status=approve');
+
+            $page = (int)$_GET['page'];
+            $num = 10;
+            $comments = get_comments(array(
+                'post_id' => $post->ID,
+                'status' => 'approve',
+                'offset' => $page * $num,
+                'number' => $num,
+            ));
+
             $i = count($comments);
             foreach ($comments as $comment)
             {
-                ?>
-                    <article class="hentry" id="comment-<?php echo $comment->comment_ID; ?>">
-                        <section>
-                            <footer>
-                                <cite class="author vcard">
-                                    <?php if ($comment->comment_author_url) { ?>
-                                    <a href="<?php echo $comment->comment_author_url; ?>" rel="nofollow" class="fn n url" target="_blank"><?php echo $comment->comment_author; ?></a>
-                                    <?php } else { echo $comment->comment_author; }?>
-                                </cite>
-                                <time class="published" pubdate datetime="<?php echo date('Y-m-dTH:i', strtotime($comment->comment_date)); ?>">
-                                    <span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($comment->comment_date)); ?>"> </span>
-                                    <?php echo date(get_option('date_format'), strtotime($comment->comment_date)); ?>
-                                </time>
-                            </footer>
-                            <aside role="complementary" class="favorize">
-                                <img src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/_temp/favorize.png" alt="Temp replacement">
-                            </aside>
-                        </section>
-                        <header>
-                            <h2 class="entry-title"><span class="v-hidden"><?php _e('Feedback no.', 'Editorial'); ?></span> <?php echo $i--; ?>.</h2>
-                        </header>
-                        <blockquote class="entry-content">
-                            <p><?php echo $comment->comment_content; ?></p>
-                        </blockquote>
-                    </article>
-                <?php
+                echo Editorial::comment($comment, $i--);
             }
             echo '</section>';
+
+            // show comments only if there are enough of them
+            if ($num < $allComments)
+            {
+                printf('<section id="paging">
+                        <p><strong>%d / %d</strong> - %s</p>
+                        <p class="more"><a href="">%s</a></p>
+                    </section>',
+                    $page+1 * $num,
+                    $allComments,
+                    __('comments displayed', 'Editorial'),
+                    __('Display older comments ...', 'Editorial')
+                );
+            }
         }
         else
         {
@@ -117,7 +97,7 @@ if (comments_open()) {
                 <legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
                 <ol>
                     <li class="area<?php echo in_array('comment', $errors) ? ' error' : ''; ?>">
-                        <label for="comment"><?php _e('Comment', 'Editorial'); ?></label>
+                        <label for="comment"><?php _e('Comment', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
                         <textarea id="comment" name="comment" cols="60" rows="9"><?php echo esc_attr($comment_content); ?></textarea>
                     </li>
                 </ol>
@@ -126,11 +106,11 @@ if (comments_open()) {
                 <legend class="v-hidden"><?php _e('Author', 'Editorial'); ?></legend>
                 <ol>
                     <li class="text<?php echo in_array('name', $errors) ? ' error' : ''; ?>">
-                        <label for="name"><?php _e('Your name', 'Editorial'); ?></label>
+                        <label for="name"><?php _e('Your name', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
                         <input type="text" id="name" name="name" value="<?php echo esc_attr($comment_name); ?>">
                     </li>
                     <li class="text<?php echo in_array('email', $errors) ? ' error' : ''; ?>">
-                        <label for="email"><?php _e('Your e-mail address', 'Editorial'); ?></label>
+                        <label for="email"><?php _e('Your e-mail address', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
                         <input type="email" id="email" name="email" value="<?php echo esc_attr($comment_email); ?>">
                     </li>
                     <li class="text<?php echo in_array('url', $errors) ? ' error' : ''; ?>">
@@ -143,10 +123,11 @@ if (comments_open()) {
                 <legend class="v-hidden"><?php _e('Captcha', 'Editorial'); ?></legend>
                 <ol>
                     <li class="riddle<?php echo in_array('riddle', $errors) ? ' error' : ''; ?>">
-                        <label for="riddle"><?php printf(__('Please enter the <strong>%s</strong> and <strong>%s</strong> character', 'Editorial'), $translations[$selected[0]], $translations[$selected[1]]); ?></label>
+                        <label for="riddle"><?php echo $riddle['notice']; ?></label>
                         <div class="qa">
-                            <span><?php echo $captcha; ?></span>
+                            <span><?php echo $riddle['riddle']; ?></span>
                             <input type="text" name="riddle" id="riddle">
+                            <em>* <?php _e('required field', 'Editorial'); ?></em>
                         </div>
                     </li>
                 </ol>

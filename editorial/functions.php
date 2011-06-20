@@ -225,6 +225,75 @@ class Editorial
     }
 
     /**
+     * Comment
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function comment($comment, $i)
+    {
+        return sprintf('<article class="hentry" id="comment-%1$d">
+                <section>
+                    <footer>
+                        <cite class="author vcard">
+                            %2$s
+                        </cite>
+                        <time class="published" pubdate datetime="%3$s">
+                            <span class="value-title" title="%3$s"> </span>
+                            %4$s
+                        </time>
+                    </footer>
+                    <aside role="complementary">
+                        <form class="favorize" method="post" action="%8$s">
+                            <fieldset>
+                                <input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1">
+                                <label class="vote-for" for="vote-for-%1$d"><em>+1</em></label>
+                                <input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1">
+                                <label class="vote-against" for="vote-against-%1$d"><em>-1</em></label>
+                            </fieldset>
+                            <fieldset>
+                                <input type="hidden" name="comment_id" value="%1$d">
+                                <input type="submit" name="submit-%1$d" value="Go">
+                                <strong id="score-%1$d" class="score">+5</strong>
+                            </fieldset>
+                        </form>
+                    </aside>
+                </section>
+                <header>
+                    <h2 class="entry-title"><span class="v-hidden">%5$s</span> %6$d.</h2>
+                </header>
+                <blockquote class="entry-content">
+                    <p>%7$s</p>
+                </blockquote>
+            </article>',
+            $comment->comment_ID,
+            $comment->comment_author_url ?
+                sprintf(
+                    '<a href="%1$s" rel="nofollow" class="fn n url" target="_blank">%2$s</a>',
+                    $comment->comment_author_url,
+                    $comment->comment_author
+                ) : $comment->comment_author,
+            date('Y-m-dTH:i', strtotime($comment->comment_date)),
+            date(get_option('date_format'), strtotime($comment->comment_date)),
+            __('Feedback no.', 'Editorial'),
+            $i,
+            $comment->comment_content,
+            get_bloginfo('url').'/comment-vote.php'
+        );
+    }
+
+    /**
+     * Post comment notice
+     *
+     * @return string
+     * @author Miha Hribar
+     */
+    public static function commentNotice()
+    {
+        return __('<strong>Got something to add?</strong> You can just <a href="#comments-form"><em>leave a comment</em></a>.', 'Editorial');
+    }
+
+    /**
      * Tab navigation
      *
      * @return void
@@ -241,7 +310,7 @@ class Editorial
                     <a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
                 </li>
                 <li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
-                    <a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Image gallery', 'Editorial'); ?></a>
+                    <a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); ?></a>
                 </li>
                 <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
                     <a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount ? '<em>'.$commentCount.'</em>' : ''; ?></a>
@@ -342,6 +411,14 @@ class Editorial
                 include('comment-post.php');
                 exit();
             }
+            else if ($last && $last == 'comment-vote.php')
+            {
+                // make sure it's not 404
+                $wp_query->is_404 = false;
+
+                include('comment-vote.php');
+                exit();
+            }
         }
     }
 
@@ -366,6 +443,41 @@ class Editorial
         $return .= '</ol>
         </section>';
         return $return;
+    }
+
+    /**
+     * Make new riddle as captcha
+     *
+     * @return array
+     * @author Miha Hribar
+     */
+    public static function riddle()
+    {
+        // catpcha translations
+        $translations = array(
+            __('first',  'Editorial'),
+            __('second', 'Editorial'),
+            __('third',  'Editorial'),
+            __('forth',  'Editorial'),
+            __('fifth',  'Editorial'),
+            __('sixth',  'Editorial'),
+        );
+        // captcha settings
+        $captcha = strtoupper(substr(md5(microtime()),0,6));
+        // select two random characters
+        $all = array(0,1,2,3,4,5);
+        $selected = array_rand($all, 2);
+        $_SESSION['riddle'] = array(
+            'captcha'  => $captcha,
+            'chars'    => array(
+                $selected[0] => $captcha[$selected[0]],
+                $selected[1] => $captcha[$selected[1]]
+            ),
+        );
+        return array(
+            'notice' => sprintf(__('Please enter the <strong>%s</strong> and <strong>%s</strong> character', 'Editorial'), $translations[$selected[0]], $translations[$selected[1]]),
+            'riddle' => $captcha
+        );
     }
 }
 

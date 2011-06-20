@@ -14,9 +14,9 @@ Based on: 320 and Up boilerplate extension
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
 <meta name="description" content="<?php echo get_bloginfo('description'); ?>">
 <meta name="author" content="<?php bloginfo('name'); ?>">
+<!-- invalid / enable if needed
 <meta name="handheldfriendly" content="true">
 <meta name="mobileoptimized" content="320">
-<!-- invalid / enable if needed
 <meta http-equiv="cleartype" content="on">
 <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 -->
@@ -42,7 +42,7 @@ Based on: 320 and Up boilerplate extension
 
 <header id="header" class="clear" role="banner">
     <figure id="brand" class="vcard">
-        <a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" rel="home" class="url">
+        <a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
             <img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small').'" width="133" height="19' ?>" alt="<?php bloginfo('name'); ?>">
         </a>
         <figcaption class="v-hidden"><?php bloginfo('name'); ?></figcaption>

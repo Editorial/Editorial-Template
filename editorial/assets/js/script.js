@@ -1,27 +1,36 @@
-
-    if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
-        var viewportmeta = document.querySelectorAll('meta[name="viewport"]')[0];
-        if (viewportmeta) {
-            viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0';
-            document.body.addEventListener('gesturestart',function() {
-                viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
-            },false);
-        }
+if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+    var viewportmeta = document.querySelectorAll('meta[name="viewport"]')[0];
+    if (viewportmeta) {
+        viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0';
+        document.body.addEventListener('gesturestart',function() {
+            viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
+        },false);
     }
+}
 
 $(function(){
 
     //embed-code select
     $('#embed-code').click(function(){$(this).select();});
 
-
-    //max-width IE6
-    /*if ($.browser.msie && $.browser.version < 7) {
-        function maxWidth() {
-            if ($('body').width() > 960) {$('body').css('width','960px');}
-        }
-        $(window).resize(function(){maxWidth();});
-    }*/
+    //bad-comment
+    if($('blockquote.bad-comment').length > 0) {
+        var b = 'blockquote.bad-comment>p';
+        var s = 'p.show>a';
+        $(b).hide();
+        $(s + '>span').text('Show hidden');
+        $(s).click(function(e){
+            e.preventDefault();
+            if($(b).css('display') == 'block') {
+                $(b).fadeOut('fast');
+                $(s + '>span').text('Show hidden');
+            }
+            else {
+                $(b).fadeIn('fast');
+                $(s + '>span').text('Hide shown');
+            }
+        })
+    }
 
     // ajax comment post
     $('#comments-form').submit(function() {
@@ -33,9 +42,12 @@ $(function(){
             data: dataString,
             complete: function(msg) {
                 var response = $.parseJSON(msg.responseText);
+
+                // remove errors notice, if present
+                $('#errors').remove();
+
                 if (response.errors) {
-                    // add errors
-                    $('#errors').remove();
+                    // show errors
                     $(response.html).insertBefore('#comments-form');
                     $('html,body').animate({scrollTop: $("#errors").offset().top},'slow');
                     // add error fields
@@ -46,9 +58,32 @@ $(function(){
                 }
                 else {
                     // add new comment to html
+                    if ($('#comments').length > 0) {
+                        // add to list
+                        $(response.html).insertBefore('#comments article:first-child');
+                    }
+                    else {
+                        // replace no comments notice & add comment
+                        $('#single .notice').html(response.notice)
+                                            .after('<section id="comments">'+response.html+'</section>');
+                    }
+
                     // scroll to new comment
+                    $('html,body').animate({scrollTop: $("#comments").offset().top},'slow');
+
                     // reset form
+                    $('#comment').val('');
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#url').val('');
+                    $('#riddle').val('');
                 }
+
+                // set new riddle
+                $('#comments-form .captcha label[for="riddle"]').html(response.riddle.notice);
+                $('#comments-form .qa span').html(response.riddle.riddle);
+                // reset riddle
+                $('#riddle').val('');
             }
         });
         return false;
