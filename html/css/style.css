@@ -788,6 +788,7 @@ fieldset .riddle label {padding:11px 20px 5px 0;}
 #home-portrait .featured .f2,#home-portrait .featured .f4 {float:right;}
 .featured .info,.featured p {width:auto;}
 .featured .info {padding-top:0;}
+#home-portrait .featured .info {float:none;}
 #inside-portrait .featured .info {width:auto;}
 #layout-list .featured .info {padding-top:10px;}
 #layout-list .featured .info {width:34%;float:left;}
