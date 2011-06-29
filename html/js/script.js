@@ -49,19 +49,20 @@ $(function(){
 
 		//Devices
 		var devSizerDevices = [];
-		devSizerDevices[0] = ['0','{CSS} Tamagotchi, not!'];
-		devSizerDevices[1] = ['320x480','{MQ1} iPhone 3G/3GS [P] (320 x 480)'];
-		devSizerDevices[2] = ['480x320','{MQ2} iPhone 3G/3GS [L] (480 x 320)'];
+		devSizerDevices[0] = ['0','Tamagotchi, not! {CSS all devices}'];
+		devSizerDevices[1] = ['320x480','iPhone 3G/3GS [P] (320 x 480) {MQ1}'];
+		devSizerDevices[2] = ['480x320','iPhone 3G/3GS [L] (480 x 320) {MQ2}'];
 		devSizerDevices[3] = ['480x720','Meizu M8 [P] (480 x 720)'];
 		devSizerDevices[4] = ['480x800','Google Nexus one [P] (480 x 800)'];
-		devSizerDevices[5] = ['720x480','Meizu M8 [L] (720 x 480)'];
-		devSizerDevices[6] = ['768x1024','{MQ3} iPad [P] (768 x 1024)'];
-		devSizerDevices[7] = ['800x480','Google Nexus one [L] (800 x 480)'];
-		devSizerDevices[8] = ['960x640','iPhone 4G [L] (960 x 640)'];
-		devSizerDevices[9] = ['1024x768','{MQ4} iPad [L] (1024 x 768)'];
-		devSizerDevices[10] = ['1024x600','Netbooks (1024 x 600'];
-		devSizerDevices[11] = ['1280x800','MacBook Air (1280 x 800)'];
-		devSizerDevices[12] = ['1440x900','MacBook Pro 15\'\' (1440 x 900)'];
+		devSizerDevices[5] = ['640x960','iPhone 4G [P] (640 x 960) {MQ3}'];
+		devSizerDevices[6] = ['720x480','Meizu M8 [L] (720 x 480)'];
+		devSizerDevices[7] = ['768x1024','iPad [P] (768 x 1024) {MQ4}'];
+		devSizerDevices[8] = ['800x480','Google Nexus one [L] (800 x 480)'];
+		devSizerDevices[9] = ['960x640','iPhone 4G [L] (960 x 640)'];
+		devSizerDevices[10] = ['1024x768','iPad [L] (1024 x 768) {MQ5}'];
+		devSizerDevices[11] = ['1024x600','Netbooks (1024 x 600'];
+		devSizerDevices[12] = ['1280x800','MacBook Air (1280 x 800)'];
+		devSizerDevices[13] = ['1440x900','MacBook Pro 15\'\' (1440 x 900)'];
 
 		//generated options
 		var options = '';

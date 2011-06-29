@@ -37,44 +37,59 @@ abbr[title] {border-bottom:1px dotted;cursor:help;}
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 
 html {overflow-y:scroll;background:#fff;}
-body {margin:0 auto;padding:40px 0;width:90%;font:100%/20px 'MinionProRegular',sans-serif;color:#333;
+body {margin:0 auto;padding:40px 0;width:90%;font:100%/20px MinionProRegular,georgia,serif;color:#333;
 background-color:transparent;}
+#notfound {padding:0;}
 
 #primary,#rss,#inside #single footer,#inside-portrait #single footer,#tabs,#navigate ul,#embed,.notice,
-#comments article,#paging,#layout-list .featured article,#team li,
-.featured article {background:url(../images/bgr/lines.gif) repeat-x;}
+#comments article,#paging,#layout-list .featured article,#team li,.featured article
+{background:url(../images/bgr/lines.gif) repeat-x;}
+
 #find,#primary li,#primary .selected a,#tabs li,#footer nav li,#rss li,.xoxo li,#media-count,footer nav .selected a,
-#layout a,.vote-for em,.vote-against em{background:url(../images/bgr/sprite.png) no-repeat;}
+#layout a,.vote-for em,.vote-against em,#navigate li,.entry-content ul li
+{background:url(../images/bgr/sprite.png) no-repeat;}
 
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,h2,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
-#home h1,#home-portrait h1,.featured h2,#comments cite,#paging .more {font-family:'MinionProSemibold',sans-serif;
+#home h1,#home-portrait h1,.featured h2,#comments cite,#paging .more {font-family:MinionProSemibold,georgia,serif;
 color:#ccc;text-decoration:underline;}
-#embed h4,.message .lead,#common h2,#team .fn,address .fn {font-family:'MinionProSemibold',sans-serif;}
+#embed h4,.message .lead,#common h2,#team .fn,address .fn,.entry-content h2,#try
+{font-family:MinionProSemibold,georgia,serif;}
 h1 a,h2 a {color:#262626;}
-h1 em {color:#d00;font-style:normal;}
 h1,h2 {margin:0 0 10px;font-size:35px;line-height:35px;}
+#notfound h1 {margin:162px 0 0;font-size:120px;line-height:135px;text-align:center;}
+#notfound h2 {margin:-205px 0 0;font-size:500px;color:#f2f2f2;text-align:center;position:relative;z-index:-1;}
 #common h2 {margin:7px 0 3px;font-size:22px;line-height:30px;}
 h3 {font-size:28px;margin:0 0 10px;}
 
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
-@font-face {font-family:'MinionProSemibold';src:url('../fonts/minionpro-semibold.eot');
+@font-face {font-family:MinionProSemibold;src:url('../fonts/minionpro-semibold.eot');
 src:url('../fonts/minionpro-semibold.eot?#iefix') format('embedded-opentype'),
 url('../fonts/minionpro-semibold.woff') format('woff'),url('../fonts/minionpro-semibold.ttf') format('truetype'),
 url('../fonts/minionpro-semibold.svg#MinionProSemibold') format('svg');font-weight:normal;font-style:normal;}
 
-@font-face {font-family:'MinionProRegular';src:url('../fonts/minionpro-regular.eot');
+@font-face {font-family:MinionProRegular;src:url('../fonts/minionpro-regular.eot');
 src:url('../fonts/minionpro-regular.eot?#iefix') format('embedded-opentype'),
 url('../fonts/minionpro-regular.woff') format('woff'),url('../fonts/minionpro-regular.ttf') format('truetype'),
 url('../fonts/minionpro-regular.svg#MinionProRegular') format('svg');font-weight:normal;font-style:normal;}
 
+h1 em,#comments-form li em,.qa em {font-style:normal;}
+h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
+#exposed footer a,#inside #single footer a,#inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
+.favorize .negative,#team .title,footer h3,#notfound h1 {color:#d00;}
+
 
 p,ol,ul,dl,address {margin:0 0 15px;font-size:16px;}
-/*ul,ol {margin:0 0 15px -24px;padding-left:24px;}*//* TODO dodat v content */
+.entry-content h2 {font-size:20px;line-height:22px;}
+.entry-content p+ul,.entry-content p+ol {margin-top:-15px;}
+.entry-content ul {margin:0 0 15px;}
+.entry-content ul li {padding:0 0 0 25px;background-position:-594px -214px;}
+.entry-content ol {margin:0 0 15px 30px;}
+.entry-content ol li {padding:0 0 0 5px;list-style:decimal outside;}
 ul,ol,menu {list-style:none;}
 li ul,li ol,menu li {margin:0;font-size:1em;}
 dl,dd {margin-bottom:1.5em;}
@@ -90,8 +105,8 @@ pre {margin-bottom:1.5em;white-space:pre;white-space:pre-wrap;word-wrap:break-wo
 pre,code {font:.875em 'andale mono','lucida console',monospace;line-height:1.5;}
 small {font-size:1em;}
 label,input[type='submit'] {cursor:pointer}
-input,textarea {font-family:sans-serif;}
-.submit input {border:1px solid #fff;padding:10px 10px 7px;width:147px;font-family:'MinionProSemibold',sans-serif;
+input,textarea,table {font-family:sans-serif;}
+.submit input {border:1px solid #fff;padding:10px 10px 7px;width:147px;font-family:MinionProSemibold,georgia,serif;
 font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;background:#eee;
 background:-moz-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
 background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d7d7d7),color-stop(.5,#fff));
@@ -114,40 +129,41 @@ figcaption p {font:12px/15px sans-serif;color:#a5a5a5;}
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
 
-table {margin-bottom:1.4em;border-collapse:collapse;border-spacing:0;width:100%;font-size:.875em;}
+table {margin:0 0 25px;border-collapse:collapse;border-spacing:0;width:100%;font-size:12px;}
+caption {padding:3px 0 2px;font-size:10px;text-transform:uppercase;text-align:left;}
+th,tbody td {border-bottom:1px solid #e6e6e6;padding:6px 0 3px;text-align:left;}
 th {font-weight:bold;}
-th,td,caption {padding:.25em 10px .25em 5px;}
-tfoot {font-style:italic;}
-caption {background-color:transparent;}
-
+tfoot {color:#a5a5a5;}
+tfoot td {padding:5px 0;}
+tbody tr:nth-child(2n+2) td {background:#f5f5f5;}
+table .right {text-align:right;}
 
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 #search {margin:0 0 15px;}
 #search fieldset {width:275px;position:relative;}
-#query,#embed-code,fieldset .text input,fieldset textarea,fieldset .riddle input {border:1px solid #a6a6a6;
+#query,#embed-code,#comments-form .text input,#comments-form textarea,#comments-form .riddle input {border:1px solid #a6a6a6;
 border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;font-size:14px;}
 #query {padding-right:30px;width:275px;height:30px;}
 #find {border:none;width:30px;height:30px;background-position:7px -42px;position:absolute;top:-1px;right:1px;}
 
 #comments-form {padding:37px 0 0;width:100%;float:left;}
-fieldset ol {margin:0;}
-fieldset li {margin:0 0 15px;}
-fieldset li label,#layout p,#layout li,.qa em {padding:0 0 5px;font:10px/14px sans-serif;color:#999;
+#comments-form ol {margin:0;}
+#comments-form li {margin:0 0 15px;}
+#comments-form li label,#layout p,#layout li,.qa em {padding:0 0 5px;font:10px/14px sans-serif;color:#999;
 text-transform:uppercase;display:block;}
-fieldset li em,.qa em {font-style:normal;color:#d00;float:right;}
 .qa em {padding:6px 0 5px;}
-fieldset .text input {width:100%;color:#333;}
-fieldset .area textarea {margin:0 0 8px;width:100%;height:158px;color:#333;}
-fieldset .riddle {width:100%;}
-fieldset .riddle label {padding:0;}
-fieldset .riddle span {padding:5px 18px 8px 0;font-size:18px;display:block;}
-fieldset .riddle strong {color:#333;}
-fieldset .riddle input {width:100%;}
+#comments-form .text input {width:100%;color:#333;}
+#comments-form .area textarea {margin:0 0 8px;width:100%;height:158px;color:#333;}
+#comments-form .riddle {width:100%;}
+#comments-form .riddle label {padding:0;}
+#comments-form .riddle span {padding:5px 18px 8px 0;font-size:18px;display:block;}
+#comments-form .riddle strong {color:#333;}
+#comments-form .riddle input {width:100%;}
 .submit {padding:5px 0 27px;text-align:center;}
 #comments-form .submit input {margin:0 auto;}
 
-fieldset .error input,.error textarea  {border-color:#d00;}
+#comments-form .error input,.error textarea  {border-color:#d00;}
 
 .message {margin:39px 0 0;padding:13px 0;overflow:hidden;position:relative;z-index:1;}
 .message h3 {color:#e7d6cc;top:36px;left:27px;display:none;}
@@ -155,11 +171,11 @@ fieldset .error input,.error textarea  {border-color:#d00;}
 .message p {margin:0 0 2px;padding:0 13px;}
 .message .lead {margin:0 0 6px;}
 .message ol {margin:0;padding:0 13px 0 35px;}
-.message li {margin:0 0 4px;list-style:decimal;color:#d00;}
+.message li {margin:0 0 4px;list-style:decimal;}
 
 #errors {border:1px solid #e6dada;background:#faf3ed;}
-#errors .lead {color:#d00;}
 #success {border:1px solid #dce6ca;background:#f2f5e3;}
+#success h3 {color:#fff;}
 #success .lead {color:#79a500;}
 
 
@@ -167,7 +183,10 @@ fieldset .error input,.error textarea  {border-color:#d00;}
 
 #header,.content {border-bottom:1px solid #bfbfbf;-moz-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
 -webkit-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);box-shadow:0 10px 10px -10px rgba(0,0,0,.3);}
+#notfound #header,#notfound .content {border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
 #header {margin:0 0 18px;}
+#notfound #header,#try {margin-left:-242px;width:485px;position:absolute;left:50%;}
+#notfound #header {top:385px;}
 #brand {margin:0 0 15px;}
 #brand img {margin:0;}
 
@@ -176,11 +195,10 @@ fieldset .error input,.error textarea  {border-color:#d00;}
 
 #primary {margin:0 0 7px;padding:8px 0 0;width:100%;float:left;}
 #primary ul {width:100%;display:inline;}
-#primary li,#rss li,#footer nav li,#tabs li {font:13px 'MinionProSemibold',sans-serif;letter-spacing:2px;
+#primary li,#rss li,#footer nav li,#tabs li {font:13px MinionProSemibold,georgia,serif;letter-spacing:2px;
 text-transform:uppercase;background-position:-549px -40px;float:left;}
 #primary a,#footer nav a,#rss a,#tabs a {padding:8px 12px 7px;display:block;}
 #primary .selected a,footer nav .selected a {padding-right:32px;background-position:right -77px;}
-#primary .selected a {color:#d00;}
 
 
 /* 10.CONTENT _______________________________________________________________________________________________________ */
@@ -190,7 +208,7 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 #layout-grid .featured,#layout-list .featured {margin-bottom:0;}
 .featured article {margin:0 0 20px;width:100%;background-position:bottom;float:left;}
 #layout-list .featured article {background-position:bottom;}
-.featured figure {margin:0 0 11px;float:left;}
+.featured figure {margin:0 0 20px;float:left;}
 .featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img,#team img {border:1px solid #ccc;padding:6px;
 display:block;}
 .featured figure {display:none;}
@@ -199,10 +217,9 @@ display:block;}
 .featured p {display:none;}
 .featured footer,#exposed footer,#inside #single footer,#inside-portrait #single footer,#comments time,#paging p,
 footer h3 {padding:0 0 8px;font:10px/12px sans-serif;text-transform:uppercase;}
-.featured footer a,#exposed footer a,#inside #single footer a,#inside-portrait #single footer a {color:#d00;}
 .featured time,#exposed time,#single time,#inside #single footer em,#inside-portrait #single footer em,
-#inside #single footer em a,#inside-portrait #single footer em a,#paging p {color:#999;}.featured time:before,
-#exposed time:before,#inside #single time:before,#inside-portrait #single time:before {content:'- ';}
+#inside #single footer em a,#inside-portrait #single footer em a,#paging p {color:#999;}
+.featured time:before,#exposed time:before,#inside #single time:before,#inside-portrait #single time:before {content:'- ';}
 
 #exposed {margin:0 0 20px;border-bottom:1px solid #bfbfbf;width:100%;float:left;}
 #exposed figure {margin:0 auto 10px;}
@@ -230,7 +247,7 @@ color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
 background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:0;right:0;}
 
 .notice {margin:0;padding:3px 0 26px;font-size:22px;line-height:25px;color:#262626;background-position:bottom;}
-.notice strong {color:#d00;font-weight:normal;}
+.notice strong {font-weight:normal;}
 .notice em {font-style:normal;color:#262626;}
 
 #comments article {padding:0 0 13px;background-position:bottom;overflow:hidden;position:relative;}
@@ -250,7 +267,7 @@ background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:
 #layout-grid #paging,#layout-list #paging {background-position:0 -100px;}
 #paging p {margin:0;padding:8px 0 0;}
 #paging .more {margin:0;padding:0;font-size:18px;line-height:25px;text-transform:none;}
-#paging strong {font-weight:normal;color:#d00;}
+#paging strong {font-weight:normal;}
 
 #tabs {margin:0 0 30px;padding:0 0 11px;width:100%;background-position:bottom;float:left;}
 #tabs .selected {display:none;}
@@ -264,6 +281,8 @@ background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:
 #common address .street-address {display:block;}
 #common address .tel {display:block;}
 
+#notfound article {min-height:320px;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
@@ -272,11 +291,14 @@ background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:
 
 #navigate {margin:0 0 13px;width:100%;float:left;}
 #navigate ul {margin:0;padding:10px 0 0;width:100%;float:left;}
-#navigate li {margin:0;width:130px;font:10px/12px sans-serif;text-transform:uppercase;}
+#navigate li {margin:0;width:130px;font:10px/12px sans-serif;text-transform:uppercase;background-position:0 -220px;}
+#navigate .video {background-position:-140px -220px;}
+#navigate .audio {background-position:-280px -220px;}
 #navigate .previous {float:left;}
 #navigate .next {text-align:right;float:right;}
 #navigate img {margin:0 0 11px;}
-#navigate a {color:#d00;}
+#navigate a {background:#fff;}
+#navigate span {margin:0 0 11px;width:130px;height:130px;display:block;}
 
 #embed {margin:0 0 20px;padding:10px 0 0;}
 #embed h4 {margin:0 0 12px;font-size:22px;line-height:25px;}
@@ -294,19 +316,19 @@ background:linear-gradient(top,#fff,#fff 55%,#ddd);display:block;float:left;}
 float:left;}
 .vote-for em {background-position:-2px -162px;}
 .vote-against em {background-position:-62px -162px;}
+.disabled .vote-against,.disabled .vote-for {cursor:default;}
 .disabled .vote-for em {background-position:-2px -182px;}
 .disabled .vote-against em {background-position:-62px -182px;}
 .favorize .score {border-color:#d9d9d9;padding:4px 0 2px;width:23px;font:bold 11px sans-serif;color:#79a500;
 text-align:center;background:#f5f5f5;display:block;float:left;}
-.favorize .negative {color:#d00;}
 
 #team,#team li {width:100%;float:left;}
 #team {margin:13px 0 30px;}
 #team li {padding:11px 0 0;}
 #team img {margin:0 20px 10px 0;float:left;}
 #team figcaption {display:inline;}
-#team .title {margin:0 0 9px;font-family:'MinionProRegular',sans-serif;font-size:22px;font-variant:small-caps;
-line-height:24px;color:#d00;text-transform:lowercase;font-style:normal;display:block;}
+#team .title {margin:0 0 9px;font-family:MinionProRegular,georgia,serif;font-size:22px;font-variant:small-caps;
+line-height:24px;text-transform:lowercase;font-style:normal;display:block;}
 #team .fn {margin:0 0 4px;font-size:22px;line-height:24px;font-weight:normal;color:#333;display:block;}
 #team .email {margin:0 0 10px;font-size:12px;color:#333;display:block;}
 
@@ -314,7 +336,7 @@ line-height:24px;color:#d00;text-transform:lowercase;font-style:normal;display:b
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
 #footer {position:relative;}
-footer h3 {margin:20px 0 0;color:#d00;}
+footer h3 {margin:20px 0 0;}
 
 #rss {padding:0 0 20px;width:100%;background-position:bottom;float:left;}
 #rss li,#footer nav li,.xoxo li,#tabs li {text-decoration:underline;color:#d9d9d9;}
@@ -379,11 +401,6 @@ clip:auto;}
 
 
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
-/*
-#goog-fixurl ul {list-style-type:none;}
-#goog-fixurl input  {margin-bottom:1.5em;}
-*/
-
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
 
@@ -427,6 +444,17 @@ h1 {margin:0 0 21px;}
 
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
+
+.entry-content h2 {margin:0 0 5px;font-size:22px;line-height:25px;}
+.entry-content p+ul,.entry-content p+ol {margin-top:-20px;}
+.entry-content p+table {margin-top:-10px;}
+.entry-content p {margin:0 0 25px;}
+.entry-content ul {margin:0 0 25px;}
+.entry-content ul li {background-position:-594px -209px;}
+.entry-content ol {margin:0 0 25px 30px;}
+.entry-content li {margin:0 0 5px;font-size:18px;line-height:25px;}
+
+
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
 
@@ -437,16 +465,13 @@ h1 {margin:0 0 21px;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-#search fieldset {width:auto;}
-#search {float:right;}
-
 .captcha {width:61%;float:left;}
 .submit {width:148px;float:right;}
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#brand {margin:0 0 20px;float:left;}
+#brand {margin:0 0 20px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -455,7 +480,7 @@ h1 {margin:0 0 21px;}
 
 .featured article {float:left;}
 .featured figure {width:25%;display:block;}
-#layout-list .featured figure {margin-bottom:10px;}
+#layout-list .featured figure {margin-bottom:20px;}
 .featured .info {padding-top:10px;width:69%;float:right;}
 #layout-grid .featured .info,#layout-list .featured .info {padding-top:0;}
 .featured article {width:100%;}
@@ -511,7 +536,7 @@ box-shadow:7px 2px 2px rgba(0,0,0,.1);}
 
 /*640px [iPhone 4G (portrait),  Meizu M8 (landscape)] _______________________________________________________________ */
 
-@media only screen and (min-width:540px) {
+@media only screen and (min-width:640px) {
 
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 
@@ -529,12 +554,15 @@ body {width:95.2%;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-fieldset .text input {width:100%;}
-fieldset .area {margin:0;}
-fieldset .riddle {float:left;}
-fieldset .riddle label {padding:11px 20px 5px 0;}
-fieldset .riddle span {float:left;}
-fieldset .riddle input {width:215px;float:left;}
+#search {margin:-4px 0 14px;float:right;}
+#home #search,#home-portrait #search {margin:0 0 15px;float:none;}
+
+#comments-form .text input {width:100%;}
+#comments-form .area {margin:0;}
+#comments-form .riddle {float:left;}
+#comments-form .riddle label {padding:11px 20px 5px 0;}
+#comments-form .riddle span {float:left;}
+#comments-form .riddle input {width:215px;float:left;}
 
 .message h3 {display:block;}
 
@@ -544,6 +572,11 @@ fieldset .riddle input {width:215px;float:left;}
 .message p {padding:0 13px 0 85px;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
+
+#brand {max-width:48%;float:left;}
+#home #brand,#home-portrait #brand {max-width:none;float:none;}
+
+
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
@@ -601,22 +634,24 @@ body {width:628px;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-#search {margin:-4px 0 14px;float:right;}
-#home #search,#home-portrait #search {margin:12px 0 15px;}
+#home #search,#home-portrait #search,#search {margin:-4px 0 14px;float:right;}
 
 #comments-form {margin:0 0 30px;}
 #comments-form .feedback {margin:0 0 20px;}
-#comments-form .author {width:48%;float:left;}
-#comments-form .captcha {width:48%;float:right;}
-#comments-form .submit {padding:14px 0 27px;width:48%;float:right;}
-fieldset .riddle label {padding-top:0;}
-fieldset .riddle input {float:right;}
+#comments-form .author {width:100%;float:left;}
+#comments-form .author li {width:48%;float:left;}
+#comments-form .author .second {float:right;}
+#comments-form .captcha {margin:-66px 0 0;width:48%;float:right;}
+/*#comments-form .submit {padding:14px 0 27px;width:48%;float:right;}*/
+#comments-form .submit {padding:14px 0 27px;width:48%;float:right;clear:right;}
+#comments-form .riddle label {padding-top:0;}
+#comments-form .riddle input {float:right;}
 
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#brand {float:left;}
+#home #brand,#home-portrait #brand,#brand {max-width:48%;float:left;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -631,19 +666,20 @@ fieldset .riddle input {float:right;}
 .featured h2 {line-height:25px;}
 .featured .info {padding:0;width:64%;float:right;}
 .featured p {width:100%;}
+#layout-grid .featured {background:url(../images/bgr/grid-768.png) repeat-x;}
+#layout-grid .featured article {background-color:#fff;}
 #layout-list .featured .info {width:34%;float:left;}
 #layout-list .featured p {width:47%;float:right;}
 #home-portrait #exposed .info,#inside-portrait #exposed .info {width:100%;}
-.featured {width:100%;float:left;}
+/*.featured {width:100%;float:left;}*/
 .featured article {width:48%;min-height:230px;}
 #layout-list .featured article {width:100%;min-height:inherit;}
 .featured .f2,.featured .f4 {float:right;}
-.featured .f3,.featured .f4 {margin-bottom:0;background:none;}
+/*.featured .f3,.featured .f4 {margin-bottom:0;background:none;}*/
 #layout-list .featured .f2,#layout-list .featured .f4 {float:left;}
 .featured figure {margin:0 0 9px;width:31%;margin-right:0;}
 #layout-list .featured figure {width:13.3%;margin-right:20px;}
 
-#single,#common {margin:0 0 28px;}
 #common {width:100%;float:left;}
 
 #gallery-portrait #media {margin:0 0 10px;}
@@ -692,7 +728,7 @@ box-shadow:0 0 2px rgba(0,0,0,.8);background:linear-gradient(top,#fff,#fff 40%,#
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
-footer h3 {margin:0;font:80px 'MinionProRegular',sans-serif;color:#f2f2f2;text-transform:none;position:absolute;
+footer h3 {margin:0;font:80px MinionProRegular,georgia,serif;color:#f2f2f2;text-transform:none;position:absolute;
 top:16px;left:0;z-index:-1;}
 #rss {margin:62px 0 0;}
 
@@ -735,19 +771,21 @@ body {width:960px;}
 
 #home #search,#home-portrait #search {margin:19px 0 15px;}
 
-fieldset .text input {width:298px;}
-fieldset .area textarea {margin: 0 0 23px;width:630px;float:left;}
-fieldset .riddle span {padding-right:48px;}
-fieldset .riddle label {float:left;}
-fieldset .qa {float:right;}
+#comments-form .text input {width:298px;}
+#comments-form .area textarea {margin: 0 0 23px;width:630px;float:left;}
+#comments-form .captcha {margin:0;}
+#comments-form .riddle span {padding-right:48px;}
+#comments-form .riddle label {float:left;}
+#comments-form .qa {float:right;}
 .qa em {clear:left;}
 #comments-form .feedback,#comments-form .captcha {width:630px;float:left;}
 #comments-form .author,#comments-form .submit {width:298px;float:right;}
+#comments-form .author li {width:100%;}
 
 #comments-form .feedback {margin:0;}
 #comments-form .submit {padding:0;}
 #comments-form .submit input {float:left;}
-fieldset .riddle label {padding:11px 20px 5px 0;}
+#comments-form .riddle label {padding:11px 20px 5px 0;}
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
@@ -769,6 +807,10 @@ fieldset .riddle label {padding:11px 20px 5px 0;}
 #exposed article {padding:0 0 13px;width:100%;float:left;}
 #home #exposed .detail {width:292px;float:right;}
 #home #exposed figure {float:left;}
+.featured .info {width:auto;float:none;}
+
+#layout-grid .featured {width:976px;background:url(../images/bgr/grid-1024.png) 16px 0 repeat-x;}
+#layout-grid .featured article {background-color:#fff;}
 
 #home-portrait #exposed {margin:0;border:none;width:460px;float:left;}
 
