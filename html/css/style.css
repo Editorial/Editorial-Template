@@ -46,7 +46,7 @@ background-color:transparent;}
 {background:url(../images/bgr/lines.gif) repeat-x;}
 
 #find,#primary li,#primary .selected a,#tabs li,#footer nav li,#rss li,.xoxo li,#media-count,footer nav .selected a,
-#layout a,.vote-for em,.vote-against em,#navigate li,.entry-content ul li
+#layout a,.vote-for em,.vote-against em,#navigate li,.entry-content ul li,.m-button span
 {background:url(../images/bgr/sprite.png) no-repeat;}
 
 
@@ -59,10 +59,11 @@ color:#ccc;text-decoration:underline;}
 {font-family:MinionProSemibold,georgia,serif;}
 h1 a,h2 a {color:#262626;}
 h1,h2 {margin:0 0 10px;font-size:35px;line-height:35px;}
-#notfound h1 {margin:162px 0 0;font-size:120px;line-height:135px;text-align:center;}
-#notfound h2 {margin:-205px 0 0;font-size:500px;color:#f2f2f2;text-align:center;position:relative;z-index:-1;}
 #common h2 {margin:7px 0 3px;font-size:22px;line-height:30px;}
 h3 {font-size:28px;margin:0 0 10px;}
+
+#notfound h1 {margin:62px 0 0;font-size:60px;line-height:70px;text-align:center;}
+#notfound h2 {margin:-100px 0 0;font-size:200px;color:#f2f2f2;text-align:center;position:relative;z-index:-1;}
 
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
@@ -126,6 +127,50 @@ figcaption {font:12px/15px sans-serif;color:#999;display:block;font-weight:norma
 figcaption h3 {margin:0 0 5px;font:bold 12px/15px sans-serif;text-transform:uppercase;color:#999;}
 figcaption p {font:12px/15px sans-serif;color:#a5a5a5;}
 
+.slideshow {overflow:hidden;}
+.slideshow #header,.slideshow .content,.slideshow #footer {display:none;}
+
+#media-gallery {width:100%;height:100%;background:#000;position:absolute;top:0;left:0;display:none;}
+.slideshow #media-gallery {display:block;}
+#media-gallery header {width:100%;height:60px;background:rgba(0,0,0,.8);position:absolute;top:0;left:0;z-index:1;}
+#logo-white {position:absolute;top:22px;left:14px;}
+#remote {width:152px;position:absolute;top:9px;right:10px;}
+#remote li {float:left;}
+#m-prev {border-top-left-radius:20px;border-bottom-left-radius:20px;border-right:1px solid rgba(0,0,0,.3);box-shadow:0 2px 1px rgba(0,0,0,.3);}
+#m-prev span {width:55px;background-position:-189px -126px;}
+#m-slide {border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(0,0,0,.3);}
+#m-slide span {width:37px;background-position:-246px -126px;}
+#m-next {border-top-right-radius:20px;border-bottom-right-radius:20px;border-left:1px solid rgba(255,255,255,.1);box-shadow:0 2px 1px rgba(0,0,0,.3);}
+#m-next span {width:54px;background-position:-284px -126px;}
+#m-back,.m-toggle,.m-embed {border-radius:20px;box-shadow:0 0 2px #000;position:absolute;bottom:9px;}
+#m-back {left:10px;}
+#m-back span {width:90px;background-position:-170px -165px;}
+.m-toggle {left:110px;}
+.m-toggle span {width:90px;background-position:-275px -165px;}
+.m-embed {left:210px;}
+.m-embed span {width:90px;background-position:-380px -166px;}
+.m-button {border:1px solid rgba(0,0,0,.7);background:-moz-linear-gradient(top,rgba(255,255,255,.15),rgba(255,255,255,.15) 50%,rgba(255,255,255,.1));
+background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.15)),to(rgba(255,255,255,.15)),
+color-stop(.5,rgba(255,255,255,.1)));display:block;}
+.m-button span {height:40px;display:block;text-indent:-999em;}
+.pressed {border:1px solid rgba(255,255,255,.2);background:-moz-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
+background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.1)),to(rgba(255,255,255,.1)),
+color-stop(.5,rgba(255,255,255,.15)));box-shadow:inset 0 5px 5px #000;}
+
+.m-button:hover {border:1px solid #fff;}
+.m-toggle:hover {border:1px solid rgba(0,0,0,.7);}
+.pressed:hover {border:1px solid rgba(255,255,255,.2);}
+
+#loading {display:none;}
+#media-elements {width:100%;height:100%;}
+#media-elements figure {display:none;}
+#media-elements .active {display:block;}
+#media-elements img {margin:0 auto;max-height:100%;}
+#media-elements figcaption {padding:0 0 50px;width:100%;background:rgba(0,0,0,.8);position:absolute;left:0;bottom:0;}
+#media-elements h2 {margin:14px 14px 11px 0;font:12px/15px sans-serif;color:#fff;float:right;}
+#media-elements h3 {margin:14px 0 11px 14px;width:80%;color:#fff;float:left;}
+#media-elements p {margin:0 14px 11px;color:#fff;clear:both;display:none;}
+
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
 
@@ -142,9 +187,10 @@ table .right {text-align:right;}
 
 #search {margin:0 0 15px;}
 #search fieldset {width:275px;position:relative;}
+#notfound #search fieldset {border:5px solid #e6e6e6;}
 #query,#embed-code,#comments-form .text input,#comments-form textarea,#comments-form .riddle input {border:1px solid #a6a6a6;
-border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;font-size:14px;}
-#query {padding-right:30px;width:275px;height:30px;}
+border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;font-size:14px;} /* TODO reze sumnike */
+#query {padding:4px 30px 2px 4px;width:275px;height:30px;}
 #find {border:none;width:30px;height:30px;background-position:7px -42px;position:absolute;top:-1px;right:1px;}
 
 #comments-form {padding:37px 0 0;width:100%;float:left;}
@@ -185,10 +231,12 @@ text-transform:uppercase;display:block;}
 -webkit-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);box-shadow:0 10px 10px -10px rgba(0,0,0,.3);}
 #notfound #header,#notfound .content {border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
 #header {margin:0 0 18px;}
-#notfound #header,#try {margin-left:-242px;width:485px;position:absolute;left:50%;}
-#notfound #header {top:385px;}
 #brand {margin:0 0 15px;}
 #brand img {margin:0;}
+
+#notfound #header,#try {margin-left:-140px;width:285px;position:absolute;left:50%;}
+#notfound #header {top:230px;}
+#try {font-size:16px;line-height:21px;top:150px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -461,9 +509,21 @@ h1 {margin:0 0 21px;}
 #video {max-width:421px;}
 #video iframe {width:421px;height:342px;}
 
+#logo-white {left:auto;right:14px;}
+#remote {margin-left:-76px;left:50%;}
+#m-back {border-radius:0;border:none;box-shadow:none;background:none;left:14px;top:26px;bottom:auto;z-index:2;}
+#m-back span {width:auto;height:auto;font:10px sans-serif;color:#fff;text-transform:uppercase;text-indent:0;background:none;}
+#media-elements h2 {margin:14px 14px 5px;width:50%;float:left;}
+#media-elements h3 {margin:0 14px 11px;width:50%;}
+.m-toggle {top:9px;right:110px;left:auto;bottom:auto;}
+.m-embed {top:9px;right:10px;left:auto;bottom:auto;}
+#media-elements figcaption {padding:0;}
+
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
+
+#notfound #search {float:left;}
 
 .captcha {width:61%;float:left;}
 .submit {width:148px;float:right;}
@@ -544,6 +604,11 @@ body {width:95.2%;}
 
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+#notfound h1 {margin:162px 0 0;font-size:100px;line-height:115px;}
+#notfound h2 {margin:-200px 0 0;font-size:420px;}
+
+
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
@@ -571,10 +636,16 @@ body {width:95.2%;}
 .message ol {padding:0 13px 0 105px;}
 .message p {padding:0 13px 0 85px;}
 
+
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #brand {max-width:48%;float:left;}
 #home #brand,#home-portrait #brand {max-width:none;float:none;}
+
+#notfound #header,#try {margin-left:-242px;width:485px;left:50%;}
+#notfound #header {top:370px;}
+#try {font-size:22px;line-height:25px;top:295px;}
+#notfound #brand {margin:8px 0 0;float:right;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -629,6 +700,20 @@ body {width:628px;}
 
 /*#video iframe {width:395px;height:321px;}*/
 #video iframe {width:480px;height:390px;}
+
+.slideshow body {width:100%;padding:0;}
+#media-gallery header {height:80px;}
+#logo-white {top:32px;right:34px;}
+#logo-white img {width:131px;height:17px;}
+#remote {top:19px;}
+.m-toggle {display:none;}
+.m-embed {margin:-20px 0 0;top:50%;right:34px;}
+#m-back {top:28px;left:34px;}
+#m-back span {font:18px MinionProSemibold,georgia,serif;text-transform:none;}
+#media-elements h2 {margin:-27px 0 0;width:125px;height:56px;font:54px MinionProRegular,georgia,serif;text-align:right;position:absolute;top:50%;left:34px;}
+#media-elements h3 {margin:21px 0 6px 198px;;width:55%;}
+#media-elements p {margin:0 0 14px 198px;width:55%;display:block;float:left;clear:none;}
+
 
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
@@ -760,6 +845,9 @@ body {width:960px;}
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
+#notfound h1 {font-size:120px;line-height:135px;}
+#notfound h2 {font-size:500px;}
+
 .featured h2 {margin:0 0 15px;}
 
 
@@ -789,6 +877,11 @@ body {width:960px;}
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
+
+#notfound #header {top:390px;}
+#try {top:315px;}
+	
+
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 
 #primary {margin:0 0 9px;padding:11px 0 0;}
