@@ -22,6 +22,8 @@ Based on: 320 and Up boilerplate extension
 <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 -->
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
+<link rel="stylesheet" href="css/style.css?v=1">
+<script src="js/libs/modernizr-2.0.min.js"></script>
 <!-- For iPhone 4 with high-resolution Retina display: -->
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/touch/apple-touch-icon.png">
 <!-- For first-generation iPad: -->
@@ -31,8 +33,6 @@ Based on: 320 and Up boilerplate extension
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <!--<link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">-->
-<link rel="stylesheet" href="css/style.css?v=1">
-<script src="js/libs/modernizr-1.7.min.js"></script>
 </head>
 
 <body id="gallery" class="clear">
@@ -212,7 +212,7 @@ Based on: 320 and Up boilerplate extension
 		<a href="./" id="logo-white"><img src="images/editorial-logo-white2.png" width="99" height="13" alt="Editorial"></a>
 		<nav id="remote" role="navigation">
 			<ul>
-				<li><a href="#" id="m-prev" class="m-button"><span>Previous</span></a></li>
+				<li><a href="#" id="m-prev" class="m-button disabled"><span>Previous</span></a></li>
 				<li><a href="#" id="m-slide" class="m-button"><span>Slideshow</span></a></li>
 				<li><a href="#" id="m-next" class="m-button"><span>Next</span></a></li>
 			</ul>
@@ -319,11 +319,15 @@ Based on: 320 and Up boilerplate extension
 	Vsaki kraji se sodi po starodavnih slovanskih zakonih. Poganjata nas strast in WordPress.</small>
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.1.min.js">\x3C/script>')</script>
 <script src="js/plugins.js"></script>
 <script src="js/script.js"></script>
-<!--[if (lt IE 9) & (!IEMobile)]><script src="js/libs/DOMAssistantCompressed-2.8.js"></script><script src="js/libs/respond.min.js"></script><![endif]-->
+<!--[if (lt IE 9) & (!IEMobile)]>
+<script src="js/libs/DOMAssistantCompressed-2.8.js"></script>
+<script src="js/libs/selectivizr-1.0.1.js"></script>
+<script src="js/libs/respond.min.js"></script>
+<![endif]-->
 <!--<script>
 var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;

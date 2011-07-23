@@ -77,6 +77,7 @@ $(function(){
 		});
 		$('#m-slide').click(function(e) {
 			e.preventDefault();
+			$(this).toggleClass('running');
 			slideShow(0);
 		});
 		$('#m-next').click(function(e) {
@@ -87,6 +88,7 @@ $(function(){
 		//embed button
 		$('a.m-embed').click(function(e) {
 			e.preventDefault();
+			$(this).toggleClass('pressed');
 		});
 
 		//sldieshow
