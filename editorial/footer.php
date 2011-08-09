@@ -15,12 +15,24 @@
                 <li><a href="/">Colophon</a></li>
             </ul>
         </nav>
-        <ul class="xoxo">
+        <?php
+        // display footer menu
+        $settings = array(
+            'theme_location' => 'footer-nav',
+            'container'      => false,
+            'menu_class'     => 'xoxo',
+            'menu_id'        => '',
+            'depth'          => 1,
+            'walker'         => new EditorialNav(),
+        );
+        wp_nav_menu($settings);
+        ?>
+        <!--ul class="xoxo">
             <li class="twitter"><a href="/" title="Follow us on">Twitter</a></li>
             <li class="facebook"><a href="/" title="Follow us on">Facebook</a></li>
             <li class="vimeo"><a href="/" title="Follow us on Vimeo">Vimeo</a></li>
             <li class="flickr"><a href="/" title="Follow us on Flickr">Flickr</a></li>
-        </ul>
+        </ul-->
     </section>
     <small id="copyright">Vsa vsebina je zaščitena z licenco <a href="http://creativecommons.org/licenses/by-sa/2.5/si/" rel="licence" target="_blank">
     Creative Commons - Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji 2.5 Slovenija</a>.<br>

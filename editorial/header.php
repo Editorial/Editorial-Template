@@ -59,13 +59,13 @@ Based on: 320 and Up boilerplate extension
     </form>
     <?php
     $settings = array(
-        'menu' => 'main-nav',
-        'container' => false,
-        'menu_class' => '',
-        'menu_id' => '',
-        'depth' => 1,
-        'walker' => new EditorialNav(),
-        'echo' => false,
+        'theme_location' => 'main-nav',
+        'container'      => false,
+        'menu_class'     => '',
+        'menu_id'        => '',
+        'depth'          => 1,
+        'walker'         => new EditorialNav(),
+        'echo'           => false,
     );
     $menu = wp_nav_menu($settings);
     $menuItems = substr_count($menu,'<li');

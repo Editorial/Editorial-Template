@@ -64,8 +64,10 @@ class Editorial
     public static function menus()
     {
         // we have main navigation and footer navigation
-        register_nav_menu('main-nav', __( 'Main menu' ));
-        //register_nav_menu('footer-nav', __( 'Footer menu' ));
+        register_nav_menus(array(
+            'main-nav'   => __( 'Main menu' ),
+            'footer-nav' => __( 'Footer menu' )
+        ));
     }
 
     /**
