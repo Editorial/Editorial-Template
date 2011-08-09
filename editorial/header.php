@@ -58,25 +58,27 @@ Based on: 320 and Up boilerplate extension
         </fieldset>
     </form>
     <?php
-    $settings = array(
-        'theme_location' => 'main-nav',
-        'container'      => false,
-        'menu_class'     => '',
-        'menu_id'        => '',
-        'depth'          => 1,
-        'walker'         => new EditorialNav(),
-        'echo'           => false,
-    );
-    $menu = wp_nav_menu($settings);
-    $menuItems = substr_count($menu,'<li');
-    if ($menuItems > 5)
+    // show main navigation if not on 404 page
+    if ($EditorialId != 'notfound')
     {
-        // we're hoarding
-        $settings['class'] = 'hoarding';
+        $settings = array(
+            'theme_location' => 'main-nav',
+            'container'      => false,
+            'menu_class'     => '',
+            'menu_id'        => '',
+            'depth'          => 1,
+            'walker'         => new EditorialNav(),
+            'echo'           => false,
+        );
         $menu = wp_nav_menu($settings);
+        $menuItems = substr_count($menu,'<li');
+        if ($menuItems > 5)
+        {
+            // we're hoarding
+            $settings['class'] = 'hoarding';
+            $menu = wp_nav_menu($settings);
+        }
+        echo '<nav id="primary" role="navigation">'.$menu.'</nav>';
     }
     ?>
-    <nav id="primary" role="navigation">
-        <?php echo $menu ?>
-    </nav>
 </header>
