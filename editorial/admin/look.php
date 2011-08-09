@@ -6,16 +6,19 @@
                     <fieldset>
                         <?php
 
-                        $logo_big   = !Editorial::getOption('logo-big') ? 'http://www.placeholder-image.com/image/356x70' : Editorial::getOption('logo-big');
-                        $logo_small = !Editorial::getOption('logo-small') ? 'http://www.placeholder-image.com/image/200x40' : Editorial::getOption('logo-small');
+                        $logo_big     = !Editorial::getOption('logo-big') ? 'http://www.placeholder-image.com/image/356x70' : Editorial::getOption('logo-big');
+                        $logo_small   = !Editorial::getOption('logo-small') ? 'http://www.placeholder-image.com/image/200x40' : Editorial::getOption('logo-small');
+                        $logo_gallery = !Editorial::getOption('logo-gallery') ? 'http://www.placeholder-image.com/image/131x17' : Editorial::getOption('logo-gallery');
 
                         ?>
                         <input type="text" name="logo-big" value="<?php echo $logo_big;  ?>" /><br />
-                        <input type="text" name="logo-small" value="<?php echo $logo_small; ?>" />
-                        <p class="note"><?php _e('Specify the images your would like to use as the theme big &amp; small logo.', 'editorial'); ?></p>
+                        <input type="text" name="logo-small" value="<?php echo $logo_small; ?>" /><br />
+                        <input type="text" name="logo-gallery" value="<?php echo $logo_gallery; ?>" />
+                        <p class="note"><?php _e('Specify the images your would like to use as the theme big, small &amp; gallery logo.', 'editorial'); ?></p>
                         <div class="logos">
                             <img src="<?php echo $logo_big; ?>" alt="Big logo" /><br />
                             <img src="<?php echo $logo_small; ?>" alt="Small logo" />
+                            <img src="<?php echo $logo_gallery; ?>" alt="Gallery logo" class="gallery" />
                         </div>
                     </fieldset>
                 </td>

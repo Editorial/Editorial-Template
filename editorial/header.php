@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <!--
 Editorial theme
-Version: 0.1
+Version: 0.5
 Based on: 320 and Up boilerplate extension
 -->
+<?php $htmlParams = 'lang="'.get_bloginfo('language').'"'.(isset($htmlClass) ? ' class="'.$htmlClass.'"' : ''); ?>
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
-<!--[if lt IE 7 ]><html class="ie6" lang="<?php bloginfo('language'); ?>"><![endif]-->
-<!--[if IE 7 ]><html class="ie7" lang="<?php bloginfo('language'); ?>"><![endif]-->
-<!--[if IE 8 ]><html class="ie8" lang="<?php bloginfo('language'); ?>"><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="<?php bloginfo('language'); ?>"><!--<![endif]-->
+<!--[if lt IE 7 ]><html class="ie6" <?php echo $htmlParams; ?>><![endif]-->
+<!--[if IE 7 ]><html class="ie7" <?php echo $htmlParams; ?>><![endif]-->
+<!--[if IE 8 ]><html class="ie8" <?php echo $htmlParams; ?>><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html <?php echo $htmlParams; ?>><!--<![endif]-->
+
 <head>
 <meta charset="utf-8">
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
@@ -49,10 +51,10 @@ Based on: 320 and Up boilerplate extension
     </figure>
     <form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
         <fieldset>
-            <legend class="v-hidden">Search</legend>
-            <label for="query" class="v-hidden">Query</label>
-            <input type="search" id="query" name="s" placeholder="Search...">
-            <input type="submit" id="find" class="ir" value="Search">
+            <legend class="v-hidden"><?php _e('Search', 'Editorial'); ?></legend>
+            <label for="query" class="v-hidden"><?php _e('Query', 'Editorial'); ?></label>
+            <input type="search" id="query" name="s" placeholder="<?php _e('Search...', 'Editorial'); ?>">
+            <input type="submit" id="find" class="ir" value="<?php _e('Search', 'Editorial'); ?>">
         </fieldset>
     </form>
     <?php

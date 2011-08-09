@@ -39,6 +39,7 @@ class Editorial_Admin
     private $_options = array(
         'logo-big',
         'logo-small',
+        'logo-gallery',
         'typekit',
         'black-and-white',
         'disable-admin-notices'

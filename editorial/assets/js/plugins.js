@@ -20,7 +20,7 @@ if(this.console) console.log( Array.prototype.slice.call(arguments) );
  * @author Mathias Bynens <http://mathiasbynens.be/>
  */
  
-;(function($) {
+(function($) {
 
 	var isInputSupported = 'placeholder' in document.createElement('input'),
 	    isTextareaSupported = 'placeholder' in document.createElement('textarea');

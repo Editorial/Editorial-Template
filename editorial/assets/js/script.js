@@ -90,5 +90,103 @@ $(function(){
         });
         return false;
     });
+
+    //media gallery
+    if ($('#media-gallery').length > 0) {
+
+        //init slideshow (serverside = no blink)
+        //$('html').addClass('slideshow');
+
+        //vertical center element
+        function centerMedia(which) {
+
+            var w = (which) ? 1 : 0;
+            if (w == 1) var active = $('#media-elements>figure');
+            else var active = $('#media-elements>.active');
+
+            active.find('img').height('auto');
+
+            var maxH = $(window).height()/2;
+            var imgH = active.find('img').height()/2;
+            var margin = maxH - imgH;
+
+            if (margin > 0) {
+                active.css('marginTop',margin);
+            }
+            else {
+                active.css('marginTop',0);
+                active.find('img').height(maxH*2);
+            }
+        }
+        centerMedia(1);
+
+        //toggle image description
+        $('a.m-toggle').click(function(e) {
+            e.preventDefault();
+            $(this).toggleClass('pressed').prev('p').slideToggle(100);
+        });
+
+        //remote control
+        $('#m-prev').click(function(e) {
+            e.preventDefault();
+            slideShow(-1);
+        });
+        $('#m-slide').click(function(e) {
+            e.preventDefault();
+            slideShow(0);
+        });
+        $('#m-next').click(function(e) {
+            e.preventDefault();
+            slideShow(1);
+        });
+
+        //embed button
+        $('a.m-embed').click(function(e) {
+            e.preventDefault();
+        });
+
+        //sldieshow
+        function slideShow(go) {
+            var el = $('#media-elements>.active');
+            switch (go) {
+                case (0): looping(el);
+                break;
+                case (1): goNext(el);
+                break;
+                case (-1): goPrev(el);
+                break;
+            }
+        }
+
+        //looping elements
+        var loop = setTimeout('',1);
+        function looping(el) {
+            //goNext(el);
+            //loop = setTimeout($(this),3000);
+            //clearTimeout(loop);
+        }
+
+        //next element
+        function goNext(el) {
+            if (el.next().length > 0) {
+                el.removeClass('active').css('display','');
+                el.next().fadeIn(function() {
+                    $(this).addClass('active');
+                });
+            }
+        }
+
+        //previous element
+        function goPrev(el) {
+            if (el.prev().length > 0) {
+                el.removeClass('active').css('display','');
+                el.prev().fadeIn(function() {
+                    $(this).addClass('active');
+                });
+            }
+        }
+
+        $(window).resize(function(){centerMedia();});
+    }
 });
 

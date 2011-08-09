@@ -14,6 +14,10 @@
     margin: 5px;
 }
 
+#editorial .logos img.gallery {
+    background: #000;
+}
+
 #editorial #authors li {
     width: 80%;
     padding: 10px;
