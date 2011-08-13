@@ -60,7 +60,10 @@ class Editorial_Admin
      */
     public function __construct()
     {
+        // setup admin menu
         add_action('admin_menu', array($this, 'menus'));
+        // add action for publishing a page (for intercepting colophon template)
+        add_action('publish_page', array($this, 'publishPage'));
     }
     /**
      * Add menu to wordpress administration
@@ -102,6 +105,17 @@ class Editorial_Admin
         }
         // check for update
         $this->checkVersion();
+    }
+
+    /**
+     * Publish page action
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public function publishPage()
+    {
+        // @todo check if the published page has colophon for template
     }
 
     /**
