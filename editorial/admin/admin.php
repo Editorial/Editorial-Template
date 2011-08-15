@@ -42,7 +42,8 @@ class Editorial_Admin
         'logo-gallery',
         'typekit',
         'black-and-white',
-        'disable-admin-notices'
+        'disable-admin-notices',
+        EDITORIAL_KARMA_TRESHOLD
     );
 
     /**

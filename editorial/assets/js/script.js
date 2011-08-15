@@ -57,6 +57,8 @@ $(function(){
                     }
                 }
                 else {
+                    // remove old success not if already there
+                    $('#success').remove();
                     // add success notice
                     $(response.success).insertBefore('#comments-form');
                     // add new comment to html

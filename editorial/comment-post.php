@@ -9,13 +9,7 @@
 
 session_start();
 
-// allow only post
-if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
-    header('Allow: POST');
-    header('HTTP/1.1 405 Method Not Allowed');
-    header('Content-Type: text/plain');
-    exit;
-}
+
 
 if (isset($_POST) && count($_POST))
 {

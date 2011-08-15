@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment vote
+ * Comment vote (Karma)
  *
  * @package    Editorial
  * @copyright  Copyright (c) 2011, ThirdFrameStudios

@@ -4,6 +4,10 @@
     color: #999;
 }
 
+#editorial p.karma {
+    float: left;
+}
+
 #editorial input[type="text"] {
     width: 400px;
 }
@@ -47,6 +51,12 @@
 #editorial #authors input[type="text"] {
     margin-top: -3px;
     width: 150px;
+}
+
+#editorial input[name="karma-treshold"] {
+    float: left;
+    width: 40px;
+    margin-right: 5px;
 }
 
 </style>

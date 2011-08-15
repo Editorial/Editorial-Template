@@ -46,6 +46,13 @@
                     <p class="note"><?php _e('If you disable wordpress notifications you will not see any typekit or theme update notifications.', 'editorial'); ?></p>
                 </td>
             </tr>
+            <tr>
+                <th><?php _e('Karma treashold', 'editorial'); ?></th>
+                <td>
+                    <input type="text" name="karma-treshold" value="<?php echo Editorial::getOption(EDITORIAL_KARMA_TRESHOLD); ?>" />
+                    <p class="note karma"><?php _e('Karma treashold controls when the comments with downvotes are hidden.', 'editorial'); ?></p>
+                </td>
+            </tr>
         </table>
         <p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'editorial'); ?>"></p>
     </form>

@@ -32,7 +32,10 @@ if (comments_open() || !post_password_required()) {
             echo '<p class="notice">'.Editorial::commentNotice().'</p><section id="comments">';
 
             // show comment
-            wp_list_comments(array('callback' => 'Editorial::comment'));
+            wp_list_comments(array(
+                'callback'          => 'Editorial::comment',
+                'reverse_top_level' => true
+            ));
 
             echo '</section>';
 
