@@ -6,6 +6,17 @@ function dump($object = '')
     echo '<pre style="border: 1px solid #ccc; background: #eee; padding: 15px; margin: 15px; font-family: "Courier New", Courier, monospace">'.print_r($object, true).'</pre>';
 }
 
+// also for debugging purposes
+function error($message)
+{
+    error_log(sprintf('[Editorial] %s', $message));
+}
+
+function debug($message)
+{
+    error($message);
+}
+
 define ('EDITORIAL_VERSION', '1.0b');
 define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
@@ -232,9 +243,10 @@ class Editorial
      * @return void
      * @author Miha Hribar
      */
-    public static function comment($comment, $i)
+    public static function comment($comment, $args, $depth, $return = false)
     {
-        return sprintf('<article class="hentry" id="comment-%1$d">
+        if ($return) ob_start();
+        printf('<article class="hentry" id="comment-%1$d">
                 <section>
                     <footer>
                         <cite class="author vcard">
@@ -278,10 +290,17 @@ class Editorial
             date('Y-m-dTH:i', strtotime($comment->comment_date)),
             date(get_option('date_format'), strtotime($comment->comment_date)),
             __('Feedback no.', 'Editorial'),
-            $i,
+            $comment->comment_ID, // @todo add correct comment count
             $comment->comment_content,
             get_bloginfo('url').'/comment-vote.php'
         );
+
+        if ($return)
+        {
+            $output = ob_get_contents();
+            ob_end_clean();
+            return $output;
+        }
     }
 
     /**
@@ -315,7 +334,7 @@ class Editorial
                     <a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); ?></a>
                 </li>
                 <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
-                    <a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); ?> <?php echo $commentCount ? '<em>'.$commentCount.'</em>' : ''; ?></a>
+                    <a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
                 </li>
             </ul>
         </nav>
@@ -395,7 +414,7 @@ class Editorial
             $wp_query->is_404 = false;
 
             // include comments
-            $file = get_template_directory().'/comments.php';
+            $file = get_template_directory().'/single-comments.php';
             include($file);
             exit();
         }

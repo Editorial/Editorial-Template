@@ -15,8 +15,9 @@ $riddle = Editorial::riddle();
 $EditorialId = 'feedback';
 $EditorialClass = 'clear';
 @include('header.php');
-//update_option('comments_per_page', 2);
-if (comments_open()) {
+the_post(); global $post;
+//update_option('comments_per_page', 0);
+if (comments_open() || !post_password_required()) {
 ?>
 <div class="content clear" role="main">
     <article id="single">
@@ -25,46 +26,26 @@ if (comments_open()) {
         </header>
         <?php
         // show comments
-        //if (have_comments())
-        if (get_comments_number() > 0)
+        if (have_comments())
         {
-            $allComments = get_comments_number();
-            // show notice
-            ?>
-            <p class="notice"><?php echo Editorial::commentNotice(); ?></p>
-            <section id="comments">
-            <?php
+            // show notice & start section for comments
+            echo '<p class="notice">'.Editorial::commentNotice().'</p><section id="comments">';
 
-            // show comments
-            $page = (int)$_GET['page'];
-            $num = get_option('comments_per_page');
-            $settings = array(
-                'post_id' => $post->ID,
-                'status' => 'approve',
-            );
-            if ($num)
-            {
-                $settings['offset'] = $page * $num;
-                $settings['number'] = $num;
-            }
-            $comments = get_comments($settings);
+            // show comment
+            wp_list_comments(array('callback' => 'Editorial::comment'));
 
-            $i = count($comments) + $page*$num;
-            foreach ($comments as $comment)
-            {
-                echo Editorial::comment($comment, $i--);
-            }
             echo '</section>';
 
-            // show comments only if there are enough of them
-            if (get_comment_pages_count() > 1 && $num)
+            // show more link if we have paging enabled
+            if (get_comment_pages_count() > 1 && get_option('page_comments') && get_next_comments_link())
             {
                 printf('<section id="paging">
                         <p><strong>%d / %d</strong> - %s</p>
                         <p class="more"><a href="">%s</a></p>
                     </section>',
-                    $page+1 * $num,
-                    $allComments,
+                    //$page+1 * $num,
+                    42,
+                    get_comments_number(),
                     __('comments displayed', 'Editorial'),
                     __('Display older comments ...', 'Editorial')
                 );

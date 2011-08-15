@@ -66,10 +66,10 @@ if (count($authors))
                     );
                     printf('<li class="vcard">
                             <figure>
-                                <img src="%1$s" class="photo" width="116" height="116" alt="%2$s">
+                                <img src="%1$s" class="photo" width="116" height="116" alt="%6$s">
                                 <figcaption>
                                     <em class="title">%3$s</em>
-                                    <strong class="fn n"><a href="%5$s">%2$s</a></strong>
+                                    <strong class="fn n"><a href="%5$s" title="%6$s">%2$s</a></strong>
                                     <a href="mailto:%4$s" class="email">%4$s</a>
                                 </figcaption>
                             </figure>
@@ -78,7 +78,8 @@ if (count($authors))
                         $Author->display_name,
                         $Author->editorial_role,
                         $Author->user_email,
-                        get_author_posts_url($Author->ID)
+                        get_author_posts_url($Author->ID),
+                        esc_attr($Author->display_name)
                     );
                 }
                 ?>
