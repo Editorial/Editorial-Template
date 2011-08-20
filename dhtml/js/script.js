@@ -20,6 +20,8 @@ $(function(){
 
 
 	//demonav
+	demoNav();
+
 	function demoNav() {
 
 		$('#dashboard').click(function(e) {
@@ -36,6 +38,7 @@ $(function(){
 			var goID = ah.substr(ah.lastIndexOf('#'));
 
 			if (close == false) {
+				//$('.demonav').addClass('opened');
 				var first = t.parents('ul').find('li').hasClass('selected');
 				t.parents('ul').find('li').removeClass('selected');
 				tp.addClass('selected');
@@ -45,6 +48,7 @@ $(function(){
 			}
 
 			else {
+				//$('.demonav').removeClass('opened');
 				tp.removeClass('selected');
 				$(goID).fadeOut(300,function() {
 					$(this).removeClass('active');
@@ -79,9 +83,15 @@ $(function(){
 
 		}
 
+		//toggle buttons
+		$('#demo-orientation .buttons h4').click(function(){
+			var notsel = $(this).next('ul').find('li:not(.selected)>a').attr('href');
+			console.log($(this).next('ul').find('li:not(.selected)>a'));
+			location.href = notsel;
+		});
+
 	}
 
-	demoNav();
 
 
 	//bad-comment
@@ -206,9 +216,6 @@ $(function(){
 
 
 
-
-
-
 	//devSizer
 	devSizer();
 	function devSizer(){
@@ -266,6 +273,7 @@ $(function(){
 		);
 
 		//show / hide devSizer
+		/*
 		$('#devSizerClose').click(function(e){
 			e.preventDefault();
 			var t = $(this);
@@ -274,9 +282,10 @@ $(function(){
 			if (s == 'hide') {t.html('O').attr('title','Show devSizer');c.fadeOut('fast');}
 			else {t.html('X').attr('title','Hide devSizer');c.fadeIn('fast');}
 		});
+		*/
 
 		//get value from devSizerDevices
-		function resizeW(val){return val.substr(0,val.lastIndexOf('x'));}
+		function resizeW(val){return parseInt(val.substr(0,val.lastIndexOf('x')));}
 		function resizeH(val){return parseInt(val.substr(val.lastIndexOf('x')+1));}
 
 		//update devSizer changes
@@ -299,35 +308,8 @@ $(function(){
 				//console.log('smo tu:' + w() + ' kar pomeni da smo na devajsu: ' + currentD);
 			});
 		}
+		//onload
 		updatedevSizer();
-
-		//enable / disable scrolls
-		var scrollW = 15;
-		function devSizerScrolls(force){
-			var l = $('#devSizerScrolls');
-			var o = $('html').css('overflow');
-			if(force) {
-				if (force == 0) o = 'visible';
-				else o = 'hidden';
-			}
-			var s = (o == 'hidden') ? 'show' : 'hide';
-			if (s == 'show'){$('html').css('overflow','visible');l.html('Hide scrollers');}
-			else {$('html').css('overflow','hidden');l.html('Show scrollers');scrollW = scrollW * -1;}
-
-			//console.log(w());
-			//console.log(parseInt(w() + scrollW)+ ',' + h());
-			//window.resizeTo(parseInt(w() + scrollW),h());
-			updatedevSizer();
-		}
-
-		//cliks
-
-		//scrolls
-		$('#devSizerScrolls').click(function(e){
-			e.preventDefault();
-			devSizerScrolls();
-		});
-
 
 		//on window resize
 		$(window).resize(function(){updatedevSizer();});
@@ -337,20 +319,35 @@ $(function(){
 		$('#devSizerDevices').change(function(){
 			var val = $(this).val();
 			if (val != 0) {
-				//$('html').css('overflow','hidden');
-				//alert('na: ' + v.substr(0,v.lastIndexOf('x')) + ',' + parseInt(parseInt(v.substr(v.lastIndexOf('x')+1)) + 128));
+				var toolbars = 0;
+				var sh = screen.availHeight;
+				if (sh <= h()) toolbars = parseInt(sh - h());
 
-				//console.log('inner height: ' + document.documentElement.clientHeight);
-				//dobit dimenzijo z toolbari
-				//console.log('resize: ' + resizeW(val) + ' x ' + resizeH(val));
+				alert(sh + ' - ' + toolbars);
+				
 
-				//alert(resizeW(val));
+				/*
 				if (resizeW(val) < 960){
 					devSizerScrolls(0);
 				}
 				else devSizerScrolls(1);
+				*/
 
-				window.resizeTo(resizeW(val),resizeH(val));
+
+				//alert('resizeW: ' + resizeW(val) + ' resizeH: ' + resizeH(val) + '\nW-razlika: ' + parseInt(resizeW(val) - w()) + ' <> H-razlika: ' + parseInt(resizeH(val) - h()));
+				//pri meni vedno 15px (scroll) in 128px (visina orodij na sranjo)
+
+				//z toolbarji
+				//alert(screen.availHeight);
+
+				var rw = parseInt(resizeW(val) + 15);
+				//var rh = parseInt(resizeH(val) + parseInt(screen.availHeight - resizeH(val)));
+				var rh = parseInt(resizeH(val) + toolbars);
+				//var rh = resizeH(val);
+
+				window.resizeTo(rw,rh);
+
+
 				//console.log('currentW: ' + currentW + ' resizeW: ' + resizeW(val));
 				//nothing resizes, open popup
 				/*
