@@ -43,7 +43,13 @@ class Editorial_Admin
         'typekit',
         'black-and-white',
         'disable-admin-notices',
-        EDITORIAL_KARMA_TRESHOLD
+        EDITORIAL_KARMA_TRESHOLD,
+        'twitter-share',
+        'twitter-account',
+        'twitter-related',
+        'twitter-related-desc',
+        'facebook-share',
+        'google-share',
     );
 
     /**
@@ -196,6 +202,18 @@ class Editorial_Admin
                 if (!isset($_POST['disable-admin-notices']))
                 {
                     Editorial::setOption('disable-admin-notices', false);
+                }
+                if (!isset($_POST['twitter-share']))
+                {
+                    Editorial::setOption('twitter-share', false);
+                }
+                if (!isset($_POST['facebook-share']))
+                {
+                    Editorial::setOption('facebook-share', false);
+                }
+                if (!isset($_POST['google-share']))
+                {
+                    Editorial::setOption('google-share', false);
                 }
                 break;
             case self::PAGE_AUTHORS:

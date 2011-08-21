@@ -53,6 +53,30 @@
                     <p class="note karma"><?php _e('Karma treashold controls when the comments with downvotes are hidden.', 'editorial'); ?></p>
                 </td>
             </tr>
+            <tr>
+                <th><?php _e('Twitter share', 'editorial'); ?></th>
+                <td>
+                    <label><?php _e('Enable twitter share', 'editorial'); ?> <input type="checkbox" name="twitter-share"<?php echo !Editorial::getOption('twitter-share') ? '' : ' checked="checked"'; ?> /></label><br />
+                    <input type="text" name="twitter-account" value="<?php echo Editorial::getOption('twitter-account'); ?>" placeholder="<?php _e('Your twitter account', 'editorial'); ?>" /><br />
+                    <input type="text" name="twitter-related" value="<?php echo Editorial::getOption('twitter-related'); ?>" placeholder="<?php _e('Related account', 'editorial'); ?>" /><br />
+                    <input type="text" name="twitter-related-desc" value="<?php echo Editorial::getOption('twitter-related-desc'); ?>" placeholder="<?php _e('Related account description', 'editorial'); ?>" />
+                    <p class="note"><?php _e('Twitter share is visible on article page.', 'editorial'); ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th><?php _e('Facebook share', 'editorial'); ?></th>
+                <td>
+                    <label><?php _e('Enable facebook share', 'editorial'); ?> <input type="checkbox" name="facebook-share"<?php echo !Editorial::getOption('facebook-share') ? '' : ' checked="checked"'; ?> /></label>
+                    <p class="note"><?php _e('Facebook share is visible on article page.', 'editorial'); ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th><?php _e('Google share', 'editorial'); ?></th>
+                <td>
+                    <label><?php _e('Enable google share', 'editorial'); ?> <input type="checkbox" name="google-share"<?php echo !Editorial::getOption('google-share') ? '' : ' checked="checked"'; ?> /></label>
+                    <p class="note"><?php _e('Google share is visible on article page.', 'editorial'); ?></p>
+                </td>
+            </tr>
         </table>
         <p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'editorial'); ?>"></p>
     </form>

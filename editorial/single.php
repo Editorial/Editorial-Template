@@ -44,14 +44,30 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
                     <?php the_time(get_option('date_format')); ?>
                 </time>
                 <em class="author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+                <?php if (Editorial::isShareEnabled()) { ?>
                 <ul class="social">
-                    <li>
-                        <img src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/_temp/twitter.png" width="92" height="20" alt="Twitter sample">
-                    </li>
-                    <li>
-                        <img src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/_temp/facebook.png" width="92" height="20" alt="Facebook sample">
-                    </li>
+                    <?php
+
+                    if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
+                    {
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER).'</li>';
+                    }
+                    if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
+                    {
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER, array(
+                            'url'    => '',
+                            'width'  => 100,
+                            'height' => 20
+                        )).'</li>';
+                    }
+                    if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
+                    {
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>';
+                    }
+
+                    ?>
                 </ul>
+                <?php } ?>
             </footer>
         </section>
         <section id="media">

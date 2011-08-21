@@ -21,6 +21,10 @@ define ('EDITORIAL_VERSION', '1.0b');
 define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 define ('EDITORIAL_KARMA_TRESHOLD', 'karma-treshold');
+// social networks
+define ('EDITORIAL_FACEBOOK', 'facebook-share');
+define ('EDITORIAL_TWITTER',  'twitter-share');
+define ('EDITORIAL_GOOGLE',   'google-share');
 
 /**
  * Editorial
@@ -597,6 +601,92 @@ class Editorial
             header('Content-Type: text/plain');
             exit;
         }
+    }
+
+    /**
+     * Is a particular social network share enabled
+     *
+     * @param  string $network set any if you don't care which
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function isShareEnabled($network = 'any')
+    {
+        $isEnabled = false;
+        switch ($network)
+        {
+            case 'any':
+                $isEnabled = self::isShareEnabled(EDITORIAL_TWITTER)
+                             || self::isShareEnabled(EDITORIAL_FACEBOOK)
+                             || self::isShareEnabled(EDITORIAL_GOOGLE);
+                break;
+
+            case EDITORIAL_TWITTER:
+                // for twitter to work we need more info
+                $isEnabled = self::getOption('twitter-share') && self::getOption('twitter-account');
+                break;
+
+            default:
+                $isEnabled = self::getOption($network) != false;
+        }
+
+        return $isEnabled;
+    }
+
+    /**
+     * Get share HTML for a particular network
+     *
+     * @param  string $network
+     * @param  array  $params additional params (optional)
+     * @return string
+     * @author Miha Hribar
+     */
+    public static function shareHTML($network, $params = array())
+    {
+        $html = '';
+        switch ($network)
+        {
+            case EDITORIAL_TWITTER:
+                $html = sprintf(
+                   '<a href="http://twitter.com/share"
+                       class="twitter-share-button"
+                       data-count="horizontal"
+                       data-via="%s"
+                       %s>Tweet</a>
+                       <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>',
+                   self::getOption('twitter-account'),
+                   self::getOption('twitter-related')
+                       ? sprintf('data-related="%s:%s"', self::getOption('twitter-related'), self::getOption('twitter-related-desc'))
+                       : ''
+                );
+                break;
+
+            case EDITORIAL_FACEBOOK:
+                $html = sprintf(
+                   '<iframe src="http://www.facebook.com/plugins/like.php?href=%1$s&amp;send=false&amp;layout=button_count&amp;width=%2$d&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=%3$d"
+                     scrolling="no"
+                     frameborder="0"
+                     style="border:none; overflow:hidden; width:%2$dpx; height:%3$dpx;"
+                     allowTransparency="true"></iframe>',
+                   urlencode($params['url']),
+                   $params['width'],
+                   $params['height']
+                );
+                break;
+
+            case EDITORIAL_GOOGLE:
+                $html = "<g:plusone size=\"medium\"></g:plusone>
+                <script type=\"text/javascript\">
+                  (function() {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                  })();
+                </script>";
+                break;
+        }
+
+        return $html;
     }
 }
 
