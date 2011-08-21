@@ -39,12 +39,9 @@ Based on: 320 and Up boilerplate extension
 <body id="home-portrait" class="clear">
 
 <header id="header" class="clear" role="banner">
-	<figure id="brand" class="vcard">
-		<a href="./" class="url">
-			<img class="fn org logo" src="images/editorial-logo.png" alt="Editorial">
-		</a>
-		<figcaption class="v-hidden">Editorial</figcaption>
-	</figure>
+	<h1 id="brand" class="vcard">
+		<a href="./" class="url"><img class="fn org logo" src="images/editorial-logo.png" alt="Editorial"></a>
+	</h1>
 	<form id="search" role="search" method="post">
 		<fieldset>
 			<legend class="v-hidden">Search</legend>
@@ -69,12 +66,12 @@ Based on: 320 and Up boilerplate extension
 	<nav class="demonav" role="navigation">
 		<ul>
 			<li id="d-features"><a href="#demo-features">Editorial features demo</a></li>
-			<li id="d-devices"><a href="#demo-devices">Desktop, tablets &amp; mobile</a></li>
-			<li id="d-orientation" class="selected"><a href="#demo-orientation">Landscape & portrait photography</a></li>
-			<li id="d-reading"><a href="#demo-reading">Optimized for long comfortable reading</a></li>
-			<li id="d-gallery"><a href="#demo-gallery">HTML5 Media Gallery</a></li>
-			<li id="d-feedback"><a href="#demo-feedback">Feedback control</a></li>
-			<li id="d-machine"><a href="#demo-machine">Machine friendly</a></li>
+			<li id="d-devices" class="selected"><a href="01-home-portrait.html">Desktop, tablets &amp; mobile</a></li>
+			<li id="d-orientation"><a href="02-home-landscape.html">Landscape & portrait photography</a></li>
+			<li id="d-reading"><a href="08-news-portrait.html">Optimized for long comfortable reading</a></li>
+			<li id="d-gallery"><a href="09-gallery.html">HTML5 Media Gallery</a></li>
+			<li id="d-feedback"><a href="10-comments-feedback.html">Feedback control</a></li>
+			<li id="d-machine"><a href="11-colophon.html">Machine friendly</a></li>
 		</ul>
 	</nav>
 	<article id="demo-features">
@@ -88,7 +85,7 @@ Based on: 320 and Up boilerplate extension
 		<p>To experience Editorial on your mobile device scan the QR code, enter
 		the URL manually or select a device to preview in desktop browser.</p>
 	</article>
-	<article id="demo-devices">
+	<article id="demo-devices" class="active">
 		<header>
 			<h2>Desktop, tablets &amp; mobile</h2>
 		</header>
@@ -108,150 +105,6 @@ Based on: 320 and Up boilerplate extension
 			</div>
 		</section>
 	</article>
-	<article id="demo-orientation" class="active">
-		<header>
-			<h2>Landscape & portrait photography</h2>
-		</header>
-		<p>Editorial has been designed to properly accommodate both landscape & portrait
-		images. One of the most important features is the flexible layout which
-		automagically adapts to the orientation of the article’s cover image.</p>
-		<section class="playground">
-			<h3>Test how the layout adapts to photo orientation</h3>
-			<div class="remote">
-				<ul class="buttons">
-					<li>
-						<h4>Home page</h4>
-						<ul>
-							<li><a href="index.html?open=1"><em class="l">Home landscape</em></a></li>
-							<li class="selected"><span><em class="p">Home portrait</em></span></li>
-						</ul>
-					</li>
-					<li>
-						<h4>Article</h4>
-						<ul>
-							<li class="disabled"><a href="article.html"><em class="l">Article landscape</em></a></li>
-							<li><a href="article-portrait.html"><em class="p">Article portrait</em></a></li>
-						</ul>
-					</li>
-					<li>
-						<h4>Multimedia gallery</h4>
-						<ul>
-							<li class="disabled"><a href="multimedia.html"><em class="l">Multimedia landscape</em></a></li>
-							<li><a href="multimedia-portrait.html"><em class="p">Multimedia portrait</em></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</section>
-	</article>
-	<article id="demo-reading">
-		<header>
-			<h2>Optimized for long comfortable reading</h2>
-		</header>
-		<p>Typography isn’t merely a matter of art direction. Editorial offers distraction
-		free environment with typesetting designed for optimal reading experience on
-		supported devices. Your readers will dive into the story like into a cosy armchair.</p>
-		<section class="playground">
-			<h3>Typographic features for supreme readability</h3>
-			<div class="remote">
-				<ul class="buttons">
-					<li>
-						<h5><a href="#" target="_blank">Line width (measure) count</a></h5>
-						<ul>
-							<li class="selected"><span><em>Off</em></span></li>
-							<li><a href="#"><em>On</em></a></li>
-						</ul>
-					</li>
-					<li>
-						<h5><a href="#" target="_blank">Font size</a></h5>
-						<ul>
-							<li class="selected"><span><em>Optimal</em></span></li>
-							<li><a href="#"><em>Average</em></a></li>
-						</ul>
-					</li>
-					<li>
-						<h5><a href="#" target="_blank">Leading & vertical rythm</a></h5>
-						<ul>
-							<li class="selected"><span><em>Hidden</em></span></li>
-							<li><a href="#"><em>Visible</em></a></li>
-						</ul>
-					</li>
-					<li>
-						<h5><a href="#" target="_blank">Contrast</a></h5>
-						<ul>
-							<li class="selected"><span><em>Optimal</em></span></li>
-							<li><a href="#"><em>Hyper</em></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</section>
-	</article>
-	<article id="demo-gallery">
-		<header>
-			<h2>HTML5 Media Gallery</h2>
-		</header>
-		<p>Images depended on Flash player are worth only three words: Additional Plugin
-		Required. Editorial supports HTML5 player for both self-hosted and embedded audio/video
-		media. Did we mention the spectacular slideshow for touch devices?</p>
-		<section class="playground">
-			<h3>See HTML5 player in action</h3>
-			<p>*hint* don’t forget to test it on mobile devices.</p>
-			<ul class="samples">
-				<li><a id="media-video" href="#">Video</a></li>
-				<li><a id="media-audio" href="#">Audio</a></li>
-				<li><a id="media-photo" href="#">Photo</a></li>
-			</ul>
-		</section>
-	</article>
-	<article id="demo-feedback">
-		<header>
-			<h2>Feedback control</h2>
-		</header>
-		<p>Publishing is no longer a monologue. When you get readers attention you better be
-		in the mood for discussion. Editorial’s integrated tools make it easy for you to track
-		and cultivate these conversations in form of comments, blog posts, tweets, likes etc.</p>
-		<section class="playground">
-			<h3>Your feedback is the best test</h3>
-			<p>Your feedback is the best way to test this feature. Like or tweet about our
-			friends’ projects, blog about our theme or simply leave us a comment with your thoughts
-			and suggestions.</p>
-			<ul class="share">
-				<li>
-					<img src="images/_temp/sn-twitter.png" alt="Twitter">
-				</li>
-				<li>
-					<img src="images/_temp/sn-facebook.png" alt="Facebook">
-				</li>
-				<li>
-					<img src="images/_temp/sn-google+.png" alt="Google+">
-				</li>
-			</ul>
-		</section>
-	</article>
-	<article id="demo-machine">
-		<header>
-			<h2>Machine friendly</h2>
-		</header>
-		<p>These days not all of your readers are human, so we made sure our cyber-robo friends
-		can understand you as well. Everything you publish is semantically structured to offer
-		best possible SEO, painless social-media sharing and RSS/XML data portability.</p>
-		<section class="playground">
-			<h3>See how our code gets along with others</h3>
-			<h4>Social media & data portability</h4>
-			<ul class="social">
-				<li><a id="go-facebook" href="https://developers.facebook.com/docs/reference/plugins/send/" target="_blank">Facebook</a></li>
-				<li><a id="go-twitter" href="http://twitter.com/about/resources/tweetbutton" target="_blank">Twitter</a></li>
-				<li><a id="go-google" href="http://www.google.com/intl/en/webmasters/+1/button/index.html" target="_blank">Google+</a></li>
-				<li><a id="go-rss" href="#" target="_blank">RSS</a></li>
-				<li><a id="go-readability" href="http://www.readability.com/publishers/tools" target="_blank">Readability</a></li>
-			</ul>
-			<h4>SEO & performance tests</h4>
-			<a href="http://www.w3.org/html/logo/">
-				<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-graphics-multimedia-performance-semantics-storage.png" width="167" height="30" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage">
-			</a>
-		</section>
-	</article>
 </div>
 
 <div class="content clear" role="main">
@@ -260,7 +113,7 @@ Based on: 320 and Up boilerplate extension
 			<div class="detail">
 				<footer>
 					<a href="/design/" rel="tag">Design</a>
-					<time class="published" pubdate datetime="2011-06-01T00:00">
+					<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
 						<span class="value-title" title="2011-06-01T00:00"> </span>
 						1ST June
 					</time>
@@ -288,7 +141,7 @@ Based on: 320 and Up boilerplate extension
 			<div class="info">
 				<footer>
 					<a href="/styling/" rel="tag">Styling</a>
-					<time class="published" pubdate datetime="2011-06-01T00:00">
+					<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
 						<span class="value-title" title="2011-06-01T00:00"> </span>
 						1ST June
 					</time>
@@ -310,7 +163,7 @@ Based on: 320 and Up boilerplate extension
 			<div class="info">
 				<footer>
 					<a href="/toyshop/" rel="tag">Toyshop</a>
-					<time class="published" pubdate datetime="2011-06-01T00:00">
+					<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
 						<span class="value-title" title="2011-06-01T00:00"> </span>
 						1ST June
 					</time>
@@ -333,7 +186,7 @@ Based on: 320 and Up boilerplate extension
 			<div class="info">
 				<footer>
 					<a href="/machinery/" rel="tag">Machinery</a>
-					<time class="published" pubdate datetime="2011-06-01T00:00">
+					<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
 						<span class="value-title" title="2011-06-01T00:00"> </span>
 						1ST June
 					</time>
@@ -356,7 +209,7 @@ Based on: 320 and Up boilerplate extension
 			<div class="info">
 				<footer>
 					<a href="/" rel="tag">Designed</a>
-					<time class="published" pubdate datetime="2011-06-01T00:00">
+					<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
 						<span class="value-title" title="2011-06-01T00:00"> </span>
 						1ST June
 					</time>

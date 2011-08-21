@@ -24,10 +24,7 @@ $(function(){
 
 	function demoNav() {
 
-		$('#dashboard').click(function(e) {
-			e.stopPropagation();
-		});
-
+		//open tabs
 		$('.demonav a').click(function(e) {
 			e.preventDefault();
 			e.stopPropagation();
@@ -36,6 +33,8 @@ $(function(){
 			var close = tp.hasClass('selected');
 			var ah = t.attr('href');
 			var goID = ah.substr(ah.lastIndexOf('#'));
+
+			if (ah.lastIndexOf('#') == -1) location.href = t.attr('href');
 
 			if (close == false) {
 				//$('.demonav').addClass('opened');
@@ -48,7 +47,6 @@ $(function(){
 			}
 
 			else {
-				//$('.demonav').removeClass('opened');
 				tp.removeClass('selected');
 				$(goID).fadeOut(300,function() {
 					$(this).removeClass('active');
@@ -56,8 +54,12 @@ $(function(){
 			}
 
 		});
+		
+		$('#dashboard').click(function(e) {
+			e.stopPropagation();
+		});
 
-		//close demonav click outer
+		//close demonav / click outer
 		$('html').click(function() {
 			$('.demonav li').removeClass('selected');
 			$('#dashboard>article').fadeOut(300,function(){
@@ -65,6 +67,7 @@ $(function(){
 			});
 		});
 
+		/* open tabs via param index.html?open=1
 		function getUrlVars() {
 			var vars = [],hash;
 			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -75,22 +78,194 @@ $(function(){
 			}
 			return vars;
 		}
-
 		if (getUrlVars() == 'open') {
-
 			$('#d-orientation').addClass('selected');
 			$('#demo-orientation').addClass('active');
-
 		}
-
+		*/
+		
 		//toggle buttons
+
+		//#demo-orientation
+
 		$('#demo-orientation .buttons h4').click(function(){
 			var notsel = $(this).next('ul').find('li:not(.selected)>a').attr('href');
 			console.log($(this).next('ul').find('li:not(.selected)>a'));
 			location.href = notsel;
 		});
 
+		//#demo-reading toggles
+		function buttonSwitch(t){
+			t.parent('li').parent('ul').find('li').removeClass('selected');
+			t.parent('li').addClass('selected');
+		}
+
+
+		//line width count off
+		$('#measure-off').click(function()
+		{
+			buttonSwitch($(this));
+			measureOff();
+			return false;
+		});
+
+		//line width count on
+		$('#measure-on').click(function()
+		{
+			buttonSwitch($(this));
+			measureOn();
+			return false;
+		});
+
+
+		//font size optimal
+		$('#font-optimal').click(function(e)
+		{
+			buttonSwitch($(this));
+			//measureOff();
+			e.preventDefault();
+		});
+
+		//font size average
+		$('#font-average').click(function(e)
+		{
+			buttonSwitch($(this));
+			//measureOn();
+			e.preventDefault();
+		});
+
+
+		//Leading & vertical rythm hidden
+		$('#rythm-hidden').click(function(e)
+		{
+			buttonSwitch($(this));
+			//measureOn();
+			e.preventDefault();
+		});
+
+		//Leading & vertical rythm visible
+		$('#rythm-visible').click(function(e)
+		{
+			buttonSwitch($(this));
+			//measureOn();
+			e.preventDefault();
+		});
+
+
+		//optimal contrast
+		$('#contrast-optimal').click(function(e)
+		{
+			buttonSwitch($(this));
+			//measureOn();
+			e.preventDefault();
+		});
+
+
+		//hyper contrast
+		$('#contrast-hyper').click(function(e)
+		{
+			buttonSwitch($(this));
+			//measureOn();
+			e.preventDefault();
+		});
+
 	}
+
+
+
+	function measureOn()
+	{
+		// text container's width
+		var containerWidth = $('.entry-content').width(),
+				stat           = new Array(),
+				j              = 0; // array iterator
+
+		// handle each paragraph
+			$('.entry-content p').each(function()
+			{
+				// replace all double spaces and new lines with a single space
+				var words    = String($(this).text().replace(/\s+/gi, ' ')).split(" "),
+						i        = 0,
+						span     = "",
+						p        = $('<p class="measure">');
+
+				// hide current one
+				$(this).hide();
+				// append new one to the parent
+				$(this).parent().append(p);
+
+				// one word at a time
+				while ( i < words.length )
+				{
+					// new span instance, hide until fully ready
+					span = $('<span>').hide();
+					// append it to DOM
+					p.append(span);
+					// add one word at a time until span's width exceeds container's width
+					while ( span.width() <= containerWidth )
+					{
+						// append word and a space
+						span.append(words[i] + " ");
+						// lastly added word renders span wider than container
+						if ( span.width() > containerWidth)
+						{
+							// remove lastly added word, -2 removes last space as well
+							span.text(span.text().substr(0, span.text().length - words[i].length - 2));
+							// decrease iterator, last word will be added to the next span
+							--i;
+							// and break
+							break;
+						}
+						// we ran out of words!
+						if ( ++i >= words.length )
+						{
+							break;
+						}
+					}
+					// add class "line" to span (do not do it earlier since it contains display: block)
+					// add span with number of characters
+					// and finally, show it
+					span.addClass('line')
+							.append('<span class="num">' + $.trim(span.text()).length + '</span>')
+							.show();
+					// add current value to statistics
+					stat[j] = $.trim(span.text()).length;
+					// increase iterator
+					++i;
+					++j;
+				}
+			});
+			// handle statistics
+			var total = 0;
+			$.each(stat, function()
+			{
+				 total += this;
+			});
+
+			$('.entry-content')
+			.append(
+					$('<p class="measure">')
+					.append(
+							$('<span class="line">')
+							.append('Average characters per line')
+							.append(
+									$('<span class="num">')
+									.append(Math.round(total/j))
+							)
+					)
+			);
+	}
+
+	function measureOff()
+	{
+		// remove all measure ones
+		$('.entry-content p.measure').remove();
+		// show all original ones
+		$('.entry-content p').show();
+	}
+
+
+
 
 
 
