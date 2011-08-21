@@ -88,3 +88,7 @@
 #go-readability {width:255px;height:22px;background-position:0 -448px;}
 
 #demo-machine h3 {margin:0;}
+
+.measure {border-top:1px solid #ccc;}
+.measure .line {padding:0 0 2px;border-bottom:1px solid #ccc;line-height:22px;color:#ccc;display:block;position:relative;}
+.measure .num {color:#333;position:absolute;top:0;right:-40px;}

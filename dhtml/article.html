@@ -32,6 +32,7 @@ Based on: 320 and Up boilerplate extension
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <!--<link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">-->
 <link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="css/dashboard.css?v=1">
 <script src="js/libs/modernizr-1.7.min.js"></script>
 </head>
 
@@ -103,6 +104,8 @@ Based on: 320 and Up boilerplate extension
 			</figure>
 		</section>
 		<section class="entry-content">
+                        measure: <a href="#" class="measureOn">ON</a> <a href="#" class="measureOff">OFF</a><br /><br />
+
 			<p>The music industry and the government need to understand that sharing music is not stealing, and I would
 			happily debate Lord Mandelson, anytime,  <a href="/">anywhere, on this question</a>. Filesharing is a business model issue, not a
 			legal issue. Doneproperly, encouraging the downloading of songs would help the industry flourish.</p>
@@ -261,6 +264,114 @@ g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js
 s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>-->
 <noscript>Your browser does not support JavaScript!</noscript>
+<script>
+$(document).ready(function()
+{
+    $('a.measureOn').click(function()
+    {
+        measureOn();
+        return false;
+    });
+
+    $('a.measureOff').click(function()
+    {
+        measureOff();
+        return false;
+    });
+
+    function measureOn()
+    {
+        // text container's width
+        var containerWidth = $('.entry-content').width(),
+            stat           = new Array(),
+            j              = 0; // array iterator
+
+        // handle each paragraph
+        $('.entry-content p').each(function()
+        {
+            // replace all double spaces and new lines with a single space
+            var words    = String($(this).text().replace(/\s+/gi, ' ')).split(" "),
+                i        = 0,
+                span     = "",
+                p        = $('<p class="measure">');
+
+            // hide current one
+            $(this).hide();
+            // append new one to the parent
+            $(this).parent().append(p);
+
+            // one word at a time
+            while ( i < words.length )
+            {
+                // new span instance, hide until fully ready
+                span = $('<span>')
+                       .hide();
+                // append it to DOM
+                p.append(span);
+                // add one word at a time until span's width exceeds container's width
+                while ( span.width() <= containerWidth )
+                {
+                    // append word and a space
+                    span.append(words[i] + " ");
+                    // lastly added word renders span wider than container
+                    if ( span.width() > containerWidth)
+                    {
+                        // remove lastly added word, -2 removes last space as well
+                        span.text(span.text().substr(0, span.text().length - words[i].length - 2));
+                        // decrease iterator, last word will be added to the next span
+                        --i;
+                        // and break
+                        break;
+                    }
+                    // we ran out of words!
+                    if ( ++i >= words.length )
+                    {
+                        break;
+                    }
+                }
+                // add class "line" to span (do not do it earlier since it contains display: block)
+                // add span with number of characters
+                // and finally, show it
+                span.addClass('line')
+                    .append('<span class="num">' + $.trim(span.text()).length + '</span>')
+                    .show();
+                // add current value to statistics
+                stat[j] = $.trim(span.text()).length;
+                // increase iterator
+                ++i;
+                ++j;
+            }
+        });
+        // handle statistics
+        var total = 0;
+        $.each(stat, function()
+        {
+           total += this;
+        });
+
+        $('.entry-content')
+        .append(
+            $('<p class="measure">')
+            .append(
+                $('<span class="line">')
+                .append('Average characters per line')
+                .append(
+                    $('<span class="num">')
+                    .append(Math.round(total/j))
+                )
+            )
+        );
+    }
+
+    function measureOff()
+    {
+        // remove all measure ones
+        $('.entry-content p.measure').remove();
+        // show all original ones
+        $('.entry-content p').show();
+    }
+});
+</script>
 </body>
 
 </html>
