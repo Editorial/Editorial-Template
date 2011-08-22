@@ -54,7 +54,7 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
                     }
                     if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
                     {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER, array(
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
                             'url'    => '',
                             'width'  => 100,
                             'height' => 20
@@ -63,6 +63,10 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
                     if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
                     {
                         echo '<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>';
+                    }
+                    if (Editorial::isShareEnabled(EDITORIAL_READABILITY))
+                    {
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>';
                     }
 
                     ?>

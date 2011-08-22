@@ -77,6 +77,13 @@
                     <p class="note"><?php _e('Google share is visible on article page.', 'editorial'); ?></p>
                 </td>
             </tr>
+            <tr>
+                <th><?php _e('Readability', 'editorial'); ?></th>
+                <td>
+                    <label><?php _e('Readability', 'editorial'); ?> <input type="checkbox" name="readability-share"<?php echo !Editorial::getOption('readability-share') ? '' : ' checked="checked"'; ?> /></label>
+                    <p class="note"><?php _e('Readability widget is visible on article page.', 'editorial'); ?></p>
+                </td>
+            </tr>
         </table>
         <p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'editorial'); ?>"></p>
     </form>

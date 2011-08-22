@@ -50,6 +50,7 @@ class Editorial_Admin
         'twitter-related-desc',
         'facebook-share',
         'google-share',
+        'readability-share',
     );
 
     /**
@@ -191,29 +192,22 @@ class Editorial_Admin
         switch ($this->_page)
         {
             case self::PAGE_LOOK:
-                if (!isset($_POST['typekit']))
+                // checkboxes are special
+                $checkboxes = array(
+                    'typekit',
+                    'black-and-white',
+                    'disable-admin-notices',
+                    'twitter-share',
+                    'facebook-share',
+                    'google-share',
+                    'readability-share',
+                );
+                foreach ($checkboxes as $check)
                 {
-                    Editorial::setOption('typekit', false);
-                }
-                if (!isset($_POST['black-and-white']))
-                {
-                    Editorial::setOption('black-and-white', false);
-                }
-                if (!isset($_POST['disable-admin-notices']))
-                {
-                    Editorial::setOption('disable-admin-notices', false);
-                }
-                if (!isset($_POST['twitter-share']))
-                {
-                    Editorial::setOption('twitter-share', false);
-                }
-                if (!isset($_POST['facebook-share']))
-                {
-                    Editorial::setOption('facebook-share', false);
-                }
-                if (!isset($_POST['google-share']))
-                {
-                    Editorial::setOption('google-share', false);
+                    if (!isset($_POST[$check]))
+                    {
+                        Editorial::setOption($check, false);
+                    }
                 }
                 break;
             case self::PAGE_AUTHORS:

@@ -22,9 +22,10 @@ define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 define ('EDITORIAL_KARMA_TRESHOLD', 'karma-treshold');
 // social networks
-define ('EDITORIAL_FACEBOOK', 'facebook-share');
-define ('EDITORIAL_TWITTER',  'twitter-share');
-define ('EDITORIAL_GOOGLE',   'google-share');
+define ('EDITORIAL_FACEBOOK',    'facebook-share');
+define ('EDITORIAL_TWITTER',     'twitter-share');
+define ('EDITORIAL_GOOGLE',      'google-share');
+define ('EDITORIAL_READABILITY', 'readability-share');
 
 /**
  * Editorial
@@ -618,7 +619,8 @@ class Editorial
             case 'any':
                 $isEnabled = self::isShareEnabled(EDITORIAL_TWITTER)
                              || self::isShareEnabled(EDITORIAL_FACEBOOK)
-                             || self::isShareEnabled(EDITORIAL_GOOGLE);
+                             || self::isShareEnabled(EDITORIAL_GOOGLE)
+                             || self::isShareEnabled(EDITORIAL_READABILITY);
                 break;
 
             case EDITORIAL_TWITTER:
@@ -683,6 +685,10 @@ class Editorial
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
                   })();
                 </script>";
+                break;
+
+            case EDITORIAL_READABILITY:
+                $html = '<div class="rdbWrapper" data-show-read="1" data-show-send-to-kindle="1" data-show-print="0" data-show-email="0" data-orientation="0" data-version="1" data-bg-color="transparent"></div><script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>';
                 break;
         }
 
