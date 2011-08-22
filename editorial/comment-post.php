@@ -9,7 +9,8 @@
 
 session_start();
 
-
+// allow post only
+Editorial::postOnly();
 
 if (isset($_POST) && count($_POST))
 {
