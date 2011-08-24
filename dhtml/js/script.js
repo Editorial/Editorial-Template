@@ -44,14 +44,12 @@ $(function(){
 				$('#dashboard>article').hide();
 				if (first == false) $(goID).stop().removeAttr('style').addClass('active').fadeIn(300);
 				else $(goID).stop().removeAttr('style').addClass('active').show();
-				$('body').addClass('dbopen');
 			}
 
 			else {
 				tp.removeClass('selected');
 				$(goID).fadeOut(300,function() {
 					$(this).removeClass('active');
-					$('body').removeClass('dbopen');
 				});
 			}
 
@@ -124,7 +122,7 @@ $(function(){
 		$('#font-optimal').click(function(e)
 		{
 			buttonSwitch($(this));
-			$('#font-css').attr('disabled','disabled');
+			//measureOff();
 			e.preventDefault();
 		});
 
@@ -132,10 +130,7 @@ $(function(){
 		$('#font-average').click(function(e)
 		{
 			buttonSwitch($(this));
-			if ($('#font-css').length == 0){
-				$('head').append('<link rel="stylesheet" id="font-css" href="css/font.css">');
-			}
-			else $('#font-css').removeAttr('disabled');
+			//measureOn();
 			e.preventDefault();
 		});
 
@@ -144,7 +139,7 @@ $(function(){
 		$('#rythm-hidden').click(function(e)
 		{
 			buttonSwitch($(this));
-			$('#grid').hide();
+			//measureOn();
 			e.preventDefault();
 		});
 
@@ -152,10 +147,7 @@ $(function(){
 		$('#rythm-visible').click(function(e)
 		{
 			buttonSwitch($(this));
-			if ($('#grid').length == 0){
-				$('#dashboard').after('<div id="grid" style="width:' + $(window).width() + 'px;height:' + $('body').height() + 'px;" />');
-			}
-			else $('#grid').show();
+			//measureOn();
 			e.preventDefault();
 		});
 
@@ -164,7 +156,7 @@ $(function(){
 		$('#contrast-optimal').click(function(e)
 		{
 			buttonSwitch($(this));
-			$('#contrast-css').attr('disabled','disabled');
+			//measureOn();
 			e.preventDefault();
 		});
 
@@ -173,10 +165,7 @@ $(function(){
 		$('#contrast-hyper').click(function(e)
 		{
 			buttonSwitch($(this));
-			if ($('#contrast-css').length == 0){
-				$('head').append('<link rel="stylesheet" id="contrast-css" href="css/contrast.css">');
-			}
-			else $('#contrast-css').removeAttr('disabled');
+			//measureOn();
 			e.preventDefault();
 		});
 
@@ -192,79 +181,79 @@ $(function(){
 				j              = 0; // array iterator
 
 		// handle each paragraph
-		$('.entry-content p').each(function()
-		{
-			// replace all double spaces and new lines with a single space
-			var words    = String($(this).text().replace(/\s+/gi, ' ')).split(" "),
-					i        = 0,
-					span     = "",
-					p        = $('<p class="measure">');
-
-			// hide current one
-			$(this).hide();
-			// append new one to the parent
-			$(this).parent().append(p);
-
-			// one word at a time
-			while ( i < words.length )
+			$('.entry-content p').each(function()
 			{
-				// new span instance, hide until fully ready
-				span = $('<span>').hide();
-				// append it to DOM
-				p.append(span);
-				// add one word at a time until span's width exceeds container's width
-				while ( span.width() <= containerWidth )
-				{
-					// append word and a space
-					span.append(words[i] + " ");
-					// lastly added word renders span wider than container
-					if ( span.width() > containerWidth)
-					{
-						// remove lastly added word, -2 removes last space as well
-						span.text(span.text().substr(0, span.text().length - words[i].length - 2));
-						// decrease iterator, last word will be added to the next span
-						--i;
-						// and break
-						break;
-					}
-					// we ran out of words!
-					if ( ++i >= words.length )
-					{
-						break;
-					}
-				}
-				// add class "line" to span (do not do it earlier since it contains display: block)
-				// add span with number of characters
-				// and finally, show it
-				span.addClass('line')
-						.append('<span class="num">' + $.trim(span.text()).length + '</span>')
-						.show();
-				// add current value to statistics
-				stat[j] = $.trim(span.text()).length;
-				// increase iterator
-				++i;
-				++j;
-			}
-		});
-		// handle statistics
-		var total = 0;
-		$.each(stat, function()
-		{
-			 total += this;
-		});
+				// replace all double spaces and new lines with a single space
+				var words    = String($(this).text().replace(/\s+/gi, ' ')).split(" "),
+						i        = 0,
+						span     = "",
+						p        = $('<p class="measure">');
 
-		$('.entry-content')
-		.append(
-				$('<p class="measure">')
-				.append(
-						$('<span class="line">')
-						.append('Average characters per line')
-						.append(
-								$('<span class="num">')
-								.append(Math.round(total/j))
-						)
-				)
-		);
+				// hide current one
+				$(this).hide();
+				// append new one to the parent
+				$(this).parent().append(p);
+
+				// one word at a time
+				while ( i < words.length )
+				{
+					// new span instance, hide until fully ready
+					span = $('<span>').hide();
+					// append it to DOM
+					p.append(span);
+					// add one word at a time until span's width exceeds container's width
+					while ( span.width() <= containerWidth )
+					{
+						// append word and a space
+						span.append(words[i] + " ");
+						// lastly added word renders span wider than container
+						if ( span.width() > containerWidth)
+						{
+							// remove lastly added word, -2 removes last space as well
+							span.text(span.text().substr(0, span.text().length - words[i].length - 2));
+							// decrease iterator, last word will be added to the next span
+							--i;
+							// and break
+							break;
+						}
+						// we ran out of words!
+						if ( ++i >= words.length )
+						{
+							break;
+						}
+					}
+					// add class "line" to span (do not do it earlier since it contains display: block)
+					// add span with number of characters
+					// and finally, show it
+					span.addClass('line')
+							.append('<span class="num">' + $.trim(span.text()).length + '</span>')
+							.show();
+					// add current value to statistics
+					stat[j] = $.trim(span.text()).length;
+					// increase iterator
+					++i;
+					++j;
+				}
+			});
+			// handle statistics
+			var total = 0;
+			$.each(stat, function()
+			{
+				 total += this;
+			});
+
+			$('.entry-content')
+			.append(
+					$('<p class="measure">')
+					.append(
+							$('<span class="line">')
+							.append('Average characters per line')
+							.append(
+									$('<span class="num">')
+									.append(Math.round(total/j))
+							)
+					)
+			);
 	}
 
 	function measureOff()
