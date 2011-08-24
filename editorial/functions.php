@@ -694,6 +694,17 @@ class Editorial
 
         return $html;
     }
+
+    /**
+     * Black & white images enabled?
+     *
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function blackAndWhiteImages()
+    {
+        return self::getOption('black-and-white') != false;
+    }
 }
 
 /**

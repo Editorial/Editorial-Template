@@ -190,5 +190,30 @@ $(function(){
 
         $(window).resize(function(){centerMedia();});
     }
+
+    // comment karma
+    $('form.favorize input:radio').each(function() {
+        // on change submit form
+        $(this).change(function() {
+            $(this).parent().submit();
+        });
+    });
+
+    // capture form submits
+    $('form.favorize').each(function() {
+        // catch submits and do ajax instead
+        $(this).submit(function(e) {
+            // prevent form from posting
+            e.preventDefault();
+            var selectedInput = $('input:radio:checked', $(this));
+            var value = selectedInput.val();
+            var key   = selectedInput.attr('name');
+            var vote = {}; vote[key] = value;
+            // post with ajax instead
+            $.post($(this).attr('action'), vote, function(response) {
+                console.log(response);
+            });
+        });
+    });
 });
 
