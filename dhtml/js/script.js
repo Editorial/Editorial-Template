@@ -44,17 +44,19 @@ $(function(){
 				$('#dashboard>article').hide();
 				if (first == false) $(goID).stop().removeAttr('style').addClass('active').fadeIn(300);
 				else $(goID).stop().removeAttr('style').addClass('active').show();
+				$('body').addClass('dbopen');
 			}
 
 			else {
 				tp.removeClass('selected');
 				$(goID).fadeOut(300,function() {
 					$(this).removeClass('active');
+					$('body').removeClass('dbopen');
 				});
 			}
 
 		});
-
+		
 		$('#dashboard').click(function(e) {
 			e.stopPropagation();
 		});
@@ -122,7 +124,7 @@ $(function(){
 		$('#font-optimal').click(function(e)
 		{
 			buttonSwitch($(this));
-			//measureOff();
+			$('#font-css').attr('disabled','disabled');
 			e.preventDefault();
 		});
 
@@ -130,7 +132,10 @@ $(function(){
 		$('#font-average').click(function(e)
 		{
 			buttonSwitch($(this));
-			//measureOn();
+			if ($('#font-css').length == 0){
+				$('head').append('<link rel="stylesheet" id="font-css" href="css/font.css">');
+			}
+			else $('#font-css').removeAttr('disabled');
 			e.preventDefault();
 		});
 
@@ -139,7 +144,7 @@ $(function(){
 		$('#rythm-hidden').click(function(e)
 		{
 			buttonSwitch($(this));
-			//measureOn();
+			$('#grid').hide();
 			e.preventDefault();
 		});
 
@@ -147,7 +152,10 @@ $(function(){
 		$('#rythm-visible').click(function(e)
 		{
 			buttonSwitch($(this));
-			//measureOn();
+			if ($('#grid').length == 0){
+				$('#dashboard').after('<div id="grid" style="width:' + $(window).width() + 'px;height:' + $('body').height() + 'px;" />');
+			}
+			else $('#grid').show();
 			e.preventDefault();
 		});
 
@@ -156,7 +164,7 @@ $(function(){
 		$('#contrast-optimal').click(function(e)
 		{
 			buttonSwitch($(this));
-			//measureOn();
+			$('#contrast-css').attr('disabled','disabled');
 			e.preventDefault();
 		});
 
@@ -165,7 +173,10 @@ $(function(){
 		$('#contrast-hyper').click(function(e)
 		{
 			buttonSwitch($(this));
-			//measureOn();
+			if ($('#contrast-css').length == 0){
+				$('head').append('<link rel="stylesheet" id="contrast-css" href="css/contrast.css">');
+			}
+			else $('#contrast-css').removeAttr('disabled');
 			e.preventDefault();
 		});
 
