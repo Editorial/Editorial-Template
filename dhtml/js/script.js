@@ -54,7 +54,7 @@ $(function(){
 			}
 
 		});
-		
+
 		$('#dashboard').click(function(e) {
 			e.stopPropagation();
 		});
@@ -83,7 +83,7 @@ $(function(){
 			$('#demo-orientation').addClass('active');
 		}
 		*/
-		
+
 		//toggle buttons
 
 		//#demo-orientation
@@ -183,16 +183,19 @@ $(function(){
 		// handle each paragraph
 			$('.entry-content p').each(function()
 			{
+				// just in case she is trigger happy
+				if ( $(this).hasClass('measure') )
+				{
+					return;
+				}
 				// replace all double spaces and new lines with a single space
 				var words    = String($(this).text().replace(/\s+/gi, ' ')).split(" "),
-						i        = 0,
-						span     = "",
-						p        = $('<p class="measure">');
+				    i        = 0,
+				    span     = "",
+				    p        = $('<p class="measure">');
 
 				// hide current one
-				$(this).hide();
-				// append new one to the parent
-				$(this).parent().append(p);
+                                $(this).replaceWith(p);
 
 				// one word at a time
 				while ( i < words.length )
@@ -259,9 +262,16 @@ $(function(){
 	function measureOff()
 	{
 		// remove all measure ones
-		$('.entry-content p.measure').remove();
-		// show all original ones
-		$('.entry-content p').show();
+		$('.entry-content p.measure:last-child').remove();
+		$('.entry-content p.measure').each(function()
+                {
+                	// remove numbers
+			$(this).find('span.num').remove();
+			// remove
+			$(this).removeClass('measure')
+			       .html($(this).html().replace(/(<span([^>]+)>)/ig, '')
+			       .replace(/(<\/span>)/ig, ' '));
+		});
 	}
 
 
@@ -302,7 +312,7 @@ $(function(){
 			else var active = $('#media-elements>.active');
 
 			active.find('img').height('auto');
-			
+
 			var maxH = $(window).height()/2;
 			var imgH = active.find('img').height()/2;
 			var margin = maxH - imgH;
@@ -348,11 +358,11 @@ $(function(){
 		function slideShow(go) {
 			var el = $('#media-elements>.active');
 			switch (go) {
-				case (0): looping(el);
+				case (0):looping(el);
 				break;
-				case (1): goNext(el);
+				case (1):goNext(el);
 				break;
-				case (-1): goPrev(el);
+				case (-1):goPrev(el);
 				break;
 			}
 		}
@@ -499,7 +509,7 @@ $(function(){
 				if (sh <= h()) toolbars = parseInt(sh - h());
 
 				alert(sh + ' - ' + toolbars);
-				
+
 
 				/*
 				if (resizeW(val) < 960){
