@@ -36,11 +36,11 @@ Based on: 320 and Up boilerplate extension
 <script src="js/libs/modernizr-1.7.min.js"></script>
 </head>
 
-<body id="gallery-portrait" class="clear">
+<body id="gallery-portrait" class="clear dbopen">
 
 <header id="header" class="clear" role="banner">
 	<h1 id="brand" class="vcard">
-		<a href="./" class="url"><img class="fn org logo" src="images/editorial-logo.png" alt="Editorial"></a>
+		<a href="./" class="url"><img class="fn org logo" src="images/editorial-logo-small.png" width="133" height="19" alt="Editorial"></a>
 	</h1>
 	<form id="search" role="search" method="post">
 		<fieldset>
@@ -64,33 +64,22 @@ Based on: 320 and Up boilerplate extension
 <div id="dashboard">
 	<nav class="demonav" role="navigation">
 		<ul>
-			<li id="d-features"><a href="#demo-features">Editorial features demo</a></li>
-			<li id="d-devices"><a href="01-home-portrait.html">Desktop, tablets &amp; mobile</a></li>
-			<li id="d-orientation"><a href="02-home-landscape.html">Landscape & portrait photography</a></li>
-			<li id="d-reading"><a href="08-news-portrait.html">Optimized for long comfortable reading</a></li>
-			<li id="d-gallery" class="selected"><a href="09-gallery.html">HTML5 Media Gallery</a></li>
-			<li id="d-feedback"><a href="10-comments-feedback.html">Feedback control</a></li>
-			<li id="d-machine"><a href="11-colophon.html">Machine friendly</a></li>
+			<li id="features"><a href="./#demo-features">Editorial features demo</a></li>
+			<li id="devices"><a href="./#demo-devices">Desktop, tablets &amp; mobile</a></li>
+			<li id="orientation"><a href="02-home-landscape.html">Landscape & portrait photography</a></li>
+			<li id="reading"><a href="08-news-landscape.html">Optimized for long comfortable reading</a></li>
+			<li id="gallery-d" class="selected"><a href="#demo-gallery">HTML5 Media Gallery</a></li>
+			<li id="feedback-d"><a href="10-comments-feedback.html">Feedback control</a></li>
+			<li id="machine"><a href="11-colophon.html">Machine friendly</a></li>
 		</ul>
 	</nav>
-	<article id="demo-features">
-		<header>
-			<h1><em>Editorial</em> features demo</h1>
-		</header>
-		<p>We went a long way to expand your audience reach. Whether your content is
-		being read on iPhone, iPad, Kindle or your TV for that matter, Editorial will
-		offer the best possible user experience. If the device runs a HTML capable
-		browser, we support it.</p>
-		<p>To experience Editorial on your mobile device scan the QR code, enter
-		the URL manually or select a device to preview in desktop browser.</p>
-	</article>
 	<article id="demo-gallery" class="active">
-		<header>
-			<h2>HTML5 Media Gallery</h2>
-		</header>
-		<p>Images depended on Flash player are worth only three words: Additional Plugin
-		Required. Editorial supports HTML5 player for both self-hosted and embedded audio/video
-		media. Did we mention the spectacular slideshow for touch devices?</p>
+		<section class="info">
+			<h1>HTML5 Media Gallery</h1>
+			<p>Images depended on Flash player are worth only three words: Additional Plugin
+			Required. Editorial supports HTML5 player for both self-hosted and embedded audio/video
+			media. Did we mention the spectacular slideshow for touch devices?</p>
+		</section>
 		<section class="playground">
 			<h3>See HTML5 player in action</h3>
 			<p>*hint* don’t forget to test it on mobile devices.</p>

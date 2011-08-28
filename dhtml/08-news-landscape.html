@@ -36,11 +36,11 @@ Based on: 320 and Up boilerplate extension
 <script src="js/libs/modernizr-1.7.min.js"></script>
 </head>
 
-<body id="home-portrait" class="dbopen clear">
+<body id="inside" class="clear dbopen">
 
 <header id="header" class="clear" role="banner">
 	<h1 id="brand" class="vcard">
-		<a href="./" class="url"><img class="fn org logo" src="images/editorial-logo.png" alt="Editorial"></a>
+		<a href="./" class="url"><img class="fn org logo" src="images/editorial-logo-small.png" width="133" height="19" alt="Editorial"></a>
 	</h1>
 	<form id="search" role="search" method="post">
 		<fieldset>
@@ -51,12 +51,11 @@ Based on: 320 and Up boilerplate extension
 		</fieldset>
 	</form>
 	<nav id="primary" role="navigation">
-		<ul class="hoarding">
+		<ul>
 			<li><a href="/machinery/" rel="tag">Machinery</a></li>
 			<li><a href="/styling/" rel="tag">Styling</a></li>
-			<li><a href="/design/" rel="tag">Design</a></li>
+			<li class="selected"><a href="/design/" rel="tag">Design</a></li>
 			<li><a href="/feast/" rel="tag">Feast</a></li>
-			<li><a href="/being/" rel="tag">Being</a></li>
 			<li><a href="/equlibrium/" rel="tag">Equlibrium</a></li>
 		</ul>
 	</nav>
@@ -65,71 +64,124 @@ Based on: 320 and Up boilerplate extension
 <div id="dashboard">
 	<nav class="demonav" role="navigation">
 		<ul>
-			<li id="d-features"><a href="#demo-features">Editorial features demo</a></li>
-			<li id="d-devices" class="selected"><a href="01-home-portrait.html">Desktop, tablets &amp; mobile</a></li>
-			<li id="d-orientation"><a href="02-home-landscape.html">Landscape & portrait photography</a></li>
-			<li id="d-reading"><a href="08-news-portrait.html">Optimized for long comfortable reading</a></li>
-			<li id="d-gallery"><a href="09-gallery.html">HTML5 Media Gallery</a></li>
-			<li id="d-feedback"><a href="10-comments-feedback.html">Feedback control</a></li>
-			<li id="d-machine"><a href="11-colophon.html">Machine friendly</a></li>
+			<li id="features"><a href="./#demo-features">Editorial features demo</a></li>
+			<li id="devices"><a href="./#demo-devices">Desktop, tablets &amp; mobile</a></li>
+			<li id="orientation"><a href="02-home-landscape.html">Landscape & portrait photography</a></li>
+			<li id="reading" class="selected"><a href="#demo-reading">Optimized for long comfortable reading</a></li>
+			<li id="gallery-d"><a href="09-gallery.html">HTML5 Media Gallery</a></li>
+			<li id="feedback-d"><a href="10-comments-feedback.html">Feedback control</a></li>
+			<li id="machine"><a href="11-colophon.html">Machine friendly</a></li>
 		</ul>
 	</nav>
-	<article id="demo-features">
-		<h1><em>Editorial</em> features demo</h1>
-		<p>We went a long way to expand your audience reach. Whether your content is
-		being read on iPhone, iPad, Kindle or your TV for that matter, Editorial will
-		offer the best possible user experience. If the device runs a HTML capable
-		browser, we support it.</p>
-		<p>To experience Editorial on your mobile device scan the QR code, enter
-		the URL manually or select a device to preview in desktop browser.</p>
-	</article>
-	<article id="demo-devices" class="active">
-		<h2>Desktop, tablets &amp; mobile</h2>
-		<p>We went a long way to expand your audience reach. Whether your content is
-		being read on iPhone, iPad, Kindle or your TV for that matter, Editorial will
-		offer the best possible user experience. If the device runs a HTML capable
-		browser, we support it.</p>
-		<p>To experience Editorial on your mobile device scan the QR code, enter
-		the URL manually or select a device to preview in desktop browser.</p>
+	<article id="demo-reading" class="active">
+		<section class="info">
+			<h1>Optimized for long comfortable reading</h1>
+			<p>Typography isn’t merely a matter of art direction. Editorial offers distraction
+			free environment with typesetting designed for optimal reading experience on
+			supported devices. Your readers will dive into the story like into a cosy armchair.</p>
+		</section>
 		<section class="playground">
-			<figure>
-				<img src="images/editorial-demo-qr.png" width="80" height="80" alt="Editorial demo QR code">
-			</figure>
+			<h3>Typographic features for supreme readability</h3>
 			<div class="remote">
-				<p id="manualy">Enter URL manualy<br>
-				<a href="http://demo.editorialtemplate.com">demo.editorialtemplate.com</a></p>
+				<ul class="buttons">
+					<li>
+						<h5><a href="#" target="_blank">Line width (measure) count</a></h5>
+						<ul>
+							<li class="selected"><a href="#" id="measure-off"><em>Off</em></a></li>
+							<li><a href="#" id="measure-on"><em>On</em></a></li>
+						</ul>
+					</li>
+					<li>
+						<h5><a href="#" target="_blank">Font size</a></h5>
+						<ul>
+							<li class="selected"><a href="#" id="font-optimal"><em>Optimal</em></a></li>
+							<li><a href="#" id="font-average"><em>Average</em></a></li>
+						</ul>
+					</li>
+					<li>
+						<h5><a href="#" target="_blank">Leading & vertical rythm</a></h5>
+						<ul>
+							<li class="selected"><a href="#" id="rythm-hidden"><em>Hidden</em></a></li>
+							<li><a href="#" id="rythm-visible"><em>Visible</em></a></li>
+						</ul>
+					</li>
+					<li>
+						<h5><a href="#" target="_blank">Contrast</a></h5>
+						<ul>
+							<li class="selected"><a href="#" id="contrast-optimal"><em>Optimal</em></a></li>
+							<li><a href="#" id="contrast-hyper"><em>Hyper</em></a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</section>
 	</article>
 </div>
 
 <div class="content clear" role="main">
-	<section id="exposed">
-		<article class="hentry">
-			<div class="detail">
-				<footer>
-					<a href="/design/" rel="tag">Design</a>
-					<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
-						<span class="value-title" title="2011-06-01T00:00"> </span>
-						1ST June
-					</time>
-					<em class="v-hidden author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
-				</footer>
-				<header>
-					<h1 class="entry-title">
-						<a href="/" rel="bookmark">Shape-shifting car made out of cloth</a>
-					</h1>
-				</header>
-				<p class="entry-summary">Concept cars give automotive designers a chance to let their
-				imaginations run wild, often with outlandish results. But even by that measure, BMW has
-				come up with something as strange as it is innovative — a shape-shifting car covered with fabric.</p>
-			</div>
+	<article id="single" class="hentry">
+		<header>
+			<h1 class="entry-title">Syncing wheel reinvented</h1>
+		</header>
+		<section id="intro">
+			<p class="entry-summary">Concept cars give automotive designers a chance to let their imaginations run wild, often
+			with outlandish results. But even by that measure, BMW has come up with something as strange as it is innovative —
+			a shape-shifting car covered with fabric.</p>
+			<footer>
+				<a href="/design/" rel="tag">Design</a>
+				<time class="published" pubdate datetime="2011-06-01T00:00:00-01:00">
+					<span class="value-title" title="2011-06-01T00:00"> </span>
+					1ST June,
+				</time>
+				<em class="author vcard">Written by <a href="/" class="fn n url">Natan Nikolič</a></em>
+				<ul class="social">
+					<li>
+						<img src="images/_temp/twitter.png" width="92" height="20" alt="Twitter sample">
+					</li>
+					<li>
+						<img src="images/_temp/facebook.png" width="92" height="20" alt="Facebook sample">
+					</li>
+				</ul>
+			</footer>
+		</section>
+		<section id="media">
 			<figure>
-				<a href="/" rel="bookmark"><img src="images/_temp/article-photo-02.jpg" alt="Shape-shifting car"></a>
+				<a href="/" id="to-gallery">
+					<img src="images/_temp/news-photo-01.jpg" class="photo" alt="Syncing wheel">
+					<em id="media-count">1/14</em>
+				</a>
+				<figcaption>
+					<h3>Futuristic bicycle concept</h3>
+					<p>Curabitur sit amet ligula non elit consectetur faucibus non et nulla. Duis eleifend, leo vel suscipit tempus,
+					justo massa sollicitudin felis, vel mollis lorem magna id dolor.</p>
+				</figcaption>
 			</figure>
-		</article>
-	</section>
+		</section>
+		<section class="entry-content">
+			<p>The music industry and the government need to understand that sharing music is not stealing, and I would
+			happily debate Lord Mandelson, anytime,  <a href="/">anywhere, on this question</a>. Filesharing is a business model issue, not a
+			legal issue. Doneproperly, encouraging the downloading of songs would help the industry flourish.</p>
+			<p>The labels’ current attitude causes them to do one irrational act after another. For example, when DJ Danger
+			Mouse created the Grey Album – which consists entirely of contorted samples from the Beatles’ White Album mashed
+			together with vocals from Jay-Z’s smash hit The Black Album – the labels should have rejoiced, as sales of White
+			and Black albums went up. Instead he was served with a cease-and-desist notice from EMI. This is lunacy.</p>
+			<p>The labels’ fundamental problems predated the internet. Recorded music has been a bloated industry. To take a
+			band from obscurity to popularity is hugely expensive, but that’s what companies have had to do to be given
+			coveted shelf space at the record store. So record companies seek out only potential superstars, since less than
+			10% of CDs are profitable. Revenues from the best sellers cover the losses of all the rest.</p>
+		</section>
+	</article>
+	<nav id="tabs" role="navigation">
+		<ul>
+			<li class="selected"><a href="/">Article</a></li>
+			<li><a href="/">Gallery</a></li>
+			<li><a href="/">Feedback <em>128</em></a></li>
+		</ul>
+	</nav>
 	<section class="featured">
+		<header>
+			<h3>You might also enjoy</h3>
+		</header>
 		<article class="f1 hentry">
 			<figure>
 				<a href="/" rel="bookmark"><img src="images/_temp/article-thumb-01.jpg" alt="Image description"></a>
@@ -256,7 +308,7 @@ Based on: 320 and Up boilerplate extension
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
 <script src="js/plugins.js"></script>
 <script src="js/script.js"></script>
-<!--[if (lt IE 9) & (!IEMobile)]><script src="js/libs/DOMAssistantCompressed-2.8.js"></script><script src="js/libs/selectivizr-1.0.1.js"></script><script src="js/libs/respond.min.js"></script><![endif]-->
+<!--[if (lt IE 9) & (!IEMobile)]><script src="js/libs/DOMAssistantCompressed-2.8.js"></script><script src="js/libs/respond.min.js"></script><![endif]-->
 <!--<script>
 var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;

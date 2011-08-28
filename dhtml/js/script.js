@@ -10,81 +10,148 @@
 	}
 
 
-
 $(function(){
 
 	//embed-code select
 	$('#embed-code').click(function(){$(this).select();});
 
 	//iOS label click
+	//TODO
+
+	var getMQlimit  = $(window).width();
+	var desktop = (getMQlimit > 1210) ? true : false;
+	var opened = $('#dashboard .active').attr('id');
+
+	//TODO $(window).resize naj bo samo 1x
+	$(window).resize(function(){
+
+		getMQlimit = $(window).width();
+		desktop = (getMQlimit > 1210) ? true : false;
+
+		//clean stuff for transtion from dektop to tablet
+		if (desktop){
+			$('#dashboard h1,#dashboard h2,.info p,.playground').removeAttr('style');
+		}
+		
+		else {
+
+			if ($('#dashboard .active').length < 1) $('body').removeClass('dbopen');
+			else $('body').addClass('dbopen');
+
+			$('.no-with').removeClass('no-with');
+			$('#dashboard>article').removeAttr('style');
+			$('#dashboard h1,#dashboard h2').hide();
+
+			if($('#dashboard .active').length > 0) $('#dashboard .active h1,#dashboard .active h2').show();
+			else $('#'+ opened + ' h1').show();
+		}
+
+	});
+	
 
 
-	//demonav
 	demoNav();
 
 	function demoNav() {
+		var home = ($('#home').length > 0 || $('#home-portrait').length > 0) ? true : false;
+		if ($('#demo-orientation').hasClass('active')) home = false;
 
-		//open tabs
+		//prevent tablet visual fail on selected button
+		if (!desktop) $('.demonav .selected').addClass('selected-tablet');
+
+		//fill content fot tab 1 & 2
+		if(!home) {
+			$('<div id="load-html" />').insertAfter('.demonav');
+			$('#load-html').load('data/demonav.html',function(){
+				$('#load-html').replaceWith($('#load-html').html());
+				if (!desktop){$('#demo-devices h2,#demo-features h1').hide();}
+				devSizer();
+			});
+		}
+
+		//open & close tab
 		$('.demonav a').click(function(e) {
 			e.preventDefault();
-			e.stopPropagation();
 			var t = $(this);
-			var tp = t.parent('li');
-			var close = tp.hasClass('selected');
-			var ah = t.attr('href');
-			var goID = ah.substr(ah.lastIndexOf('#'));
+			var href = t.attr('href');
 
-			if (ah.lastIndexOf('#') == -1) location.href = t.attr('href');
+			//tablet visual fail
+			$('.demonav li').removeClass('selected-tablet');
 
-			if (close == false) {
-				//$('.demonav').addClass('opened');
-				var first = t.parents('ul').find('li').hasClass('selected');
-				t.parents('ul').find('li').removeClass('selected');
-				tp.addClass('selected');
-				$('#dashboard>article').hide();
-				if (first == false) $(goID).stop().removeAttr('style').addClass('active').fadeIn(300);
-				else $(goID).stop().removeAttr('style').addClass('active').show();
-				$('body').addClass('dbopen');
+			//there is url do redirect
+			if (href.lastIndexOf('#') == -1){
+				if (!desktop) $('.demonav .selected').removeClass('selected');
+				location.href = t.attr('href');
+				return false;
+			}
+
+			var parent = t.parent('li');
+			var close = (parent.hasClass('selected') == true) ? true : false;
+			var goID = href.substr(href.lastIndexOf('#'));
+			var first = (t.parents('ul').find('li').hasClass('selected') == true) ? true : false;
+
+			//clean stuff
+			if (desktop){
+				$('#dashboard h1,#dashboard h2,.info p,.playground').removeAttr('style');
 			}
 
 			else {
-				tp.removeClass('selected');
-				$(goID).fadeOut(300,function() {
-					$(this).removeClass('active');
+				$('#dashboard article,#' + opened + ' h1').removeAttr('style');
+				$('.no-with').removeClass('no-with');
+			}
+
+			//open tab
+			if (!close) {
+
+				//select current tab
+				t.parents('ul').find('li').removeClass('selected');
+				parent.addClass('selected');
+
+				//close&open content
+				if (desktop){
+					$('#dashboard').removeClass('no-with');
+					//$('#dashboard>article').hide();
+					$('#dashboard>article').removeClass('active');
+					if (first) $(goID).stop().removeAttr('style').addClass('active').fadeIn(300);
+					else $(goID).stop().removeAttr('style').addClass('active').show();
+				}
+
+				else {
+					//tablet visual fail
+					$('.demonav .selected').addClass('selected-tablet');
+					
+					$('body').addClass('dbopen');
+					$('#dashboard>article').removeClass('active');
+					$(goID).addClass('active');
+					$('#dashboard h1,#dashboard h2').hide();
+					$('#dashboard .active h1,#dashboard .active h2').show();
+				}
+
+			}
+
+			//close tab
+			else {
+
+				if (desktop){
+					$(goID).fadeOut(300,function() {
+						$(this).removeClass('active');
+						parent.removeClass('selected');
+						$('#dashboard').addClass('no-with');
+					});
+				}
+
+				else {
+					$('#dashboard h1,#dashboard h2').hide();
+					if(home) $('#demo-features h1').show();
+					else $('#' + opened + ' h1').show();
+					$(goID).removeClass('active');
+					parent.removeClass('selected');
 					$('body').removeClass('dbopen');
-				});
+				}
+
 			}
 
 		});
-		
-		$('#dashboard').click(function(e) {
-			e.stopPropagation();
-		});
-
-		//close demonav / click outer
-		$('html').click(function() {
-			$('.demonav li').removeClass('selected');
-			$('#dashboard>article').fadeOut(300,function(){
-				$(this).removeClass('active');
-			});
-		});
-
-		/* open tabs via param index.html?open=1
-		function getUrlVars() {
-			var vars = [],hash;
-			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-			for(var i = 0; i < hashes.length; i++) {
-				hash = hashes[i].split('=');
-				vars.push(hash[0]);
-				vars[hash[0]] = hash[1];
-			}
-			return vars;
-		}
-		if (getUrlVars() == 'open') {
-			$('#d-orientation').addClass('selected');
-			$('#demo-orientation').addClass('active');
-		}
-		*/
 
 		//toggle buttons
 
@@ -92,7 +159,7 @@ $(function(){
 
 		$('#demo-orientation .buttons h4').click(function(){
 			var notsel = $(this).next('ul').find('li:not(.selected)>a').attr('href');
-			console.log($(this).next('ul').find('li:not(.selected)>a'));
+			//console.log($(this).next('ul').find('li:not(.selected)>a'));
 			location.href = notsel;
 		});
 
@@ -153,7 +220,8 @@ $(function(){
 		{
 			buttonSwitch($(this));
 			if ($('#grid').length == 0){
-				$('#dashboard').after('<div id="grid" style="width:' + $(window).width() + 'px;height:' + $('body').height() + 'px;" />');
+				var pageH = parseInt($('body').height()) + parseInt($('body').css('paddingTop')) + parseInt($('body').css('paddingBottom'));
+				$('#dashboard').after('<div id="grid" style="width:' + $(window).width() + 'px;height:' + pageH +  'px;" />');
 			}
 			else $('#grid').show();
 			e.preventDefault();
@@ -450,35 +518,12 @@ $(function(){
 		function h(){return $(window).height();}
 
 		//create control panel
-		/*
-		$('body').append(
-			'<div id="devSizer" style="padding:5px;text-align:center;background:black;position:fixed;top:0;right:0;z-index:9001;">' +
-			'	<a href="#" id="devSizerClose" title="Hide devSizer" style="padding:5px;background:black;color:#fff;position:absolute;top:0;right:0;">O</a>' +
-			'	<div id="devSizerWrap" style="display:none;">' +
-			'		<div style="font:20px/25px sans-serif;color:rgba(255,15,0,.6);">w: <span id="devSizerW" style="color:red;">' + w() + '</span> px</div>' +
-			'		<div style="font:20px/25px sans-serif;color:rgba(255,15,0,.6);">h: <span id="devSizerH" style="color:red;">' + h() + '</span> px</div>' +
-			'		<select id="devSizerDevices">' + options + '</select>' +
-			'		<a href="#" id="devSizerScrolls" style="padding:6px 0;font:12px sans-serif;color:#fff;display:block;">Hide scrollers</a> ' +
-			'	</div>' +
-			'</div>'
-		);
-		*/
-		$('#manualy').after(
-			'<label for="devSizerDevices">Select a device (<span id="devSizerW">' + w() + '</span>px x <span id="devSizerH">' + h() + '</span>px)</label>' +
-			'<select id="devSizerDevices">' + options + '</select>'
-		);
-
-		//show / hide devSizer
-		/*
-		$('#devSizerClose').click(function(e){
-			e.preventDefault();
-			var t = $(this);
-			var c = $('#devSizerWrap');
-			var s = (c.css('display') == 'none') ? 'show' : 'hide';
-			if (s == 'hide') {t.html('O').attr('title','Show devSizer');c.fadeOut('fast');}
-			else {t.html('X').attr('title','Hide devSizer');c.fadeIn('fast');}
-		});
-		*/
+		if($('#devSizerDevices').length < 1){
+			$('#manualy').after(
+				'<label for="devSizerDevices">Select a device (<span id="devSizerW">' + w() + '</span>px x <span id="devSizerH">' + h() + '</span>px)</label>' +
+				'<select id="devSizerDevices">' + options + '</select>'
+			);
+		}
 
 		//get value from devSizerDevices
 		function resizeW(val){return parseInt(val.substr(0,val.lastIndexOf('x')));}
@@ -519,7 +564,7 @@ $(function(){
 				var sh = screen.availHeight;
 				if (sh <= h()) toolbars = parseInt(sh - h());
 
-				alert(sh + ' - ' + toolbars);
+				//console.log(sh + ' - ' + toolbars);
 
 
 				/*
@@ -530,11 +575,11 @@ $(function(){
 				*/
 
 
-				//alert('resizeW: ' + resizeW(val) + ' resizeH: ' + resizeH(val) + '\nW-razlika: ' + parseInt(resizeW(val) - w()) + ' <> H-razlika: ' + parseInt(resizeH(val) - h()));
+				//console.log('resizeW: ' + resizeW(val) + ' resizeH: ' + resizeH(val) + '\nW-razlika: ' + parseInt(resizeW(val) - w()) + ' <> H-razlika: ' + parseInt(resizeH(val) - h()));
 				//pri meni vedno 15px (scroll) in 128px (visina orodij na sranjo)
 
 				//z toolbarji
-				//alert(screen.availHeight);
+				//console.log(screen.availHeight);
 
 				var rw = parseInt(resizeW(val) + 15);
 				//var rh = parseInt(resizeH(val) + parseInt(screen.availHeight - resizeH(val)));
@@ -556,7 +601,7 @@ $(function(){
 
 				//nW.resizeTo(rW,parseInt(rH + 128));
 
-					//alert(w());
+					//console.log(w());
 
 				//$('#devSizerScrolls').html('Show scrollers');
 

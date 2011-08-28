@@ -2,7 +2,9 @@
 html {background:#000;}
 body {color:#f4f4f4;}
 a,h1,h1 a,h2,h2 a,h3,#footer a,#footer nav a {color:#f4f4f4;}
-#footer h3 {color:#d00;opacity:.2;}
+#brand .url {width:133px;height:19px;background:url(../images/editorial-logo-invert.png) no-repeat;display:block;}
+#brand .url img {display:none;}
+#footer h3 {color:#1a1a1a;}
 
 #intro .entry-summary:before,#intro .entry-summary:after {opacity:.1;}
 #home h1,#home-portrait h1,.featured h2,#comments cite,#paging .more {color:#f4f4f4;}
