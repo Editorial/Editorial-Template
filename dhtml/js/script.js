@@ -32,7 +32,7 @@ $(function(){
 		if (desktop){
 			$('#dashboard h1,#dashboard h2,.info p,.playground').removeAttr('style');
 		}
-		
+
 		else {
 
 			if ($('#dashboard .active').length < 1) $('body').removeClass('dbopen');
@@ -47,7 +47,7 @@ $(function(){
 		}
 
 	});
-	
+
 
 
 	demoNav();
@@ -119,7 +119,7 @@ $(function(){
 				else {
 					//tablet visual fail
 					$('.demonav .selected').addClass('selected-tablet');
-					
+
 					$('body').addClass('dbopen');
 					$('#dashboard>article').removeClass('active');
 					$(goID).addClass('active');
@@ -256,11 +256,12 @@ $(function(){
 	{
 		// text container's width
 		var containerWidth = $('.entry-content').width(),
-				stat           = new Array(),
-				j              = 0; // array iterator
+                    stat           = new Array(),
+                    j              = 0, // array iterator
+                    total          = 0;
 
-		// handle each paragraph
-			$('.entry-content p').each(function()
+			// handle each paragraph
+			$('.entry-content > p').each(function()
 			{
 				// just in case she is trigger happy
 				if ( $(this).hasClass('measure') )
@@ -271,10 +272,13 @@ $(function(){
 				var words    = String($(this).text().replace(/\s+/gi, ' ')).split(" "),
 				    i        = 0,
 				    span     = "",
-				    p        = $('<p class="measure">');
+				    p        = $('<p class="measure">'),
+                                    alt      = $('<span class="alt">').addClass('alt')
+                                                                      .html($(this).html())
+                                                                      .hide();
 
 				// hide current one
-                                $(this).replaceWith(p);
+                                $(this).html('').html(alt).append(p);
 
 				// one word at a time
 				while ( i < words.length )
@@ -311,22 +315,17 @@ $(function(){
 							.append('<span class="num">' + $.trim(span.text()).length + '</span>')
 							.show();
 					// add current value to statistics
-					stat[j] = $.trim(span.text()).length;
+					stat[j]  = $.trim(span.text()).length;
+                                        total   += stat[j];
 					// increase iterator
 					++i;
 					++j;
 				}
 			});
-			// handle statistics
-			var total = 0;
-			$.each(stat, function()
-			{
-				 total += this;
-			});
-
+			// add statistics
 			$('.entry-content')
 			.append(
-					$('<p class="measure">')
+					$('<p class="measure-sum">')
 					.append(
 							$('<span class="line">')
 							.append('Average characters per line')
@@ -340,17 +339,17 @@ $(function(){
 
 	function measureOff()
 	{
-		// remove all measure ones
-		$('.entry-content p.measure:last-child').remove();
-		$('.entry-content p.measure').each(function()
-                {
-                	// remove numbers
-			$(this).find('span.num').remove();
-			// remove
-			$(this).removeClass('measure')
-			       .html($(this).html().replace(/(<span([^>]+)>)/ig, '')
-			       .replace(/(<\/span>)/ig, ' '));
-		});
+            // make sure it's run only once
+            if ( $('.entry-content p.measure-sum').html() == null )
+            {
+                return;
+            }
+            // remove all measure ones
+            $('.entry-content p.measure-sum').remove();
+            $('.entry-content > p').each(function()
+            {
+                $(this).html($(this).find('span.alt').html());
+            });
 	}
 
 
