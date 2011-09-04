@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 Editorial
-Version: 0.1
+Version: 1.0
 Based on: 320 and Up boilerplate extension
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
@@ -15,55 +15,49 @@ Based on: 320 and Up boilerplate extension
 <title>Editorial</title>
 <meta name="description" content="">
 <meta name="author" content="Editorial">
-<!-- invalid / enable if needed
-<meta name="handheldfriendly" content="true">
-<meta name="mobileoptimized" content="320">
-<meta http-equiv="cleartype" content="on">
-<meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
--->
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
-<!-- For iPhone 4 with high-resolution Retina display: -->
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/touch/apple-touch-icon.png">
-<!-- For first-generation iPad: -->
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/touch/apple-touch-icon.png">
-<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 <link rel="apple-touch-icon-precomposed" href="images/touch/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<!--<link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">-->
 <link rel="stylesheet" href="css/style.css?v=1">
-<script src="js/libs/modernizr-1.7.min.js"></script>
+<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body id="cart" class="clear">
+<body id="cart">
 
-<header id="header" class="clear" role="banner">
-	<h2 id="brand" class="vcard"><a href="./" class="fn org url">Editorial</a></h2>
-	<nav id="primary" role="navigation">
-		<ul>
-			<li><a href="/">Features</a></li>
-			<li class="selected"><a href="/">Purchase</a></li>
-			<li><a href="/">Help &amp; support</a></li>
-			<li><a href="/">About</a></li>
-		</ul>
-	</nav>
+<header id="header" role="banner">
+	<div class="adapt">
+		<h2 id="brand" class="vcard"><a href="./" class="ir fn org url">Editorial</a></h2>
+		<nav class="primary" role="navigation">
+			<ul>
+				<li id="features"><a href="01-home.html">Features</a></li>
+				<li id="purchase" class="selected"><a href="02-cart.html">Purchase</a></li>
+				<li id="help"><a href="07-help.html"><span>Help &amp;</span> support</a></li>
+				<li id="about"><a href="06-about.html">About</a></li>
+			</ul>
+		</nav>
+	</div>
 </header>
 
-<div class="content clear" role="main">
-	<section id="process">
-		<h1><em>Place</em> Order</h1>
-		<ul>
-			<li class="selected"><em>1</em> Place order</li>
-			<li><em>2</em> Transaction</li>
-			<li><em>3</em> Download</li>
-		</ul>
+<div class="content" role="main">
+	<section class="process">
+		<header>
+			<ol class="step1">
+				<li id="step1" class="selected">Place order</li>
+				<li id="step2">Transaction</li>
+				<li id="step3">Download</li>
+			</ol>
+			<h1><em>Place</em> Order</h1>
+		</header>
 		<figure>
-			<img src="" alt="">
+			<img src="images/tablets.png" alt="Tablets">
 		</figure>
 	</section>
-	<section id="order">
-		<form id="create" method="post" action="/">
-			<fieldset>
+	<section class="order">
+		<form id="buy-form" method="post" action="/">
+			<fieldset class="licenses">
 				<legend class="v-hidden">Licenses</legend>
 				<ol>
 					<li class="item">
@@ -74,9 +68,9 @@ Based on: 320 and Up boilerplate extension
 						<label for="price-c">Price</label>
 						<input type="text" disabled value="€150" name="price-c" id="price-c">
 					</li>
-					<li class="licenses">
-						<label for="licenses"># of licenses</label>
-						<input type="text" value="1" name="licenses" id="licenses">
+					<li class="licenses-c">
+						<label for="licenses-c"># of licenses</label>
+						<input type="text" value="1" name="licenses-c" id="licenses-c">
 					</li>
 					<li class="total">
 						<label for="total">Total</label>
@@ -84,7 +78,7 @@ Based on: 320 and Up boilerplate extension
 					</li>
 				</ol>
 			</fieldset>
-			<fieldset>
+			<fieldset class="domain">
 				<legend class="v-hidden">Domain</legend>
 				<div class="info">
 					<h3>Which domain/s will you be using the theme on?</h3>
@@ -104,23 +98,23 @@ Based on: 320 and Up boilerplate extension
 					</li>-->
 				</ol>
 			</fieldset>
-			<fieldset>
+			<fieldset class="payement">
 				<legend class="v-hidden">Payement</legend>
 				<div class="info">
 					<h3>Preferred method of payement:</h3>
 				</div>
 				<ol class="choose">
 					<li>
-						<label for="payement-1">Google Checkout</label>
 						<input type="radio" value="1" name="payement" id="payement-1">
+						<label for="payement-1">Google Checkout</label>
 					</li>
 					<li>
-						<label for="payement-2">Paypal</label>
 						<input type="radio" value="2" name="payement" id="payement-2">
+						<label for="payement-2">Paypal</label>
 					</li>
 				</ol>
 			</fieldset>
-			<fieldset>
+			<fieldset class="tearms">
 				<legend class="v-hidden">Tearms</legend>
 				<div class="info">
 					<h3>Terms of use</h3>
@@ -131,24 +125,24 @@ Based on: 320 and Up boilerplate extension
 				</div>
 			</fieldset>
 			<fieldset class="submit">
-				<input type="submit" value="Proceed to checkout">
+				<input type="submit" class="go" value="Proceed to checkout">
 			</fieldset>
 		</form>
 	</section>
 </div>
 
-<footer id="footer" class="clear" role="contentinfo">
-	<div class="group">
-		<nav id="support" role="navigation">
+<footer id="footer" role="contentinfo">
+	<div class="adapt">
+		<nav class="support" role="navigation">
 			<div class="col">
-				<h3>Help & support</h3>
+				<h4>Help & support</h4>
 				<ul>
 					<li><a href="/">Support forums</a></li>
 					<li><a href="/">FAQ</a></li>
 				</ul>
 			</div>
 			<div class="col">
-				<h3>About</h3>
+				<h4>About</h4>
 				<ul>
 					<li><a href="/">Authors</a></li>
 					<li><a href="/">Contact</a></li>
@@ -156,26 +150,25 @@ Based on: 320 and Up boilerplate extension
 				</ul>
 			</div>
 			<div class="col">
-				<h3>Legal notice</h3>
+				<h4>Legal notice</h4>
 				<ul>
 					<li><a href="/">Terms of use</a></li>
 					<li><a href="/">Privacy policy</a></li>
 				</ul>
 			</div>
 		</nav>
-		<section id="copyright">
-			<h5>Copyright (c) 2011 Editorial.</h5>
+		<section class="copyright">
+			<p><strong>Copyright (c) 2011 Editorial.</strong></p>
 			<p>Brought to you with help of <a href="/" target="_blank">@malarky</a>’s 320-up boilerplate
 			and <a href="/" target="_blank">@benedikrok</a>’s icon wizardry.</p>
 		</section>
 	</div>
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js">\x3C/script>')</script>
 <script src="js/plugins.js"></script>
 <script src="js/script.js"></script>
-<!--[if (lt IE 9) & (!IEMobile)]><script src="js/libs/DOMAssistantCompressed-2.8.js"></script><script src="js/libs/selectivizr-1.0.1.js"></script><script src="js/libs/respond.min.js"></script><![endif]-->
 <!--<script>
 var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
