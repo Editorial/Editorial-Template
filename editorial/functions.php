@@ -290,10 +290,10 @@ class Editorial
                     </footer>
                     <aside role="complementary">
                         <form class="favorize" method="post" action="%8$s">
-                            <fieldset>
-                                <input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1">
+                            <fieldset%12$s>
+                                <input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1"%13$s>
                                 <label class="vote-for" for="vote-for-%1$d"><em>+1</em></label>
-                                <input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1">
+                                <input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1"%13$s>
                                 <label class="vote-against" for="vote-against-%1$d"><em>-1</em></label>
                             </fieldset>
                             <fieldset>
@@ -332,7 +332,9 @@ class Editorial
                 $comment->comment_author) : '',
             (int)$comment->comment_karma == 0
                 ? '0'
-                : ($comment->comment_karma < 0 ? '-'.$comment->comment_karma : '+'.$comment->comment_karma)
+                : ($comment->comment_karma < 0 ? '-'.$comment->comment_karma : '+'.$comment->comment_karma),
+            Editorial::alreadyVoted($comment->comment_ID) ? ' class="disabled"' : '',
+            Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : ''
         );
 
         if ($return)
@@ -454,8 +456,7 @@ class Editorial
             $wp_query->is_404 = false;
 
             // include comments
-            $file = get_template_directory().'/single-comments.php';
-            include($file);
+            include(TEMPLATEPATH.'/single-comments.php');
             exit();
         }
 
@@ -467,17 +468,15 @@ class Editorial
             if ($last && $last == 'comment-post.php')
             {
                 // make sure it's not 404
-                $wp_query->is_404 = false;
-
-                include('comment-post.php');
+                header('HTTP/1.1 200 OK');
+                include(TEMPLATEPATH.'/comment-post.php');
                 exit();
             }
             else if ($last && $last == 'comment-vote.php')
             {
                 // make sure it's not 404
-                $wp_query->is_404 = false;
-
-                include('comment-vote.php');
+                header('HTTP/1.1 200 OK');
+                include(TEMPLATEPATH.'/comment-vote.php');
                 exit();
             }
         }
@@ -704,6 +703,28 @@ class Editorial
     public static function blackAndWhiteImages()
     {
         return self::getOption('black-and-white') != false;
+    }
+
+    /**
+     * Already karma voted for comment?
+     *
+     * @param  int $commentId
+     * @return bool
+     * @author Miha Hribar
+     */
+    public static function alreadyVoted($commentId)
+    {
+        if (isset($_COOKIE['vote']))
+        {
+            // explode value
+            $cookie = explode(',', $_COOKIE['vote']);
+            if (in_array($commentId, $cookie))
+            {
+                // already voted
+                return true;
+            }
+        }
+        return false;
     }
 }
 

@@ -210,9 +210,21 @@ $(function(){
             var key   = selectedInput.attr('name');
             var vote = {}; vote[key] = value;
             // post with ajax instead
-            $.post($(this).attr('action'), vote, function(response) {
-                console.log(response);
+            $.post($(this).attr('action'), vote, function(msg) {
+                var response = $.parseJSON(msg);
+                if (response.ok)
+                {
+                    // set count
+                    $('#score-'+response.id).html(response.votes);
+                }
+                else
+                {
+                    // show error
+                }
             });
+            // disable form (visually and formally)
+            $('input', this).attr('disabled', true);
+            $('fieldset:first-child', this).addClass('disabled');
         });
     });
 });

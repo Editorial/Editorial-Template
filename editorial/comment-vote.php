@@ -25,17 +25,17 @@ if (isset($_POST) && count($_POST) == 1)
         if ($comment && $comment->comment_ID == $id)
         {
             // check cookie
-            $cookie = '';
+            $cookie = array();
             if (isset($_COOKIE['vote']))
             {
                 // explode value
-                $cookie = $_COOKIE['vote'];
-                $votes = explode(',', $_COOKIE['vote']);
-                if (in_array($id, $votes))
+                $cookie = explode(',', $_COOKIE['vote']);
+                if (Editorial::alreadyVoted($id))
                 {
                     // already voted
                     $json['error'] = 'already_voted';
                     echo json_encode($json);
+                    exit();
                 }
             }
 
@@ -45,20 +45,25 @@ if (isset($_POST) && count($_POST) == 1)
                 'comment_karma' => $comment->comment_karma + $value,
             );
             wp_update_comment($values);
+
             // set cookie
-            $cookie = explode(',', $cookie);
             $cookie[] = $id;
             $cookie = implode(',', $cookie);
+            debug($cookie);
             setcookie(
                 'vote',
                 $cookie,
                 time()+3600*24*31,
-                '/',
-                (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url')
+                COOKIEPATH,
+                COOKIE_DOMAIN
             );
+
             // return json
-            $json['ok'] = true;
-            $json['votes'] = $values['comment_karma'];
+            $json = array(
+                'ok'    => true,
+                'votes' => $values['comment_karma'] > 0 ? '+'.$values['comment_karma'] : $values['comment_karma'],
+                'id'    => $comment->comment_ID,
+            );
             echo json_encode($json);
         }
     }
