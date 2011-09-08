@@ -44,6 +44,7 @@ class Editorial_Admin
         'black-and-white',
         'disable-admin-notices',
         EDITORIAL_KARMA_TRESHOLD,
+        'karma',
         'twitter-share',
         'twitter-account',
         'twitter-related',
@@ -201,6 +202,7 @@ class Editorial_Admin
                     'facebook-share',
                     'google-share',
                     'readability-share',
+                    'karma',
                 );
                 foreach ($checkboxes as $check)
                 {

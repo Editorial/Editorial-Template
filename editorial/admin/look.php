@@ -42,13 +42,14 @@
             <tr>
                 <th><?php _e('Theme notifications', 'editorial'); ?></th>
                 <td>
-                    <label><?php _e('Disable wordpress notifications') ?> <input type="checkbox" name="disable-admin-notices"<?php echo !Editorial::getOption('disable-admin-notices') ? '' : ' checked="checked"'; ?> /></label>
+                    <label><?php _e('Disable wordpress notifications', 'editorial') ?> <input type="checkbox" name="disable-admin-notices"<?php echo !Editorial::getOption('disable-admin-notices') ? '' : ' checked="checked"'; ?> /></label>
                     <p class="note"><?php _e('If you disable wordpress notifications you will not see any typekit or theme update notifications.', 'editorial'); ?></p>
                 </td>
             </tr>
             <tr>
-                <th><?php _e('Karma treashold', 'editorial'); ?></th>
+                <th><?php _e('Karma settings', 'editorial'); ?></th>
                 <td>
+                    <label><?php _e('Enable karma comment votes', 'editorial') ?> <input type="checkbox" name="karma"<?php echo !Editorial::getOption('karma') ? '' : ' checked="checked"'; ?> /></label><br />
                     <input type="text" name="karma-treshold" value="<?php echo Editorial::getOption(EDITORIAL_KARMA_TRESHOLD); ?>" />
                     <p class="note karma"><?php _e('Karma treashold controls when the comments with downvotes are hidden.', 'editorial'); ?></p>
                 </td>

@@ -93,6 +93,6 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
         </section>
     </article>
     <?php Editorial::tabNavigation($post->ID, 'article'); ?>
-    <?php $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
+    <?php global $postId; $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
 </div>
 <?php @include('footer.php'); ?>

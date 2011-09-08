@@ -53,7 +53,7 @@ Based on: 320 and Up boilerplate extension
         <fieldset>
             <legend class="v-hidden"><?php _e('Search', 'Editorial'); ?></legend>
             <label for="query" class="v-hidden"><?php _e('Query', 'Editorial'); ?></label>
-            <input type="search" id="query" name="s" placeholder="<?php _e('Search...', 'Editorial'); ?>">
+            <input type="search" id="query" name="s" placeholder="<?php _e('Search...', 'Editorial'); ?>" value="<?php echo get_search_query(); ?>">
             <input type="submit" id="find" class="ir" value="<?php _e('Search', 'Editorial'); ?>">
         </fieldset>
     </form>

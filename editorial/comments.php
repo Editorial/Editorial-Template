@@ -129,6 +129,6 @@ if (comments_open() || !post_password_required()) {
         </form>
     </article>
     <?php Editorial::tabNavigation($post->ID, 'comments'); ?>
-    <?php $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
+    <?php global $postId; $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
 </div>
 <?php } @include('footer.php'); ?>

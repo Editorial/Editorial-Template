@@ -71,7 +71,8 @@ class Editorial
         // custom routing
         add_action('template_redirect', array('Editorial', 'customRouting'));
         // settings after theme setup
-        add_action('after_setup_theme', array('Editorial', 'afterThemeSetup'));
+        add_action('install_theme_complete_actions', array('Editorial', 'afterThemeSetup'));
+        add_action('admin_init', array('Editorial','adminInit'));
     }
 
     /**
@@ -80,19 +81,32 @@ class Editorial
      * @return void
      * @author Miha Hribar
      */
-    public static function afterThemeSetup()
+    public function adminInit()
     {
         if (get_current_theme() != 'Editorial')
         {
             return;
         }
 
-        // setup default values
-        // karma
-        if (self::getOption(EDITORIAL_KARMA_TRESHOLD) === false)
+        // couldn't get anything else to run on theme start
+        if (self::getOption('editorial-install') === false)
         {
-            // hide comments after 5 downvotes
-            self::setOption(EDITORIAL_KARMA_TRESHOLD, 5);
+            debug('editorial-install');
+            // setup default values
+            // karma
+            if (self::getOption('karma') === false)
+            {
+                // enable karma by default
+                self::setOption('karma', true);
+            }
+            if (self::getOption(EDITORIAL_KARMA_TRESHOLD) === false)
+            {
+                // hide comments after 5 downvotes
+                self::setOption(EDITORIAL_KARMA_TRESHOLD, 5);
+            }
+
+            // set that editorial was installed
+            self::setOption('editorial-install', true);
         }
     }
 
@@ -277,6 +291,34 @@ class Editorial
     {
         $trackback = $comment->comment_type == 'trackback' || $comment->comment_type == 'pingback';
         if ($return) ob_start();
+        $complementary = '';
+        if (self::getOption('karma'))
+        {
+
+            $complementary = sprintf('<aside role="complementary">
+                    <form class="favorize" method="post" action="%2$s">
+                        <fieldset%4$s>
+                            <input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1"%3$s>
+                            <label class="vote-for" for="vote-for-%1$d"><em>+1</em></label>
+                            <input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1"%3$s>
+                            <label class="vote-against" for="vote-against-%1$d"><em>-1</em></label>
+                        </fieldset>
+                        <fieldset>
+                            <input type="hidden" name="comment_id" value="%1$d">
+                            <input type="submit" name="submit-%1$d" value="Go">
+                            <strong id="score-%1$d" class="score">%5$s</strong>
+                        </fieldset>
+                    </form>
+                </aside>',
+                $comment->comment_ID,
+                get_bloginfo('url').'/comment-vote.php',
+                Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : '',
+                Editorial::alreadyVoted($comment->comment_ID) ? ' class="disabled"' : '',
+                (int)$comment->comment_karma == 0
+                    ? '0'
+                    : ($comment->comment_karma < 0 ? $comment->comment_karma : '+'.$comment->comment_karma)
+            );
+        }
         printf('<article class="hentry" id="comment-%1$d">
                 <section>
                     <footer>
@@ -288,29 +330,16 @@ class Editorial
                             %4$s
                         </time>
                     </footer>
-                    <aside role="complementary">
-                        <form class="favorize" method="post" action="%8$s">
-                            <fieldset%12$s>
-                                <input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1"%13$s>
-                                <label class="vote-for" for="vote-for-%1$d"><em>+1</em></label>
-                                <input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1"%13$s>
-                                <label class="vote-against" for="vote-against-%1$d"><em>-1</em></label>
-                            </fieldset>
-                            <fieldset>
-                                <input type="hidden" name="comment_id" value="%1$d">
-                                <input type="submit" name="submit-%1$d" value="Go">
-                                <strong id="score-%1$d" class="score">%11$s</strong>
-                            </fieldset>
-                        </form>
-                    </aside>
+                    %11$s
                 </section>
                 <header>
                     <h2 class="entry-title"><span class="v-hidden">%5$s</span> %6$d.</h2>
                 </header>
-                <blockquote class="%9$sentry-content">
+                <blockquote class="%14$s%9$sentry-content">
                     %10$s
                     <p>%7$s</p>
                 </blockquote>
+                %15$s
             </article>',
             $comment->comment_ID,
             $comment->comment_author_url ?
@@ -330,11 +359,15 @@ class Editorial
                 '<h4><a href="%s" rel="nofollow" target="_blank">%s</a></h4>',
                 $comment->comment_author_url,
                 $comment->comment_author) : '',
-            (int)$comment->comment_karma == 0
-                ? '0'
-                : ($comment->comment_karma < 0 ? '-'.$comment->comment_karma : '+'.$comment->comment_karma),
+            $complementary,
             Editorial::alreadyVoted($comment->comment_ID) ? ' class="disabled"' : '',
-            Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : ''
+            Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : '',
+            Editorial::getOption('karma')
+                ? ($comment->comment_karma <= -EDITORIAL_KARMA_TRESHOLD ? 'bad-comment ' : '')
+                : '',
+            Editorial::getOption('karma')
+                ? ($comment->comment_karma <= -EDITORIAL_KARMA_TRESHOLD ? '<p class="show"><a href="#comment-'.$comment->comment_ID.'"><span>'.__('Show hidden', 'Editorial').'</span> '.__(' comment ...', 'Editorial').'</a></p>' : '')
+                : ''
         );
 
         if ($return)
