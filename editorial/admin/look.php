@@ -50,7 +50,7 @@
                 <th><?php _e('Karma settings', 'editorial'); ?></th>
                 <td>
                     <label><?php _e('Enable karma comment votes', 'editorial') ?> <input type="checkbox" name="karma"<?php echo !Editorial::getOption('karma') ? '' : ' checked="checked"'; ?> /></label><br />
-                    <input type="text" name="karma-treshold" value="<?php echo Editorial::getOption(EDITORIAL_KARMA_TRESHOLD); ?>" />
+                    <input type="text" name="karma-treshold" value="<?php echo Editorial::getOption('karma-treshold'); ?>" />
                     <p class="note karma"><?php _e('Karma treashold controls when the comments with downvotes are hidden.', 'editorial'); ?></p>
                 </td>
             </tr>

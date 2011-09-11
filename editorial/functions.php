@@ -20,7 +20,6 @@ function debug($message)
 define ('EDITORIAL_VERSION', '1.0b');
 define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
-define ('EDITORIAL_KARMA_TRESHOLD', 'karma-treshold');
 // social networks
 define ('EDITORIAL_FACEBOOK',    'facebook-share');
 define ('EDITORIAL_TWITTER',     'twitter-share');
@@ -125,10 +124,10 @@ class Editorial
                 // enable karma by default
                 self::setOption('karma', true);
             }
-            if (self::getOption(EDITORIAL_KARMA_TRESHOLD) === false)
+            if (self::getOption('karma-treshold') === false)
             {
                 // hide comments after 5 downvotes
-                self::setOption(EDITORIAL_KARMA_TRESHOLD, 5);
+                self::setOption('karma-treshold', 5);
             }
 
             // set that editorial was installed
@@ -400,10 +399,10 @@ class Editorial
             Editorial::alreadyVoted($comment->comment_ID) ? ' class="disabled"' : '',
             Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : '',
             Editorial::getOption('karma')
-                ? ($comment->comment_karma <= -EDITORIAL_KARMA_TRESHOLD ? 'bad-comment ' : '')
+                ? ($comment->comment_karma <= -Editorial::getOption('karma-treshold') ? 'bad-comment ' : '')
                 : '',
             Editorial::getOption('karma')
-                ? ($comment->comment_karma <= -EDITORIAL_KARMA_TRESHOLD ? '<p class="show"><a href="#comment-'.$comment->comment_ID.'"><span>'.__('Show hidden', 'Editorial').'</span> '.__(' comment ...', 'Editorial').'</a></p>' : '')
+                ? ($comment->comment_karma <= -Editorial::getOption('karma-treshold') ? '<p class="show"><a href="#comment-'.$comment->comment_ID.'"><span>'.__('Show hidden', 'Editorial').'</span> '.__(' comment ...', 'Editorial').'</a></p>' : '')
                 : ''
         );
 
