@@ -17,8 +17,8 @@ if (have_posts())
     while ( have_posts() )
     {
         the_post();
-        // skip posts without a thumb
-        if (!has_post_thumbnail()) continue;
+        // skip strange posts
+        if (!$post) continue;
         $thumbId = get_post_thumbnail_id();
         if (!$exposed)
         {
@@ -31,7 +31,7 @@ if (have_posts())
                     <?php Editorial::postHeader(); ?>
                     <?php Editorial::postExcerpt(); ?>
                 </div>
-                <?php Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait'); ?>
+                <?php Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait', true); ?>
             </article>
             </section><section class="featured">
             <?php

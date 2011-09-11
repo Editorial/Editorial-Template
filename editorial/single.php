@@ -20,14 +20,23 @@ if (has_post_thumbnail())
         // portrait
         $EditorialId = 'inside-portrait';
     }
+
+    $thumbId = get_post_thumbnail_id();
+    $imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'inside' ? 'landscape' : 'portrait');
+    $thumbnailUrl = $imageData[0];
+    $imageMeta = get_post($thumbId);
+    $imageMeta->alt = get_post_meta($thumbId, '_wp_attachment_image_alt', true);
+    $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
+    $attachmentUrl = get_attachment_link($thumbId);
 }
+else
+{
+    $thumbnailUrl = get_bloginfo('template_directory').'/assets/images/no_image_big.png';
+    $attachmentUrl = '#';
+}
+
 $EditorialClass = 'clear';
 @include('header.php');
-$thumbId = get_post_thumbnail_id();
-$imageData = wp_get_attachment_image_src($thumbId, $EditorialId == 'inside' ? 'landscape' : 'portrait');
-$imageMeta = get_post($thumbId);
-$imageMeta->alt = get_post_meta($thumbId, '_wp_attachment_image_alt', true);
-$attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
 
 ?>
 <div class="content clear" role="main">
@@ -76,8 +85,8 @@ $attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
         </section>
         <section id="media">
             <figure>
-                <a href="<?php echo get_attachment_link($thumbId); ?>" id="to-gallery">
-                    <img src="<?php echo $imageData[0]; ?>" alt="<?php echo $imageMeta->alt ?  $imageMeta->alt : $imageMeta->title; ?>" class="photo">
+                <a href="<?php echo $attachmentUrl ?>" id="to-gallery">
+                    <img src="<?php echo $thumbnailUrl; ?>" alt="<?php echo $imageMeta->alt ?  $imageMeta->alt : $imageMeta->title; ?>" class="photo">
                     <?php if ($attachmentsCount > 1) {?>
                     <em id="media-count">1/<?php echo $attachmentsCount; ?></em>
                     <?php } ?>

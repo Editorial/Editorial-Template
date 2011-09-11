@@ -49,26 +49,29 @@ function sortAttachments($a, $b)
     return ($a->menu_order < $b->menu_order) ? -1 : 1;
 }
 uasort($attachments, 'sortAttachments');
+
 // find current attachment in list
-$position = 0;
-$previous = 0;
-$next = 0;
+$previous = $next = $tmp = 0;
+$currentPosition = $i = 1;
+$found = false;
 foreach ($attachments as $key => $attachment)
 {
-    if ($position != 0)
+    if ($found)
     {
-        $next = $key;
+        $next = $attachment->ID;
         break;
     }
+
     if ($post->ID == $attachment->ID)
     {
-        $position = $attachment->menu_order;
+        $previous = $tmp;
+        $found = true;
+        $currentPosition = $i;
     }
-    if ($position == 0)
-    {
-        // save previous key
-        $previous = $key;
-    }
+
+    $tmp = $attachment->ID;
+
+    $i++;
 }
 
 @include('header.php');
@@ -210,7 +213,7 @@ if (Editorial::isMobileDevice())
                 <nav id="navigate" role="navigation">
                     <?php
                     if (count($attachments) > 1) { ?>
-                        <h2><?php printf('%d/%d', $position, count($attachments)); ?></h2>
+                        <h2><?php printf('%d/%d', $currentPosition, count($attachments)); ?></h2>
                         <?php
                     }
                     ?>

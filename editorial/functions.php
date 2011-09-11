@@ -71,8 +71,34 @@ class Editorial
         // custom routing
         add_action('template_redirect', array('Editorial', 'customRouting'));
         // settings after theme setup
-        add_action('install_theme_complete_actions', array('Editorial', 'afterThemeSetup'));
         add_action('admin_init', array('Editorial','adminInit'));
+        // prevent publishing of a post without a thumbnail
+        add_action('publish_post', array('Editorial', 'checkForThumbnail'), 1);
+    }
+
+    /**
+     * Check for thubnail in the just published post
+     *
+     * @param  int $postID
+     * @return void
+     * @author Miha Hribar
+     * @see    http://www.webfish.se/wp/plugins/require-thumbnails
+     */
+    public static function checkForThumbnail($postID)
+    {
+        if(!has_post_thumbnail($postID))
+        {
+            // re-save as draft
+            global $wpdb;
+            $wpdb->query("
+                UPDATE $wpdb->posts SET post_status = 'draft'
+                WHERE ID = $postID"
+            );
+
+            //prevent other hooks to publish_post
+            redirect_post($postID);
+            exit;
+        }
     }
 
     /**
@@ -247,15 +273,26 @@ class Editorial
      *
      * @param  int $thumbId post thumbnail id
      * @param  mixed $args thumbnail args (e.g 'landscape'|'portrait' or array(214,214))
+     * @param  bool $featured set to true to include larger image
      * @return void
      * @author Miha Hribar
      */
-    public static function postFigure($thumbId, $args)
+    public static function postFigure($thumbId, $args, $featured = false)
     {
+        $url = sprintf(
+                '%s%s.png',
+                get_bloginfo('template_directory').'/assets/images/no_image',
+                $featured ? '_big' : ''
+        );
         $imageData = wp_get_attachment_image_src($thumbId, $args);
+        if (count($imageData) > 1)
+        {
+            $url = $imageData[0];
+        }
+
         ?>
         <figure>
-            <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo $imageData[0]; ?>" alt="<?php the_title(); ?>"></a>
+            <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo $url; ?>" alt="<?php the_title(); ?>"></a>
         </figure>
         <?php
     }
