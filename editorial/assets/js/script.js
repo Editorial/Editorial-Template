@@ -9,6 +9,11 @@ if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) 
 }
 
 $(function(){
+    // remove address bar
+    // @see http://davidwalsh.name/hide-address-bar
+    setTimeout(function() {
+        window.scrollTo(0, 1);
+    }, 0);
 
     //embed-code select
     $('#embed-code').click(function(){$(this).select();});

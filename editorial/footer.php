@@ -6,13 +6,19 @@ if ($EditorialId != 'notfound')
     <footer id="footer" class="clear" role="contentinfo">
         <h3>Subscribe</h3>
         <ul id="rss">
-            <li><a href="/" title="Subscribe to all categories">All categories</a></li>
-            <li><a href="/" title="Subscribe to Machinery categories RSS">Machinery</a></li>
-            <li><a href="/" title="Subscribe to Styling categories RSS">Styling</a></li>
-            <li><a href="/" title="Subscribe to Design categories RSS">Design</a></li>
-            <li><a href="/" title="Subscribe to Feast categories RSS">Feast</a></li>
-            <li><a href="/" title="Subscribe to Being categories RSS">Being</a></li>
-            <li><a href="/" title="Subscribe to Equlibrium categories RSS">Equlibrium</a></li>
+            <li><a href="<?php bloginfo('rss2_url'); ?>" title="Subscribe to all categories">All categories</a></li>
+            <?php
+            // list categories
+            foreach (get_categories() as $category)
+            {
+                printf(
+                    '<li><a href="%1$s" title="%3$s %2$s">%2$s</a>',
+                    get_category_feed_link($category->cat_ID),
+                    $category->name,
+                    __('Subscribe', 'Editorial')
+                );
+            }
+            ?>
         </ul>
         <section>
             <nav role="navigation">
@@ -32,16 +38,9 @@ if ($EditorialId != 'notfound')
             );
             wp_nav_menu($settings);
             ?>
-            <!--ul class="xoxo">
-                <li class="twitter"><a href="/" title="Follow us on">Twitter</a></li>
-                <li class="facebook"><a href="/" title="Follow us on">Facebook</a></li>
-                <li class="vimeo"><a href="/" title="Follow us on Vimeo">Vimeo</a></li>
-                <li class="flickr"><a href="/" title="Follow us on Flickr">Flickr</a></li>
-            </ul-->
         </section>
-        <small id="copyright">Vsa vsebina je zaščitena z licenco <a href="http://creativecommons.org/licenses/by-sa/2.5/si/" rel="licence" target="_blank">
-        Creative Commons - Priznanje avtorstva-Nekomercialno-Deljenje pod enakimi pogoji 2.5 Slovenija</a>.<br>
-        Vsaki kraji se sodi po starodavnih slovanskih zakonih. Poganjata nas strast in WordPress.</small>
+        <small id="copyright"><?php echo Editorial::getOption('copyright'); ?><br>
+        <?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
     </footer>
     <?php
 }

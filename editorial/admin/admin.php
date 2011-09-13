@@ -52,6 +52,7 @@ class Editorial_Admin
         'facebook-share',
         'google-share',
         'readability-share',
+        'copyright',
     );
 
     /**
