@@ -14,8 +14,9 @@ Based on: 320 and Up boilerplate extension
 <head>
 <meta charset="utf-8">
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
-<meta name="description" content="<?php echo get_bloginfo('description'); ?>">
+<meta name="description" content="<?php bloginfo('description'); ?>">
 <meta name="author" content="<?php bloginfo('name'); ?>">
+<meta name="keywords" content="<?php echo Editorial::getOption('meta-keywords'); ?>">
 <!-- invalid / enable if needed
 <meta name="handheldfriendly" content="true">
 <meta name="mobileoptimized" content="320">

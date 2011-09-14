@@ -22,6 +22,16 @@ class Editorial_Admin
     const PAGE_AUTHORS = 'authors';
 
     /**
+     * Share page
+     */
+    const PAGE_SHARE = 'sharing';
+
+    /**
+     * SEO page
+     */
+    const PAGE_SEO = 'seo';
+
+    /**
      * Pages users are allowed to include
      *
      * @var array
@@ -29,6 +39,8 @@ class Editorial_Admin
     private $_pages = array(
         self::PAGE_LOOK,
         self::PAGE_AUTHORS,
+        self::PAGE_SHARE,
+        self::PAGE_SEO,
     );
 
     /**
@@ -53,6 +65,7 @@ class Editorial_Admin
         'google-share',
         'readability-share',
         'copyright',
+        'meta-keywords',
     );
 
     /**
@@ -97,6 +110,22 @@ class Editorial_Admin
             'administrator',
             'editorial',
             array($this, 'lookAndFeel')
+        );
+        add_submenu_page(
+            'editorial',
+            'Sharing',
+            'Sharing',
+            'administrator',
+            'editorial-'.self::PAGE_SHARE,
+            array($this, 'sharing')
+        );
+        add_submenu_page(
+            'editorial',
+            'SEO',
+            'SEO',
+            'administrator',
+            'editorial-'.self::PAGE_SEO,
+            array($this, 'seo')
         );
         add_submenu_page(
             'editorial',
@@ -149,6 +178,28 @@ class Editorial_Admin
     public function authors()
     {
         $this->_display(self::PAGE_AUTHORS);
+    }
+
+    /**
+     * Sharing settings
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public function sharing()
+    {
+        $this->_display(self::PAGE_SHARE);
+    }
+
+    /**
+     * SEO settings
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public function seo()
+    {
+        $this->_display(self::PAGE_SEO);
     }
 
     /**

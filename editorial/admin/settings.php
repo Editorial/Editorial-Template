@@ -62,6 +62,5 @@
 </style>
 <div id="editorial" class="wrap">
     <div id="icon-themes" class="icon32"><br></div>
-    <h2><?php _e('Editorial', 'editorial'); ?></h2>
     <?php include $this->_page.'.php'; ?>
 </div>

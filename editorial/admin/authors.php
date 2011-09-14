@@ -1,3 +1,4 @@
+    <h2><?php _e('Editorial', 'Editorial'); ?> &mdash; <?php _e('Authors', 'Editorial'); ?></h2>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
     <script type="text/javascript">
     jQuery(document).ready(function() {
