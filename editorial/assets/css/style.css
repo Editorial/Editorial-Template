@@ -886,7 +886,7 @@ body {width:960px;}
 
 #notfound #header {top:390px;}
 #try {top:315px;}
-	
+
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 
@@ -1074,3 +1074,9 @@ body {width:960px;}
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
 }/*/mediaquery*/
+
+/* @todo Matjaž pls fix */
+#temp {clear: both;}
+#widgets {float: left; width: 100%; margin-bottom: 20px;}
+#widgets {background:url(../images/bgr/lines.gif) repeat-x bottom;}
+#footer aside section {width:20%; float: left;}

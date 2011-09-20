@@ -20,6 +20,8 @@ if ($EditorialId != 'notfound')
             }
             ?>
         </ul>
+        <?php get_sidebar('footer'); ?>
+        <div id="temp">
         <section>
             <nav role="navigation">
                 <ul>
@@ -41,6 +43,7 @@ if ($EditorialId != 'notfound')
         </section>
         <small id="copyright"><?php echo Editorial::getOption('copyright'); ?><br>
         <?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
+        </div>
     </footer>
     <?php
 }

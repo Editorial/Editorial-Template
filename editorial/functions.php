@@ -25,6 +25,8 @@ define ('EDITORIAL_FACEBOOK',    'facebook-share');
 define ('EDITORIAL_TWITTER',     'twitter-share');
 define ('EDITORIAL_GOOGLE',      'google-share');
 define ('EDITORIAL_READABILITY', 'readability-share');
+// number of footer widgets
+define ('EDITORIAL_WIDGET_COUNT', 4);
 
 /**
  * Editorial
@@ -73,6 +75,23 @@ class Editorial
         add_action('admin_init', array('Editorial','adminInit'));
         // prevent publishing of a post without a thumbnail
         add_action('publish_post', array('Editorial', 'checkForThumbnail'), 1);
+
+        if (function_exists('register_sidebar'))
+        {
+            // lets register a few widget ready sidebars
+            for ($i = 1; $i <= EDITORIAL_WIDGET_COUNT; $i++)
+            {
+                register_sidebar(array(
+                    'name'          => sprintf(__('Footer widget area %d', 'editorial'), $i),
+                    'id'            => sprintf('footer-widget-%d', $i),
+                    'description'   => sprintf(__('Footer widget area #%d', 'editorial'), $i),
+                    'before_widget' => '<section class="widget">',
+                    'after_widget'  => '</section>',
+                    'before_title'  => '<h4>',
+                    'after_title'   => '</h4>',
+                ));
+            }
+        }
     }
 
     /**
