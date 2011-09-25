@@ -17,11 +17,6 @@ class Editorial_Admin
     const PAGE_LOOK = 'look';
 
     /**
-     * Auhthors page
-     */
-    const PAGE_AUTHORS = 'authors';
-
-    /**
      * Share page
      */
     const PAGE_SHARE = 'sharing';
@@ -32,13 +27,18 @@ class Editorial_Admin
     const PAGE_SEO = 'seo';
 
     /**
+     * Colopho page
+     */
+    const PAGE_COLOPHON = 'colophon';
+
+    /**
      * Pages users are allowed to include
      *
      * @var array
      */
     private $_pages = array(
         self::PAGE_LOOK,
-        self::PAGE_AUTHORS,
+        self::PAGE_COLOPHON,
         self::PAGE_SHARE,
         self::PAGE_SEO,
     );
@@ -66,6 +66,8 @@ class Editorial_Admin
         'readability-share',
         'copyright',
         'meta-keywords',
+        'colophon_title',
+        'colophon_content',
     );
 
     /**
@@ -129,11 +131,11 @@ class Editorial_Admin
         );
         add_submenu_page(
             'editorial',
-            'Authors',
-            'Authors',
+            'Colophon',
+            'Colophon',
             'administrator',
-            'editorial-'.self::PAGE_AUTHORS,
-            array($this, 'authors')
+            'editorial-'.self::PAGE_COLOPHON,
+            array($this, 'colophon')
         );
         add_option(EDITORIAL_OPTIONS, '', '', 'yes');
 
@@ -175,9 +177,9 @@ class Editorial_Admin
      * @return void
      * @author Miha Hribar
      */
-    public function authors()
+    public function colophon()
     {
-        $this->_display(self::PAGE_AUTHORS);
+        $this->_display(self::PAGE_COLOPHON);
     }
 
     /**
@@ -264,7 +266,7 @@ class Editorial_Admin
                     }
                 }
                 break;
-            case self::PAGE_AUTHORS:
+            case self::PAGE_COLOPHON:
                 // save current value for author ordering and titles
                 if (!count($_POST['author']) || !count($_POST['title']) || count($_POST['title']) != count($_POST['author']))
                 {

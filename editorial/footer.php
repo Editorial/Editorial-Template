@@ -25,7 +25,7 @@ if ($EditorialId != 'notfound')
         <section>
             <nav role="navigation">
                 <ul>
-                    <li><a href="/">Colophon</a></li>
+                    <li><a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>/colophon.php"><?php _e('Colophon', 'Editorial'); ?></a></li>
                 </ul>
             </nav>
             <?php

@@ -8,3 +8,5 @@ editorial.zip
 
 # NetBeans folders and settings
 /nbproject/
+
+.buildpath

@@ -567,6 +567,12 @@ class Editorial
                 include(TEMPLATEPATH.'/comment-vote.php');
                 exit();
             }
+            else if ($last && $last == 'colophon.php')
+            {
+                header('HTTP/1.1 200 OK');
+                include(TEMPLATEPATH.'/colophon.php');
+                exit();
+            }
         }
     }
 

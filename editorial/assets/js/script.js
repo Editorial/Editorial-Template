@@ -62,7 +62,7 @@ $(function(){
                     }
                 }
                 else {
-                    // remove old success not if already there
+                    // remove old success if already there
                     $('#success').remove();
                     // add success notice
                     $(response.success).insertBefore('#comments-form');
@@ -77,8 +77,13 @@ $(function(){
                                             .after('<section id="comments">'+response.html+'</section>');
                     }
 
-                    // scroll to new comment
+                    // scroll to success notice
                     $('html,body').animate({scrollTop: $("#success").offset().top},'slow');
+
+                    // make success dissapear in 5 seconds
+                    setTimeout(function() {
+                        $('#success').fadeOut(500);
+                    }, 5000);
 
                     // reset form
                     $('#comment').val('');
