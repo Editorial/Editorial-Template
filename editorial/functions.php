@@ -92,6 +92,38 @@ class Editorial
                 ));
             }
         }
+
+        // add excerpt to pages
+        add_action('edit_page_form', array('Editorial', 'page_exceprt'));
+    }
+
+    /**
+     * Add page excerpts
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function page_excerpt()
+    {
+        if(!function_exists("add_post_type_support")) //legacy
+        {
+            add_meta_box('postexcerpt', __('Page Excerpt'), array('Editorial', 'add_page_excerpt'), 'page', 'advanced', 'core');
+        }
+    }
+
+    /**
+     * Add page excerpt
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function add_page_excerpt($post)
+    {
+        ?>
+        <label class="hidden" for="excerpt"><?php _e('Excerpt') ?></label>
+        <textarea rows="1" cols="40" name="excerpt" tabindex="6" id="excerpt"><?php echo $post->post_excerpt ?></textarea>
+        <p><?php _e('Excerpts are optional hand-crafted summaries of your content. You can <a href="http://codex.wordpress.org/Template_Tags/the_excerpt" target="_blank">use them in your template</a>'); ?></p>
+        <?php
     }
 
     /**
@@ -167,6 +199,11 @@ class Editorial
             'main-nav'   => __( 'Main menu' ),
             'footer-nav' => __( 'Footer menu' )
         ));
+
+        if(function_exists("add_post_type_support")) //support 3.1 and greater
+        {
+            add_post_type_support('page', 'excerpt');
+        }
     }
 
     /**
