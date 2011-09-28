@@ -93,37 +93,35 @@ class Editorial
             }
         }
 
-        // add excerpt to pages
-        add_action('edit_page_form', array('Editorial', 'page_exceprt'));
+        // add excerpt to pages @todo move into admin?
+        add_post_type_support('page', 'excerpt');
+
+        // unhide post excerpt by default
+        add_filter('default_hidden_meta_boxes', array('Editorial', 'unhideExcerpt'), 10, 2);
     }
 
     /**
-     * Add page excerpts
+     * Unhide excerpt from posts by default (hidden in wp 3.1)
      *
-     * @return void
+     * @return array
      * @author Miha Hribar
      */
-    public static function page_excerpt()
+    public static function unhideExcerpt($hidden, $screen)
     {
-        if(!function_exists("add_post_type_support")) //legacy
+        if ('post' == $screen->base || 'page' == $screen->base)
         {
-            add_meta_box('postexcerpt', __('Page Excerpt'), array('Editorial', 'add_page_excerpt'), 'page', 'advanced', 'core');
+            $hidden = array(
+                'slugdiv',
+                'trackbacksdiv',
+                'postexcerpt',
+                'commentstatusdiv',
+                'commentsdiv',
+                'authordiv',
+                'revisionsdiv'
+            );
         }
-    }
-
-    /**
-     * Add page excerpt
-     *
-     * @return void
-     * @author Miha Hribar
-     */
-    public static function add_page_excerpt($post)
-    {
-        ?>
-        <label class="hidden" for="excerpt"><?php _e('Excerpt') ?></label>
-        <textarea rows="1" cols="40" name="excerpt" tabindex="6" id="excerpt"><?php echo $post->post_excerpt ?></textarea>
-        <p><?php _e('Excerpts are optional hand-crafted summaries of your content. You can <a href="http://codex.wordpress.org/Template_Tags/the_excerpt" target="_blank">use them in your template</a>'); ?></p>
-        <?php
+        // removed 'postcustom',
+        return $hidden;
     }
 
     /**
@@ -780,16 +778,14 @@ class Editorial
         {
             case EDITORIAL_TWITTER:
                 $html = sprintf(
-                   '<a href="http://twitter.com/share"
-                       class="twitter-share-button"
-                       data-count="horizontal"
-                       data-via="%s"
-                       %s>Tweet</a>
-                       <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>',
-                   self::getOption('twitter-account'),
-                   self::getOption('twitter-related')
-                       ? sprintf('data-related="%s:%s"', self::getOption('twitter-related'), self::getOption('twitter-related-desc'))
-                       : ''
+                    '<iframe allowtransparency="true" frameborder="0" scrolling="no"
+                        src="http://platform.twitter.com/widgets/tweet_button.html?via=%s&text=%s%s"
+                        style="width:%dpx; height:%dpx;"></iframe>',
+                    self::getOption('twitter-account'),
+                    esc_attr($params['text']),
+                    self::getOption('twitter-related') ? sprintf('&related=%s', self::getOption('twitter-related')) : '',
+                    $params['width'],
+                    $params['height']
                 );
                 break;
 
@@ -807,7 +803,7 @@ class Editorial
                 break;
 
             case EDITORIAL_GOOGLE:
-                $html = "<g:plusone size=\"medium\"></g:plusone>
+                $html = "<g:plusone size=\"medium\" width=\"65\"></g:plusone>
                 <script type=\"text/javascript\">
                   (function() {
                     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;

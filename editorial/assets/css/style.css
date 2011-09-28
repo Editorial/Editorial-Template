@@ -290,7 +290,7 @@ color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
 #single footer em {font-style:normal;}
 #single footer em a {font-weight:bold;}
 #single .social {margin:0;width:100%;float:left;}
-#single .social li {margin:10px 15px 0 0;float:left;}
+#single .social li {margin:10px 5px 0 0;float:left;}
 #gallery #single h1,#gallery-portrait #single h1,#feedback #single h1,.notice a {text-decoration:underline;color:#d9d9d9;}
 
 #media {margin:14px 0 0;width:100%;float:left;}

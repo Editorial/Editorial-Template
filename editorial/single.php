@@ -52,19 +52,15 @@ $EditorialClass = 'clear';
                     <span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
                     <?php the_time(get_option('date_format')); ?>
                 </time>
-                <em class="author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+                <em class="author vcard"><?php _e('by:', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
                 <?php if (Editorial::isShareEnabled()) { ?>
                 <ul class="social">
                     <?php
 
                     if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
                     {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER).'</li>';
-                    }
-                    if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
-                    {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
-                            'url'    => '',
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER, array(
+                            'text'   => get_the_title(),
                             'width'  => 100,
                             'height' => 20
                         )).'</li>';
@@ -72,6 +68,14 @@ $EditorialClass = 'clear';
                     if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
                     {
                         echo '<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>';
+                    }
+                    if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
+                    {
+                        echo '<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
+                            'url'    => '',
+                            'width'  => 80,
+                            'height' => 20
+                        )).'</li>';
                     }
                     if (Editorial::isShareEnabled(EDITORIAL_READABILITY))
                     {
