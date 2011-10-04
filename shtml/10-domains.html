@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <!--
-Editorial
-Version: 1.0
-Based on: 320 and Up boilerplate extension
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /--\ |_
+
+ Version: 1.0
+
+ Design: Natan Nikolič
+ Programming: Miha Hribar
+ Front-end: Matjaž Korošec
+
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
 <!--[if lt IE 7 ]><html class="ie6" lang="en"><![endif]-->
 <!--[if IE 7 ]><html class="ie7" lang="en"><![endif]-->
 <!--[if IE 8 ]><html class="ie8" lang="en"><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
-
 <head>
 <meta charset="utf-8">
 <title>Editorial</title>
@@ -41,15 +47,20 @@ Based on: 320 and Up boilerplate extension
 	</div>
 </header>
 
-<div class="content" role="main">
-	<div class="main">
+<article class="content" role="main">
+	<section class="process ribbon">
 		<h1><em>Licenses</em> &amp; domains</h1>
-		<h2 id="domains-no">3</h2>
-		<h3>Edit domains for your license/s.</h3>
+		<figure id="ribbon">
+			<h2 id="domains-no">3</h2>
+			<img src="images/bgr/ribbon.png" alt="Ribbon">
+		</figure>
+	</section>
+	<section class="order manage">
+		<h3 class="edit">Edit domains <span>for your license/s.</span></h3>
 		<form id="manage-form" method="post" action="/">
 			<fieldset>
 				<legend class="v-hidden">Domains</legend>
-				<ol>
+				<ol id="domains">
 					<li>
 						<label for="domain-1">Domain 1</label>
 						<input type="text" value="pionirski-list.com" name="domain-1" id="domain-1">
@@ -64,16 +75,16 @@ Based on: 320 and Up boilerplate extension
 					</li>
 				</ol>
 				<div class="info">
-					<p>Every issued copy of the theme is licenced to a single domain.
+					<p>Every issued copy of the theme is licenced to a single domain.<br>
 					See our <a href="/">FAQ</a> for more information.</p>
 				</div>
 			</fieldset>
 			<fieldset class="submit">
-				<input type="submit" value="Save changes">
+				<input type="submit" class="go" value="Save changes">
 			</fieldset>
 		</form>
-	</div>
-</div>
+	</section>
+</article>
 
 <footer id="footer" role="contentinfo">
 	<div class="adapt">

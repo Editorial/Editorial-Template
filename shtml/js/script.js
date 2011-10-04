@@ -1,3 +1,13 @@
+/*
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /--\ |_
+
+ File: script.js
+ Version: 1.0
+ Authors: Matjaž Korošec, Miha Hribar (ko bos kaj dodal se ta komentar zbrise)
+
+ */
 
 var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
 if (iDevice) {
@@ -22,7 +32,16 @@ $(function(){
 		});
 	}
 
-	
+	//about us mailto
+	if($('#mailto').length) {
+		var m = $('#mailto');
+		m.find('span:first-child').html('@').next('span').html('.');
+		var t = m.text().replace(/ /g,'');
+		m.html('<a href="mailto:' + t + '">' + t + '</a>');
+	}
+
+	//hidding iframe scrolls (invalid attr)
+	$('#follow').attr('scrolling','no');
 
 	
 //max-width IE6

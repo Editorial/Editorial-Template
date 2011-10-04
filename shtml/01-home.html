@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <!--
-Editorial
-Version: 1.0
-Based on: 320 and Up boilerplate extension
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /--\ |_
+
+ Version: 1.0
+
+ Design: Natan Nikolič
+ Programming: Miha Hribar
+ Front-end: Matjaž Korošec
+
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
 <!--[if lt IE 7 ]><html class="ie6" lang="en"><![endif]-->
@@ -30,10 +37,9 @@ Based on: 320 and Up boilerplate extension
 <header id="header" role="banner">
 	<div class="adapt">
 		<!--<video controls poster="media/ozadje.jpg" width="950" height="420">-->
-		<video>
 			<!--<source type="video/mp4" src="media/video.mp4">-->
 			<!--<source type="video/ogg" src="media/video.ogg">-->
-		</video>
+		<!--</video>-->
 		<hgroup id="brand" class="vcard">
 			<h1><a href="./" class="fn org url"><em>Edit</em>orial</a></h1>
 			<h2 class="note">is the ultimate WordPress theme designed specially for requirements of digital magazines.</h2>
@@ -43,14 +49,15 @@ Based on: 320 and Up boilerplate extension
 </header>
 
 <div class="content" role="main">
-	<article class="features">
-		<h3><em>Everything you need, nothing you don’t</em></h3>
-		<div class="goodies">
+	<article class="features hentry">
+		<h3 class="entry-title"><em>Everything you need, nothing you don’t</em></h3>
+		<div class="goodies entry-content">
 			<section id="platforms">
 				<h4>Desktop, tablets & mobile</h4>
 				<p>Reach and communicate with your audience across plethora of different platforms and devices.
 				Editorial is adapt and offers best possible user experience on any device with HTML capable
-				browser. We went all the way to ensure all you have to worry about is only the quality of your content.</p>
+				browser. We went all the way to ensure all you have to worry about is only the quality of your
+				content.</p>
 				<p><a href="/">See it in action ...</a></p>
 			</section>
 			<section id="photography">
@@ -103,6 +110,10 @@ Based on: 320 and Up boilerplate extension
 				<li id="rss">Category based RSS</li>
 			</ul>
 		</div>
+		<footer class="v-hidden">
+			<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+			<a class="author include" href="#brand">Editorial</a>
+		</footer>
 	</article>
 	<aside class="pricing" role="complementary">
 		<h3><em>Price <span>&</span> licencing</em></h3>
@@ -139,22 +150,26 @@ Based on: 320 and Up boilerplate extension
 						<legend class="v-hidden">Subscription</legend>
 						<label for="email" class="v-hidden">Email</label>
 						<input type="email" id="email" name="email" placeholder="Your e-mail address">
-						<input type="submit" id="subscribe" value="Subscribe">
+						<input type="submit" id="subscribe" class="continue" value="Subscribe">
 					</fieldset>
 				</form>
 			</section>
-			<section class="connect">
-				<h3>Keep in touch</h3>
-				<p>Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
+			<section class="connect hentry">
+				<h3 class="entry-title">Keep in touch</h3>
+				<p class="entry-summary">Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
 				love to hear your thoughts and feedback.</p>
-				<div class="twitter">
+				<div class="twitter entry-content">
 					<blockquote>
 						<p>Our custom icons designed by <a href="/" target="_blank">@benedikrok</a> spoted in reality:
 						<a href="http://bit.ly/lu2lL0" target="_blank">http://bit.ly/lu2lL0</a> ;
 						more preview on <a href="/" target="_blank">@dribbble</a>:
 						<a href="http://bit.ly/kgVQHl" target="_blank">http://bit.ly/kgVQHl</a></p>
 					</blockquote>
-					<iframe src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe><!-- frameborder="0" scrolling="no"  -->
+					<iframe id="follow" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe>
+				</div>
+				<div class="v-hidden">
+					<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+					<a class="author include" href="#brand">Editorial</a>
 				</div>
 			</section>
 		</div>

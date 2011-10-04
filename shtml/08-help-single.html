@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <!--
-Editorial
-Version: 1.0
-Based on: 320 and Up boilerplate extension
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /--\ |_
+
+ Version: 1.0
+
+ Design: Natan Nikolič
+ Programming: Miha Hribar
+ Front-end: Matjaž Korošec
+
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
 <!--[if lt IE 7 ]><html class="ie6" lang="en"><![endif]-->
@@ -33,7 +40,7 @@ Based on: 320 and Up boilerplate extension
 		<nav class="primary" role="navigation">
 			<ul>
 				<li id="features"><a href="01-home.html">Features</a></li>
-				<li id="purchase" class="selected"><a href="02-cart.html">Purchase</a></li>
+				<li id="purchase"><a href="02-cart.html">Purchase</a></li>
 				<li id="help" class="selected"><a href="07-help.html"><span>Help &amp;</span> support</a></li>
 				<li id="about"><a href="06-about.html">About</a></li>
 			</ul>
@@ -42,66 +49,72 @@ Based on: 320 and Up boilerplate extension
 </header>
 
 <div class="content" role="main">
-	<div class="main">
-		<article>
-			<h1><em>Help</em> &amp; support</h1>
-			<section>
-				<h2>What are the different levels of access for people in my company or people in other
-				companies (clients, freelancers, contractors, etc)?</h2>
-				<h3>Access for people in your company...</h3>
-				<p>If someone in your company has access to a project, they can see the project on the
-				dashboard, go into the project, and add/edit content. If they don’t have access they won’t
-				see the project mentioned anywhere, they won’t be able to access it, and they won’t get any
-				email notifications about it. Here is how you give admin access to someone in your company.</p>
-				<h2>Access for people in other companies (clients, etc.)...</h2>
-				<p>People on the client side can have one of three permissions levels:</p>
-				<figure>
-					<img src="" alt="">
-					<figcaption><strong>Figure 1</strong> - You have more in common with your audience than you might realize</figcaption>
-				</figure>
-				<ol>
-					<li>Messages & files: If the checkbox is checked, they can access the project, view milestones,
-					post comments, post messages, and upload files.</li>
-					<li>...plus to-dos: If the “…plus to-dos” radio button is selected, this person can access
-					the project, view milestones, post comments, post messages, upload files, and add/edit/remove
-					to-do lists/items.</li>
-					<li>...plus milestones: If the “…plus milestones” radio button is selected, this person can
-					access the project, view milestones, post comments, post messages, upload files, add to-do
-					lists/items, and add milestones. *</li>
-				</ol>
-				<p><strong>Note: Unless the restrictions above have been enabled Clients who have access to a project…</strong></p>
-				<ul>
-					<li>Can edit/delete messages or milestones they’ve entered.</li>
-					<li>Can check off, edit, or delete any to-dos entered by any user.</li>
-					<li>Can assign to-do items or milestones to people in their company and your company.</li>
-					<li>The items mentioned above are the only things that clients can edit (clients can NOT
-					edit anything else added by account owners).</li>
-				</ul>
+	<article class="main">
+		<h3 class="exposed"><em>Help</em> &amp; support</h3>
+		<div class="read">
+			<section class="hentry">
+				<h1 class="entry-title">What are the different levels of access for people in my company or people in other
+				companies (clients, freelancers, contractors, etc)?</h1>
+				<div class="entry-content">
+					<h2>Access for people in your company...</h2>
+					<p>If someone in your company has access to a project, they can see the project on the
+					dashboard, go into the project, and add/edit content. If they don’t have access they won’t
+					see the project mentioned anywhere, they won’t be able to access it, and they won’t get any
+					email notifications about it. Here is how you give admin access to someone in your company.</p>
+					<h2>Access for people in other companies (clients, etc.)...</h2>
+					<p>People on the client side can have one of three permissions levels:</p>
+					<figure>
+						<img src="images/_temp/faq-01.jpg" alt="Image description">
+						<figcaption><strong>Figure 1</strong> - You have more in common with your audience than you might realize</figcaption>
+					</figure>
+					<ol>
+						<li><strong>Messages & files:</strong> If the checkbox is checked, they can access the project, view milestones,
+						post comments, post messages, and upload files.</li>
+						<li><strong>...plus to-dos:</strong> If the “…plus to-dos” radio button is selected, this person can access
+						the project, view milestones, post comments, post messages, upload files, and add/edit/remove
+						to-do lists/items.</li>
+						<li><strong>...plus milestones:</strong> If the “…plus milestones” radio button is selected, this person can
+						access the project, view milestones, post comments, post messages, upload files, add to-do
+						lists/items, and add milestones. *</li>
+					</ol>
+					<p><strong>Note: Unless the restrictions above have been enabled Clients who have access to a project…</strong></p>
+					<ul>
+						<li>Can edit/delete messages or milestones they’ve entered.</li>
+						<li>Can check off, edit, or delete any to-dos entered by any user.</li>
+						<li>Can assign to-do items or milestones to people in their company and your company.</li>
+						<li>The items mentioned above are the only things that clients can edit (clients can NOT
+						edit anything else added by account owners).</li>
+					</ul>
+				</div>
+				<footer class="v-hidden">
+					<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+					<a class="author include" href="#brand">Editorial</a>
+				</footer>
 			</section>
 			<section>
-				<h2>Was this article helpful?</h2>
+				<h4>Was this article helpful?</h4>
 				<p>Please answer and help us improve our customer service.</p>
-				<p class="vote"><a href="/">Yes</a> or <a href="/">No</a></p>
+				<p class="vote"><a href="/" class="continue">Yes</a> or <a href="/" class="continue">No</a></p>
 			</section>
 			<section>
-				<h2>None of the above answeres your question?</h2>
-				<p class="notice">Than please feel free to use our Support forum. </p>
+				<h4>None of the above answeres your question?</h4>
+				<p class="notice">Than please feel free to use our <a href="/">Support forum</a>.</p>
 			</section>
-		</article>
-		<aside>
-			<h3>Related questions</h3>
-			<p>This question is about “Features & compatibility”. You might want to take a look
-			at some more questions from the same category.</p>
-			<ol>
-				<li><a href="/">What are the “Your global feeds” on the Dashboard?</a></li>
-				<li><a href="/">Can I create sub-projects in Basecamp (i.e. a project within another project)?</a></li>
-				<li><a href="/">What is iCal(endar) and how do I use it with Basecamp?</a></li>
-				<li><a href="/">What are the different levels of access for people in my company
-				or people in other companies (clients, freelancers, contractors, etc)?</a></li>
-				<li><a href="/">Can I move items from one Basecamp project to another? </a></li>
-			</ol>
-		</aside>
-	</div>
+		</div>
+		<aside class="related" role="complementary">
+				<h4>Related questions</h4>
+				<p>This question is about “Features & compatibility”. You might want to take a look
+				at some more questions from the same category.</p>
+				<ol class="questions">
+					<li><a href="/">What are the “Your global feeds” on the Dashboard?</a></li>
+					<li><a href="/">Can I create sub-projects in Basecamp (i.e. a project within another project)?</a></li>
+					<li><a href="/">What is iCal(endar) and how do I use it with Basecamp?</a></li>
+					<li><a href="/">What are the different levels of access for people in my company
+					or people in other companies (clients, freelancers, contractors, etc)?</a></li>
+					<li><a href="/">Can I move items from one Basecamp project to another? </a></li>
+				</ol>
+			</aside>
+	</article>
 </div>
 
 <footer id="footer" role="contentinfo">
@@ -116,22 +129,26 @@ Based on: 320 and Up boilerplate extension
 						<legend class="v-hidden">Subscription</legend>
 						<label for="email" class="v-hidden">Email</label>
 						<input type="email" id="email" name="email" placeholder="Your e-mail address">
-						<input type="submit" id="subscribe" value="Subscribe">
+						<input type="submit" id="subscribe" class="continue" value="Subscribe">
 					</fieldset>
 				</form>
 			</section>
-			<section class="connect">
-				<h3>Keep in touch</h3>
-				<p>Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
+			<section class="connect hentry">
+				<h3 class="entry-title">Keep in touch</h3>
+				<p class="entry-summary">Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
 				love to hear your thoughts and feedback.</p>
-				<div class="twitter">
+				<div class="twitter entry-content">
 					<blockquote>
 						<p>Our custom icons designed by <a href="/" target="_blank">@benedikrok</a> spoted in reality:
 						<a href="http://bit.ly/lu2lL0" target="_blank">http://bit.ly/lu2lL0</a> ;
 						more preview on <a href="/" target="_blank">@dribbble</a>:
 						<a href="http://bit.ly/kgVQHl" target="_blank">http://bit.ly/kgVQHl</a></p>
 					</blockquote>
-					<iframe src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe><!-- frameborder="0" scrolling="no"  -->
+					<iframe id="follow" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe>
+				</div>
+				<div class="v-hidden">
+					<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+					<a class="author include" href="#brand">Editorial</a>
 				</div>
 			</section>
 		</div>

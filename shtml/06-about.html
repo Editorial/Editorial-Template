@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <!--
-Editorial
-Version: 1.0
-Based on: 320 and Up boilerplate extension
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /--\ |_
+
+ Version: 1.0
+
+ Design: Natan Nikolič
+ Programming: Miha Hribar
+ Front-end: Matjaž Korošec
+
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
 <!--[if lt IE 7 ]><html class="ie6" lang="en"><![endif]-->
 <!--[if IE 7 ]><html class="ie7" lang="en"><![endif]-->
 <!--[if IE 8 ]><html class="ie8" lang="en"><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
-
 <head>
 <meta charset="utf-8">
-<title>Editorial</title>
+<title>About us - Editorial</title>
 <meta name="description" content="">
 <meta name="author" content="Editorial">
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
@@ -42,9 +48,12 @@ Based on: 320 and Up boilerplate extension
 </header>
 
 <div class="content" role="main">
-	<div class="main">
-		<h1><em>About</em>us</h1>
-		<article class="info">
+	<article class="main hentry">
+		<h1 class="entry-title"><em>About</em> us</h1>
+		<figure id="dust">
+			<img src="images/bgr/fairy-dust.png" width="600" height="327" alt="Fairy dust">
+		</figure>
+		<div class="info entry-summary">
 			<p class="lead">There’s an old saying in Slovenia that says if you put three talented & dedicated
 			people in the same room you will come out with a kickass Wordpress theme and a whole bunch of
 			creative fairy dust.</p>
@@ -52,38 +61,42 @@ Based on: 320 and Up boilerplate extension
 			branding — to create modern interactive systems. We care about the web and its future. It has
 			become a large part of our lives – entering our offices, living rooms and even our pockets.
 			It is changing the way our world operates.</p>
-		</article>
-		<aside class="makers" role="complementary">
+		</div>
+		<aside class="makers entry-content" role="complementary">
 			<ul>
-				<li class="vcard">
+				<li class="miha vcard">
 					<figure>
-						<img src="images/miha-hribar.png" class="photo" width="135" height="135" alt="Miha Hribar">
+						<img src="images/miha-hribar.png" class="photo" width="134" height="134" alt="Miha Hribar">
 					</figure>
 					<h2 class="fn n">Miha Hribar</h2>
-					<strong class="note">“code ninja”</strong>
-					<a href="http://twitter.com/mihahribar" class="url" target="_blank">@mihahribar</a>
+					<p><strong class="title">“code ninja”</strong>
+					<a href="http://twitter.com/mihahribar" class="url" target="_blank">@mihahribar</a></p>
 				</li>
-				<li class="vcard">
+				<li class="matjaz vcard">
 					<figure>
-						<img src="images/matjaz-korosec.png" class="photo" width="135" height="135" alt="Matjaž Korošec">
+						<img src="images/matjaz-korosec.png" class="photo" width="134" height="134" alt="Matjaž Korošec">
 					</figure>
 					<h2 class="fn n">Matjaž Korošec</h2>
-					<strong class="note">“browser assasin”</strong>
-					<a href="http://twitter.com/matjazkorosec" target="_blank">@matjazkorosec</a>
+					<p><strong class="title">“browser assasin”</strong>
+					<a href="http://twitter.com/matjazkorosec" target="_blank">@matjazkorosec</a></p>
 				</li>
-				<li class="vcard">
+				<li class="natan vcard">
 					<figure>
-						<img src="images/natan-nikolic.png" class="photo" width="135" height="135" alt="Natan Nikolič">
+						<img src="images/natan-nikolic.png" class="photo" width="134" height="134" alt="Natan Nikolič">
 					</figure>
 					<h2 class="fn n">Natan Nikolič</h2>
-					<strong class="note">“indivisual”</strong>
-					<a href="http://twitter.com/natannikolic" target="_blank">@natannikolic</a>
+					<p><strong class="title">“indivisual”</strong>
+					<a href="http://twitter.com/natannikolic" target="_blank">@natannikolic</a></p>
 				</li>
 			</ul>
 			<h3>Feel free to drop a line or two</h3>
-			<p>hello at editorialtemplate dot com</p>
+			<p id="mailto">hello <span>at</span> editorialtemplate <span>dot</span> com</p>
 		</aside>
-	</div>
+		<footer class="v-hidden">
+			<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+			<a class="author include" href="#brand">Editorial</a>
+		</footer>
+	</article>
 </div>
 
 <footer id="footer" role="contentinfo">
@@ -98,22 +111,26 @@ Based on: 320 and Up boilerplate extension
 						<legend class="v-hidden">Subscription</legend>
 						<label for="email" class="v-hidden">Email</label>
 						<input type="email" id="email" name="email" placeholder="Your e-mail address">
-						<input type="submit" id="subscribe" value="Subscribe">
+						<input type="submit" id="subscribe" class="continue" value="Subscribe">
 					</fieldset>
 				</form>
 			</section>
-			<section class="connect">
-				<h3>Keep in touch</h3>
-				<p>Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
+			<section class="connect hentry">
+				<h3 class="entry-title">Keep in touch</h3>
+				<p class="entry-summary">Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
 				love to hear your thoughts and feedback.</p>
-				<div class="twitter">
+				<div class="twitter entry-content">
 					<blockquote>
 						<p>Our custom icons designed by <a href="/" target="_blank">@benedikrok</a> spoted in reality:
 						<a href="http://bit.ly/lu2lL0" target="_blank">http://bit.ly/lu2lL0</a> ;
 						more preview on <a href="/" target="_blank">@dribbble</a>:
 						<a href="http://bit.ly/kgVQHl" target="_blank">http://bit.ly/kgVQHl</a></p>
 					</blockquote>
-					<iframe src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe><!-- frameborder="0" scrolling="no"  -->
+					<iframe id="follow" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe>
+				</div>
+				<div class="v-hidden">
+					<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+					<a class="author include" href="#brand">Editorial</a>
 				</div>
 			</section>
 		</div>
