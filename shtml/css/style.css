@@ -44,7 +44,7 @@ abbr[title] {border-bottom:1px dotted;cursor:help;}
 html {overflow-y:scroll;background:#fff;}
 body {margin:0 auto;min-width:320px;font:100%/20px helvetica,arial,sans-serif;color:#262121;
 background:#f7f7f7 url(../images/body.png) repeat-x;}
-#home {background:#f7f7f7 url(../images/home.jpg) 50% 0 no-repeat;}
+#home {background:#f7f7f7 url(../images/home.jpg) 50% 0 no-repeat;background-size:3000px 840px;}
 
 .features section,.abilities li,.price-tag,#home .content h3,.price-tag h4,.price strong,.included li,.support .col,
 .copyright,.connect,#brand a,.primary li,.primary a,.process ol,.process li,.licenses ol,.order .action,
@@ -172,7 +172,7 @@ box-shadow:inset 0 2px 2px rgba(0,0,0,.55);}
 	-moz-border-radius:40px;
 	-webkit-border-radius:40px;
 	border-radius:40px;
-	padding:15px 14px 10px;
+	padding:13px 14px 10px;
 	color:#666;
 	font-size:12px;
 	font-weight:bold;
@@ -286,8 +286,8 @@ background:rgba(0,0,0,.8);}
 
 .primary ul {margin:0;font-size:10px;}
 .primary li {text-transform:uppercase;text-align:center;background-position:-992px 24px;float:left;}
-.primary a {padding:44px 0 3px 4px;width:76px;color:#7f7f7f;display:block;}
-.primary .selected a {margin:-3px 0 0;border-top:3px solid #da221b;color:#fff;}
+.primary a {margin:0 0 0 4px;padding:44px 0 3px;width:76px;color:#7f7f7f;display:block;}
+.primary .selected a {margin:-3px 0 0 4px;border-top:3px solid #da221b;color:#fff;}
 .primary span {display:none;}
 
 @-moz-keyframes glow {
@@ -325,14 +325,14 @@ background:rgba(0,0,0,.8);}
 
 
 #features {background-position:100px 100px;}
-#features a {background-position:-331px -190px;}
-#features a:hover {background-position:-331px -259px;}
-#purchase a {background-position:-411px -190px;}
-#purchase.selected a,#purchase a:hover {background-position:-411px -259px;}
-#help a {background-position:-491px -190px;}
-#help.selected a,#help a:hover {background-position:-491px -259px;}
-#about a {background-position:-571px -190px;}
-#about.selected a,#about a:hover {background-position:-571px -259px;}
+#features a {background-position:-335px -190px;}
+#features a:hover {background-position:-335px -259px;}
+#purchase a {background-position:-415px -190px;}
+#purchase.selected a,#purchase a:hover {background-position:-415px -259px;}
+#help a {background-position:-495px -190px;}
+#help.selected a,#help a:hover {background-position:-495px -259px;}
+#about a {background-position:-575px -190px;}
+#about.selected a,#about a:hover {background-position:-575px -259px;}
 
 
 /* 10.CONTENT _______________________________________________________________________________________________________ */
@@ -499,32 +499,30 @@ aside .questions li {font-size:13px;line-height:20px;}
 #home #footer {background:#f5fafa;}
 #footer h3,#footer h4 {font:bold 14px/20px helvetica,arial,sans-serif;color:#595959;}
 #footer h3 {margin:0 0 9px;}
-#footer h4 {margin:1px 0 7px;}
+#footer h4 {margin:1px 0 2px;}
 .updates {margin:0 0 15px;padding:27px 0 15px;background:#fff;}
 .updates p {margin:0 0 12px;color:#999;}
 
-.connect {min-height:210px;background-position:right -792px;}
+.connect {min-height:210px;background-position:300px 300px;}
 .twitter {padding:3px 0 0;}
-.twitter blockquote {padding:0 0 7px;position:relative;}
-.twitter p {padding:0 0 0 50px;font:18px/25px MinionProRegular,georgia,serif;color:#595959;position:relative;}
-.twitter p:before {content:'“';font-size:90px;line-height:90px;color:#ccc;display:block;}
-.twitter p:before {position:absolute;top:-1px;left:1px;}
+.twitter blockquote {padding:20px 0 7px;position:relative;}
+.twitter p {font:18px/25px MinionProRegular,georgia,serif;color:#595959;position:relative;}
+.twitter p:before {margin:0 0 -30px;content:'“';font-size:90px;line-height:45px;color:#ccc;display:block;}
 .twitter a {color:#595959;}
 .twitter iframe {border:none;overflow:hidden;width:300px;height:20px;}
 
 .support {margin:0 0 10px;}
 .support .col {background-position:500px 500px;}
 .support ul {width:100%;float:left;}
-.support li {margin:0 20px 0 0;line-height:25px;float:left;}
+.support li {margin:0 15px 0 0;line-height:25px;float:left;}
 
 #footer h4 {color:#4e5759;}
 .copyright,.copyright a {color:#b2b2b2;}
 #home .copyright,#home .copyright a {color:#889799;}
-.copyright {background-position:-27px -1596px;}
-#home .copyright {background-position:-27px -895px;}
-.copyright p {margin:0 0 12px;padding:3px 0 0 90px;font-size:12px;line-height:15px;}
+.copyright,#home .copyright {background-position:300px 300px;}
+.copyright p {margin:0 0 12px;font-size:12px;line-height:15px;}
 
-.subscription {padding:0 0 30px;}
+.subscription {margin:0 0 27px;border-bottom:1px solid #ccc;padding:0 0 30px;}
 
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
@@ -647,7 +645,8 @@ h2,h3 {page-break-after:avoid;}
 .primary {float:left;}
 .primary ul {font-size:13px;}
 .primary li {padding:0 10px 0 15px;background-position:-992px 12px;text-align:left;}
-.primary a {padding:9px 0 7px;width:auto;line-height:20px;letter-spacing:1.2px;background:100px 100px;}
+.primary a {margin:0;padding:9px 0 7px;width:auto;line-height:20px;letter-spacing:1.2px;background:100px 100px;}
+.primary .selected a {margin:-3px 0 0;}
 .primary span {display:inline;}
 
 #features {background-position:-992px 12px;}
@@ -692,14 +691,23 @@ h2,h3 {page-break-after:avoid;}
 
 .updates {margin:0 0 28px;padding:27px 15px 15px;}
 
-.support .col {padding:0 5%;width:33.3%;background-position:left -540px;float:left;}
+#footer h4 {margin:1px 0 7px;}
+
+.support {margin-left:-5%;}
+.support .col {padding:0 0 0 5%;width:33.3%;background-position:left -540px;float:left;}
 .support .col:first-child {background-position:500px 500px;}
 .support ul {float:none;}
 .support li {margin:0;float:none;}
 
-.copyright {width:405px;text-align:right;background-position:305px -1592px;float:right;}
-#home .copyright {background-position:305px -891px;}
-.copyright p {margin:0 0 12px;padding:3px 90px 0 0;}
+.connect {background-position:right -792px;}
+.twitter blockquote {padding:0 0 7px;}
+.twitter p {padding:0 0 0 50px;}
+.twitter p:before {margin:0;line-height:90px;position:absolute;top:-1px;left:1px;}
+
+.copyright {width:405px;background-position:-27px -1596px;}
+#home .copyright {background-position:-27px -895px;}
+.copyright p {padding:3px 0 0 90px;}
+
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
@@ -945,6 +953,9 @@ h1,.exposed {text-align:left;}
 
 .primary {position:relative;z-index:2;}
 
+.primary a:hover {margin:-3px 0 0;border-top:3px solid #666;}
+.primary .selected a:hover {border-color:#da221b;}
+
 
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
@@ -1009,12 +1020,17 @@ width:216px;height:auto;float:left;}
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
+
+#footer {padding:0 0 40px;}
+
 .updates {margin:0 0 28px;padding:27px 0 45px;width:100%;float:left;background:#fff;}
 .subscription {width:48%;float:left;}
 .connect {width:48%;float:right;}
 .support {margin:0;width:498px;float:left;}
 .support .col,.support .col:first-child {background-position:148px -540px;}
 .support .col {padding-left:0;}
+
+.subscription {margin:0;border:none;}
 
 .copyright {background-position:296px -1596px;float:right;}
 #home .copyright {background-position:296px -895px;}
