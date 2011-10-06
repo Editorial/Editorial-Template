@@ -103,8 +103,8 @@ input,textarea,table {font-family:helvetica,arial,sans-serif;}
 
 .price strong,.message,.message h3,.level .notice,.read,.info p,.default p {font-family:MinionProRegular,georgia,sans-serif;}
 
-.primary li,.abilities li,.licenses input,.domain input,.message .lead,.order .leading,.level h2,.level h4,.level li,
-#domains-no,.default .lead {font-family:MinionProSemibold,georgia,sans-serif;}
+.primary li,.abilities li,.licenses input,.domain input,.message .lead,.order .leading,.level h2,.level h4,#domains-no,
+.default .lead {font-family:MinionProSemibold,georgia,sans-serif;}
 
 #home #header h2,#home h3 span,.level h3,.info .lead {font-family:MinionProItalic,georgia,serif;}
 .info .lead {font-size:22px;line-height:30px;}
@@ -194,7 +194,7 @@ box-shadow:inset 0 2px 2px rgba(0,0,0,.55);}
 
 form h3 {margin:0 0 3px;font:12px/20px helvetica,arial,sans-serif;color:#262121;}
 form label {font-size:12px;line-height:20px;color:#262121;}
-form p {font-size:12px;line-height:15px;color:#999;}
+form p,.domain .info p,.info .help {font:12px/15px helvetica,arial,sans-serif;color:#999;}
 
 #buy-form {padding:5px 0 0;clear:both;}
 
@@ -222,7 +222,7 @@ padding:3px 5px 4px;}
 #licenses-c,.domain input {width:52px;}
 #total {margin:0;padding:0;font-size:30px;line-height:30px;text-align:right;}
 
-.order {padding:15px 15px 0;}
+.order {padding:15px 15px 30px;}
 .order fieldset {margin:0;padding:11px 0 0;}
 .order .licenses {padding:0;}
 
@@ -240,8 +240,9 @@ padding:3px 5px 4px;}
 
 .tearms .i-agree {margin:0 0 7px;}
 
-.order .submit {padding:26px 0 31px;}
-.submit .go {padding:13px 12px 12px;font-size:12px;float:right;}
+.order .submit {padding:26px 0 0;}
+form .submit {text-align:center;}
+.submit .go {margin:0 auto;padding:13px 22px 12px;font-size:12px;width:auto;}
 
 .manage {clear:both;}
 .manage #domains {margin:0 0 14px;}
@@ -256,8 +257,8 @@ background:-moz-linear-gradient(top,#dd0b00,#820300);
 background:-webkit-gradient(linear,left top, left bottom,from(#dd0b00),to(#820300));
 background:linear-gradient(top,#dd0b00,#820300);display:block;}
 
-.go {padding:10px 31px;font-size:13px;line-height:28px;float:left;}
 
+.go {margin:0 auto;padding:10px 31px;font-size:13px;line-height:28px;display:block;width:76px;}
 .manage .submit input {line-height:14px;}
 
 #manage-form {margin:0 0 0 -15px;padding:13px 0 0 15px;background-position:-1160px -40px;}
@@ -275,11 +276,11 @@ background:rgba(0,0,0,.8);}
 /*#home #brand {padding-top:231px;display:block;}*/
 #home #brand {padding-top:431px;display:block;}
 #home #brand a {background-position:500px 500px;}
-#home #header h1 {font:bold 28px/37px helvetica,arial,sans-serif;display:inline;}
+#home #header h1 {font:bold 20px/24px helvetica,arial,sans-serif;display:inline;}
 #home h1 a {padding:0 5px 0 0;color:#262121;}
-#home #header h2 {font-size:40px;line-height:45px;display:inline;}
+#home #header h2 {font-size:30px;line-height:35px;display:inline;}
 #header video {margin:0 0 6px;width:100%;height:420px;}
-#header p {margin:0 15px;font-size:16px;line-height:48px;color:#999;}
+#header p {margin:0 15px;font-size:16px;line-height:48px;color:#999;clear:both;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -341,6 +342,7 @@ background:rgba(0,0,0,.8);}
 
 .adapt,.features,.pricing,.process,.order,.main {margin:0 auto;text-align:left;}
 #home .content h3,.level h2 {margin:0 0 36px;font-size:24px;line-height:30px;background-position:300px 300px;}
+#home .content h3 {text-align:center;}
 .level h2 {margin:0 0 15px;}
 #home h3 em,.level h2 em {font-style:normal;}
 
@@ -369,12 +371,13 @@ background:rgba(0,0,0,.8);}
 #colophon {background-position:-215px -701px;}
 #rss {background-position:-94px -837px;}
 
+/*.process {background:url(../images/_temp/half-radial.png) center 120px no-repeat;}*/
 .process header {margin:0 0 15px;width:100%;float:left;}
 .process ol {margin:0 0 15px;width:100%;font-size:11px;text-transform:uppercase;float:left;}
 .process li {padding:45px 0 0;width:33.3%;color:#ccc;text-align:center;float:left;}
 .process .selected {color:#999;}
 .process figure,.ribbon h1 {background-position:-20px bottom;}
-.process figure {margin:0 0 15px;}
+.process figure {margin:0 0 5px;}
 #licenses .process figure {background:none;position:absolute;top:105px;right:7px;}
 #domains-no {font-size:35px;line-height:35px;color:#7f0808;text-shadow:1px 1px 1px #f00,-1px -2px 0 rgba(0,0,0,.65);
 position:absolute;top:25px;left:34px;z-index:1;}
@@ -392,50 +395,51 @@ position:absolute;top:25px;left:34px;z-index:1;}
 .step3 #step3 {background-position:right -1388px;}
 .process figure {clear:both;}
 
-.order {margin:0 auto 40px;padding-bottom:15px;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;
+.order {margin:0 auto 40px;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;
 background:#fff;-moz-box-shadow:0 4px 4px rgba(0,0,0,.25);-webkit-box-shadow:0 4px 4px rgba(0,0,0,.25);
 box-shadow:0 4px 4px rgba(0,0,0,.25);}
-.order h2 {font-size:24px;line-height:30px;}
+.order h2 {font-size:24px;line-height:25px;}
 .order .leading {margin:0 -15px 10px;padding-top:20px;font-size:18px;line-height:20px;color:#000;
 background-position:-1160px -40px;}
 .order .brand {font:bold 14px/20px helvetica,arial,sans-serif;color:#000;display:inline;}
 .order .brand em {font-style:normal;color:#da1e25;}
-.order .action {margin:0 auto;width:260px;padding:82px 0 75px;background-position:-975px -1596px;}
+.order .action {margin:0 auto -25px;width:260px;padding:82px 0 75px;background-position:-975px -1596px;}
 .follow {width:290px;height:20px;overflow:hidden;}
 .download {margin:0 0 9px;width:258px;font-size:18px;line-height:28px;}
 .download em {padding:18px 0 14px 88px;font-style:normal;background-position:-358px -109px;display:block;}
 
 #download .info h2 {margin:0 0 15px;padding:15px 0 0;}
 #download .order p {margin:0 0 19px;text-align:left;color:#595959;}
-#download .order .leading {margin:0 0 19px -30px;padding:20px 0 0 30px;color:#262121;}
-#download .order .action p {color:#999;}
+#download .order .leading {margin:0 0 19px -15px;padding:20px 0 0 15px;color:#262121;}
+#download .order .action p {color:#999;text-align:center;}
 
 
 
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
 .main {margin:0 0 5px;position:relative;z-index:0;}
-.main h1,.main .exposed {margin:25px 0;}
+.main h1,.main .exposed {margin:15px 0;}
 .main h1 {width:100%;float:left;}
 .ribbon h1 {margin:25px 0 15px;padding:0 0 40px;max-width:410px;}
 
 .level {padding:0 0 30px;}
-.level h2,.level h4 {font-size:24px;line-height:30px;}
+.level li {background-position:300px 300px;}
+.level h2,.level h4 {font-size:24px;line-height:25px;}
 .level h2 {margin:0 0 25px;}
-.level h3 {margin:0 0 10px;font-size:22px;line-height:30px;color:#999;}
-.level .group {margin:0 0 15px;width:100%;background-position:0 bottom;float:left;}
+.level h3 {margin:20px 0 10px;font-size:22px;line-height:25px;color:#999;}
+.level .group {margin:0 0 15px;width:100%;background-position:300px 300px;float:left;}
 
 .questions {margin:0;}
 .related .questions {margin:0 0 25px;}
-.questions li {font-size:18px;line-height:20px;background-position:-950px bottom;}
+.questions li {font-size:18px;line-height:20px;}
 .questions li:last-child {background:none;}
-.questions li a {padding:11px 0 10px 35px;display:block;position:relative;}
-.related .questions a {padding:10px 0 0 23px;}
+.questions li a {display:block;position:relative;}
+.questions a {padding:10px 0 0 23px;}
 .questions li a:before {content:'Q';color:#da1e25;position:absolute;left:2px;top:11px;}
 .related .questions a:before {top:10px;}
 
-.level .notice {padding:9px 0 0;font-size:18px;line-height:25px;color:#262121;}
-.level .notice a {color:#262121;text-decoration:underline;}
+.level .notice {padding:9px 0 0;font-size:18px;line-height:25px;color:#333;}
+.level .notice a {color:#333;text-decoration:underline;}
 
 .read h2,.related h4 {margin:0 0 7px;font-size:16px;line-height:18px;}
 .read p,.read li,.info p {font-size:16px;line-height:23px;}
@@ -480,9 +484,9 @@ background-position:-456px -73px;}
 background-position:-304px -36px;}
 .price em {padding:0 4px 0 2px;font-style:normal;}
 .price sup {font-size:24px;line-height:30px;}
-.price .go {padding:5px 16px;font-size:12px;position:absolute;top:18px;right:0;}
+.price .go {padding:5px 16px;width:auto;font-size:12px;position:absolute;top:18px;right:0;}
 
-aside .questions li {font-size:13px;line-height:20px;}
+.questions li {font-size:13px;line-height:20px;}
 
 .related p {margin:0 0 10px;font-size:13px;line-height:20px;color:#999;}
 
@@ -527,7 +531,7 @@ aside .questions li {font-size:13px;line-height:20px;}
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 
-#header hgroup,.content,.updates,.support,.copyright,.support,#download .info {padding-left:15px;padding-right:15px;}
+#header hgroup,.content,.updates,.support,.copyright,.support {padding-left:15px;padding-right:15px;}
 
 .clear:before,.clear:after,body:before,body:after,#header:before,#header:after,#footer:before,#footer:after,
 .content:before,.content:after,.updates .adapt:before,.updates .adapt:after,.support:before,.support:after,
@@ -609,6 +613,9 @@ h2,h3 {page-break-after:avoid;}
 
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+h1,.exposed {font-size:57px;line-height:57px;}
+
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
@@ -629,10 +636,15 @@ h2,h3 {page-break-after:avoid;}
 
 .licenses .price-c,.licenses .licenses-c,.licenses .total {width:33.3%;}
 
+form .submit {text-align:left;}
+.submit .go {float:right;}
+.go {float:left;}
+
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #header hgroup {text-align:center;}
+#home #header {margin:0 0 68px;}
 #header p {margin:0 auto;width:322px;font-size:18px;}
 #brand {width:49px;height:37px;display:block;overflow:hidden;}
 #home #brand {width:auto;height:auto;}
@@ -660,7 +672,7 @@ h2,h3 {page-break-after:avoid;}
 .process figure {text-align:center;}
 .process figure img {margin:0 auto;}
 
-.order .action {width:290px;background-position:-960px -1596px;}
+.order .action {margin-bottom:0;width:290px;background-position:-960px -1596px;}
 .download {width:278px;}
 .download em {padding:18px 0 14px 103px;background-position:-343px -109px;}
 
@@ -710,6 +722,10 @@ h2,h3 {page-break-after:avoid;}
 
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
+
+#header hgroup,.content,.updates,.support,.copyright,.support {padding-left:25px;padding-right:25px;}
+
+
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
@@ -763,6 +779,7 @@ z-index:-1;}
 #home h3 em,.level h2 em {padding:0 15px;background:#f7f7f7;}
 .level h2 em {padding-left:0;}
 
+.process figure {margin:0 0 15px;}
 .goodies {float:left;}
 
 #domains-no {font-size:72px;top:78px;left:77px;}
@@ -785,11 +802,19 @@ z-index:-1;}
 .price-tag {width:326px;float:right;}
 .pricing figure {width:42%;float:left;display:block;}
 
+/*
+da je slka vedno spodaj
+.pricing {height:436px;}
+.price-tag {width:326px;float:right;}
+.pricing figure {width:42%;height:365px;float:left;display:block;position:relative;}
+.pricing figure img {position:absolute;left:0;bottom:0;
+*/
+
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
 .updates {margin:0 0 28px;padding:27px 15px 15px;}
-.abilities li {padding:0 0 0 13%;width:36%;float:left;}
+.abilities li {padding:0 0 0 13%;width:37%;float:left;}
 #updates,#customizable,#admin,#colophon {float:right;}
 
 
@@ -848,6 +873,11 @@ form .info {width:48%;float:left;}
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
+
+#home #header h2 {font-size:40px;line-height:45px;}
+#home #header h1 {font-size:28px;line-height:37px;}
+	
+
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
@@ -860,15 +890,22 @@ form .info {width:48%;float:left;}
 .abilities li {width:35%;}
 
 .process header {padding:0 15px;width:auto;float:none;}
-.order {margin:0 auto 77px;padding:21px 49px 49px;}
+.order {margin:0 auto 55px;padding:21px 49px 30px;}
 
-#download .info {padding:0 49px;}
+/*#download .info {padding:0 49px;}*/
+#download .order .leading {margin:0 0 19px -49px;padding:20px 0 0 49px;}
 #download .info h2 {padding:34px 0 16px;}
 .leading {margin:0 -49px 10px;padding-top:20px;}
 
 
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
+.main h1,.main .exposed {margin:25px 0;}
+.level li {background-position:-950px bottom;}
+.level li a {padding:11px 0 10px 35px;}
+.level .group {background-position:0 bottom;}
+.level h3 {margin:0 0 10px;line-height:30px;}
+.level h2,.level h4 {line-height:30px;}
 .read h1 {margin:0 0 26px;}
 .read h2,.related h4 {margin:0 0 8px;font-size:18px;line-height:20px;}
 .read h4 {margin:31px 0 9px;font-size:24px;line-height:30px;}
@@ -877,13 +914,16 @@ form .info {width:48%;float:left;}
 .read .vote {margin:0 0 38px;}
 .read p+ul,.read p+ol {margin-top:-22px;}
 .read p+.vote {margin-top:-17px;}
-.level h3 {font-size:28px;}
+.level h3 {margin:20px 0 10px;font-size:28px;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
 .pricing figure {width:48%;}
 .related h4 {margin:0 0 6px;}
+
+
+.level li {font:18px/20px MinionProSemibold,georgia,sans-serif;}
 
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
@@ -974,9 +1014,9 @@ width:216px;height:auto;float:left;}
 .process figure img {position:absolute;top:-217px;right:15px;}
 .process ol {width:463px;}
 
-.order {padding-bottom:20px;}
 #download .info {width:55%;float:left;}
-.order .action {margin:13px 0 0;width:368px;float:right;}
+.order .action {margin:13px 0 0;width:324px;float:right;}
+#download .order .action p {text-align:left;}
 
 #domains-no {top:-142px;left:63px;}
 #licenses .process figure {top:247px;right:0;}
