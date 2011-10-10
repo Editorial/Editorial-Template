@@ -1,11 +1,12 @@
 /*
   _  _  ___ ___ _   _  ___
  |_ | \  |   | / \ |_)  |   /\  |
- |_ |_/ _|_  | \_/ | \ _|_ /--\ |_
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
  File: script.js
- Version: 1.0
- Authors: Matjaž Korošec, Miha Hribar (ko bos kaj dodal se ta komentar zbrise)
+ Version: 1.0 (XX.XX.2011)
+ Authors: Matjaz Korosec (twitter.com/matjazkorosec),
+          Miha Hribar (twitter.com/mihahribar)
 
  */
 
@@ -19,7 +20,6 @@ if (iDevice) {
 		},false);
 	}
 }
-
 
 $(function(){
 
@@ -43,14 +43,6 @@ $(function(){
 	//hidding iframe scrolls (invalid attr)
 	$('#follow').attr('scrolling','no');
 
-	
-//max-width IE6
-/*if ($.browser.msie && $.browser.version < 7) {
-	function maxWidth() {
-		if ($('body').width() > 960) {$('body').css('width','960px');}
-	}
-	$(window).resize(function(){maxWidth();});
-}*/
 
 });
 
