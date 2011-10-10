@@ -1,8 +1,15 @@
 /*
-Editorial theme
-Version: 0.5
-Based on: 320 and Up boilerplate extension
-*/
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+
+ File: style.css
+ Version: 1.0 (XX.XX.2011)
+ Author: Matjaz Korosec (twitter.com/matjazkorosec)
+
+ Based on: 320 and Up boilerplate extension
+
+ */
 
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
@@ -41,8 +48,8 @@ body {margin:0 auto;padding:40px 0;width:90%;font:100%/20px MinionProRegular,geo
 background-color:transparent;}
 #notfound {padding:0;}
 
-#primary,#rss,#inside #single footer,#inside-portrait #single footer,#tabs,#navigate ul,#embed,.notice,
-#comments article,#paging,#layout-list .featured article,#team li,.featured article
+#primary,#rss,.inside #single footer,.inside-portrait #single footer,#tabs,#navigate ul,#embed,.notice,
+#comments article,#paging,.layout-list .featured article,#team li,.featured article,#widgets
 {background:url(../images/bgr/lines.gif) repeat-x;}
 
 #find,#primary li,#primary .selected a,#tabs li,#footer nav li,#rss li,.xoxo li,#media-count,footer nav .selected a,
@@ -53,7 +60,7 @@ background-color:transparent;}
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,h2,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
-#home h1,#home-portrait h1,.featured h2,#comments cite,#paging .more {font-family:MinionProSemibold,georgia,serif;
+.home h1,.home-portrait h1,.featured h2,#comments cite,#paging .more {font-family:MinionProSemibold,georgia,serif;
 color:#ccc;text-decoration:underline;}
 #embed h4,.message .lead,#common h2,#team .fn,address .fn,.entry-content h2,#try
 {font-family:MinionProSemibold,georgia,serif;}
@@ -80,7 +87,7 @@ url('../fonts/minionpro-regular.svg#MinionProRegular') format('svg');font-weight
 
 h1 em,#comments-form li em,.qa em {font-style:normal;}
 h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
-#exposed footer a,#inside #single footer a,#inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
+#exposed footer a,.inside #single footer a,.inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
 .favorize .negative,#team .title,footer h3,#notfound h1 {color:#d00;}
 
 
@@ -198,15 +205,16 @@ tfoot td {padding:5px 0;}
 tbody tr:nth-child(2n+2) td {background:#f5f5f5;}
 table .right {text-align:right;}
 
+
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 #search {margin:0 0 15px;}
-#search fieldset {width:275px;position:relative;}
+#search fieldset {width:100%;max-width:275px;position:relative;}
 #notfound #search fieldset {border:5px solid #e6e6e6;}
 #query,#embed-code,#comments-form .text input,#comments-form textarea,#comments-form .riddle input {
 border:1px solid #a6a6a6;border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;font-size:14px;}
 /* TODO reze sumnike */
-#query {padding:4px 30px 2px 4px;width:275px;height:30px;}
+#query {padding:4px 30px 2px 4px;width:100%;height:30px;}
 #find {border:none;width:30px;height:30px;background-position:7px -42px;position:absolute;top:-1px;right:1px;}
 
 #comments-form {padding:37px 0 0;width:100%;float:left;}
@@ -269,9 +277,9 @@ text-transform:uppercase;background-position:-549px -40px;float:left;}
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
 .featured {margin:0 0 20px;width:100%;float:left;}
-#layout-grid .featured,#layout-list .featured {margin-bottom:0;}
+.layout-grid .featured,.layout-list .featured {margin-bottom:0;}
 .featured article {margin:0 0 20px;width:100%;background-position:bottom;float:left;}
-#layout-list .featured article {background-position:bottom;}
+.layout-list .featured article {background-position:bottom;}
 .featured figure {margin:0 0 20px;float:left;}
 .featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img,#team img {border:1px solid #ccc;padding:6px;
 display:block;}
@@ -279,11 +287,11 @@ display:block;}
 .featured h2,#exposed h2 {font-size:20px;line-height:25px;}
 .featured h3 {margin:0 0 23px;}
 .featured p {display:none;}
-.featured footer,#exposed footer,#inside #single footer,#inside-portrait #single footer,#comments time,#paging p,
+.featured footer,#exposed footer,.inside #single footer,.inside-portrait #single footer,#comments time,#paging p,
 footer h3 {padding:0 0 6px;font:10px/12px helvetica,arial,sans-serif;text-transform:uppercase;}
-.featured time,#exposed time,#single time,#inside #single footer em,#inside-portrait #single footer em,
-#inside #single footer em a,#inside-portrait #single footer em a,#paging p {color:#999;}
-.featured time:before,#exposed time:before,#inside #single time:before,#inside-portrait #single time:before {content:'- ';}
+.featured time,#exposed time,#single time,.inside #single footer em,.inside-portrait #single footer em,
+.inside #single footer em a,.inside-portrait #single footer em a,#paging p {color:#999;}
+.featured time:before,#exposed time:before,.inside #single time:before,.inside-portrait #single time:before {content:'- ';}
 
 #exposed {margin:0 0 20px;border-bottom:1px solid #bfbfbf;width:100%;float:left;}
 #exposed figure {margin:0 auto 10px;}
@@ -291,24 +299,25 @@ footer h3 {padding:0 0 6px;font:10px/12px helvetica,arial,sans-serif;text-transf
 #exposed footer {padding:12px 0 9px;}
 
 #single,#common {margin:0 0 10px;}
-#layout-list #single h1,#layout-grid #single h1 {margin:15px 0 20px;width:100%;float:left;}
+.inside #single,.inside-portrait #single {overflow:hidden;/*cutting quotes */}
+.layout-list #single h1,.layout-grid #single h1 {margin:15px 0 20px;width:100%;float:left;}
 #intro .entry-summary {margin:0 0 13px;font-size:20px;line-height:26px;position:relative;}
 #intro .entry-summary:before,#intro .entry-summary:after {width:230px;height:230px;font-size:600px;line-height:600px;
 color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
 #intro .entry-summary:before {content:'“';left:-20px;top:-65px;}
 #intro .entry-summary:after {content:'”';right:-15px;bottom:-144px;}
-#inside #single footer,#inside-portrait #single footer {margin-top:1px;padding-top:12px;}
+.inside #single footer,.inside-portrait #single footer {margin-top:1px;padding-top:12px;}
 #single .entry-content a,#comments .show a {border-bottom:1px solid #d6d6d6;}
 #single footer em {font-style:normal;}
 #single footer em a {font-weight:bold;}
 #single .social {margin:0;width:100%;float:left;}
 #single .social li {margin:10px 15px 0 0;float:left;}
-#gallery #single h1,#gallery-portrait #single h1,#feedback #single h1,.notice a {text-decoration:underline;color:#d9d9d9;}
+.gallery #single h1,.gallery-portrait #single h1,.feedback #single h1,.notice a {text-decoration:underline;color:#d9d9d9;}
 
 #media {margin:15px 0 0;width:100%;float:left;}
 #to-gallery,#media span {margin:0 0 15px;font-size:18px;background:#fff;position:relative;}
 #media-count {padding:6px 11px 9px 43px;font-size:18px;color:#262626;font-style:normal;display:block;
-background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:0;right:0;}
+background-color:#fff;background-position:-32px -42px;position:absolute;bottom:0;right:0;}
 
 .notice {margin:0;padding:3px 0 26px;font-size:22px;line-height:25px;color:#262626;background-position:bottom;}
 .notice strong {font-weight:normal;}
@@ -327,8 +336,8 @@ background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:
 .bad-comment,.trackback {color:#999;}
 
 #paging {padding:18px 0 18px;width:100%;float:left;}
-#feedback #paging {background-position:bottom;}
-#layout-grid #paging,#layout-list #paging {background-position:0 -100px;}
+.feedback #paging {background-position:bottom;}
+.layout-grid #paging,.layout-list #paging {background-position:0 -100px;}
 #paging p {margin:0;padding:8px 0 0;}
 #paging .more {margin:0;padding:0;font-size:18px;line-height:25px;text-transform:none;}
 #paging strong {font-weight:normal;}
@@ -350,8 +359,8 @@ background-color:#fff;background-position:-32px -42px;;position:absolute;bottom:
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
-#gallery aside,#gallery-portrait aside {width:100%;float:left;}
-#gallery aside h2,#gallery-portrait aside h2 {color:#bfbfbf;}
+.gallery aside,.gallery-portrait aside {width:100%;float:left;}
+.gallery aside h2,.gallery-portrait aside h2 {color:#bfbfbf;}
 
 #navigate {margin:0 0 13px;width:100%;float:left;}
 #navigate ul {margin:0;padding:10px 0 0;width:100%;float:left;}
@@ -405,6 +414,11 @@ footer h3 {margin:20px 0 0;}
 #rss {padding:0 0 19px;width:100%;background-position:bottom;float:left;}
 #rss li,#footer nav li,.xoxo li,#tabs li {text-decoration:underline;color:#d9d9d9;}
 #rss a,#footer nav a {color:#000;}
+
+/* @todo MatjaÅ¾ pls fix */
+#temp {clear:both;}
+#widgets {margin-bottom:20px;width:100%;background-position:bottom;float:left;}
+#footer aside section {width:20%;float:left;}
 
 #footer nav {margin:0 0 10px;float:left;}
 
@@ -501,14 +515,14 @@ h2,h3 {page-break-after:avoid;}
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 
 body {width:93.5%;overflow:hidden;}
-#feedback {overflow:visible;}
+.feedback {overflow:visible;}
 
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,h2 {font-size:53px;line-height:53px;}
 h3 {font-size:36px;line-height:36px;}
-#home h1,#home-portrait h1 {font-size:48px;line-height:48px;}
+.home h1,.home-portrait h1 {font-size:48px;line-height:48px;}
 h1 {margin:0 0 21px;}
 
 
@@ -545,6 +559,8 @@ background:none;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
+
+#search fieldset {width:275px;}
 #notfound #search {float:left;}
 
 .captcha {width:61%;float:left;}
@@ -562,26 +578,26 @@ background:none;}
 
 .featured article {float:left;}
 .featured figure {width:25%;display:block;}
-#layout-list .featured figure {margin-bottom:20px;}
+.layout-list .featured figure {margin-bottom:20px;}
 .featured .info {padding-top:10px;width:69%;float:right;}
-#layout-grid .featured .info,#layout-list .featured .info {padding-top:0;}
+.layout-grid .featured .info,.layout-list .featured .info {padding-top:0;}
 .featured article {width:100%;}
 .featured h2,#exposed h2 {font-size:24px;line-height:30px;}
 
-#home #exposed figure {margin:0 0 20px;width:100%;max-width:628px;float:left;}
-#home-portrait #exposed figure {margin:0 auto 20px;max-width:329px;}
+.home #exposed figure {margin:0 0 20px;width:100%;max-width:628px;float:left;}
+.home-portrait #exposed figure {margin:0 auto 20px;max-width:329px;}
 #single,#common {padding:30px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 21px;font-size:24px;line-height:30px;}
 #single .entry-content p,#comments .show,#comments h4 {font-size:18px;line-height:25px;}
-#layout-list #single h1,#layout-grid #single h1 {margin:0 0 20px;}
+.layout-list #single h1,.layout-grid #single h1 {margin:0 0 20px;}
 #comments .show {font-style:italic;}
 
-#inside-portrait #to-gallery,#gallery-portrait figure span {margin:0 20px 20px 0;width:48%;float:left;}
-#gallery figure #video {margin:0 auto 20px;width:100%;max-width:421px;float:none;}
-#inside-portrait #media figcaption,#gallery-portrait #media figcaption {clear:none;}
+.inside-portrait #to-gallery,.gallery-portrait figure span {margin:0 20px 20px 0;width:48%;float:left;}
+.gallery figure #video {margin:0 auto 20px;width:100%;max-width:421px;float:none;}
+.inside-portrait #media figcaption,.gallery-portrait #media figcaption {clear:none;}
 
 .message,#comments-form {width:100%;float:left;}
-#layout-grid #paging,#layout-list #paging {padding-bottom:32px;}
+.layout-grid #paging,.layout-list #paging {padding-bottom:32px;}
 #paging .more {float:left;}
 #paging p {float:right;}
 
@@ -611,7 +627,7 @@ box-shadow:7px 2px 2px rgba(0,0,0,.1);}
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 
-.ie6 #home #exposed figure {width:628px;}
+.ie6 .home #exposed figure {width:628px;}
 .ie6 #single,.ie6 #common {float:left;}
 
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
@@ -647,7 +663,7 @@ body {width:95.2%;}
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 #search {margin:-4px 0 14px;float:right;}
-#home #search,#home-portrait #search {margin:0 0 15px;float:none;}
+.home #search,.home-portrait #search {margin:0 0 15px;float:none;}
 
 #comments-form .text input {width:100%;}
 #comments-form .area {margin:0;}
@@ -667,7 +683,7 @@ body {width:95.2%;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #brand {max-width:48%;float:left;}
-#home #brand,#home-portrait #brand {max-width:none;float:none;}
+.home #brand,.home-portrait #brand {max-width:none;float:none;}
 
 #notfound #header,#try {margin-left:-242px;width:485px;left:50%;}
 #notfound #header {top:370px;}
@@ -683,13 +699,13 @@ body {width:95.2%;}
 .featured figure a {display:block;}
 .featured .info {width:32%;clear:none;float:left;}
 .featured p {margin:0 0 18px;width:40%;font-size:16px;line-height:20px;color:#7f7f7f;display:block;float:right;}
-#layout-list .featured p {padding:7px 0 0;}
-#home-portrait #exposed figure {max-width:460px;}
+.layout-list .featured p {padding:7px 0 0;}
+.home-portrait #exposed figure {max-width:460px;}
 
-#gallery figure #video {max-width:480px;}
+.gallery figure #video {max-width:480px;}
 #intro .entry-summary:after {content:'”';right:-15px;top:34px;}
-#inside #media figure,#gallery #media figure {max-width:628px;}
-#gallery #media figcaption,#gallery #media #video-fc {width:70%;}
+.inside #media figure,.gallery #media figure {max-width:628px;}
+.gallery #media figcaption,.gallery #media #video-fc {width:70%;}
 
 #tabs li {width:33.33%;position:relative;}
 #tabs em {position:absolute;top:12px;right:14px;}
@@ -739,7 +755,7 @@ body {width:628px;}
 #m-back span {font:18px MinionProSemibold,georgia,serif;text-transform:none;}
 #media-elements h2 {margin:-27px 0 0;width:125px;height:56px;font:54px MinionProRegular,georgia,serif;text-align:right;
 position:absolute;top:50%;left:34px;}
-#media-elements h3 {margin:21px 0 6px 198px;;width:55%;}
+#media-elements h3 {margin:21px 0 6px 198px;width:55%;}
 #media-elements p {margin:0 0 14px 198px;width:55%;display:block;float:left;clear:none;}
 
 
@@ -747,7 +763,8 @@ position:absolute;top:50%;left:34px;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-#home #search,#home-portrait #search,#search {margin:-4px 0 14px;float:right;}
+
+.home #search,.home-portrait #search,#search {margin:-4px 0 14px;float:right;}
 
 #comments-form {margin:0 0 30px;}
 #comments-form .feedback {margin:0 0 20px;}
@@ -764,41 +781,41 @@ position:absolute;top:50%;left:34px;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#home #brand,#home-portrait #brand,#brand {max-width:48%;float:left;}
+.home #brand,.home-portrait #brand,#brand {max-width:48%;float:left;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
-#home-portrait #exposed {width:100%;float:left;}
-#inside-portrait #exposed {margin:0;border:none;width:48%;float:left;}
+.home-portrait #exposed {width:100%;float:left;}
+.inside-portrait #exposed {margin:0;border:none;width:48%;float:left;}
 #exposed figure {margin:0 0 20px;width:100%;}
-#home-portrait #exposed figure {width:460px;float:none;}
-#inside-portrait #exposed figure {width:100%;}
+.home-portrait #exposed figure {width:460px;float:none;}
+.inside-portrait #exposed figure {width:100%;}
 .featured h2 {line-height:25px;}
 .featured .info {padding:0;width:64%;float:right;}
 .featured p {width:100%;}
-#layout-grid .featured {background:url(../images/bgr/grid-768.png) repeat-x;}
-#layout-grid .featured article {background-color:#fff;}
-#layout-list .featured .info {width:34%;float:left;}
-#layout-list .featured p {width:47%;float:right;}
-#home-portrait #exposed .info,#inside-portrait #exposed .info {width:100%;}
+.layout-grid .featured {background:url(../images/bgr/grid-768.png) repeat-x;}
+.layout-grid .featured article {background-color:#fff;}
+.layout-list .featured .info {width:34%;float:left;}
+.layout-list .featured p {width:47%;float:right;}
+.home-portrait #exposed .info,.inside-portrait #exposed .info {width:100%;}
 /*.featured {width:100%;float:left;}*/
 .featured article {width:48%;min-height:230px;}
-#layout-list .featured article {width:100%;min-height:inherit;}
+.layout-list .featured article {width:100%;min-height:inherit;}
 .featured .f2,.featured .f4 {float:right;}
 /*.featured .f3,.featured .f4 {margin-bottom:0;background:none;}*/
-#layout-list .featured .f2,#layout-list .featured .f4 {float:left;}
+.layout-list .featured .f2,.layout-list .featured .f4 {float:left;}
 .featured figure {margin:0 0 13px;width:31%;margin-right:0;}
-#layout-list .featured figure {width:13.3%;margin-right:20px;}
+.layout-list .featured figure {width:13.3%;margin-right:20px;}
 
 #common {width:100%;float:left;}
 
-#gallery-portrait #media {margin:0 0 10px;}
-#gallery-portrait #media figure {margin:0 auto;width:460px;}
-#gallery-portrait #media span {margin:0 auto 15px;width:446px;}
-#gallery #media #video {width:614px;max-width:none;}
+.gallery-portrait #media {margin:0 0 10px;}
+.gallery-portrait #media figure {margin:0 auto;width:460px;}
+.gallery-portrait #media span {margin:0 auto 15px;width:446px;}
+.gallery #media #video {width:614px;max-width:none;}
 #video iframe {width:614px;height:462px;}
 
 #comments blockquote {clear:none;}
@@ -808,7 +825,7 @@ position:absolute;top:50%;left:34px;}
 
 #layout {width:48%;text-transform:uppercase;display:block;position:absolute;top:22px;right:0;}
 #layout p {margin:0 0 3px;float:right;}
-#layout menu {margin:0 0 20px;border-radius:3px;padding:2px;height:26px;background:#f3f3f3;
+.switch {margin:0 0 20px;border-radius:3px;padding:2px;height:26px;background:#f3f3f3;
 background:-moz-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
 background:-webkit-gradient(linear,left top,left bottom,from(#999),to(#e6e6e6),color-stop(.5,#f3f3f3));
 background:linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);clear:both;float:right;}
@@ -825,11 +842,11 @@ box-shadow:0 0 2px rgba(0,0,0,.8);background:linear-gradient(top,#fff,#fff 40%,#
 
 #comments aside {float:right;}
 
-#gallery #single aside {margin:-50px 0 0;}
+.gallery #single aside {margin:-50px 0 0;}
 #navigate {width:48%;float:right;}
 
-#gallery #navigate h2 {margin:-36px 0 46px;text-align:right;}
-#gallery-portrait #navigate h2 {text-align:right;}
+.gallery #navigate h2 {margin:-36px 0 46px;text-align:right;}
+.gallery-portrait #navigate h2 {text-align:right;}
 #navigate ul {width:100%;float:right;}
 #navigate li {margin:0;}
 
@@ -886,7 +903,7 @@ body {width:960px;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-#home #search,#home-portrait #search {margin:19px 0 15px;}
+.home #search,.home-portrait #search {margin:19px 0 15px;}
 
 #comments-form .text input {width:298px;}
 #comments-form .area textarea {margin: 0 0 23px;width:630px;float:left;}
@@ -927,37 +944,37 @@ body {width:960px;}
 #exposed figure {width:628px;margin:0 40px 0 0;float:left;}
 #exposed .info {width:292px;float:right;}
 #exposed article {padding:0 0 13px;width:100%;float:left;}
-#home #exposed .detail {width:292px;float:right;}
-#home #exposed figure {float:left;}
+.home #exposed .detail {width:292px;float:right;}
+.home #exposed figure {float:left;}
 .featured .info {width:auto;float:none;}
 
-#layout-grid .featured {width:976px;background:url(../images/bgr/grid-1024.png) 16px 0 repeat-x;}
-#layout-grid .featured article {background-color:#fff;}
+.layout-grid .featured {width:976px;background:url(../images/bgr/grid-1024.png) 16px 0 repeat-x;}
+.layout-grid .featured article {background-color:#fff;}
 
-#home-portrait #exposed {margin:0;border:none;width:460px;float:left;}
+.home-portrait #exposed {margin:0;border:none;width:460px;float:left;}
 
-#gallery #single h1,#gallery-portrait #single h1 {padding-right:130px;}
+.gallery #single h1,.gallery-portrait #single h1 {padding-right:130px;}
 
 .featured {margin:0 0 22px -16px;width:auto;float:left;}
-#home-portrait .featured {margin:13px 0 25px;width:472px;float:right;}
-#layout-list .featured {margin-left:0;}
+.home-portrait .featured {margin:13px 0 25px;width:472px;float:right;}
+.layout-list .featured {margin-left:0;}
 .featured h2 {line-height:30px;}
 .featured h3 {margin-left:16px;}
 .featured figure {width:100%;}
 
 .featured article {margin-left:16px;width:228px;min-height:485px;background:none;float:left;}
-#home-portrait .featured article {margin:0;width:228px;min-height:500px;}
-#layout-list .featured article {margin-left:0;}
+.home-portrait .featured article {margin:0;width:228px;min-height:500px;}
+.layout-list .featured article {margin-left:0;}
 .featured .f2,.featured .f4 {float:left;}
-#home-portrait .featured .f2,#home-portrait .featured .f4 {float:right;}
+.home-portrait .featured .f2,.home-portrait .featured .f4 {float:right;}
 .featured .info,.featured p {width:auto;}
 .featured .info {padding-top:0;}
-#home-portrait .featured .info {float:none;}
-#inside-portrait .featured .info {width:auto;}
-#layout-list .featured .info {padding-top:10px;}
-#layout-list .featured .info {width:34%;float:left;}
+.home-portrait .featured .info {float:none;}
+.inside-portrait .featured .info {width:auto;}
+.layout-list .featured .info {padding-top:10px;}
+.layout-list .featured .info {width:34%;float:left;}
 
-#inside-portrait #intro {width:460px;float:left;}
+.inside-portrait #intro {width:460px;float:left;}
 #intro .entry-summary,#single .entry-content {width:628px;float:left;}
 
 #comments .entry-content {width:68%;float:left;}
@@ -965,33 +982,33 @@ body {width:960px;}
 #comments .entry-content,#comments .show {width:540px;}
 #comments blockquote,#comments .show {padding-left:85px;}
 
-#inside-portrait #intro .entry-summary,#inside-portrait #single .entry-content {width:460px;}
+.inside-portrait #intro .entry-summary,.inside-portrait #single .entry-content {width:460px;}
 #single .photo,#to-gallery,#media span {width:614px;float:left;}
-#inside-portrait #single .photo,#inside-portrait #to-gallery {width:auto;}
+.inside-portrait #single .photo,.inside-portrait #to-gallery {width:auto;}
 #intro .entry-summary:after {right:-20px;}
-#inside #single footer,#inside-portrait #single footer,#single figcaption,#comments section {width:296px;float:right;}
-#gallery #single figcaption,#gallery-portrait #single figcaption,#gallery #media #video-fc {width:100%;float:left;}
-#inside-portrait #single footer,#inside-portrait #single figcaption {width:auto;}
-#inside-portrait #single footer {padding:12px 0 27px;}
-#inside-portrait #single figcaption {float:none;}
+.inside #single footer,.inside-portrait #single footer,#single figcaption,#comments section {width:296px;float:right;}
+.gallery #single figcaption,.gallery-portrait #single figcaption,.gallery #media #video-fc {width:100%;float:left;}
+.inside-portrait #single footer,.inside-portrait #single figcaption {width:auto;}
+.inside-portrait #single footer {padding:12px 0 27px;}
+.inside-portrait #single figcaption {float:none;}
 #single figcaption
-#inside #single footer,#inside-portrait #single footer {margin-top:6px;}
+.inside #single footer,.inside-portrait #single footer {margin-top:6px;}
 
-#inside #media {width:100%;}
-#inside #media figure {width:960px;max-width:960px;float:left;}
-#inside #media figure figcaption {clear:none;}
-#gallery #media {margin:0 0 30px;width:628px;}
-#gallery-portrait #media {width:628px;float:left;}
+.inside #media {width:100%;}
+.inside #media figure {width:960px;max-width:960px;float:left;}
+.inside #media figure figcaption {clear:none;}
+.gallery #media {margin:0 0 30px;width:628px;}
+.gallery-portrait #media {width:628px;float:left;}
 
-#inside-portrait #media {width:460px;float:right;}
-#inside-portrait #to-gallery {margin-bottom:10px;}
-#inside #single .entry-content,#inside-portrait #single .entry-content {margin:0 0 29px;}
+.inside-portrait #media {width:460px;float:right;}
+.inside-portrait #to-gallery {margin-bottom:10px;}
+.inside #single .entry-content,.inside-portrait #single .entry-content {margin:0 0 29px;}
 
 #layout {width:auto;top:45px;}
 #layout p {padding:9px 20px 0 0;float:left;}
-#layout menu {clear:none;float:left;}
+.switch {clear:none;float:left;}
 
-#layout-grid #paging {background-position:top;}
+.layout-grid #paging {background-position:top;}
 
 #tabs li {width:321px;}
 
@@ -1000,10 +1017,10 @@ body {width:960px;}
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
-#gallery #single aside,#gallery-portrait #single aside {margin:0;}
-#gallery aside,#gallery-portrait aside {width:298px;float:right;position:relative;}
-#gallery aside h2,#gallery-portrait aside h2 {margin:0;text-align:right;position:absolute;top:-73px;right:0;}
-#gallery #navigate h2,#gallery-portrait #navigate h2 {margin:0;}
+.gallery #single aside,.gallery-portrait #single aside {margin:0;}
+.gallery aside,.gallery-portrait aside {width:298px;float:right;position:relative;}
+.gallery aside h2,.gallery-portrait aside h2 {margin:0;text-align:right;position:absolute;top:-73px;right:0;}
+.gallery #navigate h2,.gallery-portrait #navigate h2 {margin:0;}
 #navigate {margin: 0 0 10px;width:298px;float:right;}
 #navigate ul {width:298px;}
 #embed {margin-top:0;width:100%;float:left;}
@@ -1042,9 +1059,9 @@ body {width:960px;}
 .ie6 #tabs li {width:320px;}
 .ie6 #footer nav,.ie7 #footer nav {padding:51px 0 0;}
 .ie7 #header {min-height:90px;}
-.ie7 #home #header {min-height:124px;}
+.ie7 .home #header {min-height:124px;}
 .ie7 #header {min-height:124px;}
-.ie8 #home-portrait {padding:10px 0;}
+.ie8 .home-portrait {padding:10px 0;}
 .ie8 #header {min-height:1px;}
 */
 

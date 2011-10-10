@@ -1,3 +1,13 @@
+/*
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+
+ File: dashboard.css
+ Version: 1.0 (XX.XX.2011)
+ Author: Matjaz Korosec (twitter.com/matjazkorosec)
+
+ */
 
 @font-face {font-family:MinionProSemiboldItalic;src:url('../fonts/minionpro-semiboldit.eot');
 src:url('../fonts/minionpro-semiboldit.eot?#iefix') format('embedded-opentype'),
@@ -67,10 +77,10 @@ url('../fonts/minionpro-semiboldit.svg#MinionProSemiboldItalic') format('svg');f
 #orientation {background-position:0 -95px;}
 #reading {background-position:0 -145px;}
 #gallery-d {background-position:0 -195px;}
-#feedback-d {background-position:0 -245px;}
+.feedback-d {background-position:0 -245px;}
 #machine {background-position:0 -295px;}
 
-#features.selected,#devices.selected,#orientation.selected,#reading.selected,#gallery-d.selected,#feedback-d.selected,
+#features.selected,#devices.selected,#orientation.selected,#reading.selected,#gallery-d.selected,.feedback-d.selected,
 #machine.selected {background-position:-65px -130px;}
 
 .js #dashboard article {padding:16px 20px 5px;position:absolute;top:-90px;left:0;}
@@ -79,13 +89,13 @@ url('../fonts/minionpro-semiboldit.svg#MinionProSemiboldItalic') format('svg');f
 .info {width:47.1%;float:left;}
 .playground {width:46%;float:right;}
 
-.js #home #dashboard h2 {display:none;}
+.js .home #dashboard h2 {display:none;}
 .js .info p,.js .playground {display:none;}
 .js .active .info p,.js .active .playground {display:block;}
 
 #dashboard h1,#dashboard h2 {width:290px;font:18px/25px MinionProSemiboldItalic,georgia,serif;text-decoration:none;color:#fff;position:absolute;top:108px;left:20px;z-index:2;}
 #dashboard .active h1,#dashboard .active h2 {top:-41px;}
-#home #dashboard .active h2 {display:block;}
+.home #dashboard .active h2 {display:block;}
 #demo-features h1 {font-size:24px;display:block;top:106px;}
 #demo-features.active h1 {font-size:18px;top:-43px;}
 #dashboard h2 {margin:0 0 20px;}
@@ -191,10 +201,10 @@ url('../fonts/minionpro-semiboldit.svg#MinionProSemiboldItalic') format('svg');f
 #orientation {background-position:0 -100px;}
 #reading {background-position:0 -150px;}
 #gallery-d {background-position:0 -200px;}
-#feedback-d {background-position:0 -250px;}
+.feedback-d {background-position:0 -250px;}
 #machine {background-position:0 -300px;}
 
-#features.selected,#devices.selected,#orientation.selected,#reading.selected,#gallery-d.selected,#feedback-d.selected,
+#features.selected,#devices.selected,#orientation.selected,#reading.selected,#gallery-d.selected,.feedback-d.selected,
 #machine.selected {background-position:-65px -136px;}
 
 .info {width:auto;float:none;}

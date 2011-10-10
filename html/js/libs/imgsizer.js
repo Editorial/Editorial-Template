@@ -1,3 +1,8 @@
+
+//http://unstoppablerobotninja.com/entry/fluid-images/
+//http://unstoppablerobotninja.com/demos/resize/bicubic.html
+
+
 var imgSizer = {
 	Config : {
 		imgCache : []
@@ -30,7 +35,7 @@ var imgSizer = {
 			}
 		}
 	}
-
+	
 	,ieAlpha : function(img) {
 		var c = imgSizer;
 		if (img.oldSrc) {
@@ -58,4 +63,12 @@ var imgSizer = {
 			}
 		}
 	}
-}
+};
+
+
+addLoadEvent(function() {
+		 if (document.getElementById && document.getElementsByTagName) {
+					var aImgs = document.getElementById("content").getElementsByTagName("img");
+					imgSizer.collate(aImgs);
+		 }
+});

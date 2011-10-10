@@ -1,3 +1,13 @@
+/*
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+
+ File: contrast.css
+ Version: 1.0 (XX.XX.2011)
+ Author: Matjaz Korosec (twitter.com/matjazkorosec)
+
+ */
 
 html {background:#000;}
 body {color:#f4f4f4;}
@@ -7,5 +17,5 @@ a,h1,h1 a,h2,h2 a,h3,#footer a,#footer nav a {color:#f4f4f4;}
 #footer h3 {color:#1a1a1a;}
 
 #intro .entry-summary:before,#intro .entry-summary:after {opacity:.1;}
-#home h1,#home-portrait h1,.featured h2,#comments cite,#paging .more {color:#f4f4f4;}
+.home h1,.home-portrait h1,.featured h2,#comments cite,#paging .more {color:#f4f4f4;}
 tbody tr:nth-child(2n+2) td {color:#f4f4f4;background:rgba(221,0,0,.2);}
