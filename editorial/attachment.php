@@ -103,7 +103,7 @@ if (Editorial::isMobileDevice())
 				{
 					// handle video/audio
 					$media = '';
-					$src = wp_get_attachment_image_src($attachment->ID, 'full');
+					$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
 					if (Editorial::is_image($attachment->post_mime_type))
 					{
 						$media = sprintf(
