@@ -16,52 +16,52 @@ the_post();
 ?>
 
 <div class="content clear" role="main">
-    <article id="single" class="hentry">
-        <header>
-            <h1 class="entry-title"><?php the_title(); ?></h1>
-        </header>
-        <section id="intro">
-            <p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
-            <footer>
-                <?php the_category(', '); ?>
-                <time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
-                    <span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
-                    <?php the_time(get_option('date_format')); ?>
-                </time>
-                <em class="author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
-                <?php if (Editorial::isShareEnabled()) { ?>
-                <ul class="social">
-                    <?php
+	<article id="single" class="hentry">
+		<header>
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+		</header>
+		<section id="intro">
+			<p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
+			<footer>
+				<?php the_category(', '); ?>
+				<time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
+					<span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
+					<?php the_time(get_option('date_format')); ?>
+				</time>
+				<em class="author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+				<?php if (Editorial::isShareEnabled()) { ?>
+				<ul class="social">
+					<?php
 
-                    if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
-                    {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER).'</li>';
-                    }
-                    if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
-                    {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
-                            'url'    => '',
-                            'width'  => 100,
-                            'height' => 20
-                        )).'</li>';
-                    }
-                    if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
-                    {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>';
-                    }
-                    if (Editorial::isShareEnabled(EDITORIAL_READABILITY))
-                    {
-                        echo '<li>'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>';
-                    }
+					if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
+					{
+						echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER).'</li>';
+					}
+					if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
+					{
+						echo '<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
+							'url'    => '',
+							'width'  => 100,
+							'height' => 20
+						)).'</li>';
+					}
+					if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
+					{
+						echo '<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>';
+					}
+					if (Editorial::isShareEnabled(EDITORIAL_READABILITY))
+					{
+						echo '<li>'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>';
+					}
 
-                    ?>
-                </ul>
-                <?php } ?>
-            </footer>
-        </section>
-        <section class="entry-content">
-            <?php the_content(); ?>
-        </section>
-    </article>
+					?>
+				</ul>
+				<?php } ?>
+			</footer>
+		</section>
+		<section class="entry-content">
+			<?php the_content(); ?>
+		</section>
+	</article>
 </div>
 <?php @include('footer.php'); ?>

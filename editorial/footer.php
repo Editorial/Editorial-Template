@@ -2,50 +2,50 @@
 // show footer if not on 404 page
 if ($EditorialId != 'notfound')
 {
-    ?>
-    <footer id="footer" class="clear" role="contentinfo">
-        <h3>Subscribe</h3>
-        <ul id="rss">
-            <li><a href="<?php bloginfo('rss2_url'); ?>" title="Subscribe to all categories">All categories</a></li>
-            <?php
-            // list categories
-            foreach (get_categories() as $category)
-            {
-                printf(
-                    '<li><a href="%1$s" title="%3$s %2$s">%2$s</a>',
-                    get_category_feed_link($category->cat_ID),
-                    $category->name,
-                    __('Subscribe', 'Editorial')
-                );
-            }
-            ?>
-        </ul>
-        <?php get_sidebar('footer'); ?>
-        <div id="temp">
-        <section>
-            <nav role="navigation">
-                <ul>
-                    <li><a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>/colophon.php"><?php _e('Colophon', 'Editorial'); ?></a></li>
-                </ul>
-            </nav>
-            <?php
-            // display footer menu
-            $settings = array(
-                'theme_location' => 'footer-nav',
-                'container'      => false,
-                'menu_class'     => 'xoxo',
-                'menu_id'        => '',
-                'depth'          => 1,
-                'walker'         => new EditorialNav(),
-            );
-            wp_nav_menu($settings);
-            ?>
-        </section>
-        <small id="copyright"><?php echo Editorial::getOption('copyright'); ?><br>
-        <?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
-        </div>
-    </footer>
-    <?php
+	?>
+	<footer id="footer" class="clear" role="contentinfo">
+		<h3>Subscribe</h3>
+		<ul id="rss">
+			<li><a href="<?php bloginfo('rss2_url'); ?>" title="Subscribe to all categories">All categories</a></li>
+			<?php
+			// list categories
+			foreach (get_categories() as $category)
+			{
+				printf(
+					'<li><a href="%1$s" title="%3$s %2$s">%2$s</a>',
+					get_category_feed_link($category->cat_ID),
+					$category->name,
+					__('Subscribe', 'Editorial')
+				);
+			}
+			?>
+		</ul>
+		<?php get_sidebar('footer'); ?>
+		<div id="temp">
+		<section>
+			<nav role="navigation">
+				<ul>
+					<li><a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>/colophon.php"><?php _e('Colophon', 'Editorial'); ?></a></li>
+				</ul>
+			</nav>
+			<?php
+			// display footer menu
+			$settings = array(
+				'theme_location' => 'footer-nav',
+				'container'      => false,
+				'menu_class'     => 'xoxo',
+				'menu_id'        => '',
+				'depth'          => 1,
+				'walker'         => new EditorialNav(),
+			);
+			wp_nav_menu($settings);
+			?>
+		</section>
+		<small id="copyright"><?php echo Editorial::getOption('copyright'); ?><br>
+		<?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
+		</div>
+	</footer>
+	<?php
 }
 ?>
 

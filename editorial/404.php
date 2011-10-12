@@ -15,13 +15,13 @@ $EditorialClass = 'clear';
 ?>
 
 <div class="content clear" role="main">
-    <article>
-        <header>
-            <h1><?php _e('Oops!', 'Editorial'); ?></h1>
-        </header>
-        <h2>404</h2>
-        <p id="try"><?php _e('The page you were looking for does not seem to exist. You might want to try search instead.', 'Editorial'); ?></p>
-    </article>
+	<article>
+		<header>
+			<h1><?php _e('Oops!', 'Editorial'); ?></h1>
+		</header>
+		<h2>404</h2>
+		<p id="try"><?php _e('The page you were looking for does not seem to exist. You might want to try search instead.', 'Editorial'); ?></p>
+	</article>
 </div>
 
 <?php @include('footer.php'); ?>

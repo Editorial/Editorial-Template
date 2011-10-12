@@ -44,42 +44,42 @@ Based on: 320 and Up boilerplate extension
 <body id="<?php echo $EditorialId; ?>" class="<?php echo $EditorialClass; ?>">
 
 <header id="header" class="clear" role="banner">
-    <figure id="brand" class="vcard">
-        <a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
-            <img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small').'" width="133" height="19' ?>" alt="<?php bloginfo('name'); ?>">
-        </a>
-        <figcaption class="v-hidden"><?php bloginfo('name'); ?></figcaption>
-    </figure>
-    <form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
-        <fieldset>
-            <legend class="v-hidden"><?php _e('Search', 'Editorial'); ?></legend>
-            <label for="query" class="v-hidden"><?php _e('Query', 'Editorial'); ?></label>
-            <input type="search" id="query" name="s" placeholder="<?php _e('Search...', 'Editorial'); ?>" value="<?php echo get_search_query(); ?>">
-            <input type="submit" id="find" class="ir" value="<?php _e('Search', 'Editorial'); ?>">
-        </fieldset>
-    </form>
-    <?php
-    // show main navigation if not on 404 page
-    if ($EditorialId != 'notfound')
-    {
-        $settings = array(
-            'theme_location' => 'main-nav',
-            'container'      => false,
-            'menu_class'     => '',
-            'menu_id'        => '',
-            'depth'          => 1,
-            'walker'         => new EditorialNav(),
-            'echo'           => false,
-        );
-        $menu = wp_nav_menu($settings);
-        $menuItems = substr_count($menu,'<li');
-        if ($menuItems > 5)
-        {
-            // we're hoarding
-            $settings['class'] = 'hoarding';
-            $menu = wp_nav_menu($settings);
-        }
-        echo '<nav id="primary" role="navigation">'.$menu.'</nav>';
-    }
-    ?>
+	<figure id="brand" class="vcard">
+		<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
+			<img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small').'" width="133" height="19' ?>" alt="<?php bloginfo('name'); ?>">
+		</a>
+		<figcaption class="v-hidden"><?php bloginfo('name'); ?></figcaption>
+	</figure>
+	<form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
+		<fieldset>
+			<legend class="v-hidden"><?php _e('Search', 'Editorial'); ?></legend>
+			<label for="query" class="v-hidden"><?php _e('Query', 'Editorial'); ?></label>
+			<input type="search" id="query" name="s" placeholder="<?php _e('Search...', 'Editorial'); ?>" value="<?php echo get_search_query(); ?>">
+			<input type="submit" id="find" class="ir" value="<?php _e('Search', 'Editorial'); ?>">
+		</fieldset>
+	</form>
+	<?php
+	// show main navigation if not on 404 page
+	if ($EditorialId != 'notfound')
+	{
+		$settings = array(
+			'theme_location' => 'main-nav',
+			'container'      => false,
+			'menu_class'     => '',
+			'menu_id'        => '',
+			'depth'          => 1,
+			'walker'         => new EditorialNav(),
+			'echo'           => false,
+		);
+		$menu = wp_nav_menu($settings);
+		$menuItems = substr_count($menu,'<li');
+		if ($menuItems > 5)
+		{
+			// we're hoarding
+			$settings['class'] = 'hoarding';
+			$menu = wp_nav_menu($settings);
+		}
+		echo '<nav id="primary" role="navigation">'.$menu.'</nav>';
+	}
+	?>
 </header>
