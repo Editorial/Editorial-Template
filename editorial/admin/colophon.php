@@ -20,7 +20,7 @@
 
 	$users = get_users(array(
 		'who' => 'author',
-		'exclude' => array(1),
+		//'exclude' => array(1),
 	));
 	if (count($users))
 	{
