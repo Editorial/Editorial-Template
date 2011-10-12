@@ -1,6 +1,6 @@
 <?php
 /*
- * Colophon
+ * Template Name: Colophon
  *
  * @package    Editorial
  * @copyright  Copyright (c) 2011, ThirdFrameStudios
@@ -41,7 +41,7 @@ if (count($authors))
 <div class="content clear" role="main">
     <article id="common" class="hentry">
         <header>
-            <h1 class="entry-title"><?php echo Editorial::getOption('colophon_title'); ?></h1>
+            <h1 class="entry-title"><?php the_title(); ?></h1>
         </header>
         <footer class="v-hidden">
             <time class="published" pubdate datetime="2011-06-01T00:00">
@@ -51,7 +51,7 @@ if (count($authors))
             <em>Written by <a class="author include" href="#brand">Editorial</a></em>
         </footer>
         <section class="entry-content">
-            <?php echo Editorial::getOption('colophon_content'); ?>
+            <?php echo the_content(); ?>
         </section>
         <aside role="complementary">
             <ul id="team">

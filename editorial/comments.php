@@ -9,6 +9,11 @@
 
 session_start();
 
+if ((!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || count($_POST))
+{
+    echo 'ajax comments!';exit();
+}
+
 $riddle = Editorial::riddle();
 
 // header settings
@@ -82,7 +87,7 @@ if (comments_open() || !post_password_required()) {
         }
 
         ?>
-        <form id="comments-form" action="<?php echo get_bloginfo('url'); ?>/comment-post.php" method="post">
+        <form id="comments-form" action="<?php echo Editorial::commentsLink(); ?>" method="post">
             <fieldset class="feedback">
                 <legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
                 <ol>

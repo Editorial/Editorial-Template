@@ -60,14 +60,11 @@ class Editorial_Admin
         'twitter-share',
         'twitter-account',
         'twitter-related',
-        'twitter-related-desc',
         'facebook-share',
         'google-share',
         'readability-share',
         'copyright',
         'meta-keywords',
-        'colophon_title',
-        'colophon_content',
     );
 
     /**

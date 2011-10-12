@@ -573,7 +573,7 @@ class Editorial
     {
         global $wp_query;
         // custom comments route
-        if ($wp_query->is_singular && array_key_exists('comments', $_GET))
+        /*if ($wp_query->is_singular && array_key_exists('comments', $_GET))
         {
             // make sure it's not 404
             $wp_query->is_404 = false;
@@ -581,7 +581,7 @@ class Editorial
             // include comments
             include(TEMPLATEPATH.'/single-comments.php');
             exit();
-        }
+        }*/
 
         if ($wp_query->is_404)
         {

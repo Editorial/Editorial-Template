@@ -7,10 +7,22 @@
  * @author     Miha Hribar
  */
 
+if ((!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || count($_POST))
+{
+    echo 'ajax single!';exit();
+}
+
+if (array_key_exists('comments', $_GET))
+{
+    @include('single-comments.php');
+    exit();
+}
+
+the_post();
+
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
 
-the_post();
 if (has_post_thumbnail())
 {
     $thumbId = get_post_thumbnail_id($Article->ID);

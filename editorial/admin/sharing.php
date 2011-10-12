@@ -6,8 +6,7 @@
                 <td>
                     <label><?php _e('Enable twitter share', 'Editorial'); ?> <input type="checkbox" name="twitter-share"<?php echo !Editorial::getOption('twitter-share') ? '' : ' checked="checked"'; ?> /></label><br />
                     <input type="text" name="twitter-account" value="<?php echo Editorial::getOption('twitter-account'); ?>" placeholder="<?php _e('Your twitter account', 'Editorial'); ?>" /><br />
-                    <input type="text" name="twitter-related" value="<?php echo Editorial::getOption('twitter-related'); ?>" placeholder="<?php _e('Related account', 'Editorial'); ?>" /><br />
-                    <input type="text" name="twitter-related-desc" value="<?php echo Editorial::getOption('twitter-related-desc'); ?>" placeholder="<?php _e('Related account description', 'Editorial'); ?>" />
+                    <input type="text" name="twitter-related" value="<?php echo Editorial::getOption('twitter-related'); ?>" placeholder="<?php _e('Related account', 'Editorial'); ?>" />
                     <p class="note"><?php _e('Twitter share is visible on article page.', 'Editorial'); ?></p>
                 </td>
             </tr>
