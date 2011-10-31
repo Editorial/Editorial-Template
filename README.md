@@ -7,3 +7,4 @@ Here is a brief description of each of the folders in this repository:
 * **Soon**: Temporary page until the marketing page and the template itself is ready.
 * **editorial**: Editorial wordpress theme.
 * **html**: HTML template for the Editorial theme.
+* **marketing**: Editorial marketing wordpress theme.
