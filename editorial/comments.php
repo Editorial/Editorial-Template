@@ -8,10 +8,24 @@
  */
 
 session_start();
+the_post(); global $post;
 
-if ((!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || count($_POST))
+if (Editorial::isAjax())
 {
-	echo 'ajax comments!';exit();
+	Editorial::noCacheHeader();
+	if (array_key_exists('more', $_GET) && have_comments())
+	{
+		// comment settings
+		$settings = array(
+			'callback'          => 'Editorial::comment',
+			'reverse_top_level' => true,
+			'per_page' => 9999999,
+		);
+
+		// show comment
+		wp_list_comments($settings);
+	}
+	exit();
 }
 
 $riddle = Editorial::riddle();
@@ -20,8 +34,6 @@ $riddle = Editorial::riddle();
 $EditorialId = 'feedback';
 $EditorialClass = 'clear';
 @include('header.php');
-the_post(); global $post;
-//update_option('comments_per_page', 0);
 if (comments_open() || !post_password_required()) {
 ?>
 <div class="content clear" role="main">
@@ -35,25 +47,34 @@ if (comments_open() || !post_password_required()) {
 		{
 			// show notice & start section for comments
 			echo '<p class="notice">'.Editorial::commentNotice().'</p><section id="comments">';
+			
+			// comment settings
+			$settings = array(
+				'callback'          => 'Editorial::comment',
+				'reverse_top_level' => true,
+			);
+			// more?
+			if (array_key_exists('more', $_GET))
+			{
+				// show all comments
+				$settings['per_page'] = 9999999;
+			}
 
 			// show comment
-			wp_list_comments(array(
-				'callback'          => 'Editorial::comment',
-				'reverse_top_level' => true
-			));
+			wp_list_comments($settings);
 
 			echo '</section>';
 
 			// show more link if we have paging enabled
-			if (get_comment_pages_count() > 1 && get_option('page_comments') && get_next_comments_link())
+			if (get_comment_pages_count() > 1 && get_option('page_comments'))
 			{
+				$comments = get_comments_number();
 				printf('<section id="paging">
 						<p><strong>%d / %d</strong> - %s</p>
-						<p class="more"><a href="">%s</a></p>
+						<p class="more"><a href="?comments&more">%s</a></p>
 					</section>',
-					//$page+1 * $num,
-					42,
-					get_comments_number(),
+					$comments % get_option('comments_per_page'),
+					$comments,
 					__('comments displayed', 'Editorial'),
 					__('Display older comments ...', 'Editorial')
 				);
@@ -85,9 +106,9 @@ if (comments_open() || !post_password_required()) {
 			unset($_SESSION['comment_errors']);
 			unset($_SESSION['post']);
 		}
-
+		
 		?>
-		<form id="comments-form" action="<?php echo Editorial::commentsLink(); ?>" method="post">
+		<form id="comments-form" action="<?php echo get_bloginfo('template_url'); ?>/comment-post.php" method="post">
 			<fieldset class="feedback">
 				<legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
 				<ol>
@@ -101,11 +122,11 @@ if (comments_open() || !post_password_required()) {
 				<legend class="v-hidden"><?php _e('Author', 'Editorial'); ?></legend>
 				<ol>
 					<li class="text<?php echo in_array('name', $errors) ? ' error' : ''; ?>">
-						<label for="name"><?php _e('Your name', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
+						<label for="name"><?php _e('Your name', 'Editorial'); ?> <em>*</em></label>
 						<input type="text" id="name" name="name" value="<?php echo esc_attr($comment_name); ?>">
 					</li>
 					<li class="text<?php echo in_array('email', $errors) ? ' error' : ''; ?>">
-						<label for="email"><?php _e('Your e-mail address', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
+						<label for="email"><?php _e('Your e-mail address', 'Editorial'); ?> <em>*</em></label>
 						<input type="email" id="email" name="email" value="<?php echo esc_attr($comment_email); ?>">
 					</li>
 					<li class="text<?php echo in_array('url', $errors) ? ' error' : ''; ?>">
@@ -118,11 +139,10 @@ if (comments_open() || !post_password_required()) {
 				<legend class="v-hidden"><?php _e('Captcha', 'Editorial'); ?></legend>
 				<ol>
 					<li class="riddle<?php echo in_array('riddle', $errors) ? ' error' : ''; ?>">
-						<label for="riddle"><?php echo $riddle['notice']; ?></label>
+						<label for="riddle"><?php echo $riddle['notice']; ?> <em>*</em></label>
 						<div class="qa">
 							<span><?php echo $riddle['riddle']; ?></span>
 							<input type="text" name="riddle" id="riddle">
-							<em>* <?php _e('required field', 'Editorial'); ?></em>
 						</div>
 					</li>
 				</ol>

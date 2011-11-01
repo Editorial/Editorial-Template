@@ -24,9 +24,9 @@ define ('EDITORIAL_OPTIONS', 'editorial_options');
 define ('EDITORIAL_FACEBOOK',    'facebook-share');
 define ('EDITORIAL_TWITTER',     'twitter-share');
 define ('EDITORIAL_GOOGLE',      'google-share');
-define ('EDITORIAL_READABILITY', 'readability-share');
+//define ('EDITORIAL_READABILITY', 'readability-share');
 // number of footer widgets
-define ('EDITORIAL_WIDGET_COUNT', 4);
+define ('EDITORIAL_WIDGET', 'footer-widgets');
 
 /**
  * Editorial
@@ -39,6 +39,14 @@ define ('EDITORIAL_WIDGET_COUNT', 4);
  */
 class Editorial
 {
+	/**
+	 * Widget counter
+	 *
+	 * @var int
+	 * @static
+	 */
+	public static $widgetCounter = 0;
+	
 	/**
 	 * Setup theme
 	 *
@@ -69,8 +77,6 @@ class Editorial
 		add_action('check_comment_flood', array('Editorial', 'checkReferrer'));
 		// add comment redirect filter
 		add_filter('comment_post_redirect', array('Editorial', 'commentRedirect'));
-		// custom routing
-		add_action('template_redirect', array('Editorial', 'customRouting'));
 		// settings after theme setup
 		add_action('admin_init', array('Editorial','adminInit'));
 		// prevent publishing of a post without a thumbnail
@@ -78,19 +84,16 @@ class Editorial
 
 		if (function_exists('register_sidebar'))
 		{
-			// lets register a few widget ready sidebars
-			for ($i = 1; $i <= EDITORIAL_WIDGET_COUNT; $i++)
-			{
-				register_sidebar(array(
-					'name'          => sprintf(__('Footer widget area %d', 'editorial'), $i),
-					'id'            => sprintf('footer-widget-%d', $i),
-					'description'   => sprintf(__('Footer widget area #%d', 'editorial'), $i),
-					'before_widget' => '<section class="widget">',
-					'after_widget'  => '</section>',
-					'before_title'  => '<h4>',
-					'after_title'   => '</h4>',
-				));
-			}
+			// widget ready sidebar
+			register_sidebar(array(
+				'name'          => __('Footer widget area', 'editorial'),
+				'id'            => 'footer-widgets',
+				'description'   => __('Footer widget area', 'editorial'),
+				//'before_widget' => '<section class="widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h4>',
+				'after_title'   => '</h4>',
+			));
 		}
 
 		// add excerpt to pages @todo move into admin?
@@ -98,6 +101,22 @@ class Editorial
 
 		// unhide post excerpt by default
 		add_filter('default_hidden_meta_boxes', array('Editorial', 'unhideExcerpt'), 10, 2);
+		
+		// widget customizations
+		add_filter('dynamic_sidebar_params', array('Editorial', 'widgets'));
+	}
+	
+	/**
+	 * Widget customization
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	public function widgets($params)
+	{
+		self::$widgetCounter++;
+		$params[0]['before_widget'] = sprintf('<section class="widget widget%d">', self::$widgetCounter);
+		return $params;
 	}
 
 	/**
@@ -401,7 +420,7 @@ class Editorial
 					</form>
 				</aside>',
 				$comment->comment_ID,
-				get_bloginfo('url').'/comment-vote.php',
+				get_bloginfo('template_url').'/comment-vote.php',
 				Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : '',
 				Editorial::alreadyVoted($comment->comment_ID) ? ' class="disabled"' : '',
 				(int)$comment->comment_karma == 0
@@ -561,54 +580,6 @@ class Editorial
 	{
 		// @todo http://editorial.local/2011/05/caron-butler/#comment-6
 		return $location;
-	}
-
-	/**
-	 * Custom routing plugin (for comments etc.)
-	 *
-	 * @return void
-	 * @author Miha Hribar
-	 */
-	public function customRouting()
-	{
-		global $wp_query;
-		// custom comments route
-		/*if ($wp_query->is_singular && array_key_exists('comments', $_GET))
-		{
-			// make sure it's not 404
-			$wp_query->is_404 = false;
-
-			// include comments
-			include(TEMPLATEPATH.'/single-comments.php');
-			exit();
-		}*/
-
-		if ($wp_query->is_404)
-		{
-			// check if this is comment post
-			$parts = explode('/', $_SERVER['REQUEST_URI']);
-			$last = array_pop($parts);
-			if ($last && $last == 'comment-post.php')
-			{
-				// make sure it's not 404
-				header('HTTP/1.1 200 OK');
-				include(TEMPLATEPATH.'/comment-post.php');
-				exit();
-			}
-			else if ($last && $last == 'comment-vote.php')
-			{
-				// make sure it's not 404
-				header('HTTP/1.1 200 OK');
-				include(TEMPLATEPATH.'/comment-vote.php');
-				exit();
-			}
-			else if ($last && $last == 'colophon.php')
-			{
-				header('HTTP/1.1 200 OK');
-				include(TEMPLATEPATH.'/colophon.php');
-				exit();
-			}
-		}
 	}
 
 	/**
@@ -813,9 +784,9 @@ class Editorial
 				</script>";
 				break;
 
-			case EDITORIAL_READABILITY:
-				$html = '<div class="rdbWrapper" data-show-read="1" data-show-send-to-kindle="1" data-show-print="0" data-show-email="0" data-orientation="0" data-version="1" data-bg-color="transparent"></div><script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>';
-				break;
+//			case EDITORIAL_READABILITY:
+//				$html = '<div class="rdbWrapper" data-show-read="1" data-show-send-to-kindle="1" data-show-print="0" data-show-email="0" data-orientation="0" data-version="1" data-bg-color="transparent"></div><script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>';
+//				break;
 		}
 
 		return $html;
@@ -852,6 +823,29 @@ class Editorial
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Ajax?
+	 *
+	 * @return bool
+	 * @author Miha Hribar
+	 */
+	public static function isAjax()
+	{
+		return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+	}
+	
+	/**
+	 * No cache headers
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	public static function noCacheHeader()
+	{
+		header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 	}
 }
 
@@ -901,5 +895,15 @@ function add_custom_field_automatically($post_ID) {
 		add_post_meta($post_ID, 'field-name', 'custom value', true);
 	}
 }
+
+/*add_filter('dynamic_sidebar_params', 'reclamation_sidebar_params');
+$editorialSidebarCounter = 0;
+function reclamation_sidebar_params($params)
+{
+	global $editorialSidebarCounter;
+	$editorialSidebarCounter++;
+	$params[0]['before_widget'] = sprintf('<section class="widget widget%d">', $editorialSidebarCounter);
+	return $params;
+}*/
 
 ?>

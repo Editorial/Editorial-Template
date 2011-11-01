@@ -62,7 +62,7 @@ class Editorial_Admin
 		'twitter-related',
 		'facebook-share',
 		'google-share',
-		'readability-share',
+		//'readability-share',
 		'copyright',
 		'meta-keywords',
 	);
@@ -252,7 +252,7 @@ class Editorial_Admin
 					'twitter-share',
 					'facebook-share',
 					'google-share',
-					'readability-share',
+					//'readability-share',
 					'karma',
 				);
 				foreach ($checkboxes as $check)

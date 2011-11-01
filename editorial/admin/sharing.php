@@ -24,13 +24,13 @@
 					<p class="note"><?php _e('Google share is visible on article page.', 'Editorial'); ?></p>
 				</td>
 			</tr>
-			<tr>
+			<!--tr>
 				<th><?php _e('Readability', 'Editorial'); ?></th>
 				<td>
 					<label><?php _e('Readability', 'Editorial'); ?> <input type="checkbox" name="readability-share"<?php echo !Editorial::getOption('readability-share') ? '' : ' checked="checked"'; ?> /></label>
 					<p class="note"><?php _e('Readability widget is visible on article page.', 'Editorial'); ?></p>
 				</td>
-			</tr>
+			</tr-->
 		</table>
 		<p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'Editorial'); ?>"></p>
 	</form>

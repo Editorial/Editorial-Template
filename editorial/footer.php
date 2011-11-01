@@ -51,6 +51,9 @@ if ($EditorialId != 'notfound')
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+<?php if (Editorial::isMobileDevice()) { ?> 
+<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/jquery.mobile-1.0rc2.min.js"></script>
+<?php } ?>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/plugins.js"></script>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/script.js"></script>
 <?php if ($needsHTML5player) { ?>
