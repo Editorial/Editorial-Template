@@ -4,9 +4,9 @@
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
  File: script.js
- Version: 1.0 (XX.XX.2011)
- Authors: Matjaz Korosec (twitter.com/matjazkorosec),
-          Miha Hribar (twitter.com/mihahribar)
+ Version: 1.0 (11/2011)
+ Authors: Miha Hribar (twitter.com/mihahribar),
+          Matjaz Korosec (twitter.com/matjazkorosec)
 
  */
 
@@ -76,61 +76,70 @@ $(function(){
 					// show errors
 					$(response.html).insertBefore('#comments-form');
 					$('html,body').animate({scrollTop: $("#errors").offset().top},'slow');
-						// add error fields
-						for (error in response.errors) {
-							var id = response.errors[error];
-							$('#'+id).parent().addClass('error');
-						}
+					// add error fields
+					for (error in response.errors) {
+						var id = response.errors[error];
+						$('#'+id).parent().addClass('error');
+					}
 				}
+				else {
+					// remove old success if already there
+					$('#success').remove();
+					// add success notice
+					$(response.success).insertBefore('#comments-form');
+					// add new comment to html
+					if ($('#comments').length > 0) {
+						// add to list
+						$(response.html).insertBefore('#comments article:first-child');
+					}
 					else {
-						// remove old success if already there
-						$('#success').remove();
-						// add success notice
-						$(response.success).insertBefore('#comments-form');
-						// add new comment to html
-						if ($('#comments').length > 0) {
-							// add to list
-							$(response.html).insertBefore('#comments article:first-child');
-						}
-						else {
-							// replace no comments notice & add comment
-							$('#single .notice').html(response.notice).after('<section id="comments">'+response.html+'</section>');
-						}
-						// scroll to success notice
-						$('html,body').animate({scrollTop: $("#success").offset().top},'slow');
-
-						// make success dissapear in 5 seconds
-						setTimeout(function() {
-							$('#success').fadeOut(500);
-						}, 5000);
-
-						// reset form
-						$('#comment').val('');
-						$('#name').val('');
-						$('#email').val('');
-						$('#url').val('');
-						$('#riddle').val('');
+						// replace no comments notice & add comment
+						$('#single .notice').html(response.notice)
+											.after('<section id="comments">'+response.html+'</section>');
 					}
 
-					// set new riddle
-					$('#comments-form .captcha label[for="riddle"]').html(response.riddle.notice);
-					$('#comments-form .qa span').html(response.riddle.riddle);
-					// reset riddle
+					// scroll to success notice
+					$('html,body').animate({scrollTop: $("#success").offset().top},'slow');
+
+					// make success dissapear in 5 seconds
+					setTimeout(function() {
+						$('#success').fadeOut(500);
+					}, 5000);
+
+					// reset form
+					$('#comment').val('');
+					$('#name').val('');
+					$('#email').val('');
+					$('#url').val('');
 					$('#riddle').val('');
 				}
+
+				// set new riddle
+				$('#comments-form .captcha label[for="riddle"]').html(response.riddle.notice);
+				$('#comments-form .qa span').html(response.riddle.riddle);
+				// reset riddle
+				$('#riddle').val('');
+			}
 		});
 		return false;
 	});
-
+	
 	//media gallery
 	if ($('#media-gallery').length > 0) {
-
-	//init slideshow (serverside = no blink)
-	//$('html').addClass('slideshow');
-
-	//vertical center element
+		$('body').bind('swipeleft', function( e ) {
+			var el = $('#media-elements>.active');
+			goNext(el);
+			e.stopImmediatePropagation();
+			return false;
+		}).bind('swiperight', function( e ) {
+			var el = $('#media-elements>.active');
+			goPrev(el);
+			e.stopImmediatePropagation();
+			return false;
+		});
+		
+		//vertical center element
 		function centerMedia(which) {
-
 			var w = (which) ? 1 : 0;
 			if (w == 1) var active = $('#media-elements>figure');
 			else var active = $('#media-elements>.active');
@@ -176,7 +185,7 @@ $(function(){
 			e.preventDefault();
 		});
 
-		//sldieshow
+		//slideshow
 		function slideShow(go) {
 			var el = $('#media-elements>.active');
 			switch (go) {
@@ -256,5 +265,20 @@ $(function(){
 			$('fieldset:first-child', this).addClass('disabled');
 		});
 	});
-
+	
+	// more comments?
+	$('#paging a').click(function() {
+		// fetch more from same url
+		$.ajax({
+			url: $(this).attr('href'),
+			success: function(data) {
+				// replace comments html 
+				$('#comments').html(data);
+				// remove paging
+				$('#paging').remove();
+			}
+		});
+		return false;
+	});
 });
+

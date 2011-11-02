@@ -4,7 +4,7 @@
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
  File: script.js
- Version: 1.0 (XX.XX.2011)
+ Version: 1.0 (11/2011)
  Authors: Matjaz Korosec (twitter.com/matjazkorosec),
           David Kuridza (twitter.com/davidkuridza)
 
