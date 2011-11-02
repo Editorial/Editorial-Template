@@ -23,10 +23,10 @@ $EditorialClass = 'clear';
 		</header>
 		<section id="layout" class="clear">
 			<p><?php _e('Select layout option', 'Editorial'); ?></p>
-			<menu>
+			<ul class="switch">
 				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?list" class="list"><?php _e('List', 'Editorial'); ?></a></li>
 				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?grid" class="grid"><?php _e('Grid', 'Editorial'); ?></a></li>
-			</menu>
+			</ul>
 		</section>
 	</article>
 	<?php
