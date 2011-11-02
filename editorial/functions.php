@@ -80,7 +80,7 @@ class Editorial
 		// settings after theme setup
 		add_action('admin_init', array('Editorial','adminInit'));
 		// prevent publishing of a post without a thumbnail
-		add_action('publish_post', array('Editorial', 'checkForThumbnail'), 1);
+		//add_action('publish_post', array('Editorial', 'checkForThumbnail'), 1);
 
 		if (function_exists('register_sidebar'))
 		{
@@ -337,8 +337,13 @@ class Editorial
 	 */
 	public static function postExcerpt()
 	{
+	    $excerpt = get_the_excerpt();
+	    if (mb_strlen($excerpt) > 240)
+	    {
+	        $excerpt = mb_substr($excerpt, 0, 240).' [...]';
+	    }
 ?>
-				<p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
+				<p class="entry-summary"><?php echo $excerpt; ?></p>
 <?php
 	}
 
