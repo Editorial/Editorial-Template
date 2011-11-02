@@ -45,13 +45,13 @@ if (comments_open() || !post_password_required()) {
 		if (have_comments())
 		{
 			// show notice & start section for comments
-			echo '		<p class="notice">'.Editorial::commentNotice().'</p>
-		<section id="comments">
-			';
+			echo '<p class="notice">'.Editorial::commentNotice().'</p>
+			<section id="comments">';
 			
 			// comment settings
 			$settings = array(
 				'callback'          => 'Editorial::comment',
+				'end-callback'      => 'Editorial::endComment',
 				'reverse_top_level' => true,
 			);
 			// more?
