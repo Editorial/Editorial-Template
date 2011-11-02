@@ -89,7 +89,7 @@ s.parentNode.insertBefore(g,s)}(document,'script'));
 		if ($menuItems > 5)
 		{
 			// we're hoarding
-			$settings['class'] = 'hoarding';
+			$settings['menu_class'] = 'hoarding';
 			$menu = wp_nav_menu($settings);
 		}
 		echo '	<nav id="primary" role="navigation">
