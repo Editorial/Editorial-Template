@@ -1,19 +1,40 @@
-if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+/*
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+
+ File: script.js
+ Version: 1.0 (11/2011)
+ Authors: Miha Hribar (twitter.com/mihahribar),
+          Matjaz Korosec (twitter.com/matjazkorosec)
+
+ */
+
+var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
+if (iDevice) {
 	var viewportmeta = document.querySelectorAll('meta[name="viewport"]')[0];
 	if (viewportmeta) {
-		viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0';
+		viewportmeta.content = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0';
 		document.body.addEventListener('gesturestart',function() {
-			viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6';
+			viewportmeta.content = 'width=device-width,minimum-scale=0.25,maximum-scale=1.6';
 		},false);
 	}
 }
 
 $(function(){
-	// remove address bar
-	// @see http://davidwalsh.name/hide-address-bar
-	setTimeout(function() {
-		window.scrollTo(0, 1);
-	}, 0);
+
+	//remove address bar
+	//@see http://davidwalsh.name/hide-address-bar
+	setTimeout(function(){window.scrollTo(0,1);},0);
+
+	//iOS label fix
+	if (iDevice) {
+		$('label[for]').click(function(){
+			var el = $(this).attr('for');
+			if ($('#' + el + '[type=radio], #' + el + '[type=checkbox]').attr('selected', !$('#' + el).attr('selected'))) return;
+			else $('#' + el)[0].focus();
+		});
+	}
 
 	//embed-code select
 	$('#embed-code').click(function(){$(this).select();});
@@ -34,7 +55,7 @@ $(function(){
 				$(b).fadeIn('fast');
 				$(s + '>span').text('Hide shown');
 			}
-		})
+		});
 	}
 
 	// ajax comment post

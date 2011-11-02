@@ -296,16 +296,20 @@ class Editorial
 	 */
 	public static function postFooter()
 	{
-		?>
-		<footer>
-			<?php the_category(', '); ?>
-			<time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
-				<span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
-				<?php the_time(get_option('date_format')); ?>
-			</time>
-			<em class="v-hidden author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
-		</footer>
-		<?php
+ ?>
+				<footer>
+					<?php the_category(', ');
+?>
+
+					<time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
+						<span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
+						<?php the_time(get_option('date_format'));
+?>
+
+					</time>
+					<em class="v-hidden author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+				</footer>
+<?php
 	}
 
 	/**
@@ -318,13 +322,11 @@ class Editorial
 	public static function postHeader($h1 = true)
 	{
 		$heading = $h1 ? 'h1' : 'h2'
-		?>
-		<header>
-			<<?php echo $heading; ?> class="entry-title">
-				<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-			</<?php echo $heading; ?>>
-		</header>
-		<?php
+?>
+				<<?php echo $heading; ?> class="entry-title">
+					<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+				</<?php echo $heading; ?>>
+<?php
 	}
 
 	/**
@@ -335,9 +337,9 @@ class Editorial
 	 */
 	public static function postExcerpt()
 	{
-		?>
-		<p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
-		<?php
+?>
+				<p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
+<?php
 	}
 
 	/**
@@ -362,11 +364,11 @@ class Editorial
 			$url = $imageData[0];
 		}
 
-		?>
-		<figure>
-			<a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo $url; ?>" alt="<?php the_title(); ?>"></a>
-		</figure>
-		<?php
+?>
+			<figure>
+				<a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo $url; ?>" alt="<?php the_title(); ?>"></a>
+			</figure>
+<?php
 	}
 
 	/**
@@ -405,20 +407,20 @@ class Editorial
 		{
 
 			$complementary = sprintf('<aside role="complementary">
-					<form class="favorize" method="post" action="%2$s">
-						<fieldset%4$s>
-							<input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1"%3$s>
-							<label class="vote-for" for="vote-for-%1$d"><em>+1</em></label>
-							<input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1"%3$s>
-							<label class="vote-against" for="vote-against-%1$d"><em>-1</em></label>
-						</fieldset>
-						<fieldset>
-							<input type="hidden" name="comment_id" value="%1$d">
-							<input type="submit" name="submit-%1$d" value="Go">
-							<strong id="score-%1$d" class="score">%5$s</strong>
-						</fieldset>
-					</form>
-				</aside>',
+						<form class="favorize" method="post" action="%2$s">
+							<fieldset%4$s>
+								<input type="radio" id="vote-for-%1$d" name="vote-%1$d" value="1"%3$s>
+								<label class="vote-for" for="vote-for-%1$d"><em>+1</em></label>
+								<input type="radio" id="vote-against-%1$d" name="vote-%1$d" value="-1"%3$s>
+								<label class="vote-against" for="vote-against-%1$d"><em>-1</em></label>
+							</fieldset>
+							<fieldset>
+								<input type="hidden" name="comment_id" value="%1$d">
+								<input type="submit" name="submit-%1$d" value="Go">
+								<strong id="score-%1$d" class="score">%5$s</strong>
+							</fieldset>
+						</form>
+					</aside>',
 				$comment->comment_ID,
 				get_bloginfo('template_url').'/comment-vote.php',
 				Editorial::alreadyVoted($comment->comment_ID) ? ' disabled' : '',
@@ -441,9 +443,7 @@ class Editorial
 					</footer>
 					%11$s
 				</section>
-				<header>
-					<h2 class="entry-title"><span class="v-hidden">%5$s</span> %6$d.</h2>
-				</header>
+				<h2 class="entry-title"><span class="v-hidden">%5$s</span> %6$d.</h2>
 				<blockquote class="%14$s%9$sentry-content">
 					%10$s
 					<p>%7$s</p>
@@ -508,21 +508,21 @@ class Editorial
 	{
 		$thumbId = get_post_thumbnail_id($postId);
 		$commentCount = get_comments_number($postId);
-		?>
-		<nav id="tabs" role="navigation">
-			<ul>
-				<li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>>
-					<a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
-				</li>
-				<li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
-					<a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); ?></a>
-				</li>
-				<li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
-					<a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
-				</li>
-			</ul>
-		</nav>
-		<?php
+?>
+	<nav id="tabs" role="navigation">
+		<ul>
+			<li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>>
+				<a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
+			</li>
+			<li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
+				<a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); ?></a>
+			</li>
+			<li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
+				<a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
+			</li>
+		</ul>
+	</nav>
+<?php
 	}
 
 	/**
@@ -905,5 +905,45 @@ function reclamation_sidebar_params($params)
 	$params[0]['before_widget'] = sprintf('<section class="widget widget%d">', $editorialSidebarCounter);
 	return $params;
 }*/
+
+
+//http://www.mattvarone.com/wordpress/cleaner-output-for-wp_nav_menu/
+class MV_Cleaner_Walker_Nav_Menu extends Walker {
+	var $tree_type = array( 'post_type', 'taxonomy', 'custom' );
+	var $db_fields = array( 'parent' => 'menu_item_parent', 'id' => 'db_id' );
+	function start_lvl(&$output, $depth) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "\n$indent<ul class=\"sub-menu\">\n";
+	}
+	function end_lvl(&$output, $depth) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "$indent</ul>\n";
+	}
+	function start_el(&$output, $item, $depth, $args) {
+		global $wp_query;
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+		$class_names = "";
+		$classes = array();
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+		if ($class_names)
+		$class_names = ' class="' . esc_attr( $class_names ) . '"';
+		$id = apply_filters( 'nav_menu_item_id', '', $item, $args );
+		$id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
+		$output .= $indent . '<li' . $id  . $class_names .'>';
+		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+		$item_output = $args->before;
+		$item_output .= '<a'. $attributes .'>';
+		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+		$item_output .= '</a>';
+		$item_output .= $args->after;
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
+	function end_el(&$output, $item, $depth) {
+			$output .= "</li>\n";
+	}
+}
 
 ?>

@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <!--
-Editorial theme
-Version: 0.5
-Based on: 320 and Up boilerplate extension
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+
+ Version: 1.0 (11/2011)
+
+ Design: Natan Nikolic (twitter.com/natannikolic)
+ Programming: Miha Hribar (twitter.com/mihahribar)
+ Front-end: Matjaz Korosec (twitter.com/matjazkorosec)
+
+ Based on: 320 and Up boilerplate extension
+
 -->
 <?php $htmlParams = 'lang="'.get_bloginfo('language').'"'.(isset($htmlClass) ? ' class="'.$htmlClass.'"' : ''); ?>
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
@@ -10,7 +19,6 @@ Based on: 320 and Up boilerplate extension
 <!--[if IE 7 ]><html class="ie7" <?php echo $htmlParams; ?>><![endif]-->
 <!--[if IE 8 ]><html class="ie8" <?php echo $htmlParams; ?>><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html <?php echo $htmlParams; ?>><!--<![endif]-->
-
 <head>
 <meta charset="utf-8">
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
@@ -36,20 +44,25 @@ Based on: 320 and Up boilerplate extension
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/libs/mediaelementplayer.min.css">
 <?php } ?>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-1.7.min.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?>
+<!--<script>
+var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>-->
 </head>
 
-<body id="<?php echo $EditorialId; ?>" class="<?php echo $EditorialClass; ?>">
+<body class="<?php echo $EditorialId; ?> <?php echo $EditorialClass; ?>">
 
 <header id="header" class="clear" role="banner">
-	<figure id="brand" class="vcard">
+	<h1 id="brand" class="vcard">
 		<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
 			<img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small').'" width="133" height="19' ?>" alt="<?php bloginfo('name'); ?>">
 		</a>
-		<figcaption class="v-hidden"><?php bloginfo('name'); ?></figcaption>
-	</figure>
+	</h1>
 	<form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
 		<fieldset>
 			<legend class="v-hidden"><?php _e('Search', 'Editorial'); ?></legend>
@@ -58,7 +71,7 @@ Based on: 320 and Up boilerplate extension
 			<input type="submit" id="find" class="ir" value="<?php _e('Search', 'Editorial'); ?>">
 		</fieldset>
 	</form>
-	<?php
+<?php
 	// show main navigation if not on 404 page
 	if ($EditorialId != 'notfound')
 	{
@@ -79,7 +92,10 @@ Based on: 320 and Up boilerplate extension
 			$settings['class'] = 'hoarding';
 			$menu = wp_nav_menu($settings);
 		}
-		echo '<nav id="primary" role="navigation">'.$menu.'</nav>';
+		echo '	<nav id="primary" role="navigation">
+		'.$menu.'
+	</nav>
+';
 	}
-	?>
+?>
 </header>

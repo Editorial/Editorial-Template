@@ -79,7 +79,7 @@ foreach ($attachments as $key => $attachment)
 // show mobile version of gallery
 if (Editorial::isMobileDevice())
 {
-	?>
+?>
 	<section id="media-gallery">
 		<header role="banner">
 			<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>
@@ -93,7 +93,7 @@ if (Editorial::isMobileDevice())
 		</header>
 		<img id="loading" src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/bgr/loading.gif" width="48" height="48" alt="<?php _e('Loading', 'Editorial'); ?>">
 		<div id="media-elements">
-			<?php
+<?php
 
 			$count = count($attachments);
 			if ($count)
@@ -164,102 +164,102 @@ if (Editorial::isMobileDevice())
 				}
 			}
 
-			?>
+?>
 		</div>
 		<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span><?php _e('Back to article', 'Editorial'); ?></span></a>
 	</section>
-	<?php
+<?php
 } else {
 	// show desktop version of gallery
-	?>
-	<div class="content clear" role="main">
-		<article id="single" class="hentry">
-			<header>
-				<h1 class="entry-title"><a href="<?php echo get_permalink($parentId); ?>" rel="prev"><?php echo get_the_title($parentId); ?></a></h1>
-			</header>
-			<section id="media">
-				<figure>
-					<?php if (Editorial::is_image($post->post_mime_type)) { ?>
-					<span><img src="<?php echo $imageMeta[0]; ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
-					<?php } else if (Editorial::is_audio($post->post_mime_type)) { ?>
-					<audio
-						id="player"
-						src="<?php echo $attachmentUrl ?>"
-						type="<?php echo $post->post_mime_type; ?>"
-						controls="controls"></audio>
-					<?php } else if (Editorial::is_video($post->post_mime_type)) { ?>
-					<video
-						width="612"
-						height="459"
-						src="<?php echo $attachmentUrl ?>"
-						type="<?php echo $post->post_mime_type; ?>"
-						id="player"
-						poster="@todo"
-						controls="controls"
-						preload="none"></video>
-					<?php } ?>
-					<figcaption<?php echo Editorial::is_video($post->post_mime_type) ? ' id="video-fc"' : ''; ?>>
-						<h3><?php the_title(); ?></h3>
-						<p><?php the_content(); ?></p>
-					</figcaption>
-				</figure>
-			</section>
-			<aside role="complementary">
-				<?php
+?>
+
+<div class="content clear" role="main">
+	<article id="single" class="hentry">
+		<h1 class="entry-title"><a href="<?php echo get_permalink($parentId); ?>" rel="prev"><?php echo get_the_title($parentId); ?></a></h1>
+		<section id="media">
+			<figure>
+<?php
+					if (Editorial::is_image($post->post_mime_type)) {
+?>
+				<span><img src="<?php echo $imageMeta[0]; ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
+<?php
+					} else if (Editorial::is_audio($post->post_mime_type)) {
+?>
+				<audio id="player" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" controls="controls"></audio>
+<?php
+					} else if (Editorial::is_video($post->post_mime_type)) {
+?>
+				<video width="612" height="459" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" poster="@todo" controls="controls" preload="none"></video>
+<?php
+					}
+?>
+				<figcaption<?php echo Editorial::is_video($post->post_mime_type) ? ' id="video-fc"' : ''; ?>>
+					<h3><?php the_title(); ?></h3>
+					<?php the_content(); ?>
+				</figcaption>
+			</figure>
+		</section>
+		<aside role="complementary">
+<?php
 				$previous = $attachments[$previous]->ID == $post->ID ? false : $attachments[$previous];
 				$next     = $next ? $attachments[$next] : false;
 				if ($previous || $next) {
-				?>
-				<nav id="navigate" role="navigation">
-					<?php
-					if (count($attachments) > 1) { ?>
-						<h2><?php printf('%d/%d', $currentPosition, count($attachments)); ?></h2>
-						<?php
+?>
+			<nav id="navigate" role="navigation">
+<?php
+					if (count($attachments) > 1) {
+?>
+				<h2><?php printf('%d/%d', $currentPosition, count($attachments)); ?></h2>
+<?php
 					}
-					?>
-					<ul>
-						<?php
+?>
+				<ul>
+<?php
 						if ($previous)
 						{
 							$imageMeta = wp_get_attachment_image_src($previous->ID, 'media-thumb');
-							?>
-							<li class="previous">
-								<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
-									<img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
-									<?php _e('Previous', 'Editorial'); ?>
-								</a>
-							</li>
-							<?php
+?>
+					<li class="previous">
+						<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
+							<img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
+							<?php _e('Previous', 'Editorial'); ?>
+						</a>
+					</li>
+<?php
 						}
 						if ($next)
 						{
 							$imageMeta = wp_get_attachment_image_src($next->ID, 'media-thumb');
-							?>
-							<li class="next">
-								<a href="<?php echo get_permalink($next->ID); ?>" rel="next">
-									<img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
-									<?php _e('Next', 'Editorial'); ?>
-								</a>
-							</li>
-							<?php
+?>
+					<li class="next">
+						<a href="<?php echo get_permalink($next->ID); ?>" rel="next">
+							<img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
+							<?php _e('Next', 'Editorial'); ?>
+						</a>
+					</li>
+<?php
 						}
-						?>
-					</ul>
-				</nav>
-				<?php
+?>
+				</ul>
+			</nav>
+<?php
 				}
-				?>
-				<fieldset id="embed">
-					<h4><label for="embed-code"><?php _e('Embed code', 'Editorial'); ?></label></h4>
-					<p><?php _e('There’s no need for downloading and uploading it to your blog/website when you can easily embed it.', 'Editorial'); ?></p>
-					<input id="embed-code" value="&lt;script type=&quot;text/javascript&quot; src=&quot;http://use.typekit.c&quot;&gt;">
-				</fieldset>
-			</aside>
-		</article>
-		<?php Editorial::tabNavigation($parentId, 'gallery'); ?>
-		<?php $postId = $parentId; get_template_part( 'loop', 'featured' ); ?>
-	</div>
-	<?php
+?>
+			<fieldset id="embed">
+				<h4><label for="embed-code"><?php _e('Embed code', 'Editorial'); ?></label></h4>
+				<p><?php _e('There’s no need for downloading and uploading it to your blog/website when you can easily embed it.', 'Editorial'); ?></p>
+				<input id="embed-code" value="&lt;script type=&quot;text/javascript&quot; src=&quot;http://use.typekit.c&quot;&gt;">
+			</fieldset>
+		</aside>
+	</article>
+<?php
+		Editorial::tabNavigation($parentId, 'gallery');
+?>
+<?php
+		$postId = $parentId; get_template_part( 'loop', 'featured' );
+?>
+</div>
+<?php
 }
 @include('footer.php');
 ?>

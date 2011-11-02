@@ -17,9 +17,7 @@ the_post();
 
 <div class="content clear" role="main">
 	<article id="single" class="hentry">
-		<header>
-			<h1 class="entry-title"><?php the_title(); ?></h1>
-		</header>
+		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<section id="intro">
 			<p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
 			<footer>

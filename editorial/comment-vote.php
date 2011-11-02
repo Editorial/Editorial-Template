@@ -7,8 +7,9 @@
  * @author     Miha Hribar
  */
 
-require_once('./../../../wp-load.php');
+//require_once('./../../../wp-load.php');
 //require_once('/Users/miha/Projects/Editorial/wordpress/wp-load.php');
+require_once('/Users/matjazk/Webpages/Personal/editorial/wordpress/wp-load.php');
 
 // allow post only
 Editorial::postOnly();

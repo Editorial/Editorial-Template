@@ -46,23 +46,27 @@ $EditorialClass = 'clear';
 @include('header.php');
 
 ?>
+
 <div class="content clear" role="main">
 	<article id="single" class="hentry">
-		<header>
-			<h1 class="entry-title"><?php the_title(); ?></h1>
-		</header>
+		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<section id="intro">
-			<p class="entry-summary"><?php echo get_the_excerpt(); ?> </p>
+			<p class="entry-summary"><?php echo get_the_excerpt(); ?></p>
 			<footer>
-				<?php the_category(', '); ?>
+				<?php the_category(', ');
+?>
+
 				<time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
 					<span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
 					<?php the_time(get_option('date_format')); ?>
+
 				</time>
 				<em class="author vcard"><?php _e('by:', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
-				<?php if (Editorial::isShareEnabled()) { ?>
-				<ul class="social">
-					<?php
+<?php
+				if (Editorial::isShareEnabled()) {
+?>
+					<ul class="social">
+<?php
 
 					if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
 					{
@@ -98,9 +102,12 @@ $EditorialClass = 'clear';
 			<figure>
 				<a href="<?php echo $attachmentUrl ?>" id="to-gallery">
 					<img src="<?php echo $thumbnailUrl; ?>" alt="<?php echo $imageMeta->alt ?  $imageMeta->alt : $imageMeta->title; ?>" class="photo">
-					<?php if ($attachmentsCount > 1) {?>
+<?php 			if ($attachmentsCount > 1) {
+?>
 					<em id="media-count">1/<?php echo $attachmentsCount; ?></em>
-					<?php } ?>
+<?php
+						}
+?>
 				</a>
 				<figcaption>
 					<h3><?php echo $imageMeta->post_title; ?></h3>
@@ -112,7 +119,11 @@ $EditorialClass = 'clear';
 			<?php the_content(); ?>
 		</section>
 	</article>
-	<?php Editorial::tabNavigation($post->ID, 'article'); ?>
-	<?php global $postId; $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
+<?php
+	Editorial::tabNavigation($post->ID, 'article');
+?>
+<?php
+	global $postId; $postId = $post->ID; get_template_part( 'loop', 'featured' );
+?>
 </div>
 <?php @include('footer.php'); ?>

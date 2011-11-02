@@ -27,12 +27,10 @@ if ($categories)
 	$query = new wp_query($args);
 	if( $query->have_posts() )
 	{
-		?>
-		<section class="featured">
-			<header>
-				<h3><?php _e('You might also enjoy', 'Editorial'); ?></h3>
-			</header>
-		<?php
+?>
+	<section class="featured">
+		<h3><?php _e('You might also enjoy', 'Editorial'); ?></h3>
+<?php
 		$i = 1;
 		while ($query->have_posts())
 		{
@@ -40,7 +38,8 @@ if ($categories)
 			$thumbId = get_post_thumbnail_id();
 			include('featured-article.php');
 			$i++;
-		}
-		echo '</section>';
+}
+		echo '	</section>
+';
 	}
 }

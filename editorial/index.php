@@ -31,6 +31,9 @@ $EditorialClass = 'clear';
 ?>
 
 <div class="content clear" role="main">
-	<?php get_template_part( 'loop', 'posts' ); ?>
+<?php
+	get_template_part( 'loop', 'posts' );
+?>
+
 </div>
 <?php @include('footer.php'); ?>

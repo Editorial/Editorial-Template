@@ -13,7 +13,8 @@ if (have_posts())
 	$exposed = false;
 	$i = 1;
 	// enter the Loop
-	echo '<section id="exposed">';
+	echo '	<section id="exposed">
+';
 	while ( have_posts() )
 	{
 		the_post();
@@ -24,17 +25,26 @@ if (have_posts())
 		{
 			// show exposed
 			$exposed = true;
-			?>
-			<article class="hentry">
-				<div class="detail">
-					<?php Editorial::postFooter(); ?>
-					<?php Editorial::postHeader(); ?>
-					<?php Editorial::postExcerpt(); ?>
-				</div>
-				<?php Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait', true); ?>
-			</article>
-			</section><section class="featured">
-			<?php
+?>
+		<article class="hentry">
+			<div class="detail">
+<?php
+				Editorial::postFooter();
+?>
+<?php
+				Editorial::postHeader();
+?>
+<?php
+				Editorial::postExcerpt();
+?>
+			</div>
+<?php
+			Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait', true);
+?>
+		</article>
+	</section>
+	<section class="featured">
+<?php
 		}
 		else
 		{
@@ -43,7 +53,8 @@ if (have_posts())
 			$i++;
 		}
 	}
-	echo '</section>';
+	echo '
+	</section>';
 }
 else
 {

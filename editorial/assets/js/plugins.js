@@ -5,7 +5,7 @@
 window.log = function(){
 log.history = log.history || [];   // store logs to an array for reference
 log.history.push(arguments);
-arguments.callee = arguments.callee.caller;
+arguments.callee = arguments.callee.caller; 
 if(this.console) console.log( Array.prototype.slice.call(arguments) );
 };
 
@@ -19,11 +19,11 @@ if(this.console) console.log( Array.prototype.slice.call(arguments) );
  * @link http://github.com/mathiasbynens/Placeholder-jQuery-Plugin
  * @author Mathias Bynens <http://mathiasbynens.be/>
  */
-
+ 
 (function($) {
 
 	var isInputSupported = 'placeholder' in document.createElement('input'),
-		isTextareaSupported = 'placeholder' in document.createElement('textarea');
+	    isTextareaSupported = 'placeholder' in document.createElement('textarea');
 	if (isInputSupported && isTextareaSupported) {
 		$.fn.placeholder = function() {
 			return this;
@@ -43,7 +43,7 @@ if(this.console) console.log( Array.prototype.slice.call(arguments) );
 	function args(elem) {
 		// Return an object of element attributes
 		var newAttrs = {},
-			rinlinejQuery = /^jQuery\d+$/;
+		    rinlinejQuery = /^jQuery\d+$/;
 		$.each(elem.attributes, function(i, attr) {
 			if (attr.specified && !rinlinejQuery.test(attr.name)) {
 				newAttrs[attr.name] = attr.value;
@@ -65,9 +65,9 @@ if(this.console) console.log( Array.prototype.slice.call(arguments) );
 
 	function setPlaceholder(elem) {
 		var $replacement,
-			$input = $(this),
-			$origInput = $input,
-			id = this.id;
+		    $input = $(this),
+		    $origInput = $input,
+		    id = this.id;
 		if ($input.val() === '') {
 			if ($input.is(':password')) {
 				if (!$input.data('placeholder-textinput')) {

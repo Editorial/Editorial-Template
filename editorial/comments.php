@@ -36,17 +36,18 @@ $EditorialClass = 'clear';
 @include('header.php');
 if (comments_open() || !post_password_required()) {
 ?>
+
 <div class="content clear" role="main">
 	<article id="single">
-		<header>
-			<h1><a href="<?php the_permalink(); ?>" rel="prev"><?php the_title(); ?></a></h1>
-		</header>
-		<?php
+		<h1><a href="<?php the_permalink(); ?>" rel="prev"><?php the_title(); ?></a></h1>
+<?php
 		// show comments
 		if (have_comments())
 		{
 			// show notice & start section for comments
-			echo '<p class="notice">'.Editorial::commentNotice().'</p><section id="comments">';
+			echo '		<p class="notice">'.Editorial::commentNotice().'</p>
+		<section id="comments">
+			';
 			
 			// comment settings
 			$settings = array(
@@ -63,7 +64,9 @@ if (comments_open() || !post_password_required()) {
 			// show comment
 			wp_list_comments($settings);
 
-			echo '</section>';
+			echo '
+		</section>
+		';
 
 			// show more link if we have paging enabled
 			if (get_comment_pages_count() > 1 && get_option('page_comments'))
@@ -83,9 +86,9 @@ if (comments_open() || !post_password_required()) {
 		else
 		{
 			// show notice
-			?>
-			<p class="notice"><?php _e('<strong>There are no comments yet.</strong> Be first to leave your footprint here ...', 'Editorial'); ?></p>
-			<?php
+?>
+		<p class="notice"><?php _e('<strong>There are no comments yet.</strong> Be first to leave your footprint here ...', 'Editorial'); ?></p>
+<?php
 		}
 
 		// has errors?
@@ -107,7 +110,7 @@ if (comments_open() || !post_password_required()) {
 			unset($_SESSION['post']);
 		}
 		
-		?>
+?>
 		<form id="comments-form" action="<?php echo get_bloginfo('template_url'); ?>/comment-post.php" method="post">
 			<fieldset class="feedback">
 				<legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
@@ -153,7 +156,11 @@ if (comments_open() || !post_password_required()) {
 			</fieldset>
 		</form>
 	</article>
-	<?php Editorial::tabNavigation($post->ID, 'comments'); ?>
-	<?php global $postId; $postId = $post->ID; get_template_part( 'loop', 'featured' ); ?>
+<?php
+	Editorial::tabNavigation($post->ID, 'comments');
+?>
+<?php
+	global $postId; $postId = $post->ID; get_template_part( 'loop', 'featured' );
+?>
 </div>
 <?php } @include('footer.php'); ?>
