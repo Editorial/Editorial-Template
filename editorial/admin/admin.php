@@ -100,7 +100,8 @@ class Editorial_Admin
 			'<strong>Edit</strong>orial',
 			'administrator',
 			'editorial',
-			array($this, 'lookAndFeel')
+			array($this, 'lookAndFeel'),
+			get_bloginfo('template_directory').'/assets/favicon.ico'
 		);
 		add_submenu_page(
 			'editorial',
