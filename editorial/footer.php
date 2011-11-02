@@ -32,16 +32,21 @@ if ($EditorialId != 'notfound')
 			</ul>
 		</nav>
 		<?php
-			// display footer menu
-			$settings = array(
-				'theme_location' => 'footer-nav',
-				'container'      => false,
-				'menu_class'     => 'xoxo',
-				'menu_id'        => '',
-				'depth'          => 1,
-				'walker'         => new EditorialNav(),
-			);
-			wp_nav_menu($settings);
+		
+	    if (has_nav_menu('footer-nav'))
+	    {
+	        // display footer menu
+            $settings = array(
+                'theme_location' => 'footer-nav',
+                'container'      => false,
+                'menu_id'        => false,
+                'menu_class'     => 'xoxo',
+                'depth'          => 1,
+                'walker'         => new EditorialNav(),
+            );
+            wp_nav_menu($settings);
+	    }
+			
 		?>
 	</section>
 	<small id="copyright"><?php echo Editorial::getOption('copyright'); ?> <?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>

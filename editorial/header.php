@@ -85,6 +85,7 @@ s.parentNode.insertBefore(g,s)}(document,'script'));
 			'echo'           => false,
 		);
 		$menu = wp_nav_menu($settings);
+		// looks weird, but this is the only way to count them bastards.
 		$menuItems = substr_count($menu,'<li');
 		if ($menuItems > 5)
 		{
