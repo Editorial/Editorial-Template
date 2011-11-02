@@ -151,7 +151,9 @@ if (comments_open() || !post_password_required()) {
 				</ol>
 			</fieldset>
 			<fieldset class="submit">
-				<?php comment_id_fields(); ?>
+<?php
+				comment_id_fields();
+?>
 				<input type="submit" value="<?php _e('Publish', 'Editorial'); ?>">
 			</fieldset>
 		</form>
