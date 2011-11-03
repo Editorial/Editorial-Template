@@ -126,6 +126,7 @@ $(function(){
 	
 	//media gallery
 	if ($('#media-gallery').length > 0) {
+		// swiping
 		$('body').bind('swipeleft', function( e ) {
 			var el = $('#media-elements>.active');
 			goNext(el);
@@ -280,5 +281,25 @@ $(function(){
 		});
 		return false;
 	});
+	
+	// keyboard navigation
+	if ($('#gallery').length) {
+		$(document).keydown(function(e){
+			var key = e.keyCode || e.which;
+			var el = $('#media-elements>.active');
+			// left
+			if (key === 37) {
+				alert('left');
+				e.stopImmediatePropagation();
+				return false;  
+			}
+			// right
+			if (key === 39) {
+				alert('right');
+				e.stopImmediatePropagation();
+				return false;  
+			}
+		});
+	}
 });
 

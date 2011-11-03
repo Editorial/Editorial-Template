@@ -878,7 +878,7 @@ position:absolute;top:50%;left:34px;}
 .layout-list .featured .info {width:34%;float:left;}
 .layout-list .featured p {width:47%;float:right;}
 .home-portrait #exposed .info,.inside-portrait #exposed .info {width:100%;}
-.featured article {width:48%;min-height:230px;}
+.featured article {width:48%;min-height:255px;}
 .layout-list .featured article {width:100%;min-height:1px;}
 .featured .f2,.featured .f4 {float:right;}
 .layout-list .featured .f2,.layout-list .featured .f4 {float:left;}
