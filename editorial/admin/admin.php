@@ -86,6 +86,25 @@ class Editorial_Admin
 		add_action('admin_menu', array($this, 'menus'));
 		// add action for publishing a page (for intercepting colophon template)
 		add_action('publish_page', array($this, 'publishPage'));
+		
+		// add font notice
+        if (!Editorial::getOption('typekit'))
+        {
+            add_action('admin_notices', array($this, 'fontNotice'));
+        }
+        
+        // check for update
+        $this->checkVersion();
+        
+        // if black and white option is selected we need writable cache
+        if (Editorial::getOption('black-and-white'))
+        {
+            // cache folder exists
+            if (!Editorial::canCache())
+            {
+                add_action('admin_notices', array($this, 'cacheNotice'));
+            }
+        }
 	}
 	/**
 	 * Add menu to wordpress administration
@@ -136,14 +155,6 @@ class Editorial_Admin
 			array($this, 'colophon')
 		);
 		add_option(EDITORIAL_OPTIONS, '', '', 'yes');
-
-		// add font notice
-		if (!Editorial::getOption('typekit'))
-		{
-			add_action('admin_notices', array($this, 'fontNotice'));
-		}
-		// check for update
-		$this->checkVersion();
 	}
 
 	/**
@@ -292,10 +303,18 @@ class Editorial_Admin
 	{
 		// notices can be disabled
 		if (Editorial::getOption('disable-admin-notices')) return;
-		echo "<div class='updated fade'>
-			<p><strong>".__('Editorial Typekit fonts are currently disabled.')."</strong> "
-			.__('<a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.')."</p>
-		</div>";
+		$this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.'));
+	}
+	
+	/**
+	 * Show cache notice
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	public function cacheNotice()
+	{
+		$this->_showNotice(__('<strong>Cache folder is missing or not writable</strong>. Please make sure the cache folder, located in <code>/wp-content/cache</code> exists and is writable by the server.')." ");
 	}
 
 	/**
@@ -328,10 +347,19 @@ class Editorial_Admin
 	 */
 	public function updateNotice()
 	{
-		echo "<div class='updated fade'>
-			<p><strong>".__('Editorial theme update is available.')."</strong> "
-			.__('Log in to your account at <a href="http://editorialtemplate.com">editorialtemplate.com</a> to get the update.')."</p>
-		</div>";
+	    if (Editorial::getOption('disable-admin-notices')) return;
+		$this->_showNotice(__('<strong>Editorial theme update is available.</strong> Log in to your account at <a href="http://editorialtemplate.com">editorialtemplate.com</a> to get the update.'));
+	}
+	
+	/**
+	 * Show notice
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	private function _showNotice($notice)
+	{
+		echo "<div class='updated fade'><p>".$notice."</p></div>";
 	}
 
 	/**

@@ -28,6 +28,12 @@ define ('EDITORIAL_GOOGLE',      'google-share');
 // number of footer widgets
 define ('EDITORIAL_WIDGET', 'footer-widgets');
 
+// Pre-2.6 compatibility
+if (!defined('WP_CONTENT_URL')) define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
+if (!defined('WP_CONTENT_DIR')) define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
+if (!defined('WP_CACHE_DIR')) define('WP_CACHE_DIR', WP_CONTENT_DIR . '/cache');
+if (!defined('WP_CACHE_URL')) define('WP_CACHE_URL', WP_CONTENT_URL . '/cache');
+
 /**
  * Editorial
  *
@@ -368,6 +374,11 @@ class Editorial
 		if (count($imageData) > 1)
 		{
 			$url = $imageData[0];
+			// black and white images?
+			if (Editorial::getOption('black-and-white'))
+			{
+			    $url = get_bloginfo('template_directory').'/bw-photo.php?photo='.$thumbId.'&type='.$args[0];
+			}
 		}
 
 ?>
@@ -854,6 +865,59 @@ class Editorial
 		header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 	}
+	
+	/**
+	 * Cache folder exists and is writable?
+	 *
+	 * @return bool
+	 * @author Miha Hribar
+	 */
+	public static function canCache()
+	{
+		return is_dir(WP_CACHE_DIR) && is_writable(WP_CACHE_DIR);
+	}
+	
+    /**
+     * Creates path with all necessary subfolders.
+     *
+     * @param  string   $path
+     * @param  integer  $permission
+     * @return void
+	 * @author Miha Hribar
+     */
+    public static function createPath($path, $permission = null)
+    {
+        // path already exists
+        if ( is_dir($path) || is_file($path) )
+        {
+            return;
+        }
+        // fullpath
+        $fullpath = false !== strstr($path, '/') ? explode('/', $path) : array($path);
+        // slice it!
+        for ( $i=1; $i<count($fullpath); $i++ )
+        {
+            // you can do it!
+            $path = implode('/', array_slice($fullpath, 0, $i+1));
+            // folder does not exist, create it
+            if ( false === is_dir($path) )
+            {
+                // create path
+                if ( false === @mkdir($path) )
+                {
+                    throw new Exception('path not created: '.$path);
+                }
+            }
+        }
+        // chmod it?
+        if ( $permission )
+        {
+            if ( false === @chmod($path, $permission) )
+            {
+                throw new Exception('permission not set: ' . $permission . ' on ' . $path);
+            }
+        }
+    }
 }
 
 /**
