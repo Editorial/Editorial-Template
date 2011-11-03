@@ -514,6 +514,7 @@ class Editorial
 	{
 		$thumbId = get_post_thumbnail_id($postId);
 		$commentCount = get_comments_number($postId);
+		$attachmentCount = count(get_children(array('post_parent' => $postId)));
 ?>
 	<nav id="tabs" role="navigation">
 		<ul>
@@ -521,7 +522,7 @@ class Editorial
 				<a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
 			</li>
 			<li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
-				<a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); ?></a>
+				<a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
 			</li>
 			<li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
 				<a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
