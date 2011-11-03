@@ -40,9 +40,7 @@ if (count($authors))
 
 <div class="content clear" role="main">
 	<article id="common" class="hentry">
-		<header>
-			<h1 class="entry-title"><?php the_title(); ?></h1>
-		</header>
+		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<footer class="v-hidden">
 			<time class="published" pubdate datetime="2011-06-01T00:00">
 				<span class="value-title" title="2011-06-01T00:00"> </span>

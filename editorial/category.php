@@ -18,9 +18,7 @@ $EditorialClass = 'clear';
 
 <div class="content clear" role="main">
 	<article id="single">
-		<header>
-			<h1><?php single_cat_title(); ?></h1>
-		</header>
+		<h1><?php single_cat_title(); ?></h1>
 		<section id="layout" class="clear">
 			<p><?php _e('Select layout option', 'Editorial'); ?></p>
 			<ul class="switch">
