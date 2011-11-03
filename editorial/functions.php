@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 // for debuggin purposes
 function dump($object = '')
 {
@@ -24,7 +26,7 @@ define ('EDITORIAL_OPTIONS', 'editorial_options');
 define ('EDITORIAL_FACEBOOK',    'facebook-share');
 define ('EDITORIAL_TWITTER',     'twitter-share');
 define ('EDITORIAL_GOOGLE',      'google-share');
-//define ('EDITORIAL_READABILITY', 'readability-share');
+define ('EDITORIAL_READABILITY', 'readability-share');
 // number of footer widgets
 define ('EDITORIAL_WIDGET', 'footer-widgets');
 

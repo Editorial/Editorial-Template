@@ -20,7 +20,7 @@ $EditorialId = 'inside';
 
 if (has_post_thumbnail())
 {
-	$thumbId = get_post_thumbnail_id($Article->ID);
+	$thumbId = get_post_thumbnail_id($post->ID);
 	$data = wp_get_attachment_image_src($thumbId, 'file');
 	if ($data[1] < $data[2])
 	{

@@ -21,8 +21,8 @@ if ($categories)
 	$args=array(
 		'category__in' => $category_ids,
 		'post__not_in' => array($postId),
-		'showposts'=>4,
-		'caller_get_posts'=>1
+		'showposts' => 4,
+		'ignore_sticky_posts' => 1,
 	);
 	$query = new wp_query($args);
 	if( $query->have_posts() )
