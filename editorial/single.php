@@ -56,8 +56,8 @@ $EditorialClass = 'clear';
 				<?php the_category(', ');
 ?>
 
-				<time class="published" pubdate datetime="<?php the_date('Y-m-dTH:i'); ?>">
-					<span class="value-title" title="<?php the_date('Y-m-dTH:i'); ?>"> </span>
+				<time class="published" pubdate datetime="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>">
+					<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
 					<?php the_time(get_option('date_format')); ?>
 
 				</time>

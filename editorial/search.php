@@ -13,6 +13,7 @@ $EditorialId = array_key_exists('list', $_GET) ? 'layout-list' : 'layout-grid';
 //$posts = get_posts(array('numberposts' => 8));
 $EditorialClass = 'clear';
 @include('header.php');
+$switchType = $EditorialId == 'layout-list' ? 'grid' : 'list';
 
 ?>
 
@@ -22,8 +23,8 @@ $EditorialClass = 'clear';
 		<section id="layout" class="clear">
 			<p><?php _e('Select layout option', 'Editorial'); ?></p>
 			<ul class="switch">
-				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?list&s=<?php echo get_search_query(); ?>" class="list"><?php _e('List', 'Editorial'); ?></a></li>
-				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?grid&s=<?php echo get_search_query(); ?>" class="grid"><?php _e('Grid', 'Editorial'); ?></a></li>
+				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchType; ?>&s=<?php echo get_search_query(); ?>" class="list"><?php _e('List', 'Editorial'); ?></a></li>
+				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchType; ?>&s=<?php echo get_search_query(); ?>" class="grid"><?php _e('Grid', 'Editorial'); ?></a></li>
 			</ul>
 		</section>
 	</article>

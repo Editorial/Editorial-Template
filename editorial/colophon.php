@@ -42,9 +42,9 @@ if (count($authors))
 	<article id="common" class="hentry">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<footer class="v-hidden">
-			<time class="published" pubdate datetime="2011-06-01T00:00">
-				<span class="value-title" title="2011-06-01T00:00"> </span>
-				1ST June
+			<time class="published" pubdate datetime="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>">
+				<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
+				<?php the_time(get_option('date_format')); ?>
 			</time>
 			<em>Written by <a class="author include" href="#brand">Editorial</a></em>
 		</footer>
