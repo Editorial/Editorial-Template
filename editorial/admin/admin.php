@@ -52,7 +52,8 @@ class Editorial_Admin
 		'logo-big',
 		'logo-small',
 		'logo-gallery',
-		'typekit',
+	    'typekit-token',
+	    'typekit-kit',
 		'black-and-white',
 		'disable-admin-notices',
 		'karma',
@@ -86,6 +87,12 @@ class Editorial_Admin
 		add_action('admin_menu', array($this, 'menus'));
 		// add action for publishing a page (for intercepting colophon template)
 		add_action('publish_page', array($this, 'publishPage'));
+		
+		// handle posts
+	    if (count($_POST))
+        {
+            $this->_save();
+        }
 		
 		// add font notice
         if (!Editorial::getOption('typekit'))
@@ -154,7 +161,6 @@ class Editorial_Admin
 			'editorial-'.self::PAGE_COLOPHON,
 			array($this, 'colophon')
 		);
-		add_option(EDITORIAL_OPTIONS, '', '', 'yes');
 	}
 
 	/**
@@ -226,11 +232,13 @@ class Editorial_Admin
 		{
 			wp_die( __('You do not have sufficient permissions to access this page.'));
 		}
-		$this->_page = $page;
-		if (count($_POST))
+		// force typekit?
+		if (array_key_exists('typekit', $_GET))
 		{
-			$this->_save();
+		    $this->typekit();
 		}
+		// display intended page
+		$this->_page = $page;
 		// include template settings page
 		include 'settings.php';
 	}
@@ -248,7 +256,19 @@ class Editorial_Admin
 			// make sure only allowed settings get in
 			if (in_array($key, $this->_options))
 			{
+			    $typekit = false;
+			    if ($key == 'typekit-token' && $value != Editorial::getOption('typekit-token'))
+			    {
+			        // run typekit
+			        $typekit = true;
+			    }
+			    // save
 				Editorial::setOption($key, $value);
+				// run typekit setup
+				if ($typekit)
+				{
+				    $this->typekit();
+				}
 			}
 		}
 
@@ -379,6 +399,152 @@ class Editorial_Admin
 					<strong>%2$s</strong>
 					<input type="text" name="title[]" value="%3$s" placeholder="Author title" />
 				</li>', $user->ID, $user->display_name, $title, $checked ? ' checked="checked"' : '');
+	}
+	
+	/**
+	 * Generate a new editorial kit on typekit
+	 *
+	 * @return bool true on success, false on error
+	 * @author Miha Hribar
+	 */
+	public function typekit()
+	{
+		// make sure we have token
+		if (!Editorial::getOption('typekit-token') || strlen(Editorial::getOption('typekit-token')) < 20)
+		{
+		    return false;
+		}
+		// check if kit already exists
+		if (Editorial::getOption('typekit-kit'))
+		{
+		    // fetch info about kit
+		    $this->_typekitCheckKit();
+		}
+	    // create & publish new kit for domain with MinionPro
+		else
+		{
+            $this->_typekitCreateKit();
+		}
+	}
+	
+    /**
+     * Fetch typekit info
+     *
+     * @return bool
+     * @author Miha Hribar
+     */
+    private function _typekitCheckKit()
+    {
+    	list($code, $response) = $this->_typekitAPICall(sprintf('kits/%s/', Editorial::getOption('typekit-kit')));
+    	if ($code != 200)
+    	{
+    	    // remove kit
+    	    Editorial::setOption('typekit-kit', false);
+    	}
+    	else
+    	{
+    	    $data = json_decode($response, true);
+    	    if (is_array($data) && isset($data['kit']) && !isset($data['kit']['published']))
+    	    {
+    	        // publish kit
+    	        $this->_typekitPublish();
+    	    }
+    	}
+    }
+	
+	/**
+	 * Create typekit kit with MinionPro
+	 *
+	 * @param  string $call API call path
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	private function _typekitCreateKit()
+	{
+	    $params = array(
+	       'name' => sprintf('%s (Editorial)', get_bloginfo('name')),
+	       'domains' => sprintf('%s, 127.0.0.1', home_url()),
+	       'badge' => false,
+	       'families' => array(
+	           array(
+    	           //'id' => 'nljb' // Minion Pro
+    	           'id' => 'gkmg' // Droid Sans
+	           ),
+	       ),
+	    );
+	    
+	    list($code, $response) = $this->_typekitAPICall('kits', $params);
+	    $data = json_decode($response, true);
+	    if ($code != 200)
+	    {
+	        $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit fonts were not enabled. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
+	        return;
+	    }
+	    // success?
+	    if (is_array($data) && isset($data['kit']) && isset($data['kit']['id']))
+	    {
+	        // save id
+	        Editorial::setOption('typekit-kit', $data['kit']['id']);
+	        // publish
+	        $this->_typekitPublish();
+	    }
+	}
+	
+	/**
+	 * Publish kit
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	private function _typekitPublish()
+	{
+		list($code, $response) = $this->_typekitAPICall(sprintf('kits/%s/publish', Editorial::getOption('typekit-kit')), true);
+		$data = json_decode($response, true);
+		if ($code != 200)
+		{
+		    $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit kit was created but not published. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
+            return;
+		}
+		else
+		{
+		    $this->_showNotice(sprintf(__('<strong>Success!</strong> Typekit font has been created and is being published as we speak. Should take a couple of minutes to see the difference on your website so keep your pants on.')));
+		}
+	}
+	
+	/**
+	 * Typekit API call
+	 *
+	 * @param  string $call
+	 * @param  Array $params Call params
+	 * @return array array of $code and $body
+	 * @author Miha Hribar
+	 */
+	private function _typekitAPICall($call, $params = false)
+	{
+	    $url = sprintf(
+           'https://typekit.com/api/v1/json/%s',
+           $call
+        );
+        
+	    // setup curl
+		$ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(sprintf('X-Typekit-Token:%s', Editorial::getOption('typekit-token'))));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // if we have params create post request
+        if ($params)
+        {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            if (is_array($params) && count($params))
+            {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+            }
+        }
+        // execute request
+        $result = curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        return array($code, $result);
 	}
 }
 

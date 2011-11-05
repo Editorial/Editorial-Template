@@ -112,6 +112,15 @@ class Editorial
 		
 		// widget customizations
 		add_filter('dynamic_sidebar_params', array('Editorial', 'widgets'));
+		
+		// theme options
+		add_option(EDITORIAL_OPTIONS, '', '', 'yes');
+		
+		// add default options
+		$editorialLogo = WP_CONTENT_URL.'/themes/editorial/assets/images/editorial-logo';
+		if (!Editorial::getOption('logo-big')) Editorial::setOption('logo-big', $editorialLogo.'.png');
+		if (!Editorial::getOption('logo-small')) Editorial::setOption('logo-small', $editorialLogo.'-small.png');
+		if (!Editorial::getOption('logo-gallery')) Editorial::setOption('logo-gallery', $editorialLogo.'-white2.png');
 	}
 	
 	/**

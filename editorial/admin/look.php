@@ -1,25 +1,18 @@
 	<h2><?php _e('Editorial', 'Editorial'); ?> &mdash; <?php _e('Look &amp; Feel', 'Editorial'); ?></h2>
-	<form action="" method="post">
+	<form action="admin.php?page=editorial" method="post">
 		<table class="form-table">
 			<tr>
 				<th><?php _e('Logo', 'Editorial'); ?></th>
 				<td>
 					<fieldset>
-						<?php
-
-						$logo_big     = !Editorial::getOption('logo-big') ? 'http://www.placeholder-image.com/image/356x70' : Editorial::getOption('logo-big');
-						$logo_small   = !Editorial::getOption('logo-small') ? 'http://www.placeholder-image.com/image/200x40' : Editorial::getOption('logo-small');
-						$logo_gallery = !Editorial::getOption('logo-gallery') ? 'http://www.placeholder-image.com/image/131x17' : Editorial::getOption('logo-gallery');
-
-						?>
-						<p class="logos"><img src="<?php echo $logo_big; ?>" alt="Big logo" /></p>
-						<input type="text" name="logo-big" value="<?php echo $logo_big;  ?>" />
+						<p class="logos"><img src="<?php echo Editorial::getOption('logo-big'); ?>" alt="Big logo" /></p>
+						<input type="text" name="logo-big" value="<?php echo Editorial::getOption('logo-big');  ?>" />
 						<p class="note"><?php _e('Big logo is displayed on first page only. Recommended dimension 356x70px', 'Editorial'); ?></p>
-						<p class="logos"><img src="<?php echo $logo_small; ?>" alt="Small logo" /></p>
-						<input type="text" name="logo-small" value="<?php echo $logo_small; ?>" />
+						<p class="logos"><img src="<?php echo Editorial::getOption('logo-small'); ?>" alt="Small logo" /></p>
+						<input type="text" name="logo-small" value="<?php echo Editorial::getOption('logo-small'); ?>" />
 						<p class="note"><?php _e('Small logo is displayd on all subpages. Reommended dimension 200x40px', 'Editorial'); ?></p>
-						<p class="logos"><img src="<?php echo $logo_gallery; ?>" alt="Gallery logo" class="gallery" /></p>
-						<input type="text" name="logo-gallery" value="<?php echo $logo_gallery; ?>" />
+						<p class="logos"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" alt="Gallery logo" class="gallery" /></p>
+						<input type="text" name="logo-gallery" value="<?php echo Editorial::getOption('logo-gallery'); ?>" />
 						<p class="note"><?php _e('Gallery logo is displayed in mobile version of the gallery.<br/>Recommended dimension 131x17, prepared for black background.', 'Editorial'); ?></p>
 					</fieldset>
 				</td>
@@ -28,8 +21,17 @@
 				<th><?php _e('Typekit settings', 'Editorial'); ?></th>
 				<td>
 					<fieldset>
-						<label><?php _e('Enable typekit font', 'Editorial'); ?> <input type="checkbox" name="typekit"<?php echo !Editorial::getOption('typekit') ? '' : ' checked="checked"'; ?> /></label>
-						<p class="note"><?php _e('You will need a <a href="http://typekit.com" target="_blank">typekit</a> account to enable custom font for Editorial template.', 'Editorial'); ?></p>
+						<label><?php _e('Typekit API Token', 'Editorial'); ?><br /><input type="text" name="typekit-token" value="<?php echo !Editorial::getOption('typekit-token') ? '' : Editorial::getOption('typekit-token'); ?>" /></label>
+						<?php
+						
+						if (Editorial::getOption('typekit-token') && !Editorial::getOption('typekit-kit'))
+						{
+						    // kit create failed
+						    echo '<p class="note">'.__('The Typekit font creation did not work. <a href="?page=editorial&typekit">Try again?</a>', 'Editorial').'</p>';
+						}
+						
+						?>
+						<p class="note"><?php _e('You will need a <a href="http://typekit.com" target="_blank">typekit</a> account to enable custom font for Editorial template. <br />But no worries, we will handle that for you. Just head over to your Typekit account and <a href="https://typekit.com/account/tokens">generate one</a>. <br/>Editorial template uses font MinionPro which is available on Typekit for <em>$24.99/year</em>.', 'Editorial'); ?></p>
 					</fieldset>
 				</td>
 			</tr>
