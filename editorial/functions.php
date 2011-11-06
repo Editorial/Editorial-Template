@@ -443,7 +443,7 @@ class Editorial
 							<fieldset>
 								<input type="hidden" name="comment_id" value="%1$d">
 								<input type="submit" name="submit-%1$d" value="Go">
-								<strong id="score-%1$d" class="score">%5$s</strong>
+								<strong id="score-%1$d" class="score%6$s">%5$s</strong>
 							</fieldset>
 						</form>
 					</aside>',
@@ -453,7 +453,8 @@ class Editorial
 				Editorial::alreadyVoted($comment->comment_ID) ? ' class="disabled"' : '',
 				(int)$comment->comment_karma == 0
 					? '0'
-					: ($comment->comment_karma < 0 ? $comment->comment_karma : '+'.$comment->comment_karma)
+					: ($comment->comment_karma < 0 ? $comment->comment_karma : '+'.$comment->comment_karma),
+				$comment->comment_karma < 0 ? ' negative' : ''
 			);
 		}
 		printf('<article class="hentry" id="comment-%1$d">
