@@ -3,8 +3,9 @@
  * Index
  *
  * @package    Editorial
- * @copyright  Copyright (c) 2011, ThirdFrameStudios
- * @author     Miha Hribar
+ * @copyright  Copyright (c) 2011, Editorial
+ * @link       http://www.editorialtemplate.com
+ * @version    1.0
  */
 
 // id depends on the type of the first posts image

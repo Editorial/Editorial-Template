@@ -33,11 +33,12 @@
 -->
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
 <!-- For iPhone 4 with high-resolution Retina display: -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/touch/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo Editorial::getOption('touch-icon'); ?>">
 <!-- For first-generation iPad: -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/touch/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo Editorial::getOption('touch-icon'); ?>">
 <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-<link rel="apple-touch-icon-precomposed" href="<?php echo get_bloginfo('template_directory'); ?>/assets/images/touch/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="<?php echo Editorial::getOption('touch-icon'); ?>">
+<link rel="shortcut icon" href="<?php echo Editorial::getOption('favicon'); ?>">
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.css?v=1">

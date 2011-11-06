@@ -41,8 +41,8 @@ if (!defined('WP_CACHE_URL')) define('WP_CACHE_URL', WP_CONTENT_URL . '/cache');
  *
  * @package     Editorial
  * @author      Miha Hribar
- * @copyright   Copyright (c) 2011, ThirdFrameStudios
- * @link        http://www.thirdframestudios.com
+ * @copyright   Copyright (c) 2011, Editorial
+ * @link        http://www.editorialtemplate.com
  * @version     1.0
  */
 class Editorial
@@ -88,7 +88,7 @@ class Editorial
 		// settings after theme setup
 		add_action('admin_init', array('Editorial','adminInit'));
 		// prevent publishing of a post without a thumbnail
-		//add_action('publish_post', array('Editorial', 'checkForThumbnail'), 1);
+		add_action('publish_post', array('Editorial', 'checkForThumbnail'), 1);
 
 		if (function_exists('register_sidebar'))
 		{
@@ -117,10 +117,13 @@ class Editorial
 		add_option(EDITORIAL_OPTIONS, '', '', 'yes');
 		
 		// add default options
-		$editorialLogo = WP_CONTENT_URL.'/themes/editorial/assets/images/editorial-logo';
-		if (!Editorial::getOption('logo-big')) Editorial::setOption('logo-big', $editorialLogo.'.png');
-		if (!Editorial::getOption('logo-small')) Editorial::setOption('logo-small', $editorialLogo.'-small.png');
-		if (!Editorial::getOption('logo-gallery')) Editorial::setOption('logo-gallery', $editorialLogo.'-white2.png');
+		$assets = WP_CONTENT_URL.'/themes/editorial/assets/';
+		$assets = substr($assets, strlen(get_bloginfo('url')));
+		if (!Editorial::getOption('logo-big')) Editorial::setOption('logo-big', $assets.'images/editorial-logo.png');
+		if (!Editorial::getOption('logo-small')) Editorial::setOption('logo-small', $assets.'images/editorial-logo-small.png');
+		if (!Editorial::getOption('logo-gallery')) Editorial::setOption('logo-gallery', $assets.'images/editorial-logo-white2.png');
+		if (!Editorial::getOption('touch-icon')) Editorial::setOption('touch-icon', $assets.'images/touch/apple-touch-icon.png');
+		if (!Editorial::getOption('favicon')) Editorial::setOption('favicon', $assets.'favicon.ico');
 	}
 	
 	/**
@@ -166,22 +169,17 @@ class Editorial
 	 * @param  int $postID
 	 * @return void
 	 * @author Miha Hribar
-	 * @see    http://www.webfish.se/wp/plugins/require-thumbnails
 	 */
 	public static function checkForThumbnail($postID)
 	{
 		if(!has_post_thumbnail($postID))
 		{
-			// re-save as draft
-			global $wpdb;
-			$wpdb->query("
-				UPDATE $wpdb->posts SET post_status = 'draft'
-				WHERE ID = $postID"
-			);
-
-			//prevent other hooks to publish_post
-			redirect_post($postID);
-			exit;
+			// find attachments for post, if there are any, set as featured image
+			$attachments = get_children(array('post_parent' => $postID));
+			if (count($attachments))
+			{
+    			set_post_thumbnail($postID, current($attachments)->ID);
+			}
 		}
 	}
 
@@ -938,8 +936,8 @@ class Editorial
  *
  * @package     Editorial
  * @author      Miha Hribar
- * @copyright   Copyright (c) 2011, ThirdFrameStudios
- * @link        http://www.thirdframestudios.com
+ * @copyright   Copyright (c) 2011, Editorial
+ * @link        http://www.editorialtemplate.com
  * @see         http://www.mattvarone.com/wordpress/cleaner-output-for-wp_nav_menu/
  * @version     1.0
  */

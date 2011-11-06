@@ -3,8 +3,10 @@
  * Single post page
  *
  * @package    Editorial
- * @copyright  Copyright (c) 2011, ThirdFrameStudios
+ * @copyright  Copyright (c) 2011, Editorial
+ * @link       http://www.editorialtemplate.com
  * @author     Miha Hribar
+ * @version    1.0
  */
 
 if (array_key_exists('comments', $_GET))
@@ -109,10 +111,12 @@ $EditorialClass = 'clear';
 						}
 ?>
 				</a>
+				<?php if (isset($imageMeta)) { ?>
 				<figcaption>
 					<h3><?php echo $imageMeta->post_title; ?></h3>
 					<p><?php echo $imageMeta->post_content; ?></p>
 				</figcaption>
+				<?php } ?>
 			</figure>
 		</section>
 		<section class="entry-content">

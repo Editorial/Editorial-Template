@@ -5,8 +5,8 @@
  *
  * @package     Editorial
  * @author      Miha Hribar
- * @copyright   Copyright (c) 2011, ThirdFrameStudios
- * @link        http://www.thirdframestudios.com
+ * @copyright   Copyright (c) 2011, Editorial
+ * @link        http://www.editorialtemplate.com
  * @version     1.0
  */
 class Editorial_Admin
@@ -52,6 +52,8 @@ class Editorial_Admin
 		'logo-big',
 		'logo-small',
 		'logo-gallery',
+	    'favicon',
+	    'touch-icon',
 	    'typekit-token',
 	    'typekit-kit',
 		'black-and-white',

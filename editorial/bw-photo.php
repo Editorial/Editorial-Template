@@ -6,8 +6,10 @@
  * cached in the wp-content/cache folder.
  *
  * @package    Editorial
- * @copyright  Copyright (c) 2011, ThirdFrameStudios
+ * @copyright  Copyright (c) 2011, Editorial
+ * @link       http://www.editorialtemplate.com
  * @author     Miha Hribar
+ * @version    1.0
  */
 
 //require_once('./../../../wp-load.php');

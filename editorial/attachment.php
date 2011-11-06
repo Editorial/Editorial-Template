@@ -3,8 +3,10 @@
  * Attachment page
  *
  * @package    Editorial
- * @copyright  Copyright (c) 2011, ThirdFrameStudios
+ * @copyright  Copyright (c) 2011, Editorial
+ * @link       http://www.editorialtemplate.com
  * @author     Miha Hribar
+ * @version    1.0
  */
 
 // id depends on the type of the first posts image
@@ -21,7 +23,8 @@ if (Editorial::isMobileDevice())
 
 the_post();
 $parentId = $post->post_parent;
-$attachmentsCount = count(get_children(array('post_parent'=>$parentId)));
+$attachments = get_children(array('post_parent'=>$parentId));
+$attachmentsCount = count($attachments);
 
 // what kind of a attachment is it?
 if (Editorial::is_image($post->post_mime_type))
@@ -40,7 +43,13 @@ else
 	$needsHTML5player = true;
 	$attachmentUrl = wp_get_attachment_url();
 }
-$attachments = get_children(array('post_parent'=>$parentId));
+
+// which image is featured
+$featuredId = get_post_thumbnail_id($parentId);
+if (isset($attachments[$featuredId]))
+{
+    $attachments[$featuredId]->menu_order = -1;
+}
 
 // sort attachments
 function sortAttachments($a, $b)
@@ -51,27 +60,23 @@ function sortAttachments($a, $b)
 uasort($attachments, 'sortAttachments');
 
 // find current attachment in list
-$previous = $next = $tmp = 0;
+$previous = $next = $tmp = $found = false;
 $currentPosition = $i = 1;
-$found = false;
-foreach ($attachments as $key => $attachment)
+foreach (array_keys($attachments) as $key => $value)
 {
-	if ($found)
-	{
-		$next = $attachment->ID;
-		break;
-	}
-
-	if ($post->ID == $attachment->ID)
-	{
-		$previous = $tmp;
-		$found = true;
-		$currentPosition = $i;
-	}
-
-	$tmp = $attachment->ID;
-
-	$i++;
+    if ($found)
+    {
+        $next = $value;
+        break;
+    }
+    if ($value == $post->ID)
+    {
+        $previous = $tmp;
+        $currentPosition = $i;
+        $found = true;
+    }
+    $tmp = $value;
+    $i++;
 }
 
 @include('header.php');
@@ -82,7 +87,7 @@ if (Editorial::isMobileDevice())
 ?>
 	<section id="media-gallery">
 		<header role="banner">
-			<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>
+			<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>
 			<nav id="remote" role="navigation">
 				<ul>
 					<li><a href="#" id="m-prev" class="m-button"><span><?php _e('Previous', 'Editorial'); ?></span></a></li>
@@ -201,7 +206,7 @@ if (Editorial::isMobileDevice())
 		</section>
 		<aside role="complementary">
 <?php
-				$previous = $attachments[$previous]->ID == $post->ID ? false : $attachments[$previous];
+				$previous = $previous ? $attachments[$previous] : false;
 				$next     = $next ? $attachments[$next] : false;
 				if ($previous || $next) {
 ?>
