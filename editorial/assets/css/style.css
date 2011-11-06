@@ -88,7 +88,7 @@ url('../fonts/minionpro-regular.svg#MinionProRegular') format('svg');font-weight
 h1 em,#comments-form li em,.qa em {font-style:normal;}
 h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
 #exposed footer a,.inside #single footer a,.inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
-.favorize .negative,#team .title,footer h3,.notfound h1,.widget h4 {color:#d00;}
+#team .title,footer h3,.notfound h1,.widget h4 {color:#d00;}
 
 
 p,ol,ul,dl,address {margin:0 0 15px;font-size:16px;}
@@ -444,7 +444,7 @@ background-position:0 -220px;}
 #embed p {margin:0 0 9px;font-size:16px;line-height:20px;color:#7f7f7f;}
 #embed-code {margin:0 0 20px;width:100%;color:#999;}
 
-.favorize label,.score {border:1px solid #bfbfbf;
+.favorize label,.score,.coin {border:1px solid #bfbfbf;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -458,7 +458,7 @@ background-position:0 -220px;}
 	background:linear-gradient(top,#fff,#fff 55%,#ddd);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#dddddd',GradientType=0);
 display:block;float:left;}
-.favorize fieldset {float:left;}
+.favorize fieldset {float:left;position:relative;}
 .favorize input {margin:2px 5px 0 0;float:left;}
 .js .favorize input {display:none;}
 .favorize label em {border:1px solid #fff;width:51px;height:16px;text-indent:-999em;display:block;overflow:hidden;
@@ -468,9 +468,13 @@ float:left;}
 .disabled .vote-against,.disabled .vote-for {cursor:default;}
 .disabled .vote-for em {background-position:-2px -182px;}
 .disabled .vote-against em {background-position:-62px -182px;}
-.favorize .score {border-color:#d9d9d9;padding:4px 0 2px;width:23px;font:bold 11px helvetica,arial,sans-serif;
-color:#79a500;
-text-align:center;background:#f5f5f5;display:block;float:left;}
+.favorize .score,.favorize .coin {padding:4px 0 2px;width:23px;font:bold 11px helvetica,arial,sans-serif;
+text-align:center;display:block;float:left;}
+.favorize .score {border-color:#d9d9d9;color:#79a500;background:#f5f5f5;}
+.favorize .negative {color:#d00;}
+.favorize .coin {border-color:#79a500;font-weight:normal;color:#fff;background:#79a500;display:none;position:absolute;
+right:0;top:0;}
+.favorize .coin.negative {border-color:#d00;background:#d00;}
 
 #team,#team li {width:100%;float:left;}
 #team {margin:13px 0 30px;}

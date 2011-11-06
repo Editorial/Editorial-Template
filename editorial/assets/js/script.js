@@ -241,6 +241,10 @@ $(function(){
 	// capture form submits
 	$('form.favorize').each(function() {
 		// catch submits and do ajax instead
+		//create coins clones
+		var score = $('strong.score', $(this));
+		score.after(score.clone().removeClass('score').addClass('coin'));
+		var coin = score.next();
 		$(this).submit(function(e) {
 			// prevent form from posting
 			e.preventDefault();
@@ -255,6 +259,14 @@ $(function(){
 				{
 					// set count
 					$('#score-'+response.id).html(response.votes);
+					//score animation
+					var scorePlus = (selectedInput.attr('id').lastIndexOf('vote-for') == 0) ? true : false;
+					if (scorePlus) coin.removeClass('negative').text('+1').show().animate({top:'-30px',opacity:0},600);
+					else coin.addClass('negative').text('-1').show().animate({top:'-30px',opacity:0},600);
+					//satus after vote
+					var posScoreNum = (score.text() >= 0) ? true : false;
+					if (posScoreNum) score.removeClass('negative');
+					else score.addClass('negative');
 				}
 				else
 				{
