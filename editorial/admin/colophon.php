@@ -14,13 +14,13 @@
 	</script>
 	<p><?php _e('In order to see authors on your site please add a page with template <strong>Colophon</strong>.', 'Editorial'); ?></p>
 	<h3><?php _e('Authors', 'Editorial'); ?></h3>
+	<form action="" method="post">
 	<p><?php _e('Order users as they will appear on the colophon page. You can uncheck the ones that you do not wish to show there.'); ?></p>
 
 	<?php
 
 	$users = get_users(array(
 		'who' => 'author',
-		//'exclude' => array(1),
 	));
 	if (count($users))
 	{
@@ -28,7 +28,7 @@
 		// load saved order and
 		$authors = Editorial::getOption('authors');
 		$alreadyShown = array();
-		if (count($authors))
+		if (is_array($authors) && count($authors))
 		{
 			foreach ($authors as $id => $title)
 			{

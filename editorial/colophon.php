@@ -17,7 +17,7 @@ the_post();
 
 // load authors
 $authors = Editorial::getOption('authors');
-if (count($authors))
+if (is_array($authors) && count($authors))
 {
 	$userSearch = new WP_User_Query(array('include' => array_keys($authors)));
 	$userResults = $userSearch->get_results();
@@ -36,6 +36,10 @@ if (count($authors))
 			}
 		}
 	}
+}
+else
+{
+    $authors = array();
 }
 
 ?>

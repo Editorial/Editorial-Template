@@ -80,33 +80,9 @@ class Editorial_Admin
 	{
 		// setup admin menu
 		add_action('admin_menu', array($this, 'menus'));
-		// add action for publishing a page (for intercepting colophon template)
-		add_action('publish_page', array($this, 'publishPage'));
 		
-		// handle posts
-	    if (count($_POST))
-        {
-            $this->_save();
-        }
-		
-		// add font notice
-        if (!Editorial::getOption('typekit'))
-        {
-            add_action('admin_notices', array($this, 'fontNotice'));
-        }
-        
         // check for update
         $this->checkVersion();
-        
-        // if black and white option is selected we need writable cache
-        if (Editorial::getOption('black-and-white'))
-        {
-            // cache folder exists
-            if (!Editorial::canCache())
-            {
-                add_action('admin_notices', array($this, 'cacheNotice'));
-            }
-        }
 	}
 	/**
 	 * Add menu to wordpress administration
@@ -148,17 +124,6 @@ class Editorial_Admin
 			'editorial-'.self::PAGE_COLOPHON,
 			array($this, 'colophon')
 		);
-	}
-
-	/**
-	 * Publish page action
-	 *
-	 * @return void
-	 * @author Miha Hribar
-	 */
-	public function publishPage()
-	{
-		// @todo check if the published page has colophon for template
 	}
 
 	/**
@@ -208,15 +173,51 @@ class Editorial_Admin
 		{
 			wp_die( __('You do not have sufficient permissions to access this page.'));
 		}
+		// display intended page
+		$this->_page = $page;
+		
 		// force typekit?
 		if (array_key_exists('typekit', $_GET))
 		{
 		    $this->typekit();
 		}
-		// display intended page
-		$this->_page = $page;
+		
+	    // handle posts
+		$this->_handlePost();
+        
+        // add font notice
+        if (!Editorial::getOption('typekit-kit'))
+        {
+            add_action('admin_notices', array($this, 'fontNotice'));
+        }
+        
+        // if black and white option is selected we need writable cache
+        if (Editorial::getOption('black-and-white'))
+        {
+            // cache folder exists
+            if (!Editorial::canCache())
+            {
+                add_action('admin_notices', array($this, 'cacheNotice'));
+            }
+        }
+		
 		// include template settings page
 		include 'settings.php';
+	}
+	
+	/**
+	 * Handle post
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	private function _handlePost()
+	{
+	    // handle posts
+        if (is_array($_POST) && count($_POST))
+        {
+            $this->_save();
+        }
 	}
 
 	/**
@@ -254,23 +255,21 @@ class Editorial_Admin
 			case self::PAGE_LOOK:
 				// checkboxes are special
 				$checkboxes = array(
-					'typekit',
 					'black-and-white',
 					'disable-admin-notices',
-					'twitter-share',
-					'facebook-share',
-					'google-share',
-					//'readability-share',
 					'karma',
 				);
-				foreach ($checkboxes as $check)
-				{
-					if (!isset($_POST[$check]))
-					{
-						Editorial::setOption($check, false);
-					}
-				}
+				$this->_handleCheckboxes($checkboxes);
 				break;
+			case self::PAGE_SHARE:
+			    $checkboxes = array(
+                    'twitter-share',
+                    'facebook-share',
+                    'google-share',
+                    //'readability-share',
+                );
+                $this->_handleCheckboxes($checkboxes);
+			    break;
 			case self::PAGE_COLOPHON:
 				// save current value for author ordering and titles
 				if (!count($_POST['author']) || !count($_POST['title']) || count($_POST['title']) != count($_POST['author']))
@@ -287,6 +286,23 @@ class Editorial_Admin
 				Editorial::setOption('authors', $authors);
 				break;
 		}
+	}
+	
+	/**
+	 * Handle checkboxes
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	private function _handleCheckboxes($checkboxes)
+	{
+        foreach ($checkboxes as $check)
+        {
+            if (!isset($_POST[$check]))
+            {
+                Editorial::setOption($check, false);
+            }
+        }
 	}
 
 	/**
