@@ -5,7 +5,7 @@ if ($EditorialId != 'notfound')
 ?>
 
 <?php
-    if ($EditorialId != 'gallery' && !Editorial::isMobileDevice())
+    if (!($EditorialId == 'gallery' && Editorial::isMobileDevice()))
     {
 	   get_sidebar('footer');
     }
