@@ -261,8 +261,9 @@ $(function(){
 					$('#score-'+response.id).html(response.votes);
 					//score animation
 					var scorePlus = (selectedInput.attr('id').lastIndexOf('vote-for') == 0) ? true : false;
-					if (scorePlus) coin.removeClass('negative').text('+1').show().animate({top:'-30px',opacity:0},600);
-					else coin.addClass('negative').text('-1').show().animate({top:'-30px',opacity:0},600);
+					var bgr = scorePlus ? '#79a500' : '#d00';
+					if (scorePlus) coin.removeClass('negative').text('+1').show().animate({top:'-20px',opacity:0},300);
+					else coin.addClass('negative').text('-1').show().animate({top:'-20px',opacity:0},300);
 					//satus after vote
 					var posScoreNum = (score.text() >= 0) ? true : false;
 					if (posScoreNum) score.removeClass('negative');
