@@ -5,7 +5,10 @@ if ($EditorialId != 'notfound')
 ?>
 
 <?php
-	get_sidebar('footer');
+    if ($EditorialId != 'gallery' && !Editorial::isMobileDevice())
+    {
+	   get_sidebar('footer');
+    }
 ?>
 
 <footer id="footer" class="clear" role="contentinfo">
@@ -58,9 +61,6 @@ if ($EditorialId != 'notfound')
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>
-<?php if (Editorial::isMobileDevice()) { ?> 
-<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/jquery.mobile-1.0rc2.min.js"></script>
-<?php } ?>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/plugins.js"></script>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/script.js"></script>
 <?php if ($needsHTML5player) { ?>
