@@ -4,6 +4,10 @@ if ($EditorialId != 'notfound')
 {
 ?>
 
+<?php
+	get_sidebar('footer');
+?>
+
 <footer id="footer" class="clear" role="contentinfo">
 	<h3>Subscribe</h3>
 	<ul id="rss">
@@ -22,9 +26,6 @@ if ($EditorialId != 'notfound')
 ?>
 
 	</ul>
-<?php
-	get_sidebar('footer');
-?>
 	<section>
 		<nav role="navigation">
 			<ul>

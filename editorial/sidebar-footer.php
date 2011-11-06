@@ -15,6 +15,9 @@ if (!is_active_sidebar(EDITORIAL_WIDGET))
 	return;
 }
 
-echo '<aside id="widgets">';
+echo '<div id="widgets" class="clear">
+
+';
 dynamic_sidebar(EDITORIAL_WIDGET);
-echo '</aside>';
+echo '
+</div>';
