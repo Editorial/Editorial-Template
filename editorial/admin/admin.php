@@ -81,8 +81,8 @@ class Editorial_Admin
 		// setup admin menu
 		add_action('admin_menu', array($this, 'menus'));
 		
-        // check for update
-        $this->checkVersion();
+        // check for update and if the version is valid
+        $this->_checkVersion();
 	}
 	/**
 	 * Add menu to wordpress administration
@@ -331,21 +331,31 @@ class Editorial_Admin
 
 	/**
 	 * Check if an update is available
+	 * -------------------------------
+	 * DISCLAMER: By changing any of the code in this method you are voiding the agreement
+	 * you have entered in with editorialtemplate.com and are liable for legal actions.
+	 * And further more you are stealing money from honest developers trying to make
+	 * a living with something awesome. Shame on you.
 	 *
 	 * @return void
 	 * @author Miha Hribar
 	 */
-	public function checkVersion()
+	private function _checkVersion()
 	{
 		// notices can be disabled
-		if (Editorial::getOption('disable-admin-notices')) return;
 		$data = file_get_contents(EDITORIAL_UPDATE_CHECK);
 		if ($data !== false)
 		{
 			$data = json_decode($data, true);
-			$version = $data['version'];
-			if (EDITORIAL_VERSION != $version)
+			// version valid?
+			if (!is_array($data) || !isset($data['valid']) || !$data['valid'])
 			{
+				add_action('admin_notices', array($this, 'invalidNotice'));
+			}
+			// update available?
+			if (is_array($data) && isset($data['version']) && EDITORIAL_VERSION != $data['version'])
+			{
+			    if (Editorial::getOption('disable-admin-notices')) return;
 				add_action('admin_notices', array($this, 'updateNotice'));
 			}
 		}
@@ -360,7 +370,18 @@ class Editorial_Admin
 	public function updateNotice()
 	{
 	    if (Editorial::getOption('disable-admin-notices')) return;
-		$this->_showNotice(__('<strong>Editorial theme update is available.</strong> Log in to your account at <a href="http://editorialtemplate.com">editorialtemplate.com</a> to get the update.'));
+		$this->_showNotice(__('<strong>Editorial theme update is available.</strong> Log in to your account at <a href="http://editorialtemplate.com">editorialtemplate.com</a> to get the update.', 'Editorial'));
+	}
+
+	/**
+	 * Add notice that an update is available
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	public function invalidNotice()
+	{
+		$this->_showNotice(__('<strong>You are using an ilegal copy of the Editorial theme</strong>. You can purchase additional licences on <a href="http://editorialtemplate.com/purchase">editorialtemplate.com</a>. Your domain has been logged in our system for investigation.', 'Editorial'));
 	}
 	
 	/**
