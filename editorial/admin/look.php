@@ -27,7 +27,7 @@
 				<th><?php _e('Typekit settings', 'Editorial'); ?></th>
 				<td>
 					<fieldset>
-						<label><?php _e('Typekit API Token', 'Editorial'); ?><br /><input type="text" name="typekit-token" value="<?php echo !Editorial::getOption('typekit-token') ? '' : Editorial::getOption('typekit-token'); ?>" /></label>
+						<label><?php _e('Typekit API Token', 'Editorial'); ?><br /><input type="text" name="typekit-token" value="<?php echo !Editorial::getOption('typekit-token') ? '' : Editorial::getOption('typekit-token'); ?>" placeholder="Enter Typekit API Token" /></label>
 						<?php
 						
 						if (Editorial::getOption('typekit-token') && !Editorial::getOption('typekit-kit'))

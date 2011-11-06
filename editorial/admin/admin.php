@@ -22,11 +22,6 @@ class Editorial_Admin
 	const PAGE_SHARE = 'sharing';
 
 	/**
-	 * SEO page
-	 */
-	const PAGE_SEO = 'seo';
-
-	/**
 	 * Colopho page
 	 */
 	const PAGE_COLOPHON = 'colophon';
@@ -40,7 +35,6 @@ class Editorial_Admin
 		self::PAGE_LOOK,
 		self::PAGE_COLOPHON,
 		self::PAGE_SHARE,
-		self::PAGE_SEO,
 	);
 
 	/**
@@ -67,7 +61,6 @@ class Editorial_Admin
 		'google-share',
 		//'readability-share',
 		'copyright',
-		'meta-keywords',
 	);
 
 	/**
@@ -149,14 +142,6 @@ class Editorial_Admin
 		);
 		add_submenu_page(
 			'editorial',
-			'SEO',
-			'SEO',
-			'administrator',
-			'editorial-'.self::PAGE_SEO,
-			array($this, 'seo')
-		);
-		add_submenu_page(
-			'editorial',
 			'Colophon',
 			'Colophon',
 			'administrator',
@@ -208,17 +193,6 @@ class Editorial_Admin
 	public function sharing()
 	{
 		$this->_display(self::PAGE_SHARE);
-	}
-
-	/**
-	 * SEO settings
-	 *
-	 * @return void
-	 * @author Miha Hribar
-	 */
-	public function seo()
-	{
-		$this->_display(self::PAGE_SEO);
 	}
 
 	/**
@@ -469,8 +443,8 @@ class Editorial_Admin
 	       'badge' => false,
 	       'families' => array(
 	           array(
-    	           //'id' => 'nljb' // Minion Pro
-    	           'id' => 'gkmg' // Droid Sans
+    	           'id' => 'nljb' // Minion Pro
+    	           //'id' => 'gkmg' // Droid Sans
 	           ),
 	       ),
 	    );
