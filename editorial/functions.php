@@ -56,6 +56,13 @@ class Editorial
 	public static $widgetCounter = 0;
 	
 	/**
+	 * Number of active widgets
+	 *
+	 * @var int
+	 */
+	public static $widgetCount = 0;
+	
+	/**
 	 * Setup theme
 	 *
 	 * @return void
@@ -124,6 +131,10 @@ class Editorial
 		if (!Editorial::getOption('logo-gallery')) Editorial::setOption('logo-gallery', $assets.'images/editorial-logo-white2.png');
 		if (!Editorial::getOption('touch-icon')) Editorial::setOption('touch-icon', $assets.'images/touch/apple-touch-icon.png');
 		if (!Editorial::getOption('favicon')) Editorial::setOption('favicon', $assets.'favicon.ico');
+		
+		// number of active widgets?
+		$widgets = wp_get_sidebars_widgets();
+		self::$widgetCount = isset($widgets[EDITORIAL_WIDGET]) && is_array($widgets[EDITORIAL_WIDGET]) ? count($widgets[EDITORIAL_WIDGET]) : 0;
 	}
 	
 	/**
@@ -134,8 +145,37 @@ class Editorial
 	 */
 	public function widgets($params)
 	{
+	    // html to insert before widget
+	    $before = sprintf('<section class="widget w%d">', self::$widgetCounter % 2 + 1);
+	    // group
+	    if (self::$widgetCounter % 2 == 0)
+	    {
+	        $before = '<div class="group">'.$before; 
+	    }
+	    // widget row
+	    if (self::$widgetCounter % 4 == 0)
+	    {
+	        $remaining = self::$widgetCount - self::$widgetCounter;
+	        $remaining = $remaining/4 >= 1 ? 4 : $remaining % 4; 
+	        $before = sprintf('<div class="adapt widgets-%d">', $remaining).$before;
+	    }
+		$params[0]['before_widget'] = $before;
+		
+		// html to insert after widget
+		$after = '</section>';
+		// group end
+	    if (self::$widgetCounter % 2 == 1 || self::$widgetCounter+1 == self::$widgetCount)
+        {
+            $after .= '<!-- end group --></div>'; 
+        }
+        // widget row end
+        if (self::$widgetCounter % 4 == 3 || self::$widgetCounter+1 == self::$widgetCount)
+        {
+            $after .= '<!-- end row '.self::$widgetCounter.' --></div>';
+        }
+        $params[0]['after_widget'] = $after;
+		
 		self::$widgetCounter++;
-		$params[0]['before_widget'] = sprintf('<section class="widget widget%d">', self::$widgetCounter);
 		return $params;
 	}
 
