@@ -9,7 +9,7 @@
  * @version    1.0
  */
 ?>
-		<article class="f<?php echo $i; ?> hentry">
+		<article class="f<?php echo $i % 4 ? $i % 4 : 4; ?> hentry">
 <?php
 		Editorial::postFigure($thumbId, array(214, 214));
 ?>

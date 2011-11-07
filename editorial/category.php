@@ -34,20 +34,32 @@ $switchType = $EditorialId == 'layout-list' ? 'grid' : 'list';
 
 	if (have_posts())
 	{
-		echo '<section class="featured">';
 		$i = 1;
+		$section = false;
 		while (have_posts())
 		{
+		    // start section
+		    if (($i-1) % 4 == 0)
+		    {
+		        $section = true;
+		        echo '<section class="featured">';
+		    }
 			the_post();
 			$thumbId = get_post_thumbnail_id();
 			include('featured-article.php');
+			// end section
+			if ($i % 4 == 0)
+			{
+			    $section = false;
+			    echo '</section>';
+			}
 			$i++;
 		}
-		echo '</section>';
-	}
-	else
-	{
-		//dump('No posts');
+		if ($section)
+		{
+		    // close a previously opened section
+		    echo '</section>';
+		}
 	}
 
 	?>
