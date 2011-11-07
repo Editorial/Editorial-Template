@@ -194,7 +194,16 @@ class Editorial_Admin
         // if black and white option is selected we need writable cache
         if (Editorial::getOption('black-and-white'))
         {
-            // cache folder exists
+            if (!is_dir(WP_CACHE_DIR))
+            {
+                try
+                {
+                	Editorial::createPath(WP_CACHE_DIR, 0755);
+                } 
+                catch (Exception $e)
+                {}
+            }
+            // can we cache now?
             if (!Editorial::canCache())
             {
                 add_action('admin_notices', array($this, 'cacheNotice'));
