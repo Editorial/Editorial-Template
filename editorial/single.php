@@ -42,6 +42,7 @@ else
 {
 	$thumbnailUrl = get_bloginfo('template_directory').'/assets/images/no_image_big.png';
 	$attachmentUrl = '#';
+	$attachmentsCount = 0;
 }
 
 $EditorialClass = 'clear';

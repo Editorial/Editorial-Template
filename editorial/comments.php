@@ -14,19 +14,11 @@ the_post(); global $post;
 
 if (Editorial::isAjax())
 {
-	Editorial::noCacheHeader();
-	if (array_key_exists('more', $_GET) && have_comments())
-	{
-		// comment settings
-		$settings = array(
-			'callback'          => 'Editorial::comment',
-			'reverse_top_level' => true,
-			'per_page' => 9999999,
-		);
-
-		// show comment
-		wp_list_comments($settings);
-	}
+    if (comments_open() || !post_password_required()) 
+    {
+    	Editorial::noCacheHeader();
+    	output();
+    }
 	exit();
 }
 
@@ -43,6 +35,11 @@ if (comments_open() || !post_password_required()) {
 	<article id="single">
 		<h1><a href="<?php the_permalink(); ?>" rel="prev"><?php the_title(); ?></a></h1>
 <?php
+
+    function output()
+    {
+        the_post(); global $post;
+        
 		// show comments
 		if (have_comments())
 		{
@@ -50,37 +47,37 @@ if (comments_open() || !post_password_required()) {
 			echo '<p class="notice">'.Editorial::commentNotice().'</p>
 			<section id="comments">';
 			
+			$page = isset($_GET['page']) ? $_GET['page'] : 1;
+			
 			// comment settings
 			$settings = array(
 				'callback'          => 'Editorial::comment',
 				'end-callback'      => 'Editorial::endComment',
-				'reverse_top_level' => true,
+				//'reverse_top_level' => true,
+			    'page'              => $page,
 			);
-			// more?
-			if (array_key_exists('more', $_GET))
-			{
-				// show all comments
-				$settings['per_page'] = 9999999;
-			}
 
 			// show comment
 			wp_list_comments($settings);
+			
+			$commentPages = get_comment_pages_count(); 
 
 			echo '
 		</section>
 		';
 
 			// show more link if we have paging enabled
-			if (get_comment_pages_count() > 1 && get_option('page_comments'))
+			if ($commentPages > 1 && $commentPages > $page && get_option('page_comments'))
 			{
 				$comments = get_comments_number();
 				printf('<section id="paging">
 						<p><strong>%d / %d</strong> - %s</p>
-						<p class="more"><a href="?comments&more">%s</a></p>
+						<p class="more"><a href="?comments&page=%d">%s</a></p>
 					</section>',
-					$comments % get_option('comments_per_page'),
+					$page * get_option('comments_per_page') > $comments ? $comments : $page * get_option('comments_per_page'),
 					$comments,
 					__('comments displayed', 'Editorial'),
+					$page+1,
 					__('Display older comments ...', 'Editorial')
 				);
 			}
@@ -92,6 +89,9 @@ if (comments_open() || !post_password_required()) {
 		<p class="notice"><?php _e('<strong>There are no comments yet.</strong> Be first to leave your footprint here ...', 'Editorial'); ?></p>
 <?php
 		}
+    }
+    
+        output();
 
 		// has errors?
 		$comment_name = $comment_email = $comment_url = $comment_content = '';

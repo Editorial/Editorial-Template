@@ -968,6 +968,27 @@ class Editorial
             }
         }
     }
+    
+    /**
+     * Prepare query string with additional parameter
+     *
+     * @param  string $key
+     * @param  string $value
+     * @param  string $unset key to unset (optional)
+     * @return string
+     * @author Miha Hribar
+     */
+    public static function prepareQuery($key, $value, $unset = null)
+    {
+        // add the key and value and build query
+        $params = $_GET;
+        if (isset($unset) && isset($params[$unset]))
+        {
+            unset($params[$unset]);
+        }
+    	$params[$key] = $value;
+    	return http_build_query($params);
+    }
 }
 
 /**

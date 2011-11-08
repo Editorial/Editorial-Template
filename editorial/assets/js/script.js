@@ -280,20 +280,26 @@ $(function(){
 		});
 	});
 	
-	// more comments?
-	$('#paging a').click(function() {
-		// fetch more from same url
-		$.ajax({
-			url: $(this).attr('href'),
-			success: function(data) {
-				// replace comments html 
-				$('#comments').html(data);
+	// more to load?
+	function paging() {
+		$('#paging a').click(function() {
+			// fetch more from same url
+			$.ajax({
+				url: $(this).attr('href'),
+				success: function(data) {
 				// remove paging
-				$('#paging').remove();
+				$('#paging').remove(); 
+				// add to content 
+				$('div.content').append(data);
+				// bind paging again
+				paging();
 			}
+			});
+			return false;
 		});
-		return false;
-	});
+	}
+	
+	paging();
 	
 	// keyboard navigation
 	if ($('#gallery').length) {
