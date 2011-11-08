@@ -45,6 +45,15 @@ if (comments_open() || !post_password_required()) {
 			<section id="comments">';
 			
 			$page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+			if (get_option('comment_order') == 'asc')
+			{
+			    Editorial::$commentCounter = 1;
+			}
+			else
+			{
+    			Editorial::$commentCounter = $post->comment_count - get_option('comments_per_page') * ($page-1);
+			}
 			
 			// comment settings
 			$settings = array(

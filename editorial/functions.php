@@ -63,6 +63,13 @@ class Editorial
 	public static $widgetCount = 0;
 	
 	/**
+	 * Comment counter
+	 *
+	 * @var int
+	 */
+	public static $commentCounter = 0;
+	
+	/**
 	 * Setup theme
 	 *
 	 * @return void
@@ -527,7 +534,7 @@ class Editorial
 			date('Y-m-dTH:i', strtotime($comment->comment_date)),
 			date(get_option('date_format'), strtotime($comment->comment_date)),
 			__('Feedback no.', 'Editorial'),
-			$comment->comment_ID, // @todo add correct comment count
+			Editorial::$commentCounter,
 			$comment->comment_content,
 			get_bloginfo('url').'/comment-vote.php',
 			$trackback ? 'trackback ' : '',
@@ -545,6 +552,8 @@ class Editorial
 				? ($comment->comment_karma <= -Editorial::getOption('karma-treshold') ? '<p class="show"><a href="#comment-'.$comment->comment_ID.'"><span>'.__('Show hidden', 'Editorial').'</span> '.__(' comment ...', 'Editorial').'</a></p>' : '')
 				: ''
 		);
+		
+		self::$commentCounter += $args['reverse_top_level'] ? -1 : 1;
 
 		if ($return)
 		{
