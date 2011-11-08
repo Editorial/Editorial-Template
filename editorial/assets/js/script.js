@@ -77,8 +77,8 @@ $(function(){
 					$(response.html).insertBefore('#comments-form');
 					$('html,body').animate({scrollTop: $("#errors").offset().top},'slow');
 					// add error fields
-					for (error in response.errors) {
-						var id = response.errors[error];
+					for (error in response.error_fields) {
+						var id = response.error_fields[error];
 						$('#'+id).parent().addClass('error');
 					}
 				}

@@ -666,7 +666,7 @@ class Editorial
 		<ol>';
 		foreach ($errors as $error)
 		{
-			$return .= sprintf('<li>%s</li>', __('comment_error_'.$error, 'Editorial'));
+			$return .= sprintf('<li>%s</li>', $error);
 		}
 		$return .= '</ol>
 		</section>';

@@ -16,8 +16,9 @@ if (Editorial::isAjax())
 {
     if (comments_open() || !post_password_required()) 
     {
-    	Editorial::noCacheHeader();
-    	output();
+        dump('TODO!');
+    	//Editorial::noCacheHeader();
+    	//output();
     }
 	exit();
 }
@@ -36,10 +37,6 @@ if (comments_open() || !post_password_required()) {
 		<h1><a href="<?php the_permalink(); ?>" rel="prev"><?php the_title(); ?></a></h1>
 <?php
 
-    function output()
-    {
-        the_post(); global $post;
-        
 		// show comments
 		if (have_comments())
 		{
@@ -89,9 +86,6 @@ if (comments_open() || !post_password_required()) {
 		<p class="notice"><?php _e('<strong>There are no comments yet.</strong> Be first to leave your footprint here ...', 'Editorial'); ?></p>
 <?php
 		}
-    }
-    
-        output();
 
 		// has errors?
 		$comment_name = $comment_email = $comment_url = $comment_content = '';
@@ -99,6 +93,7 @@ if (comments_open() || !post_password_required()) {
 		if (isset($_SESSION['comment_errors']) && count($_SESSION['comment_errors']))
 		{
 			$errors = $_SESSION['comment_errors'];
+			$error_fields = $_SESSION['comment_error_fields'];
 			echo Editorial::formErrors($errors);
 
 			// show originaly entered data
@@ -112,12 +107,15 @@ if (comments_open() || !post_password_required()) {
 			unset($_SESSION['post']);
 		}
 		
+		if (comments_open())
+		{
+		
 ?>
 		<form id="comments-form" action="<?php echo get_bloginfo('template_url'); ?>/comment-post.php" method="post">
 			<fieldset class="feedback">
 				<legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
 				<ol>
-					<li class="area<?php echo in_array('comment', $errors) ? ' error' : ''; ?>">
+					<li class="area<?php echo in_array('comment', $error_fields) ? ' error' : ''; ?>">
 						<label for="comment"><?php _e('Comment', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
 						<textarea id="comment" name="comment" cols="60" rows="9"><?php echo esc_attr($comment_content); ?></textarea>
 					</li>
@@ -126,15 +124,15 @@ if (comments_open() || !post_password_required()) {
 			<fieldset class="author">
 				<legend class="v-hidden"><?php _e('Author', 'Editorial'); ?></legend>
 				<ol>
-					<li class="text<?php echo in_array('name', $errors) ? ' error' : ''; ?>">
+					<li class="text<?php echo in_array('name', $error_fields) ? ' error' : ''; ?>">
 						<label for="name"><?php _e('Your name', 'Editorial'); ?> <em>*</em></label>
 						<input type="text" id="name" name="name" value="<?php echo esc_attr($comment_name); ?>">
 					</li>
-					<li class="text<?php echo in_array('email', $errors) ? ' error' : ''; ?>">
+					<li class="text<?php echo in_array('email', $error_fields) ? ' error' : ''; ?>">
 						<label for="email"><?php _e('Your e-mail address', 'Editorial'); ?> <em>*</em></label>
 						<input type="email" id="email" name="email" value="<?php echo esc_attr($comment_email); ?>">
 					</li>
-					<li class="text<?php echo in_array('url', $errors) ? ' error' : ''; ?>">
+					<li class="text<?php echo in_array('url', $error_fields) ? ' error' : ''; ?>">
 						<label for="url"><?php _e('Link', 'Editorial'); ?></label>
 						<input type="text" id="url" name="url" value="<?php echo esc_attr($comment_url); ?>">
 					</li>
@@ -143,7 +141,7 @@ if (comments_open() || !post_password_required()) {
 			<fieldset class="captcha">
 				<legend class="v-hidden"><?php _e('Captcha', 'Editorial'); ?></legend>
 				<ol>
-					<li class="riddle<?php echo in_array('riddle', $errors) ? ' error' : ''; ?>">
+					<li class="riddle<?php echo in_array('riddle', $error_fields) ? ' error' : ''; ?>">
 						<label for="riddle"><?php echo $riddle['notice']; ?> <em>*</em></label>
 						<div class="qa">
 							<span><?php echo $riddle['riddle']; ?></span>
@@ -159,6 +157,7 @@ if (comments_open() || !post_password_required()) {
 				<input type="submit" value="<?php _e('Publish', 'Editorial'); ?>">
 			</fieldset>
 		</form>
+    <?php } ?>
 	</article>
 <?php
 	Editorial::tabNavigation($post->ID, 'comments');

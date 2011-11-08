@@ -10,8 +10,8 @@
  */
 
 //require_once('./../../../wp-load.php');
-//require_once('/Users/miha/Projects/Editorial/wordpress/wp-load.php');
-require_once('/Users/matjazk/Webpages/Personal/editorial/wordpress/wp-load.php');
+require_once('/Users/miha/Projects/Editorial/wordpress/wp-load.php');
+//require_once('/Users/matjazk/Webpages/Personal/editorial/wordpress/wp-load.php');
 
 session_start();
 
@@ -23,6 +23,7 @@ if (isset($_POST) && count($_POST))
 	debug('has post');
 	// validate comment post
 	$errors = array();
+	$errorFields = array();
 	$add = ''; // get appended at the end or url
 	$wpRejected = false;
 
@@ -33,7 +34,7 @@ if (isset($_POST) && count($_POST))
 	{
 		// inform json of the error
 		do_action('comment_id_not_found', $comment_post_ID);
-		$errors[] = 'comment_id_not_found';
+		$errors[] = __('The requested comment was not found.', 'Editorial');
 	}
 
 	// get_post_status() will get the parent status for attachments.
@@ -42,22 +43,22 @@ if (isset($_POST) && count($_POST))
 	if (!comments_open($comment_post_ID))
 	{
 		do_action('comment_closed', $comment_post_ID);
-		$errors[] = 'comment_closed';
+		$errors[] = __('Comments are closed. Sorry.', 'Editorial');
 	}
 	else if ('trash' == $status)
 	{
 		do_action('comment_on_trash', $comment_post_ID);
-		$errors[] = 'comment_on_trash';
+		$errors[] = __('Looks like you commented on an article that was trashed. Bad luck.', 'Editorial');
 	}
 	else if (!$status_obj->public && !$status_obj->private)
 	{
 		do_action('comment_on_draft', $comment_post_ID);
-		$errors[] = 'comment_on_draft';
+		$errors[] = __('Article is still a draft. No comments allowed.', 'Editorial');
 	}
 	else if (post_password_required($comment_post_ID))
 	{
 		do_action('comment_on_password_protected', $comment_post_ID);
-		$errors[] = 'comment_on_password_protected';
+		$errors[] = __('Commenting is password protected.', 'Editorial');
 	}
 	else
 	{
@@ -73,7 +74,6 @@ if (isset($_POST) && count($_POST))
 	// if user is loadeed preload default values
 	if ($user->ID)
 	{
-		debug('User loaded '.$user->ID);
 		if (empty( $user->display_name ))
 		{
 			$user->display_name=$user->user_login;
@@ -82,10 +82,9 @@ if (isset($_POST) && count($_POST))
 		$comment_author       = $wpdb->escape($user->display_name);
 		$comment_author_email = $wpdb->escape($user->user_email);
 		$comment_author_url   = $wpdb->escape($user->user_url);
-		debug('Name:'.$comment_author.', email:'.$comment_author_email);
 		if (current_user_can('unfiltered_html'))
 		{
-			if ( wp_create_nonce('unfiltered-html-comment_' . $comment_post_ID) != $_POST['_wp_unfiltered_html_comment'] )
+			if (isset($_POST['_wp_unfiltered_html_comment']) && wp_create_nonce('unfiltered-html-comment_' . $comment_post_ID) != $_POST['_wp_unfiltered_html_comment'])
 			{
 				kses_remove_filters(); // start with a clean slate
 				kses_init_filters(); // set up the filters
@@ -95,7 +94,7 @@ if (isset($_POST) && count($_POST))
 		{
 			if ( get_option('comment_registration') || 'private' == $status )
 			{
-				$errors[] = 'login_to_comment';
+				$errors[] = __('You have to login to comment on this article.', 'Editorial');
 			}
 		}
 	}
@@ -103,7 +102,8 @@ if (isset($_POST) && count($_POST))
 	// validate name
 	if (!$comment_author && (!array_key_exists('name', $_POST) || !strlen($_POST['name'])))
 	{
-		$errors[] = 'name';
+		$errors[] = __('Please enter your name.', 'Editorial');
+		$errorFields[] = 'name';
 	}
 	else
 	{
@@ -112,7 +112,8 @@ if (isset($_POST) && count($_POST))
 	// validate email
 	if (!$comment_author_email && (!array_key_exists('email', $_POST) || !is_email($_POST['email'])))
 	{
-		$errors[] = 'email';
+		$errors[] = __('Please enter a valid email address.', 'Editorial');
+		$errorFields[] = 'email';
 	}
 	else
 	{
@@ -121,7 +122,8 @@ if (isset($_POST) && count($_POST))
 	// validate url
 	if (!$comment_author_url && array_key_exists('url', $_POST) && strlen($_POST['url']) &&  !filter_var($_POST['url'], FILTER_VALIDATE_URL))
 	{
-		$errors[] = 'url';
+		$errors[] = __('Please enter a valid link.', 'Editorial');
+		$errorFields[] = 'url';
 	}
 	else
 	{
@@ -130,7 +132,8 @@ if (isset($_POST) && count($_POST))
 	// validate comment
 	if (!array_key_exists('comment', $_POST) || !strlen($_POST['comment']))
 	{
-		$errors[] = 'comment';
+		$errors[] = __('Please enter a comment', 'Editorial');
+		$errorFields[] = 'comment';
 	}
 	else
 	{
@@ -139,7 +142,8 @@ if (isset($_POST) && count($_POST))
 	// validate riddle
 	if (!array_key_exists('comment', $_POST) || !strlen($_POST['riddle']) == 2)
 	{
-		$errors[] = 'riddle';
+		$errors[] = __('Please enter correct riddle.', 'Editorial');
+		$errorFields[] = 'riddle';
 	}
 	else
 	{
@@ -150,7 +154,8 @@ if (isset($_POST) && count($_POST))
 
 		if (!$first || !$second)
 		{
-			$errors[] = 'riddle';
+			$errors[] = __('Please enter correct riddle.', 'Editorial');
+			$errorFields[] = 'riddle';
 		}
 	}
 
@@ -159,6 +164,7 @@ if (isset($_POST) && count($_POST))
 	{
 		// if we have any errors save to session
 		$_SESSION['comment_errors'] = $errors;
+		$_SESSION['comment_error_fields'] = $errorFields;
 		$_SESSION['post'] = $_POST;
 		$add = '#errors';
 	}
@@ -196,8 +202,10 @@ if (isset($_POST) && count($_POST))
 		{
 			// unset sessions
 			unset($_SESSION['comment_errors']);
+			unset($_SESSION['comment_error_fields']);
 			unset($_SESSION['post']);
 			$data['errors'] = $errors;
+			$data['error_fields'] = $errorFields;
 			$data['html'] = Editorial::formErrors($errors);
 		}
 		else
