@@ -71,6 +71,13 @@ $(function(){
 
 				// remove errors notice, if present
 				$('#errors').remove();
+				
+				// remove error fields
+				$('#comment').parent().removeClass('error');
+				$('#name').parent().removeClass('error');
+				$('#email').parent().removeClass('error');
+				$('#url').parent().removeClass('error');
+				$('#riddle').parent().removeClass('error');
 
 				if (response.errors) {
 					// show errors
