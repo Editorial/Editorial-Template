@@ -989,6 +989,17 @@ class Editorial
     	$params[$key] = $value;
     	return http_build_query($params);
     }
+    
+    /**
+     * No results for category/search/tag ...
+     *
+     * @return void
+     * @author Miha Hribar
+     */
+    public static function noResults()
+    {
+    	echo '<section class="featured featured-empty"></section><section id="paging"><p class="more">Na articles to display ...</p></section>';
+    }
 }
 
 /**

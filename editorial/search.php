@@ -47,7 +47,8 @@ $switchType = $EditorialId == 'layout-list' ? 'grid' : 'list';
 	}
 	else
 	{
-		//dump('No posts');
+		// no posts -> show placeholders + pagination
+		Editorial::noResults();
 	}
 
 	?>

@@ -9,6 +9,7 @@
  * @version    1.0
  */
 
+$category = get_queried_object();
 if (Editorial::isAjax())
 {
     output();
@@ -40,11 +41,12 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
 	
 	function output()
 	{
+	    global $category;
     	$editorialPage = get_query_var('page') ? get_query_var('page') : 1;
     	
-    	$editorialPerPage = 4;
+    	$editorialPerPage = 8;
     	
-    	query_posts(array('paged' => $editorialPage, 'posts_per_page' => $editorialPerPage));
+    	query_posts(array('paged' => $editorialPage, 'posts_per_page' => $editorialPerPage, 'cat' => $category->cat_ID));
     
     	if (have_posts())
     	{
@@ -91,6 +93,12 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
     	        Editorial::prepareQuery('page', $editorialPage+1),
     	        __('Display older articles ...', 'Editorial')
     	    );
+    	}
+    	
+    	// no posts in this category?
+    	if ($wp_query->max_num_pages == 0)
+    	{
+    	    Editorial::noResults();
     	}
 	}
 	
