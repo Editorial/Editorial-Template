@@ -84,7 +84,7 @@ $('document').ready(function() {
 	}, function() {
 		$("#follow").fadeOut();
 	});
-	
+
 	// canvas
 	/*
 	$('#soon').mousedown(function(e) {

@@ -98,7 +98,7 @@ body {
    position: relative;
    z-index: -1;
 }
-#soon h3 a {color:#fff;text-decoration:none;}
+#soon h3 a {color:#fff;text-decoration:none;display:block;}
 
 #canvas {
 	top: 0;
