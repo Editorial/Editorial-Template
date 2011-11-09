@@ -29,17 +29,20 @@ the_post();
 					<?php the_time(get_option('date_format')); ?>
 				</time>
 				<em class="author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
-				<?php if (Editorial::isShareEnabled()) { ?>
+<?php
+ 				if (Editorial::isShareEnabled()) {
+?>
 				<ul class="social">
-					<?php
+<?php
 
 					if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
 					{
-						echo '<li>'.Editorial::shareHTML(EDITORIAL_TWITTER).'</li>';
+						echo '					<li>'.Editorial::shareHTML(EDITORIAL_TWITTER).'</li>
+';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
 					{
-						echo '<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
+						echo '					<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
 							'url'    => '',
 							'width'  => 100,
 							'height' => 20
@@ -47,16 +50,21 @@ the_post();
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
 					{
-						echo '<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>';
+						echo '					<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>
+';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_READABILITY))
 					{
-						echo '<li>'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>';
+						echo '					<li>'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>
+';
 					}
 
-					?>
+?>
 				</ul>
-				<?php } ?>
+<?php
+				}
+
+?>
 			</footer>
 		</section>
 		<section class="entry-content">
