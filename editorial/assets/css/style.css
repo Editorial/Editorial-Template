@@ -292,7 +292,7 @@ color:#999;text-transform:uppercase;display:block;}
 .submit {padding:5px 0 27px;text-align:center;}
 #comments-form .submit input {margin:0 auto;}
 
-#comments-form .error input,.error textarea  {border-color:#d00;}
+#comments-form .error input,.error textarea,comments-form .error textarea {border-color:#d00;}
 
 .message {margin:39px 0 0;padding:13px 0;overflow:hidden;position:relative;z-index:1;}
 .message h3 {color:#e7d6cc;top:4px;left:27px;display:none;}
