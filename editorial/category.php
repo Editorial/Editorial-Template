@@ -37,7 +37,7 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
 			</ul>
 		</section>
 	</article>
-	<?php
+<?php
 	
 	function output()
 	{
@@ -58,7 +58,8 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
     		    if (($i-1) % 4 == 0)
     		    {
     		        $section = true;
-    		        echo '<section class="featured">';
+    		        echo '	<section class="featured">
+';
     		    }
     			the_post();
     			$thumbId = get_post_thumbnail_id();
@@ -67,14 +68,16 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
     			if ($i % 4 == 0)
     			{
     			    $section = false;
-    			    echo '</section>';
+    			    echo '	</section>
+';
     			}
     			$i++;
     		}
     		if ($section)
     		{
     		    // close a previously opened section
-    		    echo '</section>';
+    		    echo '	</section>
+';
     		}
     	}
     	
@@ -83,10 +86,7 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
     	{
     	    // we've got more paging to do
     	    printf(
-        	    '<section id="paging">
-                    <p><strong>%d / %d</strong> - %s</p>
-                    <p class="more"><a href="?%s">%s</a></p>
-                </section>',
+        	    '<section id="paging"><p><strong>%d / %d</strong> - %s</p><p class="more"><a href="?%s">%s</a></p></section>',
     	        $editorialPage*$editorialPerPage,
     	        $wp_query->found_posts,
     	        __('articles displayed', 'Editorial'),
@@ -104,6 +104,6 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
 	
 	output();
 
-	?>
+?>
 </div>
 <?php @include('footer.php'); ?>
