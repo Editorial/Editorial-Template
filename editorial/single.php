@@ -73,7 +73,7 @@ $EditorialClass = 'clear';
 
 					if (Editorial::isShareEnabled(EDITORIAL_TWITTER))
 					{
-						echo '					<li>'.Editorial::shareHTML(EDITORIAL_TWITTER, array(
+						echo '					<li class="twitter">'.Editorial::shareHTML(EDITORIAL_TWITTER, array(
 							'text'   => get_the_title(),
 							'width'  => 100,
 							'height' => 20
@@ -82,12 +82,12 @@ $EditorialClass = 'clear';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
 					{
-						echo '					<li>'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>
+						echo '					<li class="gplus">'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>
 ';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
 					{
-						echo '					<li>'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
+						echo '					<li class="facebook">'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
 							'url'    => '',
 							'width'  => 80,
 							'height' => 20
@@ -95,7 +95,7 @@ $EditorialClass = 'clear';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_READABILITY))
 					{
-						echo '					<li>'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>
+						echo '					<li class="redability">'.Editorial::shareHTML(EDITORIAL_READABILITY).'</li>
 ';
 					}
 
