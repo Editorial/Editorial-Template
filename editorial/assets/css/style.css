@@ -965,6 +965,8 @@ clear:both;float:right;}
 	box-shadow:0 0 2px rgba(0,0,0,.8);
 }
 
+.layout-grid #single .no-results,.layout-list #single .no-results {padding:0 160px 0 0;width:auto;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
@@ -1153,6 +1155,8 @@ body {width:960px;}
 #common .entry-content {width:48%;float:right;}
 
 .social .facebook iframe {height:auto;}
+
+.layout-grid #single .no-results,.layout-list #single .no-results {padding:0 295px 0 0;width:auto;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
