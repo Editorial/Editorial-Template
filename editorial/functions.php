@@ -366,7 +366,7 @@ class Editorial
 					$list = array();
 					foreach((get_the_category()) as $category) {
                         $list[] = sprintf(
-                            '<a href="%s" value="View all posts in %s" rel="tag">%s</a>',
+                            '<a href="%s" title="View all posts in %s" rel="tag">%s</a>',
                             get_category_link($category->cat_ID),
                             $category->cat_name,
                             $category->cat_name
