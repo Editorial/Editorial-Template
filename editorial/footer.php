@@ -19,7 +19,8 @@ if ($EditorialId != 'notfound')
 			foreach (get_categories() as $category)
 			{
 				printf(
-					'		<li><a href="%1$s" title="%3$s %2$s">%2$s</a>',
+					'
+		<li><a href="%1$s" title="%3$s %2$s">%2$s</a>',
 					get_category_feed_link($category->cat_ID),
 					$category->name,
 					__('Subscribe', 'Editorial')
