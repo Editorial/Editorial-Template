@@ -34,7 +34,7 @@ if ($EditorialId != 'notfound')
 				<li><a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>/colophon.php"><?php _e('Colophon', 'Editorial'); ?></a></li>
 			</ul>
 		</nav>
-		<?php
+<?php
 		
 	    if (has_nav_menu('footer-nav'))
 	    {
@@ -50,7 +50,7 @@ if ($EditorialId != 'notfound')
             wp_nav_menu($settings);
 	    }
 			
-		?>
+?>
 	</section>
 	<small id="copyright"><?php echo Editorial::getOption('copyright'); ?> <?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
 </footer>
