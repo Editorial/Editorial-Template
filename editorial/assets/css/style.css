@@ -320,7 +320,7 @@ color:#999;text-transform:uppercase;display:block;}
 #primary {padding:8px 0 7px;width:100%;float:left;}
 #primary ul {width:100%;display:inline;}
 #primary li,#rss li,#footer nav li,#tabs li {font:13px minion-pro-1,georgia,serif;letter-spacing:2px;
-text-transform:uppercase;background-position:-549px -100px;float:left;}
+text-transform:uppercase;background-position:-549px -99px;float:left;}
 #primary a,#footer nav a,#rss a,#tabs a {padding:8px 12px 7px;display:block;}
 #primary .selected a,footer nav .selected a {padding-right:32px;background-position:right -42px;}
 
@@ -1050,7 +1050,7 @@ body {width:960px;}
 #primary .selected a,footer nav .selected a {background-position:right -39px;}
 #primary li {width:20%;}
 #primary .hoarding li {width:auto;}
-#rss li,.widget li {background-position:-549px -98px;}
+#rss li,.widget li {background-position:-549px -96px;}
 #rss a {padding:11px 12px 8px;}
 #footer nav a {padding:8px 12px;display:block;}
 
