@@ -53,7 +53,7 @@ if ($EditorialId != 'notfound')
 			
 ?>
 	</section>
-	<small id="copyright"><?php echo Editorial::getOption('copyright'); ?> <?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
+	<small id="copyright"><?php echo Editorial::getOption('copyright'); ?><?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <a href="http://editorialtemplate.com/">Editorial template</a>.', 'Editorial') ?></small>
 </footer>
 <?php
 }
