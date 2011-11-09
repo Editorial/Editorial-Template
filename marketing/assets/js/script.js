@@ -42,10 +42,34 @@ $(function(){
 
 	//hidding iframe scrolls (invalid attr)
 	$('#follow').attr('scrolling','no');
-
+	
 	// buy form add/remove domains
-	$('#licenses-c').change(function() {
-		$(this).val();
+	$('#licenses-c').change(function(e) {
+		// add domain input field
+		function addDomain(i) {
+			$('#domains').append('<li><label for="domain-'+i+'">Domain '+i+'</label><input type="text" name="domain[]" id="domain-'+i+'"></li>');
+		}
+		
+		var domains = parseInt($(this).val());
+		if (domains > 0) {
+			var entered = $('#domains input').length;
+			if (domains > entered) {
+				// add domains
+				for (var i = entered+1; i <= domains; i++) {
+					addDomain(i);
+				}
+			}
+			else if (domains < entered) {
+				// remove domains
+				for (var i = domains+1; i <= entered; i++) {
+					$('#domain-'+i).parent().remove();
+				}
+			}
+			
+			// update total price
+			var currency = $('#price-c').val().substr(0,1);
+			$('#total').val(currency+domains*parseFloat($('#price-c').val().substr(1)));
+		}
 	});
 });
 

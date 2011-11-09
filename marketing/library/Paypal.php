@@ -99,7 +99,7 @@ class Paypal
             urlencode($payerId),
             'Sale',
             urlencode($total),
-            'USD'
+            'EUR'
         );
         return $this->_makeRequest($additional);
     }
@@ -180,7 +180,7 @@ class Paypal
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
 
-        Log::trace($this->_getNVPString($additional));
+        debug($this->_getNVPString($additional));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $this->_getNVPString($additional));
 
         // Get response from the server.
@@ -263,6 +263,6 @@ class Paypal_Exception extends Exception
     {
         parent::__construct($message, $code);
         // log message
-        Log::error($message);
+        error($message);
     }
 }

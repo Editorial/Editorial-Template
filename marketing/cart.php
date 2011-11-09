@@ -8,6 +8,143 @@
  * @author     Miha Hribar
  */
 
+require_once 'library/Paypal.php';
+require_once 'library/Util.php';
+
+session_start();
+
+$errors   = array();
+$licences = 1;
+$domains  = array('');
+$agree    = false;
+
+// cancel purchase
+if (array_key_exists('cancel', $_GET))
+{
+    // unset everything from session
+    $_SESSION = array();
+    $errors[] = 'cancel';
+}
+
+// session?
+if (isset($_SESSION) && count($_SESSION))
+{
+    if (array_key_exists('licences', $_SESSION))
+    {
+        $licences = $_SESSION['licences'];
+    }
+    if (array_key_exists('domains', $_SESSION))
+    {
+        $domains = $_SESSION['domains'];
+    }
+    if (array_key_exists('errors', $_SESSION))
+    {
+        $errors = $_SESSION['errors'];
+    }
+    if (array_key_exists('agree', $_SESSION))
+    {
+        $agree = $_SESSION['agree'];
+    }
+}
+
+// handle post
+if (isset($_POST) && count($_POST))
+{
+    // reset errors
+    $errors = array();
+    
+    // check licence
+    if (!array_key_exists('licenses-c', $_POST) || !ctype_digit($_POST['licenses-c']) || (int)$_POST['licenses-c'] < 1)
+    {
+        $errors[] = 'licenses';
+    }
+    else
+    {
+        $licences = (int)$_POST['licenses-c'];
+        $domains = array_fill(0, $licences, '');
+    }
+    
+    // check domain
+    if (!array_key_exists('domain', $_POST) 
+        || !is_array($_POST['domain']) 
+        || !count($_POST['domain'])
+        || $licences != count($_POST['domain']))
+    {
+        $errors[] = 'domain';
+    }
+    
+    // validate domains
+    if (array_key_exists('domain', $_POST) && is_array($_POST['domain']) && count($_POST['domain']))  
+    {
+        $domains = array();
+        // check the domains are valid
+        foreach ($_POST['domain'] as $key => $domain)
+        {
+            if ($key+1 > $licences) break;
+            $domains[] = $domain;
+            if (filter_var($domain, FILTER_VALIDATE_URL) === false)
+            {
+                $errors[] = 'domain';
+                $errors[] = 'domain-'.$key;
+            }
+        }
+    }
+    
+    // agree?
+    if (!array_key_exists('i-agree', $_POST))
+    {
+        $errors[] = 'agree';
+        $agree = false;
+    }
+    else
+    {
+        $agree = true;
+    }
+    
+    // lets get down to business
+    if (!count($errors))
+    {
+        // do paypal
+        try
+        {
+            $Paypal = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
+            $amount = $licences*150;
+            $details = $Paypal->setExpressCheckout($amount, PAYPAL_CONFIRM_URL, PAYPAL_CANCEL_URL);
+            debug(print_r($details, true));
+            // insert payment
+            /*$Payment = new Payment();
+            $Payment->insert(array(
+                'ext_id' => $Paypal->getToken(),
+                'amount' => $amount,
+                'bundle' => $this->_prices[$param][0],
+                'hash'   => Util::randomString(10),
+                'date'   => date(DB_DATETIME_FORMAT),
+                'status' => Payment::STATUS_STARTED,
+                'picked' => implode(',', $picked),
+            ));*/
+            // redirect to paypal
+            Util::redirect($Paypal->getPaypalExpressCheckoutURL());
+        }
+        catch (Paypl_Exception $e)
+        {
+            debug('failed');
+            Util::redirect('/');
+        }
+    }
+    else
+    {
+        // add to session and redirect to avoid post errors
+        $_SESSION = array(
+            'licences' => $licences,
+            'domains'  => $domains,
+            'errors'   => $errors,
+            'agree'    => $agree,
+        );
+        header('Location: /purchase/');
+        exit();
+    }
+}
+
 get_header(); ?>
 
 <div class="content" role="main">
@@ -25,7 +162,39 @@ get_header(); ?>
 		</figure>
 	</section>
 	<section class="order">
-		<form id="buy-form" method="post" action="/">
+    	<?php
+    	
+    	if (count($errors))
+    	{
+    	    echo '<section class="message errors">
+    	        <h3><span class="v-hidden">Warning</span>!</h3>
+                <p class="lead">Please correct following errors:</p>
+                <ol>';
+    	    if (in_array('licences', $errors))
+    	    {
+    	        echo '<li>Enter a valid number of desired licences</li>';
+    	    }
+    	    
+    	    if (in_array('domain', $errors))
+    	    {
+    	        echo '<li>Enter a domain name e.g. http://domain.com</li>';
+    	    }
+    	    
+    	    if (in_array('agree', $errors))
+    	    {
+    	        echo '<li>Please read and agree to our <a href="/terms-of-use/" target="_blank">Terms of use</a>.</li>';
+    	    }
+    	    
+    	    if (in_array('cancel', $errors))
+    	    {
+    	        echo '<li>Your purchase was canceled. Shame, we were just starting to get along.</li>';
+    	    }
+                    
+            echo '</ol></section>';
+    	}
+    	
+    	?>
+		<form id="buy-form" method="post" action="/purchase/">
 			<fieldset class="licenses">
 				<legend class="v-hidden">Licenses</legend>
 				<ol>
@@ -37,13 +206,13 @@ get_header(); ?>
 						<label for="price-c">Price</label>
 						<input type="text" disabled value="€150" name="price-c" id="price-c">
 					</li>
-					<li class="licenses-c">
+					<li class="licenses-c<?php echo in_array('licences', $errors) ? ' error' : ''; ?>">
 						<label for="licenses-c"># of licenses</label>
-						<input type="text" value="1" name="licenses-c" id="licenses-c">
+						<input type="text" value="<?php echo $licences; ?>" name="licenses-c" id="licenses-c">
 					</li>
 					<li class="total">
 						<label for="total">Total</label>
-						<input type="text" disabled value="€150" name="total" id="total">
+						<input type="text" disabled value="&euro;<?php echo $licences*150; ?>" name="total" id="total">
 					</li>
 				</ol>
 			</fieldset>
@@ -54,17 +223,24 @@ get_header(); ?>
 					<p>Which domain/s will you be using the theme on?
 					Every issued copy of the theme is licensed to a single domain.
 					But don’t worry, you can change the domain for your license/s anytime.
-					See our <a href="/" target="_blank">FAQ</a> for more information.</p>
+					See our <a href="/help/" target="_blank">FAQ</a> for more information.</p>
 				</div>
 				<ol id="domains">
-					<li>
-						<label for="domain-1">Domain 1</label>
-						<input type="text" name="domain-1" id="domain-1">
-					</li>
-					<!--<li>
-						<label for="domain-2">Domain 2</label>
-						<input type="text" name="domain-2" id="domain-2">
-					</li>-->
+				    <?php
+
+				    foreach ($domains as $key => $domain)
+				    {
+				        printf('<li%3$s>
+                                <label for="domain-%1$d">Domain %1$d</label>
+                                <input type="text" name="domain[]" id="domain-%1$d" value="%2$s">
+                            </li>',
+				            $key+1,
+				            $domain,
+				            in_array('domain-'.$key, $errors) ? ' class="error"' : ''
+				        );
+				    }
+				    
+				    ?>
 				</ol>
 			</fieldset>
 			<fieldset class="payement">
@@ -74,19 +250,19 @@ get_header(); ?>
 				</div>
 				<ol class="choose">
 					<li>
-						<input type="radio" value="1" name="payement" id="paypal" checked>
-						<label for="paypal">Paypal</label>
+						<input type="radio" value="paypal" name="payement" id="payment-1" checked>
+						<label for="payment-1">Paypal</label>
 					</li>
 				</ol>
 			</fieldset>
 			<fieldset class="tearms">
-				<legend class="v-hidden">Tearms</legend>
+				<legend class="v-hidden">Terms</legend>
 				<div class="info">
 					<h3>Terms of use</h3>
 				</div>
 				<div class="i-agree">
-					<input type="checkbox" value="yes" name="i-agree" id="i-agree">
-					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a>.</label>
+					<input type="checkbox" value="yes" name="i-agree" id="i-agree"<?php echo $agree ? ' checked' : ''; ?>>
+					<label for="i-agree">I have read and agree with <a href="/terms-of-use/" target="_blank">Terms of use</a>.</label>
 				</div>
 			</fieldset>
 			<fieldset class="submit">

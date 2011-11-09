@@ -7,17 +7,17 @@
  */
 ?><!DOCTYPE html>
 <!--
-._  _  ___ ___ _   _  ___
-|_ | \  |   | / \ |_)  |   /\  |
-|_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+  _  _  ___ ___ _   _  ___
+ |_ | \  |   | / \ |_)  |   /\  |
+ |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
-Version: 1.0 (XX.XX.2011)
+ Version: 1.0 (XX.XX.2011)
 
-Design: Natan Nikolic (twitter.com/natannikolic)
-Programming: Miha Hribar (twitter.com/mihahribar)
-Front-end: Matjaz Korosec (twitter.com/matjazkorosec)
+ Design: Natan Nikolic (twitter.com/natannikolic)
+ Programming: Miha Hribar (twitter.com/mihahribar)
+ Front-end: Matjaz Korosec (twitter.com/matjazkorosec)
 
-Based on: 320 and Up boilerplate extension
+ Based on: 320 and Up boilerplate extension
 
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->

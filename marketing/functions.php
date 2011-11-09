@@ -6,6 +6,22 @@
  * @subpackage Marketing
  */
 
+// for debuggin purposes
+function dump($object = '')
+{
+    echo '<pre style="border: 1px solid #ccc; background: #eee; padding: 15px; margin: 15px; font-family: "Courier New", Courier, monospace">'.print_r($object, true).'</pre>';
+}
+
+function error($message)
+{
+    error_log(sprintf('[Marketing] %s', $message));
+}
+
+function debug($message)
+{
+    error($message);
+}
+
 // Paypal config
 define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
 define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
@@ -15,8 +31,8 @@ define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
 define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
 define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
 define('PAYPAL_VERSION',     '56.0');
-define('PAYPAL_CONFIRM_URL', 'http://picasicons.com/confirm/');
-define('PAYPAL_CANCEL_URL',  'http://picasicons.com/cancel/');
+define('PAYPAL_CONFIRM_URL', 'http://marketing.local/transaction/');
+define('PAYPAL_CANCEL_URL',  'http://marketing.local/purchase/?cancel');
 
 /**
  * Adds classes to the array of body classes.
