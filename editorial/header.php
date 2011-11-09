@@ -48,12 +48,12 @@
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?>
-<!--<script>
-var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>-->
+<script>
+var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-26888938-1']);_gaq.push(['_trackPageview']);
+(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
+</script>
 </head>
 
 <body class="<?php echo $EditorialId; ?> <?php echo $EditorialClass; ?>">
