@@ -1070,7 +1070,7 @@ class EditorialNav extends Walker_Nav_Menu
         $id = apply_filters( 'nav_menu_item_id', '', $item, $args );
         $id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
         
-        $output .= $indent . '<li' . $id  . $class_names .'>';
+        $output .= $indent . '			<li' . $id  . $class_names .'>';
         
         $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
         $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
