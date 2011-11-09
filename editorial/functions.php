@@ -361,11 +361,24 @@ class Editorial
 	    global $post;
  ?>
 				<footer>
-					<?php the_category(', ');
-?>
+					<?php
+					
+					$list = array();
+					foreach((get_the_category()) as $category) {
+                        $list[] = sprintf(
+                            '<a href="%s" value="View all posts in %s" rel="tag">%s</a>',
+                            get_category_link($category->cat_ID),
+                            $category->cat_name,
+                            $category->cat_name
+                        );
+                    }
+                    
+                    echo implode(', ', $list);
+					
+					?>
 
-					<time class="published" pubdate datetime="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>">
-						<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
+					<time class="published" pubdate datetime="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>">
+						<span class="value-title" title="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>"> </span>
 						<?php the_time(get_option('date_format'));
 ?>
 
@@ -433,7 +446,7 @@ class Editorial
 			// black and white images?
 			if (Editorial::getOption('black-and-white'))
 			{
-			    $url = get_bloginfo('template_directory').'/bw-photo.php?photo='.$thumbId.'&type='.$args[0];
+			    $url = get_bloginfo('template_directory').'/bw-photo.php?photo='.$thumbId.'&amp;type='.$args[0];
 			}
 		}
 
