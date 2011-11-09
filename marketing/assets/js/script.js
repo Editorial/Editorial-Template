@@ -43,6 +43,9 @@ $(function(){
 	//hidding iframe scrolls (invalid attr)
 	$('#follow').attr('scrolling','no');
 
-
+	// buy form add/remove domains
+	$('#licenses-c').change(function() {
+		$(this).val();
+	});
 });
 

@@ -21,7 +21,7 @@ $switchType = $EditorialId == 'layout-list' ? 'grid' : 'list';
 
 <div class="content clear" role="main">
 	<article id="single">
-		<h1><em>“</em><?php echo get_search_query(); ?><em>”</em></h1>
+		<h1<?php echo have_posts() ? '' : ' class="no-results"' ?>><em>“</em><?php echo get_search_query(); ?><em>”</em></h1>
 		<section id="layout" class="clear">
 			<p><?php _e('Select layout option', 'Editorial'); ?></p>
 			<ul class="switch">
