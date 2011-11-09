@@ -21,7 +21,5 @@
 				Editorial::postHeader(false);
 ?>
 			</div>
-<?php
-			Editorial::postExcerpt();
-?>
+			<?php Editorial::postExcerpt();?>
 		</article>

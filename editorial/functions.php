@@ -419,7 +419,7 @@ class Editorial
 	        $excerpt = mb_substr($excerpt, 0, 240).' [...]';
 	    }
 ?>
-				<p class="entry-summary"><?php echo $excerpt; ?></p>
+<p class="entry-summary"><?php echo $excerpt; ?></p>
 <?php
 	}
 

@@ -35,9 +35,7 @@ if (have_posts())
 <?php
 				Editorial::postHeader();
 ?>
-<?php
-				Editorial::postExcerpt();
-?>
+				<?php Editorial::postExcerpt();?>
 			</div>
 <?php
 			Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait', true);
