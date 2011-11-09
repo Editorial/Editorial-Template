@@ -76,8 +76,8 @@ function moveGradient(curX, curY) {
 }
 
 $('document').ready(function() {
-	canvas = document.getElementById("canvas");
-    context = canvas.getContext("2d");	
+	//canvas = document.getElementById("canvas");
+    //context = canvas.getContext("2d");
 	// twitter behaviour
 	$('#twitter').hover(function() {
 		$("#follow").fadeIn();
@@ -86,6 +86,7 @@ $('document').ready(function() {
 	});
 	
 	// canvas
+	/*
 	$('#soon').mousedown(function(e) {
 		if (drawInterval == "") {
 			drawInterval = setInterval('drawBubbles()', 33);
@@ -124,7 +125,7 @@ $('document').ready(function() {
 			}
 		}
 	});
-	
+	*/
 	
 	// tweet
 	$('#tweet').tweet({

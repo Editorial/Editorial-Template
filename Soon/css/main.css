@@ -98,6 +98,7 @@ body {
    position: relative;
    z-index: -1;
 }
+#soon h3 a {color:#fff;text-decoration:none;}
 
 #canvas {
 	top: 0;
