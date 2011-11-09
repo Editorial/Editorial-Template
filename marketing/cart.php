@@ -74,16 +74,8 @@ get_header(); ?>
 				</div>
 				<ol class="choose">
 					<li>
-						<input type="radio" value="1" name="payement" id="payement-1">
-						<label for="payement-1">Google Checkout</label>
-					</li>
-					<li>
-						<input type="radio" value="2" name="payement" id="payement-2">
-						<label for="payement-2">Paypal</label>
-					</li>
-					<li>
-						<input type="radio" value="3" name="payement" id="payement-3">
-						<label for="payement-3">Amazon</label>
+						<input type="radio" value="1" name="payement" id="paypal" checked>
+						<label for="paypal">Paypal</label>
 					</li>
 				</ol>
 			</fieldset>

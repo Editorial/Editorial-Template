@@ -6,6 +6,18 @@
  * @subpackage Marketing
  */
 
+// Paypal config
+define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
+define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
+define('PAYPAL_USER',        'natan_api1.editorialtemplate.com');
+define('PAYPAL_EMAIL',       'natan@editorialtemplate.com');
+define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
+define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
+define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
+define('PAYPAL_VERSION',     '56.0');
+define('PAYPAL_CONFIRM_URL', 'http://picasicons.com/confirm/');
+define('PAYPAL_CANCEL_URL',  'http://picasicons.com/cancel/');
+
 /**
  * Adds classes to the array of body classes.
  */
