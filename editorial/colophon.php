@@ -59,7 +59,7 @@ else
 		</section>
 		<aside role="complementary">
 			<ul id="team">
-				<?php
+<?php
 				foreach ($authors as $Author)
 				{
 					$gravatar = sprintf(
@@ -68,17 +68,19 @@ else
 						urlencode(get_bloginfo('template_directory').'/assets/images/_temp/your-name.jpg'), // default image if user has no gravatar
 						116
 					);
-					printf('<li class="vcard">
-							<figure>
-								<img src="%1$s" class="photo" width="116" height="116" alt="%6$s">
-								<figcaption>
-									<em class="title">%3$s</em>
-									<!--strong class="fn n"><a href="%5$s" title="%6$s">%2$s</a></strong-->
-									<strong class="fn n">%2$s</strong>
-									<a href="mailto:%4$s" class="email">%4$s</a>
-								</figcaption>
-							</figure>
-						</li>',
+					printf('
+				<li class="vcard">
+					<figure>
+						<img src="%1$s" class="photo" width="116" height="116" alt="%6$s">
+						<figcaption>
+							<em class="title">%3$s</em>
+							<!--strong class="fn n"><a href="%5$s" title="%6$s">%2$s</a></strong-->
+							<strong class="fn n">%2$s</strong>
+							<a href="mailto:%4$s" class="email">%4$s</a>
+						</figcaption>
+					</figure>
+				</li>
+',
 						$gravatar,
 						$Author->display_name,
 						$Author->editorial_role,
@@ -87,7 +89,7 @@ else
 						esc_attr($Author->display_name)
 					);
 				}
-				?>
+?>
 			</ul>
 		</aside>
 	</article>
