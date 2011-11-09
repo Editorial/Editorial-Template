@@ -22,9 +22,16 @@
 <head>
 <meta charset="utf-8">
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
+<?php
+/*
 <meta name="description" content="<?php bloginfo('description'); ?>">
 <meta name="author" content="<?php bloginfo('name'); ?>">
 <meta name="keywords" content="<?php echo Editorial::getOption('meta-keywords'); ?>">
+*/
+?>
+<meta name="description" content="The ultimate WordPress theme designed specially for digital magazines.">
+<meta name="author" content="Programming: Miha Hribar, Front-end: Matjaž Korošec, Design: Natan Nikolič">
+<meta name="keywords" content="Editorial, wordpress, theme, template, magazine, wordpress, widgets, responsive, adaptive, design, photography, HTML5, CSS3, readability, typography, SEO, widgets, admin, panel, colophon">
 <!-- invalid / enable if needed
 <meta name="handheldfriendly" content="true">
 <meta name="mobileoptimized" content="320">
@@ -47,9 +54,12 @@
 <?php } ?>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <?php add_theme_support('automatic-feed-links'); ?>
-<?php wp_head(); ?>
+<?php wp_head(); ?><?php
+/*
 <script src="http://use.typekit.com/bgy8anq.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
+*/
+?>
 <script>
 var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-26888938-1']);_gaq.push(['_trackPageview']);
 (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
