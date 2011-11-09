@@ -137,7 +137,7 @@ if (comments_open() || !post_password_required()) {
 						<label for="name"><?php _e('Your name', 'Editorial'); ?> <em>*</em></label>
 						<input type="text" id="name" name="name" value="<?php echo esc_attr($comment_name); ?>">
 					</li>
-					<li class="text<?php echo in_array('email', $error_fields) ? ' error' : ''; ?>">
+					<li class="text second<?php echo in_array('email', $error_fields) ? ' error' : ''; ?>">
 						<label for="email"><?php _e('Your e-mail address', 'Editorial'); ?> <em>*</em></label>
 						<input type="email" id="email" name="email" value="<?php echo esc_attr($comment_email); ?>">
 					</li>
