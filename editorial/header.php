@@ -48,8 +48,8 @@
 <script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?>
-<script type="text/javascript" src="http://use.typekit.com/bgy8anq.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script src="http://use.typekit.com/bgy8anq.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
 <script>
 var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-26888938-1']);_gaq.push(['_trackPageview']);
 (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
