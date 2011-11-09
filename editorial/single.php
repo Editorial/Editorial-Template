@@ -88,7 +88,7 @@ $EditorialClass = 'clear';
 					if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
 					{
 						echo '					<li class="facebook">'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
-							'url'    => '',
+							'url'    => get_permalink(),
 							'width'  => 80,
 							'height' => 20
 						)).'</li>';
