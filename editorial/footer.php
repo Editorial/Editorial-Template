@@ -10,7 +10,6 @@ if ($EditorialId != 'notfound')
 	   get_sidebar('footer');
     }
 ?>
-
 <footer id="footer" class="clear" role="contentinfo">
 	<h3>Subscribe</h3>
 	<ul id="rss">
