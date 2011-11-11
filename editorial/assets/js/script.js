@@ -23,12 +23,12 @@ if (iDevice) {
 
 $(function(){
 
-	//remove address bar
-	//@see http://davidwalsh.name/hide-address-bar
-	setTimeout(function(){window.scrollTo(0,1);},0);
-
-	//iOS label fix
 	if (iDevice) {
+		//remove address bar
+		//@see http://davidwalsh.name/hide-address-bar
+		setTimeout(function(){window.scrollTo(0,1);},0);
+		
+		//iOS label fix
 		$('label[for]').click(function(){
 			var el = $(this).attr('for');
 			if ($('#' + el + '[type=radio], #' + el + '[type=checkbox]').attr('selected', !$('#' + el).attr('selected'))) return;
