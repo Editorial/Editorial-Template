@@ -62,7 +62,7 @@ class Paypal
             urlencode($confirmUrl),
             urlencode($cancelUrl),
             'Autorization',
-            'USD'
+            'EUR'
         );
         return $this->_makeRequest($additional);
     }
