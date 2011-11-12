@@ -9,6 +9,7 @@
  */
 
 require_once 'library/Paypal.php';
+require_once 'library/Purchase.php';
 require_once 'library/Util.php';
 
 session_start();
@@ -52,7 +53,7 @@ if (isset($_POST) && count($_POST))
 {
     // reset errors
     $errors = array();
-    
+
     // check licence
     if (!array_key_exists('licenses-c', $_POST) || !ctype_digit($_POST['licenses-c']) || (int)$_POST['licenses-c'] < 1)
     {
@@ -63,18 +64,18 @@ if (isset($_POST) && count($_POST))
         $licences = (int)$_POST['licenses-c'];
         $domains = array_fill(0, $licences, '');
     }
-    
+
     // check domain
-    if (!array_key_exists('domain', $_POST) 
-        || !is_array($_POST['domain']) 
+    if (!array_key_exists('domain', $_POST)
+        || !is_array($_POST['domain'])
         || !count($_POST['domain'])
         || $licences != count($_POST['domain']))
     {
         $errors[] = 'domain';
     }
-    
+
     // validate domains
-    if (array_key_exists('domain', $_POST) && is_array($_POST['domain']) && count($_POST['domain']))  
+    if (array_key_exists('domain', $_POST) && is_array($_POST['domain']) && count($_POST['domain']))
     {
         $domains = array();
         // check the domains are valid
@@ -89,7 +90,7 @@ if (isset($_POST) && count($_POST))
             }
         }
     }
-    
+
     // agree?
     if (!array_key_exists('i-agree', $_POST))
     {
@@ -100,7 +101,7 @@ if (isset($_POST) && count($_POST))
     {
         $agree = true;
     }
-    
+
     // lets get down to business
     if (!count($errors))
     {
@@ -112,20 +113,20 @@ if (isset($_POST) && count($_POST))
             $details = $Paypal->setExpressCheckout($amount, PAYPAL_CONFIRM_URL, PAYPAL_CANCEL_URL);
             debug(print_r($details, true));
             // insert payment
-            /*$Payment = new Payment();
-            $Payment->insert(array(
-                'ext_id' => $Paypal->getToken(),
-                'amount' => $amount,
-                'bundle' => $this->_prices[$param][0],
-                'hash'   => Util::randomString(10),
-                'date'   => date(DB_DATETIME_FORMAT),
-                'status' => Payment::STATUS_STARTED,
-                'picked' => implode(',', $picked),
-            ));*/
+            $Purchase = new Purchase();
+            $Purchase->insert(array(
+                'ext_id'   => $Paypal->getToken(),
+				'domains'  => implode(',', $domains),
+                'amount'   => $amount,
+				'date'     => date('Y-m-d H:i:s'),
+				'status'   => Purchase::STATUS_STARTED,
+				'type'     => Purchase::TYPE_PAYPAL,
+                'status'   => Purchase::STATUS_STARTED,
+            ));
             // redirect to paypal
             Util::redirect($Paypal->getPaypalExpressCheckoutURL());
         }
-        catch (Paypl_Exception $e)
+        catch (Paypal_Exception $e)
         {
             debug('failed');
             Util::redirect('/');
@@ -163,7 +164,7 @@ get_header(); ?>
 	</section>
 	<section class="order">
     	<?php
-    	
+
     	if (count($errors))
     	{
     	    echo '<section class="message errors">
@@ -174,25 +175,25 @@ get_header(); ?>
     	    {
     	        echo '<li>Enter a valid number of desired licences</li>';
     	    }
-    	    
+
     	    if (in_array('domain', $errors))
     	    {
     	        echo '<li>Enter a domain name e.g. http://domain.com</li>';
     	    }
-    	    
+
     	    if (in_array('agree', $errors))
     	    {
     	        echo '<li>Please read and agree to our <a href="/terms-of-use/" target="_blank">Terms of use</a>.</li>';
     	    }
-    	    
+
     	    if (in_array('cancel', $errors))
     	    {
     	        echo '<li>Your purchase was canceled. Shame, we were just starting to get along.</li>';
     	    }
-                    
+
             echo '</ol></section>';
     	}
-    	
+
     	?>
 		<form id="buy-form" method="post" action="/purchase/">
 			<fieldset class="licenses">
@@ -204,7 +205,7 @@ get_header(); ?>
 					</li>
 					<li class="price-c">
 						<label for="price-c">Price</label>
-						<input type="text" disabled value="€150" name="price-c" id="price-c">
+						<input type="text" disabled value="150€" name="price-c" id="price-c">
 					</li>
 					<li class="licenses-c<?php echo in_array('licences', $errors) ? ' error' : ''; ?>">
 						<label for="licenses-c"># of licenses</label>
@@ -212,7 +213,7 @@ get_header(); ?>
 					</li>
 					<li class="total">
 						<label for="total">Total</label>
-						<input type="text" disabled value="&euro;<?php echo $licences*150; ?>" name="total" id="total">
+						<input type="text" disabled value="<?php echo $licences*150; ?>&euro;" name="total" id="total">
 					</li>
 				</ol>
 			</fieldset>
@@ -239,7 +240,7 @@ get_header(); ?>
 				            in_array('domain-'.$key, $errors) ? ' class="error"' : ''
 				        );
 				    }
-				    
+
 				    ?>
 				</ol>
 			</fieldset>
