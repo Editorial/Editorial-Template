@@ -42,7 +42,7 @@ try
 	// update purchase
 	$Purchase->update($purchase['purchase_id'], array(
 		'ext_id'     => $transaction['TRANSACTIONID'],
-		'date'       => date(DB_DATETIME_FORMAT),
+		'date'       => date('Y-m-d H:i:s', strtotime('+1 day')),
 		'status'     => Purchase::STATUS_CONFIRMED,
 		'payer_id'   => $_GET['PayerID'],
 		'account_id' => $account['account_id'],
