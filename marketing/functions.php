@@ -22,6 +22,9 @@ function debug($message)
     error($message);
 }
 
+// zip file location
+define('EDITORIAL_ZIP', __DIR__ . '/editorial.zip');
+
 // Paypal config
 define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
 define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
@@ -57,6 +60,12 @@ function editorial_body_classes( $classes )
 	if (is_page_template('help.php'))
 	{
 		$classes[] = 'help-list';
+	}
+
+	if (  is_page_template('download.php') )
+	{
+		$classes[] = 'cart';
+		$classes[] = 'save';
 	}
 
 	if (is_page())

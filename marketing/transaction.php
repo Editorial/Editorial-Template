@@ -17,7 +17,7 @@ session_start();
 $errors = array();
 
 $Purchase = new Purchase();
-$purchase = $Purchase->find($_GET['token']);
+$purchase = $Purchase->findByExtId($_GET['token']);
 if ( false === is_array($purchase) )
 {
 	echo 'HereBe error?';

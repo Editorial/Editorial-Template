@@ -66,16 +66,20 @@ class Purchase
 	 * @param  string  $ext_id
 	 * @return array|null
 	 */
-	public function find($ext_id)
+	public function findByExtId($ext_id)
 	{
-		global $wpdb;
-		return $wpdb->get_row(
-			sprintf(
-				'SELECT * FROM `purchase` WHERE `ext_id` = \'%s\'',
-				$wpdb->escape($ext_id)
-			),
-			ARRAY_A
-		);
+		return $this->_find('ext_id', $ext_id);
+	}
+
+	/**
+	 * Find purchase by hash.
+	 *
+	 * @param  string  $hash
+	 * @return array|null
+	 */
+	public function findByHash($hash)
+	{
+		return $this->_find('hash', $hash);
 	}
 
 	/**
@@ -116,6 +120,25 @@ class Purchase
 			array(
 				'ext_id' => $wpdb->escape($ext_id),
 			)
+		);
+	}
+
+	/**
+	 * Find row.
+	 *
+	 * @param  string $key
+	 * @param  mixed  $value
+	 */
+	private function _find($key, $value)
+	{
+		global $wpdb;
+		return $wpdb->get_row(
+			sprintf(
+				'SELECT * FROM `purchase` WHERE `%s` = \'%s\'',
+				$key,
+				$wpdb->escape($value)
+			),
+			ARRAY_A
 		);
 	}
 
