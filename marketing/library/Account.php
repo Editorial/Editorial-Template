@@ -65,6 +65,24 @@ class Account
 	}
 
 	/**
+	 * Find and account by account ID
+	 *
+	 * @param  integer $account_id
+	 * @return array|null
+	 */
+	public function findById($account_id)
+	{
+		global $wpdb;
+		return $wpdb->get_row(
+			sprintf(
+				'SELECT * FROM `account` WHERE `account_id` = %d',
+				$account_id
+			),
+			ARRAY_A
+		);
+	}
+
+	/**
 	 * Create an account.
 	 *
 	 * @param  array $data

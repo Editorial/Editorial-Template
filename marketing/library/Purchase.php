@@ -63,6 +63,17 @@ class Purchase
 	/**
 	 * Find payment.
 	 *
+	 * @param  string  $id
+	 * @return array|null
+	 */
+	public function findById($id)
+	{
+		return $this->_find('purchase_id', $id);
+	}
+
+	/**
+	 * Find payment.
+	 *
 	 * @param  string  $ext_id
 	 * @return array|null
 	 */
@@ -121,6 +132,50 @@ class Purchase
 				'ext_id' => $wpdb->escape($ext_id),
 			)
 		);
+	}
+
+	/**
+	 * Complete purchase.
+	 *
+	 * @param  integer $purchase_id
+	 * @return void
+	 */
+	public function complete($purchase_id)
+	{
+		$this->update($purchase_id, array(
+			'date'   => date('Y-m-d H:i:s', strtotime('+1 day')),
+			'status' => self::STATUS_COMPLETED,
+		));
+
+		$purchase = $this->_find('purchase_id', $purchase_id);
+		if ( isset($purchase['domains']) && null !== $domains = json_decode($purchase['domains'], true) )
+		{
+			if ( is_array($domains) )
+			{
+				$Domain = new Domain();
+				$Domain->manageForAccount($purchase['account_id'], $domains);
+			}
+		}
+	}
+
+	/**
+	 * Send download mail.
+	 *
+	 * @param  integer $purchase_id
+	 * @return void
+	 */
+	public function sendDownloadMail($purchase_id)
+	{
+		$purchase = $this->_find('purchase_id', $purchase_id);
+		if ( isset($purchase['account_id']) )
+		{
+			$Account = new Account();
+			$account = $Account->findById($purchase['account_id']);
+			if ( isset($account['email']))
+			{
+				wp_mail($account['mail'], 'Download link', 'bla bla bla');
+			}
+		}
 	}
 
 	/**

@@ -45,12 +45,28 @@ try
 	// update purchase
 	$Purchase->update($purchase['purchase_id'], array(
 		'ext_id'     => $transaction['TRANSACTIONID'],
-		'date'       => date('Y-m-d H:i:s', strtotime('+1 day')),
+		'date'       => date('Y-m-d H:i:s'),
 		'status'     => Purchase::STATUS_CONFIRMED,
 		'payer_id'   => $_GET['PayerID'],
 		'account_id' => $account['account_id'],
 		'hash'       => Util::randomString(32),
 	));
+
+	// try to see if payment is processed
+	$id = $purchase['purchase_id'];
+	$i  = 0;
+	do
+	{
+		$Purchase = new Purchase();
+		$purchase = $Purchase->findById($id);
+		if ( $purchase['status'] == Purchase::STATUS_COMPLETED )
+		{
+			Util::redirect('/download/?hash=' . $purchase['hash']);
+		}
+		sleep(1);
+		++$i;
+	}
+	while ( $i < 5 );
 }
 catch ( Paypal_Exception $e )
 {
