@@ -89,7 +89,7 @@ get_header(); ?>
             </ul>
             <p class="price">
                 <span class="label">Total</span>
-                <strong><em>$</em>150.<sup>00</sup></strong>
+                <strong><em>&euro;</em>150.<sup>00</sup></strong>
                 <a href="/purchase/" class="go">Purchase</a>
             </p>
         </div>

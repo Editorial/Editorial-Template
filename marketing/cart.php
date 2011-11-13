@@ -212,7 +212,7 @@ get_header(); ?>
 					</li>
 					<li class="price-c">
 						<label for="price-c">Price</label>
-						<input type="text" disabled value="150€" name="price-c" id="price-c">
+						<input type="text" disabled value="€150" name="price-c" id="price-c">
 					</li>
 					<li class="licenses-c<?php echo in_array('licences', $errors) ? ' error' : ''; ?>">
 						<label for="licenses-c"># of licenses</label>
@@ -220,7 +220,7 @@ get_header(); ?>
 					</li>
 					<li class="total">
 						<label for="total">Total</label>
-						<input type="text" disabled value="<?php echo $licences*150; ?>&euro;" name="total" id="total">
+						<input type="text" disabled value="&euro;<?php echo $licences*150; ?>" name="total" id="total">
 					</li>
 				</ol>
 			</fieldset>
