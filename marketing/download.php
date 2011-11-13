@@ -51,7 +51,7 @@ else
 
 		ob_clean();
 		flush();
-		readfile($zipfile);
+		readfile(EDITORIAL_ZIP);
 		exit;
 	}
 }
