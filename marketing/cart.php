@@ -123,7 +123,7 @@ if (isset($_POST) && count($_POST))
             $Purchase = new Purchase();
             $Purchase->insert(array(
                 'ext_id'   => $Paypal->getToken(),
-				'domains'  => implode(',', $domains),
+				'domains'  => json_encode($domains),
                 'amount'   => $amount,
 				'date'     => date('Y-m-d H:i:s'),
 				'status'   => Purchase::STATUS_STARTED,

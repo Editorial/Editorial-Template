@@ -28,7 +28,10 @@ try
 {
 	$Paypal      = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
 	$details     = $Paypal->getExpressCheckout($_GET['token']);
+	debug(print_r($details, true));
+
 	$transaction = $Paypal->doExpressCheckout($_GET['token'], $_GET['PayerID'], $purchase['amount']);
+	debug(print_r($transaction, true));
 
 	// create an account. or update it if it exists
 	$Account = new Account();
