@@ -98,4 +98,25 @@ class Purchase
 		);
 	}
 
+	/**
+	 * Cancel purchase by ext_id.
+	 *
+	 * @param  string  $ext_id
+	 * @return void
+	 */
+	public function cancel($ext_id)
+	{
+		global $wpdb;
+		// fingers crosse
+		$wpdb->update(
+			'purchase',
+			array(
+				'status' => self::STATUS_CANCELLED,
+			),
+			array(
+				'ext_id' => $wpdb->escape($ext_id),
+			)
+		);
+	}
+
 }

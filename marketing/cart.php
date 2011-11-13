@@ -25,6 +25,13 @@ if (array_key_exists('cancel', $_GET))
     // unset everything from session
     $_SESSION = array();
     $errors[] = 'cancel';
+
+	// set purchase as cancelled
+	if ( array_key_exists('token', $_GET) )
+	{
+		$Purchase = new Purchase();
+		$Purchase->cancel($_GET['token']);
+	}
 }
 
 // session?
