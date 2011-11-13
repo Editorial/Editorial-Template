@@ -21,6 +21,7 @@ if (iDevice) {
 	}
 }
 
+
 $(function(){
 
 	//iOS label fix
@@ -32,6 +33,14 @@ $(function(){
 		});
 	}
 
+	//redirect button
+	$('#checkout').click(function(e){
+		e.preventDefault();
+		var redirect = function(){return location.href = $('#checkout').attr('href');};
+		$(this).val('Redirecting').addClass('redirecting');
+		var r = setTimeout(redirect,500);
+	});
+
 	//about us mailto
 	if($('#mailto').length) {
 		var m = $('#mailto');
@@ -39,10 +48,6 @@ $(function(){
 		var t = m.text().replace(/ /g,'');
 		m.html('<a href="mailto:' + t + '">' + t + '</a>');
 	}
-
-	//hidding iframe scrolls (invalid attr)
-	$('#follow').attr('scrolling','no');
-
 
 });
 

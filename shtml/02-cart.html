@@ -61,8 +61,8 @@
 			</ol>
 			<h1><em>Place</em> Order</h1>
 		</header>
-		<figure>
-			<img src="images/tablets.png" alt="Tablets">
+		<figure class="tablets">
+			<img src="images/dsg/tablets.png" alt="Tablets">
 		</figure>
 	</section>
 	<section class="order">
@@ -108,21 +108,15 @@
 					</li>-->
 				</ol>
 			</fieldset>
-			<fieldset class="payement">
-				<legend class="v-hidden">Payement</legend>
+			<fieldset class="tearms">
+				<legend class="v-hidden">Newsletter</legend>
 				<div class="info">
-					<h3>Preferred method of payement:</h3>
+					<h3>Subscribe to our newsletter</h3>
 				</div>
-				<ol class="choose">
-					<li>
-						<input type="radio" value="1" name="payement" id="payement-1">
-						<label for="payement-1">Google Checkout</label>
-					</li>
-					<li>
-						<input type="radio" value="2" name="payement" id="payement-2">
-						<label for="payement-2">Paypal</label>
-					</li>
-				</ol>
+				<div class="i-agree">
+					<input type="checkbox" value="yes" name="newsletter" id="newsletter">
+					<label for="newsletter">Check to be the first in line to find about price drops, news and more.</label>
+				</div>
 			</fieldset>
 			<fieldset class="tearms">
 				<legend class="v-hidden">Tearms</legend>
@@ -131,11 +125,20 @@
 				</div>
 				<div class="i-agree">
 					<input type="checkbox" value="yes" name="i-agree" id="i-agree">
-					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a>.</label>
+					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a> &amp; <a href="/" target="_blank">Privacy policy</a>.</label>
 				</div>
 			</fieldset>
 			<fieldset class="submit">
-				<input type="submit" class="go" value="Proceed to checkout">
+				<div class="paypal-info">
+					<figure class="verified">
+						<a href="https://www.paypal.com/verified/pal=natan@editorialtemplate.com" target="_blank">
+							<img src="images/dsg/paypalverified.gif" width="60" height="60" alt="Paypal verified">
+						</a>
+					</figure>
+					<p>Clicking “Proceed to checkout” will take you to the PayPal Website.<br>
+					After confirming your order you will be returned to our website to complete your purchase.</p>
+				</div>
+				<input type="submit" id="checkout" class="go" value="Proceed to checkout">
 			</fieldset>
 		</form>
 	</section>
