@@ -13,8 +13,7 @@
 		<div class="adapt">
 			<section class="subscription">
 				<h3>Subscribe to our newsletter</h3>
-				<p>The very best way to be first in line to hear about our discounts or keep on track with our development,
-				updates etc.</p>
+				<p>We know you are curious! Be the first to know of all our special little secrets and let us give you the news first hand. Hear about our special offers or keep on track with our development and updates.</p>
 				<form id="subscribe-form" method="post">
 					<fieldset>
 						<legend class="v-hidden">Subscription</legend>
@@ -25,9 +24,8 @@
 				</form>
 			</section>
 			<section class="connect hentry">
-				<h3 class="entry-title">Keep in touch</h3>
-				<p class="entry-summary">Don’t be a stranger and drop us a line or two. We love to talk about online publishing but mostly we
-				love to hear your thoughts and feedback.</p>
+				<h3 class="entry-title">Letʼs stay in touch</h3>
+				<p class="entry-summary">Feedback is great. And not just with spicing up the cool guitar solos. Don’t be a stranger and drop us a line or two. We love to talk about online publishing and would love to hear from you too.</p>
 				<div class="twitter entry-content">
 					<blockquote>
 						<p>Our custom icons designed by <a href="/" target="_blank">@benedikrok</a> spoted in reality:
@@ -106,8 +104,8 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js">\x3C/script>')</script>
-<script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/plugins.js"></script>
-<script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/script.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
 <!--<script>
 var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
