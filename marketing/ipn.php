@@ -16,6 +16,7 @@ require_once 'library/Purchase.php';
 if ( isset($_POST) && count($_POST) )
 {
 	debug(print_r($_POST, true));
+	debug(json_encode($_POST));
 	try
 	{
 		$Paypal = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);

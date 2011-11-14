@@ -142,14 +142,17 @@ class Purchase
 	 */
 	public function complete($purchase_id)
 	{
+		debug('purchase complete.');
 		$this->update($purchase_id, array(
 			'date'   => date('Y-m-d H:i:s', strtotime('+1 day')),
 			'status' => self::STATUS_COMPLETED,
 		));
 
 		$purchase = $this->_find('purchase_id', $purchase_id);
+		debug('purchase complete: ' . print_r($purchase, true));
 		if ( isset($purchase['domains']) && null !== $domains = json_decode($purchase['domains'], true) )
 		{
+			debug('purchase complete domains: ' . print_r($domains, true));
 			if ( is_array($domains) )
 			{
 				$Domain = new Domain();
@@ -166,21 +169,24 @@ class Purchase
 	 */
 	public function sendDownloadMail($purchase_id)
 	{
+		debug('preparing to send an email.');
 		$purchase = $this->_find('purchase_id', $purchase_id);
 		if ( isset($purchase['account_id']) )
 		{
 			$Account = new Account();
 			$account = $Account->findById($purchase['account_id']);
+			debug('account: ' . print_r($account, true));
 			if ( isset($account['email']))
 			{
 				$subject = 'Your Editorial Wordpress theme is ready for download.';
 				$message = 'We have great news. Your transaction has been completed and your Editorial theme is ready for download.' . PHP_EOL
 						 . 'Thank you for your patience. ' . PHP_EOL
 						 . PHP_EOL
-						 . site_url('/download/?download=' . $purchase['hash'])
+						 . site_url('/download/?hash=' . $purchase['hash'])
 				;
 				// send it
-				wp_mail($account['mail'], $subject, $message);
+				$sent = wp_mail($account['email'], $subject, $message);
+				debug('email sent: ' . (int)$sent);
 			}
 		}
 	}
