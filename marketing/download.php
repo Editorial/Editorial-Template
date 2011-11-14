@@ -132,7 +132,7 @@ get_header(); ?>
 			}
 			else
 			{
-				echo '<a href="/download/?hash=' . array_key_exists('hash', $_GET) ? $_GET['hash'] : '' .'&amp;start" class="download"><em>Download</em></a>';
+				echo '<a href="/download/?hash=' . (array_key_exists('hash', $_GET) ? $_GET['hash'] : '') .'&amp;start" class="download"><em>Download</em></a>';
 			}
 			?>
 			<p>Your download link will be active for 24 hours.</p>
