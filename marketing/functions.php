@@ -25,6 +25,10 @@ function debug($message)
 // zip file location
 define('EDITORIAL_ZIP', __DIR__ . '/editorial.zip');
 
+// mail settings
+define('EDITORIAL_MAIL_FROM',      'no-reply@editorialtemplate.com');
+define('EDITORIAL_MAIL_FROM_NAME', 'Editorial');
+
 // Paypal config
 define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
 define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
@@ -100,6 +104,20 @@ register_nav_menus(array(
 
 // add excerpt to pages
 add_post_type_support('page', 'excerpt');
+
+// mail hooks
+function editorial_wp_mail_from($content_type)
+{
+	return EDITORIAL_MAIL_FROM;
+}
+
+function editorial_wp_mail_from_name($name)
+{
+	return EDITORIAL_MAIL_FROM_NAME;
+}
+
+add_filter('wp_mail_from',      'editorial_wp_mail_from');
+add_filter('wp_mail_from_name', 'editorial_wp_mail_from_name');
 
 /**
  * Custom Walker_Nav_Menu
