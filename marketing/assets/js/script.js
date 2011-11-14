@@ -43,7 +43,7 @@ $(function(){
 	//redirect button
 	$('#checkout').click(function(e){
 		e.preventDefault();
-		var redirect = function(){return location.href = $('#checkout').attr('href');};
+		var redirect = function(){return location.href = $('#buy-form').attr('action');};
 		$(this).val('Redirecting').addClass('redirecting');
 		var r = setTimeout(redirect,500);
 	});
