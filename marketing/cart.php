@@ -226,11 +226,10 @@ get_header();
 			if ( in_array('cancel', $errors) )
 			{
 				echo '
-					<h3><span class="v-hidden">Your purchase was canceled.</span>!</h3>
-					<p class="lead">
-						Shame, we were just starting to get along. If you canceled by mistake you
-						can return to paypal by clicking "Proceed to checkout" button again.
-					</p>';
+					<h3><span class="v-hidden">Warning</span>!</h3>
+					<p class="lead">Your purchase was canceled.</p>
+					<p>Shame, we were just starting to get along. If you canceled by mistake you
+					can return to paypal by clicking "Proceed to checkout" button again.</p>';
 			}
 			elseif ( in_array('paypal', $errors) )
 			{

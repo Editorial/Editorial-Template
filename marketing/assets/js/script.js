@@ -54,7 +54,6 @@ $(function(){
 		function addDomain(i) {
 			$('#domains').append('<li><label for="domain-'+i+'">Domain '+i+'</label><input type="text" name="domain[]" id="domain-'+i+'"></li>');
 		}
-
 		var domains = parseInt($(this).val());
 		if (domains > 0) {
 			var entered = $('#domains input').length;
@@ -70,11 +69,11 @@ $(function(){
 					$('#domain-'+i).parent().remove();
 				}
 			}
-			
 			// update total price
 			var currency = $('#price-c').val().substr(0,1);
 			$('#total').val(currency+domains*parseFloat($('#price-c').val().substr(1)));
 		}
 	});
+
 });
 
