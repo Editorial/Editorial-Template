@@ -72,7 +72,7 @@ get_header(); ?>
 	<aside class="pricing" role="complementary">
 		<h3><em>Price <span>&</span> licencing</em></h3>
 		<figure>
-			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/sheets.jpg" alt="Editorial sheets">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/sheets.png" alt="Editorial sheets">
 		</figure>
 		<div class="price-tag">
 			<h4>Editorial theme</h4>
