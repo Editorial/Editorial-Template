@@ -253,26 +253,24 @@ get_header();
 ?>
 				</ol>
 			</fieldset>
-			<fieldset class="payement">
-				<legend class="v-hidden">Payement</legend>
+			<fieldset class="tearms">
+				<legend class="v-hidden">Newsletter</legend>
 				<div class="info">
-					<h3>Preferred method of payement:</h3>
+					<h3>Subscribe to our newsletter</h3>
 				</div>
-				<ol class="choose">
-					<li>
-						<input type="radio" value="paypal" name="payement" id="payment-1" checked>
-						<label for="payment-1">Paypal</label>
-					</li>
-				</ol>
+				<div class="i-agree">
+					<input type="checkbox" value="yes" name="newsletter" id="newsletter">
+					<label for="newsletter">Check to be the first in line to find about price drops, news and more.</label>
+				</div>
 			</fieldset>
 			<fieldset class="tearms">
-				<legend class="v-hidden">Terms</legend>
+				<legend class="v-hidden">Tearms</legend>
 				<div class="info">
 					<h3>Terms of use</h3>
 				</div>
 				<div class="i-agree">
 					<input type="checkbox" value="yes" name="i-agree" id="i-agree"<?php echo $agree ? ' checked' : ''; ?>>
-					<label for="i-agree">I have read and agree with <a href="/terms-of-use/" target="_blank">Terms of use</a>.</label>
+					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a> &amp; <a href="/" target="_blank">Privacy policy</a>.</label>
 				</div>
 			</fieldset>
 			<fieldset class="submit">
