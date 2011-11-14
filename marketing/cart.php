@@ -186,31 +186,43 @@ get_header();
 
     	if (count($errors))
     	{
-    	    echo '<section class="message errors">
-    	        <h3><span class="v-hidden">Warning</span>!</h3>
-                <p class="lead">Please correct following errors:</p>
-                <ol>';
-    	    if (in_array('licences', $errors))
-    	    {
-    	        echo '<li>Enter a valid number of desired licences</li>';
-    	    }
+			echo '<section class="message errors">';
 
-    	    if (in_array('domain', $errors))
-    	    {
-    	        echo '<li>Enter a domain name e.g. http://domain.com</li>';
-    	    }
+			if ( in_array('cancel', $errors) )
+			{
+				echo '
+					<h3><span class="v-hidden">Your purchase was canceled.</span>!</h3>
+					<p class="lead">
+						Shame, we were just starting to get along. If you canceled by mistake you
+						can return to paypal by clicking "Proceed to checkout" button again.
+					</p>';
+			}
+			else
+			{
+				echo '
+					<h3><span class="v-hidden">Warning</span>!</h3>
+					<p class="lead">Please correct following errors:</p>
+					<ol>
+				';
 
-    	    if (in_array('agree', $errors))
-    	    {
-    	        echo '<li>Please read and agree to our <a href="/terms-of-use/" target="_blank">Terms of use</a>.</li>';
-    	    }
+				if (in_array('licences', $errors))
+				{
+					echo '<li>Enter a valid number of desired licences</li>';
+				}
 
-    	    if (in_array('cancel', $errors))
-    	    {
-    	        echo '<li>Your purchase was canceled. Shame, we were just starting to get along.</li>';
-    	    }
+				if (in_array('domain', $errors))
+				{
+					echo '<li>Enter a domain name e.g. http://domain.com</li>';
+				}
 
-            echo '</ol></section>';
+				if (in_array('agree', $errors))
+				{
+					echo '<li>Please read and agree to our <a href="/terms-of-use/" target="_blank">Terms of use</a>.</li>';
+				}
+
+				echo '</ol>';
+			}
+			echo '</section>';
     	}
 
 ?>
