@@ -86,12 +86,27 @@ get_header(); ?>
 			</ol>
 			<h1><em>Place</em> Order</h1>
 		</header>
-		<figure>
+		<figure class="tablets">
 			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/tablets.png" alt="Tablets">
 		</figure>
 	</section>
 	<section class="order">
-		HereBe transaction
+		<div class="info">
+			<h2>Your order has been successfully confirmed.</h2>
+			<p class="leading">Sit back and relax while we wait for the transaction to be completed. After we receive
+			your payment you will receive a download link to the e-mail associated with your PayPal account.</p>
+			<p class="help">In the meanwhile you might want to take a look at <a href="/">frequently asked questions</a>
+			section or drop us a line on twitter.</p>
+			<p class="follow">
+				<a href="http://twitter.com/editorialtheme" class="twitter-follow-button" data-show-count="false">Follow @editorialtheme</a>
+				<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+			</p>
+		</div>
+		<div class="action">
+			<figure>
+				<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/transaction.png" width="160" height="205" alt="Transaction">
+			</figure>
+		</div>
 	</section>
 </div>
 
