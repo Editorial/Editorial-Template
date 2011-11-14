@@ -46,7 +46,7 @@ abbr[title] {border-bottom:1px dotted;cursor:help;}
 html {overflow-y:scroll;background:#f7f7f7;}
 body {margin:0 auto;min-width:320px;font:100%/20px helvetica,arial,sans-serif;color:#262121;
 background:#f7f7f7 url(../images/bgr/body.png) repeat-x;}
-.home {background:#f7f7f7 url(../images/bgr/home-640.jpg) 50% 0 no-repeat;}
+.home {background:#f7f7f7 url(../images/bgr/home-480.jpg) 50% 0 no-repeat;}
 
 .features section,.abilities li,.price-tag,.home .content h3,.price-tag h4,.price strong,.included li,.support .col,
 .copyright,.connect,#brand a,.primary li,.primary a,.process ol,.process li,.licenses ol,.order .action,
@@ -129,6 +129,7 @@ figcaption {padding:10px 0 0;font:13px/20px helvetica,arial,sans-serif;color:#59
 .makers figure {margin:0 0 30px;width:35%;float:left;}
 .makers img {-webkit-border-radius:67px;-moz-border-radius:67px;border-radius:67px;}
 .makers img {height:auto;}
+.makers li a {border-bottom:1px dotted #09c;}
 
 .pricing figure {display:none;}
 
@@ -154,7 +155,8 @@ table .right {text-align:right;}
 .message {margin:0 0 10px;padding:12px 0 13px;}
 .message h3 {display:none;}
 .message p,.message li {font-size:18px;line-height:25px;}
-.message .lead {margin:0;padding:0 13px;}
+.message .lead,.message p {margin:0;padding:0 13px;}
+.message p {line-height:22px;}
 .message ol {margin:0;padding:0 13px 0 35px;}
 .message li {margin:0;list-style:decimal;}
 
@@ -243,7 +245,7 @@ padding:7px 5px 6px;font:14px helvetica,arial,sans-serif;color:#333;}
 .tearms .i-agree input {position:absolute;top:0;left:0;}
 .tearms .i-agree label {padding:3px 0 2px 25px;line-height:15px;display:block;}
 
-.order .submit {padding:26px 0 0;text-align:center;}
+.order .submit {padding:26px 0 0;text-align:center;position:relative;}
 .submit .go {padding:13px 22px 12px;font-size:12px;width:auto;min-width:210px;}
 
 .paypal-info {margin:0 0 20px;width:100%;float:left;}
@@ -271,17 +273,21 @@ background:#b10700;display:block;
 	background:linear-gradient(top,#dd0b00,#820300);
 }
 
+.download-expired {border-color:#fff;color:#fff;background:#e9e9e9;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;}
 
 .go {margin:0 auto;padding:10px 31px;font-size:13px;line-height:28px;display:block;width:76px;}
 .manage .submit input {line-height:14px;}
 
 .submit .redirecting {border-color:#e6e6e6;padding:14px 30px 11px 30px;min-width:182px;color:#999;text-align:left;
-text-shadow:none;cursor:default;background:#f6f6f6 url(../images/dsg/button-loading.gif) 129px 4px no-repeat;
+text-shadow:none;cursor:default;background:#f6f6f6;
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
 	-ms-box-shadow:none;
 	box-shadow:none;
 }
+
+.loader {margin:0 auto;width:182px;position:relative;clear:both;}
+#checkout-loading {width:25px;height:25px;position:absolute;top:9px;right:24px;}
 
 #manage-form {margin:0 0 0 -15px;padding:13px 0 0 15px;background-position:-1160px -40px;}
 
@@ -290,12 +296,12 @@ text-shadow:none;cursor:default;background:#f6f6f6 url(../images/dsg/button-load
 
 #header {border-top:3px solid #1a1a1a;margin:0 0 10px;width:100%;text-align:center;background:#333;
 background:rgba(0,0,0,.8);}
-.home #header {margin:0 0 30px;border:none;background:none;}
+.home #header {margin:0 0 30px;border:none;padding-top:300px;background:none;}
 .home #header .adapt {text-align:center;}
 #header hgroup {margin:0 0 27px;text-align:left;}
 #brand {float:left;display:none;}
 #brand a {background-position:-348px -197px;}
-.home #brand {padding-top:445px;display:block;}
+.home #brand {display:block;}
 .home #brand a {background-position:500px 500px;}
 .home #header h1 {font:bold 20px/24px helvetica,arial,sans-serif;display:inline;}
 .home h1 a {padding:0 5px 0 0;color:#262121;}
@@ -439,6 +445,9 @@ background-position:-1160px -40px;}
 
 .about #header {margin:0;}
 .about .content {padding-top:10px;overflow:hidden;}
+
+#transaction-loading {height:170px;position:relative;}
+#transaction-loading #canvasLoader {margin:-17px 0 0 -17px;position:absolute;top:50%;left:50%;}
 
 
 /* 11.MAIN __________________________________________________________________________________________________________ */
@@ -588,6 +597,9 @@ box-sizing:border-box;}
 .ie7 img {-ms-interpolation-mode:bicubic;}
 
 .ie7 #email,.ie8 #email {border:1px solid #f2f2f2;}
+#email::-webkit-input-placeholder {color:#999;}
+#email:-moz-placeholder {color:#999;}
+#email:placeholder {color:#999;}
 
 
 /* Non-semantic helper classes */
@@ -644,6 +656,10 @@ h2,h3 {page-break-after:avoid;}
 @media only screen and (min-width:480px) {
 
 /* 1.ROOT ___________________________________________________________________________________________________________ */
+
+.home {background-image:url(../images/bgr/home-640.jpg);}
+
+
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,.exposed {font-size:53px;line-height:53px;}
@@ -662,7 +678,6 @@ h1,.exposed {font-size:53px;line-height:53px;}
 
 .domain input {width:66.5%;float:right;}
 .domain p {margin:0 0 15px;}
-
 #email {width:270px;color:#333;}
 #subscribe {margin-top:0;float:left;}
 
@@ -674,7 +689,7 @@ form .submit {text-align:left;}
 .paypal-info {margin:0;}
 .paypal-info .verified {margin:0 15px 0 0;width:60px;float:left;}
 .paypal-info p {text-align:left;}
-.order .submit .go {margin:30px 0 0;}
+.order .loader {margin:30px 0 0;clear:none;float:right;}
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
@@ -778,6 +793,7 @@ form .submit {text-align:left;}
 
 .home {background-image:url(../images/bgr/home.jpg);}
 
+
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,.exposed {margin:15px 0;font-size:70px;line-height:72px;}
@@ -798,7 +814,7 @@ h1,.exposed {margin:15px 0;font-size:70px;line-height:72px;}
 .message {overflow:hidden;position:relative;z-index:1;}
 .message h3 {padding:0 0 0 5px;font-size:100px;color:#e6ddc3;display:block;top:43px;left:42px;position:absolute;
 z-index:-1;}
-.message .lead,.message ol {margin-left:100px;}
+.message .lead,.message p,.message ol {margin-left:100px;}
 
 .manage label {float:left;}
 .manage #domains input {width:84.5%;float:right;}
@@ -811,6 +827,7 @@ z-index:-1;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #header {margin:0 0 30px;}
+.home #header {padding-top:445px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -835,6 +852,8 @@ z-index:-1;}
 
 .about #header {margin:0 0 10px;}
 .about .content {padding-top:0;overflow:visible;}
+
+#transaction-loading {height:200px;}
 
 
 /* 11.MAIN __________________________________________________________________________________________________________ */
@@ -905,7 +924,7 @@ da je slka vedno spodaj
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 .order {margin:0 49px;}
-.order .submit .go {margin:7px 0 0;}
+.order .loader {margin:7px 0 0;}
 
 
 form .info {width:48%;float:left;}
@@ -955,6 +974,8 @@ form .info {width:48%;float:left;}
 .save .order .leading {margin:0 0 19px -49px;padding:20px 0 0 49px;}
 .save .info h2 {padding:34px 0 16px;}
 .leading {margin:0 -49px 10px;padding-top:20px;}
+
+#transaction-loading {height:250px;}
 
 
 /* 11.MAIN __________________________________________________________________________________________________________ */

@@ -21,7 +21,6 @@ if (iDevice) {
 	}
 }
 
-
 $(function(){
 
 	//iOS label fix
@@ -36,10 +35,29 @@ $(function(){
 	//redirect button
 	$('#checkout').click(function(e){
 		e.preventDefault();
-		var redirect = function(){return location.href = $('#checkout').attr('href');};
+		var redirect = function(){$('#buy-form').submit();};
 		$(this).val('Redirecting').addClass('redirecting');
+		$(this).after('<div id="checkout-loading" />');
+		var cl = new CanvasLoader('checkout-loading');
+		cl.setColor('#999999');
+		cl.setDiameter(25);
+		cl.setDensity(31);
+		cl.setRange(1);
+		cl.setFPS(30);
+		cl.show();
 		var r = setTimeout(redirect,500);
 	});
+
+	//transaction loading
+	if($('#transaction-loading').length) {
+		var cl = new CanvasLoader('transaction-loading');
+		cl.setColor('#999999');
+		cl.setDiameter(25);
+		cl.setDensity(31);
+		cl.setRange(1);
+		cl.setFPS(30);
+		cl.show();
+	}
 
 	//about us mailto
 	if($('#mailto').length) {
@@ -48,6 +66,33 @@ $(function(){
 		var t = m.text().replace(/ /g,'');
 		m.html('<a href="mailto:' + t + '">' + t + '</a>');
 	}
+
+	// buy form add/remove domains
+	$('#licenses-c').change(function(e) {
+		// add domain input field
+		function addDomain(i) {
+			$('#domains').append('<li><label for="domain-'+i+'">Domain '+i+'</label><input type="text" name="domain[]" id="domain-'+i+'"></li>');
+		}
+		var domains = parseInt($(this).val());
+		if (domains > 0) {
+			var entered = $('#domains input').length;
+			if (domains > entered) {
+				// add domains
+				for (var i = entered+1; i <= domains; i++) {
+					addDomain(i);
+				}
+			}
+			else if (domains < entered) {
+				// remove domains
+				for (var i = domains+1; i <= entered; i++) {
+					$('#domain-'+i).parent().remove();
+				}
+			}
+			// update total price
+			var currency = $('#price-c').val().substr(0,1);
+			$('#total').val(currency+domains*parseFloat($('#price-c').val().substr(1)));
+		}
+	});
 
 });
 

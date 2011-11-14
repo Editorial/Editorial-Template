@@ -9,7 +9,7 @@
  Design: Natan Nikolic (twitter.com/natannikolic)
  Programming: Miha Hribar (twitter.com/mihahribar)
  Front-end: Matjaz Korosec (twitter.com/matjazkorosec)
-
+ 
  Based on: 320 and Up boilerplate extension
 
 -->
@@ -66,6 +66,12 @@
 		</figure>
 	</section>
 	<section class="order">
+		<section class="message errors">
+			<h3><span class="v-hidden">Warning</span>!</h3>
+			<p class="lead">Your purchase was canceled.</p>
+			<p>Shame, we were just starting to get along. If you canceled by mistake you
+			can return to paypal by clicking "Proceed to checkout" button again.</p>
+		</section>
 		<form id="buy-form" method="post" action="/">
 			<fieldset class="licenses">
 				<legend class="v-hidden">Licenses</legend>
@@ -108,15 +114,21 @@
 					</li>-->
 				</ol>
 			</fieldset>
-			<fieldset class="tearms">
-				<legend class="v-hidden">Newsletter</legend>
+			<fieldset class="payement">
+				<legend class="v-hidden">Payement</legend>
 				<div class="info">
-					<h3>Subscribe to our newsletter</h3>
+					<h3>Preferred method of payement:</h3>
 				</div>
-				<div class="i-agree">
-					<input type="checkbox" value="yes" name="newsletter" id="newsletter">
-					<label for="newsletter">Check to be the first in line to find about price drops, news and more.</label>
-				</div>
+				<ol class="choose">
+					<li>
+						<input type="radio" value="1" name="payement" id="payement-1">
+						<label for="payement-1">Google Checkout</label>
+					</li>
+					<li>
+						<input type="radio" value="2" name="payement" id="payement-2">
+						<label for="payement-2">Paypal</label>
+					</li>
+				</ol>
 			</fieldset>
 			<fieldset class="tearms">
 				<legend class="v-hidden">Tearms</legend>
@@ -125,7 +137,7 @@
 				</div>
 				<div class="i-agree">
 					<input type="checkbox" value="yes" name="i-agree" id="i-agree">
-					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a> &amp; <a href="/" target="_blank">Privacy policy</a>.</label>
+					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a>.</label>
 				</div>
 			</fieldset>
 			<fieldset class="submit">
@@ -138,9 +150,7 @@
 					<p>Clicking “Proceed to checkout” will take you to the PayPal Website.<br>
 					After confirming your order you will be returned to our website to complete your purchase.</p>
 				</div>
-				<div class="loader">
-					<input type="submit" id="checkout" class="go" value="Proceed to checkout">
-				</div>
+				<input type="submit" class="go redirecting" value="Redirecting">
 			</fieldset>
 		</form>
 	</section>
