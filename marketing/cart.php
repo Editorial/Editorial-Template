@@ -276,7 +276,7 @@ get_header();
 				</div>
 			</fieldset>
 			<fieldset class="submit">
-				<input type="submit" class="go" value="Proceed to checkout">
+				<input type="submit" id="checkout" class="go" value="Proceed to checkout">
 			</fieldset>
 		</form>
 	</section>
