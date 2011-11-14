@@ -14,10 +14,11 @@ require_once 'library/Util.php';
 
 session_start();
 
-$errors   = array();
-$licences = 1;
-$domains  = array('');
-$agree    = false;
+$errors     = array();
+$licences   = 1;
+$domains    = array('http://');
+$agree      = false;
+$newsletter = false;
 
 // cancel purchase
 if (array_key_exists('cancel', $_GET))
@@ -52,6 +53,10 @@ if (isset($_SESSION) && count($_SESSION))
     if (array_key_exists('agree', $_SESSION))
     {
         $agree = $_SESSION['agree'];
+    }
+    if (array_key_exists('newsletter', $_SESSION))
+    {
+        $newsletter = $_SESSION['newsletter'];
     }
 }
 
@@ -109,6 +114,9 @@ if (isset($_POST) && count($_POST))
         $agree = true;
     }
 
+	// newsletter?
+	$newsletter = array_key_exists('newsletter', $_POST);
+
     // lets get down to business
     if (!count($errors))
     {
@@ -122,13 +130,14 @@ if (isset($_POST) && count($_POST))
             // insert payment
             $Purchase = new Purchase();
             $Purchase->insert(array(
-                'ext_id'   => $Paypal->getToken(),
-				'domains'  => json_encode($domains),
-                'amount'   => $amount,
-				'date'     => date('Y-m-d H:i:s'),
-				'status'   => Purchase::STATUS_STARTED,
-				'type'     => Purchase::TYPE_PAYPAL,
-                'status'   => Purchase::STATUS_STARTED,
+				'ext_id'     => $Paypal->getToken(),
+				'domains'    => json_encode($domains),
+				'amount'     => $amount,
+				'date'       => date('Y-m-d H:i:s'),
+				'status'     => Purchase::STATUS_STARTED,
+				'type'       => Purchase::TYPE_PAYPAL,
+				'status'     => Purchase::STATUS_STARTED,
+				'newsletter' => (int)$newsletter,
             ));
             // redirect to paypal
             Util::redirect($Paypal->getPaypalExpressCheckoutURL());
@@ -143,10 +152,11 @@ if (isset($_POST) && count($_POST))
     {
         // add to session and redirect to avoid post errors
         $_SESSION = array(
-            'licences' => $licences,
-            'domains'  => $domains,
-            'errors'   => $errors,
-            'agree'    => $agree,
+			'licences'   => $licences,
+			'domains'    => $domains,
+			'errors'     => $errors,
+			'agree'      => $agree,
+			'newsletter' => $newsletter,
         );
         header('Location: /purchase/');
         exit();
@@ -259,7 +269,7 @@ get_header();
 					<h3>Subscribe to our newsletter</h3>
 				</div>
 				<div class="i-agree">
-					<input type="checkbox" value="yes" name="newsletter" id="newsletter">
+					<input type="checkbox" value="yes" name="newsletter" id="newsletter"<?php echo $newsletter ? ' checked' : ''; ?>>
 					<label for="newsletter">Check to be the first in line to find about price drops, news and more.</label>
 				</div>
 			</fieldset>

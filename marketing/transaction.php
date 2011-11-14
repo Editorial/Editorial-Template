@@ -36,10 +36,11 @@ try
 	// create an account. or update it if it exists
 	$Account = new Account();
 	$account = $Account->createOrUpdate(array(
-		'name'    => urldecode($details['FIRSTNAME'].' '.$details['LASTNAME']),
-		'email'   => urldecode($details['EMAIL']),
-		'address' => urldecode($details['SHIPTOSTREET'] .' '.$details['SHIPTOCITY'].' '.$details['SHIPTOCOUNTRYNAME']),
-		'country' => urldecode($details['COUNTRYCODE']),
+		'name'       => urldecode($details['FIRSTNAME'].' '.$details['LASTNAME']),
+		'email'      => urldecode($details['EMAIL']),
+		'address'    => urldecode($details['SHIPTOSTREET'] .' '.$details['SHIPTOCITY'].' '.$details['SHIPTOCOUNTRYNAME']),
+		'country'    => urldecode($details['COUNTRYCODE']),
+		'newsletter' => $purchase['newsletter'],
 	));
 
 	// update purchase
@@ -73,6 +74,15 @@ catch ( Paypal_Exception $e )
 	var_dump($e->getMessage());
 	var_dump($e);
 }
+
+// remove temp session
+unset(
+	$_SESSION['licences'],
+	$_SESSION['domains'],
+	$_SESSION['errors'],
+	$_SESSION['agree'],
+	$_SESSION['newsletter']
+);
 
 get_header(); ?>
 
