@@ -14,7 +14,7 @@ get_header(); ?>
 	<article class="main hentry">
 		<h1 class="entry-title"><em>About</em> us</h1>
 		<figure id="dust">
-			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/bgr/fairy-dust.png" width="600" height="327" alt="Fairy dust">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/bgr/fairy-dust.png" width="600" height="390" alt="Creative fairy dust">
 		</figure>
 		<div class="info entry-summary">
 			<?php the_post(); ?>
@@ -24,7 +24,7 @@ get_header(); ?>
 			<ul>
 				<li class="miha vcard">
 					<figure>
-						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/miha-hribar.png" class="photo" width="134" height="134" alt="Miha Hribar">
+						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/miha-hribar.jpg" class="photo" width="134" height="134" alt="Miha Hribar">
 					</figure>
 					<h2 class="fn n">Miha Hribar</h2>
 					<p><strong class="title">“code ninja”</strong>
@@ -32,7 +32,7 @@ get_header(); ?>
 				</li>
 				<li class="matjaz vcard">
 					<figure>
-						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/matjaz-korosec.png" class="photo" width="134" height="134" alt="Matjaž Korošec">
+						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/matjaz-korosec.jpg" class="photo" width="134" height="134" alt="Matjaž Korošec">
 					</figure>
 					<h2 class="fn n">Matjaž Korošec</h2>
 					<p><strong class="title">“browser assasin”</strong>
@@ -40,7 +40,7 @@ get_header(); ?>
 				</li>
 				<li class="natan vcard">
 					<figure>
-						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/natan-nikolic.png" class="photo" width="134" height="134" alt="Natan Nikolič">
+						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/natan-nikolic.jpg" class="photo" width="134" height="134" alt="Natan Nikolič">
 					</figure>
 					<h2 class="fn n">Natan Nikolič</h2>
 					<p><strong class="title">“indivisual”</strong>
