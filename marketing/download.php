@@ -84,8 +84,8 @@ get_header(); ?>
 			</ol>
 			<h1><em>Down</em>load</h1>
 		</header>
-		<figure>
-			<img src="<?php bloginfo('template_directory'); ?>/assets/images/tablets.png" alt="Tablets">
+		<figure class="tablets">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/tablets.png" alt="Tablets">
 		</figure>
 	</section>
 	<section class="order">
