@@ -38,8 +38,17 @@ define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
 define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
 define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
 define('PAYPAL_VERSION',     '56.0');
-define('PAYPAL_CONFIRM_URL', 'http://marketing.local/transaction/');
-define('PAYPAL_CANCEL_URL',  'http://marketing.local/purchase/?cancel');
+define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
+define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
+
+// david sandbox
+//define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
+//define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
+//define('PAYPAL_USER',        'david_1321039203_biz_api1.kuridza.si');
+//define('PAYPAL_EMAIL',       'david_1321039203_biz@kuridza.si');
+//define('PAYPAL_PASSWORD',    '1321039259');
+//define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31AVts2sEdwWw1DK5C2EnxeyGcfv8E');
+//define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
 
 /**
  * Adds classes to the array of body classes.
