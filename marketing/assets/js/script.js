@@ -45,6 +45,14 @@ $(function(){
 		e.preventDefault();
 		var redirect = function(){$('#buy-form').submit();};
 		$(this).val('Redirecting').addClass('redirecting');
+		$(this).after('<div id="checkout-loading" />');
+		var cl = new CanvasLoader('checkout-loading');
+		cl.setColor('#999999');
+		cl.setDiameter(25);
+		cl.setDensity(31);
+		cl.setRange(1);
+		cl.setFPS(30);
+		cl.show();
 		var r = setTimeout(redirect,500);
 	});
 	

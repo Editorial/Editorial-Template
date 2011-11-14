@@ -349,7 +349,9 @@ get_header();
 					<p>Clicking “Proceed to checkout” will take you to the PayPal Website.<br>
 					After confirming your order you will be returned to our website to complete your purchase.</p>
 				</div>
-				<input type="submit" id="checkout" class="go" value="Proceed to checkout">
+				<div class="loader">
+					<input type="submit" id="checkout" class="go" value="Proceed to checkout">
+				</div>
 			</fieldset>
 		</form>
 	</section>
