@@ -173,7 +173,14 @@ class Purchase
 			$account = $Account->findById($purchase['account_id']);
 			if ( isset($account['email']))
 			{
-				wp_mail($account['mail'], 'Download link', 'bla bla bla');
+				$subject = 'Your Editorial Wordpress theme is ready for download.';
+				$message = 'We have great news. Your transaction has been completed and your Editorial theme is ready for download.' . PHP_EOL
+						 . 'Thank you for your patience. ' . PHP_EOL
+						 . PHP_EOL
+						 . site_url('/download/?download=' . $purchase['hash'])
+				;
+				// send it
+				wp_mail($account['mail'], $subject, $message);
 			}
 		}
 	}
