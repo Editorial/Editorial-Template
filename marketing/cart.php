@@ -153,7 +153,9 @@ if (isset($_POST) && count($_POST))
     }
 }
 
-get_header(); ?>
+get_header();
+
+?>
 
 <div class="content" role="main">
 	<section class="process">
@@ -166,11 +168,11 @@ get_header(); ?>
 			<h1><em>Place</em> Order</h1>
 		</header>
 		<figure>
-			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/tablets.png" alt="Tablets">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/tablets.png" alt="Tablets">
 		</figure>
 	</section>
 	<section class="order">
-    	<?php
+<?php
 
     	if (count($errors))
     	{
@@ -201,7 +203,7 @@ get_header(); ?>
             echo '</ol></section>';
     	}
 
-    	?>
+?>
 		<form id="buy-form" method="post" action="/purchase/">
 			<fieldset class="licenses">
 				<legend class="v-hidden">Licenses</legend>
@@ -234,7 +236,7 @@ get_header(); ?>
 					See our <a href="/help/" target="_blank">FAQ</a> for more information.</p>
 				</div>
 				<ol id="domains">
-				    <?php
+<?php
 
 				    foreach ($domains as $key => $domain)
 				    {
@@ -248,7 +250,7 @@ get_header(); ?>
 				        );
 				    }
 
-				    ?>
+?>
 				</ol>
 			</fieldset>
 			<fieldset class="payement">
