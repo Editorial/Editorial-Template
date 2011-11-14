@@ -60,6 +60,27 @@ if (isset($_SESSION) && count($_SESSION))
     }
 }
 
+// paypal FUBAR
+if ( isset($_GET['paypal']) && isset($_GET['token']) )
+{
+	$Purchase = new Purchase();
+	$purchase = $Purchase->findByExtId($_GET['token']);
+	if ( false === is_array($purchase) )
+	{
+		$errors[] = '404';
+	}
+	else
+	{
+		$domains    = json_decode($purchase['domains'], true);
+		$licences   = count($domains);
+		$newsletter = (bool)$purchase['newsletter'];
+		$errors[]   = 'paypal';
+	}
+
+	// free it
+	unset($purchase, $Purchase);
+}
+
 // handle post
 if (isset($_POST) && count($_POST))
 {
@@ -168,6 +189,20 @@ get_header();
 ?>
 
 <div class="content" role="main">
+<?php
+	if ( in_array('404', $errors) )
+	{
+?>
+    <article class="main default hentry">
+        <h1 class="entry-title"><em>Error</em> 404</h1>
+        <p class="lead entry-summary">You seem to have lost you way around here.</p>
+    </article>
+</div>
+<?php
+		get_footer();
+		exit;
+	}
+?>
 	<section class="process">
 		<header>
 			<ol class="step1">
@@ -195,6 +230,16 @@ get_header();
 					<p class="lead">
 						Shame, we were just starting to get along. If you canceled by mistake you
 						can return to paypal by clicking "Proceed to checkout" button again.
+					</p>';
+			}
+			elseif ( in_array('paypal', $errors) )
+			{
+				echo '
+					<h3><span class="v-hidden">Wo-ou, something went terribly wrong.</span>!</h3>
+					<p class="lead">
+						Most likely there was a problem with PayPal connection. We sincerely
+						apologise for the inconvenience. Please try again or
+						<a href="">contact our support team</a> to help you resolve this issue.
 					</p>';
 			}
 			else

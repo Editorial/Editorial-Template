@@ -20,9 +20,10 @@ $Purchase = new Purchase();
 $purchase = $Purchase->findByExtId($_GET['token']);
 if ( false === is_array($purchase) )
 {
-	echo 'HereBe error?';
-	exit;
+	$errors[] = '404';
 }
+else
+{
 
 try
 {
@@ -69,10 +70,10 @@ try
 	}
 	while ( $i < 5 );
 }
-catch ( Paypal_Exception $e )
-{
-	var_dump($e->getMessage());
-	var_dump($e);
+	catch ( Paypal_Exception $e )
+	{
+		Util::redirect('/purchase/?paypal&' . $_SERVER['QUERY_STRING']);
+	}
 }
 
 // remove temp session
@@ -87,6 +88,19 @@ unset(
 get_header(); ?>
 
 <div class="content" role="main">
+<?php
+	if ( in_array('404', $errors) )
+	{
+?>
+    <article class="main default hentry">
+        <h1 class="entry-title"><em>Error</em> 404</h1>
+        <p class="lead entry-summary">You seem to have lost you way around here.</p>
+    </article>
+<?php
+	}
+	else
+	{
+?>
 	<section class="process">
 		<header>
 			<ol class="step1">
@@ -118,6 +132,9 @@ get_header(); ?>
 			</figure>
 		</div>
 	</section>
+<?php
+	} // if ( in_array('404', $errors) )
+?>
 </div>
 
 <?php get_footer(); ?>
