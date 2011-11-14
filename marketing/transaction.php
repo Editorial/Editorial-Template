@@ -111,7 +111,7 @@ get_header(); ?>
 			<h1><em>Place</em> Order</h1>
 		</header>
 		<figure class="tablets">
-			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/tablets.png" alt="Tablets">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/tablets.png" alt="Tablets">
 		</figure>
 	</section>
 	<section class="order">
