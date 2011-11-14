@@ -276,6 +276,15 @@ get_header();
 				</div>
 			</fieldset>
 			<fieldset class="submit">
+				<div class="paypal-info">
+					<figure class="verified">
+						<a href="https://www.paypal.com/verified/pal=natan@editorialtemplate.com" target="_blank">
+							<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/paypalverified.gif" width="60" height="60" alt="Paypal verified">
+						</a>
+					</figure>
+					<p>Clicking “Proceed to checkout” will take you to the PayPal Website.<br>
+					After confirming your order you will be returned to our website to complete your purchase.</p>
+				</div>
 				<input type="submit" id="checkout" class="go" value="Proceed to checkout">
 			</fieldset>
 		</form>
