@@ -125,7 +125,16 @@ get_header(); ?>
 			</p>
 		</div>
 		<div class="action">
-			<a href="/download/?hash=<?php echo array_key_exists('hash', $_GET) ? $_GET['hash'] : ''; ?>&amp;start" class="download"><em>Download</em></a>
+			<?php
+			if ( $expired )
+			{
+				echo '<span class="download download-expired"><em>Download</em></span>';
+			}
+			else
+			{
+				echo '<a href="/download/?hash=' . array_key_exists('hash', $_GET) ? $_GET['hash'] : '' .'&amp;start" class="download"><em>Download</em></a>';
+			}
+			?>
 			<p>Your download link will be active for 24 hours.</p>
 		</div>
 	</section>
