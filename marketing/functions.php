@@ -42,6 +42,9 @@ define('PAYPAL_CANCEL_URL',  'http://marketing.local/purchase/?cancel');
  */
 function editorial_body_classes( $classes )
 {
+	// remove existing wp classes
+	$classes = array();
+
 	if (is_home())
 	{
 		$classes[] = 'home';
@@ -52,9 +55,16 @@ function editorial_body_classes( $classes )
 		$classes[] = 'about';
 	}
 
-	if (is_page_template('purchase.php'))
+	if (is_page_template('cart.php'))
 	{
 		$classes[] = 'cart';
+	}
+
+	if (is_page_template('transaction.php'))
+	{
+		$classes[] = 'cart';
+		$classes[] = 'save';
+		$classes[] = 'transaction';
 	}
 
 	if (is_page_template('help.php'))
@@ -68,7 +78,7 @@ function editorial_body_classes( $classes )
 		$classes[] = 'save';
 	}
 
-	if (is_page())
+	if ( is_page('terms-of-use') )
 	{
 		$classes[] = 'tearms';
 	}
