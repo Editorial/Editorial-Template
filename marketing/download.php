@@ -10,12 +10,13 @@
 
 require_once 'library/Purchase.php';
 
-$errors = array();
+$errors  = array();
+$expired = false;
 
 // how did you get here?
 if ( false === array_key_exists('hash', $_GET) )
 {
-	$errors[] = 'no-hash';
+	$errors[] = '404';
 }
 else
 {
@@ -24,12 +25,13 @@ else
 	// there is no purchase with this hash
 	if ( null === $purchase )
 	{
-		$errors[] = 'invalid-hash';
+		$errors[] = '404';
 	}
 	// sorry, try next time
 	elseif ( strtotime($purchase['date']) - time() < 0 )
 	{
-		$errors[] = 'invalid-date';
+		$errors[] = 'expired';
+		$expired  = true;
 	}
 	// download it
 	elseif ( array_key_exists('start', $_GET) )
@@ -59,6 +61,20 @@ else
 get_header(); ?>
 
 <div class="content" role="main">
+<?php
+	if ( in_array('404', $errors) )
+	{
+?>
+    <article class="main default hentry">
+        <h1 class="entry-title"><em>Error</em> 404</h1>
+        <p class="lead entry-summary">You seem to have lost you way around here.</p>
+    </article>
+<?php
+	}
+	else
+	{
+?>
+
 <section class="process">
 		<header>
 			<ol class="step3">
@@ -73,27 +89,36 @@ get_header(); ?>
 		</figure>
 	</section>
 	<section class="order">
-		<?php
-		if ( count($errors) )
-		{
-			echo '<section class="message errors">
-			<h3><span class="v-hidden">Warning</span>!</h3>
-			<p class="lead">Please correct following errors:</p>
-			<ol>';
-
-			echo '<li>hash: There be no hash</li>';
-			echo '<li>invalid-hash: hash cannot be found in the database</li>';
-			echo '<li>invalid-date: 24 hours access is gone</li>';
-
-			echo '</ol></section>';
-		}
-		?>
 		<div class="info">
+		<?php
+			if ( $expired )
+			{
+		?>
+			<h2>Your purchase download has expired.</h2>
+			<p class="leading">
+				We sincerely apologise for the inconvenience. Please
+				<a href="mailto:support@editorialtemplate.com?subject=Help!+My+download+link+has+expired.+My+purchase+ID+is+#">contact our support</a>
+				to help you resolve this issue.
+			</p>
+			<p>
+				To provide the highest level of security the download time is active only for 24
+				hours from the transaction competition. You can read more about this issue in our
+				<a href="/help/">FAQ section</a>. We are also more than happy to answer your
+				questions on twitter.
+			</p>
+		<?php
+			}
+			else
+			{
+		?>
 			<h2>Thank you for your purchase.</h2>
 			<p class="leading">We wish you all the best with your project &amp; happy publishing with
 			<a href="/" class="brand"><em>EDIT</em>ORIAL</a>.</p>
 			<p class="help">If you need any help with instalation please see our <a href="/help/">FAQ section</a>.<br>
 			And don’t forget to follow us on Twitter and tell us about your project.</p>
+		<?php
+			}
+		?>
 			<p class="follow">
 				<a href="http://twitter.com/editorialtheme" class="twitter-follow-button" data-show-count="false">Follow @editorialtheme</a>
 				<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
@@ -104,6 +129,9 @@ get_header(); ?>
 			<p>Your download link will be active for 24 hours.</p>
 		</div>
 	</section>
+<?php
+	} // if ( in_array('404', $errors) )
+?>
 </div>
 
 <?php get_footer(); ?>
