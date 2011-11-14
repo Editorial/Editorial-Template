@@ -6,9 +6,10 @@
  * @subpackage Marketing
  */
 ?>
-
 <footer id="footer" role="contentinfo">
-	<?php if (!is_page_template('cart.php')) { ?>
+<?php
+			if (!is_page_template('cart.php')) {
+?>
 	<div class="updates">
 		<div class="adapt">
 			<section class="subscription">
@@ -33,7 +34,8 @@
 						more preview on <a href="/" target="_blank">@dribbble</a>:
 						<a href="http://bit.ly/kgVQHl" target="_blank">http://bit.ly/kgVQHl</a></p>
 					</blockquote>
-					<iframe id="follow" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=Editorialtheme&amp;show_count=false"></iframe>
+					<a href="https://twitter.com/editorialtheme" class="twitter-follow-button" data-show-count="false">Follow @editorialtheme</a>
+					<script src="//platform.twitter.com/widgets.js"></script>
 				</div>
 				<div class="v-hidden">
 					<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
@@ -42,12 +44,14 @@
 			</section>
 		</div>
 	</div>
-	<?php } ?>
+<?php
+			}
+?>
 	<div class="adapt">
 		<nav class="support" role="navigation">
 			<div class="col">
 				<h4>Help & support</h4>
-				<?php
+<?php
 
 				$settings = array(
 					'theme_location' => 'help-nav',
@@ -59,11 +63,11 @@
 				);
 				wp_nav_menu($settings);
 
-				?>
+?>
 			</div>
 			<div class="col">
 				<h4>About</h4>
-				<?php
+<?php
 
 				$settings = array(
 					'theme_location' => 'about-nav',
@@ -75,11 +79,11 @@
 				);
 				wp_nav_menu($settings);
 
-				?>
+?>
 			</div>
 			<div class="col">
 				<h4>Legal notice</h4>
-				<?php
+<?php
 
 				$settings = array(
 					'theme_location' => 'legal-nav',
@@ -91,7 +95,7 @@
 				);
 				wp_nav_menu($settings);
 
-				?>
+?>
 			</div>
 		</nav>
 		<section class="copyright">
@@ -102,16 +106,10 @@
 	</div>
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js">\x3C/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>
 <script src="js/plugins.js"></script>
 <script src="js/script.js"></script>
-<!--<script>
-var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>-->
 <noscript>Your browser does not support JavaScript!</noscript>
 <?php wp_footer(); ?>
 </body>

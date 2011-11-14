@@ -11,7 +11,7 @@
  |_ | \  |   | / \ |_)  |   /\  |
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
- Version: 1.0 (XX.XX.2011)
+ Version: 1.0 (11/2011)
 
  Design: Natan Nikolic (twitter.com/natannikolic)
  Programming: Miha Hribar (twitter.com/mihahribar)
@@ -21,7 +21,6 @@
 
 -->
 <!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
-<!--[if lt IE 7 ]><html class="ie6" lang="en"><![endif]-->
 <!--[if IE 7 ]><html class="ie7" lang="en"><![endif]-->
 <!--[if IE 8 ]><html class="ie8" lang="en"><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
@@ -56,7 +55,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?v=1" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?v=1">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <?php wp_head(); ?>
 </head>
@@ -69,7 +68,7 @@
 			<a href="/" class="ir fn org url">Editorial</a>
 		</h2>
 		<nav class="primary" role="navigation">
-		<?php
+<?php
 
 		$settings = array(
 			'theme_location' => 'main-nav',
@@ -81,7 +80,7 @@
 		);
 		wp_nav_menu($settings);
 
-		?>
+?>
 		</nav>
 	</div>
 </header>
