@@ -4,7 +4,7 @@
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
  File: script.js
- Version: 1.0 (XX.XX.2011)
+ Version: 1.0 (11/2011)
  Authors: Matjaz Korosec (twitter.com/matjazkorosec),
           Miha Hribar (twitter.com/mihahribar)
 
@@ -32,14 +32,6 @@ $(function(){
 		});
 	}
 
-	//about us mailto
-	if($('#mailto').length) {
-		var m = $('#mailto');
-		m.find('span:first-child').html('@').next('span').html('.');
-		var t = m.text().replace(/ /g,'');
-		m.html('<a href="mailto:' + t + '">' + t + '</a>');
-	}
-
 	//redirect button
 	$('#checkout').click(function(e){
 		e.preventDefault();
@@ -55,7 +47,26 @@ $(function(){
 		cl.show();
 		var r = setTimeout(redirect,500);
 	});
-	
+
+	//transaction loading
+	if($('#transaction-loading').length) {
+		var cl = new CanvasLoader('transaction-loading');
+		cl.setColor('#999999');
+		cl.setDiameter(25);
+		cl.setDensity(31);
+		cl.setRange(1);
+		cl.setFPS(30);
+		cl.show();
+	}
+
+	//about us mailto
+	if($('#mailto').length) {
+		var m = $('#mailto');
+		m.find('span:first-child').html('@').next('span').html('.');
+		var t = m.text().replace(/ /g,'');
+		m.html('<a href="mailto:' + t + '">' + t + '</a>');
+	}
+
 	// buy form add/remove domains
 	$('#licenses-c').change(function(e) {
 		// add domain input field
