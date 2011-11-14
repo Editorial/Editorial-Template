@@ -40,8 +40,13 @@ $(function(){
 		m.html('<a href="mailto:' + t + '">' + t + '</a>');
 	}
 
-	//hidding iframe scrolls (invalid attr)
-	$('#follow').attr('scrolling','no');
+	//redirect button
+	$('#checkout').click(function(e){
+		e.preventDefault();
+		var redirect = function(){return location.href = $('#checkout').attr('href');};
+		$(this).val('Redirecting').addClass('redirecting');
+		var r = setTimeout(redirect,500);
+	});
 	
 	// buy form add/remove domains
 	$('#licenses-c').change(function(e) {

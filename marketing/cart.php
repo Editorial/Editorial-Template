@@ -167,7 +167,7 @@ get_header();
 			</ol>
 			<h1><em>Place</em> Order</h1>
 		</header>
-		<figure>
+		<figure class="tablets">
 			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/tablets.png" alt="Tablets">
 		</figure>
 	</section>

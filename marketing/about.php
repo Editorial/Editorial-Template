@@ -14,7 +14,7 @@ get_header(); ?>
 	<article class="main hentry">
 		<h1 class="entry-title"><em>About</em> us</h1>
 		<figure id="dust">
-			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/bgr/fairy-dust.png" width="600" height="390" alt="Creative fairy dust">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/creative-fairy-dust.png" width="600" height="390" alt="Creative fairy dust">
 		</figure>
 		<div class="info entry-summary">
 			<?php the_post(); ?>
