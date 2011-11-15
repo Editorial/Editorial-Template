@@ -103,12 +103,12 @@ get_header(); ?>
 ?>
 	<section class="process">
 		<header>
-			<ol class="step1">
+			<ol class="step2">
 				<li id="step1">Place order</li>
 				<li id="step2" class="selected">Transaction</li>
 				<li id="step3">Download</li>
 			</ol>
-			<h1><em>Place</em> Order</h1>
+			<h1><em>Trans</em>action</h1>
 		</header>
 		<figure class="tablets">
 			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/tablets.png" alt="Tablets">
