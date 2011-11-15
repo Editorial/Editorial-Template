@@ -43,29 +43,35 @@ class Paypal
         return isset($this->_params['token']) ? $this->_params['token'] : '';
     }
 
-    /**
-     * Set Express Checkout
-     *
-     * @param  float $total
-     * @param  string $confirmUrl
-     * @param  string $cancelUrl
-     * @return void
-     * @author Miha Hribar
-     */
-    public function setExpressCheckout($total, $confirmUrl, $cancelUrl)
-    {
-        $this->_params['method'] = 'SetExpressCheckout';
-        // Set the request as a POST FIELD for curl.
-        $additional = sprintf(
-            '&Amt=%s&ReturnUrl=%s&CANCELURL=%s&PAYMENTACTION=%s&CURRENCYCODE=%s',
-            urlencode($total),
-            urlencode($confirmUrl),
-            urlencode($cancelUrl),
-            'Autorization',
-            'EUR'
-        );
-        return $this->_makeRequest($additional);
-    }
+	/**
+	 * Set Express Checkout
+	 *
+	 * @param  float    $total
+	 * @param  integer  $numberOfItems
+	 * @param  float    $costPerItem
+	 * @param  string   $itemName
+	 * @param  string   $confirmUrl
+	 * @param  string   $cancelUrl
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	public function setExpressCheckout($total, $numberOfItems, $costPerItem, $itemName, $confirmUrl, $cancelUrl)
+	{
+		$this->_params['method'] = 'SetExpressCheckout';
+		// Set the request as a POST FIELD for curl.
+		$additional = sprintf(
+			'&Amt=%s&ReturnUrl=%s&CANCELURL=%s&PAYMENTACTION=%s&CURRENCYCODE=%s&L_NAME0=%s&L_AMT0=%s&L_QTY0=%d&L_TAXAMT0=0.00',
+			urlencode($total),
+			urlencode($confirmUrl),
+			urlencode($cancelUrl),
+			'Autorization',
+			'EUR',
+			urlencode($itemName),
+			$costPerItem,
+			$numberOfItems
+		);
+		return $this->_makeRequest($additional);
+	}
 
     /**
      * Get Express Checkout

@@ -145,8 +145,16 @@ if (isset($_POST) && count($_POST))
         try
         {
             $Paypal = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
-            $amount = $licences*150;
-            $details = $Paypal->setExpressCheckout($amount, PAYPAL_CONFIRM_URL, PAYPAL_CANCEL_URL);
+			$licenceCost = 150.00;
+			$amount = $licences*$licenceCost;
+			$details = $Paypal->setExpressCheckout(
+				$amount,
+				$licences,
+				$licenceCost,
+				'Editorial template',
+				PAYPAL_CONFIRM_URL,
+				PAYPAL_CANCEL_URL
+			);
             debug(print_r($details, true));
             // insert payment
             $Purchase = new Purchase();
