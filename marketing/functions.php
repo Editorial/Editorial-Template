@@ -82,7 +82,14 @@ function editorial_body_classes( $classes )
 
 	if (is_page_template('help.php'))
 	{
-		$classes[] = 'help-list';
+		if ( isset($_GET['question']) )
+		{
+			$classes[] = 'help-single';
+		}
+		else
+		{
+			$classes[] = 'help-list';
+		}
 	}
 
 	if (  is_page_template('download.php') )

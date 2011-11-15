@@ -13,49 +13,134 @@ get_header(); ?>
 <div class="content" role="main">
 	<article class="main">
 		<h1><em>Help</em> &amp; support</h1>
+
+<?php
+
+if ( isset($_GET['question']) )
+{
+	$question = $wpdb->get_row(sprintf(
+		'SELECT * FROM %sot_faq_questions WHERE id = %d',
+		$wpdb->prefix,
+		$_GET['question']
+	));
+
+	if ( null === $question )
+	{
+		require_once 'library/Util.php';
+		Util::redirect('/faq');
+	}
+?>
+<div class="read">
+			<section class="hentry">
+			<?php
+				echo $question->answer;
+			?>
+			</section>
+			<section>
+				<h4>None of the above answers your question?</h4>
+				<p class="notice">
+					Then please feel free to use our
+					<a href="https://editorialtemplate.uservoice.com/">Support forum</a>.
+				</p>
+			</section>
+		</div>
+		<aside class="related" role="complementary">
+				<h4><em>Related questions</em></h4>
+				<?php
+					$category = $wpdb->get_row(sprintf(
+						'SELECT * FROM %sot_faq_categories WHERE id = %d',
+						$wpdb->prefix,
+						$question->category
+					));
+				?>
+				<p>This question is about “<?php echo $category->category; ?>”. You might want to take a look
+				at some more questions from the same category.</p>
+				<ol class="questions">
+				<?php
+					$questions = $wpdb->get_results(sprintf(
+						'SELECT * FROM %sot_faq_questions WHERE category = %d',
+						$wpdb->prefix,
+						$category->id
+					));
+					foreach ( $questions as $question )
+					{
+						echo sprintf(
+							'<li><a href="/faq/%d/%s">%s</a></li>',
+							$question->id,
+							sanitize_title($question->question),
+							htmlspecialchars($question->question)
+						);
+					}
+				?>
+				</ol>
+			</aside>
+<?php
+}
+else
+{
+?>
 		<section class="level">
 			<h2><em>Frequently asked questions about Editorial</em></h2>
-			<div class="group">
-				<h3>Theme features and compatibiliy</h3>
-				<ol class="questions">
-					<li><a href="/">What are the “Your global feeds” on the Dashboard?</a></li>
-					<li><a href="/">Can I create sub-projects in Basecamp (i.e. a project within another project)?</a></li>
-					<li><a href="/">What is iCal(endar) and how do I use it with Basecamp?</a></li>
-					<li><a href="/">What are the different levels of access for people in my company or people in
-					other companies (clients, freelancers, contractors, etc)?</a></li>
-				</ol>
-			</div>
-			<div class="group">
-				<h3>Installation and setting-up</h3>
-				<ol class="questions">
-					<li><a href="/">Can I move items from one Basecamp project to another? </a></li>
-					<li><a href="/">Can we export our data if we don’t want to use Basecamp anymore? What format is the export in? </a></li>
-					<li><a href="/">What is a private to-do list? What does it mean to make something private?</a></li>
-					<li><a href="/">Why would I want to put my logo in a white box? </a></li>
-					<li><a href="/">Can I create a project template so I don’t have to start from scratch each time?</a></li>
-					<li><a href="/">What is an administrator (aka admin)? Can we have multiple admins? How do I give someone admin access?</a></li>
-					<li><a href="/">How do I use Basecamp to-do lists to track time?</a></li>
-				</ol>
-			</div>
-			<div class="group">
-				<h3>Troubleshooting</h3>
-				<ol class="questions">
-					<li><a href="/">How can we format (bold, bullets, italics, etc) our messages or comments? </a></li>
-					<li><a href="/">How do I add a person or company to a project?</a></li>
-					<li><a href="/">Can I email a message to Basecamp?</a></li>
-					<li><a href="/">How do I delete a project?</a></li>
-					<li><a href="/">What’s the difference between to-dos and milestones?</a></li>
-					<li><a href="/">What is the purpose of the To-dos, Milestones, and Time tabs on the Dashboard?</a></li>
-					<li><a href="/">Is Basecamp reliable, secure, and confidential? Is our data safe? Where is the data hosted?</a></li>
-					<li><a href="/">Can I keep certain people/clients from seeing specific projects? How do we set permissions? </a></li>
-					<li><a href="/">Can I attach a file to a to-do or milestone?</a></li>
-				</ol>
-			</div>
+            <?php
+                global $wpdb;
+
+				$categories = $wpdb->get_results(sprintf(
+					'SELECT * FROM %sot_faq_categories ORDER BY id',
+					$wpdb->prefix
+				));
+
+				foreach ( $categories as $category )
+				{
+					$questions = $wpdb->get_results(sprintf(
+						'SELECT * FROM %sot_faq_questions WHERE category = %d ORDER BY id',
+						$wpdb->prefix,
+						$category->id
+					));
+
+					if ( !count($questions) )
+					{
+						continue;
+					}
+
+					echo '
+						<div class="group">
+							<h3>' . $category->category . '</h3>
+							<ol class="questions">
+					';
+
+					foreach ( $questions as $question )
+					{
+						echo sprintf(
+							'<li><a href="/faq/%d/%s">%s</a></li>',
+							$question->id,
+							sanitize_title($question->question),
+							htmlspecialchars($question->question)
+						);
+						// free it
+						$question = null; unset($question);
+					}
+
+					echo '</ol></div>';
+
+					// free it
+					$category = null; unset($category);
+				}
+
+				// free it
+				$categories = null; unset($categories);
+
+            ?>
 		</section>
 		<section class="level">
-			<?php the_post(); ?>
-			<?php the_content(); ?>
+			<h4>None of the above answers your question?</h4>
+			<p class="notice">
+				Then please feel free to use our
+				<a href="https://editorialtemplate.uservoice.com/">Support forum</a>.
+			</p>
 		</section>
+<?php
+	}
+?>
 	</article>
 </div>
 
