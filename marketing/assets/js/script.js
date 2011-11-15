@@ -32,6 +32,9 @@ $(function(){
 		});
 	}
 
+	//footer tweets
+	$('.twitter').liveTwitter('editorialtheme',{mode:'user_timeline',limit:1});
+
 	//redirect button
 	$('#checkout').click(function(e){
 		e.preventDefault();

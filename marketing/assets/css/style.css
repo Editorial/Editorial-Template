@@ -366,9 +366,12 @@ background:rgba(0,0,0,.8);}
 
 .content {text-align:center;}
 
-.adapt,.features,.pricing,.process,.order,.main {margin:0 auto;text-align:left;}
+.adapt,.process,.order,.main {margin:0 auto;text-align:left;}
 .home .content h3,.level h2 {margin:0 0 36px;font-size:30px;line-height:30px;background-position:300px 300px;}
 .home h3 em,.level h2 em,.helpful h4 em,.related h4 em {font-style:normal;}
+
+.features,.pricing {width:100%;text-align:left;float:left;position:relative;}
+.pricing figure {position:absolute;left:0;bottom:0;}
 
 .goodies {margin:0 0 46px;}
 .features section,.abilities li {padding:0 0 0 82px;}
@@ -547,8 +550,7 @@ background-position:-304px -36px;}
 .updates p {margin:0 0 12px;color:#999;}
 
 .connect {min-height:210px;background-position:300px 300px;}
-.twitter {padding:3px 0 0;}
-.twitter blockquote {padding:20px 0 7px;position:relative;}
+.twitter {padding:23px 0 7px;position:relative;}
 .twitter p {font:18px/25px MinionProRegular,georgia,serif;color:#595959;position:relative;}
 .twitter p:before {margin:0 0 -30px;content:'“';font-size:90px;line-height:45px;color:#ccc;display:block;}
 .twitter a {color:#595959;}
@@ -764,7 +766,7 @@ form .submit {text-align:left;}
 .support li {margin:0;float:none;}
 
 .connect {background-position:right -792px;}
-.twitter blockquote {padding:0 0 7px;}
+.twitter {padding:0 0 7px;}
 .twitter p {padding:0 0 0 50px;}
 .twitter p:before {margin:0;line-height:90px;position:absolute;top:-1px;left:1px;}
 
@@ -1089,6 +1091,9 @@ h1,.exposed {text-align:left;}
 .adapt,.features,.pricing,.process,.main {width:954px;}
 .order {width:850px;float:none;}
 .transaction .action img {margin:0 0 0 10px;}
+
+.features,.pricing {margin:0 auto;float:none;}
+.pricing figure {position:static;}
 
 .goodies {margin:0 0 46px -30px;}
 .features section,.abilities li,#platforms,#photography,#gallery,#machine {margin:0 0 0 30px;padding:0 0 30px 82px;
