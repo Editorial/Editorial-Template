@@ -103,7 +103,7 @@ get_header(); ?>
 			<p>
 				To provide the highest level of security the download time is active only for 24
 				hours from the transaction competition. You can read more about this issue in our
-				<a href="/help/">FAQ section</a>. We are also more than happy to answer your
+				<a href="/faq/">FAQ section</a>. We are also more than happy to answer your
 				questions on twitter.
 			</p>
 		<?php
@@ -114,7 +114,7 @@ get_header(); ?>
 			<h2>Thank you for your purchase.</h2>
 			<p class="leading">We wish you all the best with your project &amp; happy publishing with
 			<a href="/" class="brand"><em>EDIT</em>ORIAL</a>.</p>
-			<p class="help">If you need any help with instalation please see our <a href="/help/">FAQ section</a>.<br>
+			<p class="help">If you need any help with instalation please see our <a href="/faq/">FAQ section</a>.<br>
 			And don’t forget to follow us on Twitter and tell us about your project.</p>
 		<?php
 			}
