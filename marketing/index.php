@@ -39,12 +39,12 @@ get_header(); ?>
 			</section>
 			<section id="gallery">
 				<h4>HTML5 Media Gallery</h4>
-				<p>When it comes to the world of mobile devices, an image can be worth thousands of words or just three: Flash Plugin Required. Integrated HTML5 player will deliver your audio/video media to 	all supported devices with a spectacular touch browsing for the smarter ones.</p>
+				<p>When it comes to the world of mobile devices, an image can be worth thousands of words or just three: Flash Plugin Required. Integrated HTML5 player will deliver your audio/video media to all supported devices with a spectacular touch browsing for the smarter ones.</p>
 				<p><a href="http://demo.editorialtemplate.com">See it in action ...</a></p>
 			</section>
 			<section id="feedback">
 				<h4>Feedback control</h4>
-				<p>When you get the attention from your readers you better be in the mood for a lot of talking. Our integrated tools make it easy to stay in touch and moderate not only blog comments but also feedback in social media. Follow your followers!</p>
+				<p>When you get the attention from your readers you better be in the mood for a lot of talking. Our integrated tools make it easy to stay in touch and moderate not only blog comments but also feedback in social media. Grow and nurture your relationships.</p>
 				<p><a href="http://demo.editorialtemplate.com">See it in action ...</a></p>
 			</section>
 			<section id="machine">
