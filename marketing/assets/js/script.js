@@ -74,7 +74,7 @@ $(function(){
 	$('#licenses-c').change(function(e) {
 		// add domain input field
 		function addDomain(i) {
-			$('#domains').append('<li><label for="domain-'+i+'">Domain '+i+'</label><input type="text" name="domain[]" id="domain-'+i+'"></li>');
+			$('#domains').append('<li><label for="domain-'+i+'">Domain '+i+'</label><input type="text" name="domain[]" id="domain-'+i+'" value="http://"></li>');
 		}
 		var domains = parseInt($(this).val());
 		if (domains > 0) {
