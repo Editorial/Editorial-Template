@@ -12,6 +12,7 @@ require_once 'library/Purchase.php';
 
 $errors  = array();
 $expired = false;
+$update  = (bool)strstr($_SERVER['REQUEST_URI'], '/update');
 
 // how did you get here?
 if ( false === array_key_exists('hash', $_GET) )
@@ -77,12 +78,23 @@ get_header(); ?>
 
 <section class="process">
 		<header>
+		<?php
+			if ( $update )
+			{
+				echo '<h1><em>Up</em>date</h1>';
+			}
+			else
+			{
+		?>
 			<ol class="step3">
 				<li id="step1">Place order</li>
 				<li id="step2">Transaction</li>
 				<li id="step3" class="selected">Download</li>
 			</ol>
 			<h1><em>Down</em>load</h1>
+		<?php
+			}
+		?>
 		</header>
 		<figure class="tablets">
 			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/tablets.png" alt="Tablets">
@@ -110,6 +122,20 @@ get_header(); ?>
 			}
 			else
 			{
+				if ( $update )
+				{
+		?>
+			<h2>Boy do we have a shiny update for you.</h2>
+			<p class="leading">Please download and install this update. The update process is fairly simple
+				but we recommend following our <a href="/">step by step guide</a> just in case.</p>
+			<p class="help">
+				You can read more about updates in our <a href="/faq/">FAQ section</a>. You can also follow us on twitter
+				for help and latest news on updates.
+			</p>
+		<?php
+				} // if ( $update )
+				else
+				{
 		?>
 			<h2>Thank you for your purchase.</h2>
 			<p class="leading">We wish you all the best with your project &amp; happy publishing with
@@ -117,6 +143,7 @@ get_header(); ?>
 			<p class="help">If you need any help with instalation please see our <a href="/faq/">FAQ section</a>.<br>
 			And don’t forget to follow us on Twitter and tell us about your project.</p>
 		<?php
+				} // if ( $update)
 			}
 		?>
 			<p class="follow">
@@ -134,8 +161,13 @@ get_header(); ?>
 			{
 				echo '<a href="/download/?hash=' . (array_key_exists('hash', $_GET) ? $_GET['hash'] : '') .'&amp;start" class="download"><em>Download</em></a>';
 			}
+			if ( !$update )
+			{
 			?>
 			<p>Your download link will be active for 24 hours.</p>
+			<?php
+			} // if ( !$update )
+			?>
 		</div>
 	</section>
 <?php

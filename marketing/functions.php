@@ -96,6 +96,11 @@ function editorial_body_classes( $classes )
 	{
 		$classes[] = 'cart';
 		$classes[] = 'save';
+
+		if ( strstr($_SERVER['REQUEST_URI'], '/update') )
+		{
+			$classes[] = 'update';
+		}
 	}
 
 	if ( is_page('terms-of-use') )
