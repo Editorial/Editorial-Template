@@ -15,7 +15,7 @@ $expired = false;
 $update  = (bool)strstr($_SERVER['REQUEST_URI'], '/update');
 
 // how did you get here?
-if ( false === array_key_exists('hash', $_GET) )
+if ( false === array_key_exists('hash', $_GET) && !isset($_GET['debug']) )
 {
 	$errors[] = '404';
 }

@@ -154,8 +154,17 @@ class EditorialNav extends Walker_Nav_Menu
 {
 	function start_el(&$output, $item, $depth, $args)
 	{
+		$ids = array(
+			'Features'       => 'features',
+			'Purchase'       => 'purchase',
+			'Help & Support' => 'help',
+			'About'          => 'about',
+		);
+
+		$id = isset($ids[$item->title]) ? ' id="'. $ids[$item->title] .'"' : '';
+
 		global $wp_query;
-		$output .= '<li'.($item->current ? ' class="selected"' : '').'>';
+		$output .= '<li'.$id.($item->current ? ' class="selected"' : '').'>';
 
 		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
 		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
