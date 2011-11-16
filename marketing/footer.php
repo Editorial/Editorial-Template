@@ -92,8 +92,9 @@
 		</nav>
 		<section class="copyright">
 			<p><strong>Copyright (c) 2011 Editorial.</strong></p>
-			<p>Brought to you with help of <a href="/" target="_blank">@malarky</a>’s 320-up boilerplate
-			and <a href="/" target="_blank">@benedikrok</a>’s icon wizardry.</p>
+			<p>Brought to you with help of <a href="http://twitter.com/malarkey" target="_blank">@malarkey</a>’s 320-up boilerplate,
+			<a href="http://twitter.com/benedikrok" target="_blank">@benedikrok</a>’s icon wizardry and photography by
+			<a href="http://twitter.com/jakavinsek" target="_blank">@jakavinsek</a>.</p>
 		</section>
 	</div>
 </footer>
