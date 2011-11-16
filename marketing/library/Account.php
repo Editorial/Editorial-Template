@@ -65,7 +65,7 @@ class Account
 	}
 
 	/**
-	 * Find and account by account ID
+	 * Find an account by account ID
 	 *
 	 * @param  integer $account_id
 	 * @return array|null
@@ -77,6 +77,24 @@ class Account
 			sprintf(
 				'SELECT * FROM `account` WHERE `account_id` = %d',
 				$account_id
+			),
+			ARRAY_A
+		);
+	}
+
+	/**
+	 * Find an account by hash
+	 *
+	 * @param  string $hash
+	 * @return array|null
+	 */
+	public function findByHash($hash)
+	{
+		global $wpdb;
+		return $wpdb->get_row(
+			sprintf(
+				'SELECT * FROM `account` WHERE `hash` = \'%s\'',
+				$wpdb->escape($hash)
 			),
 			ARRAY_A
 		);

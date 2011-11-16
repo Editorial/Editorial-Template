@@ -25,11 +25,19 @@ class Domain
 	 *
 	 * @param  integer $account_id
 	 * @param  array   $domains
+	 * @param  boolean $removeExisting
 	 * @return void
 	 */
-	public function manageForAccount($account_id, array $domains)
+	public function manageForAccount($account_id, array $domains, $removeExisting = false)
 	{
 		global $wpdb;
+
+		// remove them before doing anything else
+		if ( $removeExisting )
+		{
+			$wpdb->query('DELETE FROM `domain` WHERE `account_id` = ' . $account_id);
+		}
+
 		// check them out
 		foreach ( $domains as $domain )
 		{
@@ -69,5 +77,28 @@ class Domain
 			}
 		}
     }
+
+	/**
+	 * Get all domains for account.
+	 *
+	 * @param  integer $domainId
+	 * @return array
+	 */
+	public function findForAccount($domainId)
+	{
+		global $wpdb;
+		return $wpdb->get_results(
+			'
+			SELECT
+			  *
+			FROM
+			  `domain`
+			WHERE
+			  `account_id` = ' . (int)$domainId . '
+			ORDER BY
+			  `domain_id`
+			'
+		);
+	}
 
 }

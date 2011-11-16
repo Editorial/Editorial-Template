@@ -103,6 +103,11 @@ function editorial_body_classes( $classes )
 		}
 	}
 
+	if ( is_page_template('manager.php') )
+	{
+		$classes[] = 'domains';
+	}
+
 	if ( is_page('terms-of-use') )
 	{
 		$classes[] = 'tearms';
