@@ -113,7 +113,6 @@ figcaption {padding:10px 0 0;font:13px/20px helvetica,arial,sans-serif;color:#59
 .makers figure {margin:0 0 30px;width:35%;float:left;}
 .makers img {-webkit-border-radius:67px;-moz-border-radius:67px;border-radius:67px;}
 .makers img {height:auto;}
-.makers li a {border-bottom:1px dotted #999;}
 
 .pricing figure {display:none;}
 
@@ -483,6 +482,7 @@ background-position:-1160px -40px;}
 
 .makers h2 {padding:9% 0 0;font-size:18px;line-height:20px;}
 .makers .title {display:block;}
+.about .entry-summary a {border-bottom:1px dotted #999;color:#333;}
 
 #dust {position:absolute;top:-10px;left:0;z-index:-1;}
 #dust img {height:auto;}
