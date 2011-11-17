@@ -95,14 +95,17 @@
 			<p>
 				Brought to you with help of
 				<span class="vcard">
-					<a href="http://twitter.com/malarkey" class="url fn nickname" target="_blank">@malarkey</a>
-				</span>’s 320-up boilerplate,
+					<a href="http://twitter.com/malarkey" class="url fn nickname" target="_blank">@malarkey</a>’s
+					<span class="note">320-up boilerplate</span>
+				</span>,
 				<span class="vcard">
-					<a href="http://twitter.com/benedikrok" class="url fn nickname" target="_blank">@benedikrok</a>
-				</span>’s icon wizardry and photography by
+					<a href="http://twitter.com/benedikrok" class="url fn nickname" target="_blank">@benedikrok</a>’s
+				 	<span class="note">icon wizardry</span>
+				</span>
 				<span class="vcard">
-					<a href="http://twitter.com/jakavinsek" class="url fn nickname" target="_blank">@jakavinsek</a>
-				</span>.
+					and <span class="note">photography</span> by
+					<a href="http://twitter.com/jakavinsek" class="url fn nickname" target="_blank">@jakavinsek</a>.
+				</span>
 			</p>
 		</section>
 	</div>
