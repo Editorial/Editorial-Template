@@ -9,9 +9,7 @@
  * @version    1.0
  */
 
-//require_once('./../../../wp-load.php');
-require_once('/Users/miha/Projects/Editorial/wordpress/wp-load.php');
-//require_once('/Users/matjazk/Webpages/Personal/editorial/wordpress/wp-load.php');
+require_once('./../../../wp-load.php');
 
 session_start();
 

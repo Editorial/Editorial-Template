@@ -12,9 +12,7 @@
  * @version    1.0
  */
 
-//require_once('./../../../wp-load.php');
-require_once('/Users/miha/Projects/Editorial/wordpress/wp-load.php');
-//require_once('/Users/matjazk/Webpages/Personal/editorial/wordpress/wp-load.php');
+require_once('./../../../wp-load.php');
 
 if (!isset($_GET['photo']) || !isset($_GET['type']) || !Editorial::getOption('black-and-white') || !Editorial::canCache())
 {

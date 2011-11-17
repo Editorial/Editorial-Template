@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(0);
 
 // for debuggin purposes
 function dump($object = '')
@@ -19,7 +19,7 @@ function debug($message)
 	error($message);
 }
 
-define ('EDITORIAL_VERSION', '1.0b');
+define ('EDITORIAL_VERSION', '1.0');
 define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 // social networks
