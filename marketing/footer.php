@@ -17,12 +17,12 @@
 				<h3>Subscribe to our newsletter</h3>
 				<p>We know you are curious! Be the first to know of all our special little secrets and let us give
 				you the news first hand. Hear about our special offers or keep on track with our development and updates.</p>
-				<form id="subscribe-form" method="post">
+				<form id="subscribe-form" method="post" action="http://editorialtemplate.us2.list-manage.com/subscribe/post?u=1a3daff254c9bd337e91cbe21&amp;id=356cc54588" name="mc-embedded-subscribe-form">
 					<fieldset>
 						<legend class="v-hidden">Subscription</legend>
 						<label for="email" class="v-hidden">Email</label>
-						<input type="email" id="email" name="email" placeholder="Your e-mail address">
-						<input type="submit" id="subscribe" class="continue" value="Subscribe">
+						<input type="email" id="email" name="EMAIL" placeholder="Your e-mail address" required>
+						<input type="submit" id="subscribe" class="continue" name="subscribe" value="Subscribe">
 					</fieldset>
 				</form>
 			</section>
