@@ -55,7 +55,7 @@
 				);
 				wp_nav_menu($settings);
 
-?>
+				?>
 			</div>
 			<div class="col">
 				<h4>About</h4>
@@ -71,7 +71,7 @@
 				);
 				wp_nav_menu($settings);
 
-?>
+				?>
 			</div>
 			<div class="col">
 				<h4>Legal notice</h4>
@@ -87,7 +87,7 @@
 				);
 				wp_nav_menu($settings);
 
-?>
+				?>
 			</div>
 		</nav>
 		<section class="copyright">
