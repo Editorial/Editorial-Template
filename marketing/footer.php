@@ -92,9 +92,18 @@
 		</nav>
 		<section class="copyright">
 			<p><strong>Copyright (c) 2011 Editorial.</strong></p>
-			<p>Brought to you with help of <a href="http://twitter.com/malarkey" target="_blank">@malarkey</a>’s 320-up boilerplate,
-			<a href="http://twitter.com/benedikrok" target="_blank">@benedikrok</a>’s icon wizardry and photography by
-			<a href="http://twitter.com/jakavinsek" target="_blank">@jakavinsek</a>.</p>
+			<p>
+				Brought to you with help of
+				<span class="vcard">
+					<a href="http://twitter.com/malarkey" class="url fn nickname" target="_blank">@malarkey</a>
+				</span>’s 320-up boilerplate,
+				<span class="vcard">
+					<a href="http://twitter.com/benedikrok" class="url fn nickname" target="_blank">@benedikrok</a>
+				</span>’s icon wizardry and photography by
+				<span class="vcard">
+					<a href="http://twitter.com/jakavinsek" class="url fn nickname" target="_blank">@jakavinsek</a>
+				</span>.
+			</p>
 		</section>
 	</div>
 </footer>
