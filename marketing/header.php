@@ -73,7 +73,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <header id="header" role="banner">
 	<div class="adapt">
 		<h2 id="brand" class="vcard">
-			<a href="/" class="ir fn org url">Editorial</a>
+			<a href="http://editorialtemplate.com/" class="ir fn org url">Editorial</a>
 		</h2>
 		<nav class="primary" role="navigation">
 <?php
