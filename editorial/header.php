@@ -49,7 +49,15 @@
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.min.css?v=1">
-<!--<link rel="stylesheet" href="/wp-content/themes/editorial-custom.css">-->
+<?php
+/*
+ENABLE CUSTOM CSS
+copy /wp-content/themes/editorial/assets/css/editorial-custom.css
+to /wp-content/themes/editorial-custom.css and edit this file
+also enable the <link> tag below
+<link rel="stylesheet" href="/wp-content/themes/editorial-custom.css">
+*/
+?>
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/libs/mediaelementplayer.min.css">
 <?php } ?>
