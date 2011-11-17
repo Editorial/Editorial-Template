@@ -182,7 +182,11 @@ class Purchase
 				$message = 'We have great news. Your transaction has been completed and your Editorial theme is ready for download.' . PHP_EOL
 						 . 'Thank you for your patience. ' . PHP_EOL
 						 . PHP_EOL
-						 . site_url('/download/?hash=' . $purchase['hash'])
+						 . site_url('/download/?hash=' . $purchase['hash']) . PHP_EOL
+						 . PHP_EOL
+						 . 'You can edit your licenses by using the domain manager. '
+						 . 'Just make sure you store this e-mail safely and privately to avoid loosing this uniquely generated link to it: '
+						 . site_url('/manager/?hash=' . $account['hash'])
 				;
 				// send it
 				$sent = wp_mail($account['email'], $subject, $message);
