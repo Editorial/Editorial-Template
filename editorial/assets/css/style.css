@@ -1100,7 +1100,7 @@ body {width:960px;}
 .featured figure {width:100%;}
 
 .featured article,.widgets-3 .widget,.widgets-4 .widget {margin-left:16px;width:228px;min-height:485px;background:none;float:left;}
-.home-portrait .featured article {margin:0;width:228px;min-height:500px;}
+.home-portrait .featured article {margin:0;width:228px;min-height:535px;}
 .layout-list .featured article {margin-left:0;}
 .featured .f2,.featured .f4 {float:left;}
 .home-portrait .featured .f2,.home-portrait .featured .f4 {float:right;}
