@@ -32,9 +32,10 @@ if ( isset($_GET['question']) )
 ?>
 <div class="read">
 			<section class="hentry">
-			<?php
-				echo $question->answer;
-			?>
+				<h1 class="entry-title"><?php echo $question->question; ?></h1>
+				<?php
+					echo $question->answer;
+				?>
 			</section>
 			<section>
 				<h4>None of the above answers your question?</h4>
