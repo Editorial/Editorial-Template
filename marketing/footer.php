@@ -43,7 +43,7 @@
 		<nav class="support" role="navigation">
 			<div class="col">
 				<h4>Help & support</h4>
-<?php
+				<?php
 
 				$settings = array(
 					'theme_location' => 'help-nav',
@@ -59,7 +59,7 @@
 			</div>
 			<div class="col">
 				<h4>About</h4>
-<?php
+				<?php
 
 				$settings = array(
 					'theme_location' => 'about-nav',
@@ -75,7 +75,7 @@
 			</div>
 			<div class="col">
 				<h4>Legal notice</h4>
-<?php
+				<?php
 
 				$settings = array(
 					'theme_location' => 'legal-nav',
