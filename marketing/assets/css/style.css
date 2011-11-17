@@ -753,7 +753,7 @@ form .submit {text-align:left;}
 .twitter p {padding:0 0 0 50px;}
 .twitter p:before {margin:0;line-height:90px;position:absolute;top:-4px;left:1px;}
 
-.copyright {width:405px;background-position:-17px -895px;}
+.copyright {background-position:-17px -895px;}
 .copyright,.cart .copyright,.domains .copyright {background-position:-17px -895px;}
 .copyright p {padding:3px 0 0 90px;}
 
@@ -876,6 +876,8 @@ da je slka vedno spodaj
 .updates {margin:0 0 28px;padding:27px 15px 15px;}
 .abilities li {padding:0 0 0 13%;width:37%;float:left;}
 #updates,#customizable,#admin,#colophon {float:right;}
+
+.copyright {width:435px;}
 
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
@@ -1148,8 +1150,8 @@ width:216px;height:auto;float:left;}
 
 .subscription {margin:0;border:none;}
 
-.copyright {background-position:296px -895px;float:right;}
-.cart .copyright,.domains .copyright {background-position:296px -1596px;}
+.copyright {background-position:326px -895px;float:right;}
+.cart .copyright,.domains .copyright {background-position:326px -1596px;}
 .copyright p {margin:0 0 12px;padding:3px 90px 0 0;text-align:right;}
 
 
