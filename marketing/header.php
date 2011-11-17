@@ -57,7 +57,15 @@
 <link rel="apple-touch-icon-precomposed" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?v=1">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
+<script src="http://use.typekit.com/sue6gqc.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
 <?php wp_head(); ?>
+<script>
+var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-23356248-1']);_gaq.push(['_trackPageview']);
+(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
+</script>
 </head>
 
 <body <?php body_class(); ?>>

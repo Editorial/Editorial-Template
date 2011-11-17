@@ -49,6 +49,7 @@
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.min.css?v=1">
+<!--<link rel="stylesheet" href="/wp-content/themes/editorial-custom.css">-->
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/libs/mediaelementplayer.min.css">
 <?php } ?>
