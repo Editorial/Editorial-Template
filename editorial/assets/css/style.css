@@ -75,16 +75,6 @@ h3 {font-size:28px;margin:0 0 10px;}
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
-@font-face {font-family:MinionProSemibold;src:url('../fonts/minionpro-semibold.eot');
-src:url('../fonts/minionpro-semibold.eot?#iefix') format('embedded-opentype'),
-url('../fonts/minionpro-semibold.woff') format('woff'),url('../fonts/minionpro-semibold.ttf') format('truetype'),
-url('../fonts/minionpro-semibold.svg#MinionProSemibold') format('svg');font-weight:normal;font-style:normal;}
-
-@font-face {font-family:MinionProRegular;src:url('../fonts/minionpro-regular.eot');
-src:url('../fonts/minionpro-regular.eot?#iefix') format('embedded-opentype'),
-url('../fonts/minionpro-regular.woff') format('woff'),url('../fonts/minionpro-regular.ttf') format('truetype'),
-url('../fonts/minionpro-regular.svg#MinionProRegular') format('svg');font-weight:normal;font-style:normal;}
-
 h1 em,#comments-form li em,.qa em {font-style:normal;}
 h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
 #exposed footer a,.inside #single footer a,.inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
