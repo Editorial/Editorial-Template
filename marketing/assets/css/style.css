@@ -557,13 +557,13 @@ background-position:-304px -30px;}
 
 #header hgroup,.content,.updates,.support,.copyright,.support {padding-left:15px;padding-right:15px;}
 
-.clear:before,.clear:after,body:before,body:after,#footer:before,#footer:after,
+.clear:before,.clear:after,body:before,body:after,#header:before,#header:after,#footer:before,#footer:after,
 .content:before,.content:after,.updates .adapt:before,.updates .adapt:after,.support:before,.support:after,
 .process:before,.process:after,.order:before,.order:after,#domains:before,#domains:after,.makers ul:before,
 .makers ul:after,.main:before,.main:after {content:'\0020';height:0;display:block;overflow:hidden;}
-.clear:after,body:after,#footer:after,.content:after,.updates .adapt:after,.support:after,.process:after,
+.clear:after,body:after,#header:after,#footer:after,.content:after,.updates .adapt:after,.support:after,.process:after,
 .order:after,#domains:after,.makers ul:after,.main:after {clear:both;}
-.clear,body,#footer,.content,.updates .adapt,.support,.process,.order,#domains,.makers ul,.main {zoom:1;}
+.clear,body,#header,#footer,.content,.updates .adapt,.support,.process,.order,#domains,.makers ul,.main {zoom:1;}
 
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
@@ -580,11 +580,12 @@ input:-moz-placeholder {color:#999;}
 div,input,textarea {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;
 box-sizing:border-box;}
 .ie7 img {-ms-interpolation-mode:bicubic;}
-
-.ie7 #email,.ie8 #email {border:1px solid #f2f2f2;}
+.ie7 #email,.ie8 #email {border:1px solid #f2f2f2;padding:12px 15px 9px;}
 .ie7 #email {width:90%;}
+.ie7 #subscribe {width:100px;}
 .ie7 .home #header .adapt {width:100%;float:left;}
 .ie7 .abilities li,.ie8 .abilities li {font-size:17px;}
+.ie8 .home #header:before,.ie8 .home #header:after {display:inline;}
 #email::-webkit-input-placeholder {color:#999;}
 #email:-moz-placeholder {color:#999;}
 #email:placeholder {color:#999;}
@@ -682,7 +683,7 @@ form .submit {text-align:left;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-.home #header {padding-bottom:43px;}
+.home #header {padding-bottom:40px;}
 #header hgroup {text-align:center;}
 #header p {margin:0 auto;width:322px;font-size:18px;}
 #brand {width:49px;height:37px;display:block;overflow:hidden;}
@@ -769,7 +770,8 @@ form .submit {text-align:left;}
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 
 .ie7 #email {width:270px;}
-
+.ie7 .twitter p {padding:0;}
+.ie8 .twitter p:before {margin-left:-50px;}
 
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
@@ -818,13 +820,14 @@ z-index:-1;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#header {margin:0 0 30px;}
 .home #header {padding-top:445px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
+.content {margin-top:30px;}
+.home .content {margin-top:0;}
 .home .content h3 {text-align:center;}
 .home h3 em {padding:0 15px;}
 .level h2 {width:100%;background-position:0 17px;text-align:left;float:left;}
