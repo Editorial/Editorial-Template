@@ -57,7 +57,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
-<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.min.css?v=1">
+<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.min.css?20111119">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <script src="http://use.typekit.com/sue6gqc.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
