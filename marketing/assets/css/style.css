@@ -279,7 +279,7 @@ text-shadow:none;cursor:default;background:#f6f6f6;
 
 #header {border-top:3px solid #1a1a1a;margin:0 0 10px;width:100%;text-align:center;background:#333;
 background:rgba(0,0,0,.8);}
-.home #header {margin:300px 0 30px;border:none;background:none;}
+.home #header {margin:0 0 30px;border:none;padding-top:300px;background:none;}
 .home #header .adapt {text-align:center;}
 #header hgroup {margin:0 0 27px;text-align:left;}
 #brand {float:left;display:none;}
@@ -680,7 +680,7 @@ form .submit {text-align:left;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #header hgroup {text-align:center;}
-.home #header {margin-bottom:68px;}
+.home #header {margin:0 0 68px;}
 #header p {margin:0 auto;width:322px;font-size:18px;}
 #brand {width:49px;height:37px;display:block;overflow:hidden;}
 .home #brand {width:auto;height:auto;}
@@ -812,7 +812,7 @@ z-index:-1;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #header {margin:0 0 30px;}
-.home #header {margin-top:445px;}
+.home #header {padding-top:445px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -1062,7 +1062,6 @@ h1,.exposed {text-align:left;}
 .home #brand {padding:0 15px;}
 .adapt {position:relative;}
 
-
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 
 .primary {position:relative;z-index:2;}
@@ -1107,7 +1106,7 @@ width:216px;height:auto;float:left;}
 .read {width:710px;float:left;}
 .default {padding-right:225px;padding-bottom:26px;width:720px;}
 .main h1,.main .exposed,.help-list .main h1, .help-single .main h3,.about .main h1,.tearms .content h1,
-.domains-no h1 {margin:77px 0 45px;}
+.domains-no h1{margin:77px 0 45px;}
 
 .domains-no h1 {margin:77px 0 17px;padding:0 210px 18px 0;float:left;}
 .read h1 {margin:0 0 26px;}

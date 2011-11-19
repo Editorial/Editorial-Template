@@ -47,9 +47,7 @@
 		echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
 
 ?></title>
-<meta name="title" content="Editorial">
 <meta name="description" content="<?php bloginfo('description'); ?>">
-<link rel="image_src" href="http://editorialtemplate.com/wp-content/themes/marketing/assets/images/dsg/sheets.png">
 <meta name="author" content="Editorial">
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="no">
@@ -57,7 +55,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
-<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.min.css?20111119">
+<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.min.css?v=1">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <script src="http://use.typekit.com/sue6gqc.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
