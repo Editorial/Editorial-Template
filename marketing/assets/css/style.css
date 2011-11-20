@@ -279,7 +279,7 @@ text-shadow:none;cursor:default;background:#f6f6f6;
 
 #header {border-top:3px solid #1a1a1a;margin:0 0 10px;width:100%;text-align:center;background:#333;
 background:rgba(0,0,0,.8);}
-.home #header {margin:0 0 30px;border:none;padding-top:300px;background:none;}
+.home #header {border:none;padding:300px 0 20px;background:none;}
 .home #header .adapt {text-align:center;}
 #header hgroup {margin:0 0 27px;text-align:left;}
 #brand {float:left;display:none;}
@@ -580,8 +580,12 @@ input:-moz-placeholder {color:#999;}
 div,input,textarea {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;
 box-sizing:border-box;}
 .ie7 img {-ms-interpolation-mode:bicubic;}
-
-.ie7 #email,.ie8 #email {border:1px solid #f2f2f2;}
+.ie7 #email,.ie8 #email {border:1px solid #f2f2f2;padding:12px 15px 9px;}
+.ie7 #email {width:90%;}
+.ie7 #subscribe {width:100px;}
+.ie7 .home #header .adapt {width:100%;float:left;}
+.ie7 .abilities li,.ie8 .abilities li {font-size:17px;}
+.ie8 .home #header:before,.ie8 .home #header:after {display:inline;}
 #email::-webkit-input-placeholder {color:#999;}
 #email:-moz-placeholder {color:#999;}
 #email:placeholder {color:#999;}
@@ -679,8 +683,8 @@ form .submit {text-align:left;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
+.home #header {padding-bottom:40px;}
 #header hgroup {text-align:center;}
-.home #header {margin:0 0 68px;}
 #header p {margin:0 auto;width:322px;font-size:18px;}
 #brand {width:49px;height:37px;display:block;overflow:hidden;}
 .home #brand {width:auto;height:auto;}
@@ -764,6 +768,11 @@ form .submit {text-align:left;}
 
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie7 #email {width:270px;}
+.ie7 .twitter p {padding:0;}
+.ie8 .twitter p:before {margin-left:-50px;}
+
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
@@ -811,13 +820,14 @@ z-index:-1;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#header {margin:0 0 30px;}
 .home #header {padding-top:445px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
+.content {margin-top:30px;}
+.home .content {margin-top:0;}
 .home .content h3 {text-align:center;}
 .home h3 em {padding:0 15px;}
 .level h2 {width:100%;background-position:0 17px;text-align:left;float:left;}
@@ -859,14 +869,6 @@ z-index:-1;}
 
 .price-tag {width:326px;float:right;}
 .pricing figure {width:42%;float:left;display:block;}
-
-/*
-da je slka vedno spodaj
-.pricing {height:436px;}
-.price-tag {width:326px;float:right;}
-.pricing figure {width:42%;height:365px;float:left;display:block;position:relative;}
-.pricing figure img {position:absolute;left:0;bottom:0;
-*/
 
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
@@ -1059,8 +1061,9 @@ h1,.exposed {text-align:left;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #brand {margin:0 0 0 -14px;}
+.home #brand {padding:0 15px;}
 .adapt {position:relative;}
-.home #header h2 {padding-right:15px;}
+
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 
@@ -1103,10 +1106,10 @@ width:216px;height:auto;float:left;}
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
 
-.read {width:720px;float:left;}
+.read {width:710px;float:left;}
 .default {padding-right:225px;padding-bottom:26px;width:720px;}
 .main h1,.main .exposed,.help-list .main h1, .help-single .main h3,.about .main h1,.tearms .content h1,
-.domains-no h1{margin:77px 0 45px;}
+.domains-no h1 {margin:77px 0 45px;}
 
 .domains-no h1 {margin:77px 0 17px;padding:0 210px 18px 0;float:left;}
 .read h1 {margin:0 0 26px;}
@@ -1162,6 +1165,10 @@ width:216px;height:auto;float:left;}
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+
+.ie7 .home #header .adapt {width:954px;float:none;}
+
+
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
 }

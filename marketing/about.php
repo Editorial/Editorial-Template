@@ -34,7 +34,7 @@ get_header(); ?>
 					<figure>
 						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/matjaz-korosec.jpg" class="photo" width="134" height="134" alt="Matjaž Korošec">
 					</figure>
-					<h2 class="fn n">Matjaž Korošec</h2>
+					<h2 class="fn n">Matjaz Korosec</h2>
 					<p><strong class="title">“browser assasin”</strong>
 					<a href="http://twitter.com/matjazkorosec" target="_blank">@matjazkorosec</a></p>
 				</li>
@@ -42,7 +42,7 @@ get_header(); ?>
 					<figure>
 						<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/natan-nikolic.jpg" class="photo" width="134" height="134" alt="Natan Nikolič">
 					</figure>
-					<h2 class="fn n">Natan Nikolič</h2>
+					<h2 class="fn n">Natan Nikolic</h2>
 					<p><strong class="title">“indivisual”</strong>
 					<a href="http://twitter.com/natannikolic" target="_blank">@natannikolic</a></p>
 				</li>
