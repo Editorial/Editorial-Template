@@ -584,6 +584,9 @@ box-sizing:border-box;}
 .ie7 #email {width:90%;}
 .ie7 #subscribe {width:100px;}
 .ie7 .home #header .adapt {width:100%;float:left;}
+.ie7 .submit .go,.ie8 .submit .go {padding:6px 0;}
+.ie7 .questions a {padding-left:0;}
+.ie7 .submit .redirecting,.ie8 .submit .redirecting {padding-left:20px;}
 .ie7 .abilities li,.ie8 .abilities li {font-size:17px;}
 .ie8 .home #header:before,.ie8 .home #header:after {display:inline;}
 #email::-webkit-input-placeholder {color:#999;}
@@ -884,6 +887,12 @@ z-index:-1;}
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie7 #domains-no {line-height:72px;top:60px;}
+.ie8 .questions li a:before {left:-28px;top:-1px;}
+.ie8 .related .questions a:before {left:0;top:10px;}
+
+
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
@@ -913,7 +922,6 @@ z-index:-1;}
 
 .order {margin:0 49px;}
 .order .loader {margin:7px 0 0;}
-
 
 form .info {width:48%;float:left;}
 .manage form .info {width:auto;float:none;}
@@ -950,7 +958,6 @@ form .info {width:48%;float:left;}
 
 .goodies {margin:0 0 46px;}
 .features section {margin-bottom:15px;padding:0 0 0 13%;width:35%;min-height:220px;float:left;}
-/*#platforms,#photography {height:250px;}*/
 #photography,#gallery,#machine {float:right;}
 .abilities {margin:-7px 0 0;float:left;}
 .abilities li {width:35%;}
@@ -1012,6 +1019,10 @@ form .info {width:48%;float:left;}
 
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie8 .order {margin:0 auto;padding:5px 49px 15px;}
+
+
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
@@ -1111,7 +1122,7 @@ width:216px;height:auto;float:left;}
 .main h1,.main .exposed,.help-list .main h1, .help-single .main h3,.about .main h1,.tearms .content h1,
 .domains-no h1 {margin:77px 0 45px;}
 
-.domains-no h1 {margin:77px 0 17px;padding:0 210px 18px 0;float:left;}
+.domains-no h1 {margin:77px 0 17px;padding:0 210px 18px 0;white-space:nowrap;float:left;}
 .read h1 {margin:0 0 26px;}
 .level h4 {padding-top:35px;float:left;}
 .level .group {margin:0 0 23px;}
@@ -1167,6 +1178,9 @@ width:216px;height:auto;float:left;}
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 
 .ie7 .home #header .adapt {width:954px;float:none;}
+.ie7 #domains input {width:316px;}
+.ie7 #licenses-c {margin-top:-5px;}
+.ie8 #domains {padding:7px 0 0;}
 
 
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
