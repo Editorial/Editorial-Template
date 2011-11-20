@@ -177,9 +177,16 @@ class EditorialNav extends Walker_Nav_Menu
 		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
 		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
+		// ugly hack
+		$item->title = strip_tags($item->title);
+		if ( strstr($id, 'help') )
+		{
+			$item->title = '<span>Help &</span> Support';
+		}
+
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before .$prepend.apply_filters( 'the_title', strip_tags($item->title), $item->ID ).$append;
+		$item_output .= $args->link_before .$prepend.apply_filters( 'the_title', $item->title, $item->ID ).$append;
 		$item_output .= $args->link_after;
 		$item_output .= '</a>';
 		$item_output .= $args->after;
