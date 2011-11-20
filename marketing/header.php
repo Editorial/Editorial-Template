@@ -47,7 +47,9 @@
 		echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
 
 ?></title>
+<meta name="title" content="Editorial">
 <meta name="description" content="<?php bloginfo('description'); ?>">
+<link rel="image_src" href="http://editorialtemplate.com/wp-content/themes/marketing/assets/images/dsg/sheets.png">
 <meta name="author" content="Editorial">
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="no">
