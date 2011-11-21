@@ -38,19 +38,19 @@
 	bloginfo( 'name' );
 
 	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo " | $site_description";
+	//$site_description = get_bloginfo( 'description', 'display' );
+	//if ( $site_description && ( is_home() || is_front_page() ) )
+		//echo " | $site_description";
 
 	// Add a page number if necessary:
 	if ( $paged >= 2 || $page >= 2 )
 		echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
 
 ?></title>
-<meta name="title" content="Editorial">
 <meta name="description" content="<?php bloginfo('description'); ?>">
 <link rel="image_src" href="http://editorialtemplate.com/wp-content/themes/marketing/assets/images/dsg/sheets.png">
-<meta name="author" content="Editorial">
+<meta name="author" content="Programming: Miha Hribar, Front-end: Matjaž Korošec, Design: Natan Nikolič">
+<meta name="keywords" content="Editorial, wordpress, theme, template, magazine, widgets, responsive, adaptive, design, photography, HTML5, CSS3, readability, typography, SEO, widgets, admin, panel, colophon">
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
