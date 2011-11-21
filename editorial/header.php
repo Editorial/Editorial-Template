@@ -31,7 +31,7 @@
 ?>
 <meta name="description" content="The ultimate WordPress theme designed specially for digital magazines.">
 <meta name="author" content="Programming: Miha Hribar, Front-end: Matjaž Korošec, Design: Natan Nikolič">
-<meta name="keywords" content="Editorial, wordpress, theme, template, magazine, wordpress, widgets, responsive, adaptive, design, photography, HTML5, CSS3, readability, typography, SEO, widgets, admin, panel, colophon">
+<meta name="keywords" content="Editorial, wordpress, theme, template, magazine, widgets, responsive, adaptive, design, photography, HTML5, CSS3, readability, typography, SEO, widgets, admin, panel, colophon">
 <!-- invalid / enable if needed
 <meta name="handheldfriendly" content="true">
 <meta name="mobileoptimized" content="320">
