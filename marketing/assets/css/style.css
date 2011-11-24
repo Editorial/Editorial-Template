@@ -380,6 +380,7 @@ background:rgba(0,0,0,.8);}
 #colophon {background-position:-215px -701px;}
 #rss {background-position:-94px -837px;}
 
+.process {padding-top:25px;}
 .process header {margin:0 0 17px;width:100%;float:left;}
 .process ol {margin:0 0 13px;width:100%;font-size:11px;text-transform:uppercase;float:left;}
 .process li {padding:45px 0 0;width:33.3%;color:#ccc;text-align:center;float:left;}
@@ -410,7 +411,7 @@ position:absolute;top:25px;left:34px;z-index:1;}
 	-webkit-box-shadow:0 4px 4px rgba(0,0,0,.25);
 	box-shadow:0 4px 4px rgba(0,0,0,.25);
 }
-.order h2 {font-size:24px;line-height:25px;}
+.order h2,.lost h2 {font-size:24px;line-height:25px;}
 .order .leading {margin:0 -15px 10px;padding-top:20px;font-size:18px;line-height:20px;color:#000;
 background-position:-1160px -40px;}
 .order .brand {font:bold 14px/20px helvetica,arial,sans-serif;color:#000;display:inline;}
@@ -488,6 +489,13 @@ background-position:-1160px -40px;}
 #dust img {height:auto;}
 
 .manage h3 {margin:10px 0 25px;font-size:18px;line-height:30px;}
+
+.lost {padding:30px 0 0;text-align:center;}
+.lost figure {margin:0 0 30px;width:100%;}
+.lost figure img {margin:0 auto;width:20%;}
+.lost h1,.lost h2 {margin:0 0 15px;}
+.lost p {font-size:18px;line-height:20px;}
+.lost p a {padding:3px;display:block;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -734,6 +742,8 @@ form .submit {text-align:left;}
 .makers .miha {background-position:100px 100px;}
 .makers h2 {padding:0 0 2px;}
 
+.lost figure img {width:15%;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
@@ -795,6 +805,7 @@ form .submit {text-align:left;}
 
 h1,.exposed {margin:15px 0;font-size:70px;line-height:72px;}
 .domains-no h1 {text-align:left;}
+.lost h2 span {display:block;}
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
@@ -866,6 +877,8 @@ z-index:-1;}
 
 .manage h3 {margin:19px 0 31px;font-size:24px;}
 
+.lost figure {margin:0 0 41px;}
+.lost figure img {width:auto;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -995,6 +1008,11 @@ form .info {width:48%;float:left;}
 
 .helpful h4,.related h4 {padding:0;width:100%;background-position:0 16px;text-align:left;float:left;}
 
+.lost {padding:35px 0 0;}
+.lost figure {margin:0 0 61px;}
+.lost h1 {margin:0 0 44px;}
+.lost h2 {margin:0 0 27px;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
@@ -1038,6 +1056,7 @@ form .info {width:48%;float:left;}
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,.exposed {text-align:left;}
+.lost h1 {text-align:center;}
 
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
@@ -1100,6 +1119,7 @@ width:216px;height:auto;float:left;}
 #updates,#customizable,#admin,#colophon {float:left;}
 .abilities li {padding:0 0 0 82px;}
 
+.process {padding-top:65px;}
 .process header {margin:0 0 11px 2px;padding:0;width:490px;float:left;}
 .process figure,.domains-no h1 {background-position:0 bottom;}
 .process .tablets {margin:0 0 15px;width:960px;height:10px;position:relative;}

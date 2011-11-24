@@ -8,11 +8,15 @@
 
 get_header(); ?>
 
-<div class="content" role="main">
-    <article class="main default hentry">
-        <h1 class="entry-title"><em>Error</em> 404</h1>
-        <p class="lead entry-summary">You seem to have lost you way around here.</p>
-    </article>
-</div>
+<article class="content" role="main">
+	<section class="lost">
+		<figure>
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/blank-page.png" alt="Blank page">
+		</figure>
+		<h1><em>Blank</em> page</h1>
+		<h2>What you seem to be looking for is either no longer here <span>or never was in the first place.</span></h2>
+		<p><a href="/">Start from scratch</a></p>
+	</section>
+</article>
 
 <?php get_footer(); ?>
