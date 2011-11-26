@@ -380,7 +380,7 @@ background:rgba(0,0,0,.8);}
 #colophon {background-position:-215px -701px;}
 #rss {background-position:-94px -837px;}
 
-.process {padding-top:25px;}
+.update .process {padding-top:25px;}
 .process header {margin:0 0 17px;width:100%;float:left;}
 .process ol {margin:0 0 13px;width:100%;font-size:11px;text-transform:uppercase;float:left;}
 .process li {padding:45px 0 0;width:33.3%;color:#ccc;text-align:center;float:left;}
@@ -1119,7 +1119,7 @@ width:216px;height:auto;float:left;}
 #updates,#customizable,#admin,#colophon {float:left;}
 .abilities li {padding:0 0 0 82px;}
 
-.process {padding-top:65px;}
+.update .process {padding-top:65px;}
 .process header {margin:0 0 11px 2px;padding:0;width:490px;float:left;}
 .process figure,.domains-no h1 {background-position:0 bottom;}
 .process .tablets {margin:0 0 15px;width:960px;height:10px;position:relative;}
