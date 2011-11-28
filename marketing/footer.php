@@ -5,6 +5,10 @@
  * @package Editorial
  * @subpackage Marketing
  */
+
+if (!is_404())
+{
+
 ?>
 <footer id="footer" role="contentinfo">
 <?php
@@ -110,6 +114,8 @@
 		</section>
 	</div>
 </footer>
+
+<?php } ?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>

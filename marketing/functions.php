@@ -152,7 +152,6 @@ function custom_body_classes($classes)
     if (is_404())
     {
         $classes[] = 'blank';
-        
     }
     // return the $classes array
     return $classes;

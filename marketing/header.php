@@ -73,7 +73,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 </head>
 
 <body <?php body_class(); ?>>
-<?php if (!is_home()) { ?>
+<?php if (!is_home() && !is_404()) { ?>
 <header id="header" role="banner">
 	<div class="adapt">
 		<h2 id="brand" class="vcard">
