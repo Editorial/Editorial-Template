@@ -145,6 +145,21 @@ function editorial_wp_mail_from_name($name)
 add_filter('wp_mail_from',      'editorial_wp_mail_from');
 add_filter('wp_mail_from_name', 'editorial_wp_mail_from_name');
 
+// error body class
+function custom_body_classes($classes) 
+{
+    // add '404' to the $classes array
+    if (is_404())
+    {
+        $classes[] = 'blank';
+        
+    }
+    // return the $classes array
+    return $classes;
+}
+
+add_filter('body_class','custom_body_classes');
+
 /**
  * Custom Walker_Nav_Menu
  * ----------------------
