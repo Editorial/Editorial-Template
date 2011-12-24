@@ -1070,8 +1070,8 @@ h1,.exposed {text-align:left;}
 .paypal-info {width:70%;}
 .paypal-info p {margin:16px 0 0;}
 
-#domains {width:406px;float:right;}
-#domains input {width:328px;float:right;}
+#domains, .code {width:406px;float:right;}
+#domains input, .promo input {width:328px;float:right;}
 
 .manage #domains {width:48%;float:left;}
 .manage form .info {margin:0 26% 0 0;width:22%;float:right;}

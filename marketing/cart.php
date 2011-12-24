@@ -368,14 +368,14 @@ get_header();
 ?>
 				</ol>
 			</fieldset>
-			<fieldset class="tearms promo">
-                <legend class="v-hidden">Promo code</legend>
+			<fieldset class="domain promo">
+                <legend class="v-hidden">Discount voucher</legend>
                 <div class="info">
-                    <h3>Enter promo code</h3>
-                    <p>From time to time we give out promo codes for discounts.</p>
+                    <h3>Discount voucher</h3>
+                    <p>Sometimes we give them out to good children.</p>
                 </div>
-                <div class="i-agree">
-                    <input type="text" value="<?php echo $promo; ?>" name="promo" id="promo" placeholder="Promo code">
+                <div class="code">
+                    <label for="promo">Code</label><input type="text" value="<?php echo $promo; ?>" name="promo" id="promo">
                 </div>
             </fieldset>
 			<fieldset class="tearms">
