@@ -10,6 +10,7 @@
 
 require_once 'library/Paypal.php';
 require_once 'library/Purchase.php';
+require_once 'library/Promo.php';
 require_once 'library/Util.php';
 
 session_start();
@@ -19,6 +20,19 @@ $licences   = 1;
 $domains    = array('http://');
 $agree      = false;
 $newsletter = false;
+
+// promo
+if (array_key_exists('promo', $_GET))
+{
+    $Promo = new Promo();
+    $discount = $Promo->getDiscount($_GET['promo']);
+    printf(
+        '{"discount": %d, "price":%.2f}', 
+        $discount, 
+        LICENCE_COST * (1 - $discount/100)
+    );
+    return;
+}
 
 // cancel purchase
 if (array_key_exists('cancel', $_GET))
@@ -49,6 +63,7 @@ if (isset($_SESSION) && count($_SESSION))
     if (array_key_exists('errors', $_SESSION))
     {
         $errors = $_SESSION['errors'];
+        unset($_SESSION['errors']);
     }
     if (array_key_exists('agree', $_SESSION))
     {
@@ -57,6 +72,10 @@ if (isset($_SESSION) && count($_SESSION))
     if (array_key_exists('newsletter', $_SESSION))
     {
         $newsletter = $_SESSION['newsletter'];
+    }
+    if (array_key_exists('promo', $_SESSION))
+    {
+        $promo = $_SESSION['promo'];
     }
 }
 
@@ -137,6 +156,16 @@ if (isset($_POST) && count($_POST))
 
 	// newsletter?
 	$newsletter = array_key_exists('newsletter', $_POST);
+	
+	// promo & discount
+	$Promo = new Promo();
+	$promo = array_key_exists('promo', $_POST) ? $_POST['promo'] : '';
+	$discount = array_key_exists('promo', $_POST) ? $Promo->getDiscount($_POST['promo']) : 0;
+	if (array_key_exists('promo', $_POST) && strlen($_POST['promo']) && $discount == 0)
+	{
+	    // invalid promo code entere -> must show to user before they go to paypal
+	    $errors[] = 'promo';
+	}
 
     // lets get down to business
     if (!count($errors))
@@ -145,8 +174,13 @@ if (isset($_POST) && count($_POST))
         try
         {
             $Paypal = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
-			$licenceCost = 150.00;
-			$amount = $licences*$licenceCost;
+			$licenceCost = LICENCE_COST * (1 - $discount/100);
+			// got discount, then use the code -> not ideal but can live with this
+			if ($discount > 0)
+			{
+			    $Promo->useDiscount($_POST['promo']);
+			}
+			$amount = $licences * $licenceCost;
 			$details = $Paypal->setExpressCheckout(
 				$amount,
 				$licences,
@@ -159,14 +193,15 @@ if (isset($_POST) && count($_POST))
             // insert payment
             $Purchase = new Purchase();
             $Purchase->insert(array(
-				'ext_id'     => $Paypal->getToken(),
-				'domains'    => json_encode($domains),
-				'amount'     => $amount,
-				'date'       => date('Y-m-d H:i:s'),
-				'status'     => Purchase::STATUS_STARTED,
-				'type'       => Purchase::TYPE_PAYPAL,
-				'status'     => Purchase::STATUS_STARTED,
-				'newsletter' => (int)$newsletter,
+                'ext_id'     => $Paypal->getToken(),
+                'domains'    => json_encode($domains),
+                'amount'     => $amount,
+                'discount'   => $discount,
+                'date'       => date('Y-m-d H:i:s'),
+                'status'     => Purchase::STATUS_STARTED,
+                'type'       => Purchase::TYPE_PAYPAL,
+                'status'     => Purchase::STATUS_STARTED,
+                'newsletter' => (int)$newsletter,
             ));
             // redirect to paypal
             Util::redirect($Paypal->getPaypalExpressCheckoutURL());
@@ -186,6 +221,7 @@ if (isset($_POST) && count($_POST))
 			'errors'     => $errors,
 			'agree'      => $agree,
 			'newsletter' => $newsletter,
+            'promo'      => $promo,
         );
         header('Location: /purchase/');
         exit();
@@ -271,7 +307,12 @@ get_header();
 				{
 					echo '<li>Please read and agree to our <a href="/terms-of-use/" target="_blank">Terms of use</a>.</li>';
 				}
-
+				
+				if (in_array('promo', $errors))
+				{
+					echo '<li>The promo code entered is invalid. <a href="/about/">Contact us</a> if you think the code should still be valid.</li>';
+				}
+				
 				echo '</ol>';
 			}
 			echo '</section>';
@@ -327,6 +368,16 @@ get_header();
 ?>
 				</ol>
 			</fieldset>
+			<fieldset class="tearms promo">
+                <legend class="v-hidden">Promo code</legend>
+                <div class="info">
+                    <h3>Enter promo code</h3>
+                    <p>From time to time we give out promo codes for discounts.</p>
+                </div>
+                <div class="i-agree">
+                    <input type="text" value="<?php echo $promo; ?>" name="promo" id="promo" placeholder="Promo code">
+                </div>
+            </fieldset>
 			<fieldset class="tearms">
 				<legend class="v-hidden">Newsletter</legend>
 				<div class="info">

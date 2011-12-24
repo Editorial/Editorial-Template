@@ -1,0 +1,1 @@
+ALTER TABLE  `purchase` ADD  `discount` TINYINT( 3 ) NOT NULL DEFAULT  '0' AFTER  `amount`;

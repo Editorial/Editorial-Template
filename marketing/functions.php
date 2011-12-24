@@ -41,6 +41,9 @@ define('PAYPAL_VERSION',     '56.0');
 define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
 define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
 
+// licence pricing
+define('LICENCE_COST', 150.00);
+
 // david sandbox
 //define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
 //define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
@@ -48,6 +51,15 @@ define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?c
 //define('PAYPAL_EMAIL',       'david_1321039203_biz@kuridza.si');
 //define('PAYPAL_PASSWORD',    '1321039259');
 //define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31AVts2sEdwWw1DK5C2EnxeyGcfv8E');
+//define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
+
+// miha sandbox
+//define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
+//define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
+//define('PAYPAL_USER',        'shop_1291577744_biz_api1.hribar.info');
+//define('PAYPAL_EMAIL',       'shop_1291577744_biz@hribar.info');
+//define('PAYPAL_PASSWORD',    '1291577754');
+//define('PAYPAL_SIGNATURE',   'AzWvEuogApa37pmV5w.Qo7jcZb-jArsE790LFPjmJsXXGikSjH4TCIIg');
 //define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
 
 /**

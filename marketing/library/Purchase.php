@@ -54,7 +54,7 @@ class Purchase
 	public function insert(array $data)
 	{
 		global $wpdb;
-		$wpdb->insert(
+		return $wpdb->insert(
 			'purchase',
 			$data
 		);

@@ -179,7 +179,7 @@ text-transform:uppercase;text-shadow:0 1px 1px #fff;background:#ededed;float:lef
 
 form h3 {margin:0 0 3px;font:12px/20px helvetica,arial,sans-serif;color:#262121;}
 form label {font-size:12px;line-height:20px;color:#262121;}
-form p,.domain .info p,.info .help {font:12px/15px helvetica,arial,sans-serif;color:#999;}
+form p,.domain .info p,.info .help, .promo .info p {font:12px/15px helvetica,arial,sans-serif;color:#999;}
 
 #buy-form {padding:5px 0 0;clear:both;}
 
@@ -201,7 +201,7 @@ form p,.domain .info p,.info .help {font:12px/15px helvetica,arial,sans-serif;co
 .licenses .total {width:29%;}
 
 
-#licenses-c,.domain input,.manage #domains input {border:1px solid #d9d9d9;border-left-color:#a6a6a6;border-top-color:#a6a6a6;
+#licenses-c,.domain input,.manage #domains input, #promo {border:1px solid #d9d9d9;border-left-color:#a6a6a6;border-top-color:#a6a6a6;
 padding:7px 5px 6px;font:14px helvetica,arial,sans-serif;color:#333;}
 .manage #domains input {padding:8px 4px 7px;font-size:12px;line-height:20px;color:#333;}
 #licenses-c,.domain input {width:52px;}

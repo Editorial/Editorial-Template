@@ -82,7 +82,8 @@ unset(
 	$_SESSION['domains'],
 	$_SESSION['errors'],
 	$_SESSION['agree'],
-	$_SESSION['newsletter']
+	$_SESSION['newsletter'],
+	$_SESSION['promo']
 );
 
 get_header(); ?>

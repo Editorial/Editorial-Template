@@ -96,6 +96,27 @@ $(function(){
 			$('#total').val(currency+domains*parseFloat($('#price-c').val().substr(1)));
 		}
 	});
+	
+	// purchase discount check
+	$('#promo').change(function(e){
+		var code = $.trim($(this).val());
+		if (code.length) {
+			// send ajax request
+			$.get(
+				"/purchase/",
+				{promo: code},
+				function(data){
+					var promo = $.parseJSON(data);
+					// update price
+					var currency = $('#price-c').val().substr(0,1);
+					$('#price-c').val(currency + promo.price);
+					// update total
+					$('#licenses-c').change();
+				}
+			);
+		}
+		return;
+	});
 
 });
 
