@@ -6,6 +6,10 @@
  * @subpackage Marketing
  */
 
+require_once 'library/Purchase.php';
+require_once 'library/Account.php';
+require_once 'library/Domain.php';
+
 // for debuggin purposes
 function dump($object = '')
 {
@@ -220,3 +224,5 @@ class EditorialNav extends Walker_Nav_Menu
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
 }
+
+include 'admin/admin.php';

@@ -70,6 +70,21 @@ class Purchase
 	{
 		return $this->_find('purchase_id', $id);
 	}
+	
+	/**
+	 * Find confirmed or completed payments
+	 *
+	 * @return array
+	 * @author Miha Hribar
+	 */
+	public function findConfirmed()
+	{
+		global $wpdb;
+		return $wpdb->get_results(
+		    'SELECT * FROM `purchase` WHERE status = 1 OR status = 2',
+            ARRAY_A
+		);
+	}
 
 	/**
 	 * Find payment.
@@ -191,6 +206,9 @@ class Purchase
 				// send it
 				$sent = wp_mail($account['email'], $subject, $message);
 				debug('email sent: ' . (int)$sent);
+				// send to team as well
+				//$sent = wp_mail("hello@editorialtemplate.com", $subject, $message);
+				$sent = wp_mail("miha@hribar.info", $subject, $message);
 			}
 		}
 	}
