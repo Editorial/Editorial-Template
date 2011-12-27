@@ -207,8 +207,7 @@ class Purchase
 				$sent = wp_mail($account['email'], $subject, $message);
 				debug('email sent: ' . (int)$sent);
 				// send to team as well
-				//$sent = wp_mail("hello@editorialtemplate.com", $subject, $message);
-				$sent = wp_mail("miha@hribar.info", $subject, $message);
+				$sent = wp_mail("hello@editorialtemplate.com", $subject, $message);
 			}
 		}
 	}
