@@ -66,6 +66,8 @@ var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-26888938-1']);_gaq.push(['_t
 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
 </script>
+<script src="http://use.typekit.com/nlh6xyy.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
 </head>
 
 <body class="<?php echo $EditorialId; ?> <?php echo $EditorialClass; ?>">
