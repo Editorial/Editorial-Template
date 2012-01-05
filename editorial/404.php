@@ -24,4 +24,6 @@ $EditorialClass = 'clear';
 	</article>
 </div>
 
-<?php @include('footer.php'); ?>
+</body>
+
+</html>
