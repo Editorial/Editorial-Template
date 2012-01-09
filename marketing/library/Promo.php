@@ -20,9 +20,65 @@
 class Promo
 {
     /**
-     * Get discount
+     * Insert.
      *
+     * @param  array $data
      * @return void
+     */
+    public function insert(array $data)
+    {
+        global $wpdb;
+        
+        if (!array_key_exists('code', $data) || strlen(trim($data['code'])) == 0)
+        {
+            // generate code
+            do
+            {
+                $code = $this->_generateCode();
+            }
+            while ($this->getDiscount($code) != 0);
+            
+            // set code
+            $data['code'] = $code;
+        }
+        else
+        {
+            // validate code
+            if ($this->getDiscount($data['code']) == 0)
+            {
+                throw new Exception('Code already exists or is invalid.');
+            }
+        }
+        
+        // validate discount amount
+        if (!array_key_exists('discount', $data) || $data['discount'] <= 0 || $data['discount'] >= 100 || !ctype_digit($data['discount']))
+        {
+            throw new Exception('Discount amount invalid - must be between 0 and 100');
+        }
+        
+        // validate count
+        if (!array_key_exists('count', $data) || $data['count'] <= 0 || !ctype_digit($data['count']))
+        {
+            throw new Exception('Count invalid - must be larger than 0');
+        }
+        
+        // validate date
+        if (!array_key_exists('date_valid', $data) || strlen(trim($data['date_valid'])) == 0 || strtotime($data['date_valid']) == 0)
+        {
+            throw new Exception('Date invalid.');
+        }
+        
+        
+        return $wpdb->insert(
+            'promo',
+            $data
+        );
+    }
+    
+    /**
+     * Get discount amount
+     *
+     * @return int
      * @author Miha Hribar
      */
     public function getDiscount($code)
@@ -61,5 +117,32 @@ class Promo
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Find active promo codes
+     *
+     * @return array
+     * @author Miha Hribar
+     */
+    public function findActive()
+    {
+    	global $wpdb;
+        return $wpdb->get_results(
+            'SELECT * FROM `promo` WHERE count > 0',
+            ARRAY_A
+        );
+    }
+    
+    /**
+     * Generate code
+     *
+     * @return string
+     * @author Miha Hribar
+     */
+    private function _generateCode()
+    {
+        $code = uuid_create();
+        return substr(str_replace('-', '', $code), 0, 10);
     }
 }

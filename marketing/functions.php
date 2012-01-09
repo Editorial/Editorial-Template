@@ -9,6 +9,7 @@
 require_once 'library/Purchase.php';
 require_once 'library/Account.php';
 require_once 'library/Domain.php';
+require_once 'library/Promo.php';
 
 // for debuggin purposes
 function dump($object = '')

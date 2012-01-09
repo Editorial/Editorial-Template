@@ -129,7 +129,7 @@ class Marketing_Admin
      * @return void
      * @author Miha Hribar
      */
-    public static function promo()
+    public function promo()
     {
     	$this->_displayPage(self::PAGE_PROMO);
     }
