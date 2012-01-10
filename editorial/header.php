@@ -48,7 +48,7 @@
 <link rel="shortcut icon" href="<?php echo Editorial::getOption('favicon'); ?>">
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.min.css?v=1">
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.css?v=1">
 <?php
 /*
 ENABLE CUSTOM CSS
