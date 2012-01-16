@@ -838,6 +838,11 @@ class Editorial
 		switch ($network)
 		{
 			case EDITORIAL_TWITTER:
+				$html = '<a href="https://twitter.com/share?url=TODO" class="twitter-share-button" data-count="horizontal">Tweet</a>';
+				break;
+
+			/*
+			case EDITORIAL_TWITTER:
 				$html = sprintf(
 					'<iframe allowtransparency="true" frameborder="0" scrolling="no"
 						src="http://platform.twitter.com/widgets/tweet_button.html?via=%s&text=%s%s"
@@ -849,20 +854,12 @@ class Editorial
 					$params['height']
 				);
 				break;
+			*/
 
-			case EDITORIAL_FACEBOOK:
-				$html = sprintf(
-				'<iframe src="http://www.facebook.com/plugins/like.php?href=%1$s&amp;send=false&amp;layout=button_count&amp;width=%2$d&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=%3$d"
-					scrolling="no"
-					frameborder="0"
-					style="border:none; overflow:hidden; width:%2$dpx; height:%3$dpx;"
-					allowTransparency="true"></iframe>',
-				urlencode($params['url']),
-				$params['width'],
-				$params['height']
-				);
-				break;
-
+			case EDITORIAL_GOOGLE:
+				$html = '<a href="http://plus.google.com/TODO">Google+</a>';
+			break;
+			/*
 			case EDITORIAL_GOOGLE:
 				$html = "<g:plusone size=\"medium\" width=\"65\"></g:plusone>
 				<script type=\"text/javascript\">
@@ -873,6 +870,25 @@ class Editorial
 				})();
 				</script>";
 				break;
+			*/
+
+			case EDITORIAL_FACEBOOK:
+				$html = '<a href="http://facebook.com/TODO">Facebook</a>';
+				break;
+			/*
+			case EDITORIAL_FACEBOOK:
+				$html = sprintf(
+					'<iframe src="http://www.facebook.com/plugins/like.php?href=%1$s&amp;send=false&amp;layout=button_count&amp;width=%2$d&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=%3$d"
+					scrolling="no"
+					frameborder="0"
+					style="border:none; overflow:hidden; width:%2$dpx; height:%3$dpx;"
+					allowTransparency="true"></iframe>',
+					urlencode($params['url']),
+					$params['width'],
+					$params['height']
+				);
+				break;
+			*/
 
 //			case EDITORIAL_READABILITY:
 //				$html = '<div class="rdbWrapper" data-show-read="1" data-show-send-to-kindle="1" data-show-print="0" data-show-email="0" data-orientation="0" data-version="1" data-bg-color="transparent"></div><script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>';

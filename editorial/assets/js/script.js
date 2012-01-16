@@ -26,6 +26,39 @@ if (iDevice) {
 
 $(function(){
 
+	//code originally from: https://gist.github.com/1025811
+	// lets use Modernizr to load social scripts only if it's not mobile
+	if ($('ul.social').length) {
+		if (matchMedia('screen and (min-width:481px)').matches) {
+			(function(doc, script) {
+				var js,
+				fjs = doc.getElementsByTagName(script)[0],
+				frag = doc.createDocumentFragment(),
+				add = function(url, id) {
+					if (doc.getElementById(id)) {return;}
+					js = doc.createElement(script);
+					js.src = url;
+					id && (js.id = id);
+					frag.appendChild( js );
+				};
+
+				// Twitter SDK
+				add('//platform.twitter.com/widgets.js');
+
+				// Google+ button
+				$('li.gplus').html("<g:plusone size=\"medium\" width=\"65\"></g:plusone>");
+				add('https://apis.google.com/js/plusone.js');
+
+				// Facebook SDK
+				$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>');
+				add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
+
+				fjs.parentNode.insertBefore(frag, fjs);
+			}(document, 'script'));
+
+		} /* end Modernizr polyfill */
+	}
+
 	if (iDevice) {
 
 		//remove address bar
