@@ -90,11 +90,13 @@ if (Editorial::isMobileDevice())
 			<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>
 			<nav id="remote" role="navigation">
 				<ul>
-					<li><a href="#" id="m-prev" class="m-button"><span><?php _e('Previous', 'Editorial'); ?></span></a></li>
+					<li><a href="#" id="m-prev" class="m-button disabled"><span><?php _e('Previous', 'Editorial'); ?></span></a></li>
 					<li><a href="#" id="m-slide" class="m-button"><span><?php _e('Slideshow', 'Editorial'); ?></span></a></li>
 					<li><a href="#" id="m-next" class="m-button"><span><?php _e('Next', 'Editorial'); ?></span></a></li>
 				</ul>
 			</nav>
+			<!--<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span><?php _e('Back to article', 'Editorial'); ?></span></a>-->
+			<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b> <em>TODO Shape-shifting car made out of cloth</em></a>
 		</header>
 		<img id="loading" src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/bgr/loading.gif" width="48" height="48" alt="<?php _e('Loading', 'Editorial'); ?>">
 		<div id="media-elements">
@@ -148,7 +150,7 @@ if (Editorial::isMobileDevice())
 					printf('<figure id="element_%d"%s>
 							%s
 							<figcaption>
-								<h2>%d/%d</h2>
+								<h2><span>%d</span>/<span>%d</span></h2>
 								<h3>%s</h3>
 								<p>%s</p>
 								<a href="#" class="m-toggle m-button"><span>%s</span></a>
@@ -171,7 +173,6 @@ if (Editorial::isMobileDevice())
 
 ?>
 		</div>
-		<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span><?php _e('Back to article', 'Editorial'); ?></span></a>
 	</section>
 <?php
 } else {
