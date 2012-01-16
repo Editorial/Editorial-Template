@@ -838,7 +838,7 @@ class Editorial
 		switch ($network)
 		{
 			case EDITORIAL_TWITTER:
-				$html = '<a href="https://twitter.com/share?url=TODO" class="twitter-share-button" data-count="horizontal">Tweet</a>';
+				$html = '<a href="https://twitter.com/share?url=TODO" class="twitter-share-button" data-count="horizontal">Tweet this</a>';
 				break;
 
 			/*
@@ -873,7 +873,7 @@ class Editorial
 			*/
 
 			case EDITORIAL_FACEBOOK:
-				$html = '<a href="http://facebook.com/TODO">Facebook</a>';
+				$html = '<a href="http://facebook.com/TODO">Post to Facebook</a>';
 				break;
 			/*
 			case EDITORIAL_FACEBOOK:
