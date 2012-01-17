@@ -857,7 +857,7 @@ class Editorial
 			*/
 
 			case EDITORIAL_GOOGLE:
-				$html = '<a href="http://plus.google.com/TODO">Google+</a>';
+				$html = '<a href="http://plus.google.com/TODO">Post to Google+</a>';
 			break;
 			/*
 			case EDITORIAL_GOOGLE:
