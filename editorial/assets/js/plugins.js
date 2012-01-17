@@ -19,11 +19,10 @@ if(this.console) console.log( Array.prototype.slice.call(arguments) );
 // Invoke the plugin
 $('input,textarea').placeholder();
 
-
-//code originally from: https://gist.github.com/1025811
-// lets use Modernizr to load social scripts only if it's not mobile
+// social media icons / original: https://gist.github.com/1025811
 if ($('ul.social').length) {
-	if (matchMedia('screen and (min-width:481px)').matches) {
+	// Modernizr loads only if it's not mobile
+	if (matchMedia('screen and (min-width:640px)').matches) {
 		(function(doc, script) {
 			var js,
 			fjs = doc.getElementsByTagName(script)[0],
@@ -36,16 +35,24 @@ if ($('ul.social').length) {
 				frag.appendChild( js );
 			};
 
-			// Twitter SDK
-			add('//platform.twitter.com/widgets.js');
+			// Twitter
+			if($('li.twitter').length) {
+				$('li.twitter').html('<a class="twitter-share-button" data-count="horizontal">Tweet</a>');
+				add('//platform.twitter.com/widgets.js');
+			}
 
-			// Google+ button
-			$('li.gplus').html("<g:plusone size=\"medium\" width=\"65\"></g:plusone>");
-			add('https://apis.google.com/js/plusone.js');
+			// Google+
+			if($('li.gplus').length) {
+				$('li.gplus').html('<g:plusone size="medium" width="65"></g:plusone>');
+				add('https://apis.google.com/js/plusone.js');
+			}
 
-			// Facebook SDK
-			$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>');
-			add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
+			// Facebook
+			if($('li.facebook').length) {
+				$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="20" data-show-faces="false"></div>');
+				//$('.inside,.inside-portrait,.inside #single,.inside-portrait #single').css('overflow','visible');
+				add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
+			}
 
 			fjs.parentNode.insertBefore(frag, fjs);
 		}(document, 'script'));
