@@ -593,7 +593,11 @@ clip:auto;}
 
 
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
-/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+/* 17.TYPEKIT__ _____________________________________________________________________________________________________ */
+
+.wf-loading .content h1,.wf-loading h2,.wf-loading article h3,.wf-loading section h3,.wf-loading h4,.wf-loading p,
+.wf-loading ul li,.wf-loading #comments cite {visibility:hidden;}
+.wf-loading #layout p,.wf-loading .switch li {visibility:visible;}
 
 
 /* MEDIA QUERIES */
