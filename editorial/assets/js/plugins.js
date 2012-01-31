@@ -37,7 +37,7 @@ if ($('ul.social').length) {
 
 			// Twitter
 			if($('li.twitter').length) {
-				$('li.twitter').html('<a class="twitter-share-button" data-count="horizontal">Tweet</a>');
+				$('li.twitter').html('<a class="twitter-share-button" data-count="horizontal" data-via="editorialtheme"></a>');
 				add('//platform.twitter.com/widgets.js');
 			}
 

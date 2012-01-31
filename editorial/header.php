@@ -4,7 +4,7 @@
  |_ | \  |   | / \ |_)  |   /\  |
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
- Version: 1.0 (11/2011)
+ Version: 1.1 (02/2012)
 
  Design: Natan Nikolic (twitter.com/natannikolic)
  Programming: Miha Hribar (twitter.com/mihahribar)
@@ -49,6 +49,7 @@
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/style.css?v=1">
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/assets/css/editorial-custom.css?v=1">
 <?php
 /*
 ENABLE CUSTOM CSS
