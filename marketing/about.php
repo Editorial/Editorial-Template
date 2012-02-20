@@ -52,7 +52,7 @@ get_header(); ?>
 		</aside>
 		<footer class="v-hidden">
 			<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
-			<a class="author include" href="#brand">Editorial</a>
+			<a class="author include" href="#editorial">Editorial</a>
 		</footer>
 	</article>
 </div>

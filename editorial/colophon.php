@@ -52,7 +52,7 @@ else
 				<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
 				<?php the_time(get_option('date_format')); ?>
 			</time>
-			<em>Written by <a class="author include" href="#brand">Editorial</a></em>
+			<em>Written by <a class="author include" href="#editorial">Editorial</a></em>
 		</footer>
 		<section class="entry-content">
 			<?php echo the_content(); ?>

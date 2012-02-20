@@ -95,7 +95,7 @@ if (!is_404())
 			</div>
 		</nav>
 		<section class="copyright">
-			<p><strong>Copyright (c) 2011 Editorial.</strong></p>
+			<p><strong>Copyright (c) 2011 <em id="editorial" class="vcard"><a href="http://editorialtemplate.com/" class="fn org url">Editorial</a></em>.</strong></p>
 			<p>
 				Brought to you with help of
 				<span class="vcard">

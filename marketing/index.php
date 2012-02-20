@@ -10,8 +10,8 @@ get_header(); ?>
 
 <header id="header" role="banner">
 	<div class="adapt">
-		<hgroup id="brand" class="vcard">
-			<h1><a href="http://editorialtemplate.com/" class="fn org url"><em>Edit</em>orial</a></h1>
+		<hgroup id="brand">
+			<h1><em>Edit</em>orial</h1>
 			<h2 class="note">is the ultimate WordPress theme designed specially for digital magazines.</h2>
 		</hgroup>
 		<p><a href="/purchase/" class="go">Purchase</a> or <a href="http://demo.editorialtemplate.com/">view live demo</a>.</p>
