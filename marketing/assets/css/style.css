@@ -628,8 +628,10 @@ clip:auto;}
 /* 17.TYPEKIT________________________________________________________________________________________________________ */
 
 .wf-loading #brand,.wf-loading .content h1,.wf-loading .home .content h3,.wf-loading .features h4,
-.wf-loading .abilities li,.wf-loading .level h2,.wf-loading .level h4,.wf-loading .level .notice,
-.wf-loading .info p,.wf-loading .makers h2,.wf-loading .makers h3,.wf-loading .primary li {visibility:hidden;}
+.wf-loading .abilities li,.wf-loading .level h2,.wf-loading .level h3,.wf-loading .level h4,.wf-loading .level .notice,
+.wf-loading .info p,.wf-loading .makers h2,.wf-loading .makers h3,.wf-loading .primary li,
+.wf-loading .tearms .content p,.wf-loading .tearms .content h2,.wf-loading .level li,.wf-loading .read h4,
+.wf-loading .read .notice,.wf-loading .related h4 {visibility:hidden;}
 .wf-loading .licenses input,.wf-loading .domain input {height:25px;visibility:hidden;}
 .wf-loading .cart h1 {height:42px;}
 
