@@ -718,6 +718,7 @@ h1 {margin:0 0 22px;}
 	box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
 }
 #tabs .selected {display:block;}
+#tabs .no-feedback li {width:50%;}
 #tabs a {margin:0 0 0 3px;border:1px solid #a6a6a6;border-width:0 1px 1px;padding:11px 14px 12px 14px;color:#999;
 display:block;position:relative;}
 #tabs em {padding:0 0 0 10px;}
@@ -1167,6 +1168,8 @@ display:block;position:absolute;right:52px;z-index:1;}
 .layout-grid #paging {background-position:top;}
 
 #tabs li {width:321px;}
+#tabs .no-feedback li {width:481px;}
+#tabs .no-feedback li:first-child {width:482px;}
 
 #common .entry-content {width:48%;float:right;}
 
