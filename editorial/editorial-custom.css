@@ -8,16 +8,7 @@
  Author: XXX
 
 
- First time necessary to do:
 
- - copy this file to "/wp-content/themes/" dir (must be out of editorial folder)
-   new path: "/wp-content/themes/editorial-custom.css",
-   old path: "/wp-content/themes/editorial/editorial-custom.css"
-
- - enable commented <link> tag in "/wp-content/themes/editorial/header.php" (tip: search for "ENABLE CUSTOM CSS")
-
-
-If you followed steps above, your editorial-custom.css is now ready to go.
 You can also use cssbeautifier.com to format code as you like it.
 Every time update comes your custom CSS remains unchanged and style.css will be updated with new features.
 
@@ -40,6 +31,20 @@ option 03 change font sizes:
 
 
 BLA
+
+
+
+ First time necessary to do:
+
+ - copy this file to "/wp-content/themes/" dir (must be out of editorial folder)
+   new path: "/wp-content/themes/editorial-custom.css",
+   old path: "/wp-content/themes/editorial/editorial-custom.css"
+
+ - enable commented <link> tag in "/wp-content/themes/editorial/header.php" (tip: search for "ENABLE CUSTOM CSS")
+
+
+If you followed steps above, your editorial-custom.css is now ready to go.
+
 
 
 Please copy this file 2 folder back (in theme folder) so this file can't be overwritten when Editorial update arrives.
