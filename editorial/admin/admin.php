@@ -98,7 +98,7 @@ class Editorial_Admin
 			'administrator',
 			'editorial',
 			array($this, 'lookAndFeel'),
-			get_bloginfo('template_directory').'/assets/favicon.ico'
+			get_bloginfo('template_directory').'favicon.ico'
 		);
 		add_submenu_page(
 			'editorial',

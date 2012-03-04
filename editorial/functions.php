@@ -131,7 +131,7 @@ class Editorial
 		add_option(EDITORIAL_OPTIONS, '', '', 'yes');
 		
 		// add default options
-		$assets = WP_CONTENT_URL.'/themes/editorial/assets/';
+		$assets = WP_CONTENT_URL.'/themes/editorial/';
 		$assets = substr($assets, strlen(get_bloginfo('url')));
 		if (!Editorial::getOption('logo-big')) Editorial::setOption('logo-big', $assets.'images/editorial-logo.png');
 		if (!Editorial::getOption('logo-small')) Editorial::setOption('logo-small', $assets.'images/editorial-logo-small.png');
