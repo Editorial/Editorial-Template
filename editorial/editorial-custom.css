@@ -81,7 +81,7 @@ sam si zlozi CSS naj bo taksna koda, kot imate sami najraje CSS beautify
 
 h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
 #exposed footer a,.inside #single footer a,.inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
-#team .title,footer h3,.notfound h1,.widget h4 {color:#d00;}
+#team .title,.notfound h1,.widget h4 {color:#d00;}
 
 
 /* 4.LINKS __________________________________________________________________________________________________________ */

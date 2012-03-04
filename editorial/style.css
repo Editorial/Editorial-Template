@@ -64,11 +64,11 @@ background-color:transparent;}
 
 #primary,#rss,.inside #single footer,.inside-portrait #single footer,#tabs,#navigate ul,#embed,.notice,
 #comments article,#paging,.layout-list .featured article,#team li,.featured article,#widgets .adapt,#widgets .group,.widget
-{background:url(../images/bgr/lines.gif) repeat-x;}
+{background:url(images/bgr/lines.gif) repeat-x;}
 
 #find,#primary li,#primary .selected a,#tabs li,#footer nav li,#rss li,#footer .xoxo li,#media-count,footer nav .selected a,
 #layout a,.vote-for em,.vote-against em,#navigate li,.entry-content ul li,.m-button span,.widget li
-{background:url(../images/bgr/sprite.png) no-repeat;}
+{background:url(images/bgr/sprite.png) no-repeat;}
 
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
@@ -909,7 +909,7 @@ position:absolute;top:12px;left:38px;}
 .inside-portrait #exposed figure {width:100%;}
 .featured .info {padding:0;width:64%;float:right;}
 .featured p {width:100%;}
-.layout-grid .featured {background:url(../images/bgr/grid-768.png) repeat-x;}
+.layout-grid .featured {background:url(images/bgr/grid-768.png) repeat-x;}
 .layout-grid .featured article {background-color:#fff;}
 .layout-list .featured .info {width:34%;float:left;}
 .layout-list .featured p {width:47%;float:right;}
@@ -1102,7 +1102,7 @@ display:block;position:absolute;right:52px;z-index:1;}
 .home #exposed figure {float:left;}
 .featured .info {width:auto;float:none;}
 
-.layout-grid .featured {width:976px;background:url(../images/bgr/grid-1024.png) 16px 0 repeat-x;}
+.layout-grid .featured {width:976px;background:url(images/bgr/grid-1024.png) 16px 0 repeat-x;}
 .layout-grid .featured article {background-color:#fff;}
 
 .home-portrait #exposed {margin:0;border:none;width:460px;float:left;}
@@ -1223,7 +1223,7 @@ display:block;position:absolute;right:52px;z-index:1;}
 .ie6 #footer section {margin:0;}
 .ie6 #footer .xoxo {width:auto;float:right;}
 .ie6 #footer nav li {float:left;}
-.ie6 .layout-grid .featured {width:992px;background:url(../images/bgr/grid-1024.png) 32px 0 repeat-x;}
+.ie6 .layout-grid .featured {width:992px;background:url(images/bgr/grid-1024.png) 32px 0 repeat-x;}
 .ie6 .layout-list article,.ie7 .layout-list article {margin:0;border-bottom:20px solid #fff;}
 .ie6 .layout-list article {height:146px;}
 .ie6 .layout-list article img {width:114px;}
