@@ -98,7 +98,7 @@ if (Editorial::isMobileDevice())
 			<!--<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span><?php _e('Back to article', 'Editorial'); ?></span></a>-->
 			<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b> <em>TODO Shape-shifting car made out of cloth</em></a>
 		</header>
-		<img id="loading" src="<?php echo get_bloginfo('template_directory'); ?>/assets/images/bgr/loading.gif" width="48" height="48" alt="<?php _e('Loading', 'Editorial'); ?>">
+		<img id="loading" src="<?php echo get_bloginfo('template_directory'); ?>/images/bgr/loading.gif" width="48" height="48" alt="<?php _e('Loading', 'Editorial'); ?>">
 		<div id="media-elements">
 <?php
 

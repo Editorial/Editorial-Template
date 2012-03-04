@@ -436,7 +436,7 @@ class Editorial
 	{
 		$url = sprintf(
 				'%s%s.png',
-				get_bloginfo('template_directory').'/assets/images/no_image',
+				get_bloginfo('template_directory').'/images/no_image',
 				$featured ? '_big' : ''
 		);
 		$imageData = wp_get_attachment_image_src($thumbId, $args);

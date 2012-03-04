@@ -37,7 +37,7 @@
 	cursor: move;
 	width: 15px;
 	height: 17px;
-	background: url(<?php echo get_bloginfo('template_directory'); ?>/assets/images/handle.png) no-repeat;
+	background: url(<?php echo get_bloginfo('template_directory'); ?>/images/handle.png) no-repeat;
 	text-indent: -99999px;
 	outline: none;
 	margin-right: 10px;

@@ -65,7 +65,7 @@ else
 					$gravatar = sprintf(
 						'http://www.gravatar.com/avatar/%s?d=%s&s=%d',
 						md5(strtolower(trim($Author->user_email))),
-						urlencode(get_bloginfo('template_directory').'/assets/images/_temp/your-name.jpg'), // default image if user has no gravatar
+						urlencode(get_bloginfo('template_directory').'/images/_temp/your-name.jpg'), // default image if user has no gravatar
 						116
 					);
 					printf('
