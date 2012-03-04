@@ -820,12 +820,13 @@ body {width:95.2%;}
 .inside #media figure,.gallery #media figure {max-width:628px;}
 .gallery #media figcaption,.gallery #media #video-fc {width:70%;}
 
-.js #single .social li {margin:10px 5px 0 0;}
+.js #single .social li {margin:10px 5px 0 0;/*height:20px;overflow:hidden;*/}
 .js #single .social li a {display:none;}
 .js #single .social li .resizing {display:block;}
-.social .twitter {width:90px;}
-.social .gplus {width:75px;}
-.social .facebook {width:110px;}
+.social .twitter {width:113px;}
+.social .gplus {width:90px;}
+#single .social .facebook {width:74px;float:right;}
+.js #single .social .facebook {margin:10px 0 0;}
 
 
 #tabs li {width:33.33%;position:relative;}

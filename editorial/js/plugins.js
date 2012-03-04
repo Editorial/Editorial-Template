@@ -49,9 +49,12 @@ if ($('ul.social').length) {
 
 			// Facebook
 			if($('li.facebook').length) {
-				$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="20" data-show-faces="false"></div>');
-				//$('.inside,.inside-portrait,.inside #single,.inside-portrait #single').css('overflow','visible');
-				add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
+				//$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="74" data-height="20" data-show-faces="false"></div>');
+				//add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
+				var url = this.location.href;
+				var params = 'send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;width=74&amp;height=20'
+				$('li.facebook').html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;' + params +'" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:74px;height:20px;" allowTransparency="true"></iframe>');
+
 			}
 
 			fjs.parentNode.insertBefore(frag, fjs);
