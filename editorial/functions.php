@@ -377,7 +377,7 @@ class Editorial
 					
 					?>
 
-					<time class="published" pubdate datetime="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>">
+					<time class="published" datetime="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>">
 						<span class="value-title" title="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>"> </span>
 						<?php the_time(get_option('date_format'));
 ?>
@@ -523,7 +523,7 @@ class Editorial
 						<cite class="author vcard">
 							%2$s
 						</cite>
-						<time class="published" pubdate datetime="%3$s">
+						<time class="published" datetime="%3$s">
 							<span class="value-title" title="%3$s"> </span>
 							%4$s
 						</time>

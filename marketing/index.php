@@ -65,8 +65,8 @@ get_header(); ?>
 			</ul>
 		</div>
 		<footer class="v-hidden">
-			<time class="published" pubdate datetime="2011-11-17T10:00:00+01:00">11/17/2011</time>
-			<a class="author include" href="#brand">Editorial</a>
+			<time class="published" datetime="2011-11-17T10:00:00+01:00">11/17/2011</time>
+			<a class="author include" href="#editorial">Editorial</a>
 		</footer>
 	</article>
 	<aside class="pricing" role="complementary">

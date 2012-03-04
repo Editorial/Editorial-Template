@@ -51,7 +51,7 @@ get_header(); ?>
 			<p id="mailto">hello <span>at</span> editorialtemplate <span>dot</span> com</p>
 		</aside>
 		<footer class="v-hidden">
-			<time class="published" pubdate datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
+			<time class="published" datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
 			<a class="author include" href="#editorial">Editorial</a>
 		</footer>
 	</article>

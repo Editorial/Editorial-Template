@@ -59,7 +59,7 @@ $EditorialClass = 'clear';
 				<?php the_category(', ');
 ?>
 
-				<time class="published" pubdate datetime="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>">
+				<time class="published" datetime="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>">
 					<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
 					<?php the_time(get_option('date_format')); ?>
 
