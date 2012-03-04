@@ -60,11 +60,11 @@ if ($EditorialId != 'notfound')
 ?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/plugins.js"></script>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/script.js"></script>
+<script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/js/plugins.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/js/script.js"></script>
 <?php if ($needsHTML5player) { ?>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/assets/js/libs/mediaelement-and-player.min.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement-and-player.min.js"></script>
 <?php } ?>
 <?php wp_footer(); ?>
 <noscript>Your browser does not support JavaScript!</noscript>
