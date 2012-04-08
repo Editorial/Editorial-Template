@@ -374,7 +374,7 @@ color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
 #single footer em a {font-weight:bold;}
 #single .social {margin:0;width:100%;float:left;}
 #single .social li {margin:10px 15px 0 0;font-size:11px;color:#d9d9d9;text-decoration:underline;float:left;position:relative;}
-#single .social li a {color:#000;text-decoration:none;}
+#single .social li a {color:#000;text-decoration:none;white-space:nowrap;}
 .gallery #single h1,.gallery-portrait #single h1,.feedback #single h1,.notice a {text-decoration:underline;
 color:#d9d9d9;}
 #media {margin:15px 0 0;width:100%;float:left;}
@@ -817,16 +817,23 @@ body {width:95.2%;}
 
 .gallery figure #video {max-width:480px;}
 #intro .entry-summary:after {content:'”';right:-15px;top:15px;}
-.inside #media figure,.gallery #media figure {max-width:628px;}
+.inside #media figure,.gallery #media figure {margin:0 auto;max-width:628px;}
 .gallery #media figcaption,.gallery #media #video-fc {width:70%;}
 
+#single .social {position:relative;}
 .js #single .social li {margin:10px 5px 0 0;/*height:20px;overflow:hidden;*/}
 .js #single .social li a {display:none;}
 .js #single .social li .resizing {display:block;}
 .social .twitter {width:113px;}
-.social .gplus {width:90px;}
-#single .social .facebook {width:74px;float:right;}
-.js #single .social .facebook {margin:10px 0 0;}
+.social .gplus {width:70px;}
+/*#single .social .facebook {width:auto;position:absolute;top:0;right:0;}*/
+#single .social .facebook {width:auto;float:right;}
+.js #single .social .gplus {margin-left:-30px;position:absolute;top:0;left:50%;}
+.js #single .social .facebook {margin:10px 0 0;text-align:right;}
+/*#single .social .facebook iframe {width:76px;}*/
+
+.js #single .social .facebook {width:100px;height:20px;position:relative;float:right;}
+.js #single .social .facebook iframe {position:absolute;top:0;right:0;}
 
 
 #tabs li {width:33.33%;position:relative;}
