@@ -77,7 +77,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <header id="header" class="clear" role="banner">
 	<h1 id="brand" class="vcard">
 		<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
-			<img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small').'" width="133" height="19' ?>" alt="<?php bloginfo('name'); ?>">
+			<img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small') ?>" alt="<?php bloginfo('name'); ?>">
 		</a>
 	</h1>
 	<form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
