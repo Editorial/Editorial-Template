@@ -52,8 +52,44 @@ if ($('ul.social').length) {
 				//$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="74" data-height="20" data-show-faces="false"></div>');
 				//add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
 				var url = this.location.href;
-				var params = 'send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;width=74&amp;height=20'
-				$('li.facebook').html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;' + params +'" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:74px;height:20px;" allowTransparency="true"></iframe>');
+				var params = 'send=false&amp;layout=button_count&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;width=76&amp;height=20'
+				$('li.facebook').html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;' + params +'" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:76px;height:20px;" allowTransparency="true"></iframe>');
+
+
+				$('li.facebook').find('iframe').on('load',function(){
+					alert('naloudano');
+				});
+
+
+
+				function loadcode(d, s, id)
+{
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}
+function init()
+{
+loadcode(document, 'script', 'facebook-jssdk');
+setTimeout(initx, 10);
+}
+function initx()
+{
+likeframe=document.getElementById('d2').getElementsByTagName('iframe')[0];
+if (likeframe) setTimeout(setwidth, 10);
+else setTimeout(initx, 10);
+}
+function setwidth()
+{
+likeframe=document.getElementById('d2').getElementsByTagName('iframe')[0];
+likeframe.style.width='0';
+}
+
+
+
+
 
 			}
 

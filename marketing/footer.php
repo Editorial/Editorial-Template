@@ -117,8 +117,8 @@ if (!is_404())
 
 <?php } ?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/jquery-1.7.2.min.js">\x3C/script>')</script>
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/plugins.js"></script>
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/script.js"></script>
 <noscript>Your browser does not support JavaScript!</noscript>

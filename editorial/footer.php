@@ -59,8 +59,8 @@ if ($EditorialId != 'notfound')
 }
 ?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/jquery-1.6.4.min.js">\x3C/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/jquery-1.7.2.min.js">\x3C/script>')</script>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/plugins.js"></script>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/script.js"></script>
 <?php if ($needsHTML5player) { ?>
