@@ -80,7 +80,7 @@ class Marketing_Admin
             'administrator',
             'marketing',
             array($this, 'payments'),
-            get_bloginfo('template_directory').'/favicon.ico'
+            get_bloginfo('template_directory').'/assets/favicon.ico'
         );
         add_submenu_page(
             'marketing',
