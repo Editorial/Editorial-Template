@@ -19,6 +19,7 @@ var changeViewport = function () {
         $('meta[name="viewport"]').attr('content', 'height=device-width,width=device-height,initial-scale=1.0,maximum-scale=1.0');
     else
         $('meta[name="viewport"]').attr('content', 'height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0');
+    scrollTo(0,0,1);
 }
 
 var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
@@ -45,9 +46,10 @@ $(function(){
 		//@see http://davidwalsh.name/hide-address-bar
 		//!!! na iPadu naredi belo crto
 		if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
-			setTimeout(function(){window.scrollTo(0,1);},0);
 			//$('#media-gallery').height(parseInt($('#media-gallery').height() - 60));
-		}
+			window.addEventListener('load', function() {
+			  setTimeout(scrollTo, 0, 0, 1);}, false);
+			}
 
 		//iOS label fix
 		$('label[for]').click(function(){
@@ -184,9 +186,9 @@ $(function(){
 				active.css('marginTop',0);
 				active.find('img').height(maxH*2);
 			}
-			//if (navigator.userAgent.match(/iPhone/i)) {
-				//active.css('marginTop',89);
-			//}
+			// if (navigator.userAgent.match(/iPhone/i)) {
+			// 	active.css('marginTop',89);
+			// }
 		}
 		centerMedia(1);
 
@@ -277,7 +279,10 @@ $(function(){
 
 		// window
 		$(window).resize(function(){centerMedia();});
-		$(window).bind("orientationchange",function(){centerMedia();});
+		$(window).bind("orientationchange",function(){
+			centerMedia(); 
+			//changeViewport();
+		});
 	}
 
 	// comment karma
