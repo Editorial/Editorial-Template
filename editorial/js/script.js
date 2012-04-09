@@ -281,6 +281,9 @@ $(function(){
 		$(window).bind("orientationchange",function(){
 			centerMedia(); 
 		});
+		$("body").on('touchmove', function (event) {
+		    event.preventDefault();
+		});
 	}
 
 	// comment karma

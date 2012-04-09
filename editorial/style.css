@@ -235,7 +235,7 @@ figcaption p {font:12px/15px helvetica,arial,sans-serif;color:#a5a5a5;}
 .pressed span {background-position: -330px -165px;}
 
 #loading {display:none;}
-#media-elements {width:100%;height:100%;}
+#media-elements {width:100%;height:100%;position:absolute;top:0;left:0;}
 #media-elements figure {display:none;}
 #media-elements .active {display:block;}
 #media-elements img {margin:0 auto;max-height:100%;}
