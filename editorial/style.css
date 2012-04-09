@@ -149,8 +149,7 @@ figcaption p {font:12px/15px helvetica,arial,sans-serif;color:#a5a5a5;}
 
 #media-gallery {width:100%;min-width:320px;height:100%;background:#000;position:absolute;top:0;left:0;display:none;}
 .slideshow #media-gallery {display:block;}
-#media-gallery header {width:100%;height:60px;background:#333;background:rgba(0,0,0,.75);position:absolute;top:0;left:0;
-z-index:1;}
+#media-gallery header {width:100%;height:60px;background:#333;background:rgba(0,0,0,.75);position:absolute;top:0;left:0; z-index:1;}
 #logo-white {width:89px;position:absolute;top:24px;left:10px;}
 #remote {width:141px;position:absolute;top:11px;right:63px;
 	-moz-border-radius:20px;
@@ -236,7 +235,7 @@ z-index:1;}
 .pressed span {background-position: -330px -165px;}
 
 #loading {display:none;}
-#media-elements {width:100%;height:100%;}
+#media-elements {width:100%;height:100%;position:absolute;top:0;left:0;}
 #media-elements figure {display:none;}
 #media-elements .active {display:block;}
 #media-elements img {margin:0 auto;max-height:100%;}
