@@ -107,7 +107,7 @@ dl,dd {margin-bottom:1.5em;}
 dt{font-weight:normal;}
 blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
 b,strong{font-weight:bold;}
-i,em {font-style:italic;}
+i,em {font-style:italic;font-family:minion-pro-italic;}
 sup,sub {font-size:75%;line-height:0;position:relative;}
 sup {top:-.5em;}
 sub {bottom:-.25em;}
