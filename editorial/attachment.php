@@ -220,6 +220,9 @@ if (Editorial::isMobileDevice())
 					}
 ?>
 				<ul>
+					<!--<li class="previous disabled">
+						<span><?php _e('Previous', 'Editorial'); ?></span>
+					</li>-->
 <?php
 						if ($previous)
 						{
@@ -246,6 +249,9 @@ if (Editorial::isMobileDevice())
 <?php
 						}
 ?>
+					<!--<li class="next disabled">
+						<span><?php _e('Next', 'Editorial'); ?></span>
+					</li>-->
 				</ul>
 			</nav>
 <?php

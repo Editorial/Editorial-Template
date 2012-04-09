@@ -434,8 +434,11 @@ background-position:0 -220px;}
 #navigate .previous {float:left;}
 #navigate .next {text-align:right;float:right;}
 #navigate img {margin:0 0 11px;}
-#navigate a {background:#fff;}
-#navigate span {margin:0 0 11px;width:130px;height:130px;display:block;}
+#navigate a {background:#fff;display:block;}
+#navigate .previous.disabled {background-position:0 -370px;}
+#navigate .previous span,#navigate .next span {padding:141px 0 0;color:#7f7f7f;display:block;}
+#navigate .next.disabled {background-position:0 -370px;}
+/*#navigate span {margin:0 0 11px;width:130px;height:130px;display:block;}*/
 
 #embed {margin:0 0 20px;padding:10px 0 0;}
 #embed h4 {margin:0 0 12px;font-size:22px;line-height:25px;}
