@@ -56,6 +56,7 @@ if ($('ul.social').length) {
 				$('li.facebook').html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;' + params +'" scrolling="no" frameborder="0" style="border:none;width:76px;height:20px;overflow:hidden;" allowTransparency="true"></iframe>');
 			}
 
+			$('#single').find('ul.social').addClass('counters');
 			fjs.parentNode.insertBefore(frag, fjs);
 		}(document, 'script'));
 
