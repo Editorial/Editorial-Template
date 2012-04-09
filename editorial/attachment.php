@@ -220,10 +220,15 @@ if (Editorial::isMobileDevice())
 					}
 ?>
 				<ul>
-					<!--<li class="previous disabled">
-						<span><?php _e('Previous', 'Editorial'); ?></span>
-					</li>-->
 <?php
+				if ($next && !$previous)
+						{
+?>
+					<li class="previous disabled">
+						<span><?php _e('Previous', 'Editorial'); ?></span>
+					</li>
+<?php
+						}
 						if ($previous)
 						{
 							$imageMeta = wp_get_attachment_image_src($previous->ID, 'media-thumb');
@@ -248,10 +253,15 @@ if (Editorial::isMobileDevice())
 					</li>
 <?php
 						}
+									if ($previous && !$next)
+						{
 ?>
-					<!--<li class="next disabled">
+					<li class="next disabled">
 						<span><?php _e('Next', 'Editorial'); ?></span>
-					</li>-->
+					</li>
+<?php
+						}
+?>
 				</ul>
 			</nav>
 <?php
