@@ -14,15 +14,21 @@
 //LOCAL DEV
 //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
 
+var changeViewport = function () {
+    if (window.orientation == 90 || window.orientation == -90)
+        $('meta[name="viewport"]').attr('content', 'height=device-width,width=device-height,initial-scale=1.0,maximum-scale=1.0');
+    else
+        $('meta[name="viewport"]').attr('content', 'height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0');
+}
 
 var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
 if (iDevice) {
 	var viewportmeta = document.querySelectorAll('meta[name="viewport"]')[0];
 	if (viewportmeta) {
-		viewportmeta.content = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0';
-		document.body.addEventListener('gesturestart',function() {
-			viewportmeta.content = 'width=device-width,minimum-scale=0.25,maximum-scale=1.6';
-		},false);
+		viewportmeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0';
+		// document.body.addEventListener('gesturestart',function() {
+		// 	viewportmeta.content = 'width=device-width,minimum-scale=0.25,maximum-scale=1.6';
+		// },false);
 	}
 
 	/*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
@@ -33,12 +39,14 @@ $(function(){
 
 	if (iDevice) {
 
+		window.addEventListener('orientationchange', changeViewport, true);
+		try { changeViewport(); } catch (err) { }
 		//remove address bar
 		//@see http://davidwalsh.name/hide-address-bar
 		//!!! na iPadu naredi belo crto
 		if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
 			setTimeout(function(){window.scrollTo(0,1);},0);
-			//$('#media-gallery').height(parseInt($('#media-gallery').height() + 60));
+			//$('#media-gallery').height(parseInt($('#media-gallery').height() - 60));
 		}
 
 		//iOS label fix
