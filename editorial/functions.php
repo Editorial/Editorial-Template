@@ -838,7 +838,7 @@ class Editorial
 		switch ($network)
 		{
 			case EDITORIAL_TWITTER:
-				$html = '<a href="http://twitter.com/home?status=TODO naslov clanka in URL" class="resizing">Tweet this</a>';
+				$html = '<a href="http://twitter.com/home?status=TODO naslov clanka in URL" class="resizing">Share this article: Tweet</a>';
 				break;
 
 			/*
@@ -857,7 +857,7 @@ class Editorial
 			*/
 
 			case EDITORIAL_GOOGLE:
-				$html = '<a href="https://m.google.com/app/plus/x/?v=compose&content=TODO naslov clanka in URL" class="resizing">Post to Google+</a>';
+				$html = '<a href="https://m.google.com/app/plus/x/?v=compose&content=TODO naslov clanka in URL" class="resizing">Share this article: Google+</a>';
 			break;
 			/*
 			case EDITORIAL_GOOGLE:
@@ -873,7 +873,7 @@ class Editorial
 			*/
 
 			case EDITORIAL_FACEBOOK:
-				$html = '<a href="http://www.facebook.com/sharer.php?u=http://URL_TODO&t=TODO naslov clanka" class="resizing">Post to Facebook</a>';
+				$html = '<a href="http://www.facebook.com/sharer.php?u=http://URL_TODO&t=TODO naslov clanka" class="resizing">Share this article: Like</a>';
 			break;
 			/*
 			case EDITORIAL_FACEBOOK:
