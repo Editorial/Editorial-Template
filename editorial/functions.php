@@ -840,7 +840,11 @@ class Editorial
 		switch ($network)
 		{
 			case EDITORIAL_TWITTER:
-				$html = '<a href="http://twitter.com/home?status=TODO naslov clanka in URL" class="resizing">Share this article: Tweet</a>';
+				$status = esc_attr($params['text'])." - ".urlencode($params['url'])." via ".self::getOption('twitter-account')."";
+				$html = sprintf(
+							'<a href="http://twitter.com/home?status=%s" class="resizing">Share this article: Tweet</a>',
+							$status
+							);
 				break;
 
 			/*
@@ -859,7 +863,11 @@ class Editorial
 			*/
 
 			case EDITORIAL_GOOGLE:
-				$html = '<a href="https://m.google.com/app/plus/x/?v=compose&content=TODO naslov clanka in URL" class="resizing">Share this article: Google+</a>';
+				$status = esc_attr($params['text'])." - ".urlencode($params['url']);
+				$html = sprintf(
+						'<a href="https://m.google.com/app/plus/x/?v=compose&content=%s" class="resizing">Share this article: Google+</a>',
+						$status
+						);
 			break;
 			/*
 			case EDITORIAL_GOOGLE:
@@ -875,7 +883,12 @@ class Editorial
 			*/
 
 			case EDITORIAL_FACEBOOK:
-				$html = '<a href="http://www.facebook.com/sharer.php?u=http://URL_TODO&t=TODO naslov clanka" class="resizing">Share this article: Like</a>';
+				//$status = esc_attr($params['text'])." - ".urlencode($params['url']);
+				$html = sprintf(
+						'<a href="http://www.facebook.com/sharer.php?u=%s&t=%s" class="resizing">Share this article: Like</a>',
+						urlencode($params['url']),
+						esc_attr($params['text'])
+				);
 			break;
 			/*
 			case EDITORIAL_FACEBOOK:
