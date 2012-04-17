@@ -52,8 +52,8 @@ if ($('ul.social').length) {
 				//$('li.facebook').html('<div id="fb-root"></div><div class="fb-like" data-send="false" data-layout="button_count" data-width="74" data-height="20" data-show-faces="false"></div>');
 				//add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=1234567890', 'facebook-jssdk');
 				var url = this.location.href;
-				var params = 'send=false&amp;layout=button_count&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;width=76&amp;height=20';
-				$('li.facebook').html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;' + params +'" scrolling="no" frameborder="0" style="border:none;width:76px;height:20px;overflow:hidden;" allowTransparency="true"></iframe>');
+				var params = 'send=false&amp;layout=button_count&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;width=95&amp;height=20';
+				$('li.facebook').html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;' + params +'" scrolling="no" frameborder="0" style="border:none;width:95px;height:20px;overflow:hidden;" allowTransparency="true"></iframe>');
 			}
 
 			$('#single').find('ul.social').addClass('counters');

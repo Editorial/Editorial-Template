@@ -13,17 +13,22 @@ You can also use cssbeautifier.com to format code as you like it.
 Every time update comes your custom CSS remains unchanged and style.css will be updated with new features.
 
 Here are some prepared options for customization.
-Do search & replace (s&r) for all quoted ("") strings in this file.
+Do search & replace (s&r) for all quoted ("") strings mentioned below in this file.
 
 option 01 change colors:
 - s&r "#333" {default color}
-- s&r "#d00" {red color: post categories, selected category} [for red lines, bullets and active arrow go to: images/sprite.png]
-- s&r "#999" {gray color: author & publish date, image captions, form labels}
+- s&r "#262626" {title color: title, link on title, content / default link, default widget text color etc.}
+- s&r "#d00" {red color: post categories, selected category, required fields, colophon author title, widget titles etc.} [to change red line, bullet and active arrow go to: images/sprite.png]
+- s&r "#999" {gray color: author & publish date, image captions, form labels etc.}
 
 option 02 change font:
-- s&r "minion-pro,georgia,serif" and "helvetica,arial,sans-serif" with your font
+- s&r "minion-pro,georgia,serif"
+- s&r "minion-pro-italic" []
+- s&r "helvetica,arial,sans-serif" with your font
 
 option 03 change font sizes:
+- default
+- titles
 -
 
 
@@ -33,7 +38,19 @@ option 03 change font sizes:
 
 
 
+
+
 BLA
+
+
+
+How to customize other stuff / everything?
+- colors [safe]
+- fonts [safe]
+- font-sizes [almost safe]
+-
+Please note only options specified above are safe to customize so we can maintean
+
 
 
 
@@ -89,6 +106,10 @@ body {color:#333;}
 
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
+
+h1,h2,h3,h4,h5,h6,h1 a,h2 a {color:#262626;}
+
+
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
 h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
@@ -97,6 +118,10 @@ h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .se
 
 
 /* 4.LINKS __________________________________________________________________________________________________________ */
+
+a {color:#262626;}
+
+
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
 
 figcaption {color:#999;}
@@ -117,11 +142,13 @@ figcaption {color:#999;}
 
 #comments cite a,#comments .no-link {color:#333;}
 .featured time,#exposed time,#single time,.inside #single footer em,.inside-portrait #single footer em,
-.inside #single footer em a,.inside-portrait #single footer em a,#paging p {color:#999;}
+.inside #single footer em a,.inside-portrait #single footer em a,#paging p,.bad-comment,.trackback {color:#999;}
+#exposed p,#media-count,.notice,.notice em,.widget li {color:#262626;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
+#embed-code {color:#999;}
 .favorize .negative {color:#d00;}
 .favorize .coin.negative {border-color:#d00;background:#d00;}
 #team .fn,#team .email {color:#333;}
@@ -130,6 +157,7 @@ figcaption {color:#999;}
 
 .widget h4 .rsswidget {color:#d00;}
 #wp-calendar caption,.widget .rss-date {color:#333;}
+#copyright,#copyright a {color:#999;}
 
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
@@ -138,6 +166,8 @@ figcaption {color:#999;}
 ::-webkit-selection {background:#d00;}
 ::-moz-selection {background:#d00;}
 ::selection {background:#d00;}
+::-webkit-input-placeholder {color:#999;}
+input:-moz-placeholder {color:#999;}
 
 
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
@@ -173,7 +203,6 @@ figcaption {color:#999;}
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
-
 }
 
 
@@ -198,7 +227,6 @@ figcaption {color:#999;}
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
-
 
 }
 
@@ -237,6 +265,10 @@ figcaption {color:#999;}
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
+
+#m-back b {color:#999;}
+
+
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 /* 8.BANNER _________________________________________________________________________________________________________ */
@@ -249,7 +281,6 @@ figcaption {color:#999;}
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
-
 
 }
 
