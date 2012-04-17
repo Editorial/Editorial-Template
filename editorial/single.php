@@ -75,6 +75,7 @@ $EditorialClass = 'clear';
 					{
 						echo '					<li class="twitter">'.Editorial::shareHTML(EDITORIAL_TWITTER, array(
 							'text'   => get_the_title(),
+							'url'    => get_permalink(),
 							'width'  => 100,
 							'height' => 20
 						)).'</li>
@@ -82,12 +83,16 @@ $EditorialClass = 'clear';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_GOOGLE))
 					{
-						echo '					<li class="gplus">'.Editorial::shareHTML(EDITORIAL_GOOGLE).'</li>
+						echo '					<li class="gplus">'.Editorial::shareHTML(EDITORIAL_GOOGLE, array(
+							'text'   => get_the_title(),
+							'url'    => get_permalink(),
+						)).'</li>
 ';
 					}
 					if (Editorial::isShareEnabled(EDITORIAL_FACEBOOK))
 					{
 						echo '					<li class="facebook">'.Editorial::shareHTML(EDITORIAL_FACEBOOK, array(
+							'text'   => get_the_title(),
 							'url'    => get_permalink(),
 							'width'  => 80,
 							'height' => 20
