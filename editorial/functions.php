@@ -837,10 +837,11 @@ class Editorial
 	public static function shareHTML($network, $params = array())
 	{
 		$html = '';
+		$status = get_bloginfo('name');
 		switch ($network)
 		{
 			case EDITORIAL_TWITTER:
-				$status = esc_attr($params['text'])." - ".urlencode($params['url'])." via ".self::getOption('twitter-account')."";
+				$status .=":%20".esc_attr($params['text'])."%20".urlencode($params['url'])."%20via%20".self::getOption('twitter-account')."";
 				$html = sprintf(
 							'<a href="http://twitter.com/home?status=%s" class="resizing">Share this article: Tweet</a>',
 							$status
@@ -863,10 +864,10 @@ class Editorial
 			*/
 
 			case EDITORIAL_GOOGLE:
-				$status = esc_attr($params['text'])." - ".urlencode($params['url']);
+				//$status .=":%20".esc_attr($params['text'])."%20".urlencode($params['url']);
 				$html = sprintf(
-						'<a href="https://m.google.com/app/plus/x/?v=compose&content=%s" class="resizing">Share this article: Google+</a>',
-						$status
+						'<a href="https://plus.google.com/share?url=%s" class="resizing">Share this article: Google+</a>',
+						urlencode($params['url'])
 						);
 			break;
 			/*
