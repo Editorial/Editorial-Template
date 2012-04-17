@@ -13,18 +13,19 @@ You can also use cssbeautifier.com to format code as you like it.
 Every time update comes your custom CSS remains unchanged and style.css will be updated with new features.
 
 Here are some prepared options for customization.
-Do search & replace (s&r) for all quoted ("") strings mentioned below in this file.
+Do search & replace (S&R) for all quoted ("") strings mentioned below in this file.
 
 option 01 change colors:
-- s&r "#333" {default color}
-- s&r "#262626" {title color: title, link on title, content / default link, default widget text color etc.}
-- s&r "#d00" {red color: post categories, selected category, required fields, colophon author title, widget titles etc.} [to change red line, bullet and active arrow go to: images/sprite.png]
-- s&r "#999" {gray color: author & publish date, image captions, form labels etc.}
+- S&R "#333" {default color}
+- S&R "#262626" {title color: title, link on title, content / default link, default widget text color etc.}
+- S&R "#d00" {red color: post categories, selected category, required fields, colophon author title, widget titles etc.}
+  [to change red line, bullet and active arrow go to: images/sprite.png]
+- S&R "#999" {gray color: author & publish date, image captions, form labels etc.}
 
 option 02 change font:
-- s&r "minion-pro,georgia,serif"
-- s&r "minion-pro-italic" []
-- s&r "helvetica,arial,sans-serif" with your font
+- S&R "minion-pro,georgia,serif"
+- S&R "minion-pro-italic" []
+- S&R "helvetica,arial,sans-serif" with your font
 
 option 03 change font sizes:
 - default
