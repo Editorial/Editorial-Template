@@ -600,16 +600,18 @@ class Editorial
 		$attachmentCount = count(get_children(array('post_parent' => $postId)));
 ?>
 	<nav id="tabs" role="navigation">
-		<ul>
+		<ul <?php echo comments_open() ? "" : "class='no-feedback'" ?>>
 			<li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>>
 				<a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
 			</li>
 			<li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
 				<a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
 			</li>
+			<?php if (comments_open()) { ?>
 			<li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
 				<a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
 			</li>
+			<?php } ?>
 		</ul>
 	</nav>
 <?php

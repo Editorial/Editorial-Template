@@ -38,7 +38,7 @@
 <meta http-equiv="cleartype" content="on">
 <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 -->
-<meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <!-- For iPhone 4 with high-resolution Retina display: -->
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo Editorial::getOption('touch-icon'); ?>">
 <!-- For first-generation iPad: -->
