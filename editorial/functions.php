@@ -263,7 +263,22 @@ class Editorial
 			// set that editorial was installed
 			self::setOption('editorial-install', true);
 		}
+		//testing media library voodoo
+		//self::init_media_library_plus();
 	}
+	
+	// public function init_media_library_plus(){
+	// 	if (strpos($_SERVER["REQUEST_URI"], "upload.php") === FALSE){
+	// 		// debug("yoyoyoy");
+	// 		// 				return;
+	// 		}
+	// 	
+	// 	add_action('restrict_manage_posts', array('Editorial','media_library_menu'));
+	// 	add_action('admin_head', array('Editorial','media_plus_header'), 51);
+	// 	add_filter('wp_redirect', array('Editorial','media_plus_redirect'), 10, 2);
+	// }
+	
+
 
 	/**
 	 * Defines menus users can build
