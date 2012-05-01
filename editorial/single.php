@@ -112,6 +112,26 @@ $EditorialClass = 'clear';
 			</footer>
 		</section>
 		
+		<section id="media">
+			<figure>
+				<a href="<?php echo $attachmentUrl ?>" id="to-gallery">
+					<img src="<?php echo $thumbnailUrl; ?>" alt="<?php echo $imageMeta->alt ?  $imageMeta->alt : $imageMeta->title; ?>" class="photo">
+					<?php             if ($attachmentsCount > 1) {
+					?>
+					<em id="media-count">1/<?php echo $attachmentsCount; ?></em>
+					<?php
+					}
+					?>
+				</a>
+				<?php if (isset($imageMeta)) { ?>
+				<figcaption>
+					<h3><?php echo $imageMeta->post_title; ?></h3>
+					<p><?php echo $imageMeta->post_content; ?></p>
+				</figcaption>
+				<?php } ?>
+			</figure>
+		</section>
+		
 		<section class="entry-content">
 			<?php the_content(); ?>
 		</section>

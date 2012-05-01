@@ -142,6 +142,63 @@ class Editorial
 		// number of active widgets?
 		$widgets = wp_get_sidebars_widgets();
 		self::$widgetCount = isset($widgets[EDITORIAL_WIDGET]) && is_array($widgets[EDITORIAL_WIDGET]) ? count($widgets[EDITORIAL_WIDGET]) : 0;
+		
+		add_filter('attachment_fields_to_edit', array('Editorial','hide_some_attachment_fields'), 11, 2 );
+		//title - alternate, description, insert into post gre stran, en od ostalih linkov naj bo gumb)
+		//url image/video se mora prekikazat tudi v galeriji.
+	}
+	
+	public function hide_some_attachment_fields($form_fields, $post) {
+		
+		if ( substr( $post->post_mime_type, 0, 5 ) == 'image' ) {
+		
+		$form_fields['image_alt']['value'] = '';
+		$form_fields['image_alt']['input'] = 'hidden';
+		$form_fields['post_excerpt']['value'] = '';
+		$form_fields['post_excerpt']['input'] = 'hidden';
+		$form_fields['url']['value'] = '';
+		$form_fields['url']['input'] = 'hidden';
+		$form_fields['align']['value'] = 'aligncenter';
+		$form_fields['align']['input'] = 'hidden';
+		$form_fields['image-size']['value'] = 'thumbnail';
+		$form_fields['image-size']['input'] = 'hidden';
+
+		$delete = '';
+		$thumbnail = '';
+		$filename = basename( $post->guid );
+		$attachment_id = $post->ID;
+		//delete button
+    if ( current_user_can( 'delete_post', $attachment_id ) ) {
+        if ( !EMPTY_TRASH_DAYS ) {
+            $delete = "<a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete'>" . __( 'Delete Permanently' ) . '</a>';
+        } elseif ( !MEDIA_TRASH ) {
+            $delete = "<a href='#' class='del-link' onclick=\"document.getElementById('del_attachment_$attachment_id').style.display='block';return false;\">" . __( 'Delete' ) . "</a>
+                     <div id='del_attachment_$attachment_id' class='del-attachment' style='display:none;'>" . sprintf( __( 'You are about to delete <strong>%s</strong>.' ), $filename ) . "
+                     <a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='button'>" . __( 'Continue' ) . "</a>
+                     <a href='#' class='button' onclick=\"this.parentNode.style.display='none';return false;\">" . __( 'Cancel' ) . "</a>
+                     </div>";
+        } else {
+            $delete = "<a href='" . wp_nonce_url( "post.php?action=trash&amp;post=$attachment_id", 'trash-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete'>" . __( 'Move to Trash' ) . "</a><a href='" . wp_nonce_url( "post.php?action=untrash&amp;post=$attachment_id", 'untrash-attachment_' . $attachment_id ) . "' id='undo[$attachment_id]' class='undo hidden'>" . __( 'Undo' ) . "</a>";
+        }
+    }
+    else {
+        $delete = '';
+    }
+
+		$calling_post_id = 0;
+		if ( isset( $_GET['post_id'] ) )
+			$calling_post_id = absint( $_GET['post_id'] );
+		elseif ( isset( $_POST ) && count( $_POST ) ) // Like for async-upload where $_GET['post_id'] isn't set
+			$calling_post_id = $post->post_parent;
+		if ( $calling_post_id && current_theme_supports( 'post-thumbnails', get_post_type( $calling_post_id ) )
+			&& post_type_supports( get_post_type( $calling_post_id ), 'thumbnail' ) && get_post_thumbnail_id( $calling_post_id ) != $attachment_id ) {
+			$ajax_nonce = wp_create_nonce( "set_post_thumbnail-$calling_post_id" );
+			$thumbnail = "<a class='wp-post-thumbnail' id='wp-post-thumbnail-" . $attachment_id . "' href='#' onclick='WPSetAsThumbnail(\"$attachment_id\", \"$ajax_nonce\");return false;'>" . esc_html__( "Use as featured image" ) . "</a>";
+		}
+
+		$form_fields['buttons'] = array( 'tr' => "\t\t<tr class='submit'><td></td><td class='savesend'>$thumbnail $delete</td></tr>\n" );
+	}
+		return $form_fields;
 	}
 	
 	/**
@@ -263,22 +320,8 @@ class Editorial
 			// set that editorial was installed
 			self::setOption('editorial-install', true);
 		}
-		//testing media library voodoo
-		//self::init_media_library_plus();
 	}
 	
-	// public function init_media_library_plus(){
-	// 	if (strpos($_SERVER["REQUEST_URI"], "upload.php") === FALSE){
-	// 		// debug("yoyoyoy");
-	// 		// 				return;
-	// 		}
-	// 	
-	// 	add_action('restrict_manage_posts', array('Editorial','media_library_menu'));
-	// 	add_action('admin_head', array('Editorial','media_plus_header'), 51);
-	// 	add_filter('wp_redirect', array('Editorial','media_plus_redirect'), 10, 2);
-	// }
-	
-
 
 	/**
 	 * Defines menus users can build
