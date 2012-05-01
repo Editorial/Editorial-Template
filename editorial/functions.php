@@ -151,17 +151,14 @@ class Editorial
 	public function hide_some_attachment_fields($form_fields, $post) {
 		
 		if ( substr( $post->post_mime_type, 0, 5 ) == 'image' ) {
-		
-		$form_fields['image_alt']['value'] = '';
-		$form_fields['image_alt']['input'] = 'hidden';
-		$form_fields['post_excerpt']['value'] = '';
-		$form_fields['post_excerpt']['input'] = 'hidden';
-		$form_fields['url']['value'] = '';
-		$form_fields['url']['input'] = 'hidden';
-		$form_fields['align']['value'] = 'aligncenter';
-		$form_fields['align']['input'] = 'hidden';
-		$form_fields['image-size']['value'] = 'thumbnail';
-		$form_fields['image-size']['input'] = 'hidden';
+			
+			// remove unnecessary fields
+	    unset( $form_fields['image-size'] );
+	    unset( $form_fields['post_excerpt'] );
+	    unset( $form_fields['url'] );
+	    unset( $form_fields['image_url'] );
+	    unset( $form_fields['align'] );
+			unset( $form_fields['image_alt'] );
 
 		$delete = '';
 		$thumbnail = '';
@@ -196,8 +193,9 @@ class Editorial
 			$thumbnail = "<a class='wp-post-thumbnail' id='wp-post-thumbnail-" . $attachment_id . "' href='#' onclick='WPSetAsThumbnail(\"$attachment_id\", \"$ajax_nonce\");return false;'>" . esc_html__( "Use as featured image" ) . "</a>";
 		}
 
-		$form_fields['buttons'] = array( 'tr' => "\t\t<tr class='submit'><td></td><td class='savesend'>$thumbnail $delete</td></tr>\n" );
+		$form_fields['buttons'] = array( 'tr' => "<tr class='submit'><td></td><td class='savesend'>$thumbnail $delete</td></tr>\n" );
 	}
+	// print_r($form_fields);
 		return $form_fields;
 	}
 	
