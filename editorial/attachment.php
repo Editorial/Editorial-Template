@@ -232,11 +232,18 @@ if (Editorial::isMobileDevice())
 						if ($previous)
 						{
 							$imageMeta = wp_get_attachment_image_src($previous->ID, 'media-thumb');
+							$attchMimeType = get_post_mime_type($previous->ID);
+							
+							$thumb = $imageMeta[0];
+							
+							if( Editorial::is_video($attchMimeType)){
+								$thumb = get_bloginfo('template_directory')."/images/attachment/video.png";
+							}
 							
 ?>
 					<li class="previous">
 						<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
-							<img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
+							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
 							<?php _e('Previous', 'Editorial'); ?>
 						</a>
 					</li>

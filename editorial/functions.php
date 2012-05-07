@@ -150,7 +150,9 @@ class Editorial
 	
 	public function hide_some_attachment_fields($form_fields, $post) {
 		
-		if ( substr( $post->post_mime_type, 0, 5 ) == 'image' ) {
+		//print_r($form_fields);
+		
+	//	if ( self::is_image( $post->post_mime_type ) ) {
 			
 			// remove unnecessary fields
 	    unset( $form_fields['image-size'] );
@@ -194,8 +196,7 @@ class Editorial
 		}
 
 		$form_fields['buttons'] = array( 'tr' => "<tr class='submit'><td></td><td class='savesend'>$thumbnail $delete</td></tr>\n" );
-	}
-	// print_r($form_fields);
+//	}
 		return $form_fields;
 	}
 	
