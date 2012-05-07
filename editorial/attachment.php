@@ -123,12 +123,11 @@ if (Editorial::isMobileDevice())
 					{
 						$src = wp_get_attachment_url($attachment->ID);
 						$media = sprintf('<video
-							width="612"
-							height="459"
+							
 							src="%s"
 							type="%s"
 							id="player"
-							poster="@todo"
+						
 							controls="controls"
 							preload="none"></video>',
 							$src,

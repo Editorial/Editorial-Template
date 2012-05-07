@@ -175,10 +175,17 @@ $(function(){
 			if (w) var active = $('#media-elements').find('figure');
 			else var active = $('#media-elements').find('.active');
 
-			active.find('img').height('auto');
+			a = active.find('img');
+			if(a.length == 0) {
+				vid = active.find('.mejs-container');
+				vid.css('position', 'inherit');
+			}
+			a.height('auto');
+			
+			console.log(a);
 
 			var maxH = $(window).height()/2;
-			var imgH = active.find('img').height()/2;
+			var imgH = a.height()/2;
 			var margin = maxH - imgH;
 
 			if (margin > 0) {
@@ -186,7 +193,7 @@ $(function(){
 			}
 			else {
 				active.css('marginTop',0);
-				active.find('img').height(maxH*2);
+				a.height(maxH*2);
 			}
 		}
 		centerMedia(1);
