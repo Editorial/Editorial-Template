@@ -195,7 +195,7 @@ if (Editorial::isMobileDevice())
 <?php
 					} else if (Editorial::is_video($post->post_mime_type)) {
 ?>
-				<video width="612" height="459" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" poster="@todo" controls="controls" preload="none"></video>
+				<video width="612" height="459" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" controls="controls" preload="none"></video>
 <?php
 					}
 ?>
@@ -232,6 +232,7 @@ if (Editorial::isMobileDevice())
 						if ($previous)
 						{
 							$imageMeta = wp_get_attachment_image_src($previous->ID, 'media-thumb');
+							
 ?>
 					<li class="previous">
 						<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
@@ -244,10 +245,18 @@ if (Editorial::isMobileDevice())
 						if ($next)
 						{
 							$imageMeta = wp_get_attachment_image_src($next->ID, 'media-thumb');
+							$attchMimeType = get_post_mime_type($next->ID);
+							
+							$thumb = $imageMeta[0];
+							
+							if( Editorial::is_video($attchMimeType)){
+								$thumb = get_bloginfo('template_directory')."/images/attachment/video.png";
+							}
+						
 ?>
 					<li class="next">
 						<a href="<?php echo get_permalink($next->ID); ?>" rel="next">
-							<img src="<?php echo $imageMeta[0]; ?>" alt="Media thumbnail">
+							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
 							<?php _e('Next', 'Editorial'); ?>
 						</a>
 					</li>
