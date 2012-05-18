@@ -113,9 +113,10 @@ if (Editorial::isMobileDevice())
 					$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
 					if (Editorial::is_image($attachment->post_mime_type))
 					{
+						$src = isset($src[0]) ? $src[0] : '';
 						$media = sprintf(
 							'<img src="%s" alt="%s">',
-							isset($src[0]) ? $src[0] : '',
+							$src,
 							$attachment->post_title
 						);
 					}
@@ -123,11 +124,9 @@ if (Editorial::isMobileDevice())
 					{
 						$src = wp_get_attachment_url($attachment->ID);
 						$media = sprintf('<video
-							
 							src="%s"
 							type="%s"
 							id="player"
-						
 							controls="controls"
 							preload="none"></video>',
 							$src,
@@ -153,6 +152,7 @@ if (Editorial::isMobileDevice())
 								<h3>%s</h3>
 								<p>%s</p>
 								<a href="#" class="m-toggle m-button"><span>%s</span></a>
+								<p style="text-align:right;"><input type="text" value="%s"></p>
 								<a href="#" class="m-embed m-button"><span>%s</span></a>
 							</figcaption>
 						</figure>',
@@ -164,6 +164,7 @@ if (Editorial::isMobileDevice())
 						$attachment->post_title,
 						$attachment->post_content,
 						__('Toggle', 'Editorial'),
+						get_permalink($attachment->ID),
 						__('Embed', 'Editorial')
 					);
 					$i++;
@@ -285,7 +286,7 @@ if (Editorial::isMobileDevice())
 			<fieldset id="embed">
 				<h4><label for="embed-code"><?php _e('Embed code', 'Editorial'); ?></label></h4>
 				<p><?php _e('There’s no need for downloading and uploading it to your blog/website when you can easily embed it.', 'Editorial'); ?></p>
-				<input id="embed-code" value="&lt;script type=&quot;text/javascript&quot; src=&quot;http://use.typekit.c&quot;&gt;">
+				<input id="embed-code" value="<?php echo get_permalink($post->ID); ?>">
 			</fieldset>
 		</aside>
 	</article>

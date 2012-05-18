@@ -824,6 +824,11 @@ class Editorial
 	 */
 	public static function isMobileDevice($useragent = null)
 	{
+		//if we are debugging
+		if($_GET['debugmobile'])
+		{
+			return true;
+		}
 		if (!$useragent)
 		{
 			// take from server

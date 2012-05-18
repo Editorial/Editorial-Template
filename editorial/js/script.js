@@ -172,29 +172,29 @@ $(function(){
 
 		//vertical center element
 		function centerMedia(w) {
+			//console.log( $(window).height());
+			//console.log( $('#media-gallery header').height());
 			if (w) var active = $('#media-elements').find('figure');
-			else var active = $('#media-elements').find('.active');
-
-			a = active.find('img');
-			if(a.length == 0) {
-				vid = active.find('.mejs-container');
-				vid.css('position', 'inherit');
-			}
-			a.height('auto');
+						else var active = $('#media-elements').find('.active');
 			
-			console.log(a);
-
-			var maxH = $(window).height()/2;
-			var imgH = a.height()/2;
-			var margin = maxH - imgH;
-
-			if (margin > 0) {
-				active.css('marginTop',margin);
-			}
-			else {
-				active.css('marginTop',0);
-				a.height(maxH*2);
-			}
+						a = active.find('img');
+						// if(a.length == 0) {
+						// 			vid = active.find('.mejs-container');
+						// 			vid.css('position', 'inherit');
+						// 		}
+						a.height('auto');
+			
+						var maxH = $(window).height()/2;
+						var imgH = a.height()/2;
+						var margin = maxH - imgH;
+			
+						if (margin > 0) {
+							active.css('marginTop',margin);
+						}
+						else {
+							active.css('marginTop',0);
+							a.height(maxH*2);
+						}
 		}
 		centerMedia(1);
 
@@ -221,6 +221,22 @@ $(function(){
 		//embed button
 		$('a.m-embed').click(function(e) {
 			e.preventDefault();
+			butt = $(this).toggleClass('pressed');
+			curr_el = butt.prev('p');
+			curr_el.slideToggle(100);
+			$('input',curr_el).css('width', '100%');
+			
+			$('input', curr_el).blur(
+				function(e){
+					if(butt.hasClass('pressed')){
+						scrollTo(0,0,1);
+						butt.toggleClass('pressed');
+						curr_el.slideToggle(100);
+					}
+				}
+				);
+			////
+			
 		});
 
 		//slideshow
@@ -251,7 +267,7 @@ $(function(){
 		var loop = setTimeout('',1);
 		function looping(el) {
 			$('#m-slide').addClass('running');
-			loop = setTimeout(function(){goNext(el)},3000);
+			loop = setTimeout(function(){goNext(el)},100);
 			//goNext(el);
 			//loop = setTimeout($(this),3000);
 			//clearTimeout(loop);
