@@ -301,3 +301,34 @@ if (Editorial::isMobileDevice())
 }
 @include('footer.php');
 ?>
+	<script>
+	$(function(){
+
+		$(document).focus();
+		$(document).keydown(function(e){
+			var key = e.keyCode || e.which;
+			//left
+			if(key === 37 ){
+				new_loc = $('li.previous a').attr('href');
+				if(new_loc) window.location.href = new_loc;
+				e.stopImmediatePropagation();
+				return false;
+			}
+			// right
+			if (key === 39) {
+				new_loc = $('li.next a').attr('href');
+				if(new_loc) window.location.href = new_loc;
+				e.stopImmediatePropagation();
+				return false;
+			}
+			//esc
+			if (key === 27) {
+				new_loc = "<?php echo get_permalink($parentId); ?>";
+				if(new_loc) window.location.href = new_loc;
+				e.stopImmediatePropagation();
+				return false;
+			}
+		});
+
+	});
+	</script>

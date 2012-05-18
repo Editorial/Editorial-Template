@@ -381,22 +381,24 @@ $(function(){
 	paging();
 
 	// keyboard navigation
-	if ($('#gallery').length) {
-		$(document).keydown(function(e){
-			var key = e.keyCode || e.which;
-			var el = $('#media-elements>.active');
-			// left
-			if (key === 37) {
-				alert('left');
-				e.stopImmediatePropagation();
-				return false;
-			}
-			// right
-			if (key === 39) {
-				alert('right');
-				e.stopImmediatePropagation();
-				return false;
-			}
-		});
-	}
+	// if ($('#gallery').length) {
+	// 	$(document).keydown(function(e){
+	// 		var key = e.keyCode || e.which;
+	// 		var el = $('#media-elements>.active');
+	// 		// left
+	// 		if (key === 37) {
+	// 			alert('left');
+	// 			e.stopImmediatePropagation();
+	// 			return false;
+	// 		}
+	// 		// right
+	// 		if (key === 39) {
+	// 			alert('right');
+	// 			e.stopImmediatePropagation();
+	// 			return false;
+	// 		}
+	// 	});
+	// }
+	
+	
 });
