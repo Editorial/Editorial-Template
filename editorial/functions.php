@@ -146,6 +146,71 @@ class Editorial
 		add_filter('attachment_fields_to_edit', array('Editorial','hide_some_attachment_fields'), 11, 2 );
 		//title - alternate, description, insert into post gre stran, en od ostalih linkov naj bo gumb)
 		//url image/video se mora prekikazat tudi v galeriji.
+		add_filter('media_upload_tabs', array('Editorial','remove_media_library_tab'));
+		add_filter('admin_head_media_upload_gallery_form', array('Editorial','hide_galery_settings_div'));
+		add_filter('type_url_form_media', array('Editorial','hide_type_url_fields'));
+	}
+	public function hide_type_url_fields($html){
+		if ( !apply_filters( 'disable_captions', '' ) ) {
+			$caption = '
+			<tr>
+				<th valign="top" scope="row" class="label">
+					<span class="alignleft"><label for="caption">' . __('Description') . '</label></span>
+				</th>
+				<td class="field"><input id="caption" name="caption" value="" type="text" /></td>
+			</tr>
+	';
+		} else {
+			$caption = '';
+		}
+		return '
+		<p class="media-types"><label><input type="radio" name="media_type" value="image" id="image-only"' . checked( 'image-only', $view, false ) . ' /> ' . __( 'Image' ) . '</label> &nbsp; &nbsp; <label><input type="radio" name="media_type" value="generic" id="not-image"' . checked( 'not-image', $view, false ) . ' /> ' . __( 'Audio, Video, or Other File' ) . '</label></p>
+		<table class="describe ' . $table_class . '"><tbody>
+			<tr>
+				<th valign="top" scope="row" class="label" style="width:130px;">
+					<span class="alignleft"><label for="src">' . __('URL') . '</label></span>
+					<span class="alignright"><abbr id="status_img" title="required" class="required">*</abbr></span>
+				</th>
+				<td class="field"><input id="src" name="src" value="" type="text" aria-required="true" onblur="addExtImage.getImageData()" /></td>
+			</tr>
+
+			<tr>
+				<th valign="top" scope="row" class="label">
+					<span class="alignleft"><label for="title">' . __('Title') . '</label></span>
+					<span class="alignright"><abbr title="required" class="required">*</abbr></span>
+				</th>
+				<td class="field"><input id="title" name="title" value="" type="text" aria-required="true" /></td>
+			</tr>
+			' . $caption . '
+			<tr class="image-only">
+				<td></td>
+				<td>
+					<input type="button" class="button" id="go_button" style="color:#bbb;" onclick="addExtImage.insert()" value="' . esc_attr__('Use as featured image') . '" />
+				</td>
+			</tr>
+			<tr class="not-image">
+				<td></td>
+				<td>
+					' . get_submit_button( __( 'Use as featured' ), 'button', 'insertonlybutton', false ) . '
+				</td>
+			</tr>
+		</tbody></table>
+		';
+	}
+	public function remove_media_library_tab($tabs) {
+	    unset($tabs['type_url']);
+			// print_r($tabs);
+	    return $tabs;
+	}
+	
+	public function hide_galery_settings_div($form_action_url, $type){
+		print <<<EOF
+		        <style type="text/css">
+		            #gallery-settings *{
+		                display:none;
+		                }
+		        </style>
+EOF;
 	}
 	
 	public function hide_some_attachment_fields($form_fields, $post) {
