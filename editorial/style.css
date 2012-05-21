@@ -340,7 +340,7 @@ text-transform:uppercase;background-position:-549px -99px;float:left;}
 .featured article {margin:0 0 20px;width:100%;background-position:bottom;float:left;}
 .layout-list .featured article {background-position:bottom;}
 .featured figure {margin:0 0 20px;float:left;}
-.featured figure a,#exposed figure a,#to-gallery,#media span,#navigate img,#team img {border:1px solid #ccc;padding:6px;
+.featured figure a,#exposed figure a,#to-gallery,.photo-adapt,#navigate img,#team img {border:1px solid #ccc;padding:6px;
 display:block;}
 .featured figure {display:none;}
 .featured h2,#exposed h2 {font-size:20px;line-height:25px;}
@@ -377,7 +377,7 @@ color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
 .gallery #single h1,.gallery-portrait #single h1,.feedback #single h1,.notice a {text-decoration:underline;
 color:#d9d9d9;}
 #media {margin:15px 0 0;width:100%;float:left;}
-#to-gallery,#media span {margin:0 0 15px;font-size:18px;background:#fff;position:relative;}
+#to-gallery,.photo-adapt {margin:0 0 15px;font-size:18px;background:#fff;position:relative;}
 #media-count {padding:6px 11px 9px 43px;font-size:18px;color:#262626;font-family:helvetica,arial,sans-serif;font-style:normal;display:block;
 background-color:#fff;background-position:-32px -42px;position:absolute;bottom:0;right:0;}
 
@@ -939,7 +939,7 @@ position:absolute;top:12px;left:38px;}
 
 .gallery-portrait #media {margin:0 0 30px;}
 .gallery-portrait #media figure {margin:0 auto;width:460px;}
-.gallery-portrait #media span {margin:0 auto 15px;width:446px;}
+.gallery-portrait .photo-adapt {margin:0 auto 15px;width:446px;}
 .gallery #media #video {width:614px;max-width:none;}
 #video iframe {width:614px;height:462px;}
 
@@ -1150,7 +1150,7 @@ display:block;position:absolute;right:52px;z-index:1;}
 #comments blockquote,#comments .show {padding-left:85px;}
 
 .inside-portrait #intro .entry-summary,.inside-portrait #single .entry-content {width:460px;}
-#single .photo,#to-gallery,#media span {width:614px;float:left;}
+#single .photo,#to-gallery,.photo-adapt {width:614px;float:left;}
 .gallery-portrait #single .photo,.gallery #single .photo {width:100%;}
 .inside-portrait #single .photo {width:446px;}
 .inside-portrait #to-gallery {width:auto;}

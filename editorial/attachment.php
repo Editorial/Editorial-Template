@@ -187,7 +187,7 @@ if (Editorial::isMobileDevice())
 <?php
 					if (Editorial::is_image($post->post_mime_type)) {
 ?>
-				<span><img src="<?php echo $imageMeta[0]; ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
+				<span class="photo-adapt"><img src="<?php echo $imageMeta[0]; ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
 <?php
 					} else if (Editorial::is_audio($post->post_mime_type)) {
 ?>
