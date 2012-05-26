@@ -239,8 +239,14 @@ if (Editorial::isMobileDevice())
 ?>
 					<li class="previous<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
 						<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
+<?php
+							if(!Editorial::is_video($attchMimeType)){
+?>
 							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
-							<?php _e('Previous', 'Editorial'); ?>
+<?php
+							}
+?>
+							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php _e('Previous', 'Editorial'); ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
 						</a>
 					</li>
 <?php
@@ -255,8 +261,14 @@ if (Editorial::isMobileDevice())
 ?>
 					<li class="next<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
 						<a href="<?php echo get_permalink($next->ID); ?>" rel="next">
+<?php
+							if(!Editorial::is_video($attchMimeType)){
+?>
 							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
-							<?php _e('Next', 'Editorial'); ?>
+<?php
+							}
+?>
+							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php _e('Next', 'Editorial'); ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
 						</a>
 					</li>
 <?php

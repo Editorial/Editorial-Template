@@ -431,6 +431,9 @@ background-position:0 -220px;}
 #navigate .previous.disabled {background-position:0 -370px;}
 #navigate .previous span,#navigate .next span {padding:141px 0 0;color:#7f7f7f;display:block;}
 #navigate .next.disabled {background-position:0 -370px;}
+#navigate .is-video {background-position:-140px -220px;}
+#navigate .is-video a {background:none;}
+#navigate .is-video span {color:#d00;}
 /*#navigate span {margin:0 0 11px;width:130px;height:130px;display:block;}*/
 
 #embed {margin:0 0 20px;padding:10px 0 0;}
