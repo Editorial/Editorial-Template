@@ -236,12 +236,8 @@ if (Editorial::isMobileDevice())
 							
 							$thumb = $imageMeta[0];
 							
-							if( Editorial::is_video($attchMimeType)){
-								$thumb = get_bloginfo('template_directory')."/images/attachment/video.png";
-							}
-							
 ?>
-					<li class="previous">
+					<li class="previous<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
 						<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
 							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
 							<?php _e('Previous', 'Editorial'); ?>
@@ -255,13 +251,9 @@ if (Editorial::isMobileDevice())
 							$attchMimeType = get_post_mime_type($next->ID);
 							
 							$thumb = $imageMeta[0];
-							
-							if( Editorial::is_video($attchMimeType)){
-								$thumb = get_bloginfo('template_directory')."/images/attachment/video.png";
-							}
-						
+
 ?>
-					<li class="next">
+					<li class="next<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
 						<a href="<?php echo get_permalink($next->ID); ?>" rel="next">
 							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
 							<?php _e('Next', 'Editorial'); ?>
