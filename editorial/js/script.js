@@ -23,7 +23,7 @@ var changeViewport = function () {
 		$('#media-elements figcaption').css('bottom', '60px');
 	}
 	scrollTo(0,0,1);
-}
+};
 
 var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
 if (iDevice) {
@@ -31,12 +31,9 @@ if (iDevice) {
 	if (viewportmeta) {
 		viewportmeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0';
 		document.body.addEventListener('gesturestart',function() {
-					viewportmeta.content = 'width=device-width,minimum-scale=0.25,maximum-scale=1.6';
-				},false);
+			viewportmeta.content = 'width=device-width,minimum-scale=0.25,maximum-scale=1.6';
+		},false);
 	}
-
-	/*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
-	(function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
 }
 
 $(function(){

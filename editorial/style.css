@@ -211,7 +211,7 @@ figcaption p {font:12px/15px helvetica,arial,sans-serif;color:#a5a5a5;}
 .m-embed {right:10px;}
 .m-embed span {width:38px;background-position:-402px -167px;}
 
-.m-button {border:1px solid #666;outline:none;
+.m-button {border:1px solid #585856;outline:none;
 	background:#ececec;
 	background:-moz-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
 	background:-webkit-gradient(linear,left top,left bottom,from(rgba(192,192,192,.45)),to(rgba(255,255,255,.05)));
