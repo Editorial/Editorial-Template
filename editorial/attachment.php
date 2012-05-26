@@ -195,7 +195,7 @@ if (Editorial::isMobileDevice())
 <?php
 					} else if (Editorial::is_video($post->post_mime_type)) {
 ?>
-				<video width="612" height="459" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" controls="controls" preload="none"></video>
+				<video width="628" height="381" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" controls="controls" preload="none"></video>
 <?php
 					}
 ?>
@@ -305,34 +305,34 @@ if (Editorial::isMobileDevice())
 }
 @include('footer.php');
 ?>
-	<script>
-	$(function(){
+<script>
+$(function(){
 
-		$(document).focus();
-		$(document).keydown(function(e){
-			var key = e.keyCode || e.which;
-			//left
-			if(key === 37 ){
-				new_loc = $('li.previous a').attr('href');
-				if(new_loc) window.location.href = new_loc;
-				e.stopImmediatePropagation();
-				return false;
-			}
-			// right
-			if (key === 39) {
-				new_loc = $('li.next a').attr('href');
-				if(new_loc) window.location.href = new_loc;
-				e.stopImmediatePropagation();
-				return false;
-			}
-			//esc
-			if (key === 27) {
-				new_loc = "<?php echo get_permalink($parentId); ?>";
-				if(new_loc) window.location.href = new_loc;
-				e.stopImmediatePropagation();
-				return false;
-			}
-		});
-
+	$(document).focus();
+	$(document).keydown(function(e){
+		var key = e.keyCode || e.which;
+		//left
+		if(key === 37 ){
+			new_loc = $('li.previous a').attr('href');
+			if(new_loc) window.location.href = new_loc;
+			e.stopImmediatePropagation();
+			return false;
+		}
+		// right
+		if (key === 39) {
+			new_loc = $('li.next a').attr('href');
+			if(new_loc) window.location.href = new_loc;
+			e.stopImmediatePropagation();
+			return false;
+		}
+		//esc
+		if (key === 27) {
+			new_loc = "<?php echo get_permalink($parentId); ?>";
+			if(new_loc) window.location.href = new_loc;
+			e.stopImmediatePropagation();
+			return false;
+		}
 	});
-	</script>
+
+});
+</script>

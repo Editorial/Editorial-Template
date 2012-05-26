@@ -10,7 +10,6 @@
 
  */
 
-
 //LOCAL DEV
 //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
 
@@ -153,7 +152,77 @@ $(function(){
 		return false;
 	});
 
-	//media gallery
+	// comment karma
+	$('form.favorize input:radio').each(function() {
+		// on change submit form
+		$(this).change(function() {
+			$(this).parent().submit();
+		});
+	});
+
+	// capture form submits
+	$('form.favorize').each(function() {
+		// catch submits and do ajax instead
+		//create coins clones
+		var score = $('strong.score', $(this));
+		score.after(score.clone().removeClass('score').addClass('coin'));
+		var coin = score.next();
+		$(this).submit(function(e) {
+			// prevent form from posting
+			e.preventDefault();
+			var selectedInput = $('input:radio:checked', $(this));
+			var value = selectedInput.val();
+			var key   = selectedInput.attr('name');
+			var vote = {}; vote[key] = value;
+			// post with ajax instead
+			$.post($(this).attr('action'), vote, function(msg) {
+				var response = $.parseJSON(msg);
+				if (response.ok)
+				{
+					// set count
+					$('#score-'+response.id).html(response.votes);
+					//score animation
+					var scorePlus = (selectedInput.attr('id').lastIndexOf('vote-for') == 0) ? true : false;
+					var bgr = scorePlus ? '#79a500' : '#d00';
+					if (scorePlus) coin.removeClass('negative').text('+1').show().animate({top:'-20px',opacity:0},300);
+					else coin.addClass('negative').text('-1').show().animate({top:'-20px',opacity:0},300);
+					//satus after vote
+					var posScoreNum = (score.text() >= 0) ? true : false;
+					if (posScoreNum) score.removeClass('negative');
+					else score.addClass('negative');
+				}
+				else
+				{
+					// show error
+				}
+			});
+			// disable form (visually and formally)
+			$('input', this).attr('disabled', true);
+			$('fieldset:first-child', this).addClass('disabled');
+		});
+	});
+
+	// more to load?
+	function paging() {
+		$('#paging a').click(function() {
+			// fetch more from same url
+			$.ajax({
+				url: $(this).attr('href'),
+				success: function(data) {
+					// remove paging
+					$('#paging').remove();
+					// add to content
+					$('div.content').append(data);
+					// bind paging again
+					paging();
+				}
+			});
+			return false;
+		});
+	}
+	paging();
+
+	//MOBILE gallery
 	if ($('#media-gallery').length > 0) {
 
 		//quick hide menus
@@ -224,7 +293,6 @@ $(function(){
 			curr_el = butt.prev('div.mobile-embed');
 			curr_el.slideToggle(100);
 			$('input',curr_el).css('width', '100%');
-			
 			$('input', curr_el).blur(
 				function(e){
 					if(butt.hasClass('pressed')){
@@ -303,85 +371,24 @@ $(function(){
 		}
 
 		// window
-		$(window).resize(function(){centerMedia();});
-		$(window).bind("orientationchange",function(){
-			centerMedia(); 
+		$(window).resize(function(){
+			centerMedia();
 		});
-		$("body").on('touchmove', function (event) {
-		    event.preventDefault();
+		$(window).bind('orientationchange',function(){
+			centerMedia();
 		});
-	}
-
-	// comment karma
-	$('form.favorize input:radio').each(function() {
-		// on change submit form
-		$(this).change(function() {
-			$(this).parent().submit();
-		});
-	});
-
-	// capture form submits
-	$('form.favorize').each(function() {
-		// catch submits and do ajax instead
-		//create coins clones
-		var score = $('strong.score', $(this));
-		score.after(score.clone().removeClass('score').addClass('coin'));
-		var coin = score.next();
-		$(this).submit(function(e) {
-			// prevent form from posting
+		$('body').on('touchmove', function(e) {
 			e.preventDefault();
-			var selectedInput = $('input:radio:checked', $(this));
-			var value = selectedInput.val();
-			var key   = selectedInput.attr('name');
-			var vote = {}; vote[key] = value;
-			// post with ajax instead
-			$.post($(this).attr('action'), vote, function(msg) {
-				var response = $.parseJSON(msg);
-				if (response.ok)
-				{
-					// set count
-					$('#score-'+response.id).html(response.votes);
-					//score animation
-					var scorePlus = (selectedInput.attr('id').lastIndexOf('vote-for') == 0) ? true : false;
-					var bgr = scorePlus ? '#79a500' : '#d00';
-					if (scorePlus) coin.removeClass('negative').text('+1').show().animate({top:'-20px',opacity:0},300);
-					else coin.addClass('negative').text('-1').show().animate({top:'-20px',opacity:0},300);
-					//satus after vote
-					var posScoreNum = (score.text() >= 0) ? true : false;
-					if (posScoreNum) score.removeClass('negative');
-					else score.addClass('negative');
-				}
-				else
-				{
-					// show error
-				}
-			});
-			// disable form (visually and formally)
-			$('input', this).attr('disabled', true);
-			$('fieldset:first-child', this).addClass('disabled');
-		});
-	});
-
-	// more to load?
-	function paging() {
-		$('#paging a').click(function() {
-			// fetch more from same url
-			$.ajax({
-				url: $(this).attr('href'),
-				success: function(data) {
-					// remove paging
-					$('#paging').remove();
-					// add to content
-					$('div.content').append(data);
-					// bind paging again
-					paging();
-				}
-			});
-			return false;
 		});
 	}
 
-	paging();
+	//DESKTOP gallery
+	$(window).resize(function(){
+		if (Modernizr.mq('only screen and (max-width:768px)')) {
+			//console.log($('#media').innerWidth());
+			$('div.mejs-video,div.mejs-inner,div.mejs-layer').width($('#media').innerWidth())
+		}
+	});
 
 	// keyboard navigation
 	// if ($('#gallery').length) {

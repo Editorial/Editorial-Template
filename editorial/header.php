@@ -50,11 +50,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/style.css?v=1">
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/editorial-custom.css?v=1">
-
 <?php if ($needsHTML5player) { ?>
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelementplayer.min.css" />
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelementplayer.min.css">
 <?php } ?>
-
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/modernizr-2.0.6.min.js"></script>
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?><?php

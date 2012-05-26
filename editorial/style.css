@@ -334,7 +334,7 @@ text-transform:uppercase;background-position:-549px -99px;float:left;}
 .featured article {margin:0 0 20px;width:100%;background-position:bottom;float:left;}
 .layout-list .featured article {background-position:bottom;}
 .featured figure {margin:0 0 20px;float:left;}
-.featured figure a,#exposed figure a,#to-gallery,.photo-adapt,.mejs-container,#navigate img,#team img {border:1px solid #ccc;padding:6px;
+.featured figure a,#exposed figure a,#to-gallery,.photo-adapt,#navigate img,#team img {border:1px solid #ccc;padding:6px;
 display:block;}
 .featured figure {display:none;}
 .featured h2,#exposed h2 {font-size:20px;line-height:25px;}
@@ -1302,4 +1302,67 @@ display:block;position:absolute;right:52px;z-index:1;}
 
 }
 
-/*.mejs-video {width:100% !important;height:100 !important;}*/
+/*.mejs-video {width:100% !important;height:auto !important;}*/
+
+/* Videos */
+
+/*
+.videoWrapper {
+    position: relative;
+    padding-bottom: 41%;
+    padding-top: 0px;
+    height: 0;
+    z-index: 1000;
+}
+
+video {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+}    
+
+video.video-js {
+  z-index: 1000;
+}              
+
+.video-js-box .vjs-controls {
+  z-index: 1002;
+}
+
+.video-js-box .vjs-big-play-button {
+  z-index: 1002;
+}
+
+.videoWrapper .video-js-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+    background: #000000;
+}        
+
+.videoWrapper object,
+.videoWrapper embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100% !important;
+  z-index: 1;
+}        
+
+.vjs-spinner {
+  display: none !important;
+}
+
+.video-js-box img.vjs-poster {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+*/
