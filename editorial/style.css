@@ -1304,3 +1304,5 @@ display:block;position:absolute;right:52px;z-index:1;}
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
 }
+
+.mejs-video {width:100% !important;height:100 !important;}
