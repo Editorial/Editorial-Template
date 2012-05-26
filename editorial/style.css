@@ -239,7 +239,7 @@ left:0;bottom:0;}
 #media-elements h2 span {padding:0 2px;}
 #media-elements h3 {margin:5px 19.5% 9px;width:63%;color:#fff;white-space:nowrap;float:left;text-overflow:ellipsis;overflow:hidden;}
 #media-elements p {margin:0 10px 10px;color:#fff;clear:both;display:none;}
-
+.mobile-embed {margin:0 2.5% 15px;width:95%;float:left;display:none;}
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
 
@@ -878,7 +878,7 @@ body {width:628px;}
 #media-elements h2 {margin:0 0 0 -25px;;width:145px;text-align:right;height:56px;font:54px MinionProRegular,georgia,serif;
 position:absolute;top:12px;left:38px;}
 #media-elements h2 span {padding:0;}
-#media-elements h3,#media-elements p {margin:21px 0 6px 203px;width:60%;}
+#media-elements h3,#media-elements p,.mobile-embed {margin:21px 0 6px 203px;width:60%;}
 #media-elements h3 {white-space:normal;text-overflow:clip;overflow:hidden;}
 #media-elements p {margin-bottom:15px;display:block !important;}
 

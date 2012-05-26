@@ -150,9 +150,9 @@ if (Editorial::isMobileDevice())
 							<figcaption>
 								<h2><span>%d</span>/<span>%d</span></h2>
 								<h3>%s</h3>
-								<p>%s</p>
+								<p>%s &nbsp;</p><!-- TODO TANJA - ce ni vsebine naj se izpise &nbsp;, sedaj se izpisuje vedno  -->
 								<a href="#" class="m-toggle m-button"><span>%s</span></a>
-								<p style="text-align:right;"><input type="text" value="%s"></p>
+								<div class="mobile-embed"><input type="text" value="%s"></div>
 								<a href="#" class="m-embed m-button"><span>%s</span></a>
 							</figcaption>
 						</figure>',
