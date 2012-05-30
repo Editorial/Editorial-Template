@@ -415,7 +415,6 @@ $(function(){
 
 	//MOBILE & DESKTOP gallery video
 	if ($('#player').length) {
-		//$('#player').attr('width','100%').attr('height','100%');
 		$('#player').mediaelementplayer({alwaysShowControls:true});
 	}
 	
