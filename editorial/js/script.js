@@ -61,7 +61,7 @@ $(function(){
 	$('#embed-code').click(function(){$(this).select();});
 
 	//bad-comment
-	if($('blockquote.bad-comment').length > 0) {
+	if($('blockquote.bad-comment').length) {
 		var b = 'blockquote.bad-comment>p';
 		var s = 'p.show>a';
 		$(b).hide();
@@ -116,7 +116,7 @@ $(function(){
 					// add success notice
 					$(response.success).insertBefore('#comments-form');
 					// add new comment to html
-					if ($('#comments').length > 0) {
+					if ($('#comments').length) {
 						// add to list
 						$(response.html).insertBefore('#comments article:first-child');
 					}
@@ -223,7 +223,8 @@ $(function(){
 	paging();
 
 	//MOBILE gallery
-	if ($('#media-gallery').length > 0) {
+	if ($('#media-gallery').length) {
+		$(document).focus();
 
 		//quick hide menus
 		/*
@@ -383,32 +384,39 @@ $(function(){
 	}
 
 	//DESKTOP gallery
-	$(window).resize(function(){
-		if (Modernizr.mq('only screen and (max-width:768px)')) {
-			//console.log($('#media').innerWidth());
-			$('div.mejs-video,div.mejs-inner,div.mejs-layer').width($('#media').innerWidth())
-		}
-	});
+	if ($('#media').length) {
+		$(document).focus();
+		$(document).keydown(function(e){
+			var key = e.keyCode || e.which, new_loc;
+			//left
+			if(key === 37 ){
+				new_loc = $('li.previous a').attr('href');
+				if(new_loc) window.location.href = new_loc;
+				e.stopImmediatePropagation();
+				return false;
+			}
+			// right
+			if (key === 39) {
+				new_loc = $('li.next a').attr('href');
+				if(new_loc) window.location.href = new_loc;
+				e.stopImmediatePropagation();
+				return false;
+			}
+			//esc
+			if (key === 27) {
+				new_loc = parentPageID;
+				if(new_loc) window.location.href = new_loc;
+				e.stopImmediatePropagation();
+				return false;
+			}
+		});
 
-	// keyboard navigation
-	// if ($('#gallery').length) {
-	// 	$(document).keydown(function(e){
-	// 		var key = e.keyCode || e.which;
-	// 		var el = $('#media-elements>.active');
-	// 		// left
-	// 		if (key === 37) {
-	// 			alert('left');
-	// 			e.stopImmediatePropagation();
-	// 			return false;
-	// 		}
-	// 		// right
-	// 		if (key === 39) {
-	// 			alert('right');
-	// 			e.stopImmediatePropagation();
-	// 			return false;
-	// 		}
-	// 	});
-	// }
-	
+	}
+
+	//MOBILE & DESKTOP gallery video
+	if ($('#player').length) {
+		//$('#player').attr('width','100%').attr('height','100%');
+		$('#player').mediaelementplayer({alwaysShowControls:true});
+	}
 	
 });
