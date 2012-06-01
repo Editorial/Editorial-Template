@@ -144,9 +144,7 @@ class Editorial
 		self::$widgetCount = isset($widgets[EDITORIAL_WIDGET]) && is_array($widgets[EDITORIAL_WIDGET]) ? count($widgets[EDITORIAL_WIDGET]) : 0;
 		
 		add_filter('attachment_fields_to_edit', array('Editorial','hide_some_attachment_fields'), 11, 2 );
-		//title - alternate, description, insert into post gre stran, en od ostalih linkov naj bo gumb)
-		//url image/video se mora prekikazat tudi v galeriji.
-		add_filter('media_upload_tabs', array('Editorial','remove_media_library_tab'));
+		//add_filter('media_upload_tabs', array('Editorial','remove_media_library_tab'));
 		add_filter('admin_head_media_upload_gallery_form', array('Editorial','hide_galery_settings_div'));
 		add_filter('type_url_form_media', array('Editorial','hide_type_url_fields'));
 	}
