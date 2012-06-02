@@ -15,11 +15,10 @@ $EditorialClass = 'clear';
 $needsHTML5player = false;
 
 // mobile devices are shown a different slideshow
-if (Editorial::isMobileDevice() || Editorial::isIpad())
+if (Editorial::isMobileDevice())
 {
 	$htmlClass = "slideshow";
 	$needsHTML5Player = true; // need html5 player by default for mobile content
-	$isMobileGallery = true;
 }
 
 the_post();
@@ -83,93 +82,98 @@ foreach (array_keys($attachments) as $key => $value)
 @include('header.php');
 
 // show mobile version of gallery
-if (Editorial::isMobileDevice() || Editorial::isIpad())
+if (Editorial::isMobileDevice())
 {
 ?>
-
 	<section id="media-gallery">
-	<ul id="Gallery" class="gallery" style="display:none;" >
+		<header role="banner">
+			<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>
+			<nav id="remote" role="navigation">
+				<ul>
+					<li><a href="#" id="m-prev" class="m-button disabled"><span><?php _e('Previous', 'Editorial'); ?></span></a></li>
+					<li><a href="#" id="m-slide" class="m-button"><span><?php _e('Slideshow', 'Editorial'); ?></span></a></li>
+					<li><a href="#" id="m-next" class="m-button"><span><?php _e('Next', 'Editorial'); ?></span></a></li>
+				</ul>
+			</nav>
+			<!--<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span><?php _e('Back to article', 'Editorial'); ?></span></a>-->
+			<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b> <em>TODO Tanja Shape-shifting car made out of cloth</em></a>
+		</header>
+		<img id="loading" src="<?php echo get_bloginfo('template_directory'); ?>/images/bgr/loading.gif" width="48" height="48" alt="<?php _e('Loading', 'Editorial'); ?>">
+		<div id="media-elements">
 <?php
-		foreach ($attachments as $attachment)
-		{
-			$media = '';
-			$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
-			if (Editorial::is_image($attachment->post_mime_type))
+
+			$count = count($attachments);
+			if ($count)
 			{
-				$src = isset($src[0]) ? $src[0] : '';
-				$media = sprintf(
-					'<img src="%s" alt="%s">',
-					$src,
-					$attachment->post_title
-				);
-			}
-			else if (Editorial::is_video($attachment->post_mime_type))
-			{
-				$src = wp_get_attachment_url($attachment->ID);
-				$media = sprintf('<video
-					src="%s"
-					type="%s"
-					id="player"
-					controls="controls"
-					preload="none"></video>',
-					$src,
-					$attachment->post_mime_type
-				);
-			}
-			else if (Editorial::is_audio($attachment->post_mime_type))
-			{
-				$src = wp_get_attachment_url($attachment->ID);
-				$media = sprintf('<audio
-					id="player"
-					src="%s"
-					type="%s"
-					controls="controls"></audio>',
-					$src,
-					$attachment->post_mime_type
-				);
-			}
-			printf('<li>
-			<a href="%s" data-title="%s" data-content="%s" data-permalink="%s">%s</a>
-			</li>',
-				$src,
-				$attachment->post_title,
-				$attachment->post_content,
-				get_permalink($attachment->ID),
-				$media
-			);
-			$i++;
-		}
-?>
-	</ul>
-	</section>
-	<script>
-	(function(window, $, PhotoSwipe){
-		$(function(){
-				
-				var options = {
-					//preventHide: true,
-					getToolbar: function(){
-						return '<div class="ps-toolbar-close"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="ps-toolbar-play"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="ps-toolbar-previous"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="ps-toolbar-next"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div>';
+				$i = 1;
+				foreach ($attachments as $attachment)
+				{
+					// handle video/audio
+					$media = '';
+					$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
+					if (Editorial::is_image($attachment->post_mime_type))
+					{
+						$src = isset($src[0]) ? $src[0] : '';
+						$media = sprintf(
+							'<img src="%s" alt="%s">',
+							$src,
+							$attachment->post_title
+						);
 					}
-				};
-				instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
-				instance.show(0);
-				
-				
-					// onToolbarTap
-					instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
-						console.log('onToolbarTap');
-						console.log('<?php echo get_permalink($parentId); ?>');
-						if(e.toolbarAction === 'close'){
-							console.log("closing");
-							window.location.href = "<?php echo get_permalink($parentId); ?>";
-						}
-					});
-				
-			
-			});
-	}(window, window.jQuery, window.Code.PhotoSwipe));
-	</script>
+					else if (Editorial::is_video($attachment->post_mime_type))
+					{
+						$src = wp_get_attachment_url($attachment->ID);
+						$media = sprintf('<video
+							src="%s"
+							type="%s"
+							id="player"
+							controls="controls"
+							preload="none"></video>',
+							$src,
+							$attachment->post_mime_type
+						);
+					}
+					else if (Editorial::is_audio($attachment->post_mime_type))
+					{
+						$src = wp_get_attachment_url($attachment->ID);
+						$media = sprintf('<audio
+							id="player"
+							src="%s"
+							type="%s"
+							controls="controls"></audio>',
+							$src,
+							$attachment->post_mime_type
+						);
+					}
+					printf('<figure id="element_%d"%s>
+							%s
+							<figcaption>
+								<h2><span>%d</span>/<span>%d</span></h2>
+								<h3>%s</h3>
+								<p>%s &nbsp;</p><!-- TODO TANJA - ce ni vsebine naj se izpise &nbsp;, sedaj se izpisuje vedno  -->
+								<a href="#" class="m-toggle m-button"><span>%s</span></a>
+								<div class="mobile-embed"><input type="text" value="%s"></div>
+								<a href="#" class="m-embed m-button"><span>%s</span></a>
+							</figcaption>
+						</figure>',
+						$i,
+						$i == 1 ? ' class="active"' : '',
+						$media,
+						$i,
+						$count,
+						$attachment->post_title,
+						$attachment->post_content,
+						__('Toggle', 'Editorial'),
+						get_permalink($attachment->ID),
+						__('Embed', 'Editorial')
+					);
+					$i++;
+				}
+			}
+
+?>
+		</div>
+	</section>
 <?php
 } else {
 	// show desktop version of gallery
