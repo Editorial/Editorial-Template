@@ -148,20 +148,26 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 				
 				var options = {
 					//preventHide: true,
+					captionAndToolbarFlipPosition: true,
+					allowUserZoom: false,
+					loop: false,
+					captionAndToolbarAutoHideDelay: 0,
 					getToolbar: function(){
-						return '<div class="ps-toolbar-close"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="ps-toolbar-play"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="ps-toolbar-previous"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="ps-toolbar-next"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div>';
+						return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
+						'<nav id="remote" role="navigation">' +
+						'<div class="ps-toolbar-previous"><div id="m-prev" class="m-button "><span><?php _e('Previous', 'Editorial'); ?></span></div></div>' +
+						'<div class="ps-toolbar-play"><div id="m-slide" class="m-button "><span><?php _e('Slideshow', 'Editorial'); ?></span></div></div>' +
+						'<div class="ps-toolbar-next"><div id="m-next" class="m-button "><span><?php _e('Next', 'Editorial'); ?></span></div></div>' +
+						'</nav>' +
+						'<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b></div></div>';
 					}
 				};
 				instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
 				instance.show(0);
-				
-				
+							
 					// onToolbarTap
 					instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
-						console.log('onToolbarTap');
-						console.log('<?php echo get_permalink($parentId); ?>');
 						if(e.toolbarAction === 'close'){
-							console.log("closing");
 							window.location.href = "<?php echo get_permalink($parentId); ?>";
 						}
 					});

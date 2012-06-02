@@ -175,3 +175,18 @@ div.ps-toolbar-play div.ps-toolbar-content
 	}
 }
 
+/***************************/
+/* modified by tanja
+****************************/
+div.ps-toolbar {
+	height: 80px;
+}
+
+div.ps-toolbar div div.ps-toolbar-content
+{
+/*	background-image: url(images/bgr/mobile-gallery.png);*/
+}
+
+
+
+
