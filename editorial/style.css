@@ -256,7 +256,7 @@ table .right {text-align:right;}
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 #search {margin:0 0 15px;}
-#search fieldset {width:100%;max-width:275px;position:relative;}
+#search fieldset {width:100%;position:relative;}
 #query,#embed-code,#comments-form .text input,#comments-form textarea,#comments-form .riddle input {
 border:1px solid #a6a6a6;border-right-color:#d9d9d9;border-bottom-color:#d9d9d9;padding:8px 4px 7px;font-size:14px;
 line-height:20px;height:32px;}
@@ -669,8 +669,10 @@ h1 {margin:0 0 22px;}
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 
-#search fieldset {width:275px;}
+#search {width:48%;float:right;}
+#search fieldset {width:auto;max-width:275px;float:right;}
 .notfound #search {float:left;}
+#query {max-width:275px;}
 
 .captcha {width:61%;float:left;}
 .submit {width:148px;float:right;}
@@ -678,7 +680,7 @@ h1 {margin:0 0 22px;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#brand {margin:0 0 20px;}
+#brand {margin:0 0 20px;max-width:48%;float:left;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
@@ -693,8 +695,8 @@ h1 {margin:0 0 22px;}
 .featured article {width:100%;}
 .featured h2,#exposed h2 {font-size:22px;}
 
-.home #exposed figure {margin:0 0 20px;width:100%;max-width:628px;float:left;}
-.home-portrait #exposed figure {margin:0 auto 20px;max-width:329px;}
+.home #exposed figure {margin:0 0 20px;width:100%;float:left;}
+.home-portrait #exposed figure {margin:0 auto 20px;}
 #single,#common {padding:29px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 22px;font-size:24px;line-height:30px;}
 #single .entry-content p,#comments .show,#comments h4 {font-size:18px;line-height:25px;}
@@ -775,8 +777,8 @@ body {width:95.2%;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-#search {margin:-4px 0 14px;float:right;}
-.home #search,.home-portrait #search {margin:0 0 15px;float:none;}
+#search {margin:-4px 0 14px;}
+.home #search,.home-portrait #search {margin:0 0 15px;}
 
 #comments-form .text input {width:100%;}
 #comments-form .area {margin:0;}
@@ -795,8 +797,7 @@ body {width:95.2%;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#brand {max-width:48%;float:left;}
-.home #brand,.home-portrait #brand {max-width:none;float:none;}
+/*.home #brand,.home-portrait #brand {max-width:none;float:none;}*/
 
 .notfound #header,#try {margin-left:-242px;width:485px;left:50%;}
 .notfound #header {top:370px;}
@@ -890,7 +891,7 @@ position:absolute;top:12px;left:38px;}
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
 
-.home #search,.home-portrait #search,#search {margin:-4px 0 14px;float:right;}
+.home #search,.home-portrait #search,#search {margin:-4px 0 14px;}
 
 #comments-form {margin:0 0 40px;}
 #comments-form .feedback {margin:0 0 20px;}
@@ -906,13 +907,14 @@ position:absolute;top:12px;left:38px;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-.home #brand,.home-portrait #brand,#brand {max-width:48%;float:left;}
+.home-portrait #brand,#brand {max-width:48%;float:left;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
+.home #exposed figure {margin:0 0 20px;width:100%;max-width:628px;float:left;}
 .home-portrait #exposed {width:100%;float:left;}
 .inside-portrait #exposed {margin:0;border:none;width:48%;float:left;}
 #exposed figure {margin:0 0 20px;width:100%;}
