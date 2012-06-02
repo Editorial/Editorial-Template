@@ -158,7 +158,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 						'<div class="ps-toolbar-play"><div id="m-slide" class="m-button "><span><?php _e('Slideshow', 'Editorial'); ?></span></div></div>' +
 						'<div class="ps-toolbar-next"><div id="m-next" class="m-button "><span><?php _e('Next', 'Editorial'); ?></span></div></div>' +
 						'</nav>' +
-						'<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b></div></div>';
+						'<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b><em><?php echo get_the_title($parentId); ?></em></div></div>';
 					},
 					getImageMetaData: function(el){
 						return {
