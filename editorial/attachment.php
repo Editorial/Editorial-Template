@@ -147,7 +147,6 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 		$(function(){
 				
 				var options = {
-					//preventHide: true,
 					captionAndToolbarFlipPosition: true,
 					allowUserZoom: false,
 					loop: false,
@@ -160,6 +159,18 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 						'<div class="ps-toolbar-next"><div id="m-next" class="m-button "><span><?php _e('Next', 'Editorial'); ?></span></div></div>' +
 						'</nav>' +
 						'<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b></div></div>';
+					},
+					getImageMetaData: function(el){
+						return {
+							href: el.getAttribute('href'),
+							title: el.getAttribute('data-title'),
+							content: el.getAttribute('data-content'),
+							permalink: el.getAttribute('data-permalink')
+						}
+					},
+					getImageCaption: function(el) {
+						meta_data = this.getImageMetaData(el);
+						return meta_data.title;
 					}
 				};
 				instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
