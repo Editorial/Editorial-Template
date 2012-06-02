@@ -90,6 +90,9 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 	<section id="media-gallery">
 	<ul id="Gallery" class="gallery" style="display:none;" >
 <?php
+	$count = count($attachments);
+	if($count) {
+		$i = 1;
 		foreach ($attachments as $attachment)
 		{
 			$media = '';
@@ -129,9 +132,11 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 				);
 			}
 			printf('<li>
-			<a href="%s" data-title="%s" data-content="%s" data-permalink="%s">%s</a>
+			<a href="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s">%s</a>
 			</li>',
 				$src,
+				$i,
+				$count,
 				$attachment->post_title,
 				$attachment->post_content,
 				get_permalink($attachment->ID),
@@ -139,6 +144,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 			);
 			$i++;
 		}
+	}
 ?>
 	</ul>
 	</section>
@@ -165,14 +171,29 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 							href: el.getAttribute('href'),
 							title: el.getAttribute('data-title'),
 							content: el.getAttribute('data-content'),
-							permalink: el.getAttribute('data-permalink')
+							permalink: el.getAttribute('data-permalink'),
+							position: el.getAttribute('data-pos'),
+							total: el.getAttribute('data-total')
 						}
 					},
 					getImageCaption: function(el) {
 						meta_data = this.getImageMetaData(el);
-						return meta_data.title;
+						
+						var cap_el, foo = '<figcaption>' +
+							'<h2><span>' + meta_data.position + '</span>/<span>' + meta_data.total + '</span></h2>' +
+							'<h3>' + meta_data.title + '</h3>' +
+							'<p>' + meta_data.content + '</p>' +
+							'<a  class="m-toggle m-button"><span>' + '<?php echo __('Toggle', 'Editorial'); ?>' + '</span></a>' +
+							'<div class="mobile-embed"><input type="text" value="' + meta_data.permalink + '"></div>' +
+							'<a class="m-embed m-button"><span>' + '<?php echo __('Toggle', 'Editorial'); ?>' + '</span></a>' +
+						'</figcaption>';
+						
+						cap_el = $(foo);
+						
+						return cap_el;
 					}
 				};
+				
 				instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
 				instance.show(0);
 							
