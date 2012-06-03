@@ -179,14 +179,10 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					getImageCaption: function(el) {
 						meta_data = this.getImageMetaData(el);
 						
-						var cap_el, foo = '<figcaption>' +
-							'<h2><span>' + meta_data.position + '</span>/<span>' + meta_data.total + '</span></h2>' +
-							'<h3>' + meta_data.title + '</h3>' +
-							'<p>' + meta_data.content + '</p>' +
-							'<a  class="m-toggle m-button"><span>' + '<?php echo __('Toggle', 'Editorial'); ?>' + '</span></a>' +
-							'<div class="mobile-embed"><input type="text" value="' + meta_data.permalink + '"></div>' +
-							'<a class="m-embed m-button"><span>' + '<?php echo __('Toggle', 'Editorial'); ?>' + '</span></a>' +
-						'</figcaption>';
+						var cap_el, foo = 
+						
+							'<figcaption><h3>' + meta_data.title + '</h3>' +
+							'<p>' + meta_data.content + '</p></figcaption>';
 						
 						cap_el = $(foo);
 						
