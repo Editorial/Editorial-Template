@@ -996,7 +996,7 @@ clear:both;float:right;}
 #navigate {width:48%;float:right;}
 
 .gallery #navigate h2 {margin:-6px 0 16px;text-align:right;}
-#media {margin-bottom:40px;}
+#media figcaption {min-height:50px;}
 .gallery-portrait #navigate h2 {text-align:right;}
 #navigate ul {width:100%;float:right;}
 #navigate li {margin:0;}
