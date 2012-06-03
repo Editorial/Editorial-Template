@@ -9,8 +9,12 @@
 
 
 
-You can also use cssbeautifier.com to format code as you like it.
+You can also use http://procssor.com to format code as you like it.
+
+// vec o tem zakaj se to dogaja
 Every time update comes your custom CSS remains unchanged and style.css will be updated with new features.
+// pozor lastnosti so tudi po MQ za zamenjat (zato niso vse zdruzene na kupu.
+// pomagaj si z inspektorji (najboljse Google Chrome, ker kaze MQ)
 
 Here are some prepared options for customization.
 Do search & replace (S&R) for all quoted ("") strings mentioned below in this file.
@@ -23,9 +27,12 @@ option 01 change colors:
 - S&R "#999" {gray color: author & publish date, image captions, form labels etc.}
 
 option 02 change font:
-- S&R "minion-pro,georgia,serif"
-- S&R "minion-pro-italic" []
-- S&R "helvetica,arial,sans-serif" with your font
+- S&R "minion-pro,georgia,serif" [Typekit Minion Pro]
+- S&R "minion-pro-italic" [Typekit Minion Pro Italic]
+- S&R "helvetica,arial,sans-serif" [system font]
+
+// ! ob spremembi fonta popravit se font-size (ker se drugace sesuje naslovnca -> zaradi fixnih boxov) + narekovaji gredo v kurac
+
 
 option 03 change font sizes:
 - default
@@ -103,6 +110,8 @@ sam si zlozi CSS naj bo taksna koda, kot imate sami najraje CSS beautify
 
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 
+body,.home h1,.home-portrait h1,.featured h2,#comments cite,#paging .more,#embed h4,.message .lead,#common h2,#team .fn,
+address .fn,.entry-content h2,#try {font-family:minion-pro,georgia,serif;}
 body {color:#333;}
 
 
@@ -116,6 +125,9 @@ h1,h2,h3,h4,h5,h6,h1 a,h2 a {color:#262626;}
 h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .selected a,.featured footer a,
 #exposed footer a,.inside #single footer a,.inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
 #team .title,.notfound h1,.widget h4 {color:#d00;}
+.submit input {font-family:minion-pro,georgia,serif;}
+i,em {font-family:minion-pro-italic;}
+h1 em,#comments-form li em,.qa em,input,textarea,table {font-family:helvetica,arial,sans-serif;}
 
 
 /* 4.LINKS __________________________________________________________________________________________________________ */
@@ -126,20 +138,28 @@ a {color:#262626;}
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
 
 figcaption {color:#999;}
+figcaption,figcaption p,figcaption h3,#media-elements h2 {font-family:helvetica,arial,sans-serif;}
 
 
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-#comments-form li label,#layout p,#layout li,.qa em {color:#999;}
+#comments-form li label,#layout p,#layout li,.qa em {font-family:helvetica,arial,sans-serif;color:#999;}
 #comments-form .text input,#comments-form .area textarea,#comments-form .riddle strong {color:#333;}
 #comments-form .error input,.error textarea,comments-form .error textarea {border-color:#d00;}
 
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
+
+#primary li,#rss li,#footer nav li,#tabs li {font-family:minion-pro,georgia,serif;}
+
+
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
+
+.featured footer,#exposed footer,.inside #single footer,.inside-portrait #single footer,#comments time,#paging p,
+footer h3,.widget h4,#single footer em,#media-count,.notice em {font-family:helvetica,arial,sans-serif;}
 
 #comments cite a,#comments .no-link {color:#333;}
 .featured time,#exposed time,#single time,.inside #single footer em,.inside-portrait #single footer em,
@@ -149,15 +169,21 @@ figcaption {color:#999;}
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
+#navigate li,.favorize .score,.favorize .coin {font-family:helvetica,arial,sans-serif;}
+
 #embed-code {color:#999;}
 .favorize .negative {color:#d00;}
 .favorize .coin.negative {border-color:#d00;background:#d00;}
+#team .title {font-family:minion-pro,georgia,serif;}
 #team .fn,#team .email {color:#333;}
 #navigate .is-video span {color:#d00;}
 
 
+
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
 
+.widget li a,footer h3 {font-family:minion-pro,georgia,serif;}
+.widget .rss-date,#copyright,#editorial {font-family:helvetica,arial,sans-serif;}
 .widget h4 .rsswidget {color:#d00;}
 #wp-calendar caption,.widget .rss-date {color:#333;}
 #copyright,#copyright a {color:#999;}
@@ -269,6 +295,7 @@ input:-moz-placeholder {color:#999;}
 /* 4.LINKS __________________________________________________________________________________________________________ */
 /* 5.FIGURES & IMAGES  ______________________________________________________________________________________________ */
 
+#m-back b,#m-back em {font-family:helvetica,arial,sans-serif;}
 #m-back b {color:#999;}
 
 
