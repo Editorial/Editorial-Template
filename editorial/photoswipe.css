@@ -186,6 +186,11 @@ div.ps-caption-content * {
 	display: block;
 }
 
+div.ps-toolbar-next-disabled #m-next {opacity:.7;}
+div.ps-toolbar-next-disabled #m-next span {background-position:-119px -24px;}
+div.ps-toolbar-previous-disabled #m-prev {opacity:.7;}
+div.ps-toolbar-previous-disabled #m-prev span {background-position:14px -25px;}
+
 
 
 

@@ -156,7 +156,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					captionAndToolbarFlipPosition: true,
 					allowUserZoom: false,
 					loop: false,
-					captionAndToolbarAutoHideDelay: 0,
+					captionAndToolbarAutoHideDelay: 6000,
 					getToolbar: function(){
 						return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
 						'<nav id="remote" role="navigation">' +
