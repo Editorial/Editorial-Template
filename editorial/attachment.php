@@ -97,9 +97,11 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 		{
 			$media = '';
 			$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
+			$previewThumb = $src;
 			if (Editorial::is_image($attachment->post_mime_type))
 			{
 				$src = isset($src[0]) ? $src[0] : '';
+				$previewThumb = $src;
 				$media = sprintf(
 					'<img src="%s" alt="%s">',
 					$src,
@@ -109,6 +111,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 			else if (Editorial::is_video($attachment->post_mime_type))
 			{
 				$src = wp_get_attachment_url($attachment->ID);
+				$previewThumb = get_bloginfo('template_directory')."/images/bgr/gallery.png";
 				$media = sprintf('<video
 					src="%s"
 					type="%s"
@@ -122,6 +125,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 			else if (Editorial::is_audio($attachment->post_mime_type))
 			{
 				$src = wp_get_attachment_url($attachment->ID);
+				$previewThumb = get_bloginfo('template_directory')."/images/bgr/gallery.png";
 				$media = sprintf('<audio
 					id="player"
 					src="%s"
@@ -132,15 +136,16 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 				);
 			}
 			printf('<li>
-			<a href="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s">%s</a>
+			<a href="%s" data-preview="%s" data-mime-type="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s"></a>
 			</li>',
 				$src,
+				$previewThumb,
+				$attachment->post_mime_type,
 				$i,
 				$count,
 				$attachment->post_title,
 				$attachment->post_content,
-				get_permalink($attachment->ID),
-				$media
+				get_permalink($attachment->ID)
 			);
 			$i++;
 		}
@@ -173,7 +178,9 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 							content: el.getAttribute('data-content'),
 							permalink: el.getAttribute('data-permalink'),
 							position: el.getAttribute('data-pos'),
-							total: el.getAttribute('data-total')
+							total: el.getAttribute('data-total'),
+							mime: el.getAttribute('data-mime-type'),
+							preview: el.getAttribute('data-preview')
 						}
 					},
 					getImageCaption: function(el) {
@@ -199,7 +206,21 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 							window.location.href = "<?php echo get_permalink($parentId); ?>";
 						}
 					});
+					
+					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
+
+						var currentImage = instance.getCurrentImage();
+						//console.log("on display image", currentImage.metaData);
+						$(currentImage).removeAttr("controls");
+
+					});
 				
+					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
+						if(e.action == "tap"){
+							//console.log(e);
+						}
+					});
+					
 			
 			});
 	}(window, window.jQuery, window.Code.PhotoSwipe));

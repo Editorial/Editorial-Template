@@ -338,7 +338,8 @@
 			'reset':'form',
 			'error':'img',
 			'load':'img',
-			'abort':'img'
+			'abort':'img',
+			'play': 'video'
 		},
 				
 				
@@ -356,6 +357,7 @@
 				el.setAttribute(eventName, 'return;');
 				isSupported = typeof el[eventName] === 'function';
 			}
+			
 			el = null;
 			return isSupported;
 		},
@@ -2161,11 +2163,24 @@
 			this.src = src;
 			this.caption = caption;
 			this.metaData = metaData;
+			//this.imageEl = new window.Image();
 			
-			this.imageEl = new window.Image();
+			if((/video/g.test(this.metaData.mime))){
+				this.imageEl =  Util.DOM.createElement('video', 
+				{controls:"controls",
+				type:metaData.mime,
+				width:"100%",
+				height:"100%"}, 
+				'');
+			}
+			else {
+				this.imageEl = new window.Image();
+			}
 			
 			this.imageLoadHandler = this.onImageLoad.bind(this);
 			this.imageErrorHandler = this.onImageError.bind(this);
+			
+			//console.log(window);
 			
 		},
 		
@@ -2192,6 +2207,7 @@
 						target: this
 					});
 				}
+				
 				return;
 			}
 			
@@ -2205,6 +2221,13 @@
 			this.imageEl.onabort = this.imageErrorHandler;
 			this.imageEl.originalSrc = this.src;
 			this.imageEl.src = this.src;
+			
+			if((/video/g.test(this.metaData.mime))){
+				Util.Events.fire(this, {
+					type: PhotoSwipe.Image.EventTypes.onLoad,
+					target: this
+				});
+			}
 			
 		},
 		
@@ -2240,6 +2263,10 @@
 			this.imageEl.naturalHeight = Util.coalesce(this.imageEl.naturalHeight, this.imageEl.height);
 			this.imageEl.isLandscape = (this.imageEl.naturalWidth > this.imageEl.naturalHeight);
 			this.imageEl.isLoading = false;
+			
+			//if((/video/g.test(this.metaData.mime))){
+				console.log('onImageLoad', this.imageEl, e);
+			//}
 			
 			Util.Events.fire(this, {
 				type: PhotoSwipe.Image.EventTypes.onLoad,
@@ -2843,6 +2870,7 @@
 				Util.DOM.appendChild(this.el, this.settings.target);
 			}
 			
+			
 		},
 		
 		
@@ -2897,6 +2925,12 @@
 				
 				// If an item has an image then resize that
 				imageEl = Util.DOM.find('img', itemEl)[0];
+				
+				if(Util.isNothing(imageEl)){
+					//let's try if we have video
+					imageEl = Util.DOM.find('video', itemEl)[0];
+				}
+				
 				if (!Util.isNothing(imageEl)){
 					this.resetImagePosition(imageEl);
 				}
@@ -3005,6 +3039,8 @@
 				left: newLeft,
 				display: 'block'
 			});
+			
+			console.log("reset img position", imageEl);
 		
 		},
 		
@@ -3221,6 +3257,8 @@
 			Util.Events.add(cacheImage, PhotoSwipe.Image.EventTypes.onError, this.imageErrorHandler);
 			
 			cacheImage.load();
+			
+			//console.log("addCacheImageToItemEl",cacheImage, itemEl );
 			
 		},
 		
@@ -6154,6 +6192,9 @@
 						break;
 						
 					case Util.TouchElement.ActionTypes.tap:
+					// Pass the touch onto the carousel
+					//	this.carousel.onTouch(e.action, e.point);
+						
 						this.toggleToolbar();
 						break;
 						

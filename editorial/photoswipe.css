@@ -74,7 +74,7 @@ div.ps-caption
 	font-family: "Lucida Grande", Helvetica, Arial,Verdana, sans-serif;
 	/*text-align: center;*/
 }
-/*div.ps-caption *  { display: inline; }*/
+div.ps-caption *  { display: inline; }
 
 div.ps-caption-bottom
 { 
@@ -162,7 +162,7 @@ div.ps-toolbar-play div.ps-toolbar-content
 
 /* Hi-res display */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 240dpi)
 {
 	div.ps-toolbar div div.ps-toolbar-content
@@ -191,6 +191,7 @@ div.ps-toolbar-next-disabled #m-next span {background-position:-119px -24px;}
 div.ps-toolbar-previous-disabled #m-prev {opacity:.7;}
 div.ps-toolbar-previous-disabled #m-prev span {background-position:14px -25px;}
 
+div.ps-carousel-content video { -webkit-transform-style: preserve-3d; }
 
 
 
