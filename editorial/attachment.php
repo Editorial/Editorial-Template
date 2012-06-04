@@ -211,7 +211,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 
 						var currentImage = instance.getCurrentImage();
 						//console.log("on display image", currentImage.metaData);
-						$(currentImage).removeAttr("controls");
+						//$(currentImage).removeAttr("controls");
 
 					});
 				
