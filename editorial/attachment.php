@@ -210,9 +210,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
 
 						var currentImage = instance.getCurrentImage();
-						//console.log("on display image", currentImage.metaData);
-						//$(currentImage).removeAttr("controls");
-
+						console.log("on display image", currentImage.imageEl);
 					});
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
