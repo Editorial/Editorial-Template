@@ -211,6 +211,10 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 
 						var currentImage = instance.getCurrentImage();
 						console.log("on display image", currentImage.imageEl);
+						if(/video/g.test(currentImage.metaData.mime)){
+							//$(currentImage.imageEl).mediaelementplayer();
+						}
+
 					});
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){

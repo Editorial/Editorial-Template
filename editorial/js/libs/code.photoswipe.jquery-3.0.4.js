@@ -2171,7 +2171,7 @@
 				type:metaData.mime,
 				width:"640",
 				height:"380"}, 
-				'');
+				'<source src="'+src+'"></source>');
 			}
 			else {
 				this.imageEl = new window.Image();
@@ -2219,8 +2219,6 @@
 			this.imageEl.onload = this.imageLoadHandler;
 			this.imageEl.onerror = this.imageErrorHandler;
 			this.imageEl.onabort = this.imageErrorHandler;
-			this.imageEl.originalSrc = this.src;
-			this.imageEl.src = this.src;
 			
 			if((/video/g.test(this.metaData.mime))){
 				this.imageEl.onload = null;
@@ -2232,6 +2230,10 @@
 					type: PhotoSwipe.Image.EventTypes.onLoad,
 					target: this
 				});
+			}
+			else {
+				this.imageEl.originalSrc = this.src;
+				this.imageEl.src = this.src;
 			}
 			
 		},
@@ -3044,8 +3046,8 @@
 				height: newHeight,
 				top: newTop,
 				left: newLeft,
-				display: 'block',
-				"-webkit-transform-style": "preserve-3d"
+				display: 'block'
+				//"-webkit-transform-style": "preserve-3d"
 			});
 			
 			console.log("reset img position END", imageEl);
