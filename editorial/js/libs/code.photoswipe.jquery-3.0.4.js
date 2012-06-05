@@ -2170,8 +2170,10 @@
 				{controls:"controls",
 				type:metaData.mime,
 				width:"640",
-				height:"380"}, 
-				'<source src="'+src+'"></source>');
+				height:"380",
+				src: src,
+				onclick: "this.play()"}, 
+				'');
 			}
 			else {
 				this.imageEl = new window.Image();
