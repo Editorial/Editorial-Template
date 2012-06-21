@@ -2163,21 +2163,26 @@
 			this.src = src;
 			this.caption = caption;
 			this.metaData = metaData;
-			//this.imageEl = new window.Image();
+			this.imageEl = new window.Image();
 			
 			if((/video/g.test(this.metaData.mime))){
-				this.imageEl =  Util.DOM.createElement('video', 
-				{controls:"controls",
-				type:metaData.mime,
-				width:"640",
-				height:"380",
-				src: src,
-				onclick: "this.play()"}, 
-				'');
+				this.originalSrc = this.metaData.preview;
+				this.src = this.metaData.preview;
 			}
-			else {
-				this.imageEl = new window.Image();
-			}
+			
+			// if((/video/g.test(this.metaData.mime))){
+			// 				this.imageEl =  Util.DOM.createElement('video', 
+			// 				{controls:"controls",
+			// 				type:metaData.mime,
+			// 				width:"640",
+			// 				height:"380",
+			// 				src: src,
+			// 				onclick: "this.play()"}, 
+			// 				'');
+			// 			}
+			// 			else {
+			// 				this.imageEl = new window.Image();
+			// 			}
 			
 			this.imageLoadHandler = this.onImageLoad.bind(this);
 			this.imageErrorHandler = this.onImageError.bind(this);
@@ -2222,21 +2227,24 @@
 			this.imageEl.onerror = this.imageErrorHandler;
 			this.imageEl.onabort = this.imageErrorHandler;
 			
-			if((/video/g.test(this.metaData.mime))){
-				this.imageEl.onload = null;
-				this.imageEl.naturalWidth = Util.coalesce(this.imageEl.naturalWidth, this.imageEl.width);
-				this.imageEl.naturalHeight = Util.coalesce(this.imageEl.naturalHeight, this.imageEl.height);
-				this.imageEl.isLandscape = (this.imageEl.naturalWidth > this.imageEl.naturalHeight);
-				this.imageEl.isLoading = false;
-				Util.Events.fire(this, {
-					type: PhotoSwipe.Image.EventTypes.onLoad,
-					target: this
-				});
-			}
-			else {
-				this.imageEl.originalSrc = this.src;
-				this.imageEl.src = this.src;
-			}
+			// if((/video/g.test(this.metaData.mime))){
+			// 				this.imageEl.onload = null;
+			// 				this.imageEl.naturalWidth = Util.coalesce(this.imageEl.naturalWidth, this.imageEl.width);
+			// 				this.imageEl.naturalHeight = Util.coalesce(this.imageEl.naturalHeight, this.imageEl.height);
+			// 				this.imageEl.isLandscape = (this.imageEl.naturalWidth > this.imageEl.naturalHeight);
+			// 				this.imageEl.isLoading = false;
+			// 				Util.Events.fire(this, {
+			// 					type: PhotoSwipe.Image.EventTypes.onLoad,
+			// 					target: this
+			// 				});
+			// 			}
+			// 			else {
+			// 				this.imageEl.originalSrc = this.src;
+			// 				this.imageEl.src = this.src;
+			// 			}
+			
+			this.imageEl.originalSrc = this.src;
+			this.imageEl.src = this.src;
 			
 		},
 		
@@ -2935,10 +2943,10 @@
 				// If an item has an image then resize that
 				imageEl = Util.DOM.find('img', itemEl)[0];
 				
-				if(Util.isNothing(imageEl)){
-					//let's try if we have video
-					imageEl = Util.DOM.find('video', itemEl)[0];
-				}
+				// if(Util.isNothing(imageEl)){
+				// 					//let's try if we have video
+				// 					imageEl = Util.DOM.find('video', itemEl)[0];
+				// 				}
 				
 				if (!Util.isNothing(imageEl)){
 					this.resetImagePosition(imageEl);
@@ -2972,7 +2980,7 @@
 				maxWidth = Util.DOM.width(this.el),
 				maxHeight = Util.DOM.height(this.el);
 				
-			console.log("reset img position START", imageEl);
+			//console.log("reset img position START", imageEl);
 			
 			if (this.settings.imageScaleMethod === 'fitNoUpscale'){
 				
@@ -3052,7 +3060,7 @@
 				//"-webkit-transform-style": "preserve-3d"
 			});
 			
-			console.log("reset img position END", imageEl);
+			//console.log("reset img position END", imageEl);
 		
 		},
 		

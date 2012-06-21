@@ -86,6 +86,8 @@ foreach (array_keys($attachments) as $key => $value)
 if (Editorial::isMobileDevice() || Editorial::isIpad())
 {
 ?>
+	<video id="video-player" controls="controls"></video>
+	<audio id="audio-player" controls="controls"></audio>
 
 	<section id="media-gallery">
 	<ul id="Gallery" class="gallery" style="display:none;" >
@@ -102,38 +104,17 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 			{
 				$src = isset($src[0]) ? $src[0] : '';
 				$previewThumb = $src;
-				$media = sprintf(
-					'<img src="%s" alt="%s">',
-					$src,
-					$attachment->post_title
-				);
+				
 			}
 			else if (Editorial::is_video($attachment->post_mime_type))
 			{
 				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/bgr/gallery.png";
-				$media = sprintf('<video
-					src="%s"
-					type="%s"
-					id="player"
-					controls="controls"
-					preload="none"></video>',
-					$src,
-					$attachment->post_mime_type
-				);
+				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video.png";
 			}
 			else if (Editorial::is_audio($attachment->post_mime_type))
 			{
 				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/bgr/gallery.png";
-				$media = sprintf('<audio
-					id="player"
-					src="%s"
-					type="%s"
-					controls="controls"></audio>',
-					$src,
-					$attachment->post_mime_type
-				);
+				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video.png";
 			}
 			printf('<li>
 			<a href="%s" data-preview="%s" data-mime-type="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s"></a>
@@ -154,6 +135,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 	</ul>
 	</section>
 	<script>
+
 	(function(window, $, PhotoSwipe){
 		$(function(){
 				
@@ -190,6 +172,10 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 						
 							'<figcaption><h3>' + meta_data.title + '</h3>' +
 							'<p>' + meta_data.content + '</p></figcaption>';
+							
+							if(/video/g.test(meta_data.mime)){
+								foo += '<a id="media-play">Play</a>';
+							}
 						
 						cap_el = $(foo);
 						
@@ -208,18 +194,27 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					});
 					
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
-
+						var vid = document.getElementById("video-player");
+						vid.pause();
+						vid.src = "";
 						var currentImage = instance.getCurrentImage();
-						console.log("on display image", currentImage.imageEl);
 						if(/video/g.test(currentImage.metaData.mime)){
-							//$(currentImage.imageEl).mediaelementplayer();
+							vid.src = currentImage.metaData.href;
+							$('a#media-play').on('touchstart', function(e){
+								vid.style.display = 'block';
+								vid.play();
+								vid.webkitEnterFullscreen();
+							});
 						}
 
 					});
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
 						if(e.action == "tap"){
-							//console.log(e);
+							// var currentImage = instance.getCurrentImage();
+							// 							if(/video/g.test(currentImage.metaData.mime)){
+							// 								$("#video-player").get(0).webkitEnterFullscreen();
+							// 							}
 						}
 					});
 					

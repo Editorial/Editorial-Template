@@ -191,7 +191,7 @@ div.ps-toolbar-next-disabled #m-next span {background-position:-119px -24px;}
 div.ps-toolbar-previous-disabled #m-prev {opacity:.7;}
 div.ps-toolbar-previous-disabled #m-prev span {background-position:14px -25px;}
 
-div.ps-carousel-content video { /*-webkit-transform-style: preserve-3d;*/ }
+div.ps-caption-content a#media-play { position:absolute; bottom:50px; right:10px; color:#fff;}
 
 
 
