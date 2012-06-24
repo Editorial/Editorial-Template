@@ -8,11 +8,8 @@
  Author: XXX
 
 
-
-You can also use http://procssor.com to format code as you like it.
-
 // vec o tem zakaj se to dogaja
-Every time update comes your custom CSS remains unchanged and style.css will be updated with new features.
+Every time update comes style.css will be updated with new features, but custom CSS remains unchanged and style.css will be updated with new features.
 // pozor lastnosti so tudi po MQ za zamenjat (zato niso vse zdruzene na kupu.
 // pomagaj si z inspektorji (najboljse Google Chrome, ker kaze MQ)
 
@@ -27,21 +24,23 @@ option 01 change colors:
 - S&R "#999" {gray color: author & publish date, image captions, form labels etc.}
 
 option 02 change font:
-- S&R "minion-pro,georgia,serif" [Typekit Minion Pro]
-- S&R "minion-pro-italic" [Typekit Minion Pro Italic]
-- S&R "helvetica,arial,sans-serif" [system font]
+- S&R "minion-pro,georgia,serif" {default typography with Typekit}
+- S&R "minion-pro-italic" {italic typography with Typekit}
+- S&R "helvetica,arial,sans-serif" {form fields, image captions etc.}
 
 // ! ob spremembi fonta popravit se font-size (ker se drugace sesuje naslovnca -> zaradi fixnih boxov) + narekovaji gredo v kurac
 
 
-option 03 change font sizes:
+option 03 change font sizes & line-heights:
+-
+
 - default
 - titles
 -
 
++ body background color kako zamenjat
 
-
-
+- kvoute (jim notri dat)
 
 
 
@@ -50,6 +49,8 @@ option 03 change font sizes:
 
 BLA
 
+
+You can also use http://procssor.com to format code as you like it.
 
 
 How to customize other stuff / everything?

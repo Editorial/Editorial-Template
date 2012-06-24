@@ -45,13 +45,15 @@ abbr[title] {border-bottom:1px dotted;cursor:help;}
 
 html {overflow-y:scroll;background:#f7f7f7;}
 body {margin:0 auto;min-width:320px;font:100%/20px helvetica,arial,sans-serif;color:#262121;
-background:#f7f7f7 url(../images/bgr/body.png) repeat-x;}
+background:#f7f7f7;}
 .home {background:#f7f7f7 url(../images/bgr/home-480.jpg) 50% 0 no-repeat;}
 
 .features section,.abilities li,.price-tag,.home .content h3,.price-tag h4,.price strong,.included li,.support .col,
 .copyright,.connect,#brand a,.primary li,.primary a,.process ol,.process li,.licenses ol,.order .action,
 .download em,.process figure,.leading,.level h2,.ribbon h1,#manage-form,.helpful h4,.related h4
 {background-image:url(../images/bgr/sprite.png);background-repeat:no-repeat;}
+
+.features-bar li {background-image:url(../images/bgr/new-sprite.png);background-repeat:no-repeat;}
 
 .level li,.level .group,.makers li {background-image:url(../images/bgr/lines.png);background-repeat:no-repeat;}
 
@@ -129,7 +131,6 @@ figcaption {padding:10px 0 0;font:13px/20px helvetica,arial,sans-serif;color:#59
 .makers figure {margin:0 0 30px;width:35%;float:left;}
 .makers img {-webkit-border-radius:67px;-moz-border-radius:67px;border-radius:67px;}
 .makers img {height:auto;}
-.makers li a {border-bottom:1px dotted #09c;}
 
 .pricing figure {display:none;}
 
@@ -296,7 +297,7 @@ text-shadow:none;cursor:default;background:#f6f6f6;
 
 #header {border-top:3px solid #1a1a1a;margin:0 0 10px;width:100%;text-align:center;background:#333;
 background:rgba(0,0,0,.8);}
-.home #header {margin:0 0 30px;border:none;padding-top:300px;background:none;}
+.home #header {border:none;padding:300px 0 20px;background:none;}
 .home #header .adapt {text-align:center;}
 #header hgroup {margin:0 0 27px;text-align:left;}
 #brand {float:left;display:none;}
@@ -362,13 +363,36 @@ background:rgba(0,0,0,.8);}
 #about.selected a,#about a:hover {background-position:-571px -259px;}
 
 
+.features-bar {width:100%;float:left;}
+.features-bar ul {padding:0 20px 0 10px;width:150px;background:#f7f7f7;}
+.features-bar li {margin-top:-1px;border-left:1px solid #ccc;width:100%;text-align:left;background-position:-703px -58px;float:left;}
+.features-bar li:first-child {margin-top:0;}
+.features-bar .selected {background-color:rgba(0,0,0,.02)}
+.features-bar a {padding:5px 0 5px 10px;height:32px;display:block;float:left;}
+.features-bar img {margin:0 10px 0 0;max-width:25%;float:left;}
+.features-bar h4 {padding:10px 0 0;font:13px helvetica,arial,sans-serif;color:#09c;float:left;}
+
+.small-screen .features-bar {width:180px;position:absolute;top:32px;right:-182px;z-index:1;}
+.small-screen .features-bar ul {float:left;}
+
+
+#features-links {width:100%;float:left;}
+#show-features {text-transform:uppercase;font-size:11px;font-weight:bold;color:#000;background:#da1e25;padding:5px 10px;border:1px solid #000;float:right;}
+
+
+
+
+
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
-.content {text-align:center;}
+.content {text-align:center;width:100%;overflow:hidden;position:relative;}
 
-.adapt,.features,.pricing,.process,.order,.main {margin:0 auto;text-align:left;}
+.adapt,.process,.order,.main {margin:0 auto;text-align:left;}
 .home .content h3,.level h2 {margin:0 0 36px;font-size:30px;line-height:30px;background-position:300px 300px;}
 .home h3 em,.level h2 em,.helpful h4 em,.related h4 em {font-style:normal;}
+
+.features,.pricing {width:100%;text-align:left;float:left;position:relative;}
+.pricing figure {position:absolute;left:0;bottom:0;}
 
 .goodies {margin:0 0 46px;}
 .features section,.abilities li {padding:0 0 0 82px;}
@@ -394,6 +418,7 @@ background:rgba(0,0,0,.8);}
 #colophon {background-position:-215px -701px;}
 #rss {background-position:-94px -837px;}
 
+.update .process {padding-top:25px;}
 .process header {margin:0 0 15px;width:100%;float:left;}
 .process ol {margin:0 0 15px;width:100%;font-size:11px;text-transform:uppercase;float:left;}
 .process li {padding:45px 0 0;width:33.3%;color:#ccc;text-align:center;float:left;}
@@ -424,7 +449,7 @@ position:absolute;top:25px;left:34px;z-index:1;}
 	-webkit-box-shadow:0 4px 4px rgba(0,0,0,.25);
 	box-shadow:0 4px 4px rgba(0,0,0,.25);
 }
-.order h2 {font-size:24px;line-height:25px;}
+.order h2,.lost h2 {font-size:24px;line-height:25px;}
 .order .leading {margin:0 -15px 10px;padding-top:20px;font-size:18px;line-height:20px;color:#000;
 background-position:-1160px -40px;}
 .order .brand {font:bold 14px/20px helvetica,arial,sans-serif;color:#000;display:inline;}
@@ -443,8 +468,7 @@ background-position:-1160px -40px;}
 
 .helpful h4,.related h4 {padding-top:15px;background-position:top left;}
 
-.about #header {margin:0;}
-.about .content {padding-top:10px;overflow:hidden;}
+.about .content {overflow:hidden;}
 
 #transaction-loading {height:170px;position:relative;}
 #transaction-loading #canvasLoader {margin:-17px 0 0 -17px;position:absolute;top:50%;left:50%;}
@@ -456,7 +480,7 @@ background-position:-1160px -40px;}
 .main h1,.main .exposed {margin:15px 0;}
 .main h1 {width:100%;float:left;}
 .domains-no h1 {margin:25px 0 15px;padding:0 0 40px;max-width:410px;}
-.help-list .main h1, .help-single .main h3 {margin:15px 0 25px;}
+.help-list .main h1, .help-single .main h3,.about .content h1,.tearms .content h1 {margin:15px 0 25px;}
 .help-single h1 {margin-top:0;}
 
 .level {padding:0 0 30px;width:100%;float:left;}
@@ -495,13 +519,21 @@ background-position:-1160px -40px;}
 .about .info {margin:0 0 25px;}
 .makers li {text-align:center;clear:both;background-position:100px 100px;}
 
-.makers h2 {padding:20px 0 0;font-size:18px;line-height:20px;}
+.makers h2 {padding:9% 0 0;font-size:18px;line-height:20px;}
 .makers .title {display:block;}
+.about .entry-summary a {border-bottom:1px dotted #999;color:#333;}
 
 #dust {position:absolute;top:-10px;left:0;z-index:-1;}
 #dust img {height:auto;}
 
 .manage h3 {margin:10px 0 25px;font-size:18px;line-height:30px;}
+
+.lost {padding:30px 0 0;text-align:center;}
+.lost figure {margin:0 0 30px;width:100%;}
+.lost figure img {margin:0 auto;width:20%;}
+.lost h1,.lost h2 {margin:0 0 15px;}
+.lost p {font-size:18px;line-height:20px;}
+.lost p a {padding:3px;display:block;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -520,7 +552,7 @@ background-position:-456px -73px;}
 .price {width:100%;position:relative;}
 .price .label {padding:0 0 7px 32px;font-size:10px;color:#999;text-transform:uppercase;display:block;}
 .price strong {padding:0 5px 8px 0;font-size:48px;color:#262121;font-weight:normal;letter-spacing:-1px;
-background-position:-304px -36px;}
+background-position:-304px -30px;}
 .price em {padding:0 4px 0 2px;font-style:normal;}
 .price sup {font-size:24px;line-height:30px;}
 .price .go {padding:5px 16px;width:auto;font-size:12px;position:absolute;top:18px;right:0;}
@@ -547,8 +579,7 @@ background-position:-304px -36px;}
 .updates p {margin:0 0 12px;color:#999;}
 
 .connect {min-height:210px;background-position:300px 300px;}
-.twitter {padding:3px 0 0;}
-.twitter blockquote {padding:20px 0 7px;position:relative;}
+.twitter {padding:23px 0 7px;position:relative;}
 .twitter p {font:18px/25px MinionProRegular,georgia,serif;color:#595959;position:relative;}
 .twitter p:before {margin:0 0 -30px;content:'“';font-size:90px;line-height:45px;color:#ccc;display:block;}
 .twitter a {color:#595959;}
@@ -595,8 +626,15 @@ input:-moz-placeholder {color:#999;}
 div,input,textarea {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;
 box-sizing:border-box;}
 .ie7 img {-ms-interpolation-mode:bicubic;}
-
-.ie7 #email,.ie8 #email {border:1px solid #f2f2f2;}
+.ie7 #email,.ie8 #email {border:1px solid #f2f2f2;padding:12px 15px 9px;}
+.ie7 #email {width:90%;}
+.ie7 #subscribe {width:100px;}
+.ie7 .home #header .adapt {width:100%;float:left;}
+.ie7 .submit .go,.ie8 .submit .go {padding:6px 0;}
+.ie7 .questions a {padding-left:0;}
+.ie7 .submit .redirecting,.ie8 .submit .redirecting {padding-left:20px;}
+.ie7 .abilities li,.ie8 .abilities li {font-size:17px;}
+.ie8 .home #header:before,.ie8 .home #header:after {display:inline;}
 #email::-webkit-input-placeholder {color:#999;}
 #email:-moz-placeholder {color:#999;}
 #email:placeholder {color:#999;}
@@ -694,8 +732,8 @@ form .submit {text-align:left;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
+.home #header {padding-bottom:40px;}
 #header hgroup {text-align:center;}
-.home #header {margin:0 0 68px;}
 #header p {margin:0 auto;width:322px;font-size:18px;}
 #brand {width:49px;height:37px;display:block;overflow:hidden;}
 .home #brand {width:auto;height:auto;}
@@ -742,6 +780,8 @@ form .submit {text-align:left;}
 .makers .miha {background-position:100px 100px;}
 .makers h2 {padding:0 0 2px;}
 
+.lost figure img {width:15%;}
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
@@ -764,11 +804,11 @@ form .submit {text-align:left;}
 .support li {margin:0;float:none;}
 
 .connect {background-position:right -792px;}
-.twitter blockquote {padding:0 0 7px;}
+.twitter {padding:0 0 7px;}
 .twitter p {padding:0 0 0 50px;}
 .twitter p:before {margin:0;line-height:90px;position:absolute;top:-1px;left:1px;}
 
-.copyright {width:405px;background-position:-17px -895px;}
+.copyright {background-position:-17px -895px;}
 .copyright,.cart .copyright,.domains .copyright {background-position:-17px -895px;}
 .copyright p {padding:3px 0 0 90px;}
 
@@ -779,6 +819,11 @@ form .submit {text-align:left;}
 
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie7 #email {width:270px;}
+.ie7 .twitter p {padding:0;}
+.ie8 .twitter p:before {margin-left:-50px;}
+
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
@@ -798,6 +843,7 @@ form .submit {text-align:left;}
 
 h1,.exposed {margin:15px 0;font-size:70px;line-height:72px;}
 .domains-no h1 {text-align:left;}
+.lost h2 span {display:block;}
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
@@ -811,7 +857,7 @@ h1,.exposed {margin:15px 0;font-size:70px;line-height:72px;}
 /* 6.TABLES _________________________________________________________________________________________________________ */
 /* 7.FORMS __________________________________________________________________________________________________________ */
 
-.message {overflow:hidden;position:relative;z-index:1;}
+.message {min-height:67px;overflow:hidden;position:relative;z-index:1;}
 .message h3 {padding:0 0 0 5px;font-size:100px;color:#e6ddc3;display:block;top:43px;left:42px;position:absolute;
 z-index:-1;}
 .message .lead,.message p,.message ol {margin-left:100px;}
@@ -826,13 +872,14 @@ z-index:-1;}
 
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
-#header {margin:0 0 30px;}
 .home #header {padding-top:445px;}
 
 
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
+.content {margin-top:30px;}
+.home .content {margin-top:0;}
 .home .content h3 {text-align:center;}
 .home h3 em {padding:0 15px;}
 .level h2 {width:100%;background-position:0 16px;text-align:left;float:left;}
@@ -847,10 +894,9 @@ z-index:-1;}
 #domains-no {font-size:72px;top:78px;left:77px;}
 .domains .process figure {top:17px;width:186px;}
 
-.download {margin:0 0 9px;width:258px;font-size:18px;line-height:28px;}
+.download {margin:0 auto 9px;width:258px;font-size:18px;line-height:28px;}
 .download em {padding:18px 0 14px 88px;font-style:normal;background-position:-358px -109px;display:block;}
 
-.about #header {margin:0 0 10px;}
 .about .content {padding-top:0;overflow:visible;}
 
 #transaction-loading {height:200px;}
@@ -858,7 +904,7 @@ z-index:-1;}
 
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
-.help-list .main h1, .help-single .main h3 {margin:15px 0;}
+.help-list .main h1, .help-single .main h3,.about .content h1,.tearms .content h1 {margin:15px 0;}
 .help-list .main {margin:0 auto 25px;}
 
 .makers .title  {margin:0 0 5px;}
@@ -869,20 +915,14 @@ z-index:-1;}
 
 .manage h3 {margin:19px 0 31px;font-size:24px;}
 
+.lost figure {margin:0 0 41px;}
+.lost figure img {width:auto;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
 .price-tag {width:326px;float:right;}
 .pricing figure {width:42%;float:left;display:block;}
-
-/*
-da je slka vedno spodaj
-.pricing {height:436px;}
-.price-tag {width:326px;float:right;}
-.pricing figure {width:42%;height:365px;float:left;display:block;position:relative;}
-.pricing figure img {position:absolute;left:0;bottom:0;
-*/
 
 
 /* 13.CONTENTINFO ___________________________________________________________________________________________________ */
@@ -893,9 +933,17 @@ da je slka vedno spodaj
 .abilities li {padding:0 0 0 13%;width:37%;float:left;}
 #updates,#customizable,#admin,#colophon {float:right;}
 
+.copyright {width:435px;}
+
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie7 #domains-no {line-height:72px;top:60px;}
+.ie8 .questions li a:before {left:-28px;top:-1px;}
+.ie8 .related .questions a:before {left:0;top:10px;}
+
+
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
@@ -925,7 +973,6 @@ da je slka vedno spodaj
 
 .order {margin:0 49px;}
 .order .loader {margin:7px 0 0;}
-
 
 form .info {width:48%;float:left;}
 .manage form .info {width:auto;float:none;}
@@ -962,7 +1009,6 @@ form .info {width:48%;float:left;}
 
 .goodies {margin:0 0 46px;}
 .features section {margin-bottom:15px;padding:0 0 0 13%;width:35%;min-height:220px;float:left;}
-/*#platforms,#photography {height:250px;}*/
 #photography,#gallery,#machine {float:right;}
 .abilities {margin:-7px 0 0;float:left;}
 .abilities li {width:35%;}
@@ -980,7 +1026,7 @@ form .info {width:48%;float:left;}
 
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
-.help-list .main h1, .help-single .main h3 {margin:25px 0;}
+.help-list .main h1, .help-single .main h3,.about .main h1,.tearms .content h1 {margin:25px 0;}
 .main h1,.main .exposed {margin:25px 0;}
 .level li {background-position:-950px bottom;}
 .level li a {padding:11px 0 10px 35px;}
@@ -999,6 +1045,11 @@ form .info {width:48%;float:left;}
 .level h3 {margin:20px 0 10px;font-size:28px;}
 
 .helpful h4,.related h4 {padding:0;width:100%;background-position:0 16px;text-align:left;float:left;}
+
+.lost {padding:35px 0 0;}
+.lost figure {margin:0 0 61px;}
+.lost h1 {margin:0 0 44px;}
+.lost h2 {margin:0 0 27px;}
 
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
@@ -1024,6 +1075,10 @@ form .info {width:48%;float:left;}
 
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
+
+.ie8 .order {margin:0 auto;padding:5px 49px 15px;}
+
+
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
@@ -1039,6 +1094,7 @@ form .info {width:48%;float:left;}
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1,.exposed {text-align:left;}
+.lost h1 {text-align:center;}
 
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
@@ -1073,6 +1129,7 @@ h1,.exposed {text-align:left;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #brand {margin:0 0 0 -14px;}
+.home #brand {padding:0 15px;}
 .adapt {position:relative;}
 
 
@@ -1083,12 +1140,29 @@ h1,.exposed {text-align:left;}
 .primary a:hover {margin:-3px 0 0;border-top:3px solid #666;}
 .primary .selected a:hover {border-color:#da221b;}
 
+#features-links {display:none;}
+
+.features-new .content .adapt {padding:135px 0 0;position:relative;}
+.big-screen .features-bar {width:100%;position:absolute;top:40px;left:0;right:auto;}
+
+
+.features-bar ul {padding:0;width:auto;}
+.features-bar li {margin:0 0 0 -1px;border:none;width:auto;text-align:center;background-position:0 -24px;}
+.features-bar .selected {background-color:transparent;background-position:0 -147px;}
+.features-bar a {padding:0;border-bottom:1px solid #ccc;width:120px;height:101px;}
+.features-bar .selected a {height:133px;border-bottom:none;}
+.features-bar img {margin:0 auto;max-width:100%;float:none;}
+.features-bar h4 {padding:4px 0 0;float:none;}
+
 
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 
 .adapt,.features,.pricing,.process,.main {width:954px;}
 .order {width:850px;float:none;}
 .transaction .action img {margin:0 0 0 10px;}
+
+.features,.pricing {margin:0 auto;float:none;}
+.pricing figure {position:static;}
 
 .goodies {margin:0 0 46px -30px;}
 .features section,.abilities li,#platforms,#photography,#gallery,#machine {margin:0 0 0 30px;padding:0 0 30px 82px;
@@ -1097,6 +1171,7 @@ width:216px;height:auto;float:left;}
 #updates,#customizable,#admin,#colophon {float:left;}
 .abilities li {padding:0 0 0 82px;}
 
+.loading .process {padding-top:65px;}
 .process header {margin:0 0 8px 2px;padding:0;width:490px;float:left;}
 .process figure,.domains-no h1 {background-position:0 bottom;}
 .process .tablets {margin:0 0 15px;width:960px;height:10px;position:relative;}
@@ -1104,8 +1179,7 @@ width:216px;height:auto;float:left;}
 .process ol {width:463px;}
 
 .save .info {width:55%;float:left;}
-.order .action {margin:13px 0 0;width:324px;float:right;}
-.save .order .action p {text-align:left;}
+.order .action {margin:13px 30px 0 0;float:right;}
 
 .domains .process figure {right:0;}
 
@@ -1115,11 +1189,12 @@ width:216px;height:auto;float:left;}
 /* 11.MAIN __________________________________________________________________________________________________________ */
 
 
-.read {width:720px;float:left;}
+.read {width:710px;float:left;}
 .default {padding-right:225px;padding-bottom:26px;width:720px;}
-.main h1,.main .exposed,.help-list .main h1, .help-single .main h3  {margin:80px 0 43px;}
+.main h1,.main .exposed,.help-list .main h1, .help-single .main h3,.about .main h1,.tearms .content h1,
+.domains-no h1 {margin:80px 0 43px;}
 
-.domains-no h1 {margin:80px 0 15px;padding:0 210px 18px 0;float:left;}
+.domains-no h1 {margin:80px 0 15px;padding:0 210px 18px 0;white-space:nowrap;float:left;}
 .read h1 {margin:0 0 25px;}
 .level h4 {padding-top:35px;float:left;}
 .level .group {margin:0 0 23px;}
@@ -1161,18 +1236,26 @@ width:216px;height:auto;float:left;}
 
 .subscription {margin:0;border:none;}
 
-.copyright {background-position:296px -895px;float:right;}
-.cart .copyright,.domains .copyright {background-position:296px -1596px;}
+.copyright {background-position:326px -895px;float:right;}
+.cart .copyright,.domains .copyright {background-position:326px -1596px;}
 .copyright p {margin:0 0 12px;padding:3px 90px 0 0;text-align:right;}
 
 
 /* 14.GLOBAL OBJECTS   ______________________________________________________________________________________________ */
 
-#header hgroup,.content,.updates,.support,.copyright {padding-left:0;padding-right:0;}
+#header hgroup,.updates,.support,.copyright {padding-left:0;padding-right:0;}
+.content {margin:0 auto;}
 #header .adapt {padding:0;}
 
 /* 15.VENDOR-SPECIFIC _______________________________________________________________________________________________ */
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
+
+.ie7 .home #header .adapt {width:954px;float:none;}
+.ie7 #domains input {width:316px;}
+.ie7 #licenses-c {margin-top:-5px;}
+.ie8 #domains {padding:7px 0 0;}
+
+
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
 }
