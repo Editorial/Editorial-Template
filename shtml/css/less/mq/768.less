@@ -12,6 +12,30 @@
 	padding-right: 60px;
 }
 
+.primary {
+	ul {
+		position: relative;
+
+		&:before {
+			content: ' ';
+			border-left: 1px solid #000;
+			position: absolute;
+			top: 0;
+			left: -1px;
+			bottom: 0;
+		}
+
+		&:after {
+			content: ' ';
+			border-right: 1px solid #404040;
+			position: absolute;
+			top: 0;
+			right: 1px;
+			bottom: 0;
+		}
+	}
+}
+
 
 /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 

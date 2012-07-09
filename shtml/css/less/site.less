@@ -26,8 +26,6 @@ body {
 .copyright,
 .connect,
 #brand a,
-.primary li,
-.primary a,
 .process ol,
 .process li,
 .licenses ol,
@@ -51,8 +49,8 @@ body {
 	background-repeat: no-repeat;
 }
 
-/* HEADER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
+/* HEADER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 #header hgroup,
 .content,
@@ -103,16 +101,18 @@ body {
 	}
 }
 
-
 /* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .primary {
 	ul {
+		width: 100%;
 		margin: 0;
 		font-size: 10px;
+		float: left;
 	}
 
 	li {
+		width: 20%;
 		text-transform: uppercase;
 		text-align: center;
 		background-position: -992px 24px;
@@ -120,16 +120,35 @@ body {
 	}
 
 	a {
-		margin: 0 0 0 4px;
-		padding: 43px 0 4px;
-		width: 76px;
+		padding: 34px 0 3px;
+		width: 100%;
 		color: #7f7f7f;
+		background: url(../images/bgr/primary.png) no-repeat;
 		display: block;
+		position: relative;
+
+		&:before {
+			content: ' ';
+			border-left: 1px solid #404040;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+		}
+
+		&:after {
+			content: ' ';
+			border-right: 1px solid #000;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+		}
 	}
 
 	.selected {
 		a {
-			margin: -3px 0 0 4px;
+			margin: -3px 0 0;
 			border-top: 3px solid #da221b;
 			color: #fff;
 		}
@@ -174,6 +193,63 @@ body {
 				animation: none;
 			}
 		}
+	}
+}
+
+#home {
+	a {
+		background-position: center 0;
+	}
+
+	a:hover,
+	&.selected {
+		background-position: center -56px;
+	}
+}
+
+#features {
+	a {
+		background-position: center -112px;
+	}
+
+	a:hover,
+	&.selected {
+		a {
+			background-position: center -168px;
+		}
+	}
+}
+
+#help {
+	a {
+		background-position: center -224px;
+	}
+
+	a:hover,
+	&.selected a {
+		background-position: center -280px;
+	}
+}
+
+#about {
+	a {
+		background-position: center -336px;
+	}
+
+	a:hover,
+	&.selected a {
+		background-position: center -392px;
+	}
+}
+
+#purchase {
+	a {
+		background-position: center -448px;
+	}
+
+	a:hover,
+	&.selected a {
+		background-position: center -504px;
 	}
 }
 
@@ -1418,53 +1494,99 @@ body {
 
 /* <start> 07 FEATURES ============================================================================================== */
 
-/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.off-canvas {
+	.main,
+	#features-bar {
+		//.transition(.25s all ease-in);
+		-webkit-transition: .25s all ease-in;
+		-moz-transition: .25s all ease-in;
+		-o-transition: .25s all ease-in;
+		-ms-transition: .25s all ease-in;
+		transition: .25s all ease-in;
+	}
 
-#features {
-	background-position: 100px 100px;
+	.adapt {
+		overflow: hidden;
+	}
+
+	.main {
+		width: 90%;
+		float: left;
+		position: relative;
+		z-index: 1;
+	}
 }
 
-#features {
-	a {
-		background-position: -329px -190px;
+#features-bar {
+	border-left: 1px solid #ccc;
+}
 
-		&:hover {
-			background-position: -329px -259px;
+.features-nav {
+	border-left: 2px solid #e6e6e6;
+	float: left;
+
+	ul {
+		width: 100%;
+		float: left;
+	}
+
+	li {
+		margin-top: -1px;
+		padding: 9px 0 7px;
+		border-left: 1px solid #ccc;
+		width: 100%;
+		background: url(../images/bgr/features-nav.png) -603px -58px no-repeat;
+		float: left;
+
+		&:first-child {margin-top:0;}
+	}
+
+	.selected {
+		h4 {
+			color: #999;
 		}
 	}
-}
 
-#purchase {
-	a {
-		background-position: -415px -190px;
+	figure {
+		padding: 0 0 0 14px;
+		float: left;
+	}
+
+	img {
+		max-width: 60%;
+	}
+
+	h4 {
+		margin: 8px 0 0 -11px;
+		font:14px/20px @baseFont;
+		color: #09c;
+		float: left;
 	}
 }
 
-#purchase.selected a,
-#purchase a:hover {
-	background-position: -415px -259px;
+#show-features {
+	display: block;
+	width: 100%;
+	background: lime;
+	float: left;
 }
 
-#help {
-	a {
-		background-position: -493px -190px;
+#features-bar {
+	margin-right: -100%;
+	width: 70%;
+	float: right;
+	position: relative;
+	z-index: 2;
+}
+
+.active-sidebar {
+	.main {
+		margin-left: -80%;
 	}
-}
 
-#help.selected a,
-#help a:hover {
-	background-position: -493px -259px;
-}
-
-#about {
-	a {
-		background-position: -571px -190px;
+	#features-bar {
+		margin-right: 0;
 	}
-}
-
-#about.selected a,
-#about a:hover {
-	background-position: -571px -259px;
 }
 
 /* </end> 07 FEATURES =============================================================================================== */

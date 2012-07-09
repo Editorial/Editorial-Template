@@ -13,15 +13,14 @@
 // open / close features nav
 var featuresNav = function() {
 	var b = $('body'),
-			fBar = $('#features-bar'),
-			fBarWidth = fBar.width();
+			fBar = $('#features-bar');
 	fBar.stop();
 	if (b.hasClass('active-sidebar')) {
-		fBar.animate({right: '-' + fBarWidth + 'px'}, 100);
+		fBar.animate({marginRight: '-100%'}, 100);
 		b.removeClass('active-sidebar');
 	}
 	else {
-		fBar.animate({right:'0'}, 150);
+		fBar.animate({marginRight: 0}, 150);
 		b.addClass('active-sidebar');
 	}
 };
@@ -39,21 +38,6 @@ var featuresNav = function() {
 		}
 	}
 
-	// add/remove body classes based on viewport width
-	var bodyViewportClasses = function() {
-	// testing the display property on the element
-	var b = $('body'),
-			nav_display = $('#features-links').css('display');
-		// testing for display:block (changed in css via media queries)
-		if (nav_display === 'block') {
-			b.removeClass('big-screen').addClass('small-screen');
-		}
-		// testing for display:none (changed in css via media queries)
-		if (nav_display === 'none') {
-			b.removeClass('active-sidebar small-screen').addClass('big-screen');
-		}
-	};
-
 	//off-canvas
 	if ($('body').hasClass('features-new')) {
 
@@ -69,24 +53,39 @@ var featuresNav = function() {
 			featuresNav();
 		});
 
-		//geastures
-		function log(event_, obj) {
-		// ignore bubbled handlers
-		//		if ( obj.originalEvent.currentTarget !== obj.originalEvent.target ) { return; }
-			obj.originalEvent.preventDefault();
-			//console.log(obj.description);
-			if (obj.description.lastIndexOf('swipe') != -1 && obj.description.lastIndexOf('left') != -1) featuresNav();
-			if (obj.description == 'tapone') {
-				if(parseInt($('#features-bar').css('right')) == 0) {
-					featuresNav();
-				}
-			}
-		}
-
-		$('.main').on('swipeone',log);
-		$('.main').on('tapone',log);
-
 	}
+
+
+
+
+	//Off canvas
+	var page = $('body');
+
+	$('#show-features').on('click', function(e) {
+		e.preventDefault();
+		changeActive();
+	});
+
+
+	var changeActive = function() {
+		if (page.hasClass('not-active')) {
+			page.removeClass('not-active').addClass('active-sidebar');
+		} else if (page.hasClass('active-sidebar')) {
+			page.removeClass('active-sidebar').addClass('not-active');
+		}
+	};
+
+	page.removeClass('active-sidebar').addClass('not-active');
+
+	$(window).on('resize', function() {
+		page.removeClass('active-sidebar').addClass('not-active');
+	});
+
+
+
+
+
+
 
 	//iOS label fix
 	if (iDevice) {
