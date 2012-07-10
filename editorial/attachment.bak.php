@@ -15,11 +15,10 @@ $EditorialClass = 'clear';
 $needsHTML5player = false;
 
 // mobile devices are shown a different slideshow
-if (Editorial::isMobileDevice() || Editorial::isIpad())
+if (Editorial::isMobileDevice())
 {
 	$htmlClass = "slideshow";
 	$needsHTML5Player = true; // need html5 player by default for mobile content
-	$isMobileGallery = true;
 }
 
 the_post();
@@ -83,145 +82,98 @@ foreach (array_keys($attachments) as $key => $value)
 @include('header.php');
 
 // show mobile version of gallery
-if (Editorial::isMobileDevice() || Editorial::isIpad())
+if (Editorial::isMobileDevice())
 {
 ?>
-	<video id="video-player" controls="controls"></video>
-	<audio id="audio-player" controls="controls"></audio>
-
 	<section id="media-gallery">
-	<ul id="Gallery" class="gallery" style="display:none;" >
+		<header role="banner">
+			<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>
+			<nav id="remote" role="navigation">
+				<ul>
+					<li><a href="#" id="m-prev" class="m-button disabled"><span><?php _e('Previous', 'Editorial'); ?></span></a></li>
+					<li><a href="#" id="m-slide" class="m-button"><span><?php _e('Slideshow', 'Editorial'); ?></span></a></li>
+					<li><a href="#" id="m-next" class="m-button"><span><?php _e('Next', 'Editorial'); ?></span></a></li>
+				</ul>
+			</nav>
+			<!--<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span><?php _e('Back to article', 'Editorial'); ?></span></a>-->
+			<a href="<?php echo get_permalink($parentId); ?>" id="m-back" class="m-button"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b> <em>TODO Tanja Shape-shifting car made out of cloth</em></a>
+		</header>
+		<img id="loading" src="<?php echo get_bloginfo('template_directory'); ?>/images/bgr/loading.gif" width="48" height="48" alt="<?php _e('Loading', 'Editorial'); ?>">
+		<div id="media-elements">
 <?php
-	$count = count($attachments);
-	if($count) {
-		$i = 1;
-		foreach ($attachments as $attachment)
-		{
-			$media = '';
-			$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
-			$previewThumb = $src;
-			if (Editorial::is_image($attachment->post_mime_type))
-			{
-				$src = isset($src[0]) ? $src[0] : '';
-				$previewThumb = $src;
-				
-			}
-			else if (Editorial::is_video($attachment->post_mime_type))
-			{
-				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video.png";
-			}
-			else if (Editorial::is_audio($attachment->post_mime_type))
-			{
-				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video.png";
-			}
-			printf('<li>
-			<a href="%s" data-preview="%s" data-mime-type="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s"></a>
-			</li>',
-				$src,
-				$previewThumb,
-				$attachment->post_mime_type,
-				$i,
-				$count,
-				$attachment->post_title,
-				$attachment->post_content,
-				get_permalink($attachment->ID)
-			);
-			$i++;
-		}
-	}
-?>
-	</ul>
-	</section>
-	<script>
 
-	(function(window, $, PhotoSwipe){
-		$(function(){
-				
-				var options = {
-					captionAndToolbarFlipPosition: true,
-					allowUserZoom: false,
-					loop: false,
-					captionAndToolbarAutoHideDelay: 6000,
-					getToolbar: function(){
-						return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
-						'<nav id="remote" role="navigation">' +
-						'<div class="ps-toolbar-previous"><div id="m-prev" class="m-button "><span><?php _e('Previous', 'Editorial'); ?></span></div></div>' +
-						'<div class="ps-toolbar-play"><div id="m-slide" class="m-button "><span><?php _e('Slideshow', 'Editorial'); ?></span></div></div>' +
-						'<div class="ps-toolbar-next"><div id="m-next" class="m-button "><span><?php _e('Next', 'Editorial'); ?></span></div></div>' +
-						'</nav>' +
-						'<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b><em><?php echo get_the_title($parentId); ?></em></div></div>';
-					},
-					getImageMetaData: function(el){
-						return {
-							href: el.getAttribute('href'),
-							title: el.getAttribute('data-title'),
-							content: el.getAttribute('data-content'),
-							permalink: el.getAttribute('data-permalink'),
-							position: el.getAttribute('data-pos'),
-							total: el.getAttribute('data-total'),
-							mime: el.getAttribute('data-mime-type'),
-							preview: el.getAttribute('data-preview')
-						}
-					},
-					getImageCaption: function(el) {
-						meta_data = this.getImageMetaData(el);
-						
-						var cap_el, foo = 
-						
-							'<figcaption><h3>' + meta_data.title + '</h3>' +
-							'<p>' + meta_data.content + '</p></figcaption>';
-							
-							if(/video/g.test(meta_data.mime)){
-								foo += '<a id="media-play">Play</a>';
-							}
-						
-						cap_el = $(foo);
-						
-						return cap_el;
+			$count = count($attachments);
+			if ($count)
+			{
+				$i = 1;
+				foreach ($attachments as $attachment)
+				{
+					// handle video/audio
+					$media = '';
+					$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
+					if (Editorial::is_image($attachment->post_mime_type))
+					{
+						$src = isset($src[0]) ? $src[0] : '';
+						$media = sprintf(
+							'<img src="%s" alt="%s">',
+							$src,
+							$attachment->post_title
+						);
 					}
-				};
-				
-				instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
-				instance.show(0);
-							
-					// onToolbarTap
-					instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
-						if(e.toolbarAction === 'close'){
-							window.location.href = "<?php echo get_permalink($parentId); ?>";
-						}
-					});
-					
-					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
-						var vid = document.getElementById("video-player");
-						vid.pause();
-						vid.src = "";
-						var currentImage = instance.getCurrentImage();
-						if(/video/g.test(currentImage.metaData.mime)){
-							vid.src = currentImage.metaData.href;
-							$('a#media-play').on('touchstart', function(e){
-								vid.style.display = 'block';
-								vid.play();
-								vid.webkitEnterFullscreen();
-							});
-						}
+					else if (Editorial::is_video($attachment->post_mime_type))
+					{
+						$src = wp_get_attachment_url($attachment->ID);
+						$media = sprintf('<video
+							src="%s"
+							type="%s"
+							id="player"
+							controls="controls"
+							preload="none"></video>',
+							$src,
+							$attachment->post_mime_type
+						);
+					}
+					else if (Editorial::is_audio($attachment->post_mime_type))
+					{
+						$src = wp_get_attachment_url($attachment->ID);
+						$media = sprintf('<audio
+							id="player"
+							src="%s"
+							type="%s"
+							controls="controls"></audio>',
+							$src,
+							$attachment->post_mime_type
+						);
+					}
+					printf('<figure id="element_%d"%s>
+							%s
+							<figcaption>
+								<h2><span>%d</span>/<span>%d</span></h2>
+								<h3>%s</h3>
+								<p>%s &nbsp;</p><!-- TODO TANJA - ce ni vsebine naj se izpise &nbsp;, sedaj se izpisuje vedno  -->
+								<a href="#" class="m-toggle m-button"><span>%s</span></a>
+								<div class="mobile-embed"><input type="text" value="%s"></div>
+								<a href="#" class="m-embed m-button"><span>%s</span></a>
+							</figcaption>
+						</figure>',
+						$i,
+						$i == 1 ? ' class="active"' : '',
+						$media,
+						$i,
+						$count,
+						$attachment->post_title,
+						$attachment->post_content,
+						__('Toggle', 'Editorial'),
+						get_permalink($attachment->ID),
+						__('Embed', 'Editorial')
+					);
+					$i++;
+				}
+			}
 
-					});
-				
-					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
-						if(e.action == "tap"){
-							// var currentImage = instance.getCurrentImage();
-							// 							if(/video/g.test(currentImage.metaData.mime)){
-							// 								$("#video-player").get(0).webkitEnterFullscreen();
-							// 							}
-						}
-					});
-					
-			
-			});
-	}(window, window.jQuery, window.Code.PhotoSwipe));
-	</script>
+?>
+		</div>
+	</section>
 <?php
 } else {
 	// show desktop version of gallery

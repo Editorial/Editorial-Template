@@ -53,7 +53,23 @@
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelementplayer.min.css">
 <?php } ?>
+
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/modernizr-2.0.6.min.js"></script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/jquery-1.7.2.min.js">\x3C/script>')</script>
+
+<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelement-and-player.js"></script>
+
+<?php if ($isMobileGallery) { ?>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/photoswipe.css">
+<script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/klass.min.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/code.photoswipe.jquery-3.0.4.js"></script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/js/mobile-gallery.js"></script>
+<?php } ?>
+
+
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?><?php
 /*
