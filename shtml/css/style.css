@@ -646,7 +646,9 @@ body {
 .ribbon h1,
 #manage-form,
 .helpful h4,
-.related h4 {
+.related h4,
+.features-links,
+.main h2 {
   background-image: url(../images/bgr/sprite.png);
   background-repeat: no-repeat;
 }
@@ -665,7 +667,6 @@ body {
   padding-right: 15px;
 }
 #header {
-  border-top: 3px solid #1a1a1a;
   margin: 0 0 10px;
   width: 100%;
   text-align: center;
@@ -700,10 +701,10 @@ body {
 .primary ul {
   width: 100%;
   margin: 0;
-  font-size: 10px;
   float: left;
 }
 .primary li {
+  font: bold 9px helvetica, arial, sans-serif;
   width: 20%;
   text-transform: uppercase;
   text-align: center;
@@ -711,7 +712,8 @@ body {
   float: left;
 }
 .primary a {
-  padding: 34px 0 3px;
+  border-top: 3px solid #191919;
+  padding: 39px 0 8px;
   width: 100%;
   color: #7f7f7f;
   background: url(../images/bgr/primary.png) no-repeat;
@@ -735,8 +737,7 @@ body {
   bottom: 0;
 }
 .primary .selected a {
-  margin: -3px 0 0;
-  border-top: 3px solid #da221b;
+  border-color: #da221b;
   color: #fff;
 }
 .primary span {
@@ -1703,6 +1704,12 @@ body {
 }
 /* </end> 06 404 ==================================================================================================== */
 /* <start> 07 FEATURES ============================================================================================== */
+.features-nav li, #show-features {
+  background: url(../images/bgr/features-nav.png) no-repeat;
+}
+.off-canvas #header {
+  margin: 0;
+}
 .off-canvas .main, .off-canvas #features-bar {
   -webkit-transition: 0.25s all ease-in;
   -moz-transition: 0.25s all ease-in;
@@ -1714,10 +1721,45 @@ body {
   overflow: hidden;
 }
 .off-canvas .main {
-  width: 90%;
+  padding-top: 10px;
+  width: 100%;
   float: left;
   position: relative;
   z-index: 1;
+}
+.off-canvas .main h2 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  background-position: 0 12px;
+}
+.off-canvas .main h2 em {
+  padding: 0 15px;
+  background: #f7f7f7;
+}
+.off-canvas .main h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 20px;
+}
+.off-canvas .main p, .off-canvas .main ul {
+  margin: 0 0 20px;
+  font: 18px/25px minion-pro, georgia, serif;
+}
+.off-canvas h1 {
+  font-size: 48px;
+  line-height: 50px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.off-canvas .lead {
+  margin: 0 0 25px;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: normal;
+  text-align: center;
+  font-style: italic;
 }
 #features-bar {
   border-left: 1px solid #ccc;
@@ -1727,19 +1769,22 @@ body {
   float: left;
 }
 .features-nav ul {
+  margin: 0;
+  border-left: 1px solid #ccc;
+  padding: 0 0 10px;
   width: 100%;
   float: left;
 }
 .features-nav li {
   margin-top: -1px;
   padding: 9px 0 7px;
-  border-left: 1px solid #ccc;
   width: 100%;
-  background: url(../images/bgr/features-nav.png) -603px -58px no-repeat;
+  background-position: -603px -58px;
   float: left;
 }
 .features-nav li:first-child {
   margin-top: 0;
+  padding-top: 17px;
 }
 .features-nav .selected h4 {
   color: #999;
@@ -1760,8 +1805,32 @@ body {
 #show-features {
   display: block;
   width: 100%;
-  background: lime;
+  background-position: right 3px;
   float: left;
+}
+.features-links {
+  width: 100%;
+  padding: 18px 0 0;
+  background-position: 0 35px;
+  float: left;
+}
+.features-links figure {
+  background: #f7f7f7;
+  float: left;
+}
+.features-links img {
+  max-width: 59%;
+}
+.features-links h4 {
+  margin: 10px 0 0 -12px;
+  font: 14px helvetica, arial, sans-serif;
+  color: #999;
+  float: left;
+}
+.features-links em {
+  padding: 0 15px 0 0;
+  font-style: normal;
+  background: #f7f7f7;
 }
 #features-bar {
   margin-right: -100%;

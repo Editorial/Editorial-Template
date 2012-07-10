@@ -38,7 +38,8 @@ body {
 #manage-form,
 .helpful h4,
 .related h4,
-.features-links {
+.features-links,
+.main h2 {
 	background-image: url(../images/bgr/sprite.png);
 	background-repeat: no-repeat;
 }
@@ -1526,11 +1527,47 @@ body {
 		float: left;
 		position: relative;
 		z-index: 1;
+
+		h2 {
+			margin: 0 0 5px;
+			font-size: 20px;
+			line-height: 20px;
+			text-align: center;
+			background-position: 0 12px;
+
+			em {
+				padding: 0 15px;
+				background: @bodyBackground;
+			}
+		}
+
+		h3 {
+			margin: 0 0 10px;
+			font-size: 18px;
+			line-height: 20px;
+		}
+
+		p,
+		ul {
+			margin: 0 0 20px;
+			font: 18px/25px @minion-pro;
+		}
 	}
 
 	h1 {
 		font-size: 48px;
 		line-height: 50px;
+		text-align: center;
+		margin-bottom: 6px;
+	}
+
+	.lead {
+		margin: 0 0 25px;
+		font-size: 24px;
+		line-height: 30px;
+		font-weight: normal;
+		text-align: center;
+		font-style: italic;
 	}
 }
 
