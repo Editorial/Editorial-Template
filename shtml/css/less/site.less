@@ -37,7 +37,8 @@ body {
 .ribbon h1,
 #manage-form,
 .helpful h4,
-.related h4 {
+.related h4,
+.features-links {
 	background-image: url(../images/bgr/sprite.png);
 	background-repeat: no-repeat;
 }
@@ -63,7 +64,7 @@ body {
 }
 
 #header {
-	border-top: 3px solid #1a1a1a;
+//	border-top: 3px solid #1a1a1a;
 	margin: 0 0 10px;
 	width: 100%;
 	text-align: center;
@@ -107,11 +108,11 @@ body {
 	ul {
 		width: 100%;
 		margin: 0;
-		font-size: 10px;
 		float: left;
 	}
 
 	li {
+		font:bold 9px @baseFont;
 		width: 20%;
 		text-transform: uppercase;
 		text-align: center;
@@ -120,7 +121,8 @@ body {
 	}
 
 	a {
-		padding: 34px 0 3px;
+		border-top: 3px solid #191919;
+		padding: 39px 0 8px;
 		width: 100%;
 		color: #7f7f7f;
 		background: url(../images/bgr/primary.png) no-repeat;
@@ -148,8 +150,8 @@ body {
 
 	.selected {
 		a {
-			margin: -3px 0 0;
-			border-top: 3px solid #da221b;
+			//margin: -3px 0 0;
+			border-color: #da221b;
 			color: #fff;
 		}
 	}
@@ -1494,7 +1496,16 @@ body {
 
 /* <start> 07 FEATURES ============================================================================================== */
 
+.features-nav li,
+#show-features {
+	background: url(../images/bgr/features-nav.png) no-repeat;
+}
+
 .off-canvas {
+	#header {
+		margin: 0;
+	}
+
 	.main,
 	#features-bar {
 		//.transition(.25s all ease-in);
@@ -1510,10 +1521,16 @@ body {
 	}
 
 	.main {
-		width: 90%;
+		padding-top: 10px;
+		width: 100%;
 		float: left;
 		position: relative;
 		z-index: 1;
+	}
+
+	h1 {
+		font-size: 48px;
+		line-height: 50px;
 	}
 }
 
@@ -1526,6 +1543,9 @@ body {
 	float: left;
 
 	ul {
+		margin: 0;
+		border-left: 1px solid #ccc;
+		padding: 0 0 10px;
 		width: 100%;
 		float: left;
 	}
@@ -1533,12 +1553,14 @@ body {
 	li {
 		margin-top: -1px;
 		padding: 9px 0 7px;
-		border-left: 1px solid #ccc;
 		width: 100%;
-		background: url(../images/bgr/features-nav.png) -603px -58px no-repeat;
+		background-position: -603px -58px;
 		float: left;
 
-		&:first-child {margin-top:0;}
+		&:first-child {
+			margin-top: 0;
+			padding-top: 17px;
+		}
 	}
 
 	.selected {
@@ -1567,8 +1589,37 @@ body {
 #show-features {
 	display: block;
 	width: 100%;
-	background: lime;
+	background-position: right 3px;
 	float: left;
+}
+
+.features-links {
+	width: 100%;
+	padding: 18px 0 0;
+	background-position: 0 35px;
+	float:left;
+
+	figure {
+		background: @bodyBackground;
+		float: left;
+	}
+
+	img {
+		max-width: 59%;
+	}
+
+	h4 {
+		margin: 10px 0 0 -12px;
+		font: 14px @baseFont;
+		color: #999;
+		float: left;
+	}
+
+	em {
+		padding: 0 15px 0 0;
+		font-style: normal;
+		background: @bodyBackground;
+	}
 }
 
 #features-bar {

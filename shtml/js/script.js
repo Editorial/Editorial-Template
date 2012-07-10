@@ -11,6 +11,7 @@
  */
 
 // open / close features nav
+/*
 var featuresNav = function() {
 	var b = $('body'),
 			fBar = $('#features-bar');
@@ -24,6 +25,7 @@ var featuresNav = function() {
 		b.addClass('active-sidebar');
 	}
 };
+*/
 
 (function() {
 
@@ -38,26 +40,6 @@ var featuresNav = function() {
 		}
 	}
 
-	//off-canvas
-	if ($('body').hasClass('features-new')) {
-
-		bodyViewportClasses();
-
-		$(window).resize(function(){
-			bodyViewportClasses();
-		});
-
-		//features nav
-		$('#show-features').on('click',function(e){
-			e.preventDefault();
-			featuresNav();
-		});
-
-	}
-
-
-
-
 	//Off canvas
 	var page = $('body');
 
@@ -65,7 +47,6 @@ var featuresNav = function() {
 		e.preventDefault();
 		changeActive();
 	});
-
 
 	var changeActive = function() {
 		if (page.hasClass('not-active')) {
@@ -80,12 +61,6 @@ var featuresNav = function() {
 	$(window).on('resize', function() {
 		page.removeClass('active-sidebar').addClass('not-active');
 	});
-
-
-
-
-
-
 
 	//iOS label fix
 	if (iDevice) {
