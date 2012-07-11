@@ -878,7 +878,8 @@ body {
 /* newsletter */
 .updates {
   margin: 0 0 15px;
-  padding: 27px 0 15px;
+  padding-top: 27px;
+  padding-bottom: 15px;
   background: #fff;
 }
 .updates p {
@@ -1704,7 +1705,10 @@ body {
 }
 /* </end> 06 404 ==================================================================================================== */
 /* <start> 07 FEATURES ============================================================================================== */
-.features-nav li, #show-features {
+.features-nav,
+.features-nav ul,
+.features-nav li,
+#show-features {
   background: url(../images/bgr/features-nav.png) no-repeat;
 }
 .off-canvas #header {
@@ -1727,39 +1731,43 @@ body {
   position: relative;
   z-index: 1;
 }
-.off-canvas .main h2 {
-  margin: 0 0 5px;
-  font-size: 20px;
-  line-height: 20px;
-  text-align: center;
-  background-position: 0 12px;
-}
-.off-canvas .main h2 em {
-  padding: 0 15px;
-  background: #f7f7f7;
-}
-.off-canvas .main h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  line-height: 20px;
-}
-.off-canvas .main p, .off-canvas .main ul {
-  margin: 0 0 20px;
-  font: 18px/25px minion-pro, georgia, serif;
-}
-.off-canvas h1 {
+.off-canvas .main h1 {
   font-size: 48px;
   line-height: 50px;
   text-align: center;
   margin-bottom: 6px;
 }
-.off-canvas .lead {
+.off-canvas .main h2 {
+  margin: 0 0 35px;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  background-position: 400px 400px;
+  /*em {
+				padding: 0 15px;
+				background: @bodyBackground;
+			}*/
+
+}
+.off-canvas .main h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 20px;
+}
+.off-canvas .main p, .off-canvas .main ul {
+  margin: 0 0 23px;
+  font: 18px/25px minion-pro, georgia, serif;
+}
+.off-canvas .main .lead {
   margin: 0 0 25px;
   font-size: 24px;
   line-height: 30px;
   font-weight: normal;
   text-align: center;
   font-style: italic;
+}
+.off-canvas .main figure {
+  padding: 0 0 28px;
 }
 #features-bar {
   border-left: 1px solid #ccc;
@@ -1831,6 +1839,9 @@ body {
   padding: 0 15px 0 0;
   font-style: normal;
   background: #f7f7f7;
+}
+.off-canvas .features-links figure {
+  padding: 0;
 }
 #features-bar {
   margin-right: -100%;
@@ -2375,12 +2386,8 @@ body {
   }
   /* </end> 06 404 ==================================================================================================== */
   /* <start> 07 FEATURES ============================================================================================== */
-  /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-  #updates,
-  #customizable,
-  #admin,
-  #colophon {
-    float: right;
+  .off-canvas .content {
+    margin-top: 0;
   }
   /* </end> 07 FEATURES =============================================================================================== */
 }
@@ -2392,8 +2399,7 @@ body {
   .content,
   .updates,
   .support,
-  .copyright,
-  #header .adapt {
+  .copyright {
     padding-left: 60px;
     padding-right: 60px;
   }
@@ -2415,6 +2421,9 @@ body {
     top: 0;
     right: 1px;
     bottom: 0;
+  }
+  #help span {
+    display: inline;
   }
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   .main h1, .main .exposed {
@@ -2698,6 +2707,72 @@ body {
   }
   /* </end> 06 404 ==================================================================================================== */
   /* <start> 07 FEATURES ============================================================================================== */
+  .features-links {
+    display: none;
+  }
+  #features-bar {
+    border: none;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 108px;
+    left: 0;
+  }
+  .features-nav {
+    border: none;
+    width: 100%;
+    background-position: right -150px;
+    float: left;
+  }
+  .features-nav ul {
+    border: none;
+    padding: 0;
+    width: 100%;
+    background-position: left -150px;
+    float: left;
+  }
+  .features-nav li {
+    border: none;
+    text-align: center;
+    background-position: left -150px;
+    width: 12.5%;
+  }
+  .features-nav li:first-child {
+    padding-top: 9px;
+  }
+  .features-nav a {
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    height: 101px;
+    background-position: right -150px;
+  }
+  .features-nav .selected {
+    background-color: transparent;
+    background-position: 0 -147px;
+  }
+  .features-nav .selected a {
+    height: 133px;
+    border-bottom: none;
+  }
+  .features-nav figure {
+    padding: 0;
+    float: none;
+  }
+  .features-nav img {
+    margin: 0 auto;
+    max-width: 100%;
+    float: none;
+  }
+  .features-nav h4 {
+    margin: 0;
+    padding: 4px 0 0;
+    font-size: 13px;
+    line-height: 20px;
+    float: none;
+  }
+  .off-canvas .content {
+    margin-top: 120px;
+  }
   /* </end> 07 FEATURES =============================================================================================== */
 }
 /* 992px */
@@ -3108,6 +3183,12 @@ body {
   }
   /* </end> 06 404 ==================================================================================================== */
   /* <start> 07 FEATURES ============================================================================================== */
+  #features-bar {
+    top: 0;
+  }
+  .off-canvas .content {
+    margin-top: 40px;
+  }
   /* </end> 07 FEATURES =============================================================================================== */
 }
 /* Helpers */

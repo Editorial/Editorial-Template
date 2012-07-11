@@ -339,7 +339,8 @@ body {
 
 .updates {
 	margin: 0 0 15px;
-	padding: 27px 0 15px;
+	padding-top: 27px;
+	padding-bottom: 15px;
 	background: #fff;
 
 	p {
@@ -1497,6 +1498,8 @@ body {
 
 /* <start> 07 FEATURES ============================================================================================== */
 
+.features-nav,
+.features-nav ul,
 .features-nav li,
 #show-features {
 	background: url(../images/bgr/features-nav.png) no-repeat;
@@ -1528,46 +1531,50 @@ body {
 		position: relative;
 		z-index: 1;
 
+		h1 {
+			font-size: 48px;
+			line-height: 50px;
+			text-align: center;
+			margin-bottom: 6px;
+		}
+
 		h2 {
-			margin: 0 0 5px;
+			margin: 0 0 35px;
 			font-size: 20px;
 			line-height: 20px;
 			text-align: center;
-			background-position: 0 12px;
-
-			em {
+			background-position: 400px 400px;
+			//background-position: 0 12px;
+			/*em {
 				padding: 0 15px;
 				background: @bodyBackground;
-			}
+			}*/
 		}
 
 		h3 {
-			margin: 0 0 10px;
+			margin: 0 0 8px;
 			font-size: 18px;
 			line-height: 20px;
 		}
 
 		p,
 		ul {
-			margin: 0 0 20px;
+			margin: 0 0 23px;
 			font: 18px/25px @minion-pro;
 		}
-	}
 
-	h1 {
-		font-size: 48px;
-		line-height: 50px;
-		text-align: center;
-		margin-bottom: 6px;
-	}
+		.lead {
+			margin: 0 0 25px;
+			font-size: 24px;
+			line-height: 30px;
+			font-weight: normal;
+			text-align: center;
+			font-style: italic;
+		}
 
-	.lead {
-		margin: 0 0 25px;
-		font-size: 24px;
-		line-height: 30px;
-		font-weight: normal;
-		text-align: center;
-		font-style: italic;
+		figure {
+			padding: 0 0 28px;
+		}
 	}
 }
 
@@ -1656,6 +1663,14 @@ body {
 		padding: 0 15px 0 0;
 		font-style: normal;
 		background: @bodyBackground;
+	}
+}
+
+.off-canvas {
+	.features-links {
+		figure {
+			padding: 0;
+		}
 	}
 }
 

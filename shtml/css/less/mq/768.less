@@ -6,8 +6,7 @@
 .content,
 .updates,
 .support,
-.copyright,
-#header .adapt {
+.copyright {
 	padding-left: 60px;
 	padding-right: 60px;
 }
@@ -33,6 +32,12 @@
 			right: 1px;
 			bottom: 0;
 		}
+	}
+}
+
+#help {
+	span {
+		display: inline;
 	}
 }
 
@@ -499,4 +504,87 @@ form {
 
 
 /* <start> 07 FEATURES ============================================================================================== */
+
+.features-links {
+	display: none;
+}
+
+
+#features-bar {
+	border: none;
+	width: 100%;
+	margin: 0;
+	position: absolute;
+	top: 108px;
+	left: 0;
+}
+
+.features-nav {
+	border: none;
+	width: 100%;
+	background-position: right -150px;
+	float:left;
+
+	ul {
+		border: none;
+		padding: 0;
+		width: 100%;
+		background-position: left -150px;
+		float:left;
+	}
+
+	li {
+		border: none;
+		text-align: center;
+		background-position: left -150px;
+		width: 100/8%;
+
+		&:first-child {
+			padding-top: 9px;
+		}
+	}
+
+	a {
+		padding: 0;
+		border-bottom: 1px solid #ccc;
+		height: 101px;
+		background-position: right -150px;
+	}
+
+	.selected {
+		background-color: transparent;
+		background-position:0 -147px;
+
+		a {
+			height: 133px;
+			border-bottom: none;
+		}
+	}
+
+	figure {
+		padding: 0;
+		float: none;
+	}
+
+	img {
+		margin: 0 auto;
+		max-width: 100%;
+		float: none;
+	}
+
+	h4 {
+		margin: 0;
+		padding: 4px 0 0;
+		font-size: 13px;
+		line-height: 20px;
+		float: none;
+	}
+}
+
+.off-canvas {
+	.content {
+		margin-top: 120px;
+	}
+}
+
 /* </end> 07 FEATURES =============================================================================================== */
