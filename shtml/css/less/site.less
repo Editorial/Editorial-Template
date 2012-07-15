@@ -26,6 +26,7 @@ body {
 .copyright,
 .connect,
 #brand a,
+.primary li,
 .process ol,
 .process li,
 .licenses ol,
@@ -106,6 +107,9 @@ body {
 /* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .primary {
+	width: 100%;
+	float: left;
+
 	ul {
 		width: 100%;
 		margin: 0;
@@ -117,7 +121,7 @@ body {
 		width: 20%;
 		text-transform: uppercase;
 		text-align: center;
-		background-position: -992px 24px;
+		background-position: 500px 500px;
 		float: left;
 	}
 
@@ -168,6 +172,7 @@ body {
 .primary a,
 #header h2 a {
 	&:hover {
+		font-weight: bold;
 		color: #fff;
 		-moz-animation-name: glow;
 		-moz-animation-duration: 1s;
@@ -254,6 +259,10 @@ body {
 	&.selected a {
 		background-position: center -504px;
 	}
+}
+
+#demo {
+	display: none;
 }
 
 
@@ -1578,10 +1587,6 @@ body {
 	}
 }
 
-#features-bar {
-	border-left: 1px solid #ccc;
-}
-
 .features-nav {
 	border-left: 2px solid #e6e6e6;
 	float: left;
@@ -1676,6 +1681,7 @@ body {
 
 #features-bar {
 	margin-right: -100%;
+	border-left: 1px solid #ccc;
 	width: 70%;
 	float: right;
 	position: relative;

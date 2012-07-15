@@ -302,10 +302,8 @@ a {
 */
 /* elements */
 /* Elements */
-figure img,
-figure object,
-figure embed,
-.logo {
+figure img, figure object, figure embed {
+  margin: 0 auto;
   display: block;
   max-width: 100%;
 }
@@ -315,7 +313,7 @@ figcaption {
   color: #595959;
 }
 .main figure {
-  margin: 0 auto 15px;
+  margin: 0 0 15px;
 }
 .makers figure {
   margin: 0 0 30px;
@@ -635,6 +633,7 @@ body {
 .copyright,
 .connect,
 #brand a,
+.primary li,
 .process ol,
 .process li,
 .licenses ol,
@@ -698,6 +697,10 @@ body {
   background-position: -348px -197px;
 }
 /* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.primary {
+  width: 100%;
+  float: left;
+}
 .primary ul {
   width: 100%;
   margin: 0;
@@ -708,7 +711,7 @@ body {
   width: 20%;
   text-transform: uppercase;
   text-align: center;
-  background-position: -992px 24px;
+  background-position: 500px 500px;
   float: left;
 }
 .primary a {
@@ -768,6 +771,7 @@ body {
   }
 }
 .primary a:hover, #header h2 a:hover {
+  font-weight: bold;
   color: #fff;
   -moz-animation-name: glow;
   -moz-animation-duration: 1s;
@@ -819,6 +823,9 @@ body {
 }
 #purchase a:hover, #purchase.selected a {
   background-position: center -504px;
+}
+#demo {
+  display: none;
 }
 /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .main {
@@ -1769,9 +1776,6 @@ body {
 .off-canvas .main figure {
   padding: 0 0 28px;
 }
-#features-bar {
-  border-left: 1px solid #ccc;
-}
 .features-nav {
   border-left: 2px solid #e6e6e6;
   float: left;
@@ -1845,6 +1849,7 @@ body {
 }
 #features-bar {
   margin-right: -100%;
+  border-left: 1px solid #ccc;
   width: 70%;
   float: right;
   position: relative;
@@ -1897,6 +1902,10 @@ body {
   }
   #brand a:hover {
     background-position: -341px -389px;
+  }
+  /* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  #help span {
+    display: inline;
   }
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   /* content */
@@ -2403,6 +2412,7 @@ body {
     padding-left: 60px;
     padding-right: 60px;
   }
+  /* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   .primary ul {
     position: relative;
   }
@@ -2422,15 +2432,12 @@ body {
     right: 1px;
     bottom: 0;
   }
-  #help span {
-    display: inline;
-  }
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   .main h1, .main .exposed {
     margin: 25px 0;
   }
   .main figure {
-    margin: 0 auto 24px;
+    margin: 0 0 24px;
   }
   /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   /* connect */
@@ -2707,52 +2714,89 @@ body {
   }
   /* </end> 06 404 ==================================================================================================== */
   /* <start> 07 FEATURES ============================================================================================== */
+  /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  .off-canvas {
+    background: url(../images/bgr/features-body.png) center 211px no-repeat;
+  }
+  /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  .off-canvas .content {
+    margin-top: 182px;
+  }
+  .off-canvas .main, .off-canvas #features-bar {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+  .off-canvas .main h1 {
+    font-size: 72px;
+    line-height: 60px;
+  }
   .features-links {
     display: none;
   }
   #features-bar {
+    margin: 0;
     border: none;
     width: 100%;
-    margin: 0;
+    float: left;
     position: absolute;
-    top: 108px;
+    top: 109px;
     left: 0;
   }
   .features-nav {
     border: none;
     width: 100%;
-    background-position: right -150px;
+    background-position: left 150px;
     float: left;
   }
   .features-nav ul {
-    border: none;
+    border: 1px solid #ccc;
+    border-width: 0 0 1px;
     padding: 0;
     width: 100%;
-    background-position: left -150px;
+    background-position: right -300px;
     float: left;
   }
   .features-nav li {
+    margin: 0;
     border: none;
+    padding: 0;
     text-align: center;
     background-position: left -150px;
     width: 12.5%;
   }
   .features-nav li:first-child {
-    padding-top: 9px;
+    padding-top: 0;
   }
   .features-nav a {
-    padding: 0;
-    border-bottom: 1px solid #ccc;
     height: 101px;
-    background-position: right -150px;
-  }
-  .features-nav .selected {
-    background-color: transparent;
-    background-position: 0 -147px;
+    background-position: right -300px;
+    display: block;
   }
   .features-nav .selected a {
-    height: 133px;
-    border-bottom: none;
+    position: relative;
+    background: url(../images/bgr/features-selected.png) 1px 19px no-repeat;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+  }
+  .features-nav .selected a:before {
+    content: ' ';
+    width: 100%;
+    height: 22px;
+    background: url(../images/bgr/features-selected3.png) 0 0 no-repeat;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    display: block;
+    float: left;
+    position: absolute;
+    left: 0;
+    bottom: -22px;
   }
   .features-nav figure {
     padding: 0;
@@ -2765,13 +2809,10 @@ body {
   }
   .features-nav h4 {
     margin: 0;
-    padding: 4px 0 0;
+    padding: 8px 0 0;
     font-size: 13px;
     line-height: 20px;
     float: none;
-  }
-  .off-canvas .content {
-    margin-top: 120px;
   }
   /* </end> 07 FEATURES =============================================================================================== */
 }
@@ -2799,7 +2840,11 @@ body {
     padding-left: 0;
     padding-right: 0;
   }
+  #header {
+    border-top: 3px solid #191919;
+  }
   #header .adapt {
+    margin-top: -3px;
     padding: 0;
   }
   /* brand */
@@ -2807,6 +2852,89 @@ body {
     margin: 0 0 0 -14px;
   }
   /* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  .primary ul:before, .primary ul:after {
+    border: none;
+  }
+  .primary li {
+    background-position: -992px 24px;
+    width: auto;
+  }
+  .primary a {
+    width: auto;
+    height: auto;
+    margin: 0 15px 0 20px;
+    padding: 15px 0 22px;
+  }
+  .primary a:before, .primary a:after {
+    border: none;
+  }
+  #home a,
+  #features a,
+  #help a,
+  #about a {
+    font: 600 17px/20px minion-pro, georgia, serif;
+    text-align: left;
+  }
+  #features a,
+  #help a,
+  #about a,
+  #demo a {
+    background: none;
+  }
+  #home {
+    background: none;
+  }
+  #home a {
+    margin-left: 0;
+    background-position: 0 7px;
+    padding-left: 50px;
+  }
+  #home a:hover {
+    background-position: 0 -49px;
+  }
+  #purchase {
+    margin-left: 5px;
+    background: none;
+    float: right;
+  }
+  #purchase a {
+    margin: 10px 0 0;
+    border: 1px solid #8a0500;
+    padding: 13px 0 12px;
+    width: 140px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #f7f7f7;
+    font-weight: bold;
+    letter-spacing: .4px;
+    background: #b10700;
+    display: block;
+    border-radius: 40px;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.2);
+    background: #b00e00 url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RkMGIwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM4MjAzMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #dd0b00, #820300);
+    background: -webkit-gradient(linear, left top, left bottom, from(#dd0b00), to(#820300));
+    background: -o-linear-gradient(top, #dd0b00, #820300);
+    background: linear-gradient(top, #dd0b00, #820300);
+  }
+  #demo {
+    padding: 22px 0 0 0;
+    font-size: 13px;
+    font-weight: normal;
+    text-transform: none;
+    color: #999;
+    background: none;
+    display: block;
+    float: right;
+  }
+  #demo a {
+    margin: 0;
+    border: none;
+    color: #09c;
+    float: none;
+    display: inline;
+  }
   /*
   
   iz 480
@@ -2844,17 +2972,27 @@ body {
   	}
   }
   */
+  /*
   .primary {
-    position: relative;
-    z-index: 2;
+  	position: relative;
+  	z-index: 2;
+  
+  	a {
+  		&:hover {
+  			margin: -3px 0 0;
+  			border-top: 3px solid #666;
+  		}
+  	}
+  
+  	.selected {
+  		a{
+  			&:hover {
+  				border-color: #da221b;
+  			}
+  		}
+  	}
   }
-  .primary a:hover {
-    margin: -3px 0 0;
-    border-top: 3px solid #666;
-  }
-  .primary .selected a:hover {
-    border-color: #da221b;
-  }
+  */
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   h1, .exposed {
     text-align: left;
@@ -3183,11 +3321,19 @@ body {
   }
   /* </end> 06 404 ==================================================================================================== */
   /* <start> 07 FEATURES ============================================================================================== */
-  #features-bar {
+  .features-nav {
+    margin-left: -477px;
+    width: 954px;
+    position: absolute;
     top: 0;
+    left: 50%;
   }
-  .off-canvas .content {
-    margin-top: 40px;
+  .off-canvas .adapt {
+    position: static;
+    overflow: visible;
+  }
+  .off-canvas .main h1 {
+    margin-top: 35px;
   }
   /* </end> 07 FEATURES =============================================================================================== */
 }

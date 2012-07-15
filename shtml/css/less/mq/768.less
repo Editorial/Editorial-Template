@@ -11,6 +11,8 @@
 	padding-right: 60px;
 }
 
+/* navigation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
 .primary {
 	ul {
 		position: relative;
@@ -35,12 +37,6 @@
 	}
 }
 
-#help {
-	span {
-		display: inline;
-	}
-}
-
 
 /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -51,7 +47,7 @@
 	}
 
 	figure {
-		margin: 0 auto 24px;
+		margin: 0 0 24px;
 	}
 }
 
@@ -505,59 +501,114 @@ form {
 
 /* <start> 07 FEATURES ============================================================================================== */
 
+/* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.off-canvas {
+	background: url(../images/bgr/features-body.png) center 211px no-repeat;
+}
+
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+.off-canvas {
+	.content {
+		margin-top: 182px;
+	}
+
+	.main,
+	#features-bar {
+		//.transition(none);
+		-webkit-transition: none;
+		-moz-transition: none;
+		-o-transition: none;
+		-ms-transition: none;
+		transition: none;
+	}
+
+	.main {
+		h1 {
+			font-size: 72px;
+			line-height: 60px;
+		}
+	}
+}
+
+
 .features-links {
 	display: none;
 }
 
-
 #features-bar {
+	margin: 0;
 	border: none;
 	width: 100%;
-	margin: 0;
+	float: left;
 	position: absolute;
-	top: 108px;
+	top: 109px;
 	left: 0;
 }
 
 .features-nav {
 	border: none;
 	width: 100%;
-	background-position: right -150px;
+	background-position: left 150px;
 	float:left;
 
 	ul {
-		border: none;
+		border: 1px solid #ccc;
+		border-width: 0 0 1px;
 		padding: 0;
 		width: 100%;
-		background-position: left -150px;
+		background-position: right -300px;
 		float:left;
 	}
 
 	li {
+		margin: 0;
 		border: none;
+		padding: 0;
 		text-align: center;
 		background-position: left -150px;
 		width: 100/8%;
 
 		&:first-child {
-			padding-top: 9px;
+			padding-top: 0;
 		}
 	}
 
 	a {
-		padding: 0;
-		border-bottom: 1px solid #ccc;
 		height: 101px;
-		background-position: right -150px;
+		background-position: right -300px;
+		display: block;
 	}
 
 	.selected {
-		background-color: transparent;
-		background-position:0 -147px;
-
 		a {
-			height: 133px;
-			border-bottom: none;
+			position: relative;
+			background: url(../images/bgr/features-selected.png) 1px 19px no-repeat;
+			//.background-size(100% 100%);
+			-webkit-background-size: 100% 100%;
+			-moz-background-size: 100% 100%;
+			-o-background-size: 100% 100%;
+			background-size: 100% 100%;
+
+			&:before {
+				content: ' ';
+				width: 100%;
+				height: 22px;
+				background: url(../images/bgr/features-selected3.png) 0 0 no-repeat;
+				//.background-size(100% 100%);
+				-webkit-background-size: 100% 100%;
+				-moz-background-size: 100% 100%;
+				-o-background-size: 100% 100%;
+				background-size: 100% 100%;
+				display: block;
+				float: left;
+				position: absolute;
+				left: 0;
+				bottom: -22px;
+			}
 		}
 	}
 
@@ -574,16 +625,10 @@ form {
 
 	h4 {
 		margin: 0;
-		padding: 4px 0 0;
+		padding: 8px 0 0;
 		font-size: 13px;
 		line-height: 20px;
 		float: none;
-	}
-}
-
-.off-canvas {
-	.content {
-		margin-top: 120px;
 	}
 }
 
