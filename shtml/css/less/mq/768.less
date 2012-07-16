@@ -25,15 +25,6 @@
 			left: -1px;
 			bottom: 0;
 		}
-
-		&:after {
-			content: ' ';
-			border-right: 1px solid #404040;
-			position: absolute;
-			top: 0;
-			right: 1px;
-			bottom: 0;
-		}
 	}
 }
 
@@ -514,6 +505,12 @@ form {
 .off-canvas {
 	.content {
 		margin-top: 182px;
+
+		.img-top-right {
+			img {
+				max-width: 410px;
+			}
+		}
 	}
 
 	.main,
@@ -528,8 +525,32 @@ form {
 
 	.main {
 		h1 {
+			margin: 0 auto 13px;
+			max-width: 440px;
 			font-size: 72px;
 			line-height: 60px;
+			float: none;
+		}
+
+		h2 {
+			font-size: 24px;
+			line-height: 30px;
+
+			background-position: 0 16px;
+
+			em {
+				padding: 0 15px;
+				text-align: center;
+				background: @bodyBackground;
+			}
+
+		}
+
+		.lead {
+			margin: 0 auto 25px;
+			font-size: 40px;
+			line-height: 45px;
+			max-width: 380px;
 		}
 	}
 }
