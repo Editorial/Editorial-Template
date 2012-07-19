@@ -16,6 +16,11 @@
 
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
+#purchase a:before {
+	background-image: url(../images/bgr/sprite.png);
+	background-repeat: no-repeat;
+}
+
 
 /* HEADER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -112,8 +117,8 @@
 	a {
 		margin: 10px 0 0;
 		border: 1px solid #8a0500;
-		padding: 13px 0 12px;
-		width: 140px;
+		padding: 13px 0 12px 20px;
+		width: 120px;
 		font-size: 12px;
 		text-transform: uppercase;
 		color: #f7f7f7;
@@ -129,6 +134,17 @@
 		background: -webkit-gradient(linear, left top, left bottom, from(#dd0b00), to(#820300));
 		background: -o-linear-gradient(top, #dd0b00, #820300);
 		background: linear-gradient(top, #dd0b00, #820300);
+
+		&:before {
+			content: ' ';
+			width: 22px;
+			height: 18px;
+			display: block;
+			background-position: -410px -240px;
+			position: absolute;
+			top: 13px;
+			left: 16px;
+		}
 
 		&:after {
 			border-left: none;
