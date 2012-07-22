@@ -647,7 +647,8 @@ body {
 .helpful h4,
 .related h4,
 .features-links,
-.main h2 {
+.main h2,
+#purchase b {
   background-image: url(../images/bgr/sprite.png);
   background-repeat: no-repeat;
 }
@@ -770,8 +771,7 @@ body {
     opacity: 1;
   }
 }
-.primary a:hover, #header h2 a:hover {
-  font-weight: bold;
+.primary a:hover {
   color: #fff;
   -moz-animation-name: glow;
   -moz-animation-duration: 1s;
@@ -2808,6 +2808,17 @@ body {
     width: 100%;
     background-position: right -300px;
     float: left;
+    position: relative;
+  }
+  .features-nav ul:after {
+    content: ' ';
+    width: 1px;
+    height: 100px;
+    background: url(../images/bgr/features-nav.png) right -300px no-repeat;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 0;
   }
   .features-nav li {
     margin: 0;
@@ -2822,7 +2833,6 @@ body {
   }
   .features-nav a {
     height: 101px;
-    background-position: right -300px;
     display: block;
   }
   .features-nav .selected a {
@@ -2881,6 +2891,10 @@ body {
     position: relative;
   }
   /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  #purchase a:before {
+    background-image: url(../images/bgr/sprite.png);
+    background-repeat: no-repeat;
+  }
   /* HEADER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   #header hgroup,
   .content,
@@ -2950,8 +2964,8 @@ body {
   #purchase a {
     margin: 10px 0 0;
     border: 1px solid #8a0500;
-    padding: 13px 0 12px;
-    width: 140px;
+    padding: 13px 0 12px 20px;
+    width: 120px;
     font-size: 12px;
     text-transform: uppercase;
     color: #f7f7f7;
@@ -2967,6 +2981,16 @@ body {
     background: -webkit-gradient(linear, left top, left bottom, from(#dd0b00), to(#820300));
     background: -o-linear-gradient(top, #dd0b00, #820300);
     background: linear-gradient(top, #dd0b00, #820300);
+  }
+  #purchase a:before {
+    content: ' ';
+    width: 22px;
+    height: 18px;
+    display: block;
+    background-position: -410px -240px;
+    position: absolute;
+    top: 13px;
+    left: 16px;
   }
   #purchase a:after {
     border-left: none;

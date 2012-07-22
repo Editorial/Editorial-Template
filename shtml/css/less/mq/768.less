@@ -583,6 +583,19 @@ form {
 		width: 100%;
 		background-position: right -300px;
 		float:left;
+		position: relative;
+
+		// FireFox FIX
+		&:after {
+			content: ' ';
+			width: 1px;
+			height: 100px;
+			background:url(../images/bgr/features-nav.png) right -300px no-repeat;
+			display: block;
+			position: absolute;
+			top: 2px;
+			right: 0;
+		}
 	}
 
 	li {
@@ -600,7 +613,6 @@ form {
 
 	a {
 		height: 101px;
-		background-position: right -300px;
 		display: block;
 	}
 
