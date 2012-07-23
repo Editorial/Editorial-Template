@@ -20,7 +20,10 @@ function debug($message)
 }
 
 define ('EDITORIAL_VERSION', '1.0');
-define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
+//je to samo KAO ali zares cekira?
+//define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
+define ('EDITORIAL_UPDATE_CHECK', 'http://localhost:8888/wp_update/version.json');
+define ('EDITORIAL_UPDATE_API', 'http://localhost:8888/wp_update/');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 // social networks
 define ('EDITORIAL_FACEBOOK',    'facebook-share');
@@ -144,7 +147,7 @@ class Editorial
 		self::$widgetCount = isset($widgets[EDITORIAL_WIDGET]) && is_array($widgets[EDITORIAL_WIDGET]) ? count($widgets[EDITORIAL_WIDGET]) : 0;
 		
 		add_filter('attachment_fields_to_edit', array('Editorial','hide_some_attachment_fields'), 11, 2 );
-		//add_filter('media_upload_tabs', array('Editorial','remove_media_library_tab'));
+		add_filter('media_upload_tabs', array('Editorial','remove_media_library_tab'));
 		add_filter('admin_head_media_upload_gallery_form', array('Editorial','hide_galery_settings_div'));
 		add_filter('type_url_form_media', array('Editorial','hide_type_url_fields'));
 	}
