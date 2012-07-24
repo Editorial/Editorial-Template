@@ -364,20 +364,21 @@ class Editorial_Admin
 			if (!is_array($data) || !isset($data['valid']) || !$data['valid'])
 			{
 				add_action('admin_notices', array($this, 'invalidNotice'));
-				return;
+				return false;
 			}
 			// update available?
 			if (is_array($data) && isset($data['new_version']) && EDITORIAL_VERSION != $data['new_version'])
 			{
 			    if (Editorial::getOption('disable-admin-notices')) return;
 					add_action('admin_notices', array($this, 'updateNotice'));
+					return true;
 			}
 		}
 	}
 	
 	public function checkVersion($data)
 	{
-		$this->_checkVersion($data);
+		return $this->_checkVersion($data);
 	}
 
 	/**
@@ -648,8 +649,8 @@ function check_for_update($checked_data) {
 	if (!empty($response)) {
 		$checked_data->response[$theme_base] = $response;
 		//var_dump($response);
-		$Editorial->checkVersion($response);
-		// 			add_action('admin_notices', array($Editorial, 'updateNotice'));
+		if (!$Editorial->checkVersion($response)) return;
+
 	}
 
 	return $checked_data;
@@ -684,8 +685,6 @@ function my_theme_api_call($def, $action, $args) {
 
 if (is_admin())
 	$current = get_transient('update_themes');
-
-
 
 
 ?>
