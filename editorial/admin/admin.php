@@ -355,12 +355,8 @@ class Editorial_Admin
 	private function _checkVersion($data)
 	{
 		// notices can be disabled
-		//$data = file_get_contents(EDITORIAL_UPDATE_CHECK);
 		if ($data !== false)
 		{
-			//$data = json_decode($data, true);
-			//var_dump($data);
-			// version valid?
 			if (!is_array($data) || !isset($data['valid']) || !$data['valid'])
 			{
 				add_action('admin_notices', array($this, 'invalidNotice'));
@@ -369,8 +365,9 @@ class Editorial_Admin
 			// update available?
 			if (is_array($data) && isset($data['new_version']) && EDITORIAL_VERSION != $data['new_version'])
 			{
-			    if (Editorial::getOption('disable-admin-notices')) return;
-					add_action('admin_notices', array($this, 'updateNotice'));
+			    if (!Editorial::getOption('disable-admin-notices')) {
+						add_action('admin_notices', array($this, 'updateNotice'));
+					}
 					return true;
 			}
 		}
@@ -390,7 +387,8 @@ class Editorial_Admin
 	public function updateNotice()
 	{
 	    if (Editorial::getOption('disable-admin-notices')) return;
-		$this->_showNotice(__('<strong>Editorial theme update is available.</strong> You can update it through the "Updates" section in the Admin', 'Editorial'));
+		$msg = sprintf("<strong>Editorial theme update is available.</strong> You can update it through the <a href='%s/wp-admin/update-core.php'>Updates</a> section in the Admin", get_bloginfo('url'));
+		$this->_showNotice(__($msg, 'Editorial'));
 	}
 
 	/**
@@ -637,7 +635,8 @@ function check_for_update($checked_data) {
 		'body' => array(
 			'action' => 'theme_update', 
 			'request' => serialize($request),
-			'api-key' => md5(get_bloginfo('url'))
+			'api-key' => md5(get_bloginfo('url')),
+			'blog-url' => get_bloginfo('url') //site_url() 
 		),
 		'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
 	);
@@ -649,7 +648,7 @@ function check_for_update($checked_data) {
 	if (!empty($response)) {
 		$checked_data->response[$theme_base] = $response;
 		//var_dump($response);
-		if (!$Editorial->checkVersion($response)) return;
+		$Editorial->checkVersion($response);
 
 	}
 
@@ -683,8 +682,8 @@ function my_theme_api_call($def, $action, $args) {
 	return $res;
 }
 
-if (is_admin())
-	$current = get_transient('update_themes');
+// if (is_admin())
+// 	$current = get_transient('update_themes');
 
 
 ?>

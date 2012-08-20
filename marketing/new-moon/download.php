@@ -11,7 +11,7 @@
 $strDownloadFolder = "./update/";
 
 //If you can download a file more than once
-$boolAllowMultipleDownload = 0;
+//$boolAllowMultipleDownload = 0;
 
 //connect to the DB
 
@@ -20,28 +20,25 @@ DATABASE INFO
 ************************/
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'editorialtheme');
+define('DB_NAME', 'editorial-marketing');
+define('DB_USER', 'editorial-market');
+define('DB_PASSWORD', 'editorial-market');
+define('DB_HOST', 'localhost');
 
-/** MySQL database username */
-define('DB_USER', 'editorial');
-
-/** MySQL database password */
-define('DB_PASSWORD', 'editorial');
-
-/** MySQL hostname */
-define('DB_SERVER', 'localhost');
-
-  $resDB = mysql_connect("DB_SERVER", "DB_USER", "DB_PASSWORD");
-  mysql_select_db("DB_NAME", $resDB);
+  $resDB = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+  mysql_select_db(DB_NAME, $resDB);
 
 if(!empty($_GET['key'])){
   //check the DB for the key
-  $resCheck = mysql_query("SELECT * FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_real_escape_string($_GET['key'])."' LIMIT 1");
+  $resCheck = mysql_query("SELECT * FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_escape_string($_GET['key'])."' LIMIT 1");
   $arrCheck = mysql_fetch_assoc($resCheck);
+
+//var_dump($arrCheck);
+
   if(!empty($arrCheck['file'])){
     //check that the download time hasnt expired
     if($arrCheck['expires']>=time()){
-      if(!$arrCheck['downloads'] OR $boolAllowMultipleDownload){
+      if(!$arrCheck['downloads']){
         //everything is hunky dory - check the file exists and then let the user download it
         $strDownload = $strDownloadFolder.$arrCheck['file'];
         
@@ -56,9 +53,10 @@ if(!empty($_GET['key'])){
           
           //echo the file to the user
           echo $strFile;
-          
-          //update the DB to say this file has been downloaded
-          mysql_query("UPDATE downloads SET downloads = downloads + 1 WHERE downloadkey = '".mysql_real_escape_string($_GET['key'])."' LIMIT 1");
+         
+					//update the DB to say this file has been downloaded
+					mysql_query("DELETE FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_escape_string($_GET['key'])."'");
+          //mysql_query("UPDATE wp_autoupdate_downloads SET downloads = downloads + 1 WHERE downloadkey = '".mysql_escape_string($_GET['key'])."' LIMIT 1");
           
           exit;
           
