@@ -648,7 +648,10 @@ function check_for_update($checked_data) {
 	if (!empty($response)) {
 		$checked_data->response[$theme_base] = $response;
 		//var_dump($response);
-		$Editorial->checkVersion($response);
+		if (! $Editorial->checkVersion($response))
+		{
+			return false;
+		}
 
 	}
 
