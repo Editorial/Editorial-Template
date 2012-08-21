@@ -20,6 +20,7 @@ define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
 //define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
 define('FILENAME', 'editorial.zip');
 
+//TODO - if the chekc for domain is not valid, do not even kreate a tmp key!!
 
 //Database Info
 $db = @mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Can\'t connect do database');
@@ -70,6 +71,8 @@ Uncomment Below Section to enable url masking
 
 	function createKey(){
 	//create a random key
+	
+	//maybe even better, use the blogurl md5 as a key
 		$strKey = md5(microtime());
 
 		//check to make sure this key isnt already in use
