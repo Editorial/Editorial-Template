@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 // for debuggin purposes
 function dump($object = '')
@@ -22,8 +22,8 @@ function debug($message)
 define ('EDITORIAL_VERSION', '1.0');
 //je to samo KAO ali zares cekira?
 //define ('EDITORIAL_UPDATE_CHECK', 'http://editorialtemplate.com/version.json');
-define ('EDITORIAL_UPDATE_API', 'http://editorialtemplate.com/new-moon/');
-//define ('EDITORIAL_UPDATE_API', 'http://localhost:8888/editorial-marketing/new-moon/');
+//define ('EDITORIAL_UPDATE_API', 'http://editorialtemplate.com/new-moon/');
+define ('EDITORIAL_UPDATE_API', 'http://localhost:8888/editorial-marketing/new-moon/');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 // social networks
 define ('EDITORIAL_FACEBOOK',    'facebook-share');
@@ -891,7 +891,7 @@ EOF;
 	public static function isMobileDevice($useragent = null)
 	{
 		//if we are debugging
-		if($_GET['debugmobile'])
+		if(isset($_GET['debugmobile']))
 		{
 			return true;
 		}

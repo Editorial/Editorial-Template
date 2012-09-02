@@ -1,17 +1,20 @@
 /*
-  _  _  ___ ___ _   _  ___
- |_ | \  |   | / \ |_)  |   /\  |
- |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
+Theme Name:     Editorial Custom
+Description:    Custom Editorial Styles
+Author:         <?php echo get_bloginfo('url'), "\n"; ?>
+Template:       <?php echo $this_theme_template, "\n"; ?>
 
- File: editorial-custom.css
- Version: 1.1 (XX/20XX)
- Author: XXX
+IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^
+*/
+
+/*********** IMPORTANT!! DO NOT MODIFY THIS LINE **********/
+@import url("../<?php echo $this_theme_name; ?>/style.css");
+/**********************************************************/
 
 
-// vec o tem zakaj se to dogaja
-Every time update comes style.css will be updated with new features, but custom CSS remains unchanged and style.css will be updated with new features.
-// pozor lastnosti so tudi po MQ za zamenjat (zato niso vse zdruzene na kupu.
-// pomagaj si z inspektorji (najboljse Google Chrome, ker kaze MQ)
+
+/*
+MATJAZ!!! OD TUKAJ NAPREJ DOL LAHKO EDITIRAS ZA KUSTOMIZACIJO
 
 Here are some prepared options for customization.
 Do search & replace (S&R) for all quoted ("") strings mentioned below in this file.
@@ -41,54 +44,10 @@ option 03 change font sizes & line-heights:
 + body background color kako zamenjat
 
 - kvoute (jim notri dat)
-
-
-
-
-
-
-BLA
-
-
-You can also use http://procssor.com to format code as you like it.
-
-
-How to customize other stuff / everything?
-- colors [safe]
-- fonts [safe]
-- font-sizes [almost safe]
--
-Please note only options specified above are safe to customize so we can maintean
-
-
-
-
- First time necessary to do:
-
- - copy this file to "/wp-content/themes/" dir (must be out of editorial folder)
-   new path: "/wp-content/themes/editorial-custom.css",
-   old path: "/wp-content/themes/editorial/editorial-custom.css"
-
- - enable commented <link> tag in "/wp-content/themes/editorial/header.php" (tip: search for "ENABLE CUSTOM CSS")
-
-
-If you followed steps above, your editorial-custom.css is now ready to go.
-
-
-
-Please copy this file 2 folder back (in theme folder) so this file can't be overwritten when Editorial update arrives.
-Also do not forget to link this file in head.php (L: 22)
-
-This file is prepared for easier / pregledno / manipulation of some page details
-Naj bo premaknjen izven editorial folderja, da bo
-tu je samo bolj pregledno in ne bo povazalo vasih sprememb ob nadgraditvi CSSa (saj se ta povozi)
-
-sam si zlozi CSS naj bo taksna koda, kot imate sami najraje CSS beautify
-
-
-
-
 */
+
+
+
 
 /* 1.ROOT ___________________________________________________________________________________________________________ */
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
@@ -364,3 +323,4 @@ input:-moz-placeholder {color:#999;}
 /* 17.MODERNIZR _____________________________________________________________________________________________________ */
 
 }
+

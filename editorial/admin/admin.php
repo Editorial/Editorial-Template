@@ -2,6 +2,8 @@
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
 //set_site_transient('update_themes', null);
 
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 
 /**
  * Editorial Admin class
@@ -29,6 +31,8 @@ class Editorial_Admin
 	 */
 	const PAGE_COLOPHON = 'colophon';
 
+	const PAGE_CUSTOMIZE = 'customstyle';
+
 	/**
 	 * Pages users are allowed to include
 	 *
@@ -38,6 +42,7 @@ class Editorial_Admin
 		self::PAGE_LOOK,
 		self::PAGE_COLOPHON,
 		self::PAGE_SHARE,
+		self::PAGE_CUSTOMIZE,
 	);
 
 	/**
@@ -64,6 +69,7 @@ class Editorial_Admin
 		'google-share',
 		//'readability-share',
 		'copyright',
+		'child-theme',
 	);
 
 	/**
@@ -127,6 +133,14 @@ class Editorial_Admin
 			'editorial-'.self::PAGE_COLOPHON,
 			array($this, 'colophon')
 		);
+		add_submenu_page(
+			'editorial',
+			'Customize',
+			'Customize',
+			'administrator',
+			'editorial-'.self::PAGE_CUSTOMIZE,
+			array($this, 'customize')
+		);
 	}
 
 	/**
@@ -161,6 +175,11 @@ class Editorial_Admin
 	public function sharing()
 	{
 		$this->_display(self::PAGE_SHARE);
+	}
+
+	public function customize()
+	{
+		$this->_display(self::PAGE_CUSTOMIZE);
 	}
 
 	/**
@@ -297,7 +316,78 @@ class Editorial_Admin
 				}
 				Editorial::setOption('authors', $authors);
 				break;
+			case self::PAGE_CUSTOMIZE:
+				if ($_POST['create-theme']) {
+					Editorial::setOption('child-theme', true);
+					//create child theme
+					$this->_create_child_theme();
+				}
+				elseif($_POST['child-style-update'])
+				{
+					//Editorial::setOption('child-theme', false);
+					$this->_update_custom_style($_POST['child-style-update']);
+				}
+				break;
+
 		}
+	}
+
+	private function _update_custom_style( $css )
+	{
+		$theme_root = get_theme_root();
+  	//ATTENTION, This is hardcoded and it is assuming the child theme is in dir editorial-child
+  	$style_path = $theme_root.'/editorial-child/style.css';
+  	file_put_contents( $style_path, stripcslashes($css) );
+
+	}
+
+	private function _create_child_theme()
+	{
+		$this_theme_title = get_current_theme();
+		$this_theme_template = get_template();
+		$this_theme_name = get_stylesheet();
+
+		$child_theme_name = $this_theme_name . '-child';
+
+		$theme_root = get_theme_root();
+
+		// Validate theme name
+		$new_theme_path = $theme_root.'/'.$child_theme_name;
+		if ( file_exists( $child_theme_name ) ) {
+			return new WP_Error( 'exists', __( 'Theme directory already exists' ) );
+		}
+
+		mkdir( $new_theme_path );
+
+		// Make style.css
+		ob_start();
+		require dirname(__FILE__).'/editorial-custom-css.php';
+		$css = ob_get_clean();
+		file_put_contents( $new_theme_path.'/style.css', $css );
+
+		// RTL support
+		$rtl_theme = ( file_exists( $theme_root.'/'.$this_theme_name.'/rtl.css' ) )
+			? $parent_theme_name
+			: 'twentyeleven'; //use the latest default theme rtl file
+		ob_start();
+		require dirname(__FILE__).'/rtl-css.php';
+		$css = ob_get_clean();
+		file_put_contents( $new_theme_path.'/rtl.css', $css );
+
+		// Copy screenshot
+		$parent_theme_screenshot = $theme_root.'/'.$this_theme_name.'/screenshot.png';
+		if ( file_exists( $parent_theme_screenshot ) ) {
+			copy( $parent_theme_screenshot, $new_theme_path.'/screenshot.png' );
+		} elseif (file_exists( $parent_theme_screenshot = $theme_root.'/'.$this_theme_template.'/screenshot.png' ) ) {
+			copy( $parent_theme_screenshot, $new_theme_path.'/screenshot.png' );
+		}
+
+		$allowed_themes = get_site_option( 'allowedthemes' );
+		$allowed_themes[ $child_theme_name ] = true;
+		update_site_option( 'allowedthemes', $allowed_themes );
+
+		switch_theme( $this_theme_template, $child_theme_name );
+
 	}
 	
 	/**
@@ -586,25 +676,9 @@ $Editorial = new Editorial_Admin();
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
 //set_site_transient('update_themes', null);
 
-// NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
-
 /******************Change this*******************/
 $api_url = EDITORIAL_UPDATE_API;
 /************************************************/
-
-/*******************Child Theme******************
-//Use this section to provide updates for a child theme
-//If using on child theme be sure to prefix all functions properly to avoid 
-//function exists errors
-if(function_exists('wp_get_theme')){
-    $theme_data = wp_get_theme(get_option('stylesheet'));
-    $theme_version = $theme_data->Version;  
-} else {
-    $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css');
-    $theme_version = $theme_data['Version'];
-}    
-$theme_base = get_option('stylesheet');
-**************************************************/
 
 
 /***********************Parent Theme**************/

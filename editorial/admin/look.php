@@ -5,19 +5,19 @@
 				<th><?php _e('Logo & Icons', 'Editorial'); ?></th>
 				<td>
 					<fieldset>
-						<p class="logos"><img src="<?php echo Editorial::getOption('logo-big'); ?>" alt="Big logo" /></p>
+						<p class="logos"><img src="<?php echo get_bloginfo('url') . Editorial::getOption('logo-big'); ?>" alt="Big logo" /></p>
 						<input type="text" name="logo-big" value="<?php echo Editorial::getOption('logo-big');  ?>" placeholder="Big logo" />
 						<p class="note"><?php _e('Big logo is displayed on first page only. Recommended dimension 356x70px', 'Editorial'); ?></p>
-						<p class="logos"><img src="<?php echo Editorial::getOption('logo-small'); ?>" alt="Small logo" /></p>
-						<input type="text" name="logo-small" value="<?php echo Editorial::getOption('logo-small'); ?>" placeholder="Small logo" />
+						<p class="logos"><img src="<?php echo get_bloginfo('url') . Editorial::getOption('logo-small'); ?>" alt="Small logo" /></p>
+						<input type="text" name="logo-small" value="<?php echo  Editorial::getOption('logo-small'); ?>" placeholder="Small logo" />
 						<p class="note"><?php _e('Small logo is displayd on all subpages. Reommended dimension 200x40px', 'Editorial'); ?></p>
-						<p class="logos"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" alt="Gallery logo" class="gallery" /></p>
+						<p class="logos"><img src="<?php echo get_bloginfo('url') . Editorial::getOption('logo-gallery'); ?>" alt="Gallery logo" class="gallery" /></p>
 						<input type="text" name="logo-gallery" value="<?php echo Editorial::getOption('logo-gallery'); ?>" placeholder="Gallery logo" />
 						<p class="note"><?php _e('Gallery logo is displayed in mobile version of the gallery.<br/>Recommended dimension 131x17, prepared for black background.', 'Editorial'); ?></p>
-						<p class="logos"><img src="<?php echo Editorial::getOption('touch-icon'); ?>" alt="Touch icon" /></p>
+						<p class="logos"><img src="<?php echo get_bloginfo('url') . Editorial::getOption('touch-icon'); ?>" alt="Touch icon" /></p>
 						<input type="text" name="touch-icon" value="<?php echo Editorial::getOption('touch-icon'); ?>" placeholder="Touch icon" />
 						<p class="note"><?php _e('Touch icon is displayed if user saves the site to their homescreen (iPhone).', 'Editorial'); ?></p>
-						<p class="logos"><img src="<?php echo Editorial::getOption('favicon'); ?>" alt="Favicon" /></p>
+						<p class="logos"><img src="<?php echo get_bloginfo('url') . Editorial::getOption('favicon'); ?>" alt="Favicon" /></p>
 						<input type="text" name="favicon" value="<?php echo Editorial::getOption('favicon'); ?>" placeholder="Favicon" />
 						<p class="note"><?php _e('Site favicon.', 'Editorial'); ?></p>
 					</fieldset>
