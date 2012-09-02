@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 // for debuggin purposes
 function dump($object = '')
@@ -891,7 +891,7 @@ EOF;
 	public static function isMobileDevice($useragent = null)
 	{
 		//if we are debugging
-		if($_GET['debugmobile'])
+		if(isset($_GET['debugmobile']))
 		{
 			return true;
 		}

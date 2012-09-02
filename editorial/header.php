@@ -45,7 +45,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo Editorial::getOption('touch-icon'); ?>">
 <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 <link rel="apple-touch-icon-precomposed" href="<?php echo Editorial::getOption('touch-icon'); ?>">
-<link rel="shortcut icon" href="<?php echo Editorial::getOption('favicon'); ?>">
+<link rel="shortcut icon" href="<?php echo get_bloginfo('url') . Editorial::getOption('favicon'); ?>">
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('stylesheet_url'); ?>">
@@ -93,7 +93,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <header id="header" class="clear" role="banner">
 	<h1 id="brand" class="vcard">
 		<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
-			<img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small') ?>" alt="<?php bloginfo('name'); ?>">
+			<img class="fn org logo" src="<?php echo is_home() ? get_bloginfo('url') . Editorial::getOption('logo-big') : get_bloginfo('url') . Editorial::getOption('logo-small') ?>" alt="<?php bloginfo('name'); ?>">
 		</a>
 	</h1>
 	<form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
