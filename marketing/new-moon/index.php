@@ -1,23 +1,17 @@
 <?php 
-// define('DB_NAME', 'editorial-marketing');
-// define('DB_USER', 'editorial-market');
-// define('DB_PASSWORD', 'editorial-market');
-// define('DB_HOST', 'localhost');
-
-define('DB_NAME', 'web_editorialtemplate_marketing');
-
-/** MySQL database username */
-define('DB_USER', 'sql_editorial');
-
-/** MySQL database password */
-define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
-
-/** MySQL hostname */
+define('DB_NAME', 'editorial-marketing');
+define('DB_USER', 'editorial-market');
+define('DB_PASSWORD', 'editorial-market');
 define('DB_HOST', 'localhost');
 
+// define('DB_NAME', 'web_editorialtemplate_marketing');
+// define('DB_USER', 'sql_editorial');
+// define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
+// define('DB_HOST', 'localhost');
 
-define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
-//define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
+
+//define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
+define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
 define('FILENAME', 'editorial.zip');
 
 //TODO - if the chekc for domain is not valid, do not even kreate a tmp key!!

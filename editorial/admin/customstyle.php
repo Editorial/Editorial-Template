@@ -2,8 +2,15 @@
 
 
 $has_child = Editorial::getOption( 'child-theme' );
+$current_theme = wp_get_theme();
 
-var_dump( $has_child );
+
+if($has_child){
+  $theme_root = get_theme_root();
+  //ATTENTION, This is hardcoded and it is assuming the child theme is in dir editorial-child
+  $style_path = $theme_root.'/editorial-child/style.css';
+}
+
 
 ?>
 
@@ -30,7 +37,24 @@ if ( !$has_child ) :
 else: 
 ?>
 
-We have a child theme!
+  <?php
+  if ( $current_theme['Name'] == 'Editorial' ) :
+  ?>
+    Please activate the child theme for the customization to work.
+  <?php
+  endif;
+  ?>
+
+  <form action="" method="post">
+
+    <label>style.css</label>
+
+    <br/>
+    <textarea name="child-style-update" style="width:80%" rows="26"><?php echo file_get_contents($style_path); ?></textarea>
+
+    <p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'Editorial'); ?>"></p>
+
+  </form>
 
 <?php
 endif;

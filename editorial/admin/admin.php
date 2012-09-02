@@ -317,20 +317,24 @@ class Editorial_Admin
 				Editorial::setOption('authors', $authors);
 				break;
 			case self::PAGE_CUSTOMIZE:
-				var_dump( $_POST['create-theme']);
-
 				if ($_POST['create-theme']) {
 					Editorial::setOption('child-theme', true);
 					//TODO create child theme
 					$this->_create_child_theme();
 				}
-				else
+				elseif($_POST['child-style-update'])
 				{
-					Editorial::setOption('child-theme', false);
+					//Editorial::setOption('child-theme', false);
+					$this->_update_custom_style($_POST['child-style-update']);
 				}
 				break;
 
 		}
+	}
+
+	private function _update_custom_style( $string )
+	{
+
 	}
 
 	private function _create_child_theme()
@@ -353,7 +357,7 @@ class Editorial_Admin
 
 		// Make style.css
 		ob_start();
-		require dirname(__FILE__).'/child-theme-css.php';
+		require dirname(__FILE__).'/editorial-custom-css.php';
 		$css = ob_get_clean();
 		file_put_contents( $new_theme_path.'/style.css', $css );
 
@@ -377,6 +381,8 @@ class Editorial_Admin
 		$allowed_themes = get_site_option( 'allowedthemes' );
 		$allowed_themes[ $child_theme_name ] = true;
 		update_site_option( 'allowedthemes', $allowed_themes );
+
+		switch_theme( $this_theme_template, $child_theme_name );
 
 	}
 	
