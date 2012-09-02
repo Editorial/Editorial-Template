@@ -4,7 +4,17 @@ Description:    Custom Editorial Styles
 Author:         <?php echo get_bloginfo('url'), "\n"; ?>
 Template:       <?php echo $this_theme_template, "\n"; ?>
 
+IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^
+*/
 
+/*********** IMPORTANT!! DO NOT MODIFY THIS LINE **********/
+@import url("../<?php echo $this_theme_name; ?>/style.css");
+/**********************************************************/
+
+
+
+/*
+MATJAZ!!! OD TUKAJ NAPREJ DOL LAHKO EDITIRAS ZA KUSTOMIZACIJO
 
 Here are some prepared options for customization.
 Do search & replace (S&R) for all quoted ("") strings mentioned below in this file.
@@ -36,9 +46,6 @@ option 03 change font sizes & line-heights:
 - kvoute (jim notri dat)
 */
 
-/*********** IMPORTANT!! DO NOT MODIFY THIS LINE **********/
-@import url("../<?php echo $this_theme_name; ?>/style.css");
-/**********************************************************/
 
 
 
