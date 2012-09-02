@@ -319,7 +319,7 @@ class Editorial_Admin
 			case self::PAGE_CUSTOMIZE:
 				if ($_POST['create-theme']) {
 					Editorial::setOption('child-theme', true);
-					//TODO create child theme
+					//create child theme
 					$this->_create_child_theme();
 				}
 				elseif($_POST['child-style-update'])
@@ -332,8 +332,12 @@ class Editorial_Admin
 		}
 	}
 
-	private function _update_custom_style( $string )
+	private function _update_custom_style( $css )
 	{
+		$theme_root = get_theme_root();
+  	//ATTENTION, This is hardcoded and it is assuming the child theme is in dir editorial-child
+  	$style_path = $theme_root.'/editorial-child/style.css';
+  	file_put_contents( $style_path, stripcslashes($css) );
 
 	}
 
@@ -672,25 +676,9 @@ $Editorial = new Editorial_Admin();
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
 //set_site_transient('update_themes', null);
 
-// NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
-
 /******************Change this*******************/
 $api_url = EDITORIAL_UPDATE_API;
 /************************************************/
-
-/*******************Child Theme******************
-//Use this section to provide updates for a child theme
-//If using on child theme be sure to prefix all functions properly to avoid 
-//function exists errors
-if(function_exists('wp_get_theme')){
-    $theme_data = wp_get_theme(get_option('stylesheet'));
-    $theme_version = $theme_data->Version;  
-} else {
-    $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css');
-    $theme_version = $theme_data['Version'];
-}    
-$theme_base = get_option('stylesheet');
-**************************************************/
 
 
 /***********************Parent Theme**************/

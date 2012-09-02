@@ -22,8 +22,7 @@ if ( !$has_child ) :
 ?>
 
 <p>
-  To preserve changes you make to the theme, it is advised to make them in a child theme. 
-  If you make changes to the Editorail style.css instead, all changes will be lost once you upgrade them theme.
+  A child theme allows you to safely customize Editorial default style. Even when the parent theme is updated, your custom changes will not be overwritten.
 </p>
   
 <form action="admin.php?page=editorial-customstyle" method="POST">
@@ -40,7 +39,7 @@ else:
   <?php
   if ( $current_theme['Name'] == 'Editorial' ) :
   ?>
-    Please activate the child theme for the customization to work.
+    <div class='updated fade'><p>Please activate the child theme <b>Editorial Custom</b> from the <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/themes.php">Appearance/Themes</a> for the customization to work.</p></div>
   <?php
   endif;
   ?>

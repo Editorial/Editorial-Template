@@ -48,8 +48,8 @@
 <link rel="shortcut icon" href="<?php echo Editorial::getOption('favicon'); ?>">
 <meta name="apple-mobile-web-app-capable" content="no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/style.css?v=1">
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/editorial-custom.css?v=1">
+<link rel="stylesheet" href="<?php echo get_bloginfo('stylesheet_url'); ?>">
+
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelementplayer.min.css">
 <?php } ?>
