@@ -1,6 +1,4 @@
 <?php
-// TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
-//set_site_transient('update_themes', null);
 
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
@@ -672,10 +670,6 @@ class Editorial_Admin
 // add admin capabilites
 $Editorial = new Editorial_Admin();
 
-/***********  auto update check  **********/
-// TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
-//set_site_transient('update_themes', null);
-
 /******************Change this*******************/
 $api_url = EDITORIAL_UPDATE_API;
 /************************************************/
@@ -759,8 +753,6 @@ function my_theme_api_call($def, $action, $args) {
 	return $res;
 }
 
-// if (is_admin())
-// 	$current = get_transient('update_themes');
 
 
 ?>

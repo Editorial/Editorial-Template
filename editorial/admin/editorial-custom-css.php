@@ -1,7 +1,8 @@
 /*
 Theme Name:     Editorial Custom
 Description:    Custom Editorial Styles
-Author:         <?php echo get_bloginfo('url'), "\n"; ?>
+Author:         Matjaz Korosec
+Version:        1.0
 Template:       <?php echo $this_theme_template, "\n"; ?>
 
 IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^

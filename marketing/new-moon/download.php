@@ -20,15 +20,15 @@ DATABASE INFO
 ************************/
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'editorial-marketing');
-define('DB_USER', 'editorial-market');
-define('DB_PASSWORD', 'editorial-market');
-define('DB_HOST', 'localhost');
-
-// define('DB_NAME', 'web_editorialtemplate_marketing');
-// define('DB_USER', 'sql_editorial');
-// define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
+// define('DB_NAME', 'editorial-marketing');
+// define('DB_USER', 'editorial-market');
+// define('DB_PASSWORD', 'editorial-market');
 // define('DB_HOST', 'localhost');
+
+define('DB_NAME', 'web_editorialtemplate_marketing');
+define('DB_USER', 'sql_editorial');
+define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
+define('DB_HOST', 'localhost');
 
   $resDB = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
   mysql_select_db(DB_NAME, $resDB);

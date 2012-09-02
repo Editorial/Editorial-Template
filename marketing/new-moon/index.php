@@ -1,17 +1,17 @@
 <?php 
-define('DB_NAME', 'editorial-marketing');
-define('DB_USER', 'editorial-market');
-define('DB_PASSWORD', 'editorial-market');
-define('DB_HOST', 'localhost');
-
-// define('DB_NAME', 'web_editorialtemplate_marketing');
-// define('DB_USER', 'sql_editorial');
-// define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
+// define('DB_NAME', 'editorial-marketing');
+// define('DB_USER', 'editorial-market');
+// define('DB_PASSWORD', 'editorial-market');
 // define('DB_HOST', 'localhost');
 
+define('DB_NAME', 'web_editorialtemplate_marketing');
+define('DB_USER', 'sql_editorial');
+define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
+define('DB_HOST', 'localhost');
 
-//define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
-define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
+
+define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
+//define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
 define('FILENAME', 'editorial.zip');
 
 //TODO - if the chekc for domain is not valid, do not even kreate a tmp key!!
@@ -112,13 +112,7 @@ Uncomment Below Section to enable url masking
 				'valid' => $domain_valid, //check validity of the domain of the theme !!!TODO
 				'version' => '1.1', 	//Current version available
 				'date' => '2012-07-17',	//Date version was released
-				/*
-				Remove line below if using one time download link 
-				*/
 				//'package' => 'http://editorialtemplate.com/new-moon/editorial.zip',  // The zip file of the theme update
-							/*
-				Use below value if using the one time download link.  Point to location of download.php file on your server.
-				*/
 				'package' => PACKAGE_URL.'download.php?key=' . $strKey,
 				'file_name' => FILENAME,	//File name of theme zip file
 				'author'  =>	'Editorial',		//Author of theme
