@@ -1,7 +1,7 @@
 <?php
 
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
 
 /**
  * Editorial Admin class
@@ -88,8 +88,8 @@ class Editorial_Admin
 		// setup admin menu
 		add_action('admin_menu', array($this, 'menus'));
 		
-        // check for update and if the version is valid
-        //$this->_checkVersion();
+    // check for update and if the version is valid
+    $this->checkUpdate();
 	}
 	/**
 	 * Add menu to wordpress administration
@@ -363,15 +363,6 @@ class Editorial_Admin
 		$css = ob_get_clean();
 		file_put_contents( $new_theme_path.'/style.css', $css );
 
-		// RTL support
-		$rtl_theme = ( file_exists( $theme_root.'/'.$this_theme_name.'/rtl.css' ) )
-			? $parent_theme_name
-			: 'twentyeleven'; //use the latest default theme rtl file
-		ob_start();
-		require dirname(__FILE__).'/rtl-css.php';
-		$css = ob_get_clean();
-		file_put_contents( $new_theme_path.'/rtl.css', $css );
-
 		// Copy screenshot
 		$parent_theme_screenshot = $theme_root.'/'.$this_theme_name.'/screenshot.png';
 		if ( file_exists( $parent_theme_screenshot ) ) {
@@ -460,10 +451,94 @@ class Editorial_Admin
 			}
 		}
 	}
-	
-	public function checkVersion($data)
+
+	public function checkUpdate()
 	{
-		return $this->_checkVersion($data);
+		//$url = parse_url( get_bloginfo('url') );
+
+		//if( !$url['host'] == 'localhost') {
+			add_filter('pre_set_site_transient_update_themes', array($this, 'check_for_update'));
+			add_filter('themes_api', array($this, 'my_theme_api_call'), 10, 3);
+		//}
+	}
+	
+	public function check_for_update($checked_data)
+	{
+		global $wp_version;
+
+		if(function_exists('wp_get_theme')){
+		  $theme_data = wp_get_theme(get_option('template'));
+		  $theme_version = $theme_data->Version;  
+		} else {
+		  $theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
+		  $theme_version = $theme_data['Version'];
+		}    
+		$theme_base = get_option('template');
+
+		$request = array(
+			'slug' => $theme_base,
+			'version' => $theme_version 
+		);
+		// Start checking for an update
+		$send_for_check = array(
+			'body' => array(
+				'action' => 'theme_update', 
+				'request' => serialize($request),
+				'api-key' => md5(get_bloginfo('url')),
+				'blog-url' => get_bloginfo('url') //site_url() 
+			),
+			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
+		);
+		$raw_response = wp_remote_post(EDITORIAL_UPDATE_API, $send_for_check);
+		if (!is_wp_error($raw_response) && ($raw_response['response']['code'] == 200))
+			$response = unserialize($raw_response['body']);
+
+		// Feed the update data into WP updater
+		if (!empty($response)) {
+			$checked_data->response[$theme_base] = $response;
+			//var_dump($response);
+			if (! $this->_checkVersion($response))
+			{
+				return false;
+			}
+
+		}
+
+		return $checked_data;
+
+	}
+
+	public function my_theme_api_call($def, $action, $args)
+	{
+		if(function_exists('wp_get_theme')){
+		  $theme_data = wp_get_theme(get_option('template'));
+		  $theme_version = $theme_data->Version;  
+		} else {
+		  $theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
+		  $theme_version = $theme_data['Version'];
+		}    
+		$theme_base = get_option('template');
+	
+		if ($args->slug != $theme_base)
+			return false;
+		
+		// Get the current version
+
+		$args->version = $theme_version;
+		$request_string = prepare_request($action, $args);
+		$request = wp_remote_post(EDITORIAL_UPDATE_API, $request_string);
+
+		if (is_wp_error($request)) {
+			$res = new WP_Error('themes_api_failed', __('An Unexpected HTTP Error occurred during the API request.</p> <p><a href="?" onclick="document.location.reload(); return false;">Try again</a>'), $request->get_error_message());
+		} else {
+			$res = unserialize($request['body']);
+			
+			if ($res === false)
+				$res = new WP_Error('themes_api_failed', __('An unknown error occurred'), $request['body']);
+		}
+		
+		return $res;
+
 	}
 
 	/**
@@ -669,89 +744,6 @@ class Editorial_Admin
 
 // add admin capabilites
 $Editorial = new Editorial_Admin();
-
-/******************Change this*******************/
-$api_url = EDITORIAL_UPDATE_API;
-/************************************************/
-
-
-/***********************Parent Theme**************/
-if(function_exists('wp_get_theme')){
-    $theme_data = wp_get_theme(get_option('template'));
-    $theme_version = $theme_data->Version;  
-} else {
-    $theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
-    $theme_version = $theme_data['Version'];
-}    
-$theme_base = get_option('template');
-/**************************************************/
-
-//Uncomment below to find the theme slug that will need to be setup on the api server
-//var_dump($theme_base);
-
-add_filter('pre_set_site_transient_update_themes', 'check_for_update');
-
-function check_for_update($checked_data) {
-	global $wp_version, $theme_version, $theme_base, $api_url, $Editorial;
-
-	$request = array(
-		'slug' => $theme_base,
-		'version' => $theme_version 
-	);
-	// Start checking for an update
-	$send_for_check = array(
-		'body' => array(
-			'action' => 'theme_update', 
-			'request' => serialize($request),
-			'api-key' => md5(get_bloginfo('url')),
-			'blog-url' => get_bloginfo('url') //site_url() 
-		),
-		'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
-	);
-	$raw_response = wp_remote_post($api_url, $send_for_check);
-	if (!is_wp_error($raw_response) && ($raw_response['response']['code'] == 200))
-		$response = unserialize($raw_response['body']);
-
-	// Feed the update data into WP updater
-	if (!empty($response)) {
-		$checked_data->response[$theme_base] = $response;
-		//var_dump($response);
-		if (! $Editorial->checkVersion($response))
-		{
-			return false;
-		}
-
-	}
-
-	return $checked_data;
-}
-
-// Take over the Theme info screen on WP multisite
-add_filter('themes_api', 'my_theme_api_call', 10, 3);
-
-function my_theme_api_call($def, $action, $args) {
-	global $theme_base, $api_url, $theme_version, $api_url;
-	
-	if ($args->slug != $theme_base)
-		return false;
-	
-	// Get the current version
-
-	$args->version = $theme_version;
-	$request_string = prepare_request($action, $args);
-	$request = wp_remote_post($api_url, $request_string);
-
-	if (is_wp_error($request)) {
-		$res = new WP_Error('themes_api_failed', __('An Unexpected HTTP Error occurred during the API request.</p> <p><a href="?" onclick="document.location.reload(); return false;">Try again</a>'), $request->get_error_message());
-	} else {
-		$res = unserialize($request['body']);
-		
-		if ($res === false)
-			$res = new WP_Error('themes_api_failed', __('An unknown error occurred'), $request['body']);
-	}
-	
-	return $res;
-}
 
 
 

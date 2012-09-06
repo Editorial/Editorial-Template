@@ -9,6 +9,8 @@ define('DB_USER', 'sql_editorial');
 define('DB_PASSWORD', 'xQyuz4vzJZSGC8Bv');
 define('DB_HOST', 'localhost');
 
+// ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
 
 define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
 //define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
@@ -26,8 +28,6 @@ $db = @mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Can\'t connect do da
  Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SE9ZVJUS324UC
 *******/
 
-// Pull user agent  
-$user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 
 //Kill magic quotes.  Can't unserialize POST variable otherwise
@@ -49,23 +49,118 @@ if (get_magic_quotes_gpc()) {
 
 
 
-//Create one time download link to secure zip file location
-if (stristr($user_agent, 'WordPress') == TRUE){
-	/*
-	*
-	* Create Download Link
-	* Jaocb Wyke
-	* jacob@frozensheep.com
-	*
-	*/
+class VersionCheck
+{
 
-/**********************************************
-Uncomment Below Section to enable url masking
-**********************************************/
-
-	function createKey(){
-	//create a random key
+	private $user_agent;
+	private $action;
+	private $args;
+	private $acess_domain;
 	
+
+	public function __construct()
+	{
+
+
+		$this->user_agent = $_SERVER['HTTP_USER_AGENT'];
+		$this->action = $_POST['action'];
+		$this->args = unserialize($_POST['request']);
+		$this->acess_domain = $_POST['blog-url'];
+
+
+
+		$this->deleteExpiredKeys();
+
+		if (stristr($this->user_agent, 'WordPress') == TRUE)
+		{
+			
+			$this->proceedWithCheck();
+		}
+		else
+		{
+			echo 'Whoops, this page doesn\'t exist <br><br>';
+		}
+
+	}
+
+	public function proceedWithCheck()
+	{
+		if (is_array($this->args)) $this->args = $this->array_to_object($this->args);
+		//get a unique download key
+		$domain_valid = $this->check_if_domain_valid( $this->acess_domain );
+
+		//if domain is not valid stop right here and go home
+		if ( !$domain_valid )
+		{
+			print serialize( array('valid'=> 0));
+		}
+		else
+		{
+
+			$json = json_decode(file_get_contents('version.json'));
+			$latest_package = array_shift($json->versions);
+
+			$strKey = $this->createKey();
+
+			$latest_package->package = PACKAGE_URL.'download.php?key=' . $strKey;
+			$latest_package->file_name = FILENAME;	//File name of theme zip file
+			$latest_package->valid = 1;	
+
+			switch ($this->action) {
+				case 'basic_check':
+					$latest_package->slug = $this->args->slug;
+
+					if (version_compare($this->args->version, $latest_package->version, '<')){
+						$latest_package->new_version = $update_info->version;
+						print serialize($latest_package);
+					}	
+					break;
+
+				case 'theme_update':
+					$update_data = array();
+					$update_data['package'] = $latest_package->package;	
+					$update_data['valid'] = $latest_package->valid;	
+					$update_data['new_version'] = $latest_package->version;
+					$update_data['url'] = $json->info->url;
+
+					$update_data['from_domain'] = $this->acess_domain;
+					mysql_query("INSERT INTO wp_autoupdate_downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$latest_package->file_name}', '".(time()+(60*60*24*7))."')");		
+					if (version_compare($this->args->version, $latest_package->version, '<'))
+						print serialize($update_data);
+					break;
+				
+				case 'theme_information':
+					$data = new stdClass;
+					$data->slug = $this->args->slug;
+					$data->name = $latest_package->name;	
+					$data->version = $latest_package->version;
+					$data->last_updated = $latest_package->date;
+					$data->download_link = $latest_package->package;
+					$data->author = $latest_package->author;
+					$data->requires = $latest_package->requires;
+					$data->tested = $latest_package->tested;
+					$data->screenshot_url = $latest_package->screenshot_url;
+					//insert the download record into the database
+					//Uncomment if using url masking
+					mysql_query("INSERT INTO wp_autoupdate_downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$latest_package->file_name}', '".(time()+(60*60*24*7))."')");
+					print serialize($data);
+					break;
+			}
+
+
+		}
+
+	}
+
+	public function deleteExpiredKeys()
+	{
+		// Deletes records over two weeks old
+		mysql_query("DELETE FROM wp_autoupdate_downloads WHERE expires > '" .(time()+(60*60*24*14))."' ");
+	}
+
+	public function createKey(){
+	//create a random key
+
 	//maybe even better, use the blogurl md5 as a key
 		$strKey = md5(microtime());
 
@@ -74,153 +169,46 @@ Uncomment Below Section to enable url masking
 		$arrCheck = mysql_fetch_assoc($resCheck);
 		if($arrCheck['count(*)']){
 			//key already in use
-			return createKey();
+			return $this->createKey();
 		}else{
 			//key is OK
 			return $strKey;
 		}
 	}
 
-	//get a unique download key
-	$strKey = createKey();
+	public function array_to_object($array = array()) 
+	{
+		if (empty($array) || !is_array($array))
+			return false;
 
-	// Deletes records over two weeks old
-	mysql_query("DELETE FROM wp_autoupdate_downloads WHERE expires > '" .(time()+(60*60*24*14))."' ");
-
-
-//}
-
-// ini_set('display_errors', 'On');
-// error_reporting(E_ALL);
-
-// if (stristr($user_agent, 'WordPress') == TRUE){
-	
-	// Process API requests
-	$action = $_POST['action'];
-	$args = unserialize($_POST['request']);
-	$acess_domain = $_POST['blog-url'];
-
-	if (is_array($args))
-		$args = array_to_object($args);
-	
-	$domain_valid = check_if_domain_valid( $acess_domain );
-	
-	// Theme with update info
-	$packages['editorial'] = array(			//Replace theme with theme stylesheet slug that the update is for
-		'versions' => array(
-			'1.1' => array(				//Array name should be set to current version of update
-				'valid' => $domain_valid, //check validity of the domain of the theme !!!TODO
-				'version' => '1.1', 	//Current version available
-				'date' => '2012-07-17',	//Date version was released
-				//'package' => 'http://editorialtemplate.com/new-moon/editorial.zip',  // The zip file of the theme update
-				'package' => PACKAGE_URL.'download.php?key=' . $strKey,
-				'file_name' => FILENAME,	//File name of theme zip file
-				'author'  =>	'Editorial',		//Author of theme
-				'name' =>		'Editorial Template',		//Name of theme
-				'requires'=>	'3.1',				//Wordpress version required
-				'tested' =>		'3.1',				//WordPress version tested up to
-				'screenshot_url'=>	'http://editorialtemplate.com/screenshot.png'	//url of screenshot of theme
-			)
-		),
-		'info' => array(
-			'url' => 'http://editorialtemplate.com'  // Website devoted to theme if available
-		)
-	);
-
-
-	$latest_package = array_shift($packages[$args->slug]['versions']);
-	
-	
-	
-	
-	// basic_check
-
-	if ($action == 'basic_check') {	
-		$update_info = array_to_object($latest_package);
-		$update_info->slug = $args->slug;
-
-		if (version_compare($args->version, $latest_package['version'], '<')){
-			$update_info->new_version = $update_info->version;
-			print serialize($update_info);
-		}	
-	}
-
-
-
-	// theme_update
-
-	if ($action == 'theme_update') {
-		$update_info = array_to_object($latest_package);
-		$update_data = array();
-		$update_data['package'] = $update_info->package;	
-		$update_data['valid'] = $update_info->valid;	
-		$update_data['new_version'] = $update_info->version;
-		$update_data['url'] = $packages[$args->slug]['info']['url'];
-
-		$update_data['from_domain'] = $acess_domain;
-		//insert the download record into the database
-		//Uncomment if using url masking
-		mysql_query("INSERT INTO wp_autoupdate_downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$update_info->file_name}', '".(time()+(60*60*24*7))."')");		
-		if (version_compare($args->version, $latest_package['version'], '<'))
-			print serialize($update_data);	
-	}
-
-	if ($action == 'theme_information') {	
 		$data = new stdClass;
-		$data->slug = $args->slug;
-		$data->name = $latest_package['name'];	
-		$data->version = $latest_package['version'];
-		$data->last_updated = $latest_package['date'];
-		$data->download_link = $latest_package['package'];
-		$data->author = $latest_package['author'];
-		$data->requires = $latest_package['requires'];
-		$data->tested = $latest_package['tested'];
-		$data->screenshot_url = $latest_package['screenshot_url'];
-		//insert the download record into the database
-		//Uncomment if using url masking
-		mysql_query("INSERT INTO wp_autoupdate_downloads (downloadkey, file, expires) VALUES ('{$strKey}', '{$latest_package['file_name']}', '".(time()+(60*60*24*7))."')");
-		print serialize($data);
+		foreach ($array as $akey => $aval)
+				$data->{$akey} = $aval;
+		return $data;
 	}
-		
-	
-	
-	
-} else {
-	/*
-	An error message can be displayed to users who go directly to the update url
-	*/
 
-	echo 'Whoops, this page doesn\'t exist <br><br>';
-	
-	// $res = check_if_domain_valid(  "http://localhost:8888/dummy-editorial" );
-	// 		
-	// 	var_dump($res);
-	
-	
-}
-function array_to_object($array = array()) {
-	if (empty($array) || !is_array($array))
-		return false;
+	public function check_if_domain_valid( $domain )
+	{
 
-	$data = new stdClass;
-	foreach ($array as $akey => $aval)
-			$data->{$akey} = $aval;
-	return $data;
-}
+		$url = parse_url( $domain );
+		if( $url['host'] == 'localhost') return 1;
 
-function check_if_domain_valid( $domain )
-{
+		$query = "SELECT COUNT(name) AS num FROM domain WHERE name = '".mysql_escape_string($domain)."'";
+		$rs = mysql_query($query);
+		$row = mysql_fetch_assoc($rs);
 
-	$query = "SELECT COUNT(name) AS num FROM domain WHERE name = '".mysql_escape_string($domain)."'";
-	$rs = mysql_query($query);
-	$row = mysql_fetch_assoc($rs);
-	//var_dump(mysql_escape_string($domain));
+		return $row['num'];
+	}
 
-	return $row['num'];
+
+
 }
 
 
-mysql_free_result($rs);
+$check = new VersionCheck();
+
+
+
 mysql_close($db);
 
 ?>

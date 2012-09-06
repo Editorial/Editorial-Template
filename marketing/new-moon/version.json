@@ -1,1 +1,16 @@
-{"version":"1.0b","valid":1}
+{
+    "versions" :[
+        { 
+            "version" : "1.1", 
+            "date": "2012-07-17",
+            "author"  : "Editorial",
+            "name" :       "Editorial Template", 
+            "requires":    "3.1", 
+            "tested" :     "3.1",
+            "screenshot_url": "http://editorialtemplate.com/screenshot.png" 
+        }
+    ],
+    "info" :{
+        "url" : "http://editorialtemplate.com" 
+    }
+}

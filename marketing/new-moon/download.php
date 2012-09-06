@@ -18,8 +18,6 @@ $strDownloadFolder = "./update/";
 /***********************
 DATABASE INFO
 ************************/
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
 // define('DB_NAME', 'editorial-marketing');
 // define('DB_USER', 'editorial-market');
 // define('DB_PASSWORD', 'editorial-market');
