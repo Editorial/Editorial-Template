@@ -31,6 +31,8 @@ class Editorial_Admin
 
 	const PAGE_CUSTOMIZE = 'customstyle';
 
+	const CHILD_THEME = 'editorial-child';
+
 	/**
 	 * Pages users are allowed to include
 	 *
@@ -90,6 +92,25 @@ class Editorial_Admin
 		
     // check for update and if the version is valid
     $this->checkUpdate();
+
+    //if child theme was deleted, reset everything
+    $has_child = Editorial::getOption( 'child-theme' );
+    if ($has_child)
+    {
+    	$child_path = get_theme_root() .'/'. self::CHILD_THEME;
+    	if ( !is_dir( $child_path ) )
+    	{
+    		Editorial::setOption('child-theme', false);
+    	}
+    	
+    }
+    
+	}
+
+	public function child_theme_deleted($data)
+	{
+		dump($data);
+		return $data;
 	}
 	/**
 	 * Add menu to wordpress administration
@@ -345,7 +366,7 @@ class Editorial_Admin
 		$this_theme_template = get_template();
 		$this_theme_name = get_stylesheet();
 
-		$child_theme_name = $this_theme_name . '-child';
+		$child_theme_name = self::CHILD_THEME;
 
 		$theme_root = get_theme_root();
 

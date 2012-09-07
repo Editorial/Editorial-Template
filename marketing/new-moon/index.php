@@ -1,4 +1,11 @@
 <?php 
+/*
+inspired by and borrowed from
+https://github.com/jeremyclark13/automatic-theme-plugin-update
+*/
+
+
+
 // define('DB_NAME', 'editorial-marketing');
 // define('DB_USER', 'editorial-market');
 // define('DB_PASSWORD', 'editorial-market');
@@ -16,17 +23,10 @@ define('PACKAGE_URL', 'http://editorialtemplate.com/new-moon/');
 //define('PACKAGE_URL', 'http://localhost:8888/editorial-marketing/new-moon/');
 define('FILENAME', 'editorial.zip');
 
-//TODO - if the chekc for domain is not valid, do not even kreate a tmp key!!
 
 //Database Info
 $db = @mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Can\'t connect do database');
 @mysql_select_db(DB_NAME) or die('The database selected does not exists');
-
-/*******
- Original Plugin & Theme API by Kaspars Dambis (kaspars@konstruktors.com)
- Modified by Jeremy Clark http://clark-technet.com
- Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SE9ZVJUS324UC
-*******/
 
 
 
