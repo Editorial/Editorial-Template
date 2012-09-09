@@ -23,7 +23,7 @@ the_post();
 //use transient api for background jobs
 //https://github.com/markjaquith/WP-TLC-Transients
 $tweets = Editorial::getTwitterMentions($post->ID);
-//dump($tweets);
+dump($tweets);
 
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
