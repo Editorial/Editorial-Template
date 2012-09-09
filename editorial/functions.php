@@ -1189,6 +1189,60 @@ EOF;
     {
     	echo '<section class="featured featured-empty"></section><section id="paging"><p class="more">Na articles to display ...</p></section>';
     }
+
+
+
+
+
+    /*************************************/
+    /************ Twitter as comments ****/
+
+
+    public static function getTwitterMentions($postID)
+    {
+    	//ATTENTION, this is using deprected v1 api. it will be discontinued on march 2013
+    	$permalink = get_permalink( $postID );
+    	$testString = 'Justin Bieber';
+
+    	$last_tweet_id = get_post_meta($postID, 'twitter_last_comment_id', true);
+    	//dump( $last_tweet_id );
+    	$url = "http://search.twitter.com/search.json?rpp=100&since_id=".$last_tweet_id."&q=".urlencode( $permalink );
+    	//dump($url);
+    	$response = wp_remote_retrieve_body( wp_remote_get( $url ) );
+    	$data = json_decode( $response );
+
+    	if ( empty( $data->results ) ) {
+				update_post_meta( $postID, 'twitter_last_comment_id', $data->max_id_str );
+				return $data;
+			}
+
+  		foreach ( $data->results as $tweet )
+  		{
+  			//build comment from tweet
+				$comment = array(
+					'comment_post_ID'      => $postID,
+					'comment_author'       => $tweet->from_user,
+					'comment_author_email' => $tweet->from_user . '@twitter.com',
+					'comment_author_url'   => 'http://twitter.com/' . $tweet->from_user . '/status/' . $tweet->id_str . '/',
+					'comment_content'      => $tweet->text,
+					'comment_date_gmt'     => date('Y-m-d H:i:s', strtotime( $tweet->created_at ) ),
+					'comment_type'         => 'tweet'
+				);
+
+				wp_insert_comment( $comment );
+  		}
+
+  		//update post meat with the latest tweet id
+  		update_post_meta( $postID, 'twitter_last_comment_id', $data->max_id_str );
+
+
+    	// dump($response);
+    	return $data;
+    }
+
+
+    /*************************************/
+    /*************************************/
 }
 
 /**

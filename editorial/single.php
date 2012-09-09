@@ -17,6 +17,14 @@ if (array_key_exists('comments', $_GET))
 
 the_post();
 
+//TODO This is while developing.
+//move this into wp_schedule_event
+//http://codex.wordpress.org/Function_Reference/wp_schedule_event
+//use transient api for background jobs
+//https://github.com/markjaquith/WP-TLC-Transients
+$tweets = Editorial::getTwitterMentions($post->ID);
+//dump($tweets);
+
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
 
