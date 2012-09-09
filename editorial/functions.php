@@ -1202,11 +1202,14 @@ EOF;
     public static function getTwitterMentions($postID)
     {
     	//ATTENTION, this is using deprected v1 api. it will be discontinued on march 2013
+    	/*
+    	Unauthenticated calls are permitted 150 requests per hour
+    	*/
     	$permalink = get_permalink( $postID );
     	$testString = 'Justin Bieber';
 
     	$last_tweet_id = get_post_meta($postID, 'twitter_last_comment_id', true);
-    	//dump( $last_tweet_id );
+    	dump( $last_tweet_id );
     	$url = "http://search.twitter.com/search.json?rpp=100&since_id=".$last_tweet_id."&q=".urlencode( $permalink );
     	//dump($url);
     	$response = wp_remote_retrieve_body( wp_remote_get( $url ) );

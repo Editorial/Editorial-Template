@@ -22,8 +22,8 @@ the_post();
 //http://codex.wordpress.org/Function_Reference/wp_schedule_event
 //use transient api for background jobs
 //https://github.com/markjaquith/WP-TLC-Transients
-//$tweets = Editorial::getTwitterMentions($post->ID);
-//dump($tweets);
+$tweets = Editorial::getTwitterMentions($post->ID);
+dump($tweets);
 
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
