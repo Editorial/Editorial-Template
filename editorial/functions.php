@@ -1213,6 +1213,7 @@ EOF;
     	$url = "http://search.twitter.com/search.json?rpp=100&since_id=".$last_tweet_id."&q=".urlencode( $permalink );
     	//dump($url);
     	$response = wp_remote_retrieve_body( wp_remote_get( $url ) );
+
     	$data = json_decode( $response );
 
     	if ( empty( $data->results ) ) {
