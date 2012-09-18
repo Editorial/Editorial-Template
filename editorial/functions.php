@@ -1370,8 +1370,42 @@ function my_remove_recent_comments_style() {
   	//dump("called find_mentions_for_posts");
   	$posts_array = get_posts( array('numberposts'=>20) );
   	foreach ($posts_array as $post) {
-  		Editorial::getTwitterMentions( $post->ID );
+  		if( comments_open( $post->ID ) ) {
+  			Editorial::getTwitterMentions( $post->ID );
+  		}
   	}
 	}
+
+	//move this into admin later
+
+	function editorial_comment_columns( $columns )
+	{
+		$columns['comment_type'] = __( 'Comment Type' );
+		return $columns;
+	}
+	add_filter( 'manage_edit-comments_columns', 'editorial_comment_columns' );
+
+	function editorial_comment_column( $column, $comment_ID )
+	{
+		if ( 'comment_type' == $column ) {
+			if ( $meta = get_comment( $comment_ID, $column , true ) ) {
+				//echo $meta;
+				echo $meta->comment_type;
+				// var_dump($meta);
+			}
+		}
+	}
+	add_filter( 'manage_comments_custom_column', 'editorial_comment_column', 10, 2 );
+
+	function add_comment_type_filter($filters)
+	{
+		$f = array(
+			'comment' => __( 'Comments' ),
+			'tweet' => __( 'Tweets' ),
+			'pings' => __( 'Pings' ),
+			);
+		return $f;
+	}
+	add_filter('admin_comment_types_dropdown', "add_comment_type_filter", 10, 2);
 
 ?>
