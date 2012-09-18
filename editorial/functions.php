@@ -71,6 +71,8 @@ class Editorial
 	 */
 	public static $commentCounter = 0;
 	
+
+	public static $TwitterApiCallCounter = 0; //limit 150 per hour
 	/**
 	 * Setup theme
 	 *
@@ -1193,8 +1195,6 @@ EOF;
 
 
 
-
-
     /*************************************/
     /************ Twitter as comments ****/
 
@@ -1205,11 +1205,21 @@ EOF;
     	/*
     	Unauthenticated calls are permitted 150 requests per hour
     	*/
-    	$permalink = get_permalink( $postID );
+
+
+    	self::$TwitterApiCallCounter++;
+
+		//if we are over the limit, kick
+			if ( self::$TwitterApiCallCounter > 150 ) {
+				return;
+			}
+
+    	//$permalink = get_permalink( $postID );
+    	$permalink = "http://techcrunch.com/2012/09/18/alleged-leaked-ipad-mini-pics-show-lightening-port-odd-hole-on-the-back/";
     	$testString = 'Justin Bieber';
 
     	$last_tweet_id = get_post_meta($postID, 'twitter_last_comment_id', true);
-    	dump( $last_tweet_id );
+    	//dump( $last_tweet_id );
     	$url = "http://search.twitter.com/search.json?rpp=100&since_id=".$last_tweet_id."&q=".urlencode( $permalink );
     	//dump($url);
     	$response = wp_remote_retrieve_body( wp_remote_get( $url ) );
@@ -1218,7 +1228,7 @@ EOF;
 
     	if ( empty( $data->results ) ) {
 				update_post_meta( $postID, 'twitter_last_comment_id', $data->max_id_str );
-				return $data;
+				return; //$data;
 			}
 
   		foreach ( $data->results as $tweet )
@@ -1240,9 +1250,6 @@ EOF;
   		//update post meat with the latest tweet id
   		update_post_meta( $postID, 'twitter_last_comment_id', $data->max_id_str );
 
-
-    	// dump($response);
-    	return $data;
     }
 
 
@@ -1336,5 +1343,35 @@ function my_remove_recent_comments_style() {
   global $wp_widget_factory;
   remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'  ) );
 }
+
+
+  /*************************************/
+  /********* schedule social network parsin ********/
+
+  add_action('social_network_mining', 'find_mentions_for_posts');
+
+  function social_network_mining_activation()
+  {
+  	if ( !wp_next_scheduled( 'social_network_mining' ) ) {
+				wp_schedule_event( time(), 'hourly', 'social_network_mining');
+				//dump("started hourly");
+			}
+
+			// $s = wp_get_schedule( 'social_network_mining' );
+			// $timestamp = wp_next_scheduled( 'social_network_mining' );
+			// dump( $s. " - next schedule ". date('l jS F Y h:i:s A', $timestamp) ) ;
+  }
+
+  add_action('wp', 'social_network_mining_activation');
+
+  function find_mentions_for_posts() {
+			// do something every hour
+  	Editorial::$TwitterApiCallCounter = 0; //reset the counter
+  	//dump("called find_mentions_for_posts");
+  	$posts_array = get_posts( array('numberposts'=>20) );
+  	foreach ($posts_array as $post) {
+  		Editorial::getTwitterMentions( $post->ID );
+  	}
+	}
 
 ?>
