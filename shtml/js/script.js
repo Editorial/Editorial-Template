@@ -136,5 +136,67 @@ var featuresNav = function() {
 		}
 	});
 
+	//price flowv
+	if($('ul.price-flow').length) {
+		var pfMobile = $('ul.pf-mobile');
+		if (pfMobile.css('display') == 'block') {
+
+			//testingTOOL
+			pfMobile.append('' +
+			'<div id="counter" style="position:absolute;left:50%;bottom:30px;z-index:999;background:yellow;">' +
+			'	<label for="sold">Sold: </label>' +
+			'	<input type="text" id="sold" value="0" style="border:1px solid lime;padding:6px 0 4px;width:50px;font-size:20px;text-align:center" maxlength="4">' +
+			'	<div><a href="#" id="go-up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+1">+1</a>' +
+			'	<a href="#" id="go-down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-1">-1</a>' +
+			'	<a href="#" id="go-50up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+50">+50</a>' +
+			'	<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a></div>' +
+			'</div>');
+			var licences = $('#sold');
+			$('#go-up,#go-down,#go-50up,#go-50down').on('click', function(e){ e.preventDefault();
+				licences.val(parseInt(licences.val()) + parseInt($(this).text()));licences.trigger('change');
+			});
+			licences.on('change', function(){ flow(licences.val()); });
+
+			//all limits
+			var limits = [];
+			pfMobile.find('li').each(function(){
+				var t =  $(this).find('span').text();
+				if(t != '') limits.push(t);
+			});
+			var limitshL = limits.length;
+
+			//move flow
+			var flow = function(moveTo) {
+				//console.log(' ======================================================================== ');
+				pfMobile.find('li').removeClass('current');
+
+				for(var i = 0; i + 1 < limitshL + 1; i++) {
+					//console.log('loop: ' + parseInt(i + 1) + ' cifra: ' + limits[i]);
+					var nth = pfMobile.find('li:nth-child(' + i + ')');
+
+					//li.active
+					if (parseInt(limits[i]) <= moveTo) {
+						//console.log('++ limits[i]: ' + parseInt(limits[i]) + ' <= ' + moveTo + ' :moveTo ++ ');
+						nth.addClass('active');
+						if (parseInt(limits[i+1]) > moveTo) {
+							pfMobile.find('li:nth-child(' + parseInt(i + 1) + ')').addClass('current');
+						}
+					}
+						else {
+						nth.removeClass('active');
+					}
+
+					//li.sold
+					//
+				}
+			};
+
+		}
+
+		if ($('ul.pf-other').css('display') == 'block') {
+
+		}
+	}
+
 })();
 
