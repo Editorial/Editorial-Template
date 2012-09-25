@@ -959,7 +959,6 @@ body {
   margin: 0 auto;
   width: 80%;
   min-width: 270px;
-  width: 270px;
   height: 200px;
   position: relative;
   border-bottom: 1px solid #ccc;
@@ -1138,7 +1137,11 @@ body {
 .price-flow .step-2.active i:after,
 .price-flow .step-3.active i:after,
 .price-flow .step-4.active i:after,
-.price-flow .step-5.active i:after {
+.price-flow .step-5.active i:after,
+.price-flow .step-2.current i:after,
+.price-flow .step-3.current i:after,
+.price-flow .step-4.current i:after,
+.price-flow .step-5.current i:after {
   border-left-color: #eababb;
 }
 .price-flow .step-1 b,
@@ -2311,9 +2314,11 @@ body {
 /* </end> 07 FEATURES =============================================================================================== *//* 326px */
 @media only screen and (min-width: 326px) {
   .price-tag {
-    margin: -106px auto 0;
     width: 326px;
     background-position: 0 -50px;
+  }
+  .home .price-tag {
+    margin: -106px auto 0;
   }
 }
 /* 480px */
