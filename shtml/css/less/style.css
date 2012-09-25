@@ -962,6 +962,46 @@ body {
   height: 200px;
   position: relative;
   border-bottom: 1px solid #ccc;
+  /*.line-22 {
+		i {
+			border-left-color: rgba(222, 22, 11, 1);
+			border-right-color: rgba(222, 22, 11, .4);
+			.horizontal(rgba(222, 22, 11, 1), rgba(222, 22, 11, .4));
+		}
+	}
+
+	.line-23 {
+		i {
+			border-left-color: rgba(222, 22, 11, .4);
+			border-right-color: rgba(222, 22, 11, .3);
+			.horizontal(rgba(222, 22, 11, .4), rgba(222, 22, 11, .3));
+		}
+	}
+
+	.line-24 {
+		i {
+			border-left-color: rgba(222, 22, 11, .3);
+			border-right-color: rgba(222, 22, 11, .2);
+			.horizontal(rgba(222, 22, 11, .3), rgba(222, 22, 11, .2));
+		}
+	}
+
+	.line-25 {
+		i {
+			border-left-color: rgba(222, 22, 11, .2);
+			border-right-color: rgba(222, 22, 11, .1);
+			.horizontal(rgba(222, 22, 11, .2), rgba(222, 22, 11, .1));
+		}
+	}
+
+	.line-26 {
+		i {
+			border-left-color: rgba(222, 22, 11, .1);
+			border-right: none;
+			.horizontal(rgba(222, 22, 11, .1), rgba(222, 22, 11, 0));
+		}
+	}*/
+
 }
 .price-flow li {
   border-left: 1px solid #e6e6e6;
@@ -1080,66 +1120,6 @@ body {
 }
 .price-flow .line-26 i {
   width: 3px;
-}
-.price-flow .line-22 i {
-  border-left-color: #de160b;
-  border-right-color: rgba(222, 22, 11, 0.4);
-  background-color: rgba(222, 22, 11, 0.4);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#de160b), to(rgba(222, 22, 11, 0.4)));
-  background-image: -webkit-linear-gradient(left, #de160b, rgba(222, 22, 11, 0.4));
-  background-image: -moz-linear-gradient(left, #de160b, rgba(222, 22, 11, 0.4));
-  background-image: -ms-linear-gradient(left, #de160b, rgba(222, 22, 11, 0.4));
-  background-image: -o-linear-gradient(left, #de160b, rgba(222, 22, 11, 0.4));
-  background-image: linear-gradient(left, #de160b, rgba(222, 22, 11, 0.4));
-  background-repeat: repeat-x;
-}
-.price-flow .line-23 i {
-  border-left-color: rgba(222, 22, 11, 0.4);
-  border-right-color: rgba(222, 22, 11, 0.3);
-  background-color: rgba(222, 22, 11, 0.3);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(222, 22, 11, 0.4)), to(rgba(222, 22, 11, 0.3)));
-  background-image: -webkit-linear-gradient(left, rgba(222, 22, 11, 0.4), rgba(222, 22, 11, 0.3));
-  background-image: -moz-linear-gradient(left, rgba(222, 22, 11, 0.4), rgba(222, 22, 11, 0.3));
-  background-image: -ms-linear-gradient(left, rgba(222, 22, 11, 0.4), rgba(222, 22, 11, 0.3));
-  background-image: -o-linear-gradient(left, rgba(222, 22, 11, 0.4), rgba(222, 22, 11, 0.3));
-  background-image: linear-gradient(left, rgba(222, 22, 11, 0.4), rgba(222, 22, 11, 0.3));
-  background-repeat: repeat-x;
-}
-.price-flow .line-24 i {
-  border-left-color: rgba(222, 22, 11, 0.3);
-  border-right-color: rgba(222, 22, 11, 0.2);
-  background-color: rgba(222, 22, 11, 0.2);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(222, 22, 11, 0.3)), to(rgba(222, 22, 11, 0.2)));
-  background-image: -webkit-linear-gradient(left, rgba(222, 22, 11, 0.3), rgba(222, 22, 11, 0.2));
-  background-image: -moz-linear-gradient(left, rgba(222, 22, 11, 0.3), rgba(222, 22, 11, 0.2));
-  background-image: -ms-linear-gradient(left, rgba(222, 22, 11, 0.3), rgba(222, 22, 11, 0.2));
-  background-image: -o-linear-gradient(left, rgba(222, 22, 11, 0.3), rgba(222, 22, 11, 0.2));
-  background-image: linear-gradient(left, rgba(222, 22, 11, 0.3), rgba(222, 22, 11, 0.2));
-  background-repeat: repeat-x;
-}
-.price-flow .line-25 i {
-  border-left-color: rgba(222, 22, 11, 0.2);
-  border-right-color: rgba(222, 22, 11, 0.1);
-  background-color: rgba(222, 22, 11, 0.1);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(222, 22, 11, 0.2)), to(rgba(222, 22, 11, 0.1)));
-  background-image: -webkit-linear-gradient(left, rgba(222, 22, 11, 0.2), rgba(222, 22, 11, 0.1));
-  background-image: -moz-linear-gradient(left, rgba(222, 22, 11, 0.2), rgba(222, 22, 11, 0.1));
-  background-image: -ms-linear-gradient(left, rgba(222, 22, 11, 0.2), rgba(222, 22, 11, 0.1));
-  background-image: -o-linear-gradient(left, rgba(222, 22, 11, 0.2), rgba(222, 22, 11, 0.1));
-  background-image: linear-gradient(left, rgba(222, 22, 11, 0.2), rgba(222, 22, 11, 0.1));
-  background-repeat: repeat-x;
-}
-.price-flow .line-26 i {
-  border-left-color: rgba(222, 22, 11, 0.1);
-  border-right: none;
-  background-color: rgba(222, 22, 11, 0);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(222, 22, 11, 0.1)), to(rgba(222, 22, 11, 0)));
-  background-image: -webkit-linear-gradient(left, rgba(222, 22, 11, 0.1), rgba(222, 22, 11, 0));
-  background-image: -moz-linear-gradient(left, rgba(222, 22, 11, 0.1), rgba(222, 22, 11, 0));
-  background-image: -ms-linear-gradient(left, rgba(222, 22, 11, 0.1), rgba(222, 22, 11, 0));
-  background-image: -o-linear-gradient(left, rgba(222, 22, 11, 0.1), rgba(222, 22, 11, 0));
-  background-image: linear-gradient(left, rgba(222, 22, 11, 0.1), rgba(222, 22, 11, 0));
-  background-repeat: repeat-x;
 }
 .price-flow .step-2 i:after,
 .price-flow .step-3 i:after,

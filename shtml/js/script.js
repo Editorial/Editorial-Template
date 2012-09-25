@@ -10,23 +10,6 @@
 
  */
 
-// open / close features nav
-/*
-var featuresNav = function() {
-	var b = $('body'),
-			fBar = $('#features-bar');
-	fBar.stop();
-	if (b.hasClass('active-sidebar')) {
-		fBar.animate({marginRight: '-100%'}, 100);
-		b.removeClass('active-sidebar');
-	}
-	else {
-		fBar.animate({marginRight: 0}, 150);
-		b.addClass('active-sidebar');
-	}
-};
-*/
-
 (function() {
 
 	var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
@@ -139,6 +122,7 @@ var featuresNav = function() {
 	//price flowv
 	if($('ul.price-flow').length) {
 		var pfMobile = $('ul.pf-mobile');
+
 		if (pfMobile.css('display') == 'block') {
 
 			//testingTOOL
@@ -152,47 +136,56 @@ var featuresNav = function() {
 			'	<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a></div>' +
 			'</div>');
 			var licences = $('#sold');
-			$('#go-up,#go-down,#go-50up,#go-50down').on('click', function(e){ e.preventDefault();
-				licences.val(parseInt(licences.val()) + parseInt($(this).text()));licences.trigger('change');
+			$('#go-up, #go-down, #go-50up, #go-50down').on('click', function(e){ e.preventDefault();
+				var lVal = parseInt(licences.val()), tText = parseInt($(this).text()), lANDt = lVal + tText;
+				if(lANDt >= 0) { licences.val(lANDt); licences.trigger('change'); }
 			});
 			licences.on('change', function(){ flow(licences.val()); });
 
-			//all limits
-			var limits = [];
-			pfMobile.find('li').each(function(){
-				var t =  $(this).find('span').text();
-				if(t != '') limits.push(t);
-			});
-			var limitshL = limits.length;
-
 			//move flow
 			var flow = function(moveTo) {
-				//console.log(' ======================================================================== ');
-				pfMobile.find('li').removeClass('current');
+				var countActiveSteps = 0,
+						stikalo = 0,
+						limits = [];
 
-				for(var i = 0; i + 1 < limitshL + 1; i++) {
-					//console.log('loop: ' + parseInt(i + 1) + ' cifra: ' + limits[i]);
-					var nth = pfMobile.find('li:nth-child(' + i + ')');
+				pfMobile.find('li').removeClass('current').removeClass('sold').each(function(){
+					var t =  $(this).find('span').text();
+					if(t != '') limits.push(t);
+				});
 
-					//li.active
+				for(var i = 0; i + 1 < limits.length + 1; i++) {
+					var nthI = pfMobile.find('li:nth-child(' + i + ')'),
+							nthPlus1 = pfMobile.find('li:nth-child(' + parseInt(i + 1) + ')');
+					//active & current
 					if (parseInt(limits[i]) <= moveTo) {
-						//console.log('++ limits[i]: ' + parseInt(limits[i]) + ' <= ' + moveTo + ' :moveTo ++ ');
-						nth.addClass('active');
+						nthI.addClass('active');
+						countActiveSteps++;
 						if (parseInt(limits[i+1]) > moveTo) {
-							pfMobile.find('li:nth-child(' + parseInt(i + 1) + ')').addClass('current');
+							nthPlus1.addClass('current');
+						}
+					} else {
+						nthI.removeClass('active');
+					}
+				}
+
+				if (countActiveSteps > 2) {
+					for(var j = countActiveSteps; j > 0 ; j--) {
+						var nthJ = pfMobile.find('li:nth-child(' + j + ')'),
+								isStep = nthJ.attr('class').match(/step-/i) ? true : false;
+						if(stikalo == 1) {
+							nthJ.removeClass('active').addClass('sold');
+						}
+						if (isStep) {
+							console.log('to je step');
+							stikalo = 1;
 						}
 					}
-						else {
-						nth.removeClass('active');
-					}
-
-					//li.sold
-					//
 				}
 			};
 
 		}
 
+		//other devices
 		if ($('ul.pf-other').css('display') == 'block') {
 
 		}
