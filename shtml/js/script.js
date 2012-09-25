@@ -123,7 +123,7 @@
 	if($('ul.price-flow').length) {
 		var pfMobile = $('ul.pf-mobile');
 
-		if (pfMobile.css('display') == 'block') {
+		if (pfMobile.css('display') === 'block') {
 
 			//testingTOOL
 			pfMobile.append('' +
@@ -137,15 +137,15 @@
 			'</div>');
 			var licences = $('#sold');
 			$('#go-up, #go-down, #go-50up, #go-50down').on('click', function(e){ e.preventDefault();
-				var lVal = parseInt(licences.val()), tText = parseInt($(this).text()), lANDt = lVal + tText;
+				var lVal = parseInt(licences.val(), 10), tText = parseInt($(this).text(), 10), lANDt = lVal + tText;
 				if(lANDt >= 0) { licences.val(lANDt); licences.trigger('change'); }
 			});
 			licences.on('change', function(){ flow(licences.val()); });
 
-			//move flow
-			var flow = function(moveTo) {
+			//priceFlow
+			function flow(soldLicences) {
 				var countActiveSteps = 0,
-						stikalo = 0,
+						pass = 0,
 						limits = [];
 
 				pfMobile.find('li').removeClass('current').removeClass('sold').each(function(){
@@ -155,12 +155,12 @@
 
 				for(var i = 0; i + 1 < limits.length + 1; i++) {
 					var nthI = pfMobile.find('li:nth-child(' + i + ')'),
-							nthPlus1 = pfMobile.find('li:nth-child(' + parseInt(i + 1) + ')');
+							nthPlus1 = pfMobile.find('li:nth-child(' + parseInt(i + 1, 10) + ')');
 					//active & current
-					if (parseInt(limits[i]) <= moveTo) {
+					if (parseInt(limits[i], 10) <= soldLicences) {
 						nthI.addClass('active');
 						countActiveSteps++;
-						if (parseInt(limits[i+1]) > moveTo) {
+						if (parseInt(limits[i+1], 10) > soldLicences) {
 							nthPlus1.addClass('current');
 						}
 					} else {
@@ -172,21 +172,19 @@
 					for(var j = countActiveSteps; j > 0 ; j--) {
 						var nthJ = pfMobile.find('li:nth-child(' + j + ')'),
 								isStep = nthJ.attr('class').match(/step-/i) ? true : false;
-						if(stikalo == 1) {
+						if(pass === 1) {
 							nthJ.removeClass('active').addClass('sold');
 						}
 						if (isStep) {
-							console.log('to je step');
-							stikalo = 1;
+							pass = 1;
 						}
 					}
 				}
-			};
-
+			}
 		}
 
 		//other devices
-		if ($('ul.pf-other').css('display') == 'block') {
+		if ($('ul.pf-other').css('display') === 'block') {
 
 		}
 	}
