@@ -119,74 +119,79 @@
 		}
 	});
 
-	//price flowv
+
+
+
+
+	//price flow
 	if($('ul.price-flow').length) {
-		var pfMobile = $('ul.pf-mobile');
 
-		if (pfMobile.css('display') === 'block') {
+		function flow(soldLicences) {
+			var graph = ($('ul.pf-mobile').css('display') == 'block') ? $('ul.pf-mobile') : $('ul.pf-other'),
+					countActiveSteps = 0,
+					pass = 0,
+					limits = [];
 
-			//testingTOOL
-			pfMobile.append('' +
-			'<div id="counter" style="position:absolute;left:50%;bottom:30px;z-index:999;background:yellow;">' +
-			'	<label for="sold">Sold: </label>' +
-			'	<input type="text" id="sold" value="0" style="border:1px solid lime;padding:6px 0 4px;width:50px;font-size:20px;text-align:center" maxlength="4">' +
-			'	<div><a href="#" id="go-up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+1">+1</a>' +
-			'	<a href="#" id="go-down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-1">-1</a>' +
-			'	<a href="#" id="go-50up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+50">+50</a>' +
-			'	<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a></div>' +
-			'</div>');
-			var licences = $('#sold');
-			$('#go-up, #go-down, #go-50up, #go-50down').on('click', function(e){ e.preventDefault();
-				var lVal = parseInt(licences.val(), 10), tText = parseInt($(this).text(), 10), lANDt = lVal + tText;
-				if(lANDt >= 0) { licences.val(lANDt); licences.trigger('change'); }
+			graph.find('li').removeClass('current').removeClass('sold').each(function(){
+				var t =  $(this).find('span').text();
+				if(t != '') limits.push(t);
 			});
-			licences.on('change', function(){ flow(licences.val()); });
 
-			//priceFlow
-			function flow(soldLicences) {
-				var countActiveSteps = 0,
-						pass = 0,
-						limits = [];
-
-				pfMobile.find('li').removeClass('current').removeClass('sold').each(function(){
-					var t =  $(this).find('span').text();
-					if(t != '') limits.push(t);
-				});
-
-				for(var i = 0; i + 1 < limits.length + 1; i++) {
-					var nthI = pfMobile.find('li:nth-child(' + i + ')'),
-							nthPlus1 = pfMobile.find('li:nth-child(' + parseInt(i + 1, 10) + ')');
-					//active & current
-					if (parseInt(limits[i], 10) <= soldLicences) {
-						nthI.addClass('active');
-						countActiveSteps++;
-						if (parseInt(limits[i+1], 10) > soldLicences) {
-							nthPlus1.addClass('current');
-						}
-					} else {
-						nthI.removeClass('active');
+			for(var i = 0; i + 1 < limits.length + 1; i++) {
+				var nthI = graph.find('li:nth-child(' + i + ')'),
+						nthPlus1 = graph.find('li:nth-child(' + parseInt(i + 1, 10) + ')');
+				//active & current
+				if (parseInt(limits[i], 10) <= soldLicences) {
+					nthI.addClass('active');
+					countActiveSteps++;
+					if (parseInt(limits[i+1], 10) > soldLicences) {
+						nthPlus1.addClass('current');
 					}
+				} else {
+					nthI.removeClass('active');
 				}
+			}
 
-				if (countActiveSteps > 2) {
-					for(var j = countActiveSteps; j > 0 ; j--) {
-						var nthJ = pfMobile.find('li:nth-child(' + j + ')'),
-								isStep = nthJ.attr('class').match(/step-/i) ? true : false;
-						if(pass === 1) {
-							nthJ.removeClass('active').addClass('sold');
-						}
-						if (isStep) {
-							pass = 1;
-						}
+			if (countActiveSteps > 2) {
+				for(var j = countActiveSteps; j > 0 ; j--) {
+					var nthJ = graph.find('li:nth-child(' + j + ')'),
+							isStep = nthJ.attr('class').match(/step-/i) ? true : false;
+					if(pass === 1) {
+						nthJ.removeClass('active').addClass('sold');
+					}
+					if (isStep) {
+						pass = 1;
 					}
 				}
 			}
 		}
 
-		//other devices
-		if ($('ul.pf-other').css('display') === 'block') {
+		//testingTOOL
+		(function() {
+			$('section.licencing').append('' +
+			'<div id="counter" style="position:absolute;left:50%;bottom:40px;z-index:999;background:yellow;">' +
+			'	<label for="sold">Sold: </label>' +
+			'	<input type="text" id="sold" value="0" style="border:1px solid lime;padding:6px 0 4px;width:50px;font-size:20px;text-align:center" maxlength="4">' +
+			'	<div>' +
+			'		<a href="#" id="go-up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+1">+1</a>' +
+			'		<a href="#" id="go-down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-1">-1</a>' +
+			'		<a href="#" id="go-50up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+50">+50</a>' +
+			'		<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a>' +
+			'		<a href="#" id="go-25up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+25">+25</a>' +
+			'		<a href="#" id="go-25down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-25">-25</a>' +
+			'	</div>' +
+			'</div>');
+			var licences = $('#sold');
+			$('#go-up, #go-down, #go-50up, #go-50down, #go-25up, #go-25down').on('click', function(e){ e.preventDefault();
+				var lVal = parseInt(licences.val(), 10), tText = parseInt($(this).text(), 10), lANDt = lVal + tText;
+				if(lANDt >= 0) { licences.val(lANDt); licences.trigger('change'); }
+			});
+			licences.on('change', function(){ flow(licences.val()); });
+		})();
 
-		}
+		//onResize
+		$(window).on('resize', function(){ flow($('#sold').val()); });
+
 	}
 
 })();

@@ -955,6 +955,12 @@ body {
   margin: 1px 0 2px;
 }
 /* licencing */
+.licencing {
+  position: relative;
+}
+.pf-other {
+  display: none;
+}
 .price-flow {
   margin: 0 auto;
   width: 80%;
@@ -1229,6 +1235,11 @@ body {
 }
 .price-flow .current {
   border-left-color: #666;
+}
+/* testing tools */
+#go-25up,
+#go-25down {
+  display: none;
 }
 /* price-tag */
 .price-tag {
@@ -2919,6 +2930,88 @@ body {
   /* connect */
   .support {
     padding-right: 0;
+  }
+  /* licencing */
+  .pf-mobile {
+    display: none;
+  }
+  .pf-other {
+    display: block;
+  }
+  .pf-other li {
+    width: 1.8%;
+  }
+  .pf-other .line-1 i,
+  .pf-other .line-2 i,
+  .pf-other .line-3 i,
+  .pf-other .line-4 i {
+    top: 140px;
+  }
+  .pf-other .line-5 i,
+  .pf-other .line-6 i,
+  .pf-other .line-7 i,
+  .pf-other .line-8 i,
+  .pf-other .line-9 i,
+  .pf-other .line-10 i,
+  .pf-other .line-11 i,
+  .pf-other .line-12 i {
+    top: 110px;
+  }
+  .pf-other .line-13 i,
+  .pf-other .line-14 i,
+  .pf-other .line-15 i,
+  .pf-other .line-16 i,
+  .pf-other .line-17 i,
+  .pf-other .line-18 i,
+  .pf-other .line-19 i,
+  .pf-other .line-20 i,
+  .pf-other .line-21 i,
+  .pf-other .line-22 i,
+  .pf-other .line-23 i,
+  .pf-other .line-24 i {
+    top: 80px;
+  }
+  .pf-other .line-25 i,
+  .pf-other .line-26 i,
+  .pf-other .line-27 i,
+  .pf-other .line-28 i,
+  .pf-other .line-29 i,
+  .pf-other .line-30 i,
+  .pf-other .line-31 i,
+  .pf-other .line-32 i,
+  .pf-other .line-33 i,
+  .pf-other .line-34 i,
+  .pf-other .line-35 i,
+  .pf-other .line-36 i,
+  .pf-other .line-37 i,
+  .pf-other .line-38 i,
+  .pf-other .line-39 i,
+  .pf-other .line-40 i {
+    top: 50px;
+  }
+  .pf-other .line-41 i,
+  .pf-other .line-42 i,
+  .pf-other .line-43 i,
+  .pf-other .line-44 i,
+  .pf-other .line-45 i,
+  .pf-other .line-46 i,
+  .pf-other .line-47 i,
+  .pf-other .line-48 i,
+  .pf-other .line-49 i,
+  .pf-other .line-50 i,
+  .pf-other .line-51 i {
+    top: 20px;
+  }
+  .pf-other .line-26 i {
+    width: 100%;
+  }
+  .pf-other .line-51 i {
+    width: 3px;
+  }
+  /* testing tools */
+  #go-25up,
+  #go-25down {
+    display: inline;
   }
   /* copyright */
   .copyright {
