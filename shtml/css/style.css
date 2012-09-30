@@ -659,7 +659,7 @@ form .tearms,
 /* <start> 00 GLOBAL ================================================================================================ */
 /* root */
 html {
-  overflow-y: scroll;
+  overflow-y: hidden;
   background: #f7f7f7;
 }
 body {
@@ -694,6 +694,7 @@ body {
 .related h4,
 .features-links,
 .main h2,
+.licencing h2,
 #purchase b {
   background-image: url(../images/bgr/sprite.png);
   background-repeat: no-repeat;
@@ -942,11 +943,14 @@ body {
 #footer {
   padding: 0 0 22px;
   text-align: center;
-}
-#footer h3,
-#footer h4 {
-  font: bold 14px/20px helvetica, arial, sans-serif;
-  color: #595959;
+  /*
+	h3,
+	h4 {
+		font: bold 14px/20px @baseFont;
+		color: #595959;
+	}
+	*/
+
 }
 #footer h3 {
   margin: 0 0 9px;
@@ -955,11 +959,59 @@ body {
   margin: 1px 0 2px;
 }
 /* licencing */
-.licencing {
+.licencing,
+.to-demo,
+.to-trial {
+  margin: 0;
+  padding-left: 15px;
+  padding-right: 15px;
   position: relative;
+  text-align: left;
+}
+.licencing h2,
+.to-demo h2,
+.to-trial h2 {
+  margin: 0 0 15px;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  background-position: 400px 400px;
+}
+.licencing h2 em,
+.to-demo h2 em,
+.to-trial h2 em {
+  font-style: normal;
+}
+.licencing p,
+.to-demo p,
+.to-trial p {
+  margin: 0 0 15px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #595959;
+  text-align: left;
+}
+.to-demo h3,
+.to-trial h3 {
+  font-size: 18px;
+  line-height: 20px;
+}
+.to-demo a,
+.to-trial a {
+  margin: 5px 0;
+  color: #09c;
+  display: block;
 }
 .pf-other {
   display: none;
+}
+.inquiry {
+  margin: 0 15px;
+}
+.inquiry fieldset {
+  width: 100%;
+  background: #fdfdee;
+  float: left;
 }
 .price-flow {
   margin: 0 auto;
@@ -968,50 +1020,10 @@ body {
   height: 200px;
   position: relative;
   border-bottom: 1px solid #ccc;
-  /*.line-22 {
-		i {
-			border-left-color: rgba(222, 22, 11, 1);
-			border-right-color: rgba(222, 22, 11, .4);
-			.horizontal(rgba(222, 22, 11, 1), rgba(222, 22, 11, .4));
-		}
-	}
-
-	.line-23 {
-		i {
-			border-left-color: rgba(222, 22, 11, .4);
-			border-right-color: rgba(222, 22, 11, .3);
-			.horizontal(rgba(222, 22, 11, .4), rgba(222, 22, 11, .3));
-		}
-	}
-
-	.line-24 {
-		i {
-			border-left-color: rgba(222, 22, 11, .3);
-			border-right-color: rgba(222, 22, 11, .2);
-			.horizontal(rgba(222, 22, 11, .3), rgba(222, 22, 11, .2));
-		}
-	}
-
-	.line-25 {
-		i {
-			border-left-color: rgba(222, 22, 11, .2);
-			border-right-color: rgba(222, 22, 11, .1);
-			.horizontal(rgba(222, 22, 11, .2), rgba(222, 22, 11, .1));
-		}
-	}
-
-	.line-26 {
-		i {
-			border-left-color: rgba(222, 22, 11, .1);
-			border-right: none;
-			.horizontal(rgba(222, 22, 11, .1), rgba(222, 22, 11, 0));
-		}
-	}*/
-
 }
 .price-flow li {
   border-left: 1px solid #e6e6e6;
-  width: 3.457%;
+  width: 3.48%;
   height: 200px;
   color: #7f7f7f;
   float: left;
@@ -1032,6 +1044,7 @@ body {
   line-height: 1.5;
   font-style: normal;
   font-weight: bold;
+  text-align: center;
   background: #fff;
   display: block;
   position: absolute;
@@ -1245,10 +1258,11 @@ body {
 .price-tag {
   margin: 0 auto;
   width: 280px;
-  padding: 120px 20px 0;
-  height: 400px;
+  padding: 115px 30px 0;
+  height: 350px;
   text-align: left;
   background-position: -2px -10px;
+  display: none;
 }
 .price-tag h4 {
   margin: 0 0 11px;
@@ -1322,6 +1336,7 @@ body {
   padding-top: 27px;
   padding-bottom: 15px;
   background: #fff;
+  clear: both;
 }
 .updates p {
   margin: 0 0 12px;
@@ -1350,7 +1365,8 @@ body {
 }
 #subscribe {
   margin-top: 15px;
-  float: right;
+  margin-left: 1px;
+  float: left;
 }
 .continue {
   margin: 1px 0 0 8px;
@@ -1604,82 +1620,99 @@ body {
   background-position: -94px -837px;
 }
 /* ASIDE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-.pricing h3 {
-  padding: 0 0 4px;
+/*
+.pricing {
+	h3 {
+		padding: 0 0 4px;
+	}
 }
+
 .price-tag {
-  margin: -106px -15px 0;
-  width: 320px;
-  padding: 154px 34px 0;
-  height: 471px;
-  background-position: -3px -50px;
+	margin: -106px -15px 0;
+	width: 320px;
+	padding: 154px 34px 0;
+	height: 471px;
+	background-position: -3px -50px;
+
+	h4 {
+		margin: 0 0 11px;
+		padding: 0 0 0 32px;
+		font: bold 14px/20px @baseFont;
+		color: #262121;
+		background-position: -456px -73px;
+	}
 }
-.price-tag h4 {
-  margin: 0 0 11px;
-  padding: 0 0 0 32px;
-  font: bold 14px/20px helvetica, arial, sans-serif;
-  color: #262121;
-  background-position: -456px -73px;
-}
+
 .ie7 .price-tag {
-  width: 255px;
-  height: 317px;
+	width: 255px;
+	height: 317px;
 }
+
 .included {
-  margin: 0 0 12px;
-  padding: 0 0 7px;
-  border-bottom: 1px solid #e6e6e6;
+	margin: 0 0 12px;
+	padding: 0 0 7px;
+	border-bottom: 1px solid #e6e6e6;
+
+	li {
+		padding: 0 0 0 32px;
+		font-size: 13px;
+		line-height: 25px;
+		color: #595959;
+		background-position: -479px -45px;
+	}
+
+	.licence {
+		padding: 0;
+		background: none;
+	}
+
+	strong {
+		padding: 0 12px 0 8px;
+		font-size: 18px;
+	}
 }
-.included li {
-  padding: 0 0 0 32px;
-  font-size: 13px;
-  line-height: 25px;
-  color: #595959;
-  background-position: -479px -45px;
-}
-.included .licence {
-  padding: 0;
-  background: none;
-}
-.included strong {
-  padding: 0 12px 0 8px;
-  font-size: 18px;
-}
+
 .price {
-  width: 100%;
-  position: relative;
+	width: 100%;
+	position: relative;
+
+	.label {
+		padding: 0 0 7px 32px;
+		font-size: 10px;
+		color: #999;
+		text-transform: uppercase;
+		display: block;
+	}
+
+	strong {
+		padding: 0 5px 8px 0;
+		font-size: 48px;
+		color: #262121;
+		font-weight: normal;
+		letter-spacing: -1px;
+		background-position: -304px -30px;
+	}
+
+	em {
+		padding: 0 4px 0 2px;
+		font-style: normal;
+	}
+
+	sup {
+		font-size: 24px;
+		line-height: 30px;
+	}
+
+	.go {
+		padding: 5px 16px;
+		width: auto;
+		font-size: 12px;
+		position: absolute;
+		top: 18px;
+		right: 0;
+	}
 }
-.price .label {
-  padding: 0 0 7px 32px;
-  font-size: 10px;
-  color: #999;
-  text-transform: uppercase;
-  display: block;
-}
-.price strong {
-  padding: 0 5px 8px 0;
-  font-size: 48px;
-  color: #262121;
-  font-weight: normal;
-  letter-spacing: -1px;
-  background-position: -304px -30px;
-}
-.price em {
-  padding: 0 4px 0 2px;
-  font-style: normal;
-}
-.price sup {
-  font-size: 24px;
-  line-height: 30px;
-}
-.price .go {
-  padding: 5px 16px;
-  width: auto;
-  font-size: 12px;
-  position: absolute;
-  top: 18px;
-  right: 0;
-}
+*/
 /* </end> 01 HOME PAGE ============================================================================================== */
 /* <start> 02 PURCHASE ============================================================================================== */
 /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -2216,6 +2249,9 @@ body {
 			}*/
 
 }
+.off-canvas .main h2 em {
+  font-style: normal;
+}
 .off-canvas .main h3 {
   margin: 0 0 8px;
   font-size: 18px;
@@ -2225,6 +2261,17 @@ body {
 .off-canvas .main ul {
   margin: 0 0 23px;
   font: 18px/25px minion-pro, georgia, serif;
+}
+.off-canvas .main li {
+  line-height: 20px;
+  padding: 0 0 7px 10px;
+  position: relative;
+}
+.off-canvas .main li:before {
+  content: '- ';
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .off-canvas .main .lead {
   margin: 0 0 25px;
@@ -2243,7 +2290,6 @@ body {
 }
 .features-nav ul {
   margin: 0;
-  border-left: 1px solid #ccc;
   padding: 0 0 10px;
   width: 100%;
   float: left;
@@ -2306,7 +2352,11 @@ body {
   background: #f7f7f7;
 }
 .off-canvas .features-links figure {
+  margin-left: -9px;
   padding: 0;
+}
+.off-canvas .features-links h4 {
+  margin-left: -3px;
 }
 #features-bar {
   margin-right: -100%;
@@ -2325,12 +2375,16 @@ body {
 /* </end> 07 FEATURES =============================================================================================== *//* 326px */
 @media only screen and (min-width: 326px) {
   .price-tag {
-    width: 326px;
-    background-position: 0 -50px;
+    width: 264px;
+    background-position: 0 -20px;
   }
-  .home .price-tag {
-    margin: -106px auto 0;
-  }
+  /*
+  	.home {
+  		.price-tag {
+  			margin: -106px auto 0;
+  		}
+  	}
+  	*/
 }
 /* 480px */
 @media only screen and (min-width: 480px) {
