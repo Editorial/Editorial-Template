@@ -3,7 +3,7 @@
 /* root */
 
 html {
-	overflow-y: hidden;
+	//overflow-y: hidden;
 	background: @bodyBackground;
 }
 
@@ -344,19 +344,6 @@ body {
 #footer {
 	padding: 0 0 22px;
 	text-align: center;
-	//background: #f5fafa;
-
-	/*
-	h3,
-	h4 {
-		font: bold 14px/20px @baseFont;
-		color: #595959;
-	}
-	*/
-
-	h3 {
-		margin: 0 0 9px;
-	}
 
 	h4 {
 		margin: 1px 0 2px;
@@ -369,13 +356,11 @@ body {
 .to-demo,
 .to-trial {
 	margin: 0;
-	padding-left: 15px;
-	padding-right: 15px;
 	position: relative;
 	text-align: left;
 
 	h2 {
-		margin: 0 0 15px;
+		margin: 0 0 25px;
 		font-size: 24px;
 		line-height: 24px;
 		text-align: center;
@@ -395,12 +380,26 @@ body {
 	}
 }
 
+.licencing {
+	p {
+		padding: 0 30px;
+		text-align: center;
+	}
+}
+
 .to-demo,
 .to-trial {
+	padding-left: 15px;
+	padding-right: 15px;
 
 	h3 {
+		padding: 0 0 4px;
 		font-size: 18px;
 		line-height: 20px;
+	}
+
+	p {
+		margin: 0 0 32px;
 	}
 
 	a {
@@ -409,12 +408,14 @@ body {
 		display: block;
 	}
 }
+
 .pf-other {
 	display: none;
 }
 
 .inquiry {
 	margin: 0 15px;
+	padding: 2px 0 0;
 	//width: 100%;
 
 	fieldset {
@@ -422,12 +423,45 @@ body {
 		background: #fdfdee;
 		float: left;
 	}
+
+	h2 {
+		padding: 6px 0 11px;
+		font-size: 18px;
+		font-weight: normal;
+		line-height: 30px;
+		color: #ccc6bb;
+
+		em {
+			font-style: normal;
+		}
+	}
+
+	p {
+		padding: 0 30px 9px;
+		font-size: 13px;
+		line-height: 15px;
+		color: #999;
+	}
+}
+
+.subscription h3,
+.connect h3 {
+	margin: 0 0 9px;
+	font:bold 14px/20px helvetica,arial,sans-serif;
+	color: #595959;
+}
+
+.subscription {
+	margin: 0 0 26px;
+	border-bottom: 1px solid #e6e6e6;
+	padding: 0 0 18px;
 }
 
 .price-flow {
 	margin: 0 auto;
+	padding: 6px 0 0;
 	width: 80%;
-	min-width: 270px;
+	min-width: 260px;
 	height: 200px;
 	position: relative;
 	border-bottom: 1px solid #ccc;
@@ -435,7 +469,7 @@ body {
 	li {
 		border-left: 1px solid #e6e6e6;
 		//width: 100/29%;
-		width: 3.48%;
+		width: 3.46%;
 		height: 200px;
 		color: #7f7f7f;
 		float: left;
@@ -505,7 +539,7 @@ body {
 		display: none;
 		position: absolute;
 		left: 0;
-		bottom: -20px;
+		bottom: -22px;
 	}
 
 	i {
@@ -733,16 +767,15 @@ body {
 .price-tag {
 	//z-index:;margin:0 -15px 0;
 	margin: 0 auto;
-	width: 280px;
+	width: 260px;
 	padding: 115px 30px 0;
-	height: 350px;
+	height: 347px;
 	text-align: left;
-	background-position: -2px -10px;
-	display: none;
+	background-position: -1px -18px;
 
 	h4 {
 		margin: 0 0 11px;
-		padding: 0 0 0 32px;
+		padding: 0 0 9px 32px;
 		font: bold 14px/20px @baseFont;
 		color: #262121;
 		background-position: -456px -73px;
@@ -755,8 +788,8 @@ body {
 }
 
 .included {
-	margin: 0 0 12px;
-	padding: 0 0 7px;
+	margin: 0 0 11px;
+	padding: 0 0 8px;
 	border-bottom: 1px solid #e6e6e6;
 
 	li {
@@ -783,7 +816,7 @@ body {
 	position: relative;
 
 	.label {
-		padding: 0 0 7px 32px;
+		padding: 0 0 8px 32px;
 		font-size: 10px;
 		color: #999;
 		text-transform: uppercase;
@@ -796,7 +829,7 @@ body {
 		color: #262121;
 		font-weight: normal;
 		letter-spacing: -1px;
-		background-position: -304px -30px;
+		background-position: -304px -28px;
 	}
 
 	em {
@@ -804,9 +837,14 @@ body {
 		font-style: normal;
 	}
 
+	b {
+		font-weight: normal;
+	}
+
 	sup {
 		font-size: 24px;
 		line-height: 30px;
+		top: -15px;
 	}
 
 	.go {
@@ -814,7 +852,7 @@ body {
 		width: auto;
 		font-size: 12px;
 		position: absolute;
-		top: 18px;
+		top: 22px;
 		right: 0;
 	}
 }
@@ -825,9 +863,9 @@ body {
 /* newsletter */
 
 .updates {
-	margin: 0 0 15px;
-	padding-top: 27px;
-	padding-bottom: 15px;
+	margin: 0 0 10px;
+	border-top: 1px solid #f7f7f7;
+	padding-top: 25px;
 	background: #fff;
 	clear: both;
 
@@ -835,6 +873,11 @@ body {
 		margin: 0 0 12px;
 		color: #999;
 	}
+}
+
+
+#subscribe-form {
+	padding-top: 3px;
 }
 
 #email {
@@ -861,7 +904,7 @@ body {
 }
 
 #subscribe {
-	margin-top: 15px;
+	margin-top: 11px;
 	margin-left: 1px;
 	float: left;
 }
@@ -885,9 +928,7 @@ body {
 	background: -webkit-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	background: -o-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	background: linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
-	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .7);
-	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .7);
-	box-shadow: 0 0 3px rgba(0, 0, 0, .7);
+	.box-shadow(0 2px 2px rgba(0, 0, 0, .2));
 }
 
 /* connect */
@@ -895,6 +936,10 @@ body {
 .connect {
 	min-height: 210px;
 	background-position: 300px 300px;
+
+	p {
+		padding: 0 0 7px;
+	}
 }
 
 .twitter {
@@ -929,21 +974,32 @@ body {
 }
 
 .support {
-	margin: 0 0 10px;
+	margin: 0 0 26px;
+	padding-top: 12px;
+
+	h4 {
+		padding: 0 15px 0 0;
+		font:bold 14px/20px helvetica,arial,sans-serif;
+		color: #4e5759;
+		display: inline;
+	}
 
 	.col {
+		margin: 0 0 10px;
 		background-position: 500px 500px;
 	}
 
 	ul {
-		width: 100%;
-		float: left;
+		display: inline;
+		//width: 100%;
+		//float: left;
 	}
 
 	li {
 		margin: 0 15px 0 0;
 		line-height: 25px;
-		float: left;
+		display: inline;
+		//float: left;
 	}
 }
 
@@ -969,16 +1025,10 @@ body {
 
 .copyright {
 	p {
-		margin: 0 0 12px;
+		margin: 0 0 15px;
 		font-size: 12px;
 		line-height: 15px;
 	}
-}
-
-.subscription {
-	margin: 0 0 27px;
-	border-bottom: 1px solid #e6e6e6;
-	padding: 0 0 30px;
 }
 
 

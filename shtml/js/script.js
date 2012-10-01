@@ -187,10 +187,10 @@
 				if(lANDt >= 0) { licences.val(lANDt); licences.trigger('change'); }
 			});
 			licences.on('change', function(){ flow(licences.val()); });
-		});//();
+		})();
 
 		//onResize
-		//$(window).on('resize', function(){ flow($('#sold').val()); });
+		$(window).on('resize', function(){ flow($('#sold').val()); });
 
 	}
 
