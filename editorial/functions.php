@@ -1216,7 +1216,7 @@ EOF;
 
     	$permalink = get_permalink( $postID );
     	//$permalink = "http://techcrunch.com/2012/09/18/alleged-leaked-ipad-mini-pics-show-lightening-port-odd-hole-on-the-back/";
-    	$testString = 'Justin Bieber';
+    	//$testString = 'Justin Bieber';
 
     	$last_tweet_id = get_post_meta($postID, 'twitter_last_comment_id', true);
     	//dump( $last_tweet_id );
@@ -1255,14 +1255,13 @@ EOF;
     public static function getFacebookMentions( $postID )
     {
 
-    	//$permalink = urlencode( get_permalink( $postID ) );
-    	$permalink = "http://facebook.com";
+    	$permalink = urlencode( get_permalink( $postID ) );
+    	//$permalink = "http://facebook.com";
     	//$permalink = 'http://techcrunch.com/2012/10/02/google-announces-new-lightbox-ad-format-advertisers-only-pay-when-users-expand-the-ad/';
 			
 			$last_fb_time = get_post_meta($postID, 'fb_last_comment_time', true);
 
     	$url = "https://graph.facebook.com/search?q=". $permalink ."&type=POST&&since=".$last_fb_time;
-    	//$url = "https://graph.facebook.com/search?q=". $permalink ."&type=POST";
 
     	$response = wp_remote_retrieve_body( wp_remote_get( $url ) );
     	$data = json_decode( $response );
@@ -1291,6 +1290,13 @@ EOF;
   		//update post meat with the latest tweet id
   		update_post_meta( $postID, 'fb_last_comment_time', time() );
     
+    }
+
+    public static function getGooglePlusActivities( $postID )
+    {
+    	//https://www.googleapis.com/plus/v1/activities?query=
+    	$permalink = "http://facebook.com";
+    	//$permalink = urlencode( get_permalink( $postID ) );
     }
 
     /*************************************/
