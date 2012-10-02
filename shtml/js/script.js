@@ -161,6 +161,11 @@
 					}
 					if (isStep) {
 						pass = 1;
+
+						//update price tag's price
+						//console.log(nthJ.find('em').text().substr(1));
+						//$('#price-tag').html(nthJ.find('em').text().substr(1));
+
 					}
 				}
 			}
@@ -169,7 +174,7 @@
 		//testingTOOL
 		(function() {
 			$('section.licencing').append('' +
-			'<div id="counter" style="position:absolute;left:50%;bottom:40px;z-index:999;background:yellow;">' +
+			'<div id="counter" style="position:absolute;left:50%;bottom:8px;z-index:999;background:yellow;">' +
 			'	<label for="sold">Sold: </label>' +
 			'	<input type="text" id="sold" value="0" style="border:1px solid lime;padding:6px 0 4px;width:50px;font-size:20px;text-align:center" maxlength="4">' +
 			'	<div>' +

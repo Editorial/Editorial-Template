@@ -676,7 +676,6 @@ body {
 .included li,
 .support .col,
 .copyright,
-.connect,
 #brand a,
 .primary li,
 .process ol,
@@ -698,7 +697,8 @@ body {
   background-image: url(../images/bgr/sprite.png);
   background-repeat: no-repeat;
 }
-.price-tag {
+.price-tag,
+.connect {
   background-image: url(../images/bgr/sprite-new.png);
   background-repeat: no-repeat;
 }
@@ -2482,12 +2482,20 @@ body {
   #footer h4 {
     margin: 1px 0 7px;
   }
+  .to-demo,
+  .to-demo p,
+  .to-trial,
+  .to-trial p,
+  .updates .adapt {
+    text-align: center;
+  }
   /* newsletter */
   .updates {
     margin: 0 0 28px;
     padding: 27px 15px 15px;
   }
   #email {
+    margin-right: 10px;
     width: 270px;
     color: #333;
   }
@@ -2498,9 +2506,22 @@ body {
     margin-top: 0;
     float: left;
   }
+  #subscribe-form {
+    padding-top: 6px;
+  }
+  .subscription {
+    margin: 0 0 29px;
+    padding: 0 0 32px;
+  }
+  .subscription h3 {
+    margin: -4px 0 11px;
+  }
   /* connect */
   .connect {
-    background-position: right -792px;
+    background-position: center -470px;
+  }
+  .connect h3 {
+    margin: 0 0 11px;
   }
   .twitter {
     padding: 0 0 7px;
@@ -2750,10 +2771,141 @@ body {
     margin-top: 30px;
   }
   /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /* licencing */
+  .licencing p {
+    text-align: left;
+  }
+  .pf-mobile {
+    display: none;
+  }
+  .pf-other {
+    width: 90%;
+    height: 100px;
+    display: block;
+  }
+  .pf-other li {
+    width: 1.78%;
+    height: 100px;
+  }
+  .pf-other .line-1 i,
+  .pf-other .line-2 i,
+  .pf-other .line-3 i,
+  .pf-other .line-4 i {
+    top: 80px;
+  }
+  .pf-other .line-5 i,
+  .pf-other .line-6 i,
+  .pf-other .line-7 i,
+  .pf-other .line-8 i,
+  .pf-other .line-9 i,
+  .pf-other .line-10 i,
+  .pf-other .line-11 i,
+  .pf-other .line-12 i {
+    top: 60px;
+  }
+  .pf-other .line-13 i,
+  .pf-other .line-14 i,
+  .pf-other .line-15 i,
+  .pf-other .line-16 i,
+  .pf-other .line-17 i,
+  .pf-other .line-18 i,
+  .pf-other .line-19 i,
+  .pf-other .line-20 i,
+  .pf-other .line-21 i,
+  .pf-other .line-22 i,
+  .pf-other .line-23 i,
+  .pf-other .line-24 i {
+    top: 40px;
+  }
+  .pf-other .line-25 i,
+  .pf-other .line-26 i,
+  .pf-other .line-27 i,
+  .pf-other .line-28 i,
+  .pf-other .line-29 i,
+  .pf-other .line-30 i,
+  .pf-other .line-31 i,
+  .pf-other .line-32 i,
+  .pf-other .line-33 i,
+  .pf-other .line-34 i,
+  .pf-other .line-35 i,
+  .pf-other .line-36 i,
+  .pf-other .line-37 i,
+  .pf-other .line-38 i,
+  .pf-other .line-39 i,
+  .pf-other .line-40 i {
+    top: 20px;
+  }
+  .pf-other .line-41 i,
+  .pf-other .line-42 i,
+  .pf-other .line-43 i,
+  .pf-other .line-44 i,
+  .pf-other .line-45 i,
+  .pf-other .line-46 i,
+  .pf-other .line-47 i,
+  .pf-other .line-48 i,
+  .pf-other .line-49 i,
+  .pf-other .line-50 i,
+  .pf-other .line-51 i {
+    top: 0;
+  }
+  .pf-other .line-26 i {
+    width: 100%;
+  }
+  .pf-other .line-51 i {
+    width: 3px;
+  }
+  .pf-other .step-2 i:after,
+  .pf-other .step-3 i:after,
+  .pf-other .step-4 i:after,
+  .pf-other .step-5 i:after {
+    height: 22px;
+  }
+  .pf-other .step-1 em {
+    top: 54px;
+  }
+  .pf-other .step-2 em {
+    top: 34px;
+  }
+  .pf-other .step-3 em {
+    top: 14px;
+  }
+  .pf-other .step-4 em {
+    top: -6px;
+  }
+  .pf-other .step-5 em {
+    top: -26px;
+  }
+  .to-demo,
+  .to-demo p,
+  .to-trial,
+  .to-trial p {
+    text-align: left;
+  }
+  .to-demo,
+  .to-trial {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .to-demo {
+    margin-top: 92px;
+    padding-top: 26px;
+    border-top: 1px solid #e6e6e6;
+    min-height: 150px;
+  }
   /* newsletter */
   .updates {
     margin: 0 0 28px;
     padding: 27px 15px 15px;
+  }
+  .price-tag {
+    margin: 0 25px;
+    float: right;
+    /*figure {
+  		width: 42%;
+  		float: left;
+  		display: block;
+  	}*/
+  
   }
   /* connect */
   /* copyright */
@@ -2797,15 +2949,6 @@ body {
   }
   /* abilities */
   /* ASIDE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-  .price-tag {
-    width: 326px;
-    float: right;
-  }
-  .price-tag figure {
-    width: 42%;
-    float: left;
-    display: block;
-  }
   /* </end> 01 HOME PAGE ============================================================================================== */
   /* <start> 02 PURCHASE ============================================================================================== */
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -3024,83 +3167,6 @@ body {
   /* connect */
   .support {
     padding-right: 0;
-  }
-  /* licencing */
-  .pf-mobile {
-    display: none;
-  }
-  .pf-other {
-    display: block;
-  }
-  .pf-other li {
-    width: 1.8%;
-  }
-  .pf-other .line-1 i,
-  .pf-other .line-2 i,
-  .pf-other .line-3 i,
-  .pf-other .line-4 i {
-    top: 140px;
-  }
-  .pf-other .line-5 i,
-  .pf-other .line-6 i,
-  .pf-other .line-7 i,
-  .pf-other .line-8 i,
-  .pf-other .line-9 i,
-  .pf-other .line-10 i,
-  .pf-other .line-11 i,
-  .pf-other .line-12 i {
-    top: 110px;
-  }
-  .pf-other .line-13 i,
-  .pf-other .line-14 i,
-  .pf-other .line-15 i,
-  .pf-other .line-16 i,
-  .pf-other .line-17 i,
-  .pf-other .line-18 i,
-  .pf-other .line-19 i,
-  .pf-other .line-20 i,
-  .pf-other .line-21 i,
-  .pf-other .line-22 i,
-  .pf-other .line-23 i,
-  .pf-other .line-24 i {
-    top: 80px;
-  }
-  .pf-other .line-25 i,
-  .pf-other .line-26 i,
-  .pf-other .line-27 i,
-  .pf-other .line-28 i,
-  .pf-other .line-29 i,
-  .pf-other .line-30 i,
-  .pf-other .line-31 i,
-  .pf-other .line-32 i,
-  .pf-other .line-33 i,
-  .pf-other .line-34 i,
-  .pf-other .line-35 i,
-  .pf-other .line-36 i,
-  .pf-other .line-37 i,
-  .pf-other .line-38 i,
-  .pf-other .line-39 i,
-  .pf-other .line-40 i {
-    top: 50px;
-  }
-  .pf-other .line-41 i,
-  .pf-other .line-42 i,
-  .pf-other .line-43 i,
-  .pf-other .line-44 i,
-  .pf-other .line-45 i,
-  .pf-other .line-46 i,
-  .pf-other .line-47 i,
-  .pf-other .line-48 i,
-  .pf-other .line-49 i,
-  .pf-other .line-50 i,
-  .pf-other .line-51 i {
-    top: 20px;
-  }
-  .pf-other .line-26 i {
-    width: 100%;
-  }
-  .pf-other .line-51 i {
-    width: 3px;
   }
   /* testing tools */
   #go-25up,
