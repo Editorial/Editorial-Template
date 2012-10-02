@@ -1214,8 +1214,8 @@ EOF;
 				return;
 			}
 
-    	//$permalink = get_permalink( $postID );
-    	$permalink = "http://techcrunch.com/2012/09/18/alleged-leaked-ipad-mini-pics-show-lightening-port-odd-hole-on-the-back/";
+    	$permalink = get_permalink( $postID );
+    	//$permalink = "http://techcrunch.com/2012/09/18/alleged-leaked-ipad-mini-pics-show-lightening-port-odd-hole-on-the-back/";
     	$testString = 'Justin Bieber';
 
     	$last_tweet_id = get_post_meta($postID, 'twitter_last_comment_id', true);
@@ -1252,6 +1252,46 @@ EOF;
 
     }
 
+    public static function getFacebookMentions( $postID )
+    {
+
+    	//$permalink = urlencode( get_permalink( $postID ) );
+    	$permalink = "http://facebook.com";
+    	//$permalink = 'http://techcrunch.com/2012/10/02/google-announces-new-lightbox-ad-format-advertisers-only-pay-when-users-expand-the-ad/';
+			
+			$last_fb_time = get_post_meta($postID, 'fb_last_comment_time', true);
+
+    	$url = "https://graph.facebook.com/search?q=". $permalink ."&type=POST&&since=".$last_fb_time;
+    	//$url = "https://graph.facebook.com/search?q=". $permalink ."&type=POST";
+
+    	$response = wp_remote_retrieve_body( wp_remote_get( $url ) );
+    	$data = json_decode( $response );
+
+    	if ( empty( $data ) ) {
+				update_post_meta( $postID, 'fb_last_comment_time', time() );
+				return; //$data;
+			}
+
+			foreach ( $data->data as $fb_post )
+  		{
+  			//build comment from post
+				$comment = array(
+					'comment_post_ID'      => $postID,
+					'comment_author'       => $fb_post->from->name,
+					'comment_author_email' => $fb_post->from->id . '@facebook.com',
+					'comment_author_url'   => 'http://facebook.com/' . $fb_post->id,
+					'comment_content'      => (isset($fb_post->message)) ? $fb_post->message : (isset($fb_post->description) ? $fb_post->description : $fb_post->caption ),
+					'comment_date_gmt'     => date('Y-m-d H:i:s', strtotime( $fb_post->created_time ) ),
+					'comment_type'         => 'facebook'
+				);
+
+				wp_insert_comment( $comment );
+  		}
+
+  		//update post meat with the latest tweet id
+  		update_post_meta( $postID, 'fb_last_comment_time', time() );
+    
+    }
 
     /*************************************/
     /*************************************/
@@ -1346,7 +1386,7 @@ function my_remove_recent_comments_style() {
 
 
   /*************************************/
-  /********* schedule social network parsin ********/
+  /********* schedule social network parsing ********/
 
   add_action('social_network_mining', 'find_mentions_for_posts');
 
@@ -1372,6 +1412,7 @@ function my_remove_recent_comments_style() {
   	foreach ($posts_array as $post) {
   		if( comments_open( $post->ID ) ) {
   			Editorial::getTwitterMentions( $post->ID );
+  			Editorial::getFacebookMentions( $post->ID );
   		}
   	}
 	}
@@ -1380,7 +1421,7 @@ function my_remove_recent_comments_style() {
 
 	function editorial_comment_columns( $columns )
 	{
-		$columns['comment_type'] = __( 'Comment Type' );
+		$columns['comment_type'] = __( 'Type' );
 		return $columns;
 	}
 	add_filter( 'manage_edit-comments_columns', 'editorial_comment_columns' );
@@ -1402,6 +1443,7 @@ function my_remove_recent_comments_style() {
 		$f = array(
 			'comment' => __( 'Comments' ),
 			'tweet' => __( 'Tweets' ),
+			'facebook' => __( 'Facebook' ),
 			'pings' => __( 'Pings' ),
 			);
 		return $f;

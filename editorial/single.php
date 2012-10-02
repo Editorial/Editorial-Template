@@ -24,6 +24,8 @@ the_post();
 //https://github.com/markjaquith/WP-TLC-Transients
 //$tweets = Editorial::getTwitterMentions($post->ID);
 //dump($tweets);
+// $fb = Editorial::getFacebookMentions( $post->ID );
+// dump( $fb);
 
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
