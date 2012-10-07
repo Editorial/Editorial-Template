@@ -137,11 +137,11 @@ class Editorial
 		// add default options
 		$assets = WP_CONTENT_URL.'/themes/editorial/';
 		$assets = substr($assets, strlen(get_bloginfo('url')));
-		if (!Editorial::getOption('logo-big')) Editorial::setOption('logo-big', $assets.'images/editorial-logo.png');
-		if (!Editorial::getOption('logo-small')) Editorial::setOption('logo-small', $assets.'images/editorial-logo-small.png');
-		if (!Editorial::getOption('logo-gallery')) Editorial::setOption('logo-gallery', $assets.'images/editorial-logo-white2.png');
-		if (!Editorial::getOption('touch-icon')) Editorial::setOption('touch-icon', $assets.'images/touch/apple-touch-icon.png');
-		if (!Editorial::getOption('favicon')) Editorial::setOption('favicon', $assets.'favicon.ico');
+		if (!Editorial::getOption('logo-big')) Editorial::setOption('logo-big', get_bloginfo('url').$assets.'images/editorial-logo.png');
+		if (!Editorial::getOption('logo-small')) Editorial::setOption('logo-small', get_bloginfo('url').$assets.'images/editorial-logo-small.png');
+		if (!Editorial::getOption('logo-gallery')) Editorial::setOption('logo-gallery', get_bloginfo('url').$assets.'images/editorial-logo-white2.png');
+		if (!Editorial::getOption('touch-icon')) Editorial::setOption('touch-icon', get_bloginfo('url').$assets.'images/touch/apple-touch-icon.png');
+		if (!Editorial::getOption('favicon')) Editorial::setOption('favicon', get_bloginfo('url').$assets.'favicon.ico');
 		
 		// number of active widgets?
 		$widgets = wp_get_sidebars_widgets();
@@ -1290,13 +1290,6 @@ EOF;
   		//update post meat with the latest tweet id
   		update_post_meta( $postID, 'fb_last_comment_time', time() );
     
-    }
-
-    public static function getGooglePlusActivities( $postID )
-    {
-    	//https://www.googleapis.com/plus/v1/activities?query=
-    	$permalink = "http://facebook.com";
-    	//$permalink = urlencode( get_permalink( $postID ) );
     }
 
     /*************************************/
