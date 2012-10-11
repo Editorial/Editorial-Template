@@ -175,22 +175,28 @@
 		(function() {
 			$('section.licencing').append('' +
 			'<div id="counter" style="position:absolute;left:50%;bottom:8px;z-index:999;background:yellow;">' +
-			'	<label for="sold">Sold: </label>' +
-			'	<input type="text" id="sold" value="0" style="border:1px solid lime;padding:6px 0 4px;width:50px;font-size:20px;text-align:center" maxlength="4">' +
-			'	<div>' +
-			'		<a href="#" id="go-up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+1">+1</a>' +
-			'		<a href="#" id="go-down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-1">-1</a>' +
-			'		<a href="#" id="go-50up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+50">+50</a>' +
-			'		<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a>' +
-			'		<a href="#" id="go-25up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+25">+25</a>' +
-			'		<a href="#" id="go-25down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-25">-25</a>' +
+			'	<div style="min-width:30px;min-height:30px;">' +
+			'		<div style="position:relative;display:none;" id="counter-show">' +
+			'			<label for="sold">Sold: </label>' +
+			'			<input type="text" id="sold" value="0" style="border:1px solid lime;padding:6px 0 4px;width:50px;font-size:20px;text-align:center" maxlength="4">' +
+			'			<div>' +
+			'				<a href="#" id="go-up" style="font-weight:bold;font-size:15px;color:red;padding:5px;clear:left;" title="+1">+1</a>' +
+			'				<a href="#" id="go-down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-1">-1</a>' +
+			'				<a href="#" id="go-50up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+50">+50</a>' +
+			'				<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a>' +
+			'				<a href="#" id="go-25up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+25">+25</a>' +
+			'				<a href="#" id="go-25down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-25">-25</a>' +
+			'			</div>' +
+			'		</div>' +
+			'		<a href="#" id="on-off" style="font-weight:bold;font-size:15px;color:lime;position:absolute;top:5px;right:5px;" title="ON / OFF">[<span id="p">+</span>]</a>' +
 			'	</div>' +
 			'</div>');
 			var licences = $('#sold');
-			$('#go-up, #go-down, #go-50up, #go-50down, #go-25up, #go-25down').on('click', function(e){ e.preventDefault();
+			$('#go-up, #go-down, #go-50up, #go-50down, #go-25up, #go-25down').on('click', function(e){e.preventDefault();
 				var lVal = parseInt(licences.val(), 10), tText = parseInt($(this).text(), 10), lANDt = lVal + tText;
 				if(lANDt >= 0) { licences.val(lANDt); licences.trigger('change'); }
 			});
+			$('#on-off').on('click', function(e) {e.preventDefault();$('#counter-show').toggle().css('display') == 'block' ? $('#p').html('-') : $('#p').html('+');});
 			licences.on('change', function(){ flow(licences.val()); });
 		})();
 

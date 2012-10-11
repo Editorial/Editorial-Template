@@ -947,35 +947,30 @@ body {
   margin: 1px 0 2px;
 }
 /* licencing */
-.licencing,
-.to-demo,
-.to-trial {
+.try-and-buy {
   margin: 0;
   position: relative;
   text-align: left;
 }
-.licencing h2,
-.to-demo h2,
-.to-trial h2 {
+.try-and-buy h2 {
   margin: 0 0 25px;
   font-size: 24px;
   line-height: 24px;
   text-align: center;
   background-position: 400px 400px;
 }
-.licencing h2 em,
-.to-demo h2 em,
-.to-trial h2 em {
+.try-and-buy h2 em {
   font-style: normal;
 }
-.licencing p,
-.to-demo p,
-.to-trial p {
+.try-and-buy p {
   margin: 0 0 15px;
   font-size: 13px;
   line-height: 20px;
   color: #595959;
   text-align: left;
+}
+.licencing {
+  position: relative;
 }
 .licencing p {
   padding: 0 30px;
@@ -1017,7 +1012,6 @@ body {
 .inquiry h2 {
   padding: 6px 0 11px;
   font-size: 18px;
-  font-weight: normal;
   line-height: 30px;
   color: #ccc6bb;
 }
@@ -1459,6 +1453,9 @@ body {
   overflow: hidden;
   width: 300px;
   height: 20px;
+}
+.twitter-follow-button {
+  margin: 0 auto 35px;
 }
 .support {
   margin: 0 0 26px;
@@ -2480,7 +2477,8 @@ body {
   }
   /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   #footer h4 {
-    margin: 1px 0 7px;
+    margin: 1px 0 8px;
+    display: block;
   }
   .to-demo,
   .to-demo p,
@@ -2489,10 +2487,17 @@ body {
   .updates .adapt {
     text-align: center;
   }
+  .inquiry h2 {
+    padding: 13px 0 12px;
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .inquiry p {
+    padding-bottom: 5px;
+  }
   /* newsletter */
   .updates {
-    margin: 0 0 28px;
-    padding: 27px 15px 15px;
+    padding: 27px 15px 0;
   }
   #email {
     margin-right: 10px;
@@ -2509,8 +2514,12 @@ body {
   #subscribe-form {
     padding-top: 6px;
   }
+  #subscribe-form fieldset {
+    margin: 0 auto;
+    width: 384px;
+  }
   .subscription {
-    margin: 0 0 29px;
+    margin: 0 0 16px;
     padding: 0 0 32px;
   }
   .subscription h3 {
@@ -2518,23 +2527,31 @@ body {
   }
   /* connect */
   .connect {
-    background-position: center -470px;
+    padding: 13px 0 0;
+    background-position: center -498px;
   }
   .connect h3 {
     margin: 0 0 11px;
+  }
+  .connect p {
+    margin: 0 0 3px;
+    padding: 0;
   }
   .twitter {
     padding: 0 0 7px;
   }
   .twitter p {
-    padding: 0 0 0 50px;
+    margin: 0 0 7px;
   }
   .twitter p:before {
     margin: 0;
     line-height: 90px;
-    position: absolute;
-    top: -4px;
-    left: 1px;
+    width: 56px;
+    height: 30px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    bottom: -1px;
   }
   .ie7 .twitter p {
     padding: 0;
@@ -2543,6 +2560,7 @@ body {
     margin-left: -50px;
   }
   .support {
+    margin-bottom: 33px;
     margin-left: -5%;
   }
   .support .col {
@@ -2559,7 +2577,9 @@ body {
   }
   .support li {
     margin: 0;
-    float: none;
+    width: 100%;
+    line-height: 25px;
+    float: left;
   }
   /* copyright */
   .copyright,
@@ -2771,15 +2791,22 @@ body {
     margin-top: 30px;
   }
   /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  #footer {
+    position: relative;
+  }
   /* licencing */
+  .licencing {
+    margin: 0 25px;
+  }
   .licencing p {
+    padding: 0 20px;
     text-align: left;
   }
   .pf-mobile {
     display: none;
   }
   .pf-other {
-    width: 90%;
+    width: 94%;
     height: 100px;
     display: block;
   }
@@ -2875,30 +2902,44 @@ body {
   .pf-other .step-5 em {
     top: -26px;
   }
-  .to-demo,
-  .to-demo p,
-  .to-trial,
-  .to-trial p {
-    text-align: left;
+  .try {
+    padding-right: 328px;
+    top: 191px;
+    left: 0;
+    position: absolute;
+    float: left;
   }
   .to-demo,
   .to-trial {
-    padding-left: 25px;
-    padding-right: 25px;
+    border-top: 1px solid #e6e6e6;
+    text-align: left;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-top: 22px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .to-demo h3,
+  .to-trial h3 {
+    padding: 0 0 13px;
+  }
+  .to-demo p,
+  .to-trial p {
+    text-align: left;
   }
   .to-demo {
-    margin-top: 92px;
-    padding-top: 26px;
-    border-top: 1px solid #e6e6e6;
-    min-height: 150px;
+    margin-top: 64px;
+    min-height: 141px;
+  }
+  .inquiry {
+    margin: 0 25px;
   }
   /* newsletter */
   .updates {
-    margin: 0 0 28px;
-    padding: 27px 15px 15px;
+    padding: 27px 15px 0;
   }
   .price-tag {
-    margin: 0 25px;
+    margin: -28px 11px 0 25px;
     float: right;
     /*figure {
   		width: 42%;
@@ -2908,6 +2949,9 @@ body {
   
   }
   /* connect */
+  .twitter-follow-button {
+    margin-bottom: 15px;
+  }
   /* copyright */
   .copyright {
     width: 435px;
@@ -3168,10 +3212,28 @@ body {
   .support {
     padding-right: 0;
   }
+  .to-demo,
+  .to-trial {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  .price-tag {
+    margin-right: 46px;
+  }
   /* testing tools */
   #go-25up,
   #go-25down {
     display: inline;
+  }
+  /* licencing */
+  .licencing {
+    margin: 0 60px;
+  }
+  .licencing p {
+    padding: 0;
+  }
+  .inquiry {
+    margin: 0 60px;
   }
   /* copyright */
   .copyright {
@@ -3827,6 +3889,67 @@ body {
     width: 48%;
     float: right;
   }
+  .twitter p:before {
+    margin: 0;
+    line-height: 90px;
+    position: absolute;
+    top: -4px;
+    left: 1px;
+    bottom: auto;
+  }
+  .licencing {
+    margin: 0 0 42px;
+    width: 620px;
+    float: left;
+  }
+  .price-tag {
+    margin: -127px -14px 0 0;
+  }
+  .try {
+    padding-right: 0;
+    width: 620px;
+    position: static;
+    float: left;
+  }
+  .to-demo,
+  .to-trial {
+    margin: 0;
+    border: none;
+    padding: 0;
+    width: 290px;
+    min-height: inherit;
+    float: left;
+  }
+  .to-trial {
+    float: right;
+  }
+  .pf-other {
+    width: 100%;
+  }
+  .try-and-buy,
+  .inquiry {
+    margin: 0 auto;
+    width: 954px;
+  }
+  .to-demo,
+  .to-demo p,
+  .to-trial,
+  .to-trial p,
+  .updates .adapt {
+    text-align: left;
+  }
+  #subscribe-form fieldset {
+    margin: 0;
+  }
+  .twitter p {
+    padding: 0 0 0 60px;
+  }
+  .subscription h3 {
+    margin-top: 0;
+  }
+  .connect {
+    padding: 0;
+  }
   .support {
     margin: 0;
     width: 498px;
@@ -3898,9 +4021,11 @@ body {
     padding: 0 0 0 82px;
   }
   /* ASIDE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /*
   .price-tag {
-    margin-right: 68px;
+  	margin-right: 68px;
   }
+  */
   .pricing {
     float: none;
   }

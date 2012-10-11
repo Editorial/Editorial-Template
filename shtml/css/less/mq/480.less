@@ -77,7 +77,8 @@ h1,
 
 #footer {
 	h4 {
-		margin: 1px 0 7px;
+		margin: 1px 0 8px;
+		display: block;
 	}
 }
 
@@ -89,11 +90,22 @@ h1,
 	text-align: center;
 }
 
+.inquiry {
+	h2 {
+		padding: 13px 0 12px;
+		font-size: 24px;
+		line-height: 30px;
+	}
+
+	p {
+		padding-bottom: 5px;
+	}
+}
+
 /* newsletter */
 
 .updates {
-	margin: 0 0 28px;
-	padding: 27px 15px 15px;
+	padding: 27px 15px 0;
 }
 
 #email {
@@ -115,10 +127,15 @@ h1,
 
 #subscribe-form {
 	padding-top: 6px;
+
+	fieldset {
+		margin: 0 auto;
+		width: 384px;
+	}
 }
 
 .subscription {
-	margin: 0 0 29px;
+	margin: 0 0 16px;
 	padding: 0 0 32px;
 
 	h3 {
@@ -129,10 +146,16 @@ h1,
 /* connect */
 
 .connect {
-	background-position: center -470px;
+	padding: 13px 0 0;
+	background-position: center -498px;
 
 	h3 {
 		margin: 0 0 11px;
+	}
+
+	p {
+		margin: 0 0 3px;
+		padding: 0;
 	}
 }
 
@@ -140,14 +163,17 @@ h1,
 	padding: 0 0 7px;
 
 	p {
-		padding: 0 0 0 50px;
+		margin: 0 0 7px;
 
 		&:before {
 			margin: 0;
 			line-height: 90px;
-			position: absolute;
-			top: -4px;
-			left: 1px;
+			width: 56px;
+			height: 30px;
+			display: inline-block;
+			overflow: hidden;
+			position: relative;
+			bottom: -1px;
 		}
 	}
 }
@@ -165,6 +191,7 @@ h1,
 }
 
 .support {
+	margin-bottom: 33px;
 	margin-left: -5%;
 
 	.col {
@@ -184,7 +211,9 @@ h1,
 
 	li {
 		margin: 0;
-		float: none;
+		width: 100%;
+		line-height: 25px;
+		float: left;
 	}
 }
 
