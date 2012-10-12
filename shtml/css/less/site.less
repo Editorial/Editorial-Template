@@ -847,13 +847,25 @@ body {
 	}
 
 	.go {
-		padding: 5px 16px;
+		padding: 5px 26px 5px 43px;
 		width: auto;
 		font-size: 12px;
 		position: absolute;
 		top: 22px;
 		right: 0;
+
+		&:before {
+			content: ' ';
+			width: 22px;
+			height: 18px;
+			display: block;
+			background: url(../images/bgr/sprite.png) -410px -240px no-repeat;
+			position: absolute;
+			top: 13px;
+			left: 16px;
+		}
 	}
+
 }
 
 

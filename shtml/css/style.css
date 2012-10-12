@@ -1349,12 +1349,22 @@ body {
   top: -15px;
 }
 .price .go {
-  padding: 5px 16px;
+  padding: 5px 26px 5px 43px;
   width: auto;
   font-size: 12px;
   position: absolute;
   top: 22px;
   right: 0;
+}
+.price .go:before {
+  content: ' ';
+  width: 22px;
+  height: 18px;
+  display: block;
+  background: url(../images/bgr/sprite.png) -410px -240px no-repeat;
+  position: absolute;
+  top: 13px;
+  left: 16px;
 }
 /* newsletter */
 .updates {
@@ -3872,8 +3882,8 @@ body {
   }
   /* newsletter */
   .updates {
-    margin: 0 0 28px;
-    padding: 27px 0 45px;
+    margin: 0;
+    padding: 25px 0 33px;
     width: 100%;
     float: left;
     background: #fff;
@@ -3887,15 +3897,25 @@ body {
   /* connect */
   .connect {
     width: 48%;
+    background-position: -94px -498px;
     float: right;
+  }
+  .connect p {
+    margin: 0 0 15px;
+  }
+  .twitter p {
+    padding: 0 0 0 50px;
   }
   .twitter p:before {
     margin: 0;
     line-height: 90px;
     position: absolute;
     top: -4px;
-    left: 1px;
+    left: 0;
     bottom: auto;
+  }
+  .twitter-follow-button {
+    margin: 0;
   }
   .licencing {
     margin: 0 0 42px;
@@ -3941,9 +3961,6 @@ body {
   #subscribe-form fieldset {
     margin: 0;
   }
-  .twitter p {
-    padding: 0 0 0 60px;
-  }
   .subscription h3 {
     margin-top: 0;
   }
@@ -3952,6 +3969,7 @@ body {
   }
   .support {
     margin: 0;
+    padding: 25px 0 0;
     width: 498px;
     float: left;
   }
@@ -3964,6 +3982,7 @@ body {
   }
   /* copyright */
   .copyright {
+    margin: 27px 0 0;
     background-position: 326px -895px;
     float: right;
   }
