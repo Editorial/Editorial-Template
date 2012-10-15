@@ -17,45 +17,73 @@ if($has_child){
 
 <h2><?php _e('Editorial', 'Editorial'); ?> &mdash; <?php _e('Customize', 'Editorial'); ?></h2>
 
-<?php
-if ( !$has_child ) :
-?>
+<div class="poststuff">
+<div id="post-body" class="metabox-holder columns-2">
 
-<p>
-  A child theme allows you to safely customize Editorial default style. Even when the parent theme is updated, your custom changes will not be overwritten.
-</p>
-  
-<form action="admin.php?page=editorial-customstyle" method="POST">
-  <input type="hidden" name="create-theme" value="1" />
-  <p class="submit">
-      <input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Create Child Theme', 'Editorial'); ?>">
-  </p>
-</form>
 
-<?php
-else: 
-?>
+<div id="postbox-container" class="postbox-container">  
+<div id="normal-sortables" class="meta-box-sortables ui-sortable">
 
-  <?php
-  if ( $current_theme['Name'] == 'Editorial' ) :
-  ?>
-    <div class='updated fade'><p>Please activate the child theme <b>Editorial Custom</b> from the <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/themes.php">Appearance/Themes</a> for the customization to work.</p></div>
-  <?php
-  endif;
-  ?>
 
-  <form action="" method="post">
+ <div class="postbox " style="display: block; ">
+    <div class="handlediv" title="Click to toggle"><br></div>
+    <h3 class="hndle"><span><?php _e('Custom Child Theme', 'Editorial'); ?></span></h3>
+    <div class="inside">
+      <div class="table table_content">
+      <?php
+      if ( !$has_child ) :
+      ?>
 
-    <label>style.css</label>
+      <p>
+        A child theme allows you to safely customize Editorial default style. Even when the parent theme is updated, your custom changes will not be overwritten.
+      </p>
+        
+      <form action="admin.php?page=editorial-customstyle" method="POST">
+        <input type="hidden" name="create-theme" value="1" />
+        <p class="submit">
+            <input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Create Child Theme', 'Editorial'); ?>">
+        </p>
+      </form>
 
-    <br/>
-    <textarea name="child-style-update" style="width:80%" rows="26"><?php echo file_get_contents($style_path); ?></textarea>
+      <?php
+      else: 
+      ?>
 
-    <p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'Editorial'); ?>"></p>
+        <?php
+        if ( $current_theme['Name'] == 'Editorial' ) :
+        ?>
+          <div class='updated fade'><p>Please activate the child theme <b>Editorial Custom</b> from the <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/themes.php">Appearance/Themes</a> for the customization to work.</p></div>
+        <?php
+        endif;
+        ?>
 
-  </form>
+        <form action="" method="post">
 
-<?php
-endif;
-?>
+          <label>style.css</label>
+
+          <br/>
+          <textarea name="child-style-update" style="width:100%" rows="56"><?php echo file_get_contents($style_path); ?></textarea>
+
+          <p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Save Changes', 'Editorial'); ?>"></p>
+
+        </form>
+
+      <?php
+      endif;
+      ?>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+
+
+<?php include 'faq.php'; ?>
+
+</div>
+</div>
 

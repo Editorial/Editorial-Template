@@ -59,8 +59,35 @@
 	margin-right: 5px;
 }
 
+#post-body.columns-2 #postbox-container {
+width: 65%;
+}
+
+#post-body.columns-2 #postbox-container-1 {
+margin-right: 0;
+width: 30%;
+}
+
+#normal-sortables .postbox .submit {
+float: none;
+
+}
+
+.postbox .hndle { cursor: pointer; }
+
 </style>
 <div id="editorial" class="wrap">
 	<div id="icon-themes" class="icon32"><br></div>
 	<?php include $this->_page.'.php'; ?>
 </div>
+<?php wp_enqueue_script('postbox'); ?>
+<script>
+jQuery(document).ready(function(){ 
+	postboxes.add_postbox_toggles(pagenow); 
+	$('.meta-box-sortables').sortable({
+        disabled: true
+    });
+});
+
+
+</script>
