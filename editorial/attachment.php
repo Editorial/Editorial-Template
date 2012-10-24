@@ -174,7 +174,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 							'<p>' + meta_data.content + '</p></figcaption>';
 							
 							if(/video/g.test(meta_data.mime) || /audio/g.test(meta_data.mime) ){
-								//foo += '<a id="media-play">Double Tap to Play</a>';
+								foo += '<a id="media-play">Double Tap to Play</a>';
 							}
 						
 						cap_el = $(foo);
@@ -199,20 +199,20 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
 
-						if(e.action == "tap"){ //doubleTap, tap
+						if(e.action == "doubleTap"){ //doubleTap, tap
 							var currentImage = instance.getCurrentImage();
 							console.log( currentImage, e.point );
 							
 							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
 								var vid_src = currentImage.metaData.href;
 
-								if ( e.point.insideImage && e.point.clickedCenter ) {
-									window.location = vid_src;
-								}
-
-								// if ( e.point.insideImage ) {
+								// if ( e.point.insideImage && e.point.clickedCenter ) {
 								// 	window.location = vid_src;
 								// }
+
+								if ( e.point.insideImage ) {
+									window.location = vid_src;
+								}
 							}
 						}
 					});
