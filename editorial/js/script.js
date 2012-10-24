@@ -14,10 +14,9 @@
 //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
 
 var hideAddressBar = function () {
-  if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)) {
-          document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
-          setTimeout(window.scrollTo(1,1), 1);
-  }
+  setTimeout(function(){
+    window.scrollTo(0, 0);
+    }, 0);
 }
 
 
