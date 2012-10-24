@@ -13,6 +13,12 @@
 //LOCAL DEV
 //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
 
+var hideAddressBar = function () {
+  if (document.documentElement.scrollHeight < (window.outerHeight / window.devicePixelRatio)) {
+          document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
+          setTimeout(window.scrollTo(1,1), 1);
+  }
+}
 
 
 var changeViewport = function () {
@@ -23,7 +29,7 @@ var changeViewport = function () {
 		$('meta[name="viewport"]').attr('content', 'height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0');
 		//$('#media-elements figcaption').css('bottom', '60px');
 	}
-	scrollTo(0,0,1);
+	hideAddressBar();
 };
 
 var iDevice = (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) ? true : false;
@@ -51,7 +57,7 @@ $(function(){
 		//!!! na iPadu naredi belo crto
 		if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
 			window.addEventListener('load', function() {
-			  setTimeout(scrollTo, 0, 0, 1);}, false);
+			  hideAddressBar();
 			}
 
 		//iOS label fix
