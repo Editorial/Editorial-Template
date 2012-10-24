@@ -109,12 +109,12 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 			else if (Editorial::is_video($attachment->post_mime_type))
 			{
 				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video.png";
+				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video1.png";
 			}
 			else if (Editorial::is_audio($attachment->post_mime_type))
 			{
 				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video.png";
+				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video1.png";
 			}
 			printf('<li>
 			<a href="%s" data-preview="%s" data-mime-type="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s"></a>
@@ -143,8 +143,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					captionAndToolbarFlipPosition: true,
 					allowUserZoom: false,
 					loop: false,
-					captionAndToolbarAutoHideDelay: 6000,
-					//target: window.document.querySelectorAll('#PhotoSwipeTarget')[0],
+					captionAndToolbarAutoHideDelay: 8000, // 0 never auto hides it
 					getToolbar: function(){
 						return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
 						'<nav id="remote" role="navigation">' +
@@ -174,8 +173,8 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 							'<figcaption><h3>' + meta_data.title + '</h3>' +
 							'<p>' + meta_data.content + '</p></figcaption>';
 							
-							if(/video/g.test(meta_data.mime)){
-								foo += '<a id="media-play">Play</a>';
+							if(/video/g.test(meta_data.mime) || /audio/g.test(meta_data.mime) ){
+								//foo += '<a id="media-play">Double Tap to Play</a>';
 							}
 						
 						cap_el = $(foo);
@@ -195,25 +194,25 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					});
 					
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
-						// var vid = document.getElementById("video-player");
-						// vid.pause();
-						// vid.src = "";
-						// var currentImage = instance.getCurrentImage();
-						// if(/video/g.test(currentImage.metaData.mime)){
-						// 	var vid_src = currentImage.metaData.href;
-						// 	$('a#media-play').on('touchstart', function(e){
-						// 		window.location = vid_src;
-						// 	});
-						// }
 
 					});
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
-						if(e.action == "tap"){
+
+						if(e.action == "tap"){ //doubleTap, tap
 							var currentImage = instance.getCurrentImage();
-							if(/video/g.test(currentImage.metaData.mime)){
+							//console.log( currentImage, e.point );
+							
+							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
 								var vid_src = currentImage.metaData.href;
-								window.location = vid_src;
+
+								if ( e.point.insideImage && e.point.clickedCenter ) {
+									window.location = vid_src;
+								}
+
+								// if ( e.point.insideImage ) {
+								// 	window.location = vid_src;
+								// }
 							}
 						}
 					});

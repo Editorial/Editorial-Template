@@ -6212,9 +6212,46 @@
 						break;
 						
 					case Util.TouchElement.ActionTypes.tap:
-					// Pass the touch onto the carousel
-					//	this.carousel.onTouch(e.action, e.point);
 						
+						e.point.insideImage = false;
+						e.point.clickedCenter = false;
+						// Take into consideration the window scroll
+						if (this.settings.target === window){
+							e.point.x -= Util.DOM.windowScrollLeft();
+							e.point.y -= Util.DOM.windowScrollTop();
+						}
+						
+						var 
+							cacheImageEl = this.cache.images[this.currentIndex].imageEl,
+						
+							imageTop = window.parseInt(Util.DOM.getStyle(cacheImageEl, 'top'), 10),
+							imageLeft = window.parseInt(Util.DOM.getStyle(cacheImageEl, 'left'), 10),
+							imageRight = imageLeft + Util.DOM.width(cacheImageEl),
+							imageBottom = imageTop + Util.DOM.height(cacheImageEl),
+
+							centerBuff = 50,
+							centerX = ((imageRight - imageLeft)/2) + imageLeft,
+							centerY = ((imageBottom - imageTop)/2) + imageTop;
+						
+						e.point.centerX = centerX;
+						e.point.centerY = centerY;
+
+						if ( (e.point.x >= imageLeft) &&
+									(e.point.x <= imageRight) &&
+									(e.point.y >= imageTop) &&
+									(e.point.y <= imageBottom)
+							){
+							e.point.insideImage = true;
+						}
+
+						if( ( (centerX - centerBuff) <= e.point.x ) &&
+								( (centerX + centerBuff) >= e.point.x ) &&
+								( (centerY - centerBuff) <= e.point.y ) &&
+								( (centerY + centerBuff) >= e.point.y )
+							){
+							e.point.clickedCenter = true;
+						}
+
 						this.toggleToolbar();
 						break;
 						
@@ -6235,6 +6272,14 @@
 							imageLeft = window.parseInt(Util.DOM.getStyle(cacheImageEl, 'left'), 10),
 							imageRight = imageLeft + Util.DOM.width(cacheImageEl),
 							imageBottom = imageTop + Util.DOM.height(cacheImageEl);
+
+						if ( (e.point.x >= imageLeft) &&
+									(e.point.x <= imageRight) &&
+									(e.point.y >= imageTop) &&
+									(e.point.y <= imageBottom)
+							){
+							e.point.insideImage = true;
+						}
 						
 						if (e.point.x < imageLeft){
 							e.point.x = imageLeft;
