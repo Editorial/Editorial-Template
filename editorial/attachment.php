@@ -206,9 +206,9 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
 								var vid_src = currentImage.metaData.href;
 
-								if ( e.point.insideImage && e.point.clickedCenter ) {
+								//if ( e.point.insideImage && e.point.clickedCenter ) {
 									window.location = vid_src;
-								}
+								//}
 
 								// if ( e.point.insideImage ) {
 								// 	window.location = vid_src;
