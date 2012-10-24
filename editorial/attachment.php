@@ -200,8 +200,8 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
 
 						if(e.action == "doubleTap"){ //doubleTap, tap
-							var currentImage = instance.getCurrentImage();
-							console.log( currentImage, e.point );
+							// var currentImage = instance.getCurrentImage();
+							// console.log( currentImage, e.point );
 							
 							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
 								var vid_src = currentImage.metaData.href;
