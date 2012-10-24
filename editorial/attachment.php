@@ -201,14 +201,14 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 
 						if(e.action == "tap"){ //doubleTap, tap
 							var currentImage = instance.getCurrentImage();
-							//console.log( currentImage, e.point );
+							console.log( currentImage, e.point );
 							
 							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
 								var vid_src = currentImage.metaData.href;
 
-								//if ( e.point.insideImage && e.point.clickedCenter ) {
+								if ( e.point.insideImage && e.point.clickedCenter ) {
 									window.location = vid_src;
-								//}
+								}
 
 								// if ( e.point.insideImage ) {
 								// 	window.location = vid_src;
