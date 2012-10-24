@@ -210,9 +210,9 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 								// 	window.location = vid_src;
 								// }
 
-								if ( e.point.insideImage ) {
+								//if ( e.point.insideImage ) {
 									window.location = vid_src;
-								}
+								//}
 							}
 						}
 					});
