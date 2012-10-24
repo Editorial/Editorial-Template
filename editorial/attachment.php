@@ -194,16 +194,14 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					});
 					
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
-						var vid = document.getElementById("video-player");
-						vid.pause();
-						vid.src = "";
+						// var vid = document.getElementById("video-player");
+						// vid.pause();
+						// vid.src = "";
 						var currentImage = instance.getCurrentImage();
 						if(/video/g.test(currentImage.metaData.mime)){
-							vid.src = currentImage.metaData.href;
+							var vid_src = currentImage.metaData.href;
 							$('a#media-play').on('touchstart', function(e){
-								vid.style.display = 'block';
-								vid.play();
-								vid.webkitEnterFullscreen();
+								window.location = vid_src;
 							});
 						}
 
