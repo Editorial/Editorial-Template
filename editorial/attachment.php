@@ -197,22 +197,23 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 						// var vid = document.getElementById("video-player");
 						// vid.pause();
 						// vid.src = "";
-						var currentImage = instance.getCurrentImage();
-						if(/video/g.test(currentImage.metaData.mime)){
-							var vid_src = currentImage.metaData.href;
-							$('a#media-play').on('touchstart', function(e){
-								window.location = vid_src;
-							});
-						}
+						// var currentImage = instance.getCurrentImage();
+						// if(/video/g.test(currentImage.metaData.mime)){
+						// 	var vid_src = currentImage.metaData.href;
+						// 	$('a#media-play').on('touchstart', function(e){
+						// 		window.location = vid_src;
+						// 	});
+						// }
 
 					});
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
 						if(e.action == "tap"){
-							// var currentImage = instance.getCurrentImage();
-							// 							if(/video/g.test(currentImage.metaData.mime)){
-							// 								$("#video-player").get(0).webkitEnterFullscreen();
-							// 							}
+							var currentImage = instance.getCurrentImage();
+							if(/video/g.test(currentImage.metaData.mime)){
+								var vid_src = currentImage.metaData.href;
+								window.location = vid_src;
+							}
 						}
 					});
 					
