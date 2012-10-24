@@ -66,7 +66,6 @@
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/photoswipe.css">
 <script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/klass.min.js"></script>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/code.photoswipe.jquery-3.0.4.js"></script>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/js/mobile-gallery.js"></script>
 <?php } ?>
 
 
