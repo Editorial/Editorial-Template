@@ -87,6 +87,8 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 {
 ?>
 
+<?php $ipad_media_tmpl = get_template_directory_uri()."/ipad_media_play.php"; ?>
+
 	<section id="media-gallery">
 	<ul id="Gallery" class="gallery" style="display:none;" >
 <?php
@@ -231,6 +233,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 
 								if (Code.Util.Browser.iPad){
 									//$("#video-player").show();
+									window.location = vid_src; //"<?php echo  $ipad_media_tmpl.'?src=' ; ?>" + encodeURIComponent(vid_src);
 								}
 								else {
 								//if ( e.point.insideImage ) {
