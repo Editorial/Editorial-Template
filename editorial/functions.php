@@ -152,7 +152,7 @@ class Editorial
 		add_filter('admin_head_media_upload_gallery_form', array('Editorial','hide_galery_settings_div'));
 		add_filter('type_url_form_media', array('Editorial','hide_type_url_fields'));
 		add_action('admin_init', array('Editorial','set_user_metaboxes'));
-		//add_action( 'init', array('Editorial','colophon_in_footer'));
+		add_action( 'init', array('Editorial','init_footer_menu'));
 	}
 
 
@@ -174,33 +174,26 @@ class Editorial
     }
 	}
 
-	//Add colophon into footer menu
-	//this can work only if the user does not have
-	//footer menu already set.
-	// public function colophon_in_footer() {
+	//initialize footer menu
+	public function init_footer_menu() {
 
-	//   $menuname = 'Footer';
-	// 	$bpmenulocation = 'footer-nav';
-	// 	$menu_exists = wp_get_nav_menu_object( $menuname );
+	  $menuname = 'Footer';
+		$footer_menulocation = 'footer-nav';
+		$menu_exists = wp_get_nav_menu_object( $menuname );
 
-	// 	if( !$menu_exists){
-	//     $menu_id = wp_create_nav_menu($menuname);
+		if( !$menu_exists){
+	    $menu_id = wp_create_nav_menu($menuname);
+	  } else {
+	  	$menu_id = $menu_exists->term_id;
+	  }
 
-	//     wp_update_nav_menu_item($menu_id, 0, array('menu-item-title' => 'Colophon',
-	//                                            'menu-item-url' => ((defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'))."/colophon/",
-	//                                            'menu-item-type' => 'custom',
-	//                                            'menu-item-status' => 'publish'));
-	//      if( !has_nav_menu( $bpmenulocation ) ){
-	//         $locations = get_theme_mod('nav_menu_locations');
-	//         $locations[$bpmenulocation] = $menu_id;
-	//         set_theme_mod( 'nav_menu_locations', $locations );
-	//     }
-	//   }
-		
+    if( !has_nav_menu( $footer_menulocation ) ){
+        $locations = get_theme_mod('nav_menu_locations');
+        $locations[$footer_menulocation] = $menu_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+    }
 
-	// 		$locations = get_theme_mod('nav_menu_locations');
-
-	// }
+	}
 
 	public function hide_type_url_fields($html){
 		if ( !apply_filters( 'disable_captions', '' ) ) {

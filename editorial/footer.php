@@ -39,11 +39,12 @@ if ($EditorialId != 'notfound')
             $settings = array(
                 'theme_location' => 'footer-nav',
                 'container'      => 'nav',
-                //'container_class'=> 'nav',
                 'menu_id'        => false,
                 'menu_class'     => 'xoxo',
                 'depth'          => 1,
                 'walker'         => new EditorialNav(),
+                //add colophon at the end
+                'items_wrap'      => '<ul>%3$s<li><a href="'. ((defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'))."/colophon/" .'">Colophon</a></li></ul>'
             );
             wp_nav_menu($settings);
 	    }
