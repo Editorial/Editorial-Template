@@ -151,7 +151,57 @@ class Editorial
 		add_filter('media_upload_tabs', array('Editorial','remove_media_library_tab'));
 		add_filter('admin_head_media_upload_gallery_form', array('Editorial','hide_galery_settings_div'));
 		add_filter('type_url_form_media', array('Editorial','hide_type_url_fields'));
+		add_action('admin_init', array('Editorial','set_user_metaboxes'));
+		//add_action( 'init', array('Editorial','colophon_in_footer'));
 	}
+
+
+	//hide/unhide some default boxes on post page in admin
+	public function set_user_metaboxes($user_id=NULL) {
+
+    // These are the metakeys we will need to update
+    $meta_key['hidden'] = 'metaboxhidden_post';
+
+    // So this can be used without hooking into user_register
+    if ( ! $user_id)
+        $user_id = get_current_user_id(); 
+
+
+    // Set the default hiddens if it has not been set yet
+    if ( ! get_user_meta( $user_id, $meta_key['hidden'], true) ) {
+      $meta_value = array('slugdiv', 'trackbacksdiv', 'postcustom', 'commentsdiv','authordiv', 'revisionsdiv', 'tagsdiv-post_tag', 'formatdiv');
+    	update_user_meta( $user_id, $meta_key['hidden'], $meta_value );
+    }
+	}
+
+	//Add colophon into footer menu
+	//this can work only if the user does not have
+	//footer menu already set.
+	// public function colophon_in_footer() {
+
+	//   $menuname = 'Footer';
+	// 	$bpmenulocation = 'footer-nav';
+	// 	$menu_exists = wp_get_nav_menu_object( $menuname );
+
+	// 	if( !$menu_exists){
+	//     $menu_id = wp_create_nav_menu($menuname);
+
+	//     wp_update_nav_menu_item($menu_id, 0, array('menu-item-title' => 'Colophon',
+	//                                            'menu-item-url' => ((defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'))."/colophon/",
+	//                                            'menu-item-type' => 'custom',
+	//                                            'menu-item-status' => 'publish'));
+	//      if( !has_nav_menu( $bpmenulocation ) ){
+	//         $locations = get_theme_mod('nav_menu_locations');
+	//         $locations[$bpmenulocation] = $menu_id;
+	//         set_theme_mod( 'nav_menu_locations', $locations );
+	//     }
+	//   }
+		
+
+	// 		$locations = get_theme_mod('nav_menu_locations');
+
+	// }
+
 	public function hide_type_url_fields($html){
 		if ( !apply_filters( 'disable_captions', '' ) ) {
 			$caption = '
@@ -216,18 +266,14 @@ EOF;
 	}
 	
 	public function hide_some_attachment_fields($form_fields, $post) {
-		
-		//print_r($form_fields);
-		
-	//	if ( self::is_image( $post->post_mime_type ) ) {
 			
-			// remove unnecessary fields
-	    unset( $form_fields['image-size'] );
-	    unset( $form_fields['post_excerpt'] );
-	    unset( $form_fields['url'] );
-	    unset( $form_fields['image_url'] );
-	    unset( $form_fields['align'] );
-			unset( $form_fields['image_alt'] );
+		// remove unnecessary fields
+    unset( $form_fields['image-size'] );
+    unset( $form_fields['post_excerpt'] );
+    unset( $form_fields['url'] );
+    unset( $form_fields['image_url'] );
+    unset( $form_fields['align'] );
+		unset( $form_fields['image_alt'] );
 
 		$delete = '';
 		$thumbnail = '';
@@ -986,21 +1032,6 @@ EOF;
 							);
 				break;
 
-			/*
-			case EDITORIAL_TWITTER:
-				$html = sprintf(
-					'<iframe allowtransparency="true" frameborder="0" scrolling="no"
-						src="http://platform.twitter.com/widgets/tweet_button.html?via=%s&text=%s%s"
-						style="width:%dpx; height:%dpx;"></iframe>',
-					self::getOption('twitter-account'),
-					esc_attr($params['text']),
-					self::getOption('twitter-related') ? sprintf('&related=%s', self::getOption('twitter-related')) : '',
-					$params['width'],
-					$params['height']
-				);
-				break;
-			*/
-
 			case EDITORIAL_GOOGLE:
 				//$status .=":%20".esc_attr($params['text'])."%20".urlencode($params['url']);
 				$html = sprintf(
@@ -1008,19 +1039,7 @@ EOF;
 						urlencode($params['url'])
 						);
 			break;
-			/*
-			case EDITORIAL_GOOGLE:
-				$html = "<g:plusone size=\"medium\" width=\"65\"></g:plusone>
-				<script type=\"text/javascript\">
-				(function() {
-					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-					po.src = 'https://apis.google.com/js/plusone.js';
-					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-				})();
-				</script>";
-				break;
-			*/
-
+		
 			case EDITORIAL_FACEBOOK:
 				//$status = esc_attr($params['text'])." - ".urlencode($params['url']);
 				$html = sprintf(
@@ -1029,24 +1048,7 @@ EOF;
 						esc_attr($params['text'])
 				);
 			break;
-			/*
-			case EDITORIAL_FACEBOOK:
-				$html = sprintf(
-					'<iframe src="http://www.facebook.com/plugins/like.php?href=%1$s&amp;send=false&amp;layout=button_count&amp;width=%2$d&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=%3$d"
-					scrolling="no"
-					frameborder="0"
-					style="border:none; overflow:hidden; width:%2$dpx; height:%3$dpx;"
-					allowTransparency="true"></iframe>',
-					urlencode($params['url']),
-					$params['width'],
-					$params['height']
-				);
-				break;
-			*/
-
-//			case EDITORIAL_READABILITY:
-//				$html = '<div class="rdbWrapper" data-show-read="1" data-show-send-to-kindle="1" data-show-print="0" data-show-email="0" data-orientation="0" data-version="1" data-bg-color="transparent"></div><script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>';
-//				break;
+			
 		}
 
 		return $html;
@@ -1448,5 +1450,6 @@ function my_remove_recent_comments_style() {
 		return $f;
 	}
 	add_filter('admin_comment_types_dropdown', "add_comment_type_filter", 10, 2);
+
 
 ?>

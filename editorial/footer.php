@@ -30,11 +30,7 @@ if ($EditorialId != 'notfound')
 
 	</ul>
 	<section>
-		<nav role="navigation">
-			<ul>
-				<li><a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>/colophon/"><?php _e('Colophon', 'Editorial'); ?></a></li>
-			</ul>
-		</nav>
+		
 <?php
 		
 	    if (has_nav_menu('footer-nav'))
@@ -42,7 +38,8 @@ if ($EditorialId != 'notfound')
 	        // display footer menu
             $settings = array(
                 'theme_location' => 'footer-nav',
-                'container'      => false,
+                'container'      => 'nav',
+                //'container_class'=> 'nav',
                 'menu_id'        => false,
                 'menu_class'     => 'xoxo',
                 'depth'          => 1,

@@ -25,11 +25,6 @@ var changeViewport = function () {
 		//$('#media-gallery').css('bottom', '60px');
 		$('body').css('height', (window.outerHeight + 70) + 'px' );
 	}
-	//scrollTo(0,0,1);
-	// if(document.height < window.outerHeight) {
- //      //document.body.style.height = (window.outerHeight + 50) + 'px';
- //      $('body').css('height', (window.outerHeight + 60) + 'px' );
- //  }
 	hideAddressBar();
 };
 
@@ -53,13 +48,7 @@ $(function(){
 
 		window.addEventListener('orientationchange', changeViewport, true);
 		try { changeViewport(); } catch (err) { }
-		//remove address bar
-		//@see http://davidwalsh.name/hide-address-bar
-		//!!! na iPadu naredi belo crto
 		if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
-			// window.addEventListener('load', function() {
-			//   setTimeout(scrollTo, 0, 0, 1);}, false);
-			// }
 
 			//iOS label fix
 			$('label[for]').click(function(){

@@ -86,8 +86,6 @@ foreach (array_keys($attachments) as $key => $value)
 if (Editorial::isMobileDevice() || Editorial::isIpad())
 {
 ?>
-	<video id="video-player" controls="controls"></video>
-	<audio id="audio-player" controls="controls"></audio>
 
 	<section id="media-gallery">
 	<ul id="Gallery" class="gallery" style="display:none;" >
@@ -143,6 +141,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					captionAndToolbarFlipPosition: true,
 					allowUserZoom: false,
 					loop: false,
+					zIndex: 10,
 					captionAndToolbarAutoHideDelay: 8000, // 0 never auto hides it
 					getToolbar: function(){
 						return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
@@ -195,13 +194,33 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
 
+						// if (Code.Util.Browser.iPad){
+						// 	var currentImage = instance.getCurrentImage();
+						// 	var vid_src = currentImage.metaData.href
+						// 	var height = currentImage.imageEl.offsetHeight,
+						// 			left = currentImage.imageEl.offsetLeft,
+						// 			top = currentImage.imageEl.offsetTop,
+						// 			width = currentImage.imageEl.offsetWidth;
+
+						// 	var html = "";
+						// 	html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
+						// 	html += '<source src="'+vid_src+'"  type="video/mp4" />';
+						// 	html += '</video>';
+						// 	$("#video-player").html(html);
+						// 	$("#video-player").css({'top':top, 'left':left, 'z-index':1000});
+
+						// 	$('#someVideo').attr('src', vid_src);
+
+						// }
+
 					});
 				
 					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
 
+
 						if(e.action == "doubleTap"){ //doubleTap, tap
 							var currentImage = instance.getCurrentImage();
-							// console.log( currentImage, e.point );
+							//console.log( currentImage, e.point );
 							
 							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
 								var vid_src = currentImage.metaData.href;
@@ -210,9 +229,14 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 								// 	window.location = vid_src;
 								// }
 
+								if (Code.Util.Browser.iPad){
+									//$("#video-player").show();
+								}
+								else {
 								//if ( e.point.insideImage ) {
 									window.location = vid_src;
 								//}
+								}
 							}
 						}
 					});
