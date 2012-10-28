@@ -67,7 +67,7 @@ class Editorial_Admin
 		'twitter-related',
 		'facebook-share',
 		'google-share',
-		//'readability-share',
+		'colophon-enabled',
 		'copyright',
 		'child-theme',
 	);
@@ -323,6 +323,8 @@ class Editorial_Admin
                 $this->_handleCheckboxes($checkboxes);
 			    break;
 			case self::PAGE_COLOPHON:
+				$checkboxes = array('colophon-enabled');
+				$this->_handleCheckboxes($checkboxes);
 				// save current value for author ordering and titles
 				if (!count($_POST['author']) || !count($_POST['title']) || count($_POST['title']) != count($_POST['author']))
 				{
@@ -335,6 +337,7 @@ class Editorial_Admin
 				{
 					$authors[$id] = $_POST['title'][$order];
 				}
+
 				Editorial::setOption('authors', $authors);
 				break;
 			case self::PAGE_CUSTOMIZE:

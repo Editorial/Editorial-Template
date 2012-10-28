@@ -59,6 +59,10 @@
 	margin-right: 5px;
 }
 
+#poststuff #post-body.columns-2 {
+	margin-right: inherit;
+}
+
 #post-body.columns-2 #postbox-container {
 width: 65%;
 }
@@ -84,7 +88,7 @@ float: none;
 <script>
 jQuery(document).ready(function(){ 
 	postboxes.add_postbox_toggles(pagenow); 
-	$('.meta-box-sortables').sortable({
+	jQuery('.meta-box-sortables').sortable({
         disabled: true
     });
 });

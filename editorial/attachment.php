@@ -87,6 +87,9 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 {
 ?>
 
+<video id="video-player" controls="controls"></video>
+<audio id="audio-player" controls="controls"></audio>
+
 <?php $ipad_media_tmpl = get_template_directory_uri()."/ipad_media_play.php"; ?>
 
 	<section id="media-gallery">
@@ -196,24 +199,25 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
 
-						// if (Code.Util.Browser.iPad){
-						// 	var currentImage = instance.getCurrentImage();
-						// 	var vid_src = currentImage.metaData.href
-						// 	var height = currentImage.imageEl.offsetHeight,
-						// 			left = currentImage.imageEl.offsetLeft,
-						// 			top = currentImage.imageEl.offsetTop,
-						// 			width = currentImage.imageEl.offsetWidth;
+						if (Code.Util.Browser.iPad){
+							var currentImage = instance.getCurrentImage();
+							var vid_src = currentImage.metaData.href
+							var height = currentImage.imageEl.offsetHeight,
+									left = currentImage.imageEl.offsetLeft,
+									top = currentImage.imageEl.offsetTop,
+									width = currentImage.imageEl.offsetWidth;
 
-						// 	var html = "";
-						// 	html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
-						// 	html += '<source src="'+vid_src+'"  type="video/mp4" />';
-						// 	html += '</video>';
-						// 	$("#video-player").html(html);
-						// 	$("#video-player").css({'top':top, 'left':left, 'z-index':1000});
+							// var html = "";
+							// html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
+							// html += '<source src="'+vid_src+'"  type="video/mp4" />';
+							// html += '</video>';
+							// $("#video-player").html(html);
+							// $("#video-player").css({'top':top, 'left':left, 'z-index':1000});
 
-						// 	$('#someVideo').attr('src', vid_src);
+							$('#video-player').attr('src', vid_src);
+							$("#video-player").css({'top':top, 'left':left, 'z-index':1000, "width": width. "height": height});
 
-						// }
+						}
 
 					});
 				
@@ -232,8 +236,8 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 								// }
 
 								if (Code.Util.Browser.iPad){
-									//$("#video-player").show();
-									window.location = vid_src; //"<?php echo  $ipad_media_tmpl.'?src=' ; ?>" + encodeURIComponent(vid_src);
+									$("#video-player").play();
+									//window.location = vid_src; //"<?php echo  $ipad_media_tmpl.'?src=' ; ?>" + encodeURIComponent(vid_src);
 								}
 								else {
 								//if ( e.point.insideImage ) {
