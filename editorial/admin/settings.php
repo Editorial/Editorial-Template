@@ -23,12 +23,19 @@
 }
 
 #editorial #authors li {
-	width: 80%;
+/*	width: 80%;*/
 	padding: 10px;
 	background: #efefef;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid #bbb;
+	/*min-height: 40px;*/
+}
+
+#editorial #authors li img {
+	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
 }
 
 #editorial #authors .handle {
@@ -41,6 +48,7 @@
 	text-indent: -99999px;
 	outline: none;
 	margin-right: 10px;
+	/*margin-top: 5px;*/
 }
 
 #editorial #authors input {

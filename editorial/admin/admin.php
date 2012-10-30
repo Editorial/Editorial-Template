@@ -680,12 +680,20 @@ class Editorial_Admin
 	 */
 	public static function displayUser($user, $title = '', $checked = true)
 	{
+
+		$gravatar = sprintf(
+						'http://www.gravatar.com/avatar/%s?&s=%d',
+						md5(strtolower(trim($user->user_email))),
+						16
+					);
+
 		printf('<li id="user_%1$d">
 					<span class="handle">handle</span>
+					<img src="%5$s" class="photo" width="16" height="16" />
 					<input type="checkbox" name="author[]" value="%1$d"%4$s />
 					<strong>%2$s</strong>
 					<input type="text" name="title[]" value="%3$s" placeholder="Author title" />
-				</li>', $user->ID, $user->display_name, $title, $checked ? ' checked="checked"' : '');
+				</li>', $user->ID, $user->display_name, $title, ($checked ? ' checked="checked"' : ''), $gravatar);
 	}
 	
 	/**
