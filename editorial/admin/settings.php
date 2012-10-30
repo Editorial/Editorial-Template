@@ -24,7 +24,7 @@
 
 #editorial #authors li {
 /*	width: 80%;*/
-	padding: 10px;
+	padding: 15px;
 	background: #efefef;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -35,7 +35,7 @@
 #editorial #authors li img {
 	float: left;
 	margin-right: 10px;
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 }
 
 #editorial #authors .handle {

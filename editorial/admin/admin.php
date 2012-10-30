@@ -684,12 +684,12 @@ class Editorial_Admin
 		$gravatar = sprintf(
 						'http://www.gravatar.com/avatar/%s?&s=%d',
 						md5(strtolower(trim($user->user_email))),
-						16
+						20
 					);
 
 		printf('<li id="user_%1$d">
 					<span class="handle">handle</span>
-					<img src="%5$s" class="photo" width="16" height="16" />
+					<img src="%5$s" class="photo" width="20" height="20" />
 					<input type="checkbox" name="author[]" value="%1$d"%4$s />
 					<strong>%2$s</strong>
 					<input type="text" name="title[]" value="%3$s" placeholder="Author title" />
