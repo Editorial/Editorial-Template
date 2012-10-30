@@ -46,7 +46,7 @@
 <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 <link rel="apple-touch-icon-precomposed" href="<?php echo Editorial::getOption('touch-icon'); ?>">
 <link rel="shortcut icon" href="<?php echo get_bloginfo('url') . Editorial::getOption('favicon'); ?>">
-<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('stylesheet_url'); ?>">
 
