@@ -199,25 +199,25 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 					
 					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
 
-						if (Code.Util.Browser.iPad){
-							var currentImage = instance.getCurrentImage();
-							var vid_src = currentImage.metaData.href
-							var height = currentImage.imageEl.offsetHeight,
-									left = currentImage.imageEl.offsetLeft,
-									top = currentImage.imageEl.offsetTop,
-									width = currentImage.imageEl.offsetWidth;
+						// if (Code.Util.Browser.iPad){
+						// 	var currentImage = instance.getCurrentImage();
+						// 	var vid_src = currentImage.metaData.href
+						// 	var height = currentImage.imageEl.offsetHeight,
+						// 			left = currentImage.imageEl.offsetLeft,
+						// 			top = currentImage.imageEl.offsetTop,
+						// 			width = currentImage.imageEl.offsetWidth;
 
-							// var html = "";
-							// html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
-							// html += '<source src="'+vid_src+'"  type="video/mp4" />';
-							// html += '</video>';
-							// $("#video-player").html(html);
-							// $("#video-player").css({'top':top, 'left':left, 'z-index':1000});
+						// 	// var html = "";
+						// 	// html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
+						// 	// html += '<source src="'+vid_src+'"  type="video/mp4" />';
+						// 	// html += '</video>';
+						// 	// $("#video-player").html(html);
+						// 	// $("#video-player").css({'top':top, 'left':left, 'z-index':1000});
 
-							$('#video-player').attr('src', vid_src);
-							$("#video-player").css({'top':top, 'left':left, 'z-index':1000, "width": width. "height": height});
+						// 	$('#video-player').attr('src', vid_src);
+						// 	$("#video-player").css({'top':top, 'left':left, 'z-index':1000, "width": width, "height": height});
 
-						}
+						// }
 
 					});
 				
