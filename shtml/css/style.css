@@ -2937,6 +2937,11 @@ body {
   .to-trial p {
     text-align: left;
   }
+  /* testing tools */
+  #go-25up,
+  #go-25down {
+    display: inline;
+  }
   .to-demo {
     margin-top: 64px;
     min-height: 141px;
@@ -3229,11 +3234,6 @@ body {
   }
   .price-tag {
     margin-right: 46px;
-  }
-  /* testing tools */
-  #go-25up,
-  #go-25down {
-    display: inline;
   }
   /* licencing */
   .licencing {
