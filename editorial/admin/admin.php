@@ -851,7 +851,7 @@ class Editorial_Admin
 	public static function displayWarning()
     {
 
-    	$response = wp_remote_get( 'http://localhost:8888/editorial-marketing/pirates/message.html' );
+    	$response = wp_remote_get( 'http://editorialtemplate.com/pirates/message.html' );
 
     	if ( Editorial::getOption('pirates') )
     	{
