@@ -105,7 +105,14 @@
 						<div class="inside">
 			  			<div class="table table_content">
 			  				<?php
-									  the_editor("Text for your colophon page.", "content", "", false);
+			  					$colophon_text =  Editorial::getOption('colophon-text');
+
+			  					if( !isset( $colophon_text ) or $colophon_text == '' )
+			  					{
+			  						$colophon_text = "Text for your colophon page.";
+			  					}
+
+									  the_editor($colophon_text, "content", "", false);
 									?>
 			  			</div>
 			  		</div>

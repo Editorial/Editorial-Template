@@ -30,6 +30,15 @@ if ($EditorialId != 'notfound')
 
 	</ul>
 	<section>
+    <?php if (Editorial::getOption('colophon-enabled')) { ?>
+      <nav role="navigation" class="xoxo colophon-footer">     
+      <ul>
+        <li><a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>/colophon/"><?php _e('Colophon', 'Editorial'); ?></a></li>
+      </ul>
+      </nav>
+    <?php
+    }
+    ?>
 		
 <?php
 		
@@ -44,13 +53,14 @@ if ($EditorialId != 'notfound')
                 'depth'          => 1,
                 'walker'         => new EditorialNav(),
             );
-            if (Editorial::getOption('colophon-enabled')) {
-              $settings['items_wrap'] = '<ul>%3$s<li><a href="'. ((defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'))."/colophon/" .'">Colophon</a></li></ul>';
-            }
+            // if (Editorial::getOption('colophon-enabled')) {
+            //   $settings['items_wrap'] = '<ul>%3$s<li><a href="'. ((defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'))."/colophon/" .'">Colophon</a></li></ul>';
+            // }
             wp_nav_menu($settings);
 	    }
 			
 ?>
+
 	</section>
 	<small id="copyright"><?php echo Editorial::getOption('copyright'); ?><?php _e('Powered by <a href="http://wordpress.com">Wordpress</a> and <em id="editorial" class="vcard"><a href="http://editorialtemplate.com/" class="fn org url">Editorial template</a></em>.', 'Editorial') ?></small>
 </footer>

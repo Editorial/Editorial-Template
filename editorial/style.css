@@ -1232,6 +1232,7 @@ display:block;position:absolute;right:52px;z-index:1;}
 #rss {margin-bottom:20px;}
 #rss li:first-child {margin:-2px 0 0;padding:2px 0 0 30px;background-position:0 1px;}
 #footer .xoxo {margin:0 0 11px;clear:right;}
+#footer .xoxo.colophon-footer {margin-top: -5px;}
 #copyright {padding:20px 0 0;width:auto;float:none;}
 
 

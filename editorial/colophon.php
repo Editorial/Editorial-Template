@@ -13,10 +13,11 @@
 $EditorialId = 'colophon';
 $EditorialClass = 'clear';
 @include('header.php');
-the_post();
+//the_post();
 
 // load authors
 $authors = Editorial::getOption('authors');
+$colophon_text = Editorial::getOption('colophon-text');
 if (is_array($authors) && count($authors))
 {
 	$userSearch = new WP_User_Query(array('include' => array_keys($authors)));
@@ -46,16 +47,9 @@ else
 
 <div class="content clear" role="main">
 	<article id="common" class="hentry">
-		<h1 class="entry-title"><?php the_title(); ?></h1>
-		<footer class="v-hidden">
-			<time class="published" datetime="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>">
-				<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
-				<?php the_time(get_option('date_format')); ?>
-			</time>
-			<em>Written by <a class="author include" href="#editorial">Editorial</a></em>
-		</footer>
+		<h1 class="entry-title">Colophon</h1>
 		<section class="entry-content">
-			<?php echo the_content(); ?>
+			<?php echo $colophon_text; ?>
 		</section>
 		<aside role="complementary">
 			<ul id="team">

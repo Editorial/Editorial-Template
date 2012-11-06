@@ -68,6 +68,7 @@ class Editorial_Admin
 		'facebook-share',
 		'google-share',
 		'colophon-enabled',
+		'colophon-text',
 		'copyright',
 		'child-theme',
 	);
@@ -339,6 +340,8 @@ class Editorial_Admin
 				}
 
 				Editorial::setOption('authors', $authors);
+				$colophon_text = stripslashes(wpautop( $_POST['content'], true ));
+				Editorial::setOption('colophon-text', $colophon_text);
 				break;
 			case self::PAGE_CUSTOMIZE:
 				if ($_POST['create-theme']) {
