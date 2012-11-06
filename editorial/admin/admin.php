@@ -71,6 +71,7 @@ class Editorial_Admin
 		'colophon-text',
 		'copyright',
 		'child-theme',
+		'pirates',
 	);
 
 	/**
@@ -530,11 +531,13 @@ class Editorial_Admin
 	private function _checkVersion($data)
 	{
 		// notices can be disabled
+		Editorial::setOption('pirates', false);
 		if ($data !== false)
 		{
 			if (!is_array($data) || !isset($data['valid']) || !$data['valid'])
 			{
 				add_action('admin_notices', array($this, 'invalidNotice'));
+				Editorial::setOption('pirates', true);
 				return false;
 			}
 			// update available?
@@ -844,6 +847,22 @@ class Editorial_Admin
         curl_close($ch);
         return array($code, $result);
 	}
+
+	public static function displayWarning()
+    {
+
+    	$response = wp_remote_get( 'http://localhost:8888/editorial-marketing/pirates/message.html' );
+
+    	if ( Editorial::getOption('pirates') )
+    	{
+
+				if( !is_wp_error( $response ) ) {
+				   echo $response['body'];
+				}
+
+    	}
+    	
+    }
 }
 
 // add admin capabilites

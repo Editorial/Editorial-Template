@@ -1464,5 +1464,7 @@ function my_remove_recent_comments_style() {
 	}
 	add_filter('admin_comment_types_dropdown', "add_comment_type_filter", 10, 2);
 
+if (is_admin())
+	$current = get_transient('update_themes');
 
 ?>

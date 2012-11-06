@@ -29,6 +29,7 @@ if (count($posts))
 $EditorialClass = 'clear';
 @include('header.php');
 
+$Editorial::displayWarning();
 ?>
 
 <div class="content clear" role="main">
