@@ -848,7 +848,7 @@ class Editorial_Admin
         return array($code, $result);
 	}
 
-	public static function displayWarning()
+	public function displayWarning()
     {
 
     	$response = wp_remote_get( 'http://editorialtemplate.com/pirates/message.html' );
