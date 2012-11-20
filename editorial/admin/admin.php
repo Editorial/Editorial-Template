@@ -68,7 +68,6 @@ class Editorial_Admin
 		'facebook-share',
 		'google-share',
 		'colophon-enabled',
-		'colophon-text',
 		'copyright',
 		'child-theme',
 		'pirates',
@@ -341,8 +340,11 @@ class Editorial_Admin
 				}
 
 				Editorial::setOption('authors', $authors);
-				$colophon_text = stripslashes(wpautop( $_POST['content'], true ));
-				Editorial::setOption('colophon-text', $colophon_text);
+				$colophon_page = get_page_by_title('colophon');
+				$updated_page = array();
+				$updated_page['ID'] = $colophon_page->ID;
+				$updated_page['post_content'] = $_POST['content_for_colophon'];
+				wp_update_post( $updated_page );
 				break;
 			case self::PAGE_CUSTOMIZE:
 				if ($_POST['create-theme']) {

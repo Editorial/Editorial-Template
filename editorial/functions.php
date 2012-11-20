@@ -152,8 +152,40 @@ class Editorial
 		add_filter('admin_head_media_upload_gallery_form', array('Editorial','hide_galery_settings_div'));
 		add_filter('type_url_form_media', array('Editorial','hide_type_url_fields'));
 		add_action('admin_init', array('Editorial','set_user_metaboxes'));
-		add_filter( 'generate_rewrite_rules', array('Editorial', 'colophon_rewrite') );
+		add_action('after_setup_theme', array('Editorial','theme_setup'));
 
+	}
+
+	public static function get_page_by_post_name($name) {
+	  $pages = get_pages();
+	  foreach ($pages as $page) {
+	    if ($page->post_name == $name)
+	      return($page);
+	  }
+	  return(false);
+	}
+
+	public static function create_colophon_page() {
+	  if (!Editorial::get_page_by_post_name('colophon')) {
+	    $page["post_type"] = 'page';
+	    $page["post_name"] = 'colophon';
+	    $page["post_title"] = 'colophon';
+	    $page["post_content"] = '<h2>About</h2><p>Our colophon page</p>';
+	    $page["post_status"] = 'publish';
+	    $page["comment_status"] = 'closed';
+	    $page_id = wp_insert_post($page);
+
+	    update_post_meta( $page_id, '_wp_page_template', 'colophon.php' );
+	  }
+
+	}
+
+	public static function theme_setup() {
+	  if (false == get_option('theme_was_installed')) {
+	    Editorial::create_colophon_page();
+	    update_option('theme_was_installed', '1');
+	    return;
+	  }
 	}
 
 
@@ -428,45 +460,7 @@ EOF;
 			add_post_type_support('page', 'excerpt');
 		}
 
-		// add_rewrite_rule('^colophon/?', get_template_directory_uri().'/colophon.php', 'top');
-		//add_rewrite_tag('%colophon%','([^&]+)');
 	}
-
-	public function colophon_rewrite( $wp_rewrite ) {
-    $feed_rules = array(
-        'colophon/?' => 'wp-content/themes/editorial/colophon.php'
-    );
-
-    $wp_rewrite->rules = $feed_rules + $wp_rewrite->rules;
-    return $wp_rewrite->rules;
-}
-
-//$wp_rewrite->non_wp_rules = array( 'colophon/?' => 'wp-content/themes/editorial/colophon.php');
-
-//print_r($wp_rewrite->mod_rewrite_rules());
-
-	//initialize footer menu
-	// public function init_footer_menu() {
-
-	// 	//TODO
-	// 	//create only if nothin on this location!!
-	//   $menuname = 'Footer';
-	// 	$footer_menulocation = 'footer-nav';
-	// 	$menu_exists = wp_get_nav_menu_object( $menuname );
-
-	// 	if( !$menu_exists){
-	//     $menu_id = wp_create_nav_menu($menuname);
-	//   } else {
-	//   	$menu_id = $menu_exists->term_id;
-	//   }
-
- //    if( !has_nav_menu( $footer_menulocation ) ){
- //      $locations = get_theme_mod('nav_menu_locations');
- //      $locations[$footer_menulocation] = $menu_id;
- //      set_theme_mod( 'nav_menu_locations', $locations );
- //    }
-
-	// }
 
 	/**
 	 * Get editorial option

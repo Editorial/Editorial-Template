@@ -13,11 +13,11 @@
 $EditorialId = 'colophon';
 $EditorialClass = 'clear';
 @include('header.php');
-//the_post();
+the_post();
 
 // load authors
 $authors = Editorial::getOption('authors');
-$colophon_text = Editorial::getOption('colophon-text');
+//$colophon_text = Editorial::getOption('colophon-text');
 if (is_array($authors) && count($authors))
 {
 	$userSearch = new WP_User_Query(array('include' => array_keys($authors)));
@@ -49,7 +49,7 @@ else
 	<article id="common" class="hentry">
 		<h1 class="entry-title">Colophon</h1>
 		<section class="entry-content">
-			<?php echo $colophon_text; ?>
+			<?php echo the_content(); ?>
 		</section>
 		<aside role="complementary">
 			<ul id="team">
