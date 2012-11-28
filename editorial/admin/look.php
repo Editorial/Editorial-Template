@@ -146,7 +146,7 @@
 
 
 <!-- FAQ BOX -->
-<?php include 'faq.php'; ?>
+<?php include 'faq_look.php'; ?>
 
 </div>
 </div>

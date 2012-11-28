@@ -121,7 +121,7 @@
 		</div>
 
 
-		<?php include 'faq.php'; ?>
+		<?php include 'faq_colophon.php'; ?>
 	</div>
 </div>
 

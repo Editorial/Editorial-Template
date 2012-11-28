@@ -82,7 +82,7 @@ if($has_child){
 
 
 
-<?php include 'faq.php'; ?>
+<?php include 'faq_custom.php'; ?>
 
 </div>
 </div>

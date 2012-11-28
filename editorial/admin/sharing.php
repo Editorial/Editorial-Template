@@ -67,7 +67,7 @@
 
 
 
-    <?php include 'faq.php'; ?>
+    <?php include 'faq_sharing.php'; ?>
   </div>
 </div>
 

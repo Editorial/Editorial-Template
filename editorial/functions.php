@@ -169,7 +169,7 @@ class Editorial
 	  if (!Editorial::get_page_by_post_name('colophon')) {
 	    $page["post_type"] = 'page';
 	    $page["post_name"] = 'colophon';
-	    $page["post_title"] = 'colophon';
+	    $page["post_title"] = 'Colophon';
 	    $page["post_content"] = '<h2>About</h2><p>Our colophon page</p>';
 	    $page["post_status"] = 'publish';
 	    $page["comment_status"] = 'closed';
@@ -1402,12 +1402,7 @@ function my_remove_recent_comments_style() {
   {
   	if ( !wp_next_scheduled( 'social_network_mining' ) ) {
 				wp_schedule_event( time(), 'hourly', 'social_network_mining');
-				//dump("started hourly");
 			}
-
-			// $s = wp_get_schedule( 'social_network_mining' );
-			// $timestamp = wp_next_scheduled( 'social_network_mining' );
-			// dump( $s. " - next schedule ". date('l jS F Y h:i:s A', $timestamp) ) ;
   }
 
   add_action('wp', 'social_network_mining_activation');
