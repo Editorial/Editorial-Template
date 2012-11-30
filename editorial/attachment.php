@@ -38,6 +38,8 @@ if (Editorial::is_image($post->post_mime_type))
 	}
 	$imageMeta = wp_get_attachment_image_src($post->ID, $EditorialId == 'gallery' ? 'landscape' : 'portrait');
 	$imageMeta['alt'] = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+
+	$imageUrl = Editorial::getResponsiveImageUrl ( $post->ID, 'full' );
 }
 else
 {
@@ -106,6 +108,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 			if (Editorial::is_image($attachment->post_mime_type))
 			{
 				$src = isset($src[0]) ? $src[0] : '';
+				$src = Editorial::getResponsiveImageUrl ( $attachment->ID, 'full' );
 				$previewThumb = $src;
 				
 			}
@@ -266,7 +269,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 <?php
 					if (Editorial::is_image($post->post_mime_type)) {
 ?>
-				<span class="photo-adapt"><img src="<?php echo $imageMeta[0]; ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
+				<span class="photo-adapt"><img src="<?php echo $imageUrl ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
 <?php
 					} else if (Editorial::is_audio($post->post_mime_type)) {
 ?>

@@ -37,6 +37,8 @@ if (has_post_thumbnail())
 	$imageMeta->alt = get_post_meta($thumbId, '_wp_attachment_image_alt', true);
 	$attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
 	$attachmentUrl = get_attachment_link($thumbId);
+
+	$thumbnailUrl = Editorial::getResponsiveImageUrl ( $thumbId, 'full' );
 }
 else
 {

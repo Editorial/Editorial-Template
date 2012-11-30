@@ -22,6 +22,7 @@
 <head>
 <meta charset="utf-8">
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
+<script>if(('devicePixelRatio' in window)&&devicePixelRatio > 1){document.cookie = 'retina=1; path=/';}</script>
 <?php
 /*
 <meta name="description" content="<?php bloginfo('description'); ?>">

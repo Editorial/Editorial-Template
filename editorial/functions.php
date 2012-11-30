@@ -968,6 +968,35 @@ EOF;
 	}
 
 	/**
+	 * Determines (based on cookie set with JS) if client has a high DPI display (retina)
+	 *
+	 * @return boolean
+	 * @author Jan Hancic
+	 * @static
+	 */
+	public static function isRetina ()
+	{
+		if ( IsSet ( $_GET['debugretina'] ) === true )
+			return true;
+
+		if ( IsSet ( $_COOKIE['retina'] ) === true )
+			return true;
+		else
+			return false;
+	}
+
+	public static function getResponsiveImageUrl ( $PhotoId, $Type = 'full', $BlackAndWhite = false )
+	{
+		$thumbnailDimension = 1024;
+		if ( Editorial::isMobileDevice () )
+			$thumbnailDimension = 480;
+		else if ( Editorial::isIpad () )
+			$thumbnailDimension = 768;
+
+		return get_bloginfo('template_directory') . '/r-photo.php?photo=' . $PhotoId . '&amp;d=' . $thumbnailDimension . '&amp;t=' . $Type . ( $BlackAndWhite === true ? '&amp;bw=1' : '' );
+	}
+
+	/**
 	 * Allow post only to certain page
 	 *
 	 * @return void
