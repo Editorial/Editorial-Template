@@ -38,7 +38,7 @@ h1,
 /* licencing */
 
 .licencing {
-	margin: 0 25px;
+	margin: 0 25px 50px;
 
 	p {
 		padding: 0 20px;
@@ -56,35 +56,41 @@ h1,
 	display: block;
 
 	li {
-		width: 1.78%;
+		width: 1.4%;
 		height: 100px;
+	}
+
+	b {
+		//text-indent: -999em;
+		font-family: @baseFont;
+		fony-size: 11px;
 	}
 
 	.line-1,
 	.line-2,
 	.line-3,
-	.line-4 {
+	.line-4,
+	.line-5, {
 		i {
 			top: 80px;
 		}
 	}
 
-	.line-5,
 	.line-6,
 	.line-7,
 	.line-8,
 	.line-9,
 	.line-10,
 	.line-11,
-	.line-12 {
+	.line-12,
+	.line-13,
+	.line-14,
+	.line-15 {
 		i {
 			top: 60px;
 		}
 	}
 
-	.line-13,
-	.line-14,
-	.line-15,
 	.line-16,
 	.line-17,
 	.line-18,
@@ -93,18 +99,18 @@ h1,
 	.line-21,
 	.line-22,
 	.line-23,
-	.line-24 {
-		i {
-			top: 40px;
-		}
-	}
-
+	.line-24,
 	.line-25,
 	.line-26,
 	.line-27,
 	.line-28,
 	.line-29,
-	.line-30,
+	.line-30 {
+		i {
+			top: 40px;
+		}
+	}
+
 	.line-31,
 	.line-32,
 	.line-33,
@@ -114,12 +120,7 @@ h1,
 	.line-37,
 	.line-38,
 	.line-39,
-	.line-40 {
-		i {
-			top: 20px;
-		}
-	}
-
+	.line-40,
 	.line-41,
 	.line-42,
 	.line-43,
@@ -129,8 +130,25 @@ h1,
 	.line-47,
 	.line-48,
 	.line-49,
-	.line-50,
-	.line-51 {
+	.line-50 {
+		i {
+			top: 20px;
+		}
+	}
+
+	.line-51,
+	.line-52,
+	.line-53,
+	.line-54,
+	.line-55,
+	.line-56,
+	.line-57,
+	.line-58,
+	.line-59,
+	.line-60,
+	.line-61,
+	.line-62,
+	.line-63 {
 		i {
 			top: 0;
 		}
@@ -142,9 +160,31 @@ h1,
 		}
 	}
 
-	.line-51 {
+	.line-63 {
 		i {
 			width: 3px;
+		}
+	}
+
+
+	.line-6,
+	.line-11,
+	.line-16,
+	.line-21,
+	.line-26,
+	.line-31,
+	.line-36,
+	.line-41,
+	.line-46,
+	.line-51 {
+		border-color: #ccc;
+
+		&.sold {
+			border-color: #ccc;
+		}
+
+		&.current {
+			border-color: #666;
 		}
 	}
 
@@ -190,9 +230,15 @@ h1,
 	}
 }
 
+.try-and-buy {
+	padding: 0 0 25px;
+	width: 100%;
+	float: left;
+}
+
 .try {
 	padding-right: 328px;
-	top: 191px;
+	top: 310px;
 	left: 0;
 	position: absolute;
 	float: left;
@@ -218,6 +264,15 @@ h1,
 	}
 }
 
+.to-demo {
+	//margin-top: 43px;
+	min-height: 141px;
+}
+
+.to-trial  {
+	min-height: 129px;
+}
+
 /* testing tools */
 
 #go-25up,
@@ -225,14 +280,12 @@ h1,
 	display: inline;
 }
 
-
-.to-demo {
-	margin-top: 64px;
-	min-height: 141px;
-}
-
 .inquiry {
 	margin: 0 25px;
+	float: left;
+	width: 100%;
+	.box-sizing(border-box);
+	display: none;
 }
 
 
@@ -253,6 +306,11 @@ h1,
 		display: block;
 	}*/
 }
+
+.subscription {
+	padding-top: 40px;
+}
+
 
 /* connect */
 
@@ -307,10 +365,6 @@ h1,
 .home {
 	.content {
 		margin-top: 0;
-
-		h3 {
-			text-align: center;
-		}
 	}
 
 	h3 {

@@ -276,11 +276,24 @@ form p, .domain .info p, .info .help, .promo .info p {
 
 .go {
 	margin: 0 auto;
-	padding: 10px 31px;
+	//padding: 10px 31px;
+	padding: 10px 26px 10px 48px;
 	font-size: 13px;
 	line-height: 28px;
 	display: block;
 	width: 76px;
+	position: relative;
+
+	&:before {
+		content: ' ';
+		width: 22px;
+		height: 18px;
+		display: block;
+		background: url(../images/bgr/sprite.png) -410px -240px no-repeat;
+		position: absolute;
+		top: 16px;
+		left: 21px;
+	}
 }
 
 .manage .submit input {

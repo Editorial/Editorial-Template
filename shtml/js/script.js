@@ -55,7 +55,7 @@
 	}
 
 	//footer tweets
-	$('.twitter').liveTwitter('editorialtheme',{mode:'user_timeline',limit:1});
+	//$('.twitter').liveTwitter('editorialtheme',{mode:'user_timeline',limit:1});
 
 	//redirect button
 	$('#checkout').click(function(e){
@@ -184,8 +184,8 @@
 			'				<a href="#" id="go-down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-1">-1</a>' +
 			'				<a href="#" id="go-50up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+50">+50</a>' +
 			'				<a href="#" id="go-50down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-50">-50</a>' +
-			'				<a href="#" id="go-25up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+25">+25</a>' +
-			'				<a href="#" id="go-25down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-25">-25</a>' +
+			'				<a href="#" id="go-25up" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="+20">+20</a>' +
+			'				<a href="#" id="go-25down" style="font-weight:bold;font-size:15px;color:red;padding:5px;" title="-20">-20</a>' +
 			'			</div>' +
 			'		</div>' +
 			'		<a href="#" id="on-off" style="font-weight:bold;font-size:15px;color:lime;position:absolute;top:5px;right:5px;" title="ON / OFF">[<span id="p">+</span>]</a>' +

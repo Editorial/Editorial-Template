@@ -15,11 +15,9 @@ body {
 
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-.features section,
 .abilities li,
 .price-tag,
 .home .content h3,
-.price-tag h4,
 .price strong,
 .included li,
 .support .col,
@@ -47,7 +45,11 @@ body {
 }
 
 .price-tag,
-.connect {
+.price-tag h4,
+.connect,
+.go-try em,
+.social li,
+.subscription {
 	background-image: url(../images/bgr/sprite-new.png);
 	background-repeat: no-repeat;
 }
@@ -82,7 +84,7 @@ body {
 
 	hgroup {
 		margin: 0 0 27px;
-		text-align: left;
+		text-align: center;
 	}
 
 	video {
@@ -317,11 +319,11 @@ body {
 	text-align: left;
 }
 
-.home .content h3,
-.level h2 {
-	margin: 0 0 36px;
-	font-size: 30px;
-	line-height: 30px;
+.home .content h3 {
+	margin: 0 0 25px;
+	font-size: 20px;
+	line-height: 20px;
+	text-align: center;
 	background-position: 300px 300px;
 }
 
@@ -352,6 +354,7 @@ body {
 
 /* licencing */
 
+
 .try-and-buy {
 	margin: 0;
 	position: relative;
@@ -366,6 +369,10 @@ body {
 
 		em {
 			font-style: normal;
+
+			span {
+				font-style: italic;
+			}
 		}
 	}
 
@@ -378,12 +385,28 @@ body {
 	}
 }
 
+.go-try {
+
+	em {
+		padding: 2px 0 2px 25px;
+		font-style: normal;
+		background-position: -10px -487px;
+	}
+}
+
 .licencing {
+	margin: 0 0 20px;
 	position: relative;
 
 	p {
 		padding: 0 30px;
 		text-align: center;
+	}
+
+	.early-bird {
+		font:18px/25px @minion-pro;
+		color: #262020;
+		text-align: left;
 	}
 }
 
@@ -393,17 +416,17 @@ body {
 	padding-right: 15px;
 
 	h3 {
-		padding: 0 0 4px;
+		padding: 0 0 13px;
 		font-size: 18px;
 		line-height: 20px;
 	}
 
 	p {
-		margin: 0 0 32px;
+		margin: 0 0 37px;
 	}
 
 	a {
-		margin: 5px 0;
+		margin: 10px 0 5px;
 		color: #09c;
 		display: block;
 	}
@@ -414,9 +437,25 @@ body {
 }
 
 .inquiry {
-	margin: 0 15px;
-	padding: 2px 0 0;
-	//width: 100%;
+	border-top: 1px solid #e8e5dc;
+	padding: 16px 0;
+	background:#fdfdf3 url(../images/bgr/inquiry.png);
+	position: relative;
+	//.box-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1);
+
+	&:after {
+		content: ' ';
+		.box-shadow(0 2px 2px rgba(0, 0, 0, .1));
+		position: absolute;
+		left: 0;
+		bottom: 2px;
+		right: 0;
+		display: block;
+		height: 2px;
+		width: 100%;
+		z-index: 2;
+	}
+
 
 	fieldset {
 		width: 100%;
@@ -426,9 +465,29 @@ body {
 
 	h2 {
 		padding: 6px 0 11px;
-		font-size: 18px;
+		font-size: 24px;
 		line-height: 30px;
-		color: #ccc6bb;
+		color: #09c;
+		//http://jsfiddle.net/mbHB4/3/
+		//text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+		//text-shadow: inset 1px 2px 3px rgba(0, 0, 0, .3);
+		//, 1px 1px 1px #fff;
+
+		/*
+
+
+		.inset-text {
+    // Shadows are visible under slightly transparent text color
+    color: rgba(10,60,150, 0.8);
+    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+}
+// Don't show shadows when selecting text
+::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
+::selection { background: #5af; color: #fff; text-shadow: none; }​
+
+
+		*/
+
 
 		em {
 			font-style: normal;
@@ -445,15 +504,16 @@ body {
 
 .subscription h3,
 .connect h3 {
-	margin: 0 0 9px;
+	margin: 0 0 11px;
 	font:bold 14px/20px helvetica,arial,sans-serif;
 	color: #595959;
 }
 
 .subscription {
 	margin: 0 0 26px;
-	border-bottom: 1px solid #e6e6e6;
-	padding: 0 0 18px;
+	padding: 5px 0 52px;
+	background-position: center -743px;
+	min-height: 169px;
 }
 
 .price-flow {
@@ -533,9 +593,11 @@ body {
 
 	b {
 		//text-indent: -999em;
+		font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', tahoma, sans-serif;
+		font-size: 10px;
 		font-weight: normal;
 		width: 6px;
-		display: none;
+		//display: none;
 		position: absolute;
 		left: 0;
 		bottom: -22px;
@@ -642,10 +704,6 @@ body {
 	.step-4,
 	.step-5 {
 
-		b {
-			display: block;
-		}
-
 		i {
 			&:before {
 				content: ' ';
@@ -676,10 +734,6 @@ body {
 	.step-2 {
 		em {
 			top: 84px;
-		}
-
-		b {
-			left: 2px;
 		}
 	}
 
@@ -753,6 +807,29 @@ body {
 	}
 }
 
+.pf-mobile {
+	.line-3,
+	.line-5,
+	.line-7,
+	.line-9,
+	.line-11,
+	.line-13,
+	.line-15,
+	.line-17,
+	.line-19,
+	.line-21 {
+		border-color: #ccc;
+
+		&.sold {
+			border-color: #ccc;
+		}
+
+		&.current {
+			border-color: #666;
+		}
+	}
+}
+
 /* testing tools */
 
 #go-25up,
@@ -765,19 +842,20 @@ body {
 
 .price-tag {
 	//z-index:;margin:0 -15px 0;
-	margin: 0 auto;
+	margin: 0 auto 30px;
 	width: 260px;
-	padding: 115px 30px 0;
+	padding: 91px 30px 19px;
 	height: 347px;
 	text-align: left;
 	background-position: -1px -18px;
 
 	h4 {
 		margin: 0 0 11px;
-		padding: 0 0 9px 32px;
-		font: bold 14px/20px @baseFont;
+		border-top: 1px solid #e6e6e6;
+		padding: 18px 0 11px 32px;
+		font: bold 18px/20px @baseFont;
 		color: #262121;
-		background-position: -456px -73px;
+		background-position: -455px -51px;
 	}
 }
 
@@ -786,8 +864,18 @@ body {
 	height: 317px;
 }
 
+
+.to-demo,
+.to-demo p,
+.to-trial,
+.to-trial p,
+.updates .adapt {
+	text-align: center;
+}
+
+
 .included {
-	margin: 0 0 11px;
+	margin: 0 0 15px;
 	padding: 0 0 8px;
 	border-bottom: 1px solid #e6e6e6;
 
@@ -800,6 +888,7 @@ body {
 	}
 
 	.licence {
+		margin: -2px;
 		padding: 0;
 		background: none;
 	}
@@ -828,7 +917,7 @@ body {
 		color: #262121;
 		font-weight: normal;
 		letter-spacing: -1px;
-		background-position: -304px -28px;
+		background-position: -329px -28px;
 	}
 
 	em {
@@ -843,7 +932,7 @@ body {
 	sup {
 		font-size: 24px;
 		line-height: 30px;
-		top: -15px;
+		top: -17px;
 	}
 
 	.go {
@@ -855,12 +944,6 @@ body {
 		right: 0;
 
 		&:before {
-			content: ' ';
-			width: 22px;
-			height: 18px;
-			display: block;
-			background: url(../images/bgr/sprite.png) -410px -240px no-repeat;
-			position: absolute;
 			top: 13px;
 			left: 16px;
 		}
@@ -875,8 +958,7 @@ body {
 
 .updates {
 	margin: 0 0 10px;
-	border-top: 1px solid #f7f7f7;
-	padding-top: 25px;
+	padding-top: 40px;
 	background: #fff;
 	clear: both;
 
@@ -888,10 +970,11 @@ body {
 
 
 #subscribe-form {
-	padding-top: 3px;
+	padding-top: 1px;
 }
 
 #email {
+	margin: 0 0 10px;
 	border: none;
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
@@ -900,28 +983,19 @@ body {
 	width: 100%;
 	font-size: 14px;
 	color: #bfbfbf;
+	text-align: center;
 	background: #fafafa;
 	float: left;
 	-webkit-background-clip: padding-box;
-	-moz-box-shadow: inset 0 2px 2px rgba(0, 0, 0, .25);
-	-webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, .25);
-	box-shadow: inset 0 2px 2px rgba(0, 0, 0, .25);
+	.box-shadow(inset 0 2px 2px rgba(0, 0, 0, .25));
 
 	&:focus {
-		-moz-box-shadow: inset 0 2px 2px rgba(0, 0, 0, .55);
-		-webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, .55);
-		box-shadow: inset 0 2px 2px rgba(0, 0, 0, .55);
+		.box-shadow(inset 0 2px 2px rgba(0, 0, 0, .55));
 	}
 }
 
-#subscribe {
-	margin-top: 11px;
-	margin-left: 1px;
-	float: left;
-}
-
 .continue {
-	margin: 1px 0 0 8px;
+	margin: 0 auto;
 	border: 1px solid #fff;
 	padding: 13px 14px 10px;
 	color: #666;
@@ -930,10 +1004,7 @@ body {
 	text-transform: uppercase;
 	text-shadow: 0 1px 1px #fff;
 	background: #ededed;
-	float: left;
-	-moz-border-radius: 40px;
-	-webkit-border-radius: 40px;
-	border-radius: 40px;
+	.rounded(40px);
 	background: #d9d9d9 url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZhZmFmYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkOWQ5ZDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background: -moz-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	background: -webkit-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
@@ -945,15 +1016,40 @@ body {
 /* connect */
 
 .connect {
-	min-height: 210px;
-	background-position: 300px 300px;
+	padding: 18px 0 23px;
+	min-height: 172px;
+	background-position: center -516px;
 
 	p {
-		padding: 0 0 7px;
+		padding: 0 0 3px;
 	}
 }
 
-.twitter {
+.social {
+	margin: 0 auto;
+
+	li {
+		display: inline-block;
+		margin: 0 8px;
+	}
+
+	a {
+		width: 40px;
+		height: 40px;
+		display: block;
+		.ir();
+	}
+
+	.twitter {
+		background-position: -340px -280px;
+	}
+
+	.facebook {
+		background-position: -400px -280px;
+	}
+}
+
+/*.twitter {
 	padding: 23px 0 7px;
 	position: relative;
 
@@ -982,15 +1078,15 @@ body {
 		width: 300px;
 		height: 20px;
 	}
-}
+}*/
 
 .twitter-follow-button {
 	margin: 0 auto 35px;
 }
 
 .support {
-	margin: 0 0 26px;
-	padding-top: 12px;
+	margin: 0 0 31px;
+	padding-top: 7px;
 
 	h4 {
 		padding: 0 15px 0 0;
@@ -1108,6 +1204,7 @@ body {
 		border: none;
 		padding: 300px 0 20px;
 		background: none;
+		position: relative;
 
 		.adapt {
 			text-align: center;
@@ -1141,6 +1238,13 @@ body {
 	}
 }
 
+.play-video {
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	margin-left: -156px;
+}
+
 /* features */
 
 .features,
@@ -1163,6 +1267,14 @@ body {
 	margin: 0 0 46px;
 }
 
+.features {
+	h3 {
+		span {
+			display: block;
+		}
+	}
+}
+
 .features section,
 .abilities li {
 	padding: 0 0 0 82px;
@@ -1170,6 +1282,7 @@ body {
 
 .features {
 	section {
+		position: relative;
 		margin-bottom: 28px;
 	}
 
@@ -1179,34 +1292,26 @@ body {
 		color: #333;
 	}
 
-	 p {
+	p {
 		margin: 0 0 5px;
 		color: #595959;
 	}
+
+	.entry-summary {
+		margin: 0 0 45px;
+		font:18px/22px @minion-pro;
+		color: #000;
+	}
 }
 
-#platforms {
-	background-position: -948px -48px;
-}
+.goodies {
+	//fotka gor na mobile
+	figure {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 
-#photography {
-	background-position: -857px -120px;
-}
-
-#reading {
-	background-position: -776px -189px;
-}
-
-#gallery {
-	background-position: -690px -262px;
-}
-
-#feedback {
-	background-position: -601px -341px;
-}
-
-#machine {
-	background-position: -518px -412px;
 }
 
 /* abilities */
@@ -1708,6 +1813,9 @@ body {
 
 	h2 {
 		margin: 0 0 15px;
+		font-size: 30px;
+		line-height: 30px;
+		background-position: 300px 300px;
 	}
 
 	h3 {
