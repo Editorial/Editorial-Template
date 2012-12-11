@@ -1518,6 +1518,11 @@ function colophon_authors_page_template_metabox( $post ) {
 		jQuery("#authors input[type=\"checkbox\"]").click(function() {
 			jQuery(this).parent().find("input[type=\"text\"]").attr("disabled", !jQuery(this).attr("checked"));
 		})
+		jQuery("#authors input[type=\"checkbox\"]").each(function(){
+			if(!jQuery(this).attr("checked")){
+				jQuery(this).parent().find("input[type=\"text\"]").attr("disabled", true);
+			}
+		});
 	});
 </script>';
 
