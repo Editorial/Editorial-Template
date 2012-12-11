@@ -183,10 +183,17 @@ class Editorial
 	public static function theme_setup() {
 	  if (false == get_option('theme_was_installed')) {
 	    Editorial::create_colophon_page();
+	    add_action('admin_notices', array('Editorial', 'show_welcome_notice'));
 	    update_option('theme_was_installed', '1');
 	    return;
 	  }
 	}
+
+	public static function show_welcome_notice() {
+		echo "<div class='updated fade'><p>Editorial Theme was installed successfully. Please take a moment to <a href='".admin_url('admin.php?page=editorial')."'>configure it through the admin pages</a>.</p></div>";
+	}
+
+	//wp-admin/admin.php?page=editorial
 
 
 	//hide/unhide some default boxes on post page in admin

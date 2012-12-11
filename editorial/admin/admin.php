@@ -24,11 +24,6 @@ class Editorial_Admin
 	 */
 	const PAGE_SHARE = 'sharing';
 
-	/**
-	 * Colopho page
-	 */
-	const PAGE_COLOPHON = 'colophon';
-
 	const PAGE_CUSTOMIZE = 'customstyle';
 
 	const CHILD_THEME = 'editorial-child';
@@ -40,7 +35,6 @@ class Editorial_Admin
 	 */
 	private $_pages = array(
 		self::PAGE_LOOK,
-		self::PAGE_COLOPHON,
 		self::PAGE_SHARE,
 		self::PAGE_CUSTOMIZE,
 	);
