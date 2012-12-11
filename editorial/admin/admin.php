@@ -147,14 +147,6 @@ class Editorial_Admin
 		);
 		add_submenu_page(
 			'editorial',
-			'Colophon',
-			'Colophon',
-			'administrator',
-			'editorial-'.self::PAGE_COLOPHON,
-			array($this, 'colophon')
-		);
-		add_submenu_page(
-			'editorial',
 			'Customize',
 			'Customize',
 			'administrator',
@@ -173,17 +165,6 @@ class Editorial_Admin
 	{
 		// show look & feel page
 		$this->_display(self::PAGE_LOOK);
-	}
-
-	/**
-	 * Edit authors
-	 *
-	 * @return void
-	 * @author Miha Hribar
-	 */
-	public function colophon()
-	{
-		$this->_display(self::PAGE_COLOPHON);
 	}
 
 	/**
@@ -323,29 +304,6 @@ class Editorial_Admin
                 );
                 $this->_handleCheckboxes($checkboxes);
 			    break;
-			case self::PAGE_COLOPHON:
-				$checkboxes = array('colophon-enabled');
-				$this->_handleCheckboxes($checkboxes);
-				// save current value for author ordering and titles
-				if (!count($_POST['author']) || !count($_POST['title']) || count($_POST['title']) != count($_POST['author']))
-				{
-					// go away
-					Editorial::setOption('authors', false);
-					return;
-				}
-				$authors = array();
-				foreach ($_POST['author'] as $order => $id)
-				{
-					$authors[$id] = $_POST['title'][$order];
-				}
-
-				Editorial::setOption('authors', $authors);
-				$colophon_page = get_page_by_title('colophon');
-				$updated_page = array();
-				$updated_page['ID'] = $colophon_page->ID;
-				$updated_page['post_content'] = $_POST['content_for_colophon'];
-				wp_update_post( $updated_page );
-				break;
 			case self::PAGE_CUSTOMIZE:
 				if ($_POST['create-theme']) {
 					Editorial::setOption('child-theme', true);
@@ -695,7 +653,7 @@ class Editorial_Admin
 						20
 					);
 
-		printf('<li id="user_%1$d">
+		return sprintf('<li id="user_%1$d">
 					<span class="handle">handle</span>
 					<img src="%5$s" class="photo" width="20" height="20" />
 					<input type="checkbox" name="author[]" value="%1$d"%4$s />

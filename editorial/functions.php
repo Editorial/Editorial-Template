@@ -1421,6 +1421,199 @@ function my_remove_recent_comments_style() {
   remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'  ) );
 }
 
+/*************************************
+colophon page template custom meta boxes
+**************************************/
+
+
+function colophon_page_add_meta_boxes() {
+	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+  $page_template = get_post_meta( $post_id, '_wp_page_template', true );
+  // var_dump($page_template);
+	if ( 'colophon.php' == $page_template ) {
+		add_meta_box(
+	      'colophon-custom-metabox-about', // Metabox HTML ID attribute
+	      'General', // Metabox title
+	      'colophon_about_page_template_metabox', // callback name
+	      'page', // post type
+	      'normal', // context (advanced, normal, or side)
+	      'high' // priority
+	  );
+	  add_meta_box(
+	      'colophon-custom-metabox-authors', // Metabox HTML ID attribute
+	      'Authors', // Metabox title
+	      'colophon_authors_page_template_metabox', // callback name
+	      'page', // post type
+	      'normal', // context (advanced, normal, or side)
+	      'high' // priority
+	  );
+	}
+}
+// add_action( 'add_meta_boxes-page', 'colophon_page_add_meta_boxes' );
+add_action('admin_init','colophon_page_add_meta_boxes');
+
+function colophon_about_page_template_metabox( $post ) {
+	// Use nonce for verification
+  wp_nonce_field( plugin_basename( __FILE__ ), 'editorial_colophon_enabled_noncename' );
+
+	$checked = !Editorial::getOption('colophon-enabled') ? '' : ' checked="checked"';
+	$return = '
+	<label>Enable Colophon 
+		<input type="checkbox" name="colophon-enabled" '. $checked .' />
+	</label>';
+    echo $return;
+}
+
+function colophon_authors_page_template_metabox( $post ) {
+	// Use nonce for verification
+  wp_nonce_field( plugin_basename( __FILE__ ), 'editorial_colophon_authors_noncename' );
+
+  $users = get_users(array('who' => 'author',));
+
+  $users_string ='
+  <style>
+#authors li {
+	padding: 15px;
+	background: #efefef;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bbb;
+}
+
+#authors li img {
+	float: left;
+	margin-right: 10px;
+}
+
+#authors .handle {
+	display: block;
+	float: left;
+	cursor: move;
+	width: 15px;
+	height: 17px;
+	background: url('.get_bloginfo("template_directory").'/images/handle.png) no-repeat;
+	text-indent: -99999px;
+	outline: none;
+	margin-right: 10px;
+}
+
+#authors input {
+	float: left;
+	margin: 4px 10px 0 0;
+}
+
+#authors input[type="text"] {
+	margin-top: -3px;
+	width: 150px;
+}
+</style>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	jQuery(document).ready(function() {
+		// set up sorting
+		jQuery("#authors").sortable({
+			handle: ".handle",
+		});
+		// if checkbox is disabled disable the input field
+		jQuery("#authors input[type=\"checkbox\"]").click(function() {
+			jQuery(this).parent().find("input[type=\"text\"]").attr("disabled", !jQuery(this).attr("checked"));
+		})
+	});
+</script>';
+
+	$users_string .= '<ul id="authors">';
+
+  if (count($users))
+	{
+		$authors = Editorial::getOption('authors');
+
+		$alreadyShown = array();
+		if (is_array($authors) && count($authors))
+		{
+			foreach ($authors as $id => $title)
+			{
+				$data = get_userdata($id);
+				if (!$data)
+				{
+					// user data not loaded
+					continue;
+				}
+				$users_string .= Editorial_Admin::displayUser($data, $title);
+				$alreadyShown[] = $id;
+			}
+		}
+		foreach ($users as $user)
+		{
+			if (in_array($user->ID, $alreadyShown))
+			{
+				// skip already shown users
+				continue;
+			}
+			$users_string .= Editorial_Admin::displayUser($user, '', !(bool)$authors);
+		}
+
+	}
+	$users_string .= '</ul>';
+
+  echo $users_string;
+}
+
+
+function colophon_save_custom_post_meta( $post_id) {
+    // Sanitize/validate post meta here, before calling update_post_meta()
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+	$page_template = get_post_meta( $post_id, '_wp_page_template', true );
+
+	// verify this came from the our screen and with proper authorization,
+  // because save_post can be triggered at other times
+  if ( !wp_verify_nonce( $_POST['editorial_colophon_authors_noncename'], plugin_basename( __FILE__ ) ) ||
+  		!wp_verify_nonce( $_POST['editorial_colophon_enabled_noncename'], plugin_basename( __FILE__ ) )
+  	)
+      return;
+
+  // Check permissions
+  if ( 'page' == $_POST['post_type'] ) 
+  {
+    if ( !current_user_can( 'edit_page', $post_id ) )
+        return;
+  }
+  else
+  {
+    if ( !current_user_can( 'edit_post', $post_id ) )
+        return;
+  }
+
+  // OK, we're authenticated: we need to find and save the data
+  $post_ID = $_POST['post_ID'];
+
+  Editorial::setOption('colophon-enabled', isset($_POST['colophon-enabled']));
+ //  $page_template = get_post_meta( $post_ID, '_wp_page_template', true );
+	// if ( 'colophon.php' == $page_template ) {
+
+	// }
+
+	// save current value for author ordering and titles
+	if (!count($_POST['author']) || !count($_POST['title']) || count($_POST['title']) != count($_POST['author']))
+	{
+		// go away
+		Editorial::setOption('authors', false);
+		return;
+	}
+	$authors = array();
+	foreach ($_POST['author'] as $order => $id)
+	{
+		$authors[$id] = $_POST['title'][$order];
+	}
+
+	Editorial::setOption('authors', $authors);
+
+}
+
+add_action( 'publish_page', 'colophon_save_custom_post_meta' );
+add_action( 'draft_page', 'colophon_save_custom_post_meta' );
+add_action( 'future_page', 'colophon_save_custom_post_meta' );
+
 
   /*************************************/
   /********* schedule social network parsing ********/
@@ -1482,7 +1675,8 @@ function my_remove_recent_comments_style() {
 	}
 	add_filter('admin_comment_types_dropdown', "add_comment_type_filter", 10, 2);
 
-if (is_admin())
+if (is_admin()) {
 	$current = get_transient('update_themes');
+}
 
 ?>
