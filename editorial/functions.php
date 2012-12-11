@@ -1514,7 +1514,7 @@ function colophon_authors_page_template_metabox( $post ) {
 	width: 150px;
 }
 </style>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
 		// set up sorting
