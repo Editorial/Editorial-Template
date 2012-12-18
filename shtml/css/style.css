@@ -1531,24 +1531,17 @@ body {
   margin: 0 8px;
 }
 .social a {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: block;
   overflow: hidden;
   text-indent: -999em;
-  text-indent: -999em;
-  line-height: 99em;
-  text-align: left;
-  background-repeat: no-repeat;
-  display: block;
-  overflow: hidden;
-  direction: ltr;
 }
 .social .twitter {
-  background-position: -340px -280px;
+  background-position: -758px -255px;
 }
 .social .facebook {
-  background-position: -400px -280px;
+  background-position: -698px -331px;
 }
 /*.twitter {
 	padding: 23px 0 7px;
@@ -1718,38 +1711,28 @@ body {
   left: 0;
   bottom: 0;
 }
-.goodies {
-  margin: 0 0 46px;
-}
 .features h3 span {
   display: block;
 }
-.features section,
-.abilities li {
-  padding: 0 0 0 82px;
-}
-.features section {
-  position: relative;
-  margin-bottom: 28px;
-}
-.features h4 {
+.goodies h4 {
   margin: 0 0 7px;
+  padding-top: 5px;
   font-size: 18px;
   color: #333;
+  text-align: center;
 }
-.features p {
+.goodies p {
   margin: 0 0 5px;
   color: #595959;
 }
-.features .entry-summary {
+.goodies .more {
+  margin: 0 0 20px;
+  text-align: center;
+}
+.goodies .entry-summary {
   margin: 0 0 45px;
   font: 18px/22px minion-pro, georgia, serif;
   color: #000;
-}
-.goodies figure {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 /* abilities */
 .abilities li {
@@ -2646,6 +2629,20 @@ body {
     padding-top: 30px;
     padding-bottom: 78px;
   }
+  .social {
+    margin: 0 auto;
+  }
+  .social li {
+    display: inline-block;
+    margin: 0;
+    text-align: left;
+  }
+  .social a {
+    padding: 13px 0 4px 50px;
+    width: 128px;
+    overflow: visible;
+    text-indent: 0;
+  }
   /*
   .subscription {
   	margin: 0 0 16px;
@@ -2691,12 +2688,19 @@ body {
   	}
   }
   */
-  .ie7 .twitter p {
-    padding: 0;
+  /*
+  .ie7 {
+  	.twitter p {
+  		padding: 0;
+  	}
   }
-  .ie8 .twitter p:before {
-    margin-left: -50px;
+  
+  .ie8 {
+  	.twitter p:before {
+  		margin-left: -50px;
+  	}
   }
+  */
   .support {
     margin-bottom: 33px;
     margin-left: -5%;
@@ -2757,15 +2761,6 @@ body {
     font-size: 24px;
     line-height: 30px;
   }
-  .home .content h3 {
-    width: 100%;
-    background-position: 0 16px;
-    text-align: left;
-  }
-  .home h3 em {
-    padding: 0 15px 0 0;
-    background: #f7f7f7;
-  }
   .play-video {
     top: 72px;
     left: 35%;
@@ -2774,6 +2769,33 @@ body {
   /* features */
   .features h3 span {
     display: inline;
+  }
+  .features section,
+  .abilities li {
+    padding: 0 0 0 82px;
+  }
+  .goodies {
+    margin: 0 0 16px;
+  }
+  .goodies section {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .goodies h3 span {
+    display: inline;
+  }
+  .goodies h4 {
+    padding-top: 0;
+    text-align: left;
+  }
+  .goodies figure {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .goodies .more {
+    margin: 0 0 5px;
+    text-align: left;
   }
   .pricing {
     clear: both;
@@ -3106,7 +3128,7 @@ body {
   }
   .try {
     padding-right: 328px;
-    top: 310px;
+    top: 283px;
     left: 0;
     position: absolute;
     float: left;
@@ -3155,7 +3177,7 @@ body {
     padding: 27px 15px 0;
   }
   .price-tag {
-    margin: -28px 11px 0 25px;
+    margin: -55px 11px 0 25px;
     float: right;
     /*figure {
   		width: 42%;
@@ -3192,6 +3214,15 @@ body {
   }
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   /* content */
+  .home .content h3 {
+    width: 100%;
+    background-position: 0 16px;
+    text-align: left;
+  }
+  .home h3 em {
+    padding: 0 15px 0 0;
+    background: #f7f7f7;
+  }
   .home .content {
     margin-top: 0;
   }
@@ -3425,6 +3456,43 @@ body {
   }
   /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   /* connect */
+  .connect {
+    margin: 0 0 23px;
+    padding: 20px 0 0;
+    width: 48%;
+    background-position: center -514px;
+    float: left;
+    text-align: left;
+  }
+  .connect p {
+    margin: 0 0 15px;
+  }
+  .social li {
+    width: 100%;
+  }
+  .social .facebook {
+    background-color: #fff;
+  }
+  .social a {
+    height: 32px;
+  }
+  .subscription {
+    margin: 0;
+    border: none;
+    min-height: inherit;
+    padding: 20px 0;
+    width: 48%;
+    text-align: left;
+    float: right;
+  }
+  #subscribe {
+    margin-left: 170px;
+    clear: left;
+    float: left;
+  }
+  #subscribe-form fieldset {
+    width: auto;
+  }
   .support {
     padding-right: 0;
   }
@@ -3434,7 +3502,10 @@ body {
     margin-right: 60px;
   }
   .price-tag {
-    margin-right: 46px;
+    margin: -18px 50px 0 25px;
+  }
+  .try {
+    top: 270px;
   }
   /* licencing */
   .licencing {
@@ -3479,9 +3550,6 @@ body {
   /* features */
   .pricing figure {
     width: 48%;
-  }
-  .goodies {
-    margin: 0 0 46px;
   }
   .features section {
     margin-bottom: 15px;
@@ -4089,23 +4157,36 @@ body {
     float: left;
     background: #fff;
   }
-  .subscription {
-    margin: 0;
-    border: none;
-    min-height: inherit;
-    padding: 20px 0;
-    width: 48%;
-    float: right;
-  }
   /* connect */
   .connect {
-    padding-top: 20px;
-    width: 48%;
-    background-position: center -514px;
-    float: left;
+    /* to 768
+  	padding-top: 20px;
+  	width: 48%;
+  	background-position: center -514px;
+  	float: left;
+  
+  	p {
+  		margin: 0 0 15px;
+  	}
+  	*/
+  
   }
-  .connect p {
-    margin: 0 0 15px;
+  .social {
+    padding: 0 0 15px;
+  }
+  .social li {
+    width: auto;
+  }
+  .social .facebook {
+    background-color: transparent;
+  }
+  .social a {
+    height: 44px;
+  }
+  #subscribe {
+    margin-left: 0;
+    clear: none;
+    float: none;
   }
   .twitter p {
     padding: 0 0 0 50px;
@@ -4154,6 +4235,7 @@ body {
   .inquiry {
     margin: 0 auto;
     width: 954px;
+    float: none;
   }
   .to-demo,
   .to-demo p,
