@@ -564,7 +564,8 @@ EOF;
 
 					<time class="published" datetime="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>">
 						<span class="value-title" title="<?php echo date('Y-m-d\TH:i:s-01:00', strtotime($post->post_date)); ?>"> </span>
-						<?php the_time(get_option('date_format'));
+						<?php //the_time(get_option('date_format'));
+									the_time('M j, Y');
 ?>
 
 					</time>
