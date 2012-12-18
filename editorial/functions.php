@@ -183,6 +183,7 @@ class Editorial
 	public static function theme_setup() {
 	  if (false == get_option('theme_was_installed')) {
 	    Editorial::create_colophon_page();
+	    Editorial::setOption('colophon-enabled', true);
 	    add_action('admin_notices', array('Editorial', 'show_welcome_notice'));
 	    update_option('theme_was_installed', '1');
 	    return;
@@ -441,6 +442,7 @@ EOF;
 				// hide comments after 5 downvotes
 				self::setOption('karma-treshold', 5);
 			}
+
 
 			// set that editorial was installed
 			self::setOption('editorial-install', true);
