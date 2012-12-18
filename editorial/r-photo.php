@@ -17,7 +17,7 @@ require_once(dirname(__FILE__) .'/../../../wp-load.php');
 
 $dimensions = Array ( '480', '768', '1024' );
 
-if ( IsSet ( $_GET['photo'] ) === false || IsSet ( $_GET['d'] ) === false || IsSet ( $_GET['t'] ) === false || !Editorial::canCache () )
+if ( IsSet ( $_GET['photo'] ) === false || IsSet ( $_GET['d'] ) === false || IsSet ( $_GET['t'] ) === false )
 	bw_error ();
 
 $photoId = UrlDecode ( $_GET['photo'] );
