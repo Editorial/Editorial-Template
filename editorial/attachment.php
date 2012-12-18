@@ -37,6 +37,7 @@ if (Editorial::is_image($post->post_mime_type))
 	}
 	$imageMeta = wp_get_attachment_image_src($post->ID, $EditorialId == 'gallery' ? 'landscape' : 'portrait');
 	$imageMeta['alt'] = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+
 }
 else
 {

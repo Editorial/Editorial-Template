@@ -2,7 +2,7 @@
 Theme Name:     Editorial Custom
 Description:    Custom Editorial Styles
 Author:         Matjaz Korosec
-Version:        1.0
+Version:        1.1
 Template:       <?php echo $this_theme_template, "\n"; ?>
 
 IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^
@@ -15,7 +15,6 @@ IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^
 
 
 /*
-MATJAZ!!! OD TUKAJ NAPREJ DOL LAHKO EDITIRAS ZA KUSTOMIZACIJO
 
 Here are some prepared options for customization.
 Do search & replace (S&R) for all quoted ("") strings mentioned below in this file.
