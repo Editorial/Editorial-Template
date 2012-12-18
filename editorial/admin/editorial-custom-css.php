@@ -15,7 +15,6 @@ IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^
 
 
 /*
-MATJAZ!!! OD TUKAJ NAPREJ DOL LAHKO EDITIRAS ZA KUSTOMIZACIJO
 
 Here are some prepared options for customization.
 Do search & replace (S&R) for all quoted ("") strings mentioned below in this file.
