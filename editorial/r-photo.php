@@ -12,7 +12,8 @@
  * @version    1.0
  */
 
-require_once ( rtrim ( $_SERVER['DOCUMENT_ROOT'], '/\\' ) . DIRECTORY_SEPARATOR . 'wp-load.php' );
+require_once(dirname(__FILE__) .'/../../../wp-load.php');
+//require_once ( rtrim ( $_SERVER['DOCUMENT_ROOT'], '/\\' ) . DIRECTORY_SEPARATOR . 'wp-load.php' );
 
 $dimensions = Array ( '480', '768', '1024' );
 
