@@ -38,12 +38,12 @@ if (have_posts())
 				<?php Editorial::postExcerpt();?>
 			</div>
 <?php
-			//Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait', true);
+			Editorial::postFigure($thumbId, $EditorialId == 'home' ? 'landscape' : 'portrait', true);
 			//$thumbnailUrl = Editorial::getResponsiveImageUrl ( $thumbId, 'full' );
 ?>
-			<figure>
+			<!-- <figure>
 				<a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo Editorial::getResponsiveImageUrl ( $thumbId, 'full', (bool)Editorial::getOption('black-and-white') ) ?>" alt="<?php the_title(); ?>"></a>
-			</figure>
+			</figure> -->
 		</article>
 	</section>
 	<section class="featured">

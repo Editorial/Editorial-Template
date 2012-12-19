@@ -43,9 +43,9 @@ $portrait = false;
 if ( $imageData[1] < $imageData[2] )
 	$portrait = true;
 
-$image = StrStr ( $imageData[0], '/uploads/' );
+$image = strStr ( $imageData[0], '/uploads/' );
 $originalPath = WP_CONTENT_DIR . $image;
-$resizedPath = Str_Replace ( '/uploads/', '/editorial-r/', WP_CACHE_DIR . $image );
+$resizedPath = str_replace ( '/uploads/', '/editorial-r/', WP_CACHE_DIR . $image );
 $extension = PathInfo ( $originalPath, PATHINFO_EXTENSION );
 
 $allowed = Array ( 'jpg', 'jpeg', 'png', 'gif' );

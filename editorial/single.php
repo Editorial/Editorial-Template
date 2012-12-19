@@ -38,7 +38,7 @@ if (has_post_thumbnail())
 	$attachmentsCount = count(get_children(array('post_parent'=>$post->ID)));
 	$attachmentUrl = get_attachment_link($thumbId);
 
-	$thumbnailUrl = Editorial::getResponsiveImageUrl ( $thumbId, 'full' );
+	//$thumbnailUrl = Editorial::getResponsiveImageUrl ( $thumbId, 'full' );
 }
 else
 {
