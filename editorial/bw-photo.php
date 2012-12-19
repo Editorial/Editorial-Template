@@ -12,8 +12,9 @@
  * @version    1.0
  */
 
-require_once ( '/Users/tanjapislar/Sites/wordpress/wp-load.php' );
-//require_once(dirname(__FILE__) .'/../../../wp-load.php');
+//require_once ( '/Users/tanjapislar/Sites/wordpress/wp-load.php' );
+//require_once ( '/home/editorial/editorial/wp-load.php' );
+require_once(dirname(__FILE__) .'/../../../wp-load.php');
 
 if (!isset($_GET['photo']) || !isset($_GET['type']) || !Editorial::getOption('black-and-white') || !Editorial::canCache())
 {
