@@ -223,7 +223,9 @@ class Editorial_Admin
             // can we cache now?
             if (!Editorial::canCache())
             {
-                add_action('admin_notices', array($this, 'cacheNotice'));
+              add_action('admin_notices', array($this, 'cacheNotice'));
+							// disable bw photos for now, the user will get notified of the error
+							Editorial::setOption('black-and-white', false);
             }
         }
 		
@@ -603,8 +605,8 @@ class Editorial_Admin
 	public function updateNotice()
 	{
 	    if (Editorial::getOption('disable-admin-notices')) return;
-		$msg = sprintf("<strong>Editorial theme update is available.</strong> You can update it through the <a href='%s/wp-admin/update-core.php'>Updates</a> section in the Admin", get_bloginfo('url'));
-		$this->_showNotice(__($msg, 'Editorial'));
+			$msg = sprintf("<strong>Editorial theme update is available.</strong> You can update it through the <a href='%s/wp-admin/update-core.php'>Updates</a> section in the Admin", get_bloginfo('url'));
+			$this->_showNotice(__($msg, 'Editorial'));
 	}
 
 	/**
