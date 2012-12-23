@@ -1,0 +1,11 @@
+html { background: black; color: white; }
+html, body { min-height: 100%; }
+
+.touch-gallery {
+    position : absolute;
+    left     : 0;
+    top      : 0;
+    width    : 100%;
+    height   : 100%;
+}
+
