@@ -11,6 +11,7 @@
         // set the initial values
         this.position    = null;
         this.currentItem = null;
+        this.list        = null;
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -30,7 +31,7 @@
         'handleMouseDown', 'handleMouseMove', 'handleMouseUp',
         'handleTap', 'handleClick',
         'handleResize',
-        'init'
+        'init', 'tick'
     ];
 
     TouchGallery.prototype.template =
@@ -57,24 +58,22 @@
      */
     TouchGallery.prototype.init = function() {
         this.container.append(this.template);
-        var list = this.container.find('.items');
-        var listRatio = list.width() / list.height();
-        var containerWidth = this.container.width();
+        this.list = this.container.find('.items');
         this.items.forEach(function(item) {
-            var el = $('<li class="' + item.type + '"><img src="' + item.src + '"/></li>').appendTo(list);
+            var el = $('<li class="' + item.type + '"><img src="' + item.src + '"/></li>').appendTo(this.list);
         }, this);
         this.repositionImages();
         this.moveTo(0, true);
     };
 
     TouchGallery.prototype.repositionImages = function() {
-        var list = this.container.find('.items')
-        list.children().each(function() {
+        var self = this;
+        this.list.children().each(function() {
             var img = $(this).find('img');
             // if the image has a higher aspect ratio than the list container
             // we have to align it vertically
-            if (img.height() < list.height())
-                img.css('margin-top', (list.height() - img.height()) / 2 + 'px');
+            if (img.height() < self.list.height())
+                img.css('margin-top', (self.list.height() - img.height()) / 2 + 'px');
         });
     };
 
@@ -87,7 +86,8 @@
 
     /**
      * Moves the gallery to the specified item (zero-indexed)
-     * @param  {Number} idx [description]
+     * @param  {Number} idx               The index of the item to move to
+     * @param  {bool}   withoutTransition If it evaluates to true, does not transition
      */
     TouchGallery.prototype.moveTo = function(idx, withoutTransition) {
 
@@ -108,6 +108,11 @@
     TouchGallery.prototype.goToPrevious = function() {
         if (this.currentItem > 0) this.moveTo(this.currentItem - 1);
     };
+
+
+    TouchGallery.prototype.tick = function() {};
+    TouchGallery.prototype.update = function(elapsed) {};
+    TouchGallery.prototype.draw = function() {};
 
 
     // interaction handlers
