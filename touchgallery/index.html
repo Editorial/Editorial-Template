@@ -9,22 +9,15 @@
         <script src="lib/gallery.js"></script>
     </head>
     <body>
-        <div class="touch-gallery">
-            <div class="top-bar">
-                <h1>Logo</h1>
-                <ul class="controls">
-                    <li><a href="#" data-action="prev">Previous</a></li>
-                    <li><a href="#" data-action="toggleAutoplay">Autoplay (off)</a></li>
-                    <li><a href="#" data-action="next">Next</a></li>
-                </ul>
-                <a href="#" class="close" data-action="close">Close</a>
-            </div>
-            <div class="content">
-            </div>
-            <div class="bottom-bar">
-                <a href="#" class="more" data-action="toggleDescription">More</a>
-                <a href="#" class="link" data-action="linkToItem">Link</a>
-            </div>
-        </div>
+        <script>
+            var t = new TouchGallery({
+                container : 'body',
+                items     : [
+                    { src: 'http://ns223506.ovh.net/rozne/fc9ff22c21f0af55c130bd0e73402440/wallpaper-249485.jpg', type: 'image' },
+                    { src: 'http://ns223506.ovh.net/rozne/41a7d060725d89f6dc550a63097c8949/wallpaper-1568457.jpg', type: 'image' },
+                    { src: 'http://ns223506.ovh.net/rozne/f2bfa4f0f846d9af3f1d5b0b259e666f/wallpaper-2399501.jpg', type: 'image' }
+                ]
+            });
+        </script>
     </body>
 </html>
