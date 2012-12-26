@@ -72,7 +72,7 @@
 				Editorial is responsive and offers best possible user experience on any device with HTML capable
 				browser. We went all the way to ensure all you have to worry about is only the quality of your
 				content.</p>
-				<p><a href="/">Learn more ...</a></p>
+				<p class="more"><a href="/">Learn more ...</a></p>
 			</section>
 			<section id="photography">
 				<figure>
@@ -82,7 +82,7 @@
 				<p>Editorial has been designed to properly accommodate and compliment both landscape &amp; portrait
 				images. One of the single most important features is the flexible layout which adapts to the
 				orientation of the cover image.</p>
-				<p><a href="/">Learn more ...</a></p>
+				<p class="more"><a href="/">Learn more ...</a></p>
 			</section>
 			<section id="reading">
 				<figure>
@@ -93,7 +93,7 @@
 				reading it. Our obsession with typography led us to design Editorial so that readers get sucked
 				into text like into a cosy armchair and forget about everything else. Even if they end up reading
 				Divine Comedy by Dante Alighieri.</p>
-				<p><a href="/">Learn more ...</a></p>
+				<p class="more"><a href="/">Learn more ...</a></p>
 			</section>
 			<section id="gallery">
 				<figure>
@@ -103,7 +103,7 @@
 				<p>They say an image is worth a thousand words. What about a whole gallery of them? With video and
 				audio. Whether you are revealing shocking video reportage or photo  series for this seasons new
 				fashion collection the media gallery will deliver your multimedia content flawlessly.</p>
-				<p><a href="/">Learn more ...</a></p>
+				<p class="more"><a href="/">Learn more ...</a></p>
 			</section>
 			<section id="feedback">
 				<figure>
@@ -114,7 +114,7 @@
 				and love to talk about it with other people. They write comments,  share your content through social
 				media, blog and tweet about it etc. Editorial’s integrated tools make it easy to track and govern
 				these conversations. </p>
-				<p><a href="/">Learn more ...</a></p>
+				<p class="more"><a href="/">Learn more ...</a></p>
 			</section>
 			<section id="machine">
 				<figure>
@@ -125,7 +125,7 @@
 				reading it. Our obsession with typography led us to design Editorial so that readers get sucked
 				into text like into a cosy armchair and forget about everything else. Even if they end up reading
 				Divine Comedy by Dante Alighieri.</p>
-				<p><a href="/">Learn more ...</a></p>
+				<p class="more"><a href="/">Learn more ...</a></p>
 			</section>
 			<!--<ul class="abilities">
 				<li id="wp3ready">WordPress 3 ready</li>
@@ -576,19 +576,18 @@
 	</div>
 	<form class="inquiry" method="post">
 		<h2><em>Send inquiry</em></h2>
-		<!--<fieldset class="user-input">
-			<label>Dear Editorial team,</label>
-			<textarea>
-				I am writing about ...
-			</textarea>
-
-			Yours sincerely,
+		<fieldset class="title-input">
+			<label for="i-message">Dear Editorial team,</label>
+			<textarea id="i-message" name="i-message" rows="6" cols="40">I am writing about ...</textarea>
+		</fieldset>
+		<fieldset class="message-input">
+			<label for="i-name">Yours sincerely,</label>
 			<input type="text" name="i-name" id="i-name" placeholder="Your name">
 			<input type="text" name="i-email" id="i-email" placeholder="Your e-mail address">
-
-			<a href="/">Cancel and close</a> or <a href="">Send inquiry</a>
-
-		</fieldset>-->
+		</fieldset>
+		<fieldset class="action">
+			<a href="/">Cancel and close</a> or <input type="submit" value="Send inquiry">
+		</fieldset>
 	</form>
 	<div class="updates">
 		<div class="adapt">
@@ -598,8 +597,8 @@
 				a line or two on Twitter or Facebook. We would love to hear your thoughts on Editorial or chat
 				about digital publishing in general.</p>
 				<ul class="social">
-					<li class="twitter"><a href="/">Follow on Twitter</a></li>
-					<li class="facebook"><a href="/">Like on Facebook</a></li>
+					<li class="twitter"><a href="/TW">Follow on Twitter</a></li>
+					<li class="facebook"><a href="/FB">Like on Facebook</a></li>
 				</ul>
 				<!--<div class="twitter">
 					<div class="tweet tweet-255754523056947200">
