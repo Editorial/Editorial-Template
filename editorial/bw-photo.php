@@ -12,6 +12,7 @@
  * @version    1.0
  */
 
+//require_once ( '/Users/tanjapislar/Sites/wordpress/wp-load.php' );
 require_once('./../../../wp-load.php');
 
 if (!isset($_GET['photo']) || !isset($_GET['type']) || !Editorial::getOption('black-and-white') || !Editorial::canCache())
@@ -39,7 +40,8 @@ if (!is_array($imageData) || !isset($imageData[0]))
 
 $image = strstr($imageData[0], '/uploads/');
 $originalPath = WP_CONTENT_DIR.$image;
-$grayscalePath = str_replace('/uploads/', '/editorial/', WP_CACHE_DIR.$image);
+//$grayscalePath = str_replace('/uploads/', '/editorial/', WP_CACHE_DIR.$image);
+$grayscalePath = str_replace('/cache/uploads/', '/cache/editorial/', WP_CACHE_DIR.$image);
 $extension = pathinfo($originalPath, PATHINFO_EXTENSION);
 
 $allowed = array('jpg', 'jpeg', 'png', 'gif');

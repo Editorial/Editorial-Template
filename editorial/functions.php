@@ -35,8 +35,8 @@ define ('EDITORIAL_WIDGET', 'footer-widgets');
 // Pre-2.6 compatibility
 if (!defined('WP_CONTENT_URL')) define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
 if (!defined('WP_CONTENT_DIR')) define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
-if (!defined('WP_CACHE_DIR')) define('WP_CACHE_DIR', WP_CONTENT_DIR . '/cache');
-if (!defined('WP_CACHE_URL')) define('WP_CACHE_URL', WP_CONTENT_URL . '/cache');
+if (!defined('WP_CACHE_DIR')) define('WP_CACHE_DIR', WP_CONTENT_DIR . '/uploads/cache');
+if (!defined('WP_CACHE_URL')) define('WP_CACHE_URL', WP_CONTENT_URL . '/uploads/cache');
 
 /**
  * Editorial
