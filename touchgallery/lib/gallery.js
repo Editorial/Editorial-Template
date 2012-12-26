@@ -26,6 +26,9 @@
 
         // hook up events
         $(window).resize(this.handleResize);
+        this.container.on('touchstart', this.handleTouchStart);
+        this.container.on('touchmove', this.handleTouchMove);
+        this.container.on('touchend', this.handleTouchEnd);
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -86,7 +89,13 @@
      * (Internal) Snaps to the nearest image
      */
     TouchGallery.prototype.snap = function() {
-        
+        var left = this.list.width() * Math.floor(this.position / this.list.width()),
+            right = this.list.width() * Math.ceil(this.position / this.list.width());
+        if (this.position - left < right - this.position)
+            this.targetPosition = left;
+        else
+            this.targetPosition = right;
+        this.tick();
     };
 
     /**
@@ -151,24 +160,42 @@
     };
 
     TouchGallery.prototype.draw = function() {
-        this.list.get(0).style.webkitTransform = 'translate(-' + this.position + 'px, 0)';
-        this.list.get(0).style.transform = 'translate(-' + this.position + 'px, 0)';
+        this.list.get(0).style.webkitTransform = 'translate(' + (-this.position) + 'px, 0)';
+        this.list.get(0).style.transform = 'translate(' + (-this.position) + 'px, 0)';
     };
 
 
     // interaction handlers
     TouchGallery.prototype.handleTouchStart = function(ev) {
-        var touch = this.interacting ? this._findTouch(ev.changedTouches) : ev.changedTouches[0];
+        var touch = this.interacting ? this._findTouch(ev.originalEvent.changedTouches) : ev.originalEvent.changedTouches[0];
         if (touch) {
+            ev.preventDefault();
             if (!this.interacting) {
                 this.touchId = touch.identifier;
                 this.touchX  = touch.pageX;
             }
+            this.interacting = true;
+            this.tick();
         }
     };
 
-    TouchGallery.prototype.handleTouchMove = function(ev) {};
-    TouchGallery.prototype.handleTouchEnd = function(ev) {};
+    TouchGallery.prototype.handleTouchMove = function(ev) {
+        var touch = this._findTouch(ev.originalEvent.changedTouches);
+        if (touch) {
+            ev.preventDefault();
+            this.targetPosition = this.position += this.touchX - touch.pageX;
+            this.touchX = touch.pageX;
+        }
+    };
+
+    TouchGallery.prototype.handleTouchEnd = function(ev) {
+        ev.preventDefault();
+        this.touchId     = null;
+        this.touchX      = null;
+        this.interacting = false;
+        this.snap();
+    };
+
     TouchGallery.prototype.handleTouchCancel = function(ev) {};
 
     TouchGallery.prototype._findTouch = function(touchList) {
