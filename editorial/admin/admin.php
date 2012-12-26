@@ -224,6 +224,8 @@ class Editorial_Admin
             if (!Editorial::canCache())
             {
                 add_action('admin_notices', array($this, 'cacheNotice'));
+								// disable bw photos for now, the user will get notified of the error
+								Editorial::setOption('black-and-white', false);
             }
         }
 		
