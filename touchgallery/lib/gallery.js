@@ -36,7 +36,7 @@
     }
 
     TouchGallery.boundHandlers = [
-        'handleTouchStart', 'handleTouchMove', 'handleTouchEnd', 'handleTouchCancel', 'handleClick',
+        'handleTouchStart', 'handleTouchMove', 'handleTouchEnd', 'handleClick',
         'handleResize',
         'init', 'tick'
     ];
@@ -89,12 +89,16 @@
      * (Internal) Snaps to the nearest image
      */
     TouchGallery.prototype.snap = function() {
-        var left = this.list.width() * Math.floor(this.position / this.list.width()),
-            right = this.list.width() * Math.ceil(this.position / this.list.width());
+        var width = this.list.width(),
+            left  = width * Math.floor(this.position / width),
+            right = width * Math.ceil(this.position / width);
+
         if (this.position - left < right - this.position)
             this.targetPosition = left;
         else
             this.targetPosition = right;
+
+        this.targetPosition = clamp(this.targetPosition, 0, width * this.items.length - 3);
         this.tick();
     };
 
@@ -106,7 +110,7 @@
     TouchGallery.prototype.moveTo = function(idx, withoutTransition) {
         this.currentItem = idx;
         if (withoutTransition) {
-            this.position = this.getPositionForIndex(idx);
+            this.targetPosition = this.position = this.getPositionForIndex(idx);
             this.draw();
         } else {
             this.targetPosition = this.getPositionForIndex(idx);
@@ -138,7 +142,6 @@
 
     /**
      * The main animation loop 
-     * @return {[type]} [description]
      */
     TouchGallery.prototype.tick = function() {
         if (Math.abs(this.position - this.targetPosition) > 1 || this.interacting)
@@ -196,8 +199,6 @@
         this.snap();
     };
 
-    TouchGallery.prototype.handleTouchCancel = function(ev) {};
-
     TouchGallery.prototype._findTouch = function(touchList) {
         for (var i = 0; i < touchList.length; i++)
             if (touchList[i].identifier == this.touchId)
@@ -221,6 +222,10 @@
         return function() {
             return fn.apply(ctx, arguments);
         };
+    }
+
+    function clamp(n, a, b) {
+        return Math.max(a, Math.min(b, n));
     }
 
     // requestAnimationFrame implementation
