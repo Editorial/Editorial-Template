@@ -9,15 +9,18 @@
         this.items     = options.items;
 
         // set the initial values
-        this.position       = null;
-        this.targetPosition = null;
-        this.currentItem    = null;
-        this.list           = null;
-        this.lastTickTime   = null;
-        this.easeFactor     = 0.15; // arbitrary easing factor (0-1], higher to make things snap faster
-        this.interacting    = false;
-        this.touchX         = null;
-        this.touchId        = null;
+        this.position        = null;
+        this.initialPosition = null;
+        this.targetPosition  = null;
+        this.currentItem     = null;
+        this.list            = null;
+        this.lastTickTime    = null;
+        this.easeFactor      = 0.15; // arbitrary easing factor (0-1], higher to make things snap faster
+        this.interacting     = false;
+        this.touchCoords     = null;
+        this.touchId         = null;
+        this.tapCandidate    = null;
+        this.youtubeCounter  = 0;
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -25,10 +28,8 @@
         }, this);
 
         // hook up events
-        $(window).resize(this.handleResize);
-        this.container.on('touchstart', this.handleTouchStart);
-        this.container.on('touchmove', this.handleTouchMove);
-        this.container.on('touchend', this.handleTouchEnd);
+        window.addEventListener('orientationchange', this.handleResize);
+        window.addEventListener('resize', this.handleResize);
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -36,25 +37,35 @@
     }
 
     TouchGallery.boundHandlers = [
-        'handleTouchStart', 'handleTouchMove', 'handleTouchEnd', 'handleClick',
-        'handleResize',
+        'handleTouchStart', 'handleTouchMove', 'handleTouchEnd',
+        'handleResize', 'handleTap',
+        'repositionImages',
         'init', 'tick'
     ];
 
     TouchGallery.prototype.template =
         '<div class="touch-gallery">' +
             '<ul class="items"></ul>' +
-            '<div class="top-bar"></div>' +
+            '<div class="top-bar">' +
+                '<a class="logo" href="#">Logo</a>' +
+            '</div>' +
             '<div class="bottom-bar"></div>' +
         '</div>';
 
     TouchGallery.prototype.preloadImages = function(callback) {
-        var waitingToLoad = this.items.length;
+        var images = this.items.filter(function(item) {
+            return item.type == 'image' || item.type == 'youtube';
+        });
 
-        this.items.forEach(function(item) {
+        var waitingToLoad = images.length;
+
+        images.forEach(function(item) {
             item.img = new Image;
             item.img.onload = done;
-            item.img.src = item.src;
+            if (item.src)
+                item.img.src = item.src;
+            else
+                item.img.src = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
         });
 
         function done() { if (!--waitingToLoad) callback(); }
@@ -67,22 +78,71 @@
         this.container.append(this.template);
         this.list = this.container.find('.items');
         this.items.forEach(function(item) {
-            var el = $('<li class="' + item.type + '"><img src="' + item.src + '"/></li>').appendTo(this.list);
+            var listItem = $('<li></li>');
+            if (item.type == 'image')
+                listItem.append(this.createImage(item));
+            if (item.type == 'youtube')
+                listItem.append(this.createYouTubeVideo(item));
+            this.list.append(listItem);
         }, this);
+
+        this.list.get(0).addEventListener('touchstart', this.handleTouchStart);
+        this.list.get(0).addEventListener('touchmove', this.handleTouchMove);
+        this.list.get(0).addEventListener('touchend', this.handleTouchEnd);
+
         this.repositionImages();
         this.moveTo(0, true);
+    };
+
+    TouchGallery.prototype.createImage = function(item) {
+        return '<img src="' + item.src + '" alt=""/>';
+    };
+
+    TouchGallery.prototype.createYouTubeVideo = function(item) {
+        var id = 'youtube-' + (this.youtubeCounter++),
+            playerContainer = $('<div></div>').attr('id', id);
+
+        playerContainer.append('<img src="http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg"/>');
+
+        item.playerContainer = playerContainer;
+
+        return playerContainer;
+    };
+
+    TouchGallery.prototype.activateYouTubePlayer = function(item) {
+        item.playerContainer.data('player', new YT.Player(item.playerContainer.get(0), {
+            width   : this.list.width(),
+            height  : this.list.height(),
+            videoId : item.id,
+            events  : {
+                onReady: function() { console.log(arguments); },
+                onStateChange: function() { console.log(arguments); }
+            }
+        }));
     };
 
     TouchGallery.prototype.repositionImages = function() {
         var self = this;
         this.list.children().each(function(idx) {
-            var img = $(this).find('img');
+            var img = $(this).find('img').css('margin-top', 0);
             // if the image has a higher aspect ratio than the list container
             // we have to align it vertically
             if (img.height() < self.list.height())
                 img.css('margin-top', (self.list.height() - img.height()) / 2 + 'px');
             $(this).css('margin-left', idx * self.list.width() + 'px');
+
+            var iframe = $(this).find('iframe');
+            if (iframe.length) {
+                iframe.attr({
+                    width  : self.list.width(),
+                    height : self.list.height()
+                }).css({
+                    width: '100%',
+                    height: '100%'
+                });
+            }
         });
+        this.moveTo(this.currentItem, true);
     };
 
     /**
@@ -98,7 +158,8 @@
         else
             this.targetPosition = right;
 
-        this.targetPosition = clamp(this.targetPosition, 0, width * this.items.length - 3);
+        this.targetPosition = clamp(this.targetPosition, 0, width * (this.items.length - 1));
+        this.currentItem = Math.floor(this.targetPosition / width);
         this.tick();
     };
 
@@ -170,12 +231,15 @@
 
     // interaction handlers
     TouchGallery.prototype.handleTouchStart = function(ev) {
-        var touch = this.interacting ? this._findTouch(ev.originalEvent.changedTouches) : ev.originalEvent.changedTouches[0];
+        var touch = this.interacting ? this._findTouch(ev.changedTouches) : ev.changedTouches[0];
         if (touch) {
             ev.preventDefault();
             if (!this.interacting) {
-                this.touchId = touch.identifier;
-                this.touchX  = touch.pageX;
+                this.touchId         = touch.identifier;
+                this.touchCoords     = { x: touch.pageX, y: touch.pageY };
+                this.touchStartTime  = new Date;
+                this.initialPosition = this.position;
+                this.tapCandidate    = true;
             }
             this.interacting = true;
             this.tick();
@@ -183,20 +247,43 @@
     };
 
     TouchGallery.prototype.handleTouchMove = function(ev) {
-        var touch = this._findTouch(ev.originalEvent.changedTouches);
+        var touch = this._findTouch(ev.changedTouches);
         if (touch) {
             ev.preventDefault();
-            this.targetPosition = this.position += this.touchX - touch.pageX;
-            this.touchX = touch.pageX;
+            var width = this.list.width() * (this.items.length - 1);
+            this.position = this.initialPosition + this.touchCoords.x - touch.pageX;
+
+            // this creates a rubber-banding effect when reaching the edges of the gallery
+            if (this.position < 0)
+                this.position /= 6;
+            if (this.position > width)
+                this.position = width + (this.position % width) / 6;
+
+            // if the touch moves more than 40px (40*40=1600) or lasts more than 400ms don't
+            // trigger a tap event
+            if (this.tapCandidate) {
+                var d = Math.pow(this.touchCoords.x - touch.pageX, 2) + Math.pow(this.touchCoords.y - touch.pageY, 2);
+                this.tapCandidate = d < 1600 && (new Date - this.touchStartTime) < 400;
+            }
+
+            this.targetPosition = this.position;
         }
     };
 
     TouchGallery.prototype.handleTouchEnd = function(ev) {
         ev.preventDefault();
-        this.touchId     = null;
-        this.touchX      = null;
-        this.interacting = false;
+        this.touchId      = null;
+        this.touchCoords  = null;
+        this.interacting  = false;
         this.snap();
+        if (this.tapCandidate)
+            this.handleTap(ev);
+    };
+
+    TouchGallery.prototype.handleTap = function(ev) {
+        var item = this.items[this.currentItem];
+        if (item.type == 'youtube')
+            this.activateYouTubePlayer(item);
     };
 
     TouchGallery.prototype._findTouch = function(touchList) {
@@ -207,7 +294,7 @@
     };
 
     TouchGallery.prototype.handleResize = function() {
-        this.repositionImages();
+        setTimeout(this.repositionImages, 200);
     };
 
 
