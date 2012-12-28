@@ -177,7 +177,7 @@
             mozallowfullscreen    : 'yes',
             allowFullScreen       : 'yes'
         }).appendTo(item.playerContainer);
-        var player = new Communicator(iframe[0]);
+        var player = new VimeoCommunicator(iframe[0]);
         player.on('received', function(data) { console.warn(data); });
         item.playerContainer.data('player', player);
     };
@@ -384,7 +384,7 @@
 
 
 
-    function Communicator(iframe) {
+    function VimeoCommunicator(iframe) {
         $.extend(this, EventEmitter);
         var self = this;
         this.ready = false;
@@ -395,15 +395,15 @@
         this.on('received', this.handleReady);
     }
 
-    Communicator.prototype.send = function(data) {
+    VimeoCommunicator.prototype.send = function(data) {
         this.iframe.contentWindow.postMessage(JSON.stringify(data), this.iframe.src.split('?')[0]);
     };
 
-    Communicator.prototype.handleMessage = function(ev) {
+    VimeoCommunicator.prototype.handleMessage = function(ev) {
         this.emit('received', JSON.parse(ev.data));
     };
 
-    Communicator.prototype.handleReady = function(data) {
+    VimeoCommunicator.prototype.handleReady = function(data) {
         if (!this.ready && data.event == 'ready') {
             this.ready = true;
             this.send({method: 'addEventListener', value: 'play' });
