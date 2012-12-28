@@ -20,7 +20,7 @@
         this.touchCoords     = null;
         this.touchId         = null;
         this.tapCandidate    = null;
-        this.youtubeCounter  = 0;
+        this.videoCounter    = 0;
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -53,24 +53,32 @@
         '</div>';
 
     TouchGallery.prototype.preloadImages = function(callback) {
-        var images = this.items.filter(function(item) {
-            return item.type == 'image' || item.type == 'youtube';
-        });
-
         var waitingToLoad = 0;
 
-        images.forEach(function(item) {
-            item.img = new Image;
-            item.img.onload = done;
+        this.items.filter(function(item) {
+
             switch(item.type) {
                 case 'image':
-                    item.img.src = item.src;
+                    item.img        = new Image;
+                    item.img.onload = done;
+                    item.img.src    = item.src;
+                    waitingToLoad++;
                     break;
                 case 'youtube':
-                    item.img.src = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+                    item.img        = new Image;
+                    item.img.onload = done;
+                    item.img.src    = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+                    waitingToLoad++;
+                    break;
+                case 'vimeo':
+                    $.getJSON('http://vimeo.com/api/v2/video/' + item.id + '.json?callback=?', function(data) {
+                        item.img        = new Image;
+                        item.img.onload = done;
+                        item.img.src    = data[0].thumbnail_large;
+                    });
+                    waitingToLoad++;    
                     break;
             }
-            waitingToLoad++;
         });
 
         function done() { if (!--waitingToLoad) callback(); }
@@ -88,6 +96,8 @@
                 listItem.append(this.createImage(item));
             if (item.type == 'youtube')
                 listItem.append(this.createYouTubeVideo(item));
+            if (item.type == 'vimeo')
+                listItem.append(this.createVimeoVideo(item));
             this.list.append(listItem);
         }, this);
 
@@ -115,10 +125,21 @@
      * @return {jQuery}      A jQuery-wrapped DOM element
      */
     TouchGallery.prototype.createYouTubeVideo = function(item) {
-        var id = 'youtube-' + (this.youtubeCounter++),
+        var id = 'youtube-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
-        playerContainer.append('<img src="http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg"/>');
+        playerContainer.append('<img src="' + item.img.src + '"/>');
+
+        item.playerContainer = playerContainer;
+
+        return playerContainer;
+    };
+
+    TouchGallery.prototype.createVimeoVideo = function(item) {
+        var id = 'vimeo-' + (this.videoCounter++),
+            playerContainer = $('<div></div>').attr('id', id);
+
+        playerContainer.append('<img src="' + item.img.src + '"/>');
 
         item.playerContainer = playerContainer;
 
