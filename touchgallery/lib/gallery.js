@@ -57,15 +57,20 @@
             return item.type == 'image' || item.type == 'youtube';
         });
 
-        var waitingToLoad = images.length;
+        var waitingToLoad = 0;
 
         images.forEach(function(item) {
             item.img = new Image;
             item.img.onload = done;
-            if (item.src)
-                item.img.src = item.src;
-            else
-                item.img.src = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+            switch(item.type) {
+                case 'image':
+                    item.img.src = item.src;
+                    break;
+                case 'youtube':
+                    item.img.src = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+                    break;
+            }
+            waitingToLoad++;
         });
 
         function done() { if (!--waitingToLoad) callback(); }
@@ -94,10 +99,21 @@
         this.moveTo(0, true);
     };
 
+
+    /**
+     * Creates a simple image in the gallery
+     * @param  {Object} item 
+     * @return {jQuery}      A jQuery-wrapped DOM element
+     */
     TouchGallery.prototype.createImage = function(item) {
-        return '<img src="' + item.src + '" alt=""/>';
+        return $('<img src="' + item.src + '" alt=""/>');
     };
 
+    /**
+     * Creates a YouTube items in the gallery
+     * @param  {Object} item 
+     * @return {jQuery}      A jQuery-wrapped DOM element
+     */
     TouchGallery.prototype.createYouTubeVideo = function(item) {
         var id = 'youtube-' + (this.youtubeCounter++),
             playerContainer = $('<div></div>').attr('id', id);
@@ -109,6 +125,10 @@
         return playerContainer;
     };
 
+    /**
+     * Loads the player for YouTube items
+     * @param  {Object} item The item being activated
+     */
     TouchGallery.prototype.activateYouTubePlayer = function(item) {
         item.playerContainer.data('player', new YT.Player(item.playerContainer.get(0), {
             width   : this.list.width(),
@@ -121,6 +141,9 @@
         }));
     };
 
+    /**
+     * Repositions image after viewport parameters change (used for horizontal and vertical alignment)
+     */
     TouchGallery.prototype.repositionImages = function() {
         var self = this;
         this.list.children().each(function(idx) {
@@ -195,6 +218,11 @@
         if (this.currentItem > 0) this.moveTo(this.currentItem - 1);
     };
 
+    /**
+     * Returns a position for the given item index
+     * @param  {Number} idx The item index (zero-based)
+     * @return {Number}
+     */
     TouchGallery.prototype.getPositionForIndex = function(idx) {
         return idx * this.list.width();
     };
@@ -202,9 +230,10 @@
 
 
     /**
-     * The main animation loop 
+     * The main animation loop (runs every time requestAnimationFrame is fired)
      */
     TouchGallery.prototype.tick = function() {
+        // only register for the next rAF event if there's anything to animate
         if (Math.abs(this.position - this.targetPosition) > 1 || this.interacting)
             requestAnimationFrame(this.tick);
 
@@ -216,10 +245,15 @@
         this.lastTickTime = +new Date;
     };
 
+    /**
+     * Update the parameters inside the animation loop
+     * @param  {Number} elapsed The number of milliseconds elapsed since last update
+     */
     TouchGallery.prototype.update = function(elapsed) {
         this.position += (this.targetPosition - this.position) * this.easeFactor;
 
-        if (Math.abs(this.position - this.targetPosition) < 1)
+        // snap into position if close enough to final position
+        if (Math.abs(this.position - this.targetPosition) <= 1)
             this.position = this.targetPosition;
     };
 
@@ -229,7 +263,6 @@
     };
 
 
-    // interaction handlers
     TouchGallery.prototype.handleTouchStart = function(ev) {
         var touch = this.interacting ? this._findTouch(ev.changedTouches) : ev.changedTouches[0];
         if (touch) {
@@ -277,10 +310,13 @@
         this.interacting  = false;
         this.snap();
         if (this.tapCandidate)
-            this.handleTap(ev);
+            this.handleTap();
     };
 
-    TouchGallery.prototype.handleTap = function(ev) {
+    /**
+     * Handles tap events
+     */
+    TouchGallery.prototype.handleTap = function() {
         var item = this.items[this.currentItem];
         if (item.type == 'youtube')
             this.activateYouTubePlayer(item);
@@ -293,8 +329,13 @@
         return null;
     };
 
+    /**
+     * Handles viewport resize events
+     */
     TouchGallery.prototype.handleResize = function() {
-        setTimeout(this.repositionImages, 200);
+        // repositioning needs to happen after a fair amount
+        // of delay to ensure correct measurement
+        setTimeout(this.repositionImages, 100);
     };
 
 
