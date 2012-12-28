@@ -163,6 +163,26 @@
     };
 
     /**
+     * Loads up the Vimeo player for the item
+     * @param  {Object} item The item being activated
+     */
+    TouchGallery.prototype.activateVimeoPlayer = function(item) {
+        item.playerContainer.children().remove();
+        var iframe = $('<iframe></iframe>').attr({
+            width                 : this.list.width(),
+            height                : this.list.height(),
+            src                   : 'http://player.vimeo.com/video/' + item.id + '?api=1&player_id=' + item.playerContainer.attr('id'),
+            frameborder           : '0',
+            webkitAllowFullScreen : 'yes',
+            mozallowfullscreen    : 'yes',
+            allowFullScreen       : 'yes'
+        }).appendTo(item.playerContainer);
+        var player = new Communicator(iframe[0]);
+        player.on('received', function(data) { console.warn(data); });
+        item.playerContainer.data('player', player);
+    };
+
+    /**
      * Repositions image after viewport parameters change (used for horizontal and vertical alignment)
      */
     TouchGallery.prototype.repositionImages = function() {
@@ -341,6 +361,8 @@
         var item = this.items[this.currentItem];
         if (item.type == 'youtube')
             this.activateYouTubePlayer(item);
+        else if (item.type == 'vimeo')
+            this.activateVimeoPlayer(item);
     };
 
     TouchGallery.prototype._findTouch = function(touchList) {
@@ -359,6 +381,37 @@
         setTimeout(this.repositionImages, 100);
     };
 
+
+
+
+    function Communicator(iframe) {
+        $.extend(this, EventEmitter);
+        var self = this;
+        this.ready = false;
+        this.iframe = iframe;
+        this.handleMessage = bind(this, this.handleMessage);
+        this.handleReady = bind(this, this.handleReady);
+        window.addEventListener('message', this.handleMessage, false);
+        this.on('received', this.handleReady);
+    }
+
+    Communicator.prototype.send = function(data) {
+        this.iframe.contentWindow.postMessage(JSON.stringify(data), this.iframe.src.split('?')[0]);
+    };
+
+    Communicator.prototype.handleMessage = function(ev) {
+        this.emit('received', JSON.parse(ev.data));
+    };
+
+    Communicator.prototype.handleReady = function(data) {
+        if (!this.ready && data.event == 'ready') {
+            this.ready = true;
+            this.send({method: 'addEventListener', value: 'play' });
+            this.send({method: 'addEventListener', value: 'pause' });
+            this.send({method: 'addEventListener', value: 'playProgress' });
+        }
+        this.off('received', this.handleReady);
+    };
 
     
     /**
@@ -427,8 +480,6 @@
             if (!this._events[type]) this._events[type] = [];
         }
     };
-
-    $.extend(TouchGallery.prototype, EventEmitter);
 
 
     // export the class to the global namespace
