@@ -15,9 +15,9 @@
 .touch-gallery .items {
     position : absolute;
     left     : 0;
-    top      : 50px;
+    top      : 0;
     right    : 0;
-    bottom   : 50px;
+    bottom   : 0;
     padding  : 0;
     margin   : 0;
 }
@@ -35,8 +35,39 @@
 }
 
 .touch-gallery .items li * {
-    display    : block;
-    margin     : 0 auto;
-    max-width  : 100%;
-    max-height : 100%;
+    display : block;
+}
+
+.touch-gallery .items li .play-icon {
+    content         : '\00a0';
+    position        : absolute;
+    top             : 50%;
+    left            : 50%;
+    margin-left     : -128px;
+    margin-top      : -128px;
+    width           : 256px;
+    height          : 256px;
+    background      : url(play-icon.png) center no-repeat transparent;
+    background-size : 100% 100%;
+}
+
+.touch-gallery .items li iframe {
+    width  : 100%;
+    height : 100%;
+}
+
+.touch-gallery .top-bar {
+    position   : absolute;
+    top        : 0;
+    left       : 0;
+    right      : 0;
+    background : rgba(0,0,0,0.8);
+}
+
+.touch-gallery .bottom-bar {
+    position   : absolute;
+    left       : 0;
+    right      : 0;
+    bottom     : 0;
+    background : rgba(0,0,0,0.8);
 }

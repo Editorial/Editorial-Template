@@ -23,7 +23,7 @@
         this.videoCounter    = 0;
 
         // configuration
-        this.swipeLength = 0.15; // swipe length must cross at least 15% of screen space
+        this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -51,6 +51,11 @@
             '<ul class="items"></ul>' +
             '<div class="top-bar">' +
                 '<a class="logo" href="#">Logo</a>' +
+                '<div class="controls">' +
+                    '<a class="prev">&laquo;</a>' +
+                    '<a class="togglePlay">&#9658;</a>' +
+                    '<a class="next">&raquo;</a>' +
+                '</div>' +
             '</div>' +
             '<div class="bottom-bar"></div>' +
         '</div>';
@@ -98,9 +103,10 @@
             if (item.type == 'image')
                 listItem.append(this.createImage(item));
             if (item.type == 'youtube')
-                listItem.append(this.createYouTubeVideo(item));
+                listItem.append(this.createYouTubeVideo(item)).addClass('video');
             if (item.type == 'vimeo')
-                listItem.append(this.createVimeoVideo(item));
+                listItem.append(this.createVimeoVideo(item)).addClass('video');
+            item.listItem = listItem;
             this.list.append(listItem);
         }, this);
 
@@ -131,7 +137,7 @@
         var id = 'youtube-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
-        playerContainer.append('<img src="' + item.img.src + '"/>');
+        playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
 
         item.playerContainer = playerContainer;
 
@@ -142,8 +148,7 @@
         var id = 'vimeo-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
-        playerContainer.append('<img src="' + item.img.src + '"/>');
-
+        playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
         item.playerContainer = playerContainer;
 
         return playerContainer;
@@ -166,6 +171,15 @@
     };
 
     /**
+     * Destroys the selected YouTube player instance
+     * @param  {Object} item
+     */
+    TouchGallery.prototype.destroyYouTubePlayer = function(item) {
+        item.listItem.children().remove().end().append(this.createYouTubeVideo(item));
+        this.repositionImages();
+    };
+
+    /**
      * Loads up the Vimeo player for the item
      * @param  {Object} item The item being activated
      */
@@ -185,27 +199,48 @@
         item.playerContainer.data('player', player);
     };
 
+    TouchGallery.prototype.destroyVimeoPlayer = function(item) {
+        item.listItem.children().remove().end().append(this.createVimeoVideo(item));
+        this.repositionImages();
+    };
+
     /**
      * Repositions image after viewport parameters change (used for horizontal and vertical alignment)
      */
     TouchGallery.prototype.repositionImages = function() {
-        var self = this;
+        var self   = this,
+            width  = this.list.width(),
+            height = this.list.height();
+            ratio  = width / height;
         this.list.children().each(function(idx) {
-            var img = $(this).find('img').css('margin-top', 0);
-            // if the image has a higher aspect ratio than the list container
-            // we have to align it vertically
-            if (img.height() < self.list.height())
-                img.css('margin-top', (self.list.height() - img.height()) / 2 + 'px');
+            // position the list element correctly
             $(this).css('margin-left', idx * self.list.width() + 'px');
+
+            var img      = $(this).find('img'),
+                imgRatio = img[0].naturalWidth / img[0].naturalHeight;
+
+            // size the image to fit the viewport, upscaling if necessary
+            if (imgRatio > ratio) {
+                img.css({
+                    marginLeft : 0,
+                    marginTop  : (height - (width / img[0].naturalWidth * img[0].naturalHeight)) / 2 + 'px',
+                    width      : '100%',
+                    height     : 'auto'
+                });
+            } else {
+                img.css({
+                    marginLeft : (width - (height / img[0].naturalHeight * img[0].naturalWidth)) / 2 + 'px',
+                    marginTop  : 0,
+                    width      : 'auto',
+                    height     : '100%'
+                });
+            }
 
             var iframe = $(this).find('iframe');
             if (iframe.length) {
                 iframe.attr({
                     width  : self.list.width(),
                     height : self.list.height()
-                }).css({
-                    width: '100%',
-                    height: '100%'
                 });
             }
         });
@@ -353,7 +388,7 @@
         this.touchCoords  = null;
         this.interacting  = false;
         var diff = this.targetPosition - this.initialPosition;
-        if (Math.abs(diff) / this.list.width() > this.swipeLength) {
+        if (Math.abs(diff) / Math.min(this.list.width(), this.list.height()) > this.swipeLength) {
             if (diff > 0) this.goToNext(); else this.goToPrevious();
         } else {
             this.snap();
