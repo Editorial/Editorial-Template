@@ -22,6 +22,9 @@
         this.tapCandidate    = null;
         this.videoCounter    = 0;
 
+        // configuration
+        this.swipeLength = 0.15; // swipe length must cross at least 15% of screen space
+
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
             this[name] = bind(this, this[name]);
@@ -233,12 +236,12 @@
      * @param  {bool}   withoutTransition If it evaluates to true, does not transition
      */
     TouchGallery.prototype.moveTo = function(idx, withoutTransition) {
-        this.currentItem = idx;
+        this.currentItem = clamp(idx, 0, this.items.length - 1);
         if (withoutTransition) {
-            this.targetPosition = this.position = this.getPositionForIndex(idx);
+            this.targetPosition = this.position = this.getPositionForIndex(this.currentItem);
             this.draw();
         } else {
-            this.targetPosition = this.getPositionForIndex(idx);
+            this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
         }
     };
@@ -333,11 +336,11 @@
             if (this.position > width)
                 this.position = width + (this.position % width) / 6;
 
-            // if the touch moves more than 40px (40*40=1600) or lasts more than 400ms don't
+            // if the touch moves more than 30px (30*30=900) or lasts more than 400ms don't
             // trigger a tap event
             if (this.tapCandidate) {
                 var d = Math.pow(this.touchCoords.x - touch.pageX, 2) + Math.pow(this.touchCoords.y - touch.pageY, 2);
-                this.tapCandidate = d < 1600 && (new Date - this.touchStartTime) < 400;
+                this.tapCandidate = d < 900 && (new Date - this.touchStartTime) < 400;
             }
 
             this.targetPosition = this.position;
@@ -349,9 +352,16 @@
         this.touchId      = null;
         this.touchCoords  = null;
         this.interacting  = false;
-        this.snap();
-        if (this.tapCandidate)
-            this.handleTap();
+        var diff = this.targetPosition - this.initialPosition;
+        if (Math.abs(diff) / this.list.width() > this.swipeLength) {
+            if (diff > 0) this.goToNext(); else this.goToPrevious();
+        } else {
+            this.snap();
+            if (this.tapCandidate) {
+                this.handleTap();
+                this.tapCandidate = false;
+            }
+        }
     };
 
     /**
