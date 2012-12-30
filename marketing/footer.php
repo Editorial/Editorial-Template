@@ -121,6 +121,21 @@ if (!is_404())
 <script>window.jQuery || document.write('<script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/jquery-1.7.2.min.js">\x3C/script>')</script>
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/plugins.js"></script>
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/script.js"></script>
+<?php if(is_front_page()) : ?>
+	<script>
+	// change call to action for returning visitors
+	var cta;
+	if(!localStorage.getItem('returning')) {
+		// first time visitor
+		localStorage.setItem('returning', true);
+		cta = '<a href="/features/" class="go alt">Learn More</a> or ';
+	} else {
+		// returning visitor
+		cta = '<a href="/purchase/" class="go">Purchase</a> or ';
+	}
+	jQuery(function($) { $('#cta').prepend(cta); });
+	</script>
+<?php endif; ?>
 <noscript>Your browser does not support JavaScript!</noscript>
 <?php wp_footer(); ?>
 </body>

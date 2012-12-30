@@ -130,6 +130,11 @@ function editorial_body_classes( $classes )
 		$classes[] = 'tearms';
 	}
 
+	if (is_page_template('custom_features.php')) {
+		$classes[] = 'off-canvas';
+	}
+
+
 	/*if ( is_singular() && ! is_home() && ! is_page_template( 'showcase.php' ) && ! is_page_template( 'sidebar-page.php' ) )
 		$classes[] = 'singular';
 */
@@ -142,11 +147,14 @@ register_nav_menus(array(
 	'main-nav'  => __('Main menu'),
 	'help-nav'  => __('Help & Support footer menu'),
 	'about-nav' => __('About footer menu'),
-	'legal-nav' => __('Legal footer menu'),
+	'legal-nav' => __('Legal footer menu')
 ));
 
 // add excerpt to pages
 add_post_type_support('page', 'excerpt');
+
+// needed for featured images
+add_theme_support('post-thumbnails');
 
 // mail hooks
 function editorial_wp_mail_from($content_type)
@@ -163,7 +171,7 @@ add_filter('wp_mail_from',      'editorial_wp_mail_from');
 add_filter('wp_mail_from_name', 'editorial_wp_mail_from_name');
 
 // error body class
-function custom_body_classes($classes) 
+function custom_body_classes($classes)
 {
     // add '404' to the $classes array
     if (is_404())
@@ -217,7 +225,7 @@ class EditorialNav extends Walker_Nav_Menu
 
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before .$prepend.apply_filters( 'the_title', $item->title, $item->ID ).$append;
+		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID );
 		$item_output .= $args->link_after;
 		$item_output .= '</a>';
 		$item_output .= $args->after;

@@ -14,7 +14,7 @@ get_header(); ?>
 			<h1><em>Edit</em>orial</h1>
 			<h2 class="note">is the ultimate WordPress theme designed specially for digital magazines.</h2>
 		</hgroup>
-		<p><a href="/purchase/" class="go">Purchase</a> or <a href="http://demo.editorialtemplate.com/">view live demo</a>.</p>
+		<p id="cta"><a href="http://demo.editorialtemplate.com/">view live demo</a>.</p>
 	</div>
 </header>
 
