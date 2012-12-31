@@ -370,6 +370,7 @@
 
 
     TouchGallery.prototype.handleTouchStart = function(ev) {
+        this.stopAutoplay();
         var touch = this.interacting ? this._findTouch(ev.changedTouches) : ev.changedTouches[0];
         if (touch) {
             ev.preventDefault();
