@@ -25,7 +25,10 @@
                         { src: 'samples/02.jpg', type: 'image' },
                         { src: 'samples/03.jpg', type: 'image' },
                         { src: 'samples/04.jpg', type: 'image' }
-                    ]
+                    ],
+                    readyHandler: function() {
+                        t.startAutoplay();
+                    }
                 });
             }
         </script>

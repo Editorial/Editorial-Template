@@ -8,6 +8,10 @@
         this.container = $(options.container);
         this.items     = options.items;
 
+        this.readyHandler = (options.readyHandler) ? options.readyHandler : function() {};
+        
+        if (options.template) this.template = options.template;
+
         // set the initial values
         this.position        = null;
         this.initialPosition = null;
@@ -122,6 +126,8 @@
 
         this.repositionImages();
         this.moveTo(0, true);
+
+        this.readyHandler();
     };
 
 
@@ -181,7 +187,6 @@
         $('<div class="close-button">×</div>').appendTo(this.container.find('.touch-gallery')).click(function(ev) {
             ev.preventDefault();
             self.destroyYouTubePlayer(item);
-            $(this).remove();
         });
     };
 
@@ -192,6 +197,7 @@
     TouchGallery.prototype.destroyYouTubePlayer = function(item) {
         item.player.destroy();
         item.listItem.children().remove().end().append(this.createYouTubeVideo(item));
+        this.container.find('.close-button').remove();
         this.repositionImages();
         this.showBars();
     };
@@ -213,20 +219,20 @@
             mozallowfullscreen    : 'yes',
             allowFullScreen       : 'yes'
         }).appendTo(item.playerContainer);
-        var player = new VimeoCommunicator(iframe[0]);
-        player.on('received', function(data) { console.warn(data); });
-        item.playerContainer.data('player', player);
+        item.player = new VimeoCommunicator(iframe[0]);
+        item.player.on('received', function(data) { console.warn(data); });
 
         var self = this;
         $('<div class="close-button">×</div>').appendTo(this.container.find('.touch-gallery')).click(function(ev) {
             ev.preventDefault();
             self.destroyVimeoPlayer(item);
-            $(this).remove();
         });
     };
 
     TouchGallery.prototype.destroyVimeoPlayer = function(item) {
+        item.player = null;
         item.listItem.children().remove().end().append(this.createVimeoVideo(item));
+        this.container.find('.close-button').remove();
         this.repositionImages();
         this.showBars();
     };
