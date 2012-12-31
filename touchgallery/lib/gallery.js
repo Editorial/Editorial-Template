@@ -25,7 +25,7 @@
 
         // configuration
         this.swipeLength      = 0.15; // swipe length must cross at least 15% of minimum screen dimension
-        this.autoplayInterval = 5000; // the autoadvance interval, in milliseconds
+        this.autoplayInterval = 3000; // the autoadvance interval, in milliseconds
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -433,8 +433,9 @@
             this.goToPrevious();
         if ($(ev.target).hasClass('next'))
             this.goToNext();
-        if ($(ev.target).hasClass('togglePlay'))
-            if (this.autoplayTimer) this.startAutoplay(); else this.stopAutoplay();
+        if ($(ev.target).hasClass('togglePlay')) {
+            if (this.autoplayTimer) this.stopAutoplay(); else this.startAutoplay();
+        }
     };
 
     TouchGallery.prototype.handleTap = function() {
@@ -481,7 +482,7 @@
     };
 
     TouchGallery.prototype.startAutoplay = function() {
-        if (this.autoplayTimer) clearInterval(this.autoplayTimer);
+        if (this.autoplayTimer) return;
         this.autoplayTimer = setInterval(bind(this, advance), this.autoplayInterval);
 
         this.container.find('.controls a.togglePlay').addClass('active');
