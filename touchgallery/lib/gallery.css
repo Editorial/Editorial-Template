@@ -105,6 +105,10 @@
     user-select                 : none;
 }
 
+.touch-gallery .top-bar .controls a.active {
+    background: green;
+}
+
 .touch-gallery .bottom-bar {
     position   : absolute;
     left       : 0;

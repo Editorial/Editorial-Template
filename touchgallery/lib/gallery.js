@@ -434,7 +434,7 @@
         if ($(ev.target).hasClass('next'))
             this.goToNext();
         if ($(ev.target).hasClass('togglePlay'))
-            this.startAutoplay();
+            if (this.autoplayTimer) this.startAutoplay(); else this.stopAutoplay();
     };
 
     TouchGallery.prototype.handleTap = function() {
@@ -481,7 +481,11 @@
     };
 
     TouchGallery.prototype.startAutoplay = function() {
+        if (this.autoplayTimer) clearInterval(this.autoplayTimer);
         this.autoplayTimer = setInterval(bind(this, advance), this.autoplayInterval);
+
+        this.container.find('.controls a.togglePlay').addClass('active');
+
         function advance() {
             if (this.currentItem == this.items.length - 1)
                 this.stopAutoplay();
@@ -493,6 +497,7 @@
     TouchGallery.prototype.stopAutoplay = function() {
         if (this.autoplayTimer) clearInterval(this.autoplayTimer);
         this.autoplayTimer = null;
+        this.container.find('.controls a.togglePlay').removeClass('active');
     };
 
 
