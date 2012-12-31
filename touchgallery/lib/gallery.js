@@ -38,7 +38,6 @@
 
         // hook up events
         window.addEventListener('orientationchange', this.handleResize);
-        window.addEventListener('resize', this.handleResize);
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -247,7 +246,7 @@
             ratio  = width / height;
         this.list.children().each(function(idx) {
             // position the list element correctly
-            $(this).css('margin-left', idx * self.list.width() + 'px');
+            $(this).css('margin-left', idx * 100 + '%');
 
             var img      = $(this).find('img'),
                 imgRatio = img[0].naturalWidth / img[0].naturalHeight;
@@ -278,6 +277,9 @@
             }
         });
         this.moveTo(this.currentItem, true);
+
+        // restore visibility after layout is complete (assuming it was hidden during orientationChange)
+        setTimeout(function() { self.list.css('opacity', 1); }, 0);
     };
 
     /**
@@ -468,9 +470,16 @@
      * Handles viewport resize events
      */
     TouchGallery.prototype.handleResize = function() {
+        // when the phone is turned we need to stop autoplay to avoid edge cases where
+        // resizing the container breaks the scrolling
+        this.stopAutoplay();
+
+        // hide the gallery items to avoid nasty relayout visual effects
+        this.list.css('opacity', 0);
+
         // repositioning needs to happen after a fair amount
         // of delay to ensure correct measurement
-        setTimeout(this.repositionImages, 100);
+        setTimeout(this.repositionImages, 400);
     };
 
     /**

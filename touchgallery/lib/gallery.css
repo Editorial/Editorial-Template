@@ -35,7 +35,9 @@
 }
 
 .touch-gallery .items li * {
-    display : block;
+    display    : block;
+    max-width  : 100%;
+    max-height : 100%;
 }
 
 .touch-gallery .items li .play-icon {
@@ -43,10 +45,10 @@
     position        : absolute;
     top             : 50%;
     left            : 50%;
-    margin-left     : -128px;
-    margin-top      : -128px;
-    width           : 256px;
-    height          : 256px;
+    margin-left     : -64px;
+    margin-top      : -64px;
+    width           : 128px;
+    height          : 128px;
     background      : url(play-icon.png) center no-repeat transparent;
     background-size : 100% 100%;
 }
@@ -76,10 +78,11 @@
 
 .touch-gallery .top-bar {
     position   : absolute;
+    height     : 50px;
     top        : 0;
     left       : 0;
     right      : 0;
-    background : rgba(0,0,0,0.8);
+    background : rgba(0,0,0,0.5);
 }
 
 .touch-gallery .top-bar .controls {
@@ -116,5 +119,5 @@
     left       : 0;
     right      : 0;
     bottom     : 0;
-    background : rgba(0,0,0,0.8);
+    background : rgba(0,0,0,0.5);
 }
