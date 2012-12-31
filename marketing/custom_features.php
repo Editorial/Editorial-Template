@@ -101,7 +101,7 @@ wp_reset_postdata(); // reset custom query and data to initial values
 			</footer>
 		</article>
 		<?php endwhile; endif; ?>
-		<aside id="features-bar" role="complementary">
+		<aside id="features-bar">
 			<?php if(isset($features_nav)) : ?>
 				<nav class="features-nav" role="navigation">
 					<ul>
@@ -119,6 +119,7 @@ wp_reset_postdata(); // reset custom query and data to initial values
 				</nav>
 			<?php endif; ?>
 		</aside>
+		<?php get_sidebar('complementary'); ?>
 	</div>
 </div>
 

@@ -69,27 +69,7 @@ get_header(); ?>
 			<a class="author include" href="#editorial">Editorial</a>
 		</footer>
 	</article>
-	<aside class="pricing" role="complementary">
-		<h3><em>Price <span>&</span> licencing</em></h3>
-		<figure>
-			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/sheets.png" alt="Editorial sheets">
-		</figure>
-		<div class="price-tag">
-			<h4>Editorial theme</h4>
-			<ul class="included">
-				<li>All listed features</li>
-				<li>Free compatibility updates</li>
-				<li>Access to support forums</li>
-				<li>Complete code documentation</li>
-				<li class="licence"><strong>1</strong> Domain licence</li>
-			</ul>
-			<p class="price">
-				<span class="label">Total</span>
-				<strong><em>&euro;</em>150.<sup>00</sup></strong>
-				<a href="/purchase/" class="go">Purchase</a>
-			</p>
-		</div>
-	</aside>
+	<?php get_sidebar('complementary'); ?>
 </div>
 
 <?php get_footer(); ?>
