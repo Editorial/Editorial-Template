@@ -56,12 +56,53 @@
     height : 100%;
 }
 
+.touch-gallery .close-button {
+    position              : absolute;
+    top                   : 50px;
+    right                 : 50px;
+    background            : red;
+    padding               : 25px;
+    -webkit-border-radius : 60px;
+    border-radius         : 60px;
+}
+
+.touch-gallery .fade-out {
+    opacity            : 0;
+    -webkit-transition : opacity 0.3s ease-out;
+    transition         : opacity 0.3s ease-out;
+}
+
 .touch-gallery .top-bar {
     position   : absolute;
     top        : 0;
     left       : 0;
     right      : 0;
     background : rgba(0,0,0,0.8);
+}
+
+.touch-gallery .top-bar .controls {
+    position    : absolute;
+    top         : 0;
+    left        : 50%;
+    width       : 150px;
+    height      : 50px;
+    margin-left : -75px;
+}
+
+.touch-gallery .top-bar .controls a {
+    display                     : block;
+    float                       : left;
+    width                       : 33%;
+    height                      : 100%;
+    text-align                  : center;
+    line-height                 : 50px;
+    border                      : 1px solid white;
+    -webkit-border-radius       : 5px;
+    border-radius               : 5px;
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
+    tap-highlight-color         : rgba(0,0,0,0);
+    -webkit-user-select         : none;
+    user-select                 : none;
 }
 
 .touch-gallery .bottom-bar {

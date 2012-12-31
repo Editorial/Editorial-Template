@@ -21,9 +21,11 @@
         this.touchId         = null;
         this.tapCandidate    = null;
         this.videoCounter    = 0;
+        this.autoplayTimer   = null;
 
         // configuration
-        this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
+        this.swipeLength      = 0.15; // swipe length must cross at least 15% of minimum screen dimension
+        this.autoplayInterval = 5000; // the autoadvance interval, in milliseconds
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -41,6 +43,7 @@
 
     TouchGallery.boundHandlers = [
         'handleTouchStart', 'handleTouchMove', 'handleTouchEnd',
+        'handleControlButtonClick',
         'handleResize', 'handleTap',
         'repositionImages',
         'init', 'tick'
@@ -114,6 +117,9 @@
         this.list.get(0).addEventListener('touchmove', this.handleTouchMove);
         this.list.get(0).addEventListener('touchend', this.handleTouchEnd);
 
+        var controls = this.container.find('.top-bar .controls');
+        controls.on('click', 'a', this.handleControlButtonClick);
+
         this.repositionImages();
         this.moveTo(0, true);
     };
@@ -159,7 +165,9 @@
      * @param  {Object} item The item being activated
      */
     TouchGallery.prototype.activateYouTubePlayer = function(item) {
-        item.playerContainer.data('player', new YT.Player(item.playerContainer.get(0), {
+        this.stopAutoplay();
+        this.hideBars();
+        item.player = new YT.Player(item.playerContainer.get(0), {
             width   : this.list.width(),
             height  : this.list.height(),
             videoId : item.id,
@@ -167,7 +175,14 @@
                 onReady: function() { console.log(arguments); },
                 onStateChange: function() { console.log(arguments); }
             }
-        }));
+        });
+
+        var self = this;
+        $('<div class="close-button">×</div>').appendTo(this.container.find('.touch-gallery')).click(function(ev) {
+            ev.preventDefault();
+            self.destroyYouTubePlayer(item);
+            $(this).remove();
+        });
     };
 
     /**
@@ -175,8 +190,10 @@
      * @param  {Object} item
      */
     TouchGallery.prototype.destroyYouTubePlayer = function(item) {
+        item.player.destroy();
         item.listItem.children().remove().end().append(this.createYouTubeVideo(item));
         this.repositionImages();
+        this.showBars();
     };
 
     /**
@@ -184,6 +201,8 @@
      * @param  {Object} item The item being activated
      */
     TouchGallery.prototype.activateVimeoPlayer = function(item) {
+        this.stopAutoplay();
+        this.hideBars();
         item.playerContainer.children().remove();
         var iframe = $('<iframe></iframe>').attr({
             width                 : this.list.width(),
@@ -197,11 +216,19 @@
         var player = new VimeoCommunicator(iframe[0]);
         player.on('received', function(data) { console.warn(data); });
         item.playerContainer.data('player', player);
+
+        var self = this;
+        $('<div class="close-button">×</div>').appendTo(this.container.find('.touch-gallery')).click(function(ev) {
+            ev.preventDefault();
+            self.destroyVimeoPlayer(item);
+            $(this).remove();
+        });
     };
 
     TouchGallery.prototype.destroyVimeoPlayer = function(item) {
         item.listItem.children().remove().end().append(this.createVimeoVideo(item));
         this.repositionImages();
+        this.showBars();
     };
 
     /**
@@ -399,9 +426,16 @@
         }
     };
 
-    /**
-     * Handles tap events
-     */
+    TouchGallery.prototype.handleControlButtonClick = function(ev) {
+        ev.preventDefault();
+        if ($(ev.target).hasClass('prev'))
+            this.goToPrevious();
+        if ($(ev.target).hasClass('next'))
+            this.goToNext();
+        if ($(ev.target).hasClass('togglePlay'))
+            this.startAutoplay();
+    };
+
     TouchGallery.prototype.handleTap = function() {
         var item = this.items[this.currentItem];
         if (item.type == 'youtube')
@@ -410,6 +444,11 @@
             this.activateVimeoPlayer(item);
     };
 
+    /**
+     * (Internal) Extracts the relevant touch from the TouchEvent object
+     * @param  {TouchList} touchList
+     * @return {Touch}               The matching touch object or null if not found
+     */
     TouchGallery.prototype._findTouch = function(touchList) {
         for (var i = 0; i < touchList.length; i++)
             if (touchList[i].identifier == this.touchId)
@@ -424,6 +463,35 @@
         // repositioning needs to happen after a fair amount
         // of delay to ensure correct measurement
         setTimeout(this.repositionImages, 100);
+    };
+
+    /**
+     * Fades out the top and bottom bars
+     */
+    TouchGallery.prototype.hideBars = function() {
+        this.container.find('.top-bar,.bottom-bar').addClass('fade-out');
+    };
+
+    /**
+     * Shows the top and bottom bars
+     */
+    TouchGallery.prototype.showBars = function() {
+        this.container.find('.top-bar,.bottom-bar').removeClass('fade-out');
+    };
+
+    TouchGallery.prototype.startAutoplay = function() {
+        this.autoplayTimer = setInterval(bind(this, advance), this.autoplayInterval);
+        function advance() {
+            if (this.currentItem == this.items.length - 1)
+                this.stopAutoplay();
+            else
+                this.goToNext();
+        }
+    };
+
+    TouchGallery.prototype.stopAutoplay = function() {
+        if (this.autoplayTimer) clearInterval(this.autoplayTimer);
+        this.autoplayTimer = null;
     };
 
 
