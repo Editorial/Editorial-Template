@@ -1445,7 +1445,7 @@ function colophon_page_add_meta_boxes() {
 	      'General', // Metabox title
 	      'colophon_about_page_template_metabox', // callback name
 	      'page', // post type
-	      'normal', // context (advanced, normal, or side)
+	      'side', // context (advanced, normal, or side)
 	      'high' // priority
 	  );
 	  add_meta_box(
