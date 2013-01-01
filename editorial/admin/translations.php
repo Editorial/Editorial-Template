@@ -1,3 +1,7 @@
+  <?php
+  $translations = Editorial::getOption('translations');
+  ?>
+
   <h2><?php _e('Editorial', 'Editorial'); ?> &mdash; <?php _e('Translations', 'Editorial'); ?></h2>
 
 <div class="poststuff">
@@ -15,30 +19,28 @@
         wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
 
 
+    <?php
+        foreach ($translations as $section => $items)
+      { ?>
       <div class="postbox " style="display: block; ">
         <div class="handlediv" title="Click to toggle"><br></div>
-        <h3 class="hndle"><span><?php _e('Translations', 'Editorial'); ?></span></h3>
+        <h3 class="hndle"><span><?php echo str_replace('_', ' ', $section); ?></span></h3>
         <div class="inside">
           <div class="table table_content">
-            <!-- <input type="text" name="twitter-account" value="<?php echo Editorial::getOption('twitter-account'); ?>" placeholder="<?php _e('Your twitter account', 'Editorial'); ?>" /><br />
-            <input type="text" name="twitter-related" value="<?php echo Editorial::getOption('twitter-related'); ?>" placeholder="<?php _e('Related account', 'Editorial'); ?>" /> -->
 
             <?php
-
-            $translations = Editorial::getOption('translations');
-            foreach ($translations as $key => $value)
+            foreach ($items as $key => $value)
             { ?>
           <fieldset class="e-translations">
             <label><?php echo $key; ?></label>
-            <input type="text" name="<?php echo $key; ?>" value="<?php echo $value; ?>" />
+            <textarea name="translations[<?php echo $section; ?>][<?php echo $key; ?>]"><?php echo $value; ?></textarea>
           </fieldset>
-            <?php }
-
-            ?>
+            <?php } ?>
 
           </div>
         </div>
       </div>
+      <?php } ?>
 
 
       <p class="submit">
@@ -51,6 +53,6 @@
 
 
 
-<?php include 'faq_sharing.php'; ?>
+<?php include 'faq_translations.php'; ?>
 </div>
 </div>

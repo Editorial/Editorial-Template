@@ -25,6 +25,8 @@ if (Editorial::isAjax())
 
 $riddle = Editorial::riddle();
 
+$translations = Editorial::getOption('translations');
+
 // header settings
 $EditorialId = 'feedback';
 $EditorialClass = 'clear';
@@ -82,9 +84,11 @@ if (comments_open() || !post_password_required()) {
 					</section>',
 					$page * get_option('comments_per_page') > $comments ? $comments : $page * get_option('comments_per_page'),
 					$comments,
-					__('comments displayed', 'Editorial'),
+					//__('comments displayed', 'Editorial'),
+					$translations['comments']['comments displayed'],
 					$page+1,
-					__('Display older comments ...', 'Editorial')
+					//__('Display older comments ...', 'Editorial')
+					$translations['comments']['Display older comments ...']
 				);
 			}
 		}
@@ -92,7 +96,7 @@ if (comments_open() || !post_password_required()) {
 		{
 			// show notice
 ?>
-		<p class="notice"><?php _e('<strong>There are no comments yet.</strong> Be first to leave your footprint here ...', 'Editorial'); ?></p>
+		<p class="notice"><?php echo $translations['comments']['<strong>There are no comments yet.</strong> Be first to leave your footprint here ...']; ?></p>
 <?php
 		}
 
@@ -125,7 +129,7 @@ if (comments_open() || !post_password_required()) {
 				<legend class="v-hidden"><?php _e('Feedback', 'Editorial'); ?></legend>
 				<ol>
 					<li class="area<?php echo in_array('comment', $error_fields) ? ' error' : ''; ?>">
-						<label for="comment"><?php _e('Comment', 'Editorial'); ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
+						<label for="comment"><?php echo $translations['comments']['Comment']; ?> <em>* <?php _e('required field', 'Editorial'); ?></em></label>
 						<textarea id="comment" name="comment" cols="60" rows="9"><?php echo esc_attr($comment_content); ?></textarea>
 					</li>
 				</ol>
@@ -134,21 +138,21 @@ if (comments_open() || !post_password_required()) {
 				<legend class="v-hidden"><?php _e('Author', 'Editorial'); ?></legend>
 				<ol>
 					<li class="text<?php echo in_array('name', $error_fields) ? ' error' : ''; ?>">
-						<label for="name"><?php _e('Your name', 'Editorial'); ?> <em>*</em></label>
+						<label for="name"><?php echo $translations['comments']['Your name']; ?> <em>*</em></label>
 						<input type="text" id="name" name="name" value="<?php echo esc_attr($comment_name); ?>">
 					</li>
 					<li class="text second<?php echo in_array('email', $error_fields) ? ' error' : ''; ?>">
-						<label for="email"><?php _e('Your e-mail address', 'Editorial'); ?> <em>*</em></label>
+						<label for="email"><?php echo $translations['comments']['Your e-mail address']; ?> <em>*</em></label>
 						<input type="email" id="email" name="email" value="<?php echo esc_attr($comment_email); ?>">
 					</li>
 					<li class="text<?php echo in_array('url', $error_fields) ? ' error' : ''; ?>">
-						<label for="url"><?php _e('Link', 'Editorial'); ?></label>
+						<label for="url"><?php echo $translations['comments']['Link']; ?></label>
 						<input type="text" id="url" name="url" value="<?php echo esc_attr($comment_url); ?>">
 					</li>
 				</ol>
 			</fieldset>
 			<fieldset class="captcha">
-				<legend class="v-hidden"><?php _e('Captcha', 'Editorial'); ?></legend>
+				<legend class="v-hidden"><?php echo $translations['comments']['Captcha']; ?></legend>
 				<ol>
 					<li class="riddle<?php echo in_array('riddle', $error_fields) ? ' error' : ''; ?>">
 						<label for="riddle"><?php echo $riddle['notice']; ?> <em>*</em></label>
@@ -163,7 +167,7 @@ if (comments_open() || !post_password_required()) {
 <?php
 				comment_id_fields();
 ?>
-				<input type="submit" value="<?php _e('Publish', 'Editorial'); ?>">
+				<input type="submit" value="<?php echo $translations['comments']['Publish']; ?>">
 			</fieldset>
 		</form>
     <?php } ?>

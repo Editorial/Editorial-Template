@@ -14,6 +14,8 @@ $EditorialId = 'gallery';
 $EditorialClass = 'clear';
 $needsHTML5player = false;
 
+$translations = Editorial::getOption('translations');
+
 // mobile devices are shown a different slideshow
 if (Editorial::isMobileDevice() || Editorial::isIpad())
 {
@@ -307,7 +309,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 						{
 ?>
 					<li class="previous disabled">
-						<span><?php _e('Previous', 'Editorial'); ?></span>
+						<span><?php echo $translations['gallery']['Previous']; ?></span>
 					</li>
 <?php
 						}
@@ -328,7 +330,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 <?php
 							}
 ?>
-							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php _e('Previous', 'Editorial'); ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
+							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php echo $translations['gallery']['Previous']; ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
 						</a>
 					</li>
 <?php
@@ -350,7 +352,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 <?php
 							}
 ?>
-							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php _e('Next', 'Editorial'); ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
+							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php echo $translations['gallery']['Next']; ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
 						</a>
 					</li>
 <?php
@@ -359,7 +361,7 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 						{
 ?>
 					<li class="next disabled">
-						<span><?php _e('Next', 'Editorial'); ?></span>
+						<span><?php echo $translations['gallery']['Next'];?></span>
 					</li>
 <?php
 						}
@@ -370,8 +372,8 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 				}
 ?>
 			<fieldset id="embed">
-				<h4><label for="embed-code"><?php _e('Embed code', 'Editorial'); ?></label></h4>
-				<p><?php _e('There’s no need for downloading and uploading it to your blog/website when you can easily embed it.', 'Editorial'); ?></p>
+				<h4><label for="embed-code"><?php echo $translations['gallery']['Embed code']; ?></label></h4>
+				<p><?php echo $translations['gallery']['There is no need for downloading and uploading it to your blog/website when you can easily embed it.']; ?></p>
 				<input id="embed-code" value="<?php echo get_permalink($post->ID); ?>">
 			</fieldset>
 		</aside>

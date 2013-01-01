@@ -50,6 +50,8 @@ else
 $EditorialClass = 'clear';
 @include('header.php');
 
+$translations = Editorial::getOption('translations');
+
 ?>
 
 <div class="content clear" role="main">
@@ -66,7 +68,7 @@ $EditorialClass = 'clear';
 					<?php the_time(get_option('date_format')); ?>
 
 				</time>
-				<em class="author vcard"><?php _e('by:', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+				<em class="author vcard"><?php echo $translations['single_article']['by;']; ?> <?php Editorial::authorLink(); ?></em>
 <?php
 				if (Editorial::isShareEnabled()) {
 ?>

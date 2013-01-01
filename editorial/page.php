@@ -28,7 +28,7 @@ the_post();
 					<span class="value-title" title="<?php echo date('Y-m-dTH:i', strtotime($post->post_date)); ?>"> </span>
 					<?php the_time(get_option('date_format')); ?>
 				</time>
-				<em class="author vcard"><?php _e('Written by.', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
+				<em class="author vcard"><?php _e('Written by:', 'Editorial'); ?> <?php Editorial::authorLink(); ?></em>
 <?php
  				if (Editorial::isShareEnabled()) {
 ?>

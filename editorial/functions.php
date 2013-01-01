@@ -78,13 +78,60 @@ class Editorial
 	*/
 
 	public static $translations = array(
-			'article' => 'Article',
-			'gallery' => 'Gallery',
-			'feedback' => 'Feedback',
-			'feedback' => 'Feedback',
-			'subscribe' => 'Subscribe',
+		//search
+		'search' => array(
 			'search' => 'Search',
-			'colophon' => 'Colophon',
+			'Query' => 'Query',
+			'articles displayed' => 'articles displayed',
+		),
+		//categories
+		'categories' => array(
+			'Select layout option' => 'Select layout option',
+			'List' => 'List',
+			'Grid' => 'Grid',
+			'Display older articles ...' => 'Display older articles ...',
+		),
+		//single article
+		'single_article' => array(
+			'Article' => 'Article',
+			'Gallery' => 'Gallery',
+			'Feedback' => 'Feedback',
+			'by;' => 'by:',
+			'You might also enjoy' => 'You might also enjoy',
+		),
+		//footer
+		'footer' => array(
+			'Subscribe' => 'Subscribe',
+			'Colophon' => 'Colophon',
+			'All categories' => 'All categories',
+		),
+		//gallery
+		'gallery' => array(
+			'Previous' => 'Previous',
+			'Slideshow' => 'Slideshow',
+			'Next' => 'Next',
+			'Back to article' => 'Back to article',
+			'Embed code' => 'Embed code',
+			"There is no need for downloading and uploading it to your blog/website when you can easily embed it." => "There's no need for downloading and uploading it to your blog/website when you can easily embed it.",
+			),
+		//comments
+		'comments' => array(
+			'comments displayed' => 'comments displayed',
+			'Comment' => 'Comment',
+			'Author' => 'Author',
+			'Your name' => 'Your name',
+			"Your e-mail address" => "Your e-mail address",
+			'Display older comments ...' => 'Display older comments ...',
+			"<strong>There are no comments yet.</strong> Be first to leave your footprint here ..." => "<strong>There are no comments yet.</strong> Be first to leave your footprint here ...",
+			"Link" => "Link",
+			"Captcha" => "Captcha",
+			"Publish" => "Publish",
+		),
+		//page
+		'single_page' => array (
+			'Written by:' => 'Written by:',
+		),
+
 		);
 
 	public static function getTranslations() {
@@ -813,18 +860,19 @@ EOF;
 		$thumbId = get_post_thumbnail_id($postId);
 		$commentCount = get_comments_number($postId);
 		$attachmentCount = count(get_children(array('post_parent' => $postId)));
+		$translations = self::getOption('translations');
 ?>
 	<nav id="tabs" role="navigation">
 		<ul <?php echo comments_open() ? "" : "class='no-feedback'" ?>>
 			<li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>>
-				<a href="<?php echo get_permalink($postId); ?>"><?php _e('Article', 'Editorial'); ?></a>
+				<a href="<?php echo get_permalink($postId); ?>"><?php echo $translations['single_article']['Article']; ?></a>
 			</li>
 			<li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
-				<a href="<?php echo get_attachment_link($thumbId); ?>"><?php _e('Gallery', 'Editorial'); echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
+				<a href="<?php echo get_attachment_link($thumbId); ?>"><?php echo $translations['single_article']['Gallery'];  echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
 			</li>
 			<?php if (comments_open()) { ?>
 			<li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
-				<a href="<?php echo self::commentsLink($postId); ?>"><?php _e('Feedback', 'Editorial'); echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
+				<a href="<?php echo self::commentsLink($postId); ?>"><?php echo $translations['single_article']['Feedback'];  echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
 			</li>
 			<?php } ?>
 		</ul>
@@ -1266,7 +1314,7 @@ EOF;
      */
     public static function noResults()
     {
-    	echo '<section class="featured featured-empty"></section><section id="paging"><p class="more">Na articles to display ...</p></section>';
+    	echo '<section class="featured featured-empty"></section><section id="paging"><p class="more">No articles to display ...</p></section>';
     }
 
 

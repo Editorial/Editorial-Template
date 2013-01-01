@@ -11,6 +11,7 @@
 // find featured
 global $postId;
 $categories = get_the_category($postId);
+$translations = Editorial::getOption('translations');
 if ($categories)
 {
 	$categoryIds = array();
@@ -30,7 +31,7 @@ if ($categories)
 	{
 ?>
 	<section class="featured">
-		<h3><?php _e('You might also enjoy', 'Editorial'); ?></h3>
+		<h3><?php echo $translations['single_article']['You might also enjoy'];  ?></h3>
 <?php
 		$i = 1;
 		while ($query->have_posts())

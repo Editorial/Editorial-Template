@@ -336,6 +336,10 @@ class Editorial_Admin
 					$this->_update_custom_style($_POST['child-style-update']);
 				}
 				break;
+			case self::PAGE_TRANSLATIONS:
+				//dump($_POST);
+				Editorial::setOption('translations', stripslashes_deep($_POST['translations']));
+				break;
 
 		}
 	}

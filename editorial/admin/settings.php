@@ -92,9 +92,14 @@ fieldset.e-translations {
 	margin-bottom: 10px;
 }
 fieldset.e-translations label {
-	min-width: 100px;
-	display: inline-block;
+	/*min-width: 100px;*/
+	display: block;
 }
+fieldset.e-translations textarea{
+	width: 100%;
+	height: 50px;
+}
+
 
 </style>
 <div id="editorial" class="wrap">

@@ -2,6 +2,7 @@
 // show footer if not on 404 page
 if ($EditorialId != 'notfound')
 {
+  $translations = Editorial::getOption('translations');
 ?>
 
 <?php
@@ -11,9 +12,12 @@ if ($EditorialId != 'notfound')
     }
 ?>
 <footer id="footer" class="clear" role="contentinfo">
-	<h3>Subscribe</h3>
+	<h3><?php 
+    echo $translations['footer']['Subscribe']; 
+    ?>
+  </h3>
 	<ul id="rss">
-		<li><a href="<?php bloginfo('rss2_url'); ?>" title="Subscribe to all categories">All categories</a></li>
+		<li><a href="<?php bloginfo('rss2_url'); ?>" title="Subscribe to all categories"><?php echo $translations['footer']['All categories'] ?></a></li>
 <?php
 			// list categories
 			foreach (get_categories() as $category)
@@ -33,7 +37,7 @@ if ($EditorialId != 'notfound')
     <?php if (Editorial::getOption('colophon-enabled')) { ?>
       <nav role="navigation" class="xoxo colophon-footer">     
       <ul>
-        <li><a href="<?php echo get_permalink(get_page_by_title('colophon')->ID); ?>"><?php _e('Colophon', 'Editorial'); ?></a></li>
+        <li><a href="<?php echo get_permalink(get_page_by_title('colophon')->ID); ?>"><?php echo $translations['footer']['Colophon'] ?></a></li>
       </ul>
       </nav>
     <?php

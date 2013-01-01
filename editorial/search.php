@@ -17,16 +17,18 @@ $EditorialClass = 'clear';
 @include('header.php');
 $switchType = $EditorialId == 'layout-list' ? 'grid' : 'list';
 
+//$translations = Editorial::getOption('translations');
+
 ?>
 
 <div class="content clear" role="main">
 	<article id="single">
 		<h1<?php echo have_posts() ? '' : ' class="no-results"' ?>><em>“</em><?php echo get_search_query(); ?><em>”</em></h1>
 		<section id="layout" class="clear">
-			<p><?php _e('Select layout option', 'Editorial'); ?></p>
+			<p><?php echo $translations['categories']['Select layout option']; ?></p>
 			<ul class="switch">
-				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchType; ?>&s=<?php echo get_search_query(); ?>" class="list"><?php _e('List', 'Editorial'); ?></a></li>
-				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchType; ?>&s=<?php echo get_search_query(); ?>" class="grid"><?php _e('Grid', 'Editorial'); ?></a></li>
+				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchType; ?>&s=<?php echo get_search_query(); ?>" class="list"><?php echo $translations['categories']['List']; ?></a></li>
+				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchType; ?>&s=<?php echo get_search_query(); ?>" class="grid"><?php echo $translations['categories']['Grid']; ?></a></li>
 			</ul>
 		</section>
 	</article>

@@ -24,16 +24,18 @@ $EditorialClass = 'clear';
 @include('header.php');
 $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 'list', true, $EditorialId == 'layout-list' ? 'list' : 'grid');
 
+$translations = Editorial::getOption('translations');
+
 ?>
 
 <div class="content clear" role="main">
 	<article id="single">
 		<h1><?php single_cat_title(); ?></h1>
 		<section id="layout" class="clear">
-			<p><?php _e('Select layout option', 'Editorial'); ?></p>
+			<p><?php echo $translations['categories']['Select layout option']; ?></p>
 			<ul class="switch">
-				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchQuery; ?>" class="list"><?php _e('List', 'Editorial'); ?></a></li>
-				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchQuery; ?>" class="grid"><?php _e('Grid', 'Editorial'); ?></a></li>
+				<li<?php echo $EditorialId == 'layout-list' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchQuery; ?>" class="list"><?php echo $translations['categories']['List']; ?></a></li>
+				<li<?php echo $EditorialId == 'layout-grid' ? ' class="selected"' : ''; ?>><a href="?<?php echo $switchQuery; ?>" class="grid"><?php echo $translations['categories']['Grid']; ?></a></li>
 			</ul>
 		</section>
 	</article>
@@ -43,6 +45,7 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
 	{
 	    global $category;
     	$editorialPage = get_query_var('page') ? get_query_var('page') : 1;
+        $translations = Editorial::getOption('translations');
     	
     	$editorialPerPage = 8;
     	
@@ -89,10 +92,11 @@ $switchQuery = Editorial::prepareQuery($EditorialId == 'layout-list' ? 'grid' : 
         	    '<section id="paging"><p><strong>%d / %d</strong> - %s</p><p class="more"><a href="?%s">%s</a></p></section>',
     	        $editorialPage*$editorialPerPage,
     	        $wp_query->found_posts,
-    	        __('articles displayed', 'Editorial'),
+                $translations['search']["articles displayed"],
     	        Editorial::prepareQuery('page', $editorialPage+1),
-    	        __('Display older articles ...', 'Editorial')
+    	        $translations['categories']["Display older articles ..."]
     	    );
+
     	}
     	
     	// no posts in this category?

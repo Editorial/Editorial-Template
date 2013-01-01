@@ -76,6 +76,8 @@
 <script src="http://use.typekit.com/bgy8anq.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
 */
+
+$translations = Editorial::getOption('translations');
 ?>
 <!--GOOGLE ANALYTICS
 <script>
@@ -98,10 +100,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	</h1>
 	<form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
 		<fieldset>
-			<legend class="v-hidden"><?php _e('Search', 'Editorial'); ?></legend>
-			<label for="query" class="v-hidden"><?php _e('Query', 'Editorial'); ?></label>
-			<input type="search" id="query" name="s" placeholder="<?php _e('Search...', 'Editorial'); ?>" value="<?php echo get_search_query(); ?>">
-			<input type="submit" id="find" class="ir" value="<?php _e('Search', 'Editorial'); ?>">
+			<legend class="v-hidden"><?php echo $translations['search']['search']; ?></legend>
+			<label for="query" class="v-hidden"><?php echo $translations['search']['query']; ?></label>
+			<input type="search" id="query" name="s" placeholder="<?php echo $translations['search']['search']; ?>" value="<?php echo get_search_query(); ?>">
+			<input type="submit" id="find" class="ir" value="<?php echo $translations['search']['search']; ?>">
 		</fieldset>
 	</form>
 <?php
