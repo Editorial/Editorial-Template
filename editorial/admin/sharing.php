@@ -10,7 +10,6 @@
 			
 			<form action="" method="post">
 				<?php wp_nonce_field( 'some-action-nonce' );
-			    /* Used to save closed meta boxes and their order */
 			    wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
 			    wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
 

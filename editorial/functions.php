@@ -70,6 +70,26 @@ class Editorial
 	 * @var int
 	 */
 	public static $commentCounter = 0;
+
+
+	/**
+	* default translations
+	* 
+	*/
+
+	public static $translations = array(
+			'article' => 'Article',
+			'gallery' => 'Gallery',
+			'feedback' => 'Feedback',
+			'feedback' => 'Feedback',
+			'subscribe' => 'Subscribe',
+			'search' => 'Search',
+			'colophon' => 'Colophon',
+		);
+
+	public static function getTranslations() {
+        return self::$translations;
+   }
 	
 
 	public static $TwitterApiCallCounter = 0; //limit 150 per hour
@@ -421,8 +441,9 @@ EOF;
 	 */
 	public function adminInit()
 	{
-		if (get_current_theme() != 'Editorial')
+		if ((get_current_theme() != 'Editorial') || (get_current_theme() != 'Editorial Custom') )
 		{
+			//dump( get_current_theme() );
 			return;
 		}
 
@@ -443,9 +464,17 @@ EOF;
 				self::setOption('karma-treshold', 5);
 			}
 
+			if (self::getOption('translations') === false)
+			{
+				//add default translations
+				dump('no translations!');
+				self::setOption('translations', self::translations);
+			}
+
 			// set that editorial was installed
 			self::setOption('editorial-install', true);
 		}
+
 	}
 	
 

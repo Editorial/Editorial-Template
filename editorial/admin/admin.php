@@ -28,6 +28,8 @@ class Editorial_Admin
 
 	const CHILD_THEME = 'editorial-child';
 
+	const PAGE_TRANSLATIONS = 'translations';
+
 	/**
 	 * Pages users are allowed to include
 	 *
@@ -37,6 +39,7 @@ class Editorial_Admin
 		self::PAGE_LOOK,
 		self::PAGE_SHARE,
 		self::PAGE_CUSTOMIZE,
+		self::PAGE_TRANSLATIONS,
 	);
 
 	/**
@@ -65,6 +68,7 @@ class Editorial_Admin
 		'copyright',
 		'child-theme',
 		'pirates',
+		'translations',
 	);
 
 	/**
@@ -99,6 +103,13 @@ class Editorial_Admin
     	}
     	
     }
+
+    if (Editorial::getOption('translations') === false)
+			{
+				//add default translations
+				//dump('no translations!');
+				Editorial::setOption('translations', Editorial::getTranslations());
+			}
     
 	}
 
@@ -147,6 +158,14 @@ class Editorial_Admin
 			'editorial-'.self::PAGE_CUSTOMIZE,
 			array($this, 'customize')
 		);
+		add_submenu_page(
+			'editorial',
+			'Translations',
+			'Translations',
+			'administrator',
+			'editorial-'.self::PAGE_TRANSLATIONS,
+			array($this, 'translations')
+		);
 	}
 
 	/**
@@ -175,6 +194,11 @@ class Editorial_Admin
 	public function customize()
 	{
 		$this->_display(self::PAGE_CUSTOMIZE);
+	}
+
+	public function translations()
+	{
+		$this->_display(self::PAGE_TRANSLATIONS);
 	}
 
 	/**

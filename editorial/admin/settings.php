@@ -87,6 +87,15 @@ float: none;
 
 .postbox .hndle { cursor: pointer; }
 
+
+fieldset.e-translations {
+	margin-bottom: 10px;
+}
+fieldset.e-translations label {
+	min-width: 100px;
+	display: inline-block;
+}
+
 </style>
 <div id="editorial" class="wrap">
 	<div id="icon-themes" class="icon32"><br></div>
