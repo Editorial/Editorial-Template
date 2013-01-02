@@ -438,9 +438,11 @@ body {
 
 .inquiry {
 	border-top: 1px solid #e8e5dc;
+	width: 100%;
 	padding: 16px 0;
 	background:#fdfdf3 url(../images/bgr/inquiry.png);
 	position: relative;
+	float: left;
 	//.box-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1);
 
 	&:after {
@@ -456,10 +458,14 @@ body {
 		z-index: 2;
 	}
 
+	.adapt {
+		padding: 0 15px;
+	}
+
 
 	fieldset {
+		border: none;
 		width: 100%;
-		background: #fdfdee;
 		float: left;
 	}
 
@@ -472,26 +478,80 @@ body {
 		//text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
 		//text-shadow: inset 1px 2px 3px rgba(0, 0, 0, .3);
 		//, 1px 1px 1px #fff;
-
-		/*
-
-
-		.inset-text {
-    // Shadows are visible under slightly transparent text color
-    color: rgba(10,60,150, 0.8);
-    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
-}
-// Don't show shadows when selecting text
-::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
-::selection { background: #5af; color: #fff; text-shadow: none; }​
-
-
-		*/
-
-
 		em {
 			font-style: normal;
 		}
+	}
+
+	textarea,
+	.message-input input {
+		margin: 0;
+		border: none;
+		padding: 0;
+		width: 100%;
+		font:bold 24px/40px @minion-pro;
+		color: #b0b0b0;
+		font-style: italic;
+		background: url(../images/bgr/lines.png) top left;
+	}
+
+	textarea {
+		height: 282px;
+		font-style: italic;
+		color: #d8d2cc;
+	}
+
+	.edited {
+		color: #b0b0b0;
+	}
+
+	label {
+		font:bold 24px/40px @minion-pro;
+		color: #7f7266;
+		font-style: italic;
+	}
+
+	.title-input {
+		margin: 15px 0 20px;
+	}
+
+	.message-input {
+		margin: 0 0 30px;
+
+		input {
+			&::-webkit-input-placeholder {
+				color: #d8d2cc;
+			}
+
+			&:-moz-placeholder {
+				color: #d8d2cc;
+			}
+
+			&:-ms-input-placeholder {
+				color: #d8d2cc;
+			}
+		}
+
+	}
+
+	.action {
+		margin: 20px 0;
+		font:13px/20px helvetica,arial,sans-serif;
+		color: #726b53;
+
+		a {
+			color: #09c;
+		}
+	}
+
+	.cancel {
+		margin: 7px 0 0;
+		float: left;
+	}
+
+	.sendit {
+		margin: 0 0 0 10px;
+		float: left;
 	}
 
 	p {
@@ -501,6 +561,19 @@ body {
 		color: #999;
 	}
 }
+
+
+		/*
+		.inset-text {
+    // Shadows are visible under slightly transparent text color
+    color: rgba(10,60,150, 0.8);
+    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+			}
+// Don't show shadows when selecting text
+::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
+::selection { background: #5af; color: #fff; text-shadow: none; }​
+		*/
+
 
 .subscription h3,
 .connect h3 {
@@ -950,8 +1023,6 @@ body {
 	}
 
 }
-
-
 
 
 /* newsletter */

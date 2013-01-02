@@ -127,7 +127,8 @@
 	if($('ul.price-flow').length) {
 
 		function flow(soldLicences) {
-			var graph = ($('ul.pf-mobile').css('display') == 'block') ? $('ul.pf-mobile') : $('ul.pf-other'),
+			var mobile = $('ul.pf-mobile'),
+					graph = (mobile.css('display') == 'block') ? mobile : $('ul.pf-other'),
 					countActiveSteps = 0,
 					pass = 0,
 					limits = [];
