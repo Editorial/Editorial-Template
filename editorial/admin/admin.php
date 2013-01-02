@@ -239,7 +239,7 @@ class Editorial_Admin
             {
                 try
                 {
-                	Editorial::createPath(WP_CACHE_DIR, 0755);
+                	Editorial::createPath(WP_CACHE_DIR, 0777);
                 } 
                 catch (Exception $e)
                 {}
