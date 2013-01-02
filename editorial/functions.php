@@ -336,7 +336,7 @@ class Editorial
 	    return $tabs;
 	}
 	
-	public function hide_galery_settings_div($form_action_url, $type){
+	public function hide_galery_settings_div(){
 		print <<<EOF
 		        <style type="text/css">
 		            #gallery-settings *{
