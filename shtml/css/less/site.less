@@ -10,7 +10,7 @@ html {
 body {
 	margin: 0 auto;
 	min-width: 320px;
-	background: @bodyBackground url(../images/bgr/body.jpg) repeat-x;
+	//background: @bodyBackground url(../images/bgr/body.jpg) repeat-x;
 }
 
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -437,6 +437,9 @@ body {
 }
 
 .inquiry {
+
+	display: none;
+
 	border-top: 1px solid #e8e5dc;
 	width: 100%;
 	padding: 16px 0;
@@ -460,6 +463,7 @@ body {
 
 	.adapt {
 		padding: 0 15px;
+		//display: none;
 	}
 
 
@@ -2225,8 +2229,9 @@ body {
 	background: url(../images/bgr/features-nav.png) no-repeat;
 }
 
-
 .off-canvas {
+	background: #f7f7f7;
+
 	#header {
 		margin: 0;
 	}
@@ -2262,11 +2267,9 @@ body {
 			font-size: 48px;
 			line-height: 50px;
 			text-align: center;
-			margin-bottom: 6px;
 		}
 
 		h2 {
-			margin: 0 0 35px;
 			font-size: 20px;
 			line-height: 20px;
 			text-align: center;
@@ -2283,7 +2286,6 @@ body {
 		}
 
 		h3 {
-			margin: 0 0 8px;
 			font-size: 18px;
 			line-height: 20px;
 		}
@@ -2294,19 +2296,6 @@ body {
 			font: 18px/25px @minion-pro;
 		}
 
-		li {
-			line-height: 20px;
-			padding: 0 0 7px 10px;
-			position: relative;
-
-			&:before {
-				content: '- ';
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-		}
-
 		.lead {
 			margin: 0 0 25px;
 			font-size: 24px;
@@ -2315,9 +2304,99 @@ body {
 			text-align: center;
 			font-style: italic;
 		}
+	}
+}
 
+.main .features-home {
+	h1 {
+		em {
+			display: block;
+		}
+	}
+
+	.entry-content {
+		p {
+			font: 13px/20px @baseFont;
+		}
+	}
+}
+
+.features-list {
+	padding: 0 0 20px 20px;
+
+	li {
+		margin: 0 0 24px;
+		clear: both;
+	}
+
+	a {
+		display: block;
+	}
+
+	img {
+		max-width: 35px;
+		float: left;
+	}
+
+	figcaption {
+		padding: 10px 0 0 15px;
+		font: 600 18px/22px @minion-pro;
+		color: #09c;
+		float: left;
+	}
+}
+
+.features-home {
+	padding-bottom: 20px;
+
+	h2 {
+		margin: 0 0 30px;
+	}
+
+	h3 {
+		margin: 0 0 8px;
+	}
+
+	figure {
+		padding: 0 0 35px;
+	}
+
+	.entry-content {
+		p {
+			margin: 0 0 32px;
+		}
+	}
+
+	.features-list {
 		figure {
-			padding: 0 0 28px;
+			padding: 0 0 21px;
+		}
+	}
+}
+
+.features-inside {
+	h2 {
+		margin: 0 0 33px;
+	}
+
+	h3 {
+		margin: 2px 0 13px;
+	}
+
+	figure {
+		padding: 0 0 49px;
+	}
+
+	li {
+		line-height: 20px;
+		padding: 0 0 7px 10px;
+		position: relative;
+
+		&:before {
+			content: '- ';
+			position: absolute;
+			top: 0;
+			left: 0;
 		}
 	}
 }

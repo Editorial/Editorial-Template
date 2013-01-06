@@ -67,7 +67,7 @@
 		width: auto;
 		height: auto;
 		margin: 0 15px 0 20px;
-		padding:15px 0 22px;
+		padding:16px 0 21px;
 
 		&:before,
 		&:after {
@@ -96,7 +96,9 @@
 }
 
 #home {
+	width: 50px;
 	background:none;
+	overflow: hidden;
 
 	a {
 		margin-left: 0;
@@ -110,14 +112,14 @@
 }
 
 #purchase {
-	margin-left: 5px;
+	margin-left: 6px;
 	background: none;
 	float: right;
 
 	a {
 		margin: 10px 0 0;
 		border: 1px solid #8a0500;
-		padding: 13px 0 12px 20px;
+		padding: 12px 0 12px 20px;
 		width: 120px;
 		font-size: 12px;
 		text-transform: uppercase;
@@ -903,12 +905,6 @@ h1,
 			padding: 0 60px 0 30px;
 			float: left;
 		}
-
-		section {
-			padding: 0 0 31px;
-			width: 100%;
-			float: left;
-		}
 	}
 
 	.behave {
@@ -916,10 +912,6 @@ h1,
 	}
 
 	.main {
-		h1 {
-			margin: 35px auto 33px;
-		}
-
 		h2 {
 			clear: both;
 		}
@@ -928,7 +920,72 @@ h1,
 
 		}
 	}
+
+
+	.col-1 {
+		width: 31%;
+		float: left;
+	}
+
+	.col-2 {
+		width: 31%;
+		margin-left: 3.5%;
+		float: left;
+	}
+
+	.col-3 {
+		width: 31%;
+		float: right;
+
+		.features-list {
+			li {
+				width: 100%;
+				float: none;
+				clear: both;
+				margin-right: 0;
+			}
+		}
+	}
 }
 
+.main .features-home {
+	h1 {
+		em {
+			display: inline;
+		}
+	}
+}
+
+.features-home {
+	h1 {
+
+		em {
+			display: inline;
+		}
+	}
+
+	.lead {
+		span {
+			display: block;
+		}
+	}
+}
+
+.features-inside {
+	h1 {
+		max-width: 440px;
+		float: none;
+	}
+
+	.lead {
+		max-width: 380px;
+	}
+
+	section {
+		padding: 0 0 29px;
+		width: 100%;
+		float: left;
+	}
+}
 
 /* </end> 07 FEATURES =============================================================================================== */

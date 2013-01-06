@@ -571,8 +571,10 @@ form {
 
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-.off-canvas {
-	background: url(../images/bgr/features-body.png) center 211px no-repeat;
+.off-canvas .features-home-bg {
+	background-image: url(../images/bgr/features-bg.png);
+	background-repeat: no-repeat;
+	background-position: center -60px;
 }
 
 
@@ -581,8 +583,6 @@ form {
 
 .off-canvas {
 	.content {
-		margin-top: 182px;
-
 		.img-top-right {
 			img {
 				max-width: 410px;
@@ -601,18 +601,16 @@ form {
 	}
 
 	.main {
+
 		h1 {
-			margin: 0 auto 13px;
-			max-width: 440px;
+			//margin: 0 auto 13px;
 			font-size: 72px;
 			line-height: 60px;
-			float: none;
 		}
 
 		h2 {
 			font-size: 24px;
 			line-height: 30px;
-
 			background-position: 0 16px;
 
 			em {
@@ -624,14 +622,41 @@ form {
 		}
 
 		.lead {
-			margin: 0 auto 25px;
+			margin: 0 auto 51px;
 			font-size: 40px;
 			line-height: 45px;
-			max-width: 380px;
 		}
 	}
 }
 
+.main {
+	.features-home {
+		h1 {
+			margin: 25px auto 21px;
+		}
+	}
+
+	.features-inside {
+		h1 {
+			margin: 25px auto 33px;
+			padding-top: 11px;
+		}
+	}
+}
+
+.features-home {
+	padding-top: 233px;
+
+	.lead {
+		span {
+			display: inline;
+		}
+	}
+}
+
+.features-inside {
+	padding-top: 182px;
+}
 
 .features-links {
 	display: none;
