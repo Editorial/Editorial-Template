@@ -1070,7 +1070,6 @@ body {
   display: none;
 }
 .inquiry {
-  display: none;
   border-top: 1px solid #e8e5dc;
   width: 100%;
   padding: 16px 0;
@@ -1121,7 +1120,7 @@ body {
   background: url(../images/bgr/lines.png) top left;
 }
 .inquiry textarea {
-  height: 282px;
+  height: 241px;
   font-style: italic;
   color: #d8d2cc;
 }
@@ -2748,6 +2747,9 @@ body {
   .inquiry p {
     padding-bottom: 5px;
   }
+  .inquiry textarea {
+    height: 120px;
+  }
   /* newsletter */
   /*
   .updates {
@@ -3273,7 +3275,7 @@ body {
     top: -26px;
   }
   .try-and-buy {
-    padding: 0 0 25px;
+    padding: 0 0 44px;
     width: 100%;
     float: left;
   }
@@ -3312,6 +3314,15 @@ body {
   #go-25up,
   #go-25down {
     display: inline;
+  }
+  .inquiry .message-input {
+    width: 43%;
+    float: left;
+  }
+  .inquiry .action {
+    padding: 54px 0 0;
+    width: 250px;
+    float: right;
   }
   /* newsletter */
   .updates {
@@ -3669,8 +3680,14 @@ body {
   .licencing p {
     padding: 0;
   }
-  .inquiry {
+  .send-inquiry {
     margin: 0 60px;
+    border: 1px solid #e8e5dc;
+    border-width: 0 1px;
+    float: left;
+  }
+  .inquiry .adapt {
+    padding: 0 8%;
   }
   /* copyright */
   .copyright {
@@ -4400,7 +4417,7 @@ body {
     width: 100%;
   }
   .try-and-buy,
-  .inquiry {
+  .send-inquiry {
     margin: 0 auto;
     width: 954px;
     float: none;
@@ -4411,6 +4428,12 @@ body {
   .to-trial p,
   .updates .adapt {
     text-align: left;
+  }
+  .inquiry {
+    margin-top: 44px;
+    width: 952px;
+    border: 1px solid #e8e5dc;
+    border: 1px 1px 0;
   }
   #subscribe-form fieldset {
     margin: 0;
@@ -4453,6 +4476,9 @@ body {
   /* brand */
   .home #brand {
     padding: 0 15px;
+  }
+  .play-video {
+    top: -372px;
   }
   /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   /* features */

@@ -12,30 +12,7 @@ if(isset($opts['enquiry'])) {
 	$cfid = $opts['enquiry'];
 }
 ?>
-<aside class="pricing" role="complementary">
-
-<div class="pricing">
-	<h3><em>Price <span>&</span> licencing</em></h3>
-	<figure>
-		<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/sheets.png" alt="Editorial sheets">
-	</figure>
-	<div class="price-tag">
-		<h4>Editorial theme</h4>
-		<ul class="included">
-			<li>All listed features</li>
-			<li>Free compatibility updates</li>
-			<li>Access to support forums</li>
-			<li>Complete code documentation</li>
-			<li class="licence"><strong>1</strong> Domain licence</li>
-		</ul>
-		<p class="price">
-			<span class="label">Total</span>
-			<strong><em>&euro;</em>150.<sup>00</sup></strong>
-			<a href="/purchase/" class="go">Purchase</a>
-		</p>
-	</div>
-</div>
-
+<!--
 <div class="enquiry-form">
 	<h3 id="enquiry-trigger"><em>Send Enquiry</em></h3>
 	<?php
@@ -55,5 +32,23 @@ if(isset($opts['enquiry'])) {
 	*/
 	if($cfid) echo do_shortcode('[contact-form-7 id="' . $cfid . '" title="Enquiry"]'); ?>
 </div>
-
-</aside>
+-->
+	<div class="send-inquiry">
+		<form class="inquiry" method="post">
+			<h2><em>Send inquiry</em></h2>
+			<div class="adapt">
+				<fieldset class="title-input">
+					<label for="i-message">Dear Editorial team,</label>
+					<textarea id="i-message" name="i-message" rows="6" cols="40">I am writing about ...</textarea>
+				</fieldset>
+				<fieldset class="message-input">
+					<label for="i-name">Yours sincerely,</label>
+					<input type="text" name="i-name" id="i-name" placeholder="Your name">
+					<input type="text" name="i-email" id="i-email" placeholder="Your e-mail address">
+				</fieldset>
+				<fieldset class="action">
+					<span class="cancel"><a href="/">Cancel and close</a> or</span> <input type="submit" class="sendit" value="Send inquiry">
+				</fieldset>
+			</div>
+		</form>
+	</div>

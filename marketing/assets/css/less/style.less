@@ -1,0 +1,83 @@
+/* =====================================================================================================================
+
+	Author: @matjazkorosec (http://goo.gl/EIoHq)
+	Created: 11 / 2011 (v 1.0)
+	Changed: 7 / 2012 (v 1.1)
+	Based on: 320 and Up v1.0 (http://goo.gl/x8BNz) & LESS
+
+======================================================================================================================*/
+
+/* CSS reset */
+@import "default/reset.less";
+
+// Variables and mixins
+@import "styles/variables.less";
+@import "default/mixins.less";
+
+
+/* typography */
+// Block level (h1, p) and text-level (em, strong) type
+@import "styles/typography.less";
+
+/* colour */
+// Colour interaction semantics (a)
+@import "styles/colour.less";
+
+/* elements */
+// Figures, images and other elements (img)
+@import "styles/elements.less";
+
+/* forms */
+// Standard form controls
+@import "styles/forms.less";
+
+
+/* site */
+// Site styles
+@import "site.less";
+
+// Media queries
+/* 326px */
+@media only screen and (min-width:326px) {
+	.price-tag {
+		//margin: 50px auto 0;
+		width: 264px;
+		background-position: 0 -20px;
+	}
+	/*
+	.home {
+		.price-tag {
+			margin: -106px auto 0;
+		}
+	}
+	*/
+}
+
+/* 480px */
+@media only screen and (min-width: 480px) {
+@import "mq/480.less";
+}
+
+/* 640px */
+@media only screen and (min-width: 640px) {
+@import "mq/640.less";
+}
+
+/* 768px */
+@media only screen and (min-width: 768px) {
+@import "mq/768.less";
+}
+
+/* 992px */
+@media only screen and (min-width: 992px) {
+@import "mq/992.less";
+}
+
+
+/* Helpers */
+@import "default/helpers.less";
+
+/* print */
+@media print {
+@import "default/print.less";
+}

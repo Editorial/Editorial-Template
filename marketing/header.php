@@ -77,10 +77,13 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <?php if (!is_home() && !is_404()) { ?>
 <header id="header" role="banner">
 	<div class="adapt">
+		<!--
 		<h2 id="brand" class="vcard">
 			<a href="http://editorialtemplate.com/" class="ir fn org url">Editorial</a>
 		</h2>
+		-->
 		<nav class="primary" role="navigation">
+			<!--
 <?php
 
 		$settings = array(
@@ -94,6 +97,15 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 		wp_nav_menu($settings);
 
 ?>
+			-->
+			<ul>
+				<li id="home"><a href="/">Home</a></li>
+				<li id="features" class="selected"><a href="/features/">Features</a></li>
+				<li id="help"><a href="/faq/">Help <span>&amp; support</span></a></li>
+				<li id="about"><a href="/about/">About</a></li>
+				<li id="purchase"><a href="/purchase/">Purchase</a></li>
+				<li id="demo"><a href="http://demo.editorialtemplate.com/">View live demo</a> or</li>
+			</ul>
 		</nav>
 	</div>
 </header>
