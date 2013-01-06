@@ -1789,6 +1789,12 @@ body {
   padding: 0 5px 0 0;
   color: #262121;
 }
+.home .entry-summary {
+  margin: 0 0 20px;
+  font: 18px/26px minion-pro, georgia, serif;
+  color: #262020;
+  text-align: center;
+}
 .play-video {
   position: absolute;
   top: 30px;
@@ -2528,6 +2534,9 @@ body {
 .features-list {
   padding: 0 0 20px 20px;
 }
+.features-list p {
+  display: none;
+}
 .features-list li {
   margin: 0 0 24px;
   clear: both;
@@ -2900,6 +2909,9 @@ body {
   .home #brand {
     width: auto;
     height: auto;
+  }
+  .home .entry-summary {
+    margin: 0 0 30px;
   }
   /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   .home {
@@ -3374,6 +3386,11 @@ body {
   .home h3 em {
     padding: 0 15px 0 0;
     background: #f7f7f7;
+  }
+  .home .entry-summary {
+    margin: 0 0 50px;
+    font-size: 22px;
+    line-height: 30px;
   }
   .home .content {
     margin-top: 0;
