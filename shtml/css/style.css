@@ -4773,6 +4773,9 @@ body {
   .main .features-home h1 em {
     display: inline;
   }
+  .features-home .behave {
+    width: 100%;
+  }
   .features-home h1 em {
     display: inline;
   }
@@ -4782,6 +4785,9 @@ body {
   .features-inside h1 {
     max-width: 440px;
     float: none;
+  }
+  .features-inside h1 em {
+    clear: both;
   }
   .features-inside .lead {
     max-width: 380px;
