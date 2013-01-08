@@ -41,6 +41,17 @@ class Util
         }
         return $rv;
     }
+
+    /**
+     * Validate email
+     *
+     * @param string $email
+     * @return bool
+     */
+    public static function validateEmail($email)
+    {
+        return preg_match('/^([^@]+)@([^\s@.]([^\s@.]*\.[^\s@.]+)+)$/', $email);
+    }
 }
 
 ?>
