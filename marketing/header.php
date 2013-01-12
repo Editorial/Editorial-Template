@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?20111224">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <!--<script src="http://use.typekit.com/sue6gqc.js"></script>-->
+<!--<script src="//use.typekit.net/sue6gqc.js"></script>-->
 <script src="http://use.typekit.com/nlh6xyy.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
 <?php
