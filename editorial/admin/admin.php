@@ -115,7 +115,6 @@ class Editorial_Admin
 
 	public function child_theme_deleted($data)
 	{
-		dump($data);
 		return $data;
 	}
 	/**
@@ -739,7 +738,12 @@ class Editorial_Admin
 	    $data = json_decode($response, true);
 	    if ($code != 200)
 	    {
-	        $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit fonts were not enabled. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
+	        $notice = __('<strong>Error!</strong> Typekit fonts were not enabled.', 'Editorial');
+	        if ($data && $data['errors'])
+	        {
+	            $notice .= ' '.implode(' ', $data['errors']);
+	        }
+	        $this->_showNotice($notice);
 	        return;
 	    }
 	    // success?
@@ -764,7 +768,12 @@ class Editorial_Admin
 		$data = json_decode($response, true);
 		if ($code != 200)
 		{
-		    $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit kit was created but not published. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
+		    $notice = __('<strong>Error!</strong> Typekit kit was created but not published.', 'Editorial');
+		    if ($data && $data['errors'])
+		    {
+		        $notice .= ' '.implode(' ', $data['errors']);
+		    }
+		    $this->_showNotice($notice);
             return;
 		}
 		else
@@ -800,6 +809,10 @@ class Editorial_Admin
             if (is_array($params) && count($params))
             {
                 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+            }
+            else
+            {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, false);
             }
         }
         // execute request
