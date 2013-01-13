@@ -486,18 +486,17 @@ EOF;
      * @return void
      * @author Miha Hribar
      */
-    public function adminInit()
+    public static function adminInit()
     {
-        if ((get_current_theme() != 'Editorial') || (get_current_theme() != 'Editorial Custom') )
+        if ((get_current_theme() != 'Editorial') && (get_current_theme() != 'Editorial Custom') )
         {
-            //dump( get_current_theme() );
+            // not using editorial theme
             return;
         }
-
+        
         // couldn't get anything else to run on theme start
         if (self::getOption('editorial-install') === false)
         {
-            debug('editorial-install');
             // setup default values
             // karma
             if (self::getOption('karma') === false)
@@ -505,17 +504,25 @@ EOF;
                 // enable karma by default
                 self::setOption('karma', true);
             }
+            
             if (self::getOption('karma-treshold') === false)
             {
                 // hide comments after 5 downvotes
                 self::setOption('karma-treshold', 5);
             }
 
+            // default translations
             if (self::getOption('translations') === false)
             {
                 //add default translations
-                dump('no translations!');
                 self::setOption('translations', self::translations);
+            }
+
+            // enable black and white images by default
+            if (self::getOption('black-and-white') === false)
+            {
+                //add default translations
+                self::setOption('black-and-white', true);
             }
 
             // set that editorial was installed
