@@ -37,7 +37,9 @@
         }, this);
 
         // hook up events
-        window.addEventListener('orientationchange', this.handleResize);
+        window.addEventListener('resize', function() { viewporter.refresh(); });
+        window.addEventListener('orientationchange', function() { viewporter.refresh(); });
+        window.addEventListener('viewportchange', this.handleResize);
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -69,21 +71,20 @@
     TouchGallery.prototype.preloadImages = function(callback) {
         var waitingToLoad = 0;
 
-        this.items.filter(function(item) {
-
+        this.items = this.items.filter(function(item) {
             switch(item.type) {
                 case 'image':
                     item.img        = new Image;
                     item.img.onload = done;
                     item.img.src    = item.src;
                     waitingToLoad++;
-                    break;
+                    return true;
                 case 'youtube':
                     item.img        = new Image;
                     item.img.onload = done;
                     item.img.src    = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
                     waitingToLoad++;
-                    break;
+                    return true;
                 case 'vimeo':
                     $.getJSON('http://vimeo.com/api/v2/video/' + item.id + '.json?callback=?', function(data) {
                         item.img        = new Image;
@@ -91,8 +92,15 @@
                         item.img.src    = data[0].thumbnail_large;
                     });
                     waitingToLoad++;    
-                    break;
+                    return true;
+                case 'video':
+                    item.img = new Image;
+                    item.img.onload = done;
+                    item.img.src = item.poster;
+                    waitingToLoad++;
+                    return true;
             }
+            return false;
         });
 
         function done() { if (!--waitingToLoad) callback(); }
@@ -112,6 +120,8 @@
                 listItem.append(this.createYouTubeVideo(item)).addClass('video');
             if (item.type == 'vimeo')
                 listItem.append(this.createVimeoVideo(item)).addClass('video');
+            if (item.type == 'video')
+                listItem.append(this.createVideoPlayer(item)).addClass('video');
             item.listItem = listItem;
             this.list.append(listItem);
         }, this);
@@ -157,6 +167,16 @@
 
     TouchGallery.prototype.createVimeoVideo = function(item) {
         var id = 'vimeo-' + (this.videoCounter++),
+            playerContainer = $('<div></div>').attr('id', id);
+
+        playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
+        item.playerContainer = playerContainer;
+
+        return playerContainer;
+    };
+
+    TouchGallery.prototype.createVideoPlayer = function(item) {
+        var id = 'video-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
         playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
@@ -452,6 +472,8 @@
             this.activateYouTubePlayer(item);
         else if (item.type == 'vimeo')
             this.activateVimeoPlayer(item);
+        else if (item.type == 'video')
+            console.warn('Not implemented!');
     };
 
     /**
@@ -474,12 +496,7 @@
         // resizing the container breaks the scrolling
         this.stopAutoplay();
 
-        // hide the gallery items to avoid nasty relayout visual effects
-        this.list.css('opacity', 0);
-
-        // repositioning needs to happen after a fair amount
-        // of delay to ensure correct measurement
-        setTimeout(this.repositionImages, 400);
+        this.repositionImages();
     };
 
     /**
@@ -620,5 +637,5 @@
     // export the class to the global namespace
     this.TouchGallery = TouchGallery;
 
-})(jQuery);
+})(Zepto);
 

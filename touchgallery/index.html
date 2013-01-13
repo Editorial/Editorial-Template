@@ -2,32 +2,34 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+        <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
         <title>Touch Gallery Mockup</title>
         <link rel="stylesheet" href="lib/gallery.css"/>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="lib/gallery.js"></script>
+        <!-- build.js and build.min.js are build by the grunt script. run `grunt default` to build them -->
+        <script src="build.js"></script>
         <script src="//www.youtube.com/iframe_api"></script>
         <style>
-            html, body { margin: 0; padding: 0; min-height: 100%; background: black; color: white; }
+            html, body { margin: 0; padding: 0; background: black; color: white; }
         </style>
     </head>
     <body>
+        <div id="viewporter"></div>
         <script>
             var t = null;
             function onYouTubeIframeAPIReady() {
                 t = new TouchGallery({
-                    container : 'body',
+                    container : '#viewporter',
                     items     : [
+                        { src: 'samples/fell-in-love.mp4', poster: 'samples/fell-in-love.jpg', type: 'video' },
                         { id: 'a-ahy218_FM', type: 'youtube' },
                         { id: '55292988', type: 'vimeo' },
-                        { src: 'samples/01.jpg', type: 'image' },
-                        { src: 'samples/02.jpg', type: 'image' },
-                        { src: 'samples/03.jpg', type: 'image' },
-                        { src: 'samples/04.jpg', type: 'image' }
+                        { src: 'samples/01.jpg', type: 'image'},
+                        { src: 'samples/02.jpg', type: 'image'},
+                        { src: 'samples/03.jpg', type: 'image'},
+                        { src: 'samples/04.jpg', type: 'image'}
                     ],
                     readyHandler: function() {
-                        t.startAutoplay();
+                        // do nothing
                     }
                 });
             }
