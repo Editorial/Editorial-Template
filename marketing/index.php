@@ -92,7 +92,7 @@ get_header(); ?>
 				<p class="more"><a href="/features/">Learn more ...</a></p>
 			</section>
 		</div>
-		<!--
+		<?php /*
 		<h3 class="entry-title"><em>You can focus on the content. We have taken care of the rest.</em></h3>
 		<div class="goodies entry-content">
 			<section id="platforms">
@@ -137,7 +137,7 @@ get_header(); ?>
 				<li id="rss">Category based RSS</li>
 			</ul>
 		</div>
-		-->
+		*/ ?>
 		<footer class="v-hidden">
 			<time class="published" datetime="2011-11-17T10:00:00+01:00">11/17/2011</time>
 			<a class="author include" href="#editorial">Editorial</a>
