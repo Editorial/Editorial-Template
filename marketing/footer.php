@@ -14,9 +14,12 @@ if (!is_404())
 <?php
 	if ( !is_page_template('cart.php') && !is_page_template('manager.php') )
 	{
+		$Purchase = new Purchase();
+		$currentCount = $Purchase->getCount();
+		$currentPrice = $Purchase->getPricingForCount($currentCount);
 ?>
 	<div class="try-and-buy">
-		<h2><em>Price <span>&</span> licencing</em></h2>
+		<h2><em>Price <span>&amp;</span> licencing</em></h2>
 		<section class="licencing">
 			<p class="early-bird">Exculsive early bird prices for the first 1000 licences:</p>
 			<ul class="price-flow pf-mobile">
@@ -143,275 +146,47 @@ if (!is_404())
 				</li>
 			</ul>
 			<ul class="price-flow pf-other">
-				<li class="line-1 step-1 current">
-					<em>&euro;10</em>
-					<span>0</span>
-					<b>0</b>
+			<?php
+			
+			$stepCount = 0;
+			for ($i = 1; $i <= 63; $i++)
+			{
+				$count = ($i-1) * 20;
+				$price = $Purchase->getPricingForCount($count);
+				$step  = $Purchase->hasStepAtCount($count);
+				if ($step)
+				{
+					$stepCount++;
+				}
+				$style = '';
+				if ($currentPrice == $price && $currentCount >= $count && $currentCount < $count+20)
+				{
+					$style = 'current';
+				}
+				else if ($price < $currentPrice)
+				{
+					$style = 'sold';
+				}
+				else if ($price == $currentPrice && $count/20 <= ($currentCount/20)-1) 
+				{
+					$style = 'active';
+				}
+				printf('<li class="line-%d %s %s">
+					%s
+					<span>%d</span>
+					%s
 					<i></i>
-				</li>
-				<li class="line-2">
-					<span>20</span>
-					<i></i>
-				</li>
-				<li class="line-3">
-					<span>40</span>
-					<i></i>
-				</li>
-				<li class="line-4">
-					<span>60</span>
-					<i></i>
-				</li>
-				<li class="line-5">
-					<span>80</span>
-					<i></i>
-				</li>
-				<li class="line-6 step-2">
-					<em>&euro;20</em>
-					<span>100</span>
-					<b>100</b>
-					<i></i>
-				</li>
-				<li class="line-7">
-					<span>120</span>
-					<i></i>
-				</li>
-				<li class="line-8">
-					<span>140</span>
-					<i></i>
-				</li>
-				<li class="line-9">
-					<span>160</span>
-					<i></i>
-				</li>
-				<li class="line-10">
-					<span>180</span>
-					<b>200</b>
-					<i></i>
-				</li>
-				<li class="line-11">
-					<span>200</span>
-					<i></i>
-				</li>
-				<li class="line-12">
-					<span>220</span>
-					<i></i>
-				</li>
-				<li class="line-13">
-					<span>240</span>
-					<i></i>
-				</li>
-				<li class="line-14">
-					<span>260</span>
-					<i></i>
-				</li>
-				<li class="line-15">
-					<span>280</span>
-					<i></i>
-				</li>
-				<li class="line-16 step-3">
-					<em>&euro;30</em>
-					<span>300</span>
-					<b>300</b>
-					<i></i>
-				</li>
-				<li class="line-17">
-					<span>320</span>
-					<i></i>
-				</li>
-				<li class="line-18">
-					<span>340</span>
-					<i></i>
-				</li>
-				<li class="line-19">
-					<span>360</span>
-					<i></i>
-				</li>
-				<li class="line-20">
-					<span>380</span>
-					<i></i>
-				</li>
-				<li class="line-21">
-					<span>400</span>
-					<b>400</b>
-					<i></i>
-				</li>
-				<li class="line-22">
-					<span>420</span>
-					<i></i>
-				</li>
-				<li class="line-23">
-					<span>440</span>
-					<i></i>
-				</li>
-				<li class="line-24">
-					<span>460</span>
-					<i></i>
-				</li>
-				<li class="line-25">
-					<span>480</span>
-					<i></i>
-				</li>
-				<li class="line-26">
-					<span>500</span>
-					<b>500</b>
-					<i></i>
-				</li>
-				<li class="line-27">
-					<span>520</span>
-					<i></i>
-				</li>
-				<li class="line-28">
-					<span>540</span>
-					<i></i>
-				</li>
-				<li class="line-29">
-					<span>560</span>
-					<i></i>
-				</li>
-				<li class="line-30">
-					<span>580</span>
-					<i></i>
-				</li>
-				<li class="line-31 step-4">
-					<em>&euro;40</em>
-					<span>600</span>
-					<b>600</b>
-					<i></i>
-				</li>
-				<li class="line-32">
-					<span>620</span>
-					<i></i>
-				</li>
-				<li class="line-33">
-					<span>640</span>
-					<i></i>
-				</li>
-				<li class="line-34">
-					<span>660</span>
-					<i></i>
-				</li>
-				<li class="line-35">
-					<span>680</span>
-					<i></i>
-				</li>
-				<li class="line-36">
-					<span>700</span>
-					<b>700</b>
-					<i></i>
-				</li>
-				<li class="line-37">
-					<span>720</span>
-					<i></i>
-				</li>
-				<li class="line-38">
-					<span>740</span>
-					<i></i>
-				</li>
-				<li class="line-39">
-					<span>760</span>
-					<i></i>
-				</li>
-				<li class="line-40">
-					<span>780</span>
-					<i></i>
-				</li>
-				<li class="line-41">
-					<span>800</span>
-					<b>800</b>
-					<i></i>
-				</li>
-				<li class="line-42">
-					<span>820</span>
-					<i></i>
-				</li>
-				<li class="line-43">
-					<span>840</span>
-					<i></i>
-				</li>
-				<li class="line-44">
-					<span>860</span>
-					<i></i>
-				</li>
-				<li class="line-45">
-					<span>880</span>
-					<i></i>
-				</li>
-				<li class="line-46">
-					<span>900</span>
-					<b>900</b>
-					<i></i>
-				</li>
-				<li class="line-47">
-					<span>920</span>
-					<i></i>
-				</li>
-				<li class="line-48">
-					<span>940</span>
-					<i></i>
-				</li>
-				<li class="line-49">
-					<span>960</span>
-					<i></i>
-				</li>
-				<li class="line-50">
-					<span>980</span>
-					<i></i>
-				</li>
-				<li class="line-51 step-5">
-					<em>&euro;50</em>
-					<span>1000</span>
-					<b>1000</b>
-					<i></i>
-				</li>
-				<li class="line-52">
-					<span>1020</span>
-					<i></i>
-				</li>
-				<li class="line-53">
-					<span>1040</span>
-					<i></i>
-				</li>
-				<li class="line-54">
-					<span>1060</span>
-					<i></i>
-				</li>
-				<li class="line-55">
-					<span>1080</span>
-					<i></i>
-				</li>
-				<li class="line-56">
-					<span>1100</span>
-					<i></i>
-				</li>
-				<li class="line-57">
-					<span>1120</span>
-					<i></i>
-				</li>
-				<li class="line-58">
-					<span>1140</span>
-					<i></i>
-				</li>
-				<li class="line-59">
-					<span>1160</span>
-					<i></i>
-				</li>
-				<li class="line-60">
-					<span>1180</span>
-					<i></i>
-				</li>
-				<li class="line-61">
-					<span>1200</span>
-					<b>&infin;</b>
-					<i></i>
-				</li>
-				<li class="line-62">
-					<span>1220</span>
-					<i></i>
-				</li>
-				<li class="line-63">
-					<span>1240</span>
-					<i></i>
-				</li>
+				</li>',
+					$i,
+					$step ? sprintf('step-%d', $stepCount) : '',
+					$style,
+					$step ? sprintf('<em>&euro;%d</em>', $price) : '',
+					$count,
+					$i == 61 ? '<b>&infin;</b>' : ($count <= 1000 && $count % 100 == 0 ? sprintf('<b>%d</b>', $count) : '')
+				);
+			}
+			
+			?>
 			</ul>
 		</section>
 		<section class="price-tag">
@@ -425,8 +200,8 @@ if (!is_404())
 			</ul>
 			<p class="price">
 				<span class="label">Total</span>
-				<strong><em>&euro;</em><b id="pricetag">10</b>.<sup>00</sup></strong>
-				<a href="/" class="go">Purchase</a>
+				<strong><em>&euro;</em><b id="pricetag"><?php echo $currentPrice; ?></b>.<sup>00</sup></strong>
+				<a href="/purchase/" class="go">Purchase</a>
 			</p>
 		</section>
 		<div class="try">
@@ -477,7 +252,7 @@ if (!is_404())
 	<div class="adapt">
 		<nav class="support" role="navigation">
 			<div class="col">
-				<h4>Help & support</h4>
+				<h4>Help &amp; support</h4>
 				<?php
 
 				$settings = array(

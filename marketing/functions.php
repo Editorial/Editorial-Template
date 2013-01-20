@@ -47,7 +47,7 @@ define('EDITORIAL_MAIL_FROM_NAME', 'Editorial');
 //define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
 
 // licence pricing
-define('LICENCE_COST', 150.00);
+define('LICENCE_COST', 150.00); // deprecated
 
 // sandbox
 define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
