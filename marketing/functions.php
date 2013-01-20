@@ -268,4 +268,37 @@ function theme_options_do_page() {
 	</div>
 <?php }
 
+/**
+ * FAQ post type and taxonomy
+ */
+function create_post_types() {
+	register_post_type('faq', array(
+		'labels'              => array(
+			'name'              => __('FAQs'),
+			'singular_name'     => __('FAQ')
+		),
+		'supports'            => array('title', 'editor'),
+		'taxonomies'          => array('faqcat'),
+		'public'              => true,
+		'exclude_from_search' => false,
+		'has_archive'         => true,
+		'rewrite'             => true
+	));
+}
+add_action('init', 'create_post_types');
+
+function create_taxonomies() {
+	register_taxonomy('faqcat', 'faq', array(
+		'labels'          => array(
+			'name'          => __('FAQ Categories'),
+			'singular_name' => __('FAQ Category')
+		),
+		'hierarchical'    => true,
+		'public'          => true,
+		'rewrite'         => false
+	));
+}
+add_action('init', 'create_taxonomies', 0);
+
+
 include 'admin/admin.php';
