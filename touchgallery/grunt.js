@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
             dist: {
-                src  : ['lib/zepto.js', 'lib/*.js'],
+                src  : ['lib/zepto.js', 'lib/utils.js', 'lib/*.js'],
                 dest : 'build.js'
             }
         },

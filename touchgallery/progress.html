@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+        <title>Radial progress bar</title>
+        <script src="build.js"></script>
+    </head>
+    <body style="background: url(samples/cross-hatch.png);">
+        <div id="viewporter">
+            <div id="progress"></div>
+        </div>
+        
+        <script>
+            var d = document.querySelector('#progress');
+            var progress = new Radial({
+                container : d,
+                width     : 128,
+                height    : 128
+            });
+            progress.init();
+            
+            setInterval(function() {
+                progress.value += 0.5;
+                progress.render();
+            }, 200);
+        </script>
+    </body>
+</html>
