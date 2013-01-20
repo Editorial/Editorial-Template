@@ -44,7 +44,7 @@ class Purchase
 	 * Status cancelled
 	 */
 	const STATUS_CANCELLED = 3;
-
+	
 	/**
 	 * Insert.
 	 *
@@ -210,6 +210,68 @@ class Purchase
 				$sent = wp_mail("hello@editorialtemplate.com", $subject, $message);
 			}
 		}
+	}
+	
+	/**
+	 * Get number of templates sold.
+	 *
+	 * @return int
+	 */
+	public function getCount()
+	{
+		global $wpdb;
+		$result = $wpdb->get_row(
+			sprintf('SELECT SUM(domain_count) as c FROM purchase WHERE status = %d', self::STATUS_COMPLETED),
+			ARRAY_A
+		);
+		return (int)current($result);
+	}
+	
+	/**
+	 * Get current price based on pricing system.
+	 *
+	 * @return int
+	 */
+	public function getPrice()
+	{
+		return $this->getPricingForCount($this->getCount());
+	}
+	
+	/**
+	 * Get pricing for count
+	 *
+	 * @param int $count
+	 */
+	public function getPricingForCount($count)
+	{
+		if ($count >= 0 && $count < 100)
+		{
+			return 10;
+		}
+		else if ($count >= 100 && $count < 300)
+		{
+			return 20;
+		}
+		else if ($count >= 300 && $count < 600)
+		{
+			return 30;
+		}
+		else if ($count >= 600 && $count < 1000)
+		{
+			return 40;
+		}
+		return 50;
+	}
+	
+	/**
+	 * Is there a pricing step at count -> see footer.php for graph display.
+	 *
+	 * @param int $count
+	 * @return bool
+	 */
+	public function hasStepAtCount($count)
+	{
+		return $this->getPricingForCount($count) != $this->getPricingForCount($count-1);
 	}
 
 	/**

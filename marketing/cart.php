@@ -24,12 +24,14 @@ $newsletter = false;
 // promo
 if (array_key_exists('promo', $_GET))
 {
+	$Purchase = new Purchase();
+	$price = isset($_SESSION['price']) ? $_SESSION['price'] : $Purchase->getPrice();
     $Promo = new Promo();
     $discount = $Promo->getDiscount($_GET['promo']);
     printf(
         '{"discount": %d, "price":%.2f}', 
         $discount, 
-        LICENCE_COST * (1 - $discount/100)
+        $price * (1 - $discount/100)
     );
     return;
 }
@@ -47,6 +49,18 @@ if (array_key_exists('cancel', $_GET))
 		$Purchase = new Purchase();
 		$Purchase->cancel($_GET['token']);
 	}
+}
+
+// price
+if (array_key_exists('price', $_SESSION))
+{
+	$price = $_SESSION['price'];
+}
+else
+{
+	$Purchase = new Purchase();
+	$price = $Purchase->getPrice();
+	$_SESSION['price'] = $price;
 }
 
 // session?
@@ -174,7 +188,7 @@ if (isset($_POST) && count($_POST))
         try
         {
             $Paypal = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
-			$licenceCost = LICENCE_COST * (1 - $discount/100);
+			$licenceCost = $price * (1 - $discount/100);
 			// got discount, then use the code -> not ideal but can live with this
 			if ($discount > 0)
 			{
@@ -329,7 +343,7 @@ get_header();
 					</li>
 					<li class="price-c">
 						<label for="price-c">Price</label>
-						<input type="text" disabled value="€150" name="price-c" id="price-c">
+						<input type="text" disabled value="€<?php echo $price; ?>" name="price-c" id="price-c">
 					</li>
 					<li class="licenses-c<?php echo in_array('licences', $errors) ? ' error' : ''; ?>">
 						<label for="licenses-c"># of licenses</label>
@@ -337,7 +351,7 @@ get_header();
 					</li>
 					<li class="total">
 						<label for="total">Total</label>
-						<input type="text" disabled value="&euro;<?php echo $licences*150; ?>" name="total" id="total">
+						<input type="text" disabled value="&euro;<?php echo $licences*$price; ?>" name="total" id="total">
 					</li>
 				</ol>
 			</fieldset>
