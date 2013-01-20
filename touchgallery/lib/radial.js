@@ -2,14 +2,16 @@
 
     $.extend(Radial.prototype, EventEmitter);
     function Radial(options) {
-        this.container = options.container;
-        this.value      = options.value      || 32;
-        this.min        = options.min        || 0;
-        this.max        = options.max        || 100;
-        this.width      = options.width      || 64;
-        this.height     = options.height     || 64;
-        this.fill       = options.fill       || '#eee';
-        this.background = options.background || '#555';
+        this.container   = options.container;
+        this.value       = options.value       || 32;
+        this.min         = options.min         || 0;
+        this.max         = options.max         || 100;
+        this.width       = options.width       || 64;
+        this.height      = options.height      || 64;
+        this.fill        = options.fill        || '#eee';
+        this.background  = options.background  || '#555';
+        this.barWidth    = options.barWidth    || 0.75;
+        this.borderRatio = options.borderRatio || 0.05;
 
         this._canvas = null;
 
@@ -24,43 +26,55 @@
     };
 
     Radial.prototype.render = function() {
-        var ctx = this._canvas.getContext('2d'),
-            r   = Math.min(this.width / 2, this.height / 2);
+        var ctx    = this._canvas.getContext('2d'),
+            r      = Math.min(this.width / 2, this.height / 2) * 0.95,
+            zero   = this.getAngleForValue(this.min),
+            target = this.getAngleForValue(this.value),
+            w      = this.width / 2,
+            h      = this.height / 2;
 
         ctx.clearRect(0, 0, this.width, this.height);
-        ctx.globalCompositeOperation = 'source-over';
 
         // background
         ctx.fillStyle = this.background;
         ctx.beginPath();
-        ctx.rect(0, 0, this.width, this.height);
+        ctx.arc(w, h, r, 0, Math.PI * 2, true);
         ctx.fill();
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(w, h, r * 0.75, 0, Math.PI * 2, true);
+        ctx.clip();
+        ctx.clearRect(0, 0, this.width, this.height);
+        ctx.restore();
         
         // pie slice
         ctx.beginPath();
         ctx.fillStyle = this.fill;
-        ctx.moveTo(this.width / 2, this.height / 2);
-        ctx.lineTo(this.width / 2, this.height / 2 - r);
-        ctx.arc(this.width / 2, this.height / 2, r, this.getAngleForValue(this.min), this.getAngleForValue(this.value), false);
-        ctx.lineTo(this.width / 2, this.height / 2);
+
+        ctx.moveTo(Math.cos(zero) * r + w, Math.sin(target) * r + h);
+        ctx.arc(w, h, r, zero, target, false);
+        ctx.lineTo(Math.cos(target) * r * this.barWidth + w, Math.sin(target) * r * this.barWidth + h);
+        ctx.arc(w, h, r * this.barWidth, target, zero, true);
         ctx.closePath();
         ctx.fill();
 
         // border
-        ctx.strokeStyle = 'black';
-        ctx.strokeWidth = r * 0.05;
+        ctx.strokeStyle = 'rgba(0,0,0,0.8)';
+        ctx.lineWidth = r * this.borderRatio;
 
         ctx.beginPath();
-        ctx.arc(this.width / 2, this.height / 2, r, 0, Math.PI * 2, true);
+        ctx.arc(w, h, r, 0, Math.PI * 2, true);
         ctx.stroke();
+
         ctx.beginPath();
-        ctx.arc(this.width / 2, this.height / 2, r * 0.75, 0, Math.PI * 2, true);
+        ctx.arc(w, h, r * this.barWidth, 0, Math.PI * 2, true);
         ctx.stroke();
-        
+
     };
 
     Radial.prototype.getAngleForValue = function(val) {
-        return (clamp(val, this.min, this.max) - this.min) / (this.max - this.min) * Math.PI * 2 - Math.PI / 2;
+        return (clamp(val, this.min, this.max - 0.001) - this.min) / (this.max - this.min) * Math.PI * 2 - Math.PI / 2;
     };
 
     this.Radial = Radial;
