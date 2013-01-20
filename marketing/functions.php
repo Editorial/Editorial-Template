@@ -14,17 +14,17 @@ require_once 'library/Promo.php';
 // for debuggin purposes
 function dump($object = '')
 {
-    echo '<pre style="border: 1px solid #ccc; background: #eee; padding: 15px; margin: 15px; font-family: "Courier New", Courier, monospace">'.print_r($object, true).'</pre>';
+	echo '<pre style="border: 1px solid #ccc; background: #eee; padding: 15px; margin: 15px; font-family: "Courier New", Courier, monospace">'.print_r($object, true).'</pre>';
 }
 
 function error($message)
 {
-    error_log(sprintf('[Marketing] %s', $message));
+	error_log(sprintf('[Marketing] %s', $message));
 }
 
 function debug($message)
 {
-    error($message);
+	error($message);
 }
 
 // zip file location
@@ -35,37 +35,31 @@ define('EDITORIAL_MAIL_FROM',      'no-reply@editorialtemplate.com');
 define('EDITORIAL_MAIL_FROM_NAME', 'Editorial');
 
 // Paypal config
-define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
-define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
-define('PAYPAL_USER',        'natan_api1.editorialtemplate.com');
-define('PAYPAL_EMAIL',       'natan@editorialtemplate.com');
-define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
-define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
-define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
-define('PAYPAL_VERSION',     '56.0');
-define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
-define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
+//define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
+//define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
+//define('PAYPAL_USER',        'natan_api1.editorialtemplate.com');
+//define('PAYPAL_EMAIL',       'natan@editorialtemplate.com');
+//define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
+//define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
+//define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
+//define('PAYPAL_VERSION',     '56.0');
+//define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
+//define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
 
 // licence pricing
 define('LICENCE_COST', 150.00);
 
-// david sandbox
-//define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
-//define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
-//define('PAYPAL_USER',        'david_1321039203_biz_api1.kuridza.si');
-//define('PAYPAL_EMAIL',       'david_1321039203_biz@kuridza.si');
-//define('PAYPAL_PASSWORD',    '1321039259');
-//define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31AVts2sEdwWw1DK5C2EnxeyGcfv8E');
-//define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
-
-// miha sandbox
-//define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
-//define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
-//define('PAYPAL_USER',        'shop_1291577744_biz_api1.hribar.info');
-//define('PAYPAL_EMAIL',       'shop_1291577744_biz@hribar.info');
-//define('PAYPAL_PASSWORD',    '1291577754');
-//define('PAYPAL_SIGNATURE',   'AzWvEuogApa37pmV5w.Qo7jcZb-jArsE790LFPjmJsXXGikSjH4TCIIg');
-//define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
+// sandbox
+define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
+define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
+define('PAYPAL_USER',        'shop_1291577744_biz_api1.hribar.info');
+define('PAYPAL_EMAIL',       'shop_1291577744_biz@hribar.info');
+define('PAYPAL_PASSWORD',    '1291577754');
+define('PAYPAL_SIGNATURE',   'AzWvEuogApa37pmV5w.Qo7jcZb-jArsE790LFPjmJsXXGikSjH4TCIIg');
+define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
+define('PAYPAL_VERSION',     '56.0');
+define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
+define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
 
 /**
  * Adds classes to the array of body classes.
@@ -177,13 +171,13 @@ add_filter('wp_mail_from_name', 'editorial_wp_mail_from_name');
 // error body class
 function custom_body_classes($classes)
 {
-    // add '404' to the $classes array
-    if (is_404())
-    {
-        $classes[] = 'blank';
-    }
-    // return the $classes array
-    return $classes;
+	// add '404' to the $classes array
+	if (is_404())
+	{
+		$classes[] = 'blank';
+	}
+	// return the $classes array
+	return $classes;
 }
 
 add_filter('body_class','custom_body_classes');
