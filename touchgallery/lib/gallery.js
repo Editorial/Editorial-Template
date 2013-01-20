@@ -149,8 +149,15 @@
         return $('<img src="' + item.src + '" alt=""/>');
     };
 
+    TouchGallery.prototype.createSlidingImage = function(src) {
+        return $(
+            '<div class="top"><img src="' + src + '" alt=""/></div>' +
+            '<div class="bottom"><img src="' + src + '" alt=""/></div>'
+        );
+    };
+
     /**
-     * Creates a YouTube items in the gallery
+     * Creates a YouTube item in the gallery
      * @param  {Object} item 
      * @return {jQuery}      A jQuery-wrapped DOM element
      */
@@ -158,28 +165,37 @@
         var id = 'youtube-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
-        playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
-
+        playerContainer.append(this.createSlidingImage(item.img.src)).append('<div class="play-icon"></div>');
         item.playerContainer = playerContainer;
 
         return playerContainer;
     };
 
+    /**
+     * Creates a Vimeo item in the gallery
+     * @param  {Object} item 
+     * @return {jQuery}      A jQuery-wrapped DOM element
+     */
     TouchGallery.prototype.createVimeoVideo = function(item) {
         var id = 'vimeo-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
-        playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
+        playerContainer.append(this.createSlidingImage(item.img.src)).append('<div class="play-icon"></div>');
         item.playerContainer = playerContainer;
 
         return playerContainer;
     };
 
+    /**
+     * Creates a generic video player item in the gallery
+     * @param  {Object} item 
+     * @return {jQuery}      A jQuery-wrapped DOM element
+     */
     TouchGallery.prototype.createVideoPlayer = function(item) {
         var id = 'video-' + (this.videoCounter++),
             playerContainer = $('<div></div>').attr('id', id);
 
-        playerContainer.append('<img src="' + item.img.src + '"/><div class="play-icon"></div>');
+        playerContainer.append(this.createSlidingImage(item.img.src)).append('<div class="play-icon"></div>');
         item.playerContainer = playerContainer;
 
         return playerContainer;

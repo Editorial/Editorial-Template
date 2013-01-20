@@ -41,6 +41,7 @@
         ctx.arc(w, h, r, 0, Math.PI * 2, true);
         ctx.fill();
 
+        // clear the middle section
         ctx.save();
         ctx.beginPath();
         ctx.arc(w, h, r * 0.75, 0, Math.PI * 2, true);
@@ -51,7 +52,6 @@
         // pie slice
         ctx.beginPath();
         ctx.fillStyle = this.fill;
-
         ctx.moveTo(Math.cos(zero) * r + w, Math.sin(target) * r + h);
         ctx.arc(w, h, r, zero, target, false);
         ctx.lineTo(Math.cos(target) * r * this.barWidth + w, Math.sin(target) * r * this.barWidth + h);
@@ -60,13 +60,15 @@
         ctx.fill();
 
         // border
-        ctx.strokeStyle = 'rgba(0,0,0,0.8)';
+        ctx.strokeStyle = 'rgba(0,0,0,0.6)';
         ctx.lineWidth = r * this.borderRatio;
 
+        // outer border
         ctx.beginPath();
         ctx.arc(w, h, r, 0, Math.PI * 2, true);
         ctx.stroke();
 
+        // inner border
         ctx.beginPath();
         ctx.arc(w, h, r * this.barWidth, 0, Math.PI * 2, true);
         ctx.stroke();
