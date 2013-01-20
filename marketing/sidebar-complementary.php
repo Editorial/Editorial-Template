@@ -13,7 +13,24 @@ if(isset($opts['enquiry'])) {
 }
 ?>
 	<div class="send-inquiry">
-	<?php
-	if($cfid) echo do_shortcode('[contact-form-7 id="' . $cfid . '" title="Enquiry"]'); ?>
+		<?php
+/* HTML and tags for Contact Form 7
+
+Please update this comment with the HTML from CF7 field in admin dashboard.
+Do not delete.
+---------------------------------
+<div class="enquiry-message">
+<label for="msg">Dear Editorial team,</label>[textarea* msg 60x3 id:msg class:enquiry-textarea watermark "I am writing about …"]
+</div>
+<div class="enquiry-contact">
+<label for="name">Yours sincerely,</label> [text* name id:name class:enquiry-text watermark "Your name"]
+[email* uemail id:uemail class:enquiry-text watermark "Your e-mail"]
+</div>
+<div class="enquiry-actions">
+<a href="" id="enquiry-cancel">Cancel and close</a> or [submit class:enquiry-button "Send Enquiry"]
+</div>
+---------------------------------
+*/
+		if($cfid) echo do_shortcode('[contact-form-7 id="' . $cfid . '" title="Enquiry"]'); ?>
 	</div>
 </div>
