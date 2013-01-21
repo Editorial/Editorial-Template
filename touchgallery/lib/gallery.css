@@ -64,15 +64,35 @@
     height   : 50%;
 }
 
+.touch-gallery .items li .top img, .touch-gallery .items li .bottom img {
+    position: absolute;
+    left: 0;
+}
+
 .touch-gallery .items li .bottom {
     bottom: 0;
 }
 
-.touch-gallery .items li .bottom img {
-    position: absolute;
-    bottom: 0;
-    height: 200%;
+@-webkit-keyframes SLIDE-UP {
+    0% { -webkit-transform: translateY(0); }
+    100% { -webkit-transform: translateY(-100%); }
 }
+
+@-webkit-keyframes SLIDE-DOWN {
+    0% { -webkit-transform: translateY(0); }
+    100% { -webkit-transform: translateY(100%); }
+}
+
+.touch-gallery .items .slide-out .top {
+    -webkit-animation: SLIDE-UP 0.5s ease-out;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.touch-gallery .items .slide-out .bottom {
+    -webkit-animation: SLIDE-DOWN 0.5s ease-out;
+    -webkit-animation-fill-mode: forwards;
+}
+
 
 .touch-gallery .close-button {
     position              : absolute;

@@ -281,29 +281,51 @@
             height = this.list.height();
             ratio  = width / height;
         this.list.children().each(function(idx) {
-            // position the list element correctly
-            $(this).css('margin-left', idx * 100 + '%');
+            var $li = $(this);
 
-            var img      = $(this).find('img'),
+            // position the list element correctly
+            $li.css('margin-left', idx * 100 + '%');
+
+            var img      = $li.find('img'),
                 imgRatio = img[0].naturalWidth / img[0].naturalHeight;
 
-            // size the image to fit the viewport, upscaling if necessary
-            if (imgRatio > ratio) {
+            if ($li.is('.video')) {
+
                 img.css({
-                    marginLeft : 0,
-                    marginTop  : (height - (width / img[0].naturalWidth * img[0].naturalHeight)) / 2 + 'px',
                     width      : '100%',
-                    height     : 'auto'
+                    height     : 'auto',
+                    marginLeft : 0
+                })
+
+                img.first().css({
+                    bottom: -width / imgRatio / 2 + 'px'
                 });
+
+                img.last().css({
+                    top: -width / imgRatio / 2 + 'px'
+                });
+
             } else {
-                img.css({
-                    marginLeft : (width - (height / img[0].naturalHeight * img[0].naturalWidth)) / 2 + 'px',
-                    marginTop  : 0,
-                    width      : 'auto',
-                    height     : '100%'
-                });
+
+                // size the image to fit the viewport, upscaling if necessary
+                if (imgRatio > ratio) {
+                    img.css({
+                        marginLeft : 0,
+                        marginTop  : (height - (width / imgRatio)) / 2 + 'px',
+                        width      : '100%',
+                        height     : 'auto'
+                    });
+                } else {
+                    img.css({
+                        marginLeft : (width - (height * imgRatio)) / 2 + 'px',
+                        marginTop  : 0,
+                        width      : 'auto',
+                        height     : '100%'
+                    });
+                }
             }
 
+            /*
             var iframe = $(this).find('iframe');
             if (iframe.length) {
                 iframe.attr({
@@ -311,6 +333,7 @@
                     height : self.list.height()
                 });
             }
+            */
         });
         this.moveTo(this.currentItem, true);
 
@@ -488,8 +511,9 @@
             this.activateYouTubePlayer(item);
         else if (item.type == 'vimeo')
             this.activateVimeoPlayer(item);
-        else if (item.type == 'video')
-            console.warn('Not implemented!');
+        else if (item.type == 'video') {
+            item.playerContainer.toggleClass('slide-out');
+        }
     };
 
     /**
@@ -511,7 +535,6 @@
         // when the phone is turned we need to stop autoplay to avoid edge cases where
         // resizing the container breaks the scrolling
         this.stopAutoplay();
-
         this.repositionImages();
     };
 
