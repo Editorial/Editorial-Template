@@ -52,7 +52,7 @@ if($has_child){
         <?php
         if ( $current_theme['Name'] == 'Editorial' ) :
         ?>
-          <div class='updated fade'><p>Please activate the child theme <b>Editorial Custom</b> from the <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/themes.php">Appearance/Themes</a> for the customization to work.</p></div>
+          <div class='updated fade'><p>The changes you are about to make are likely to be lost when updating. You can easily avoid this by activating the <b>Editorial Custom</b> child theme under <a href="<?php echo get_bloginfo('url'); ?>/wp-admin/themes.php">Appearance/Themes</a> and returning here to apply desired changes.</p></div>
         <?php
         endif;
         ?>

@@ -37,7 +37,7 @@ if ($EditorialId != 'notfound')
     <?php if (Editorial::getOption('colophon-enabled')) { ?>
       <nav role="navigation" class="xoxo colophon-footer">     
       <ul>
-        <li><a href="<?php echo get_permalink(get_page_by_title('colophon')->ID); ?>"><?php echo $translations['footer']['Colophon'] ?></a></li>
+        <li><a href="<?php echo get_permalink(get_page_by_title('masthead')->ID); ?>"><?php echo $translations['footer']['Masthead'] ?></a></li>
       </ul>
       </nav>
     <?php

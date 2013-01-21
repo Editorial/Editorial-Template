@@ -15,19 +15,12 @@
 class Editorial_Admin
 {
 	/**
-	 * Look & Feel page
+	 * Available pages
 	 */
 	const PAGE_LOOK = 'look';
-
-	/**
-	 * Share page
-	 */
 	const PAGE_SHARE = 'sharing';
-
 	const PAGE_CUSTOMIZE = 'customstyle';
-
 	const CHILD_THEME = 'editorial-child';
-
 	const PAGE_TRANSLATIONS = 'translations';
 
 	/**
@@ -61,7 +54,6 @@ class Editorial_Admin
 		'karma-treshold',
 		'twitter-share',
 		'twitter-account',
-		'twitter-related',
 		'facebook-share',
 		'google-share',
 		'colophon-enabled',
@@ -621,7 +613,7 @@ class Editorial_Admin
 	 */
 	public function invalidNotice()
 	{
-		$this->_showNotice(__('<strong>You are using an ilegal copy of the Editorial theme</strong>. You can purchase additional licences on <a href="http://editorialtemplate.com/purchase">editorialtemplate.com</a>. Your domain has been logged in our system for investigation.', 'Editorial'));
+		$this->_showNotice(__('<strong>This is a non-licenced copy of Editorial theme.</strong>. If you like our work please support it by purchasing a licence at <a href="http://editorialtemplate.com/">editorialtemplate.com</a>.', 'Editorial'));
 	}
 	
 	/**
@@ -652,13 +644,12 @@ class Editorial_Admin
 						md5(strtolower(trim($user->user_email))),
 						20
 					);
-
 		return sprintf('<li id="user_%1$d">
 					<span class="handle">handle</span>
 					<img src="%5$s" class="photo" width="20" height="20" />
 					<input type="checkbox" name="author[]" value="%1$d"%4$s />
 					<strong>%2$s</strong>
-					<input type="text" name="title[]" value="%3$s" placeholder="Author title" />
+					<input type="text" name="title[]" value="%3$s" placeholder="Role description" />
 				</li>', $user->ID, $user->display_name, $title, ($checked ? ' checked="checked"' : ''), $gravatar);
 	}
 	

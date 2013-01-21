@@ -102,7 +102,7 @@ class Editorial
         //footer
         'footer' => array(
             'Subscribe' => 'Subscribe',
-            'Colophon' => 'Colophon',
+            'Masthead' => 'Masthead',
             'All categories' => 'All categories',
         ),
         //gallery
@@ -236,7 +236,7 @@ class Editorial
       if (!Editorial::get_page_by_post_name('colophon')) {
         $page["post_type"] = 'page';
         $page["post_name"] = 'colophon';
-        $page["post_title"] = 'Colophon';
+        $page["post_title"] = 'Masthead';
         $page["post_content"] = '<h2>About</h2><p>Our colophon page</p>';
         $page["post_status"] = 'publish';
         $page["comment_status"] = 'closed';
@@ -515,7 +515,7 @@ EOF;
             if (self::getOption('translations') === false)
             {
                 //add default translations
-                self::setOption('translations', self::translations);
+                self::setOption('translations', self::$translations);
             }
 
             // enable black and white images by default
@@ -1709,7 +1709,7 @@ function colophon_page_add_meta_boxes() {
       );
       add_meta_box(
           'colophon-custom-metabox-authors', // Metabox HTML ID attribute
-          'Authors', // Metabox title
+          'Team members', // Metabox title
           'colophon_authors_page_template_metabox', // callback name
           'page', // post type
           'normal', // context (advanced, normal, or side)
@@ -1726,7 +1726,7 @@ function colophon_about_page_template_metabox( $post ) {
 
     $checked = !Editorial::getOption('colophon-enabled') ? '' : ' checked="checked"';
     $return = '
-    <label>Enable Colophon 
+    <label>Enable Masthead 
         <input type="checkbox" name="colophon-enabled" '. $checked .' />
     </label>';
     echo $return;
