@@ -106,10 +106,13 @@
     border-radius         : 60px;
 }
 
-.touch-gallery .fade-out {
-    opacity            : 0;
+.touch-gallery .top-bar, .touch-gallery .bottom-bar {
     -webkit-transition : opacity 0.3s ease-out;
     transition         : opacity 0.3s ease-out;
+}
+
+.touch-gallery .fade-out {
+    opacity : 0;
 }
 
 .touch-gallery .top-bar {

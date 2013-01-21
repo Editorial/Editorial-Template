@@ -511,8 +511,11 @@
             this.activateYouTubePlayer(item);
         else if (item.type == 'vimeo')
             this.activateVimeoPlayer(item);
-        else if (item.type == 'video') {
+        else if (item.type == 'video')
             item.playerContainer.toggleClass('slide-out');
+        else if (item.type == 'image') {
+            this.stopAutoplay();
+            this.toggleBars();
         }
     };
 
@@ -550,6 +553,10 @@
      */
     TouchGallery.prototype.showBars = function() {
         this.container.find('.top-bar,.bottom-bar').removeClass('fade-out');
+    };
+
+    TouchGallery.prototype.toggleBars = function() {
+        this.container.find('.top-bar,.bottom-bar').toggleClass('fade-out');
     };
 
     TouchGallery.prototype.startAutoplay = function() {
