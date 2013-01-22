@@ -27,6 +27,8 @@
         this.videoCounter    = 0;
         this.autoplayTimer   = null;
 
+        this._scrolling = true;
+
         // configuration
         this.swipeLength      = 0.15; // swipe length must cross at least 15% of minimum screen dimension
         this.autoplayInterval = 3000; // the autoadvance interval, in milliseconds
@@ -162,6 +164,8 @@
                 src : item.img.src
             }));
 
+        item.poster = $(fragment.querySelector('.poster'));
+        item.closeButton = $(fragment.querySelector('.close-button'));
         item.playerContainer = $(fragment.querySelector('#' + id));
 
         return fragment;
@@ -192,6 +196,8 @@
                 src : item.img.src
             }));
 
+        item.poster = $(fragment.querySelector('.poster'));
+        item.closeButton = $(fragment.querySelector('.close-button'));
         item.playerContainer = $(fragment.querySelector('#' + id));
 
         return fragment;
@@ -223,7 +229,16 @@
                 video : item.src
             }));
 
+        item.poster = $(fragment.querySelector('.poster'));
+        item.closeButton = $(fragment.querySelector('.close-button'));
         item.playerContainer = $(fragment.querySelector('#' + id));
+
+        var self = this;
+        item.closeButton.on('tap', function(ev) {
+            item.poster.removeClass('slide-out');
+            self.enableScrolling();
+            self.showBars();
+        });
 
         return fragment;
     };
@@ -248,7 +263,10 @@
     TouchGallery.prototype.activateYouTubePlayer = function(item) {
         this.stopAutoplay();
         this.hideBars();
-        item.playerContainer.closest('.video').find('.poster').addClass('slide-out');
+        this.disableScrolling();
+
+        item.poster.addClass('slide-out');
+
         item.player = new YT.Player(item.playerContainer.get(0), {
             width   : this.list.width() - 200,
             height  : this.list.height(),
@@ -261,10 +279,10 @@
         });
 
         var self = this;
-        debugger;
-        item.playerContainer.closest('li').find('.close-button').on('touchstart', function(ev) {
+        item.closeButton.on('tap', function(ev) {
             ev.preventDefault();
-            self.destroyVimeoPlayer(item);
+            ev.stopPropagation();
+            self.destroyYouTubePlayer(item);
         });
     };
 
@@ -277,9 +295,10 @@
         item.player = null;
         item.listItem.children().remove();
         item.listItem.append(this.createYouTubeVideo(item));
-        this.container.find('.close-button').remove();
+
         this.repositionImages();
         this.showBars();
+        this.enableScrolling();
     };
 
     /**
@@ -289,7 +308,10 @@
     TouchGallery.prototype.activateVimeoPlayer = function(item) {
         this.stopAutoplay();
         this.hideBars();
-        item.playerContainer.closest('.video').find('.poster').addClass('slide-out');
+        this.disableScrolling();
+
+        item.poster.addClass('slide-out').remove();
+
         var iframe = $('<iframe></iframe>').attr({
             width                 : this.list.width() - 200,
             height                : this.list.height(),
@@ -299,12 +321,15 @@
             mozallowfullscreen    : 'yes',
             allowFullScreen       : 'yes'
         }).appendTo(item.playerContainer);
+
         item.player = new VimeoCommunicator(iframe[0]);
         item.player.on('received', function(data) { console.warn(data); });
 
         var self = this;
-        item.playerContainer.closest('li').find('.close-button').click(function(ev) {
+
+        item.closeButton.on('tap', function(ev) {
             ev.preventDefault();
+            ev.stopPropagation();
             self.destroyVimeoPlayer(item);
         });
     };
@@ -313,9 +338,9 @@
         item.player = null;
         item.listItem.children().remove();
         item.listItem.append(this.createVimeoVideo(item));
-        this.container.find('.close-button').remove();
         this.repositionImages();
         this.showBars();
+        this.enableScrolling();
     };
 
     TouchGallery.prototype._createFragment = function(html) {
@@ -484,11 +509,11 @@
 
     TouchGallery.prototype.draw = function() {
         this.list.get(0).style.webkitTransform = 'translate(' + (-this.position) + 'px, 0)';
-        this.list.get(0).style.transform = 'translate(' + (-this.position) + 'px, 0)';
     };
 
 
     TouchGallery.prototype.handleTouchStart = function(ev) {
+        if (!this._scrolling) return;
         this.stopAutoplay();
         var touch = this.interacting ? this._findTouch(ev.changedTouches) : ev.changedTouches[0];
         if (touch) {
@@ -506,6 +531,7 @@
     };
 
     TouchGallery.prototype.handleTouchMove = function(ev) {
+        if (!this._scrolling) return;
         var touch = this._findTouch(ev.changedTouches);
         if (touch) {
             ev.preventDefault();
@@ -530,6 +556,7 @@
     };
 
     TouchGallery.prototype.handleTouchEnd = function(ev) {
+        if (!this._scrolling) return;
         ev.preventDefault();
         this.touchId      = null;
         this.touchCoords  = null;
@@ -559,14 +586,14 @@
 
     TouchGallery.prototype.handleTap = function() {
         var item = this.items[this.currentItem];
-        if (item.type == 'youtube')
-            if (!item.player)
-                this.activateYouTubePlayer(item);
-        else if (item.type == 'vimeo')
-            if (!item.player)
-                this.activateVimeoPlayer(item);
-        else if (item.type == 'video') {
-            item.playerContainer.closest('.video').find('.poster').toggleClass('slide-out');
+        if (item.type == 'youtube') {
+            if (!item.player) this.activateYouTubePlayer(item);
+        } else if (item.type == 'vimeo') { 
+            if (!item.player) this.activateVimeoPlayer(item);
+        } else if (item.type == 'video') {
+            this.hideBars();
+            this.disableScrolling();
+            item.poster.addClass('slide-out');
         } else if (item.type == 'image') {
             this.stopAutoplay();
             this.toggleBars();
@@ -614,6 +641,14 @@
 
     TouchGallery.prototype.toggleBars = function() {
         this.container.find('.top-bar,.bottom-bar').toggleClass('fade-out');
+    };
+
+    TouchGallery.prototype.enableScrolling = function() {
+        this._scrolling = true;
+    };
+
+    TouchGallery.prototype.disableScrolling = function() {
+        this._scrolling = false;
     };
 
     TouchGallery.prototype.startAutoplay = function() {
