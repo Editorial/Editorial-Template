@@ -37,8 +37,9 @@
         }, this);
 
         // hook up events
+        var self = this;
         window.addEventListener('resize', function() { viewporter.refresh(); });
-        window.addEventListener('orientationchange', function() { viewporter.refresh(); });
+        window.addEventListener('orientationchange', function() { viewporter.refresh(); self.handleResize(); });
         window.addEventListener('viewportchange', this.handleResize);
 
         // start preloading images before initialising structure
@@ -149,13 +150,6 @@
         return $('<img src="' + item.src + '" alt=""/>');
     };
 
-    TouchGallery.prototype.createSlidingImage = function(src) {
-        return $(
-            '<div class="top"><img src="' + src + '" alt=""/></div>' +
-            '<div class="bottom"><img src="' + src + '" alt=""/></div>'
-        );
-    };
-
     /**
      * Creates a YouTube item in the gallery
      * @param  {Object} item 
@@ -163,13 +157,28 @@
      */
     TouchGallery.prototype.createYouTubeVideo = function(item) {
         var id = 'youtube-' + (this.videoCounter++),
-            playerContainer = $('<div></div>').attr('id', id);
+            fragment = this._createFragment(this.youtubeVideoTemplate({
+                id  : id,
+                src : item.img.src
+            }));
 
-        playerContainer.append(this.createSlidingImage(item.img.src)).append('<div class="play-icon"></div>');
-        item.playerContainer = playerContainer;
+        item.playerContainer = $(fragment.querySelector('#' + id));
 
-        return playerContainer;
+        return fragment;
     };
+
+    TouchGallery.prototype.youtubeVideoTemplate = tmpl(
+        '<div class="poster">' +
+            '<div class="top"><img src="<%= src %>"/></div>' +
+            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="play-icon"></div>' +
+        '</div>' +
+        '<div class="player-container">'+
+            '<div id="<%= id %>"></div>' +
+        '</div>' +
+        '<div class="left"></div>' +
+        '<div class="right"><div class="close-button">X</div></div>'
+    );
 
     /**
      * Creates a Vimeo item in the gallery
@@ -178,13 +187,28 @@
      */
     TouchGallery.prototype.createVimeoVideo = function(item) {
         var id = 'vimeo-' + (this.videoCounter++),
-            playerContainer = $('<div></div>').attr('id', id);
+            fragment = this._createFragment(this.vimeoVideoTemplate({
+                id  : id,
+                src : item.img.src
+            }));
 
-        playerContainer.append(this.createSlidingImage(item.img.src)).append('<div class="play-icon"></div>');
-        item.playerContainer = playerContainer;
+        item.playerContainer = $(fragment.querySelector('#' + id));
 
-        return playerContainer;
+        return fragment;
     };
+
+    TouchGallery.prototype.vimeoVideoTemplate = tmpl(
+        '<div class="poster">' +
+            '<div class="top"><img src="<%= src %>"/></div>' +
+            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="play-icon"></div>' +
+        '</div>' +
+        '<div class="player-container">'+
+            '<div id="<%= id %>"></div>' +
+        '</div>' +
+        '<div class="left"></div>' +
+        '<div class="right"><div class="close-button">X</div></div>'
+    );
 
     /**
      * Creates a generic video player item in the gallery
@@ -193,13 +217,29 @@
      */
     TouchGallery.prototype.createVideoPlayer = function(item) {
         var id = 'video-' + (this.videoCounter++),
-            playerContainer = $('<div></div>').attr('id', id);
+            fragment = this._createFragment(this.videoPlayerTemplate({
+                id    : id,
+                src   : item.img.src,
+                video : item.src
+            }));
 
-        playerContainer.append(this.createSlidingImage(item.img.src)).append('<div class="play-icon"></div>');
-        item.playerContainer = playerContainer;
+        item.playerContainer = $(fragment.querySelector('#' + id));
 
-        return playerContainer;
+        return fragment;
     };
+
+    TouchGallery.prototype.videoPlayerTemplate = tmpl(
+        '<div class="poster">' +
+            '<div class="top"><img src="<%= src %>"/></div>' +
+            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="play-icon"></div>' +
+        '</div>' +
+        '<div class="player-container">' +
+            '<div id="<%= id %>"><video controls src="<%= video %>"></video></div>' +
+        '</div>' +
+        '<div class="left"></div>' +
+        '<div class="right"><div class="close-button">X</div></div>'
+    );
 
     /**
      * Loads the player for YouTube items
@@ -208,20 +248,23 @@
     TouchGallery.prototype.activateYouTubePlayer = function(item) {
         this.stopAutoplay();
         this.hideBars();
+        item.playerContainer.closest('.video').find('.poster').addClass('slide-out');
         item.player = new YT.Player(item.playerContainer.get(0), {
-            width   : this.list.width(),
+            width   : this.list.width() - 200,
             height  : this.list.height(),
             videoId : item.id,
             events  : {
-                onReady: function() { console.log(arguments); },
-                onStateChange: function() { console.log(arguments); }
+                onReady       : function() { console.log(arguments); },
+                onStateChange : function() { console.log(arguments); },
+                onError       : function() { console.log(arguments); }
             }
         });
 
         var self = this;
-        $('<div class="close-button">×</div>').appendTo(this.container.find('.touch-gallery')).click(function(ev) {
+        debugger;
+        item.playerContainer.closest('li').find('.close-button').on('touchstart', function(ev) {
             ev.preventDefault();
-            self.destroyYouTubePlayer(item);
+            self.destroyVimeoPlayer(item);
         });
     };
 
@@ -231,7 +274,9 @@
      */
     TouchGallery.prototype.destroyYouTubePlayer = function(item) {
         item.player.destroy();
-        item.listItem.children().remove().end().append(this.createYouTubeVideo(item));
+        item.player = null;
+        item.listItem.children().remove();
+        item.listItem.append(this.createYouTubeVideo(item));
         this.container.find('.close-button').remove();
         this.repositionImages();
         this.showBars();
@@ -244,9 +289,9 @@
     TouchGallery.prototype.activateVimeoPlayer = function(item) {
         this.stopAutoplay();
         this.hideBars();
-        item.playerContainer.children().remove();
+        item.playerContainer.closest('.video').find('.poster').addClass('slide-out');
         var iframe = $('<iframe></iframe>').attr({
-            width                 : this.list.width(),
+            width                 : this.list.width() - 200,
             height                : this.list.height(),
             src                   : 'http://player.vimeo.com/video/' + item.id + '?api=1&player_id=' + item.playerContainer.attr('id'),
             frameborder           : '0',
@@ -258,7 +303,7 @@
         item.player.on('received', function(data) { console.warn(data); });
 
         var self = this;
-        $('<div class="close-button">×</div>').appendTo(this.container.find('.touch-gallery')).click(function(ev) {
+        item.playerContainer.closest('li').find('.close-button').click(function(ev) {
             ev.preventDefault();
             self.destroyVimeoPlayer(item);
         });
@@ -266,10 +311,17 @@
 
     TouchGallery.prototype.destroyVimeoPlayer = function(item) {
         item.player = null;
-        item.listItem.children().remove().end().append(this.createVimeoVideo(item));
+        item.listItem.children().remove();
+        item.listItem.append(this.createVimeoVideo(item));
         this.container.find('.close-button').remove();
         this.repositionImages();
         this.showBars();
+    };
+
+    TouchGallery.prototype._createFragment = function(html) {
+        var fragment = document.createDocumentFragment();
+        $(html).each(function() { fragment.appendChild(this); });
+        return fragment;
     };
 
     /**
@@ -278,34 +330,43 @@
     TouchGallery.prototype.repositionImages = function() {
         var self   = this,
             width  = this.list.width(),
-            height = this.list.height();
+            height = this.list.height(),
             ratio  = width / height;
+
         this.list.children().each(function(idx) {
             var $li = $(this);
 
             // position the list element correctly
             $li.css('margin-left', idx * 100 + '%');
 
-            var img      = $li.find('img'),
-                imgRatio = img[0].naturalWidth / img[0].naturalHeight;
+            var imageRatio;
 
             if ($li.is('.video')) {
 
-                img.css({
+                var top = $li.find('.top img'),
+                    bottom = $li.find('.bottom img'),
+                
+                imgRatio = top[0].naturalWidth / top[0].naturalHeight;
+
+                top.add(bottom).css({
                     width      : '100%',
                     height     : 'auto',
                     marginLeft : 0
                 })
 
-                img.first().css({
+                top.css({
                     bottom: -width / imgRatio / 2 + 'px'
                 });
 
-                img.last().css({
+                bottom.last().css({
                     top: -width / imgRatio / 2 + 'px'
                 });
 
             } else {
+
+                var img = $li.find('img');
+
+                imgRatio = img[0].naturalWidth / img[0].naturalHeight;
 
                 // size the image to fit the viewport, upscaling if necessary
                 if (imgRatio > ratio) {
@@ -325,15 +386,6 @@
                 }
             }
 
-            /*
-            var iframe = $(this).find('iframe');
-            if (iframe.length) {
-                iframe.attr({
-                    width  : self.list.width(),
-                    height : self.list.height()
-                });
-            }
-            */
         });
         this.moveTo(this.currentItem, true);
 
@@ -508,12 +560,14 @@
     TouchGallery.prototype.handleTap = function() {
         var item = this.items[this.currentItem];
         if (item.type == 'youtube')
-            this.activateYouTubePlayer(item);
+            if (!item.player)
+                this.activateYouTubePlayer(item);
         else if (item.type == 'vimeo')
-            this.activateVimeoPlayer(item);
-        else if (item.type == 'video')
-            item.playerContainer.toggleClass('slide-out');
-        else if (item.type == 'image') {
+            if (!item.player)
+                this.activateVimeoPlayer(item);
+        else if (item.type == 'video') {
+            item.playerContainer.closest('.video').find('.poster').toggleClass('slide-out');
+        } else if (item.type == 'image') {
             this.stopAutoplay();
             this.toggleBars();
         }
@@ -538,7 +592,10 @@
         // when the phone is turned we need to stop autoplay to avoid edge cases where
         // resizing the container breaks the scrolling
         this.stopAutoplay();
-        this.repositionImages();
+
+        this.list.css('opacity', 0);
+
+        setTimeout(this.repositionImages, 0);
     };
 
     /**

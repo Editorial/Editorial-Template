@@ -10,6 +10,10 @@
 .touch-gallery * {
     -webkit-box-sizing : border-box;
     box-sizing         : border-box;
+    position           : absolute;
+    margin             : 0;
+    padding            : 0;
+    display            : block;
 }
 
 .touch-gallery .items {
@@ -20,11 +24,11 @@
     bottom   : 0;
     padding  : 0;
     margin   : 0;
+    opacity  : 0;
 }
 
 .touch-gallery .items li {
     display           : block;
-    position          : absolute;
     top               : 0;
     left              : 0;
     width             : 100%;
@@ -34,13 +38,14 @@
     transform         : translateZ(0);
 }
 
-.touch-gallery .items li * {
-    display    : block;
+.touch-gallery .items li>* {
+    display : block;
+    width   : 100%;
+    height  : 100%;
 }
 
 .touch-gallery .items li .play-icon {
     content         : '\00a0';
-    position        : absolute;
     top             : 50%;
     left            : 50%;
     margin-left     : -64px;
@@ -51,68 +56,80 @@
     background-size : 100% 100%;
 }
 
-.touch-gallery .items li iframe {
-    width  : 100%;
-    height : 100%;
+.touch-gallery .poster {
+    background: black;
+    z-index: 10;
+    -webkit-transition: background 0.5s ease-out;
 }
 
-.touch-gallery .items li .top, .touch-gallery .items li .bottom {
-    overflow : hidden;
-    position : absolute;
-    left     : 0;
-    right    : 0;
+.touch-gallery .poster>* {
+    -webkit-transition: all 0.5s ease-out;
+}
+
+.touch-gallery .poster .top, .touch-gallery .poster .bottom {
     height   : 50%;
+    width    : 100%;
+    overflow : hidden;
 }
 
-.touch-gallery .items li .top img, .touch-gallery .items li .bottom img {
-    position: absolute;
-    left: 0;
-}
-
-.touch-gallery .items li .bottom {
+.touch-gallery .poster .bottom {
     bottom: 0;
 }
 
-@-webkit-keyframes SLIDE-UP {
-    0% { -webkit-transform: translateY(0); }
-    100% { -webkit-transform: translateY(-100%); }
+.touch-gallery .slide-out {
+    display: none !important;
 }
 
-@-webkit-keyframes SLIDE-DOWN {
-    0% { -webkit-transform: translateY(0); }
-    100% { -webkit-transform: translateY(100%); }
+/*
+.touch-gallery .slide-out .top {
+    -webkit-transform: translateY(-100%);
 }
 
-.touch-gallery .items .slide-out .top {
-    -webkit-animation: SLIDE-UP 0.5s ease-out;
-    -webkit-animation-fill-mode: forwards;
+.touch-gallery .slide-out .bottom {
+    -webkit-transform: translateY(100%);
 }
 
-.touch-gallery .items .slide-out .bottom {
-    -webkit-animation: SLIDE-DOWN 0.5s ease-out;
-    -webkit-animation-fill-mode: forwards;
+.touch-gallery .slide-out .play-icon {
+    display: none;
 }
+*/
 
+.touch-gallery .items .left { width: 100px; left: 0; background: url(../samples/cross-hatch.png); }
+.touch-gallery .items .right { width: 100px; right: 0; background: url(../samples/cross-hatch.png); }
 
-.touch-gallery .close-button {
-    position              : absolute;
-    width                 : 50px;
-    height                : 50px;
-    top                   : 50px;
-    right                 : 50px;
+.touch-gallery .items .right .close-button {
+    top                   : 50%;
+    left                  : 50%;
+    margin-left           : -30px;
+    margin-top            : -30px;
+    width                 : 60px;
+    height                : 60px;
+    -webkit-border-radius : 100px;
+    border-radius         : 100px;
     background            : red;
-    padding               : 15px;
-    -webkit-border-radius : 60px;
-    border-radius         : 60px;
+    color                 : white;
+    padding               : 20px;
+    font-weight           : bold;
 }
 
-.touch-gallery .top-bar, .touch-gallery .bottom-bar {
-    -webkit-transition : opacity 0.3s ease-out;
-    transition         : opacity 0.3s ease-out;
+.touch-gallery .player-container {
+    left     : 100px;
+    right    : 100px;
+    top      : 0;
+    bottom   : 0;
+    overflow : hidden;
 }
+
+
+
+/* ---[ TOP AND BOTTOM BAR STYLING ]--- */
 
 .touch-gallery .fade-out {
     opacity : 0;
+}
+
+.touch-gallery .top-bar, .touch-gallery .bottom-bar {
+    -webkit-transition: opacity 0.2s ease-out;
 }
 
 .touch-gallery .top-bar {
@@ -135,6 +152,7 @@
 
 .touch-gallery .top-bar .controls a {
     display                     : block;
+    position                    : static;
     float                       : left;
     width                       : 33%;
     height                      : 100%;
@@ -154,7 +172,6 @@
 }
 
 .touch-gallery .bottom-bar {
-    position   : absolute;
     left       : 0;
     right      : 0;
     bottom     : 0;

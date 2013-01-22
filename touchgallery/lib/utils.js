@@ -102,4 +102,63 @@
         };
     })();
 
+    var ua = window.navigator.userAgent; // just so it's overridable by tests
+    
+    // Usage:
+    //  - platform()
+    //  - platform(min, max)    -- min/max are inclusive, null for unbounded
+    //  - platform(exact)       -- same as platform(exact, exact)
+    // args are strings
+    
+    function ios() {
+        var m = ua.match(/iP(ad|hone|od).*OS ([0-9_]+)/);
+        return !!m && versionMatches(m[2].replace(/_/g, '.'), arguments);
+    }
+
+    function android() {
+        var m = ua.match(/Android ([0-9.]+)/);
+        return !!m && versionMatches(m[1], arguments);
+    }
+    
+    function versionMatches(ver, bounds) {
+        var min, max;
+        if (bounds.length == 0) {
+            min = null;
+            max = null;
+        } else if (bounds.length == 1) {
+            min = bounds[0];
+            max = bounds[0];
+        } else if (bounds.length == 2) {
+            min = bounds[0];
+            max = bounds[1];
+        } else {
+            throw 'Invalid number of arguments'
+        }
+        
+        // Parse strings
+        ver = ver.split('.');
+        min = min ? min.split('.') : [];
+        max = max ? max.split('.') : [];
+        
+        // Version should have at least as many places as min/max. If not, add zeroes.
+        // (e.g. iOS 3.0 is also 3.0.0)
+        for (var i=Math.max(min.length, max.length)-ver.length; i >= 0; i--)
+            ver.push(0);
+        
+        function cmp(a, b) {
+            for(var i = 0; i < Math.min(a.length, b.length); i++) {
+                if(a[i] < b[i]) return -1;
+                if(a[i] > b[i]) return 1;
+            }
+            return 0;
+        }
+    
+        return !!(cmp(ver, min) != -1 && cmp(ver, max) != 1);
+    }
+
+    this.Browsers = {
+        ios     : ios,
+        android : android
+    };
+
 })();
