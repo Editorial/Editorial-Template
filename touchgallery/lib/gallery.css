@@ -179,3 +179,7 @@
     bottom     : 0;
     background : rgba(0,0,0,0.5);
 }
+
+.touch-gallery .bottom-bar * {
+    position: static;
+}

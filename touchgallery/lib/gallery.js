@@ -68,7 +68,10 @@
                     '<a class="next">&raquo;</a>' +
                 '</div>' +
             '</div>' +
-            '<div class="bottom-bar"></div>' +
+            '<div class="bottom-bar">' +
+                '<p>This is the description text</p>' +
+                '<a href="#" class="permalink">Permalink</a>' +
+            '</div>' +
         '</div>';
 
     TouchGallery.prototype.preloadImages = function(callback) {
