@@ -3,5 +3,6 @@ CREATE TABLE `trial` (
   `email` varchar(255) NOT NULL DEFAULT '',
   `date_created` datetime NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`trial`)
+  PRIMARY KEY (`trial`),
+  KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
