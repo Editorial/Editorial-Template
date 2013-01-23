@@ -60,7 +60,8 @@
 <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?20111224">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <!--<script src="http://use.typekit.com/sue6gqc.js"></script>-->
-<script src="http://use.typekit.com/nlh6xyy.js"></script>
+<script src="//use.typekit.net/sue6gqc.js"></script>
+<!--<script src="http://use.typekit.com/nlh6xyy.js"></script>-->
 <script>try{Typekit.load();}catch(e){}</script>
 <?php
 	wp_head();
@@ -77,35 +78,38 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <?php if (!is_home() && !is_404()) { ?>
 <header id="header" role="banner">
 	<div class="adapt">
-		<!--
+		<?php /*
 		<h2 id="brand" class="vcard">
 			<a href="http://editorialtemplate.com/" class="ir fn org url">Editorial</a>
 		</h2>
-		-->
+		*/ ?>
 		<nav class="primary" role="navigation">
-			<!--
 <?php
+/*
 
-		$settings = array(
-			'theme_location' => 'main-nav',
-			'container'      => false,
-			'menu_class'     => '',
-			'menu_id'        => '',
-			'depth'          => 1,
-			'walker'         => new EditorialNav(),
-		);
-		wp_nav_menu($settings);
+// To bi blo treba uporabit
+wp_nav_menu(array(
+	'theme_location' => 'main-nav',
+	'container' => false
+));
+*/
 
+/*
+ * @frontend, če lahko IDje zamenjaš s classi v CSSu, lahko uporabimo WP default meni.
+ * Če ne, bo hardcoded tako kot spodaj, ker nočem hackat core funkcionalnosti.
+ */
+$s = ' class="selected"';
 ?>
-			-->
-			<ul>
-				<li id="home"><a href="/">Home</a></li>
-				<li id="features" class="selected"><a href="/features/">Features</a></li>
-				<li id="help"><a href="/faq/">Help <span>&amp; support</span></a></li>
-				<li id="about"><a href="/about/">About</a></li>
-				<li id="purchase"><a href="/purchase/">Purchase</a></li>
-				<li id="demo"><a href="http://demo.editorialtemplate.com/">View live demo</a> or</li>
-			</ul>
+
+<ul>
+	<li id="home"<?php     if(is_front_page()) echo $s; ?>><a href="/">Home</a></li>
+	<li id="features"<?php if(is_page_template('custom_features.php')) echo $s; ?>><a href="/features/">Features</a></li>
+	<li id="help"<?php     if(is_post_type_archive('faq') || is_singular('faq')) echo $s; ?>><a href="/faq/">Help <span>&amp; support</span></a></li>
+	<li id="about"<?php    if(is_page('about')) echo $s; ?>><a href="/about/">About</a></li>
+	<li id="purchase"<?php if(is_page('purchase')) echo $s; ?>><a href="/purchase/">Purchase</a></li>
+	<li id="demo"><a href="http://demo.editorialtemplate.com/">View live demo</a> or</li>
+</ul>
+
 		</nav>
 	</div>
 </header>

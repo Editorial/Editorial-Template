@@ -82,7 +82,7 @@ wp_reset_query();
 wp_reset_postdata(); // reset custom query and data to initial values
 ?>
 
-<div class="content features-home-bg" role="main">
+<div class="content<?php if(is_page('features')) echo ' features-home-bg'; ?>" role="main">
 	<div class="adapt">
 		<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
 		<article class="main hentry">

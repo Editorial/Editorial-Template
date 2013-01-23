@@ -173,7 +173,7 @@
 		}
 
 		//testingTOOL
-		(function() {
+		/*(function() {
 			$('section.licencing').append('' +
 			'<div id="counter" style="position:absolute;left:50%;bottom:8px;z-index:999;background:yellow;">' +
 			'	<div style="min-width:30px;min-height:30px;">' +
@@ -202,7 +202,7 @@
 		})();
 
 		//onResize
-		$(window).on('resize', function(){ flow($('#sold').val()); });
+		$(window).on('resize', function(){ flow($('#sold').val()); });*/
 
 	}
 

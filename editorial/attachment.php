@@ -19,9 +19,9 @@ $translations = Editorial::getOption('translations');
 // mobile devices are shown a different slideshow
 if (Editorial::isMobileDevice() || Editorial::isIpad())
 {
-	$htmlClass = "slideshow";
-	$needsHTML5Player = true; // need html5 player by default for mobile content
-	$isMobileGallery = true;
+    $htmlClass = "slideshow";
+    $needsHTML5Player = true; // need html5 player by default for mobile content
+    $isMobileGallery = true;
 }
 
 the_post();
@@ -32,21 +32,21 @@ $attachmentsCount = count($attachments);
 // what kind of a attachment is it?
 if (Editorial::is_image($post->post_mime_type))
 {
-	$imageMeta = wp_get_attachment_image_src($post->ID);
-	if ($imageMeta[1] < $imageMeta[2])
-	{
-		// portrait
-		$EditorialId = 'gallery-portrait';
-	}
-	$imageMeta = wp_get_attachment_image_src($post->ID, $EditorialId == 'gallery' ? 'landscape' : 'portrait');
-	$imageMeta['alt'] = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+    $imageMeta = wp_get_attachment_image_src($post->ID);
+    if ($imageMeta[1] < $imageMeta[2])
+    {
+        // portrait
+        $EditorialId = 'gallery-portrait';
+    }
+    $imageMeta = wp_get_attachment_image_src($post->ID, $EditorialId == 'gallery' ? 'landscape' : 'portrait');
+    $imageMeta['alt'] = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
 
-	$imageUrl = Editorial::getResponsiveImageUrl ( $post->ID, 'full' );
+    $imageUrl = Editorial::getImage($post->ID, $EditorialId == 'gallery' ? 'landscape' : 'portrait', true);
 }
 else
 {
-	$needsHTML5player = true;
-	$attachmentUrl = wp_get_attachment_url();
+    $needsHTML5player = true;
+    $attachmentUrl = wp_get_attachment_url();
 }
 
 // which image is featured
@@ -59,8 +59,8 @@ if (isset($attachments[$featuredId]))
 // sort attachments
 function sortAttachments($a, $b)
 {
-	if ($a->menu_order == $b->menu_order) return 0;
-	return ($a->menu_order < $b->menu_order) ? -1 : 1;
+    if ($a->menu_order == $b->menu_order) return 0;
+    return ($a->menu_order < $b->menu_order) ? -1 : 1;
 }
 uasort($attachments, 'sortAttachments');
 
@@ -96,293 +96,289 @@ if (Editorial::isMobileDevice() || Editorial::isIpad())
 
 <?php $ipad_media_tmpl = get_template_directory_uri()."/ipad_media_play.php"; ?>
 
-	<section id="media-gallery">
-	<ul id="Gallery" class="gallery" style="display:none;" >
+    <section id="media-gallery">
+    <ul id="Gallery" class="gallery" style="display:none;" >
 <?php
-	$count = count($attachments);
-	if($count) {
-		$i = 1;
-		foreach ($attachments as $attachment)
-		{
-			$media = '';
-			$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
-			$previewThumb = $src;
-			if (Editorial::is_image($attachment->post_mime_type))
-			{
-				$src = isset($src[0]) ? $src[0] : '';
-				$src = Editorial::getResponsiveImageUrl ( $attachment->ID, 'full' );
-				$previewThumb = $src;
-				
-			}
-			else if (Editorial::is_video($attachment->post_mime_type))
-			{
-				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video1.png";
-			}
-			else if (Editorial::is_audio($attachment->post_mime_type))
-			{
-				$src = wp_get_attachment_url($attachment->ID);
-				$previewThumb = get_bloginfo('template_directory')."/images/mgallery_video1.png";
-			}
-			printf('<li>
-			<a href="%s" data-preview="%s" data-mime-type="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s"></a>
-			</li>',
-				$src,
-				$previewThumb,
-				$attachment->post_mime_type,
-				$i,
-				$count,
-				$attachment->post_title,
-				$attachment->post_content,
-				get_permalink($attachment->ID)
-			);
-			$i++;
-		}
-	}
+    $count = count($attachments);
+    if($count) {
+        $i = 1;
+        foreach ($attachments as $attachment)
+        {
+            $media = '';
+            //$src = wp_get_attachment_image_src($attachment->ID, 'landscape');
+            $src = Editorial::getImage($attachment->ID, 'landscape');
+            $previewThumb = $src;
+            if (Editorial::is_image($attachment->post_mime_type))
+            {
+                $src = isset($src[0]) ? $src[0] : '';
+                $previewThumb = $src;
+                
+            }
+            else if (Editorial::is_video($attachment->post_mime_type))
+            {
+                $src = wp_get_attachment_url($attachment->ID);
+                $previewThumb = get_bloginfo('template_directory')."/images/mgallery_video1.png";
+            }
+            else if (Editorial::is_audio($attachment->post_mime_type))
+            {
+                $src = wp_get_attachment_url($attachment->ID);
+                $previewThumb = get_bloginfo('template_directory')."/images/mgallery_video1.png";
+            }
+            printf('<li>
+            <a href="%s" data-preview="%s" data-mime-type="%s" data-pos="%d" data-total="%d" data-title="%s" data-content="%s" data-permalink="%s"></a>
+            </li>',
+                $src,
+                $previewThumb,
+                $attachment->post_mime_type,
+                $i,
+                $count,
+                $attachment->post_title,
+                $attachment->post_content,
+                get_permalink($attachment->ID)
+            );
+            $i++;
+        }
+    }
 ?>
-	</ul>
-	</section>
-	<script>
+    </ul>
+    </section>
+    <script>
 
-	(function(window, $, PhotoSwipe){
-		$(function(){
+    (function(window, $, PhotoSwipe){
+        $(function(){
 
-				var options = {
-					captionAndToolbarFlipPosition: true,
-					allowUserZoom: false,
-					loop: false,
-					zIndex: 10,
-					captionAndToolbarAutoHideDelay: 8000, // 0 never auto hides it
-					getToolbar: function(){
-						return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
-						'<nav id="remote" role="navigation">' +
-						'<div class="ps-toolbar-previous"><div id="m-prev" class="m-button "><span><?php _e('Previous', 'Editorial'); ?></span></div></div>' +
-						'<div class="ps-toolbar-play"><div id="m-slide" class="m-button "><span><?php _e('Slideshow', 'Editorial'); ?></span></div></div>' +
-						'<div class="ps-toolbar-next"><div id="m-next" class="m-button "><span><?php _e('Next', 'Editorial'); ?></span></div></div>' +
-						'</nav>' +
-						'<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b><em><?php echo get_the_title($parentId); ?></em></div></div>';
-					},
-					getImageMetaData: function(el){
-						return {
-							href: el.getAttribute('href'),
-							title: el.getAttribute('data-title'),
-							content: el.getAttribute('data-content'),
-							permalink: el.getAttribute('data-permalink'),
-							position: el.getAttribute('data-pos'),
-							total: el.getAttribute('data-total'),
-							mime: el.getAttribute('data-mime-type'),
-							preview: el.getAttribute('data-preview')
-						}
-					},
-					getImageCaption: function(el) {
-						meta_data = this.getImageMetaData(el);
-						
-						var cap_el, foo = 
-						
-							'<figcaption><h3>' + meta_data.title + '</h3>' +
-							'<p>' + meta_data.content + '</p></figcaption>';
-							
-							if(/video/g.test(meta_data.mime) || /audio/g.test(meta_data.mime) ){
-								foo += '<a id="media-play">Double Tap to Play</a>';
-							}
-						
-						cap_el = $(foo);
-						
-						return cap_el;
-					}
-				};
-				
-				instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
-				instance.show(0);
-							
-					// onToolbarTap
-					instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
-						if(e.toolbarAction === 'close'){
-							window.location.href = "<?php echo get_permalink($parentId); ?>";
-						}
-					});
-					
-					instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
+                var options = {
+                    captionAndToolbarFlipPosition: true,
+                    allowUserZoom: false,
+                    loop: false,
+                    zIndex: 10,
+                    captionAndToolbarAutoHideDelay: 8000, // 0 never auto hides it
+                    getToolbar: function(){
+                        return '<a href="<?php echo get_bloginfo('url'); ?>" id="logo-white"><img src="<?php echo Editorial::getOption('logo-gallery'); ?>" width="99" height="13" alt="<?php bloginfo('name'); ?>"></a>' +
+                        '<nav id="remote" role="navigation">' +
+                        '<div class="ps-toolbar-previous"><div id="m-prev" class="m-button "><span><?php _e('Previous', 'Editorial'); ?></span></div></div>' +
+                        '<div class="ps-toolbar-play"><div id="m-slide" class="m-button "><span><?php _e('Slideshow', 'Editorial'); ?></span></div></div>' +
+                        '<div class="ps-toolbar-next"><div id="m-next" class="m-button "><span><?php _e('Next', 'Editorial'); ?></span></div></div>' +
+                        '</nav>' +
+                        '<div class="ps-toolbar-close"><div class=" m-button" id="m-back"><span>Back</span> <b><?php _e('Back to article', 'Editorial'); ?></b><em><?php echo get_the_title($parentId); ?></em></div></div>';
+                    },
+                    getImageMetaData: function(el){
+                        return {
+                            href: el.getAttribute('href'),
+                            title: el.getAttribute('data-title'),
+                            content: el.getAttribute('data-content'),
+                            permalink: el.getAttribute('data-permalink'),
+                            position: el.getAttribute('data-pos'),
+                            total: el.getAttribute('data-total'),
+                            mime: el.getAttribute('data-mime-type'),
+                            preview: el.getAttribute('data-preview')
+                        }
+                    },
+                    getImageCaption: function(el) {
+                        meta_data = this.getImageMetaData(el);
+                        
+                        var cap_el, foo = 
+                        
+                            '<figcaption><h3>' + meta_data.title + '</h3>' +
+                            '<p>' + meta_data.content + '</p></figcaption>';
+                            
+                            if(/video/g.test(meta_data.mime) || /audio/g.test(meta_data.mime) ){
+                                foo += '<a id="media-play">Double Tap to Play</a>';
+                            }
+                        
+                        cap_el = $(foo);
+                        
+                        return cap_el;
+                    }
+                };
+                
+                instance = PhotoSwipe.attach($("#media-gallery ul#Gallery a"), options);
+                instance.show(0);
+                            
+                    // onToolbarTap
+                    instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
+                        if(e.toolbarAction === 'close'){
+                            window.location.href = "<?php echo get_permalink($parentId); ?>";
+                        }
+                    });
+                    
+                    instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function(e){
 
-						// if (Code.Util.Browser.iPad){
-						// 	var currentImage = instance.getCurrentImage();
-						// 	var vid_src = currentImage.metaData.href
-						// 	var height = currentImage.imageEl.offsetHeight,
-						// 			left = currentImage.imageEl.offsetLeft,
-						// 			top = currentImage.imageEl.offsetTop,
-						// 			width = currentImage.imageEl.offsetWidth;
+                        // if (Code.Util.Browser.iPad){
+                        // 	var currentImage = instance.getCurrentImage();
+                        // 	var vid_src = currentImage.metaData.href
+                        // 	var height = currentImage.imageEl.offsetHeight,
+                        // 			left = currentImage.imageEl.offsetLeft,
+                        // 			top = currentImage.imageEl.offsetTop,
+                        // 			width = currentImage.imageEl.offsetWidth;
 
-						// 	// var html = "";
-						// 	// html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
-						// 	// html += '<source src="'+vid_src+'"  type="video/mp4" />';
-						// 	// html += '</video>';
-						// 	// $("#video-player").html(html);
-						// 	// $("#video-player").css({'top':top, 'left':left, 'z-index':1000});
+                        // 	// var html = "";
+                        // 	// html += '<video id="someVideo" width="'+width+'" height="'+height+'" controls="controls">';
+                        // 	// html += '<source src="'+vid_src+'"  type="video/mp4" />';
+                        // 	// html += '</video>';
+                        // 	// $("#video-player").html(html);
+                        // 	// $("#video-player").css({'top':top, 'left':left, 'z-index':1000});
 
-						// 	$('#video-player').attr('src', vid_src);
-						// 	$("#video-player").css({'top':top, 'left':left, 'z-index':1000, "width": width, "height": height});
+                        // 	$('#video-player').attr('src', vid_src);
+                        // 	$("#video-player").css({'top':top, 'left':left, 'z-index':1000, "width": width, "height": height});
 
-						// }
+                        // }
 
-					});
-				
-					instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
+                    });
+                
+                    instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
 
 
-						if(e.action == "doubleTap"){ //doubleTap, tap
-							var currentImage = instance.getCurrentImage();
-							//console.log( currentImage, e.point );
-							
-							if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
-								var vid_src = currentImage.metaData.href;
+                        if(e.action == "doubleTap"){ //doubleTap, tap
+                            var currentImage = instance.getCurrentImage();
+                            //console.log( currentImage, e.point );
+                            
+                            if(/video/g.test(currentImage.metaData.mime) || /audio/g.test(currentImage.metaData.mime) ){
+                                var vid_src = currentImage.metaData.href;
 
-								// if ( e.point.insideImage && e.point.clickedCenter ) {
-								// 	window.location = vid_src;
-								// }
+                                // if ( e.point.insideImage && e.point.clickedCenter ) {
+                                // 	window.location = vid_src;
+                                // }
 
-								if (Code.Util.Browser.iPad){
-									$("#video-player").play();
-									//window.location = vid_src; //"<?php echo  $ipad_media_tmpl.'?src=' ; ?>" + encodeURIComponent(vid_src);
-								}
-								else {
-								//if ( e.point.insideImage ) {
-									window.location = vid_src;
-								//}
-								}
-							}
-						}
-					});
-					
-			
-			});
-	}(window, window.jQuery, window.Code.PhotoSwipe));
-	</script>
+                                if (Code.Util.Browser.iPad){
+                                    $("#video-player").play();
+                                    //window.location = vid_src; //"<?php echo  $ipad_media_tmpl.'?src=' ; ?>" + encodeURIComponent(vid_src);
+                                }
+                                else {
+                                //if ( e.point.insideImage ) {
+                                    window.location = vid_src;
+                                //}
+                                }
+                            }
+                        }
+                    });
+                    
+            
+            });
+    }(window, window.jQuery, window.Code.PhotoSwipe));
+    </script>
 
 <?php
 } else {
-	// show desktop version of gallery
+    // show desktop version of gallery
 ?>
 
 <div class="content clear" role="main">
-	<article id="single" class="hentry">
-		<h1 class="entry-title"><a href="<?php echo get_permalink($parentId); ?>" rel="prev"><?php echo get_the_title($parentId); ?></a></h1>
-		<section id="media">
-			<figure>
+    <article id="single" class="hentry">
+        <h1 class="entry-title"><a href="<?php echo get_permalink($parentId); ?>" rel="prev"><?php echo get_the_title($parentId); ?></a></h1>
+        <section id="media">
+            <figure>
 <?php
-					if (Editorial::is_image($post->post_mime_type)) {
+                    if (Editorial::is_image($post->post_mime_type)) {
 ?>
-				<span class="photo-adapt"><img src="<?php echo $imageUrl ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
+                <span class="photo-adapt"><img src="<?php echo $imageUrl ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
 <?php
-					} else if (Editorial::is_audio($post->post_mime_type)) {
+                    } else if (Editorial::is_audio($post->post_mime_type)) {
 ?>
-				<audio id="player" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" controls="controls"></audio>
+                <audio id="player" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" controls="controls"></audio>
 <?php
-					} else if (Editorial::is_video($post->post_mime_type)) {
+                    } else if (Editorial::is_video($post->post_mime_type)) {
 ?>
-				<video width="100%" height="100%" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" controls="controls" preload="none"></video>
+                <video width="100%" height="100%" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" id="player" controls="controls" preload="none"></video>
 <?php
-					}
+                    }
 ?>
-				<figcaption<?php echo Editorial::is_video($post->post_mime_type) ? ' id="video-fc"' : ''; ?>>
-					<h3><?php the_title(); ?></h3>
-					<?php the_content(); ?>
-				</figcaption>
-			</figure>
-		</section>
-		<aside role="complementary">
+                <figcaption<?php echo Editorial::is_video($post->post_mime_type) ? ' id="video-fc"' : ''; ?>>
+                    <h3><?php the_title(); ?></h3>
+                    <?php the_content(); ?>
+                </figcaption>
+            </figure>
+        </section>
+        <aside role="complementary">
 <?php
-				$previous = $previous ? $attachments[$previous] : false;
-				$next     = $next ? $attachments[$next] : false;
-				if ($previous || $next) {
+                $previous = $previous ? $attachments[$previous] : false;
+                $next     = $next ? $attachments[$next] : false;
+                if ($previous || $next) {
 ?>
-			<nav id="navigate" role="navigation">
+            <nav id="navigate" role="navigation">
 <?php
-					if (count($attachments) > 1) {
+                    if (count($attachments) > 1) {
 ?>
-				<h2><?php printf('%d/%d', $currentPosition, count($attachments)); ?></h2>
+                <h2><?php printf('%d/%d', $currentPosition, count($attachments)); ?></h2>
 <?php
-					}
+                    }
 ?>
-				<ul>
+                <ul>
 <?php
-				if ($next && !$previous)
-						{
+                if ($next && !$previous)
+                        {
 ?>
-					<li class="previous disabled">
-						<span><?php echo $translations['gallery']['Previous']; ?></span>
-					</li>
+                    <li class="previous disabled">
+                        <span><?php echo $translations['gallery']['Previous']; ?></span>
+                    </li>
 <?php
-						}
-						if ($previous)
-						{
-							$imageMeta = wp_get_attachment_image_src($previous->ID, 'media-thumb');
-							$attchMimeType = get_post_mime_type($previous->ID);
-							
-							$thumb = $imageMeta[0];
-							
+                        }
+                        if ($previous)
+                        {
+                            $attchMimeType = get_post_mime_type($previous->ID);
+                            $thumb = Editorial::getImage($previous->ID, 'media-thumb');
+                            
 ?>
-					<li class="previous<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
-						<a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
+                    <li class="previous<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
+                        <a href="<?php echo get_permalink($previous->ID); ?>" rel="prev">
 <?php
-							if(!Editorial::is_video($attchMimeType)){
+                            if(!Editorial::is_video($attchMimeType)){
 ?>
-							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
+                            <img src="<?php echo $thumb; ?>" alt="Media thumbnail">
 <?php
-							}
+                            }
 ?>
-							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php echo $translations['gallery']['Previous']; ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
-						</a>
-					</li>
+                            <?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php echo $translations['gallery']['Previous']; ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
+                        </a>
+                    </li>
 <?php
-						}
-						if ($next)
-						{
-							$imageMeta = wp_get_attachment_image_src($next->ID, 'media-thumb');
-							$attchMimeType = get_post_mime_type($next->ID);
-							
-							$thumb = $imageMeta[0];
+                        }
+                        if ($next)
+                        {
+                            $attchMimeType = get_post_mime_type($next->ID);
+                            $thumb = Editorial::getImage($next->ID, 'media-thumb');
 
 ?>
-					<li class="next<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
-						<a href="<?php echo get_permalink($next->ID); ?>" rel="next">
+                    <li class="next<?php if( Editorial::is_video($attchMimeType)){ echo " is-video"; } ?>">
+                        <a href="<?php echo get_permalink($next->ID); ?>" rel="next">
 <?php
-							if(!Editorial::is_video($attchMimeType)){
+                            if(!Editorial::is_video($attchMimeType)){
 ?>
-							<img src="<?php echo $thumb; ?>" alt="Media thumbnail">
+                            <img src="<?php echo $thumb; ?>" alt="Media thumbnail">
 <?php
-							}
+                            }
 ?>
-							<?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php echo $translations['gallery']['Next']; ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
-						</a>
-					</li>
+                            <?php if(Editorial::is_video($attchMimeType)){ ?><span><?php } ?><?php echo $translations['gallery']['Next']; ?><?php if(Editorial::is_video($attchMimeType)){ ?></span><?php } ?>
+                        </a>
+                    </li>
 <?php
-						}
-									if ($previous && !$next)
-						{
+                        }
+                                    if ($previous && !$next)
+                        {
 ?>
-					<li class="next disabled">
-						<span><?php echo $translations['gallery']['Next'];?></span>
-					</li>
+                    <li class="next disabled">
+                        <span><?php echo $translations['gallery']['Next'];?></span>
+                    </li>
 <?php
-						}
+                        }
 ?>
-				</ul>
-			</nav>
+                </ul>
+            </nav>
 <?php
-				}
+                }
 ?>
-			<fieldset id="embed">
-				<h4><label for="embed-code"><?php echo $translations['gallery']['Embed code']; ?></label></h4>
-				<p><?php echo $translations['gallery']['There is no need for downloading and uploading it to your blog/website when you can easily embed it.']; ?></p>
-				<input id="embed-code" value="<?php echo get_permalink($post->ID); ?>">
-			</fieldset>
-		</aside>
-	</article>
+            <fieldset id="embed">
+                <h4><label for="embed-code"><?php echo $translations['gallery']['Embed code']; ?></label></h4>
+                <p><?php echo $translations['gallery']['There is no need for downloading and uploading it to your blog/website when you can easily embed it.']; ?></p>
+                <input id="embed-code" value="<?php echo get_permalink($post->ID); ?>">
+            </fieldset>
+        </aside>
+    </article>
 <?php
-		Editorial::tabNavigation($parentId, 'gallery');
+        Editorial::tabNavigation($parentId, 'gallery');
 ?>
 <?php
-		$postId = $parentId; get_template_part( 'loop', 'featured' );
+        $postId = $parentId; get_template_part( 'loop', 'featured' );
 ?>
 </div>
 

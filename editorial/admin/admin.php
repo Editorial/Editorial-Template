@@ -15,19 +15,12 @@
 class Editorial_Admin
 {
 	/**
-	 * Look & Feel page
+	 * Available pages
 	 */
 	const PAGE_LOOK = 'look';
-
-	/**
-	 * Share page
-	 */
 	const PAGE_SHARE = 'sharing';
-
 	const PAGE_CUSTOMIZE = 'customstyle';
-
 	const CHILD_THEME = 'editorial-child';
-
 	const PAGE_TRANSLATIONS = 'translations';
 
 	/**
@@ -61,7 +54,6 @@ class Editorial_Admin
 		'karma-treshold',
 		'twitter-share',
 		'twitter-account',
-		'twitter-related',
 		'facebook-share',
 		'google-share',
 		'colophon-enabled',
@@ -115,7 +107,6 @@ class Editorial_Admin
 
 	public function child_theme_deleted($data)
 	{
-		dump($data);
 		return $data;
 	}
 	/**
@@ -229,27 +220,17 @@ class Editorial_Admin
         // add font notice
         if (!Editorial::getOption('typekit-kit'))
         {
-            add_action('admin_notices', array($this, 'fontNotice'));
+            $this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.'));
         }
         
-        // if black and white option is selected we need writable cache
+        // if black and white option is selected check that we can create them
         if (Editorial::getOption('black-and-white'))
         {
-            if (!is_dir(WP_CACHE_DIR))
+            if (!Editorial::canCreateBWImages())
             {
-                try
-                {
-                	Editorial::createPath(WP_CACHE_DIR, 0777);
-                } 
-                catch (Exception $e)
-                {}
-            }
-            // can we cache now?
-            if (!Editorial::canCache())
-            {
-                add_action('admin_notices', array($this, 'cacheNotice'));
-								// disable bw photos for now, the user will get notified of the error
-								Editorial::setOption('black-and-white', false);
+                $this->_showNotice(__('<strong>Black &amp; white images are disabled</strong>. Please make sure the PHP GD library is installed.')." ");
+                // disable bw photos for now, the user will get notified of the error
+                Editorial::setOption('black-and-white', false);
             }
         }
 		
@@ -478,19 +459,6 @@ class Editorial_Admin
 	}
 
 	/**
-	 * Add notice that fonts are not enabled
-	 *
-	 * @return void
-	 * @author Miha Hribar
-	 */
-	public function fontNotice()
-	{
-		// notices can be disabled
-		if (Editorial::getOption('disable-admin-notices')) return;
-		$this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.'));
-	}
-	
-	/**
 	 * Show cache notice
 	 *
 	 * @return void
@@ -645,7 +613,7 @@ class Editorial_Admin
 	 */
 	public function invalidNotice()
 	{
-		$this->_showNotice(__('<strong>You are using an ilegal copy of the Editorial theme</strong>. You can purchase additional licences on <a href="http://editorialtemplate.com/purchase">editorialtemplate.com</a>. Your domain has been logged in our system for investigation.', 'Editorial'));
+		$this->_showNotice(__('<strong>This is a non-licenced copy of Editorial theme.</strong>. If you like our work please support it by purchasing a licence at <a href="http://editorialtemplate.com/">editorialtemplate.com</a>.', 'Editorial'));
 	}
 	
 	/**
@@ -676,13 +644,12 @@ class Editorial_Admin
 						md5(strtolower(trim($user->user_email))),
 						20
 					);
-
 		return sprintf('<li id="user_%1$d">
 					<span class="handle">handle</span>
 					<img src="%5$s" class="photo" width="20" height="20" />
 					<input type="checkbox" name="author[]" value="%1$d"%4$s />
 					<strong>%2$s</strong>
-					<input type="text" name="title[]" value="%3$s" placeholder="Author title" />
+					<input type="text" name="title[]" value="%3$s" placeholder="Role description" />
 				</li>', $user->ID, $user->display_name, $title, ($checked ? ' checked="checked"' : ''), $gravatar);
 	}
 	
@@ -762,7 +729,12 @@ class Editorial_Admin
 	    $data = json_decode($response, true);
 	    if ($code != 200)
 	    {
-	        $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit fonts were not enabled. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
+	        $notice = __('<strong>Error!</strong> Typekit fonts were not enabled.', 'Editorial');
+	        if ($data && $data['errors'])
+	        {
+	            $notice .= ' '.implode(' ', $data['errors']);
+	        }
+	        $this->_showNotice($notice);
 	        return;
 	    }
 	    // success?
@@ -787,7 +759,12 @@ class Editorial_Admin
 		$data = json_decode($response, true);
 		if ($code != 200)
 		{
-		    $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit kit was created but not published. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
+		    $notice = __('<strong>Error!</strong> Typekit kit was created but not published.', 'Editorial');
+		    if ($data && $data['errors'])
+		    {
+		        $notice .= ' '.implode(' ', $data['errors']);
+		    }
+		    $this->_showNotice($notice);
             return;
 		}
 		else
@@ -823,6 +800,10 @@ class Editorial_Admin
             if (is_array($params) && count($params))
             {
                 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+            }
+            else
+            {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, false);
             }
         }
         // execute request

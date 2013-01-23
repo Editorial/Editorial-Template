@@ -24,52 +24,36 @@ if ( false === is_array($purchase) )
 }
 else
 {
-
-try
-{
-	$Paypal      = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
-	$details     = $Paypal->getExpressCheckout($_GET['token']);
-	debug(print_r($details, true));
-
-	$transaction = $Paypal->doExpressCheckout($_GET['token'], $_GET['PayerID'], $purchase['amount']);
-	debug(print_r($transaction, true));
-
-	// create an account. or update it if it exists
-	$Account = new Account();
-	$account = $Account->createOrUpdate(array(
-		'name'       => urldecode($details['FIRSTNAME'].' '.$details['LASTNAME']),
-		'email'      => urldecode($details['EMAIL']),
-		'address'    => urldecode($details['SHIPTOSTREET'] .' '.$details['SHIPTOCITY'].' '.$details['SHIPTOCOUNTRYNAME']),
-		'country'    => urldecode($details['COUNTRYCODE']),
-		'newsletter' => $purchase['newsletter'],
-	));
-
-	// update purchase
-	$Purchase->update($purchase['purchase_id'], array(
-		'ext_id'     => $transaction['TRANSACTIONID'],
-		'date'       => date('Y-m-d H:i:s'),
-		'status'     => Purchase::STATUS_CONFIRMED,
-		'payer_id'   => $_GET['PayerID'],
-		'account_id' => $account['account_id'],
-		'hash'       => Util::randomString(32),
-	));
-
-	// try to see if payment is processed
-	$id = $purchase['purchase_id'];
-	$i  = 0;
-	do
+	try
 	{
-		$Purchase = new Purchase();
-		$purchase = $Purchase->findById($id);
-		if ( $purchase['status'] == Purchase::STATUS_COMPLETED )
-		{
-			Util::redirect('/download/?hash=' . $purchase['hash']);
-		}
-		sleep(1);
-		++$i;
+		$Paypal      = new Paypal(PAYPAL_USER, PAYPAL_PASSWORD, PAYPAL_SIGNATURE, PAYPAL_ENDPOINT);
+		$details     = $Paypal->getExpressCheckout($_GET['token']);
+		debug(print_r($details, true));
+	
+		$transaction = $Paypal->doExpressCheckout($_GET['token'], $_GET['PayerID'], $purchase['amount']);
+		debug(print_r($transaction, true));
+	
+		// create an account. or update it if it exists
+		$Account = new Account();
+		$account = $Account->createOrUpdate(array(
+			'name'       => urldecode($details['FIRSTNAME'].' '.$details['LASTNAME']),
+			'email'      => urldecode($details['EMAIL']),
+			'address'    => urldecode($details['SHIPTOSTREET'] .' '.$details['SHIPTOCITY'].' '.$details['SHIPTOCOUNTRYNAME']),
+			'country'    => urldecode($details['COUNTRYCODE']),
+			'newsletter' => $purchase['newsletter'],
+		));
+	
+		// update purchase
+		$Purchase->update($purchase['purchase_id'], array(
+			'ext_id'     => $transaction['TRANSACTIONID'],
+			'date'       => date('Y-m-d H:i:s'),
+			'status'     => Purchase::STATUS_CONFIRMED,
+			'payer_id'   => $_GET['PayerID'],
+			'account_id' => $account['account_id'],
+			'hash'       => Util::randomString(32),
+		));
+	
 	}
-	while ( $i < 5 );
-}
 	catch ( Paypal_Exception $e )
 	{
 		Util::redirect('/purchase/?paypal&' . $_SERVER['QUERY_STRING']);
@@ -93,10 +77,10 @@ get_header(); ?>
 	if ( in_array('404', $errors) )
 	{
 ?>
-    <article class="main default hentry">
-        <h1 class="entry-title"><em>Error</em> 404</h1>
-        <p class="lead entry-summary">You seem to have lost you way around here.</p>
-    </article>
+	<article class="main default hentry">
+		<h1 class="entry-title"><em>Error</em> 404</h1>
+		<p class="lead entry-summary">You seem to have lost you way around here.</p>
+	</article>
 <?php
 	}
 	else
