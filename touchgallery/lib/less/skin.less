@@ -1,0 +1,47 @@
+/* =====================================================================================================================
+
+	Author: @matjazkorosec (http://goo.gl/EIoHq)
+	Created: 01 / 2013 (v 1.0)
+
+======================================================================================================================*/
+
+/* CSS reset */
+@import "default/reset.less";
+
+// Variables and mixins
+@import "styles/variables.less";
+@import "default/mixins.less";
+
+/* typography */
+// Block level (h1, p) and text-level (em, strong) type
+@import "styles/typography.less";
+
+
+/* site */
+// Site styles
+@import "default.less";
+
+
+// Media queries
+
+/* 480px */
+@media only screen and (min-width: 480px) {
+@import "mq/480.less";
+}
+
+/* 640px */
+@media only screen and (min-width: 640px) {
+//@import "mq/640.less";
+}
+
+/* 768px */
+@media only screen and (min-width: 768px) {
+@import "mq/768.less";
+}
+
+/* 992px */
+@media only screen and (min-width: 992px) {
+//@import "mq/992.less";
+}
+
+
