@@ -68,8 +68,8 @@
                 '</div>' +
             '</div>' +
             '<div class="bottom-bar">' +
-                '<p>This is the description text</p>' +
-                '<a href="#" class="permalink">Permalink</a>' +
+                '<h2>This is the title</h2>' +
+                '<p class="description">This is the description</p>' +
             '</div>' +
         '</div>';
 
@@ -502,8 +502,8 @@
 
     TouchGallery.prototype.updateMetadata = function() {
         var item = this.items[this.currentItem];
-        $('.bottom-bar p', this.container).text(item.description || '');
-        $('.bottom-bar .permalink', this.container).attr('href', item.link || '#');
+        $('.bottom-bar h2', this.container).text(item.title || '');
+        $('.bottom-bar .description', this.container).text(item.description || '');
     };
 
 
