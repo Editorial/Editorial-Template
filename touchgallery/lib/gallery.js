@@ -83,22 +83,25 @@
         this.items = this.items.filter(function(item) {
             switch(item.type) {
                 case 'image':
-                    item.img        = new Image;
-                    item.img.onload = done;
-                    item.img.src    = item.src;
+                    item.img         = new Image;
+                    item.img.onload  = done;
+                    item.img.onerror = done;
+                    item.img.src     = item.src;
                     waitingToLoad++;
                     return true;
                 case 'youtube':
-                    item.img        = new Image;
-                    item.img.onload = done;
-                    item.img.src    = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+                    item.img         = new Image;
+                    item.img.onload  = done;
+                    item.img.onerror = done;
+                    item.img.src     = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
                     waitingToLoad++;
                     return true;
                 case 'vimeo':
                     $.getJSON('http://vimeo.com/api/v2/video/' + item.id + '.json?callback=?', function(data) {
-                        item.img        = new Image;
-                        item.img.onload = done;
-                        item.img.src    = data[0].thumbnail_large;
+                        item.img         = new Image;
+                        item.img.onload  = done;
+                        item.img.onerror = done;
+                        item.img.src     = data[0].thumbnail_large;
                     });
                     waitingToLoad++;    
                     return true;
