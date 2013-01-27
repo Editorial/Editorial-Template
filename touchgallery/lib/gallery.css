@@ -104,9 +104,9 @@
 
 .touch-gallery .player-container {
     top      : 0;
-    left     : 0;
+    left     : 60px;
     bottom   : 0;
-    right    : 120px;
+    right    : 60px;
     width    : auto !important;
     height   : auto !important;
     overflow : hidden;
