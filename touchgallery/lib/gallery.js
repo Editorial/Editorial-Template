@@ -38,8 +38,7 @@
 
         // hook up events
         var self = this;
-        window.addEventListener('resize', function() { viewporter.refresh(); });
-        window.addEventListener('orientationchange', function() { viewporter.refresh(); self.handleResize(); });
+        window.addEventListener('orientationchange', function() { viewporter.refresh(); });
         window.addEventListener('viewportchange', this.handleResize);
 
         // start preloading images before initialising structure
@@ -353,8 +352,9 @@
     );
 
     TouchGallery.prototype.activateVideoPlayer = function(item) {
-        var video = $('<video src="' + item.src + '" controls></video>');
+        var video = $('<video controls preload poster="' + item.poster  + '" src="' + item.src + '"></video>');
         video.appendTo(item.playerContainer);
+        video.css({ width: '100%', height: '100%' });
         video[0].load();
         video[0].play();
     };
