@@ -174,3 +174,6 @@
 }
 
 .touch-gallery .bottom-bar * { position: static; }
+
+.touch-gallery .description { display: none; }
+.touch-gallery .expanded .description { display: block; }
