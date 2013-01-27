@@ -25,13 +25,11 @@
         this.touchId         = null;
         this.tapCandidate    = null;
         this.videoCounter    = 0;
-        this.autoplayTimer   = null;
 
         this._scrolling = true;
 
         // configuration
         this.swipeLength      = 0.15; // swipe length must cross at least 15% of minimum screen dimension
-        this.autoplayInterval = 3000; // the autoadvance interval, in milliseconds
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -64,7 +62,6 @@
                 '<a class="logo" href="#">Logo</a>' +
                 '<div class="controls">' +
                     '<a class="prev">&laquo;</a>' +
-                    '<a class="togglePlay">&#9658;</a>' +
                     '<a class="next">&raquo;</a>' +
                 '</div>' +
             '</div>' +
@@ -155,6 +152,10 @@
         return $('<img src="' + item.src + '" alt=""/>');
     };
 
+
+
+    /* ------[ YOUTUBE ]-------
+
     /**
      * Creates a YouTube item in the gallery
      * @param  {Object} item 
@@ -186,6 +187,52 @@
         '<div class="left"></div>' +
         '<div class="right"><div class="close-button">X</div></div>'
     );
+
+    /**
+     * Loads the player for YouTube items
+     * @param  {Object} item The item being activated
+     */
+    TouchGallery.prototype.activateYouTubePlayer = function(item) {
+        this.hideBars();
+        this.disableScrolling();
+
+        item.poster.addClass('slide-out');
+
+        item.player = new YT.Player(item.playerContainer.get(0), {
+            width   : this.list.width() - 100,
+            height  : this.list.height(),
+            videoId : item.id,
+            events  : {
+                onReady       : function() { console.log(arguments); },
+                onStateChange : function() { console.log(arguments); },
+                onError       : function() { console.log(arguments); }
+            }
+        });
+
+        var self = this;
+        item.closeButton.on('tap', function(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            self.destroyYouTubePlayer(item);
+        });
+    };
+
+    /**
+     * Destroys the selected YouTube player instance
+     * @param  {Object} item
+     */
+    TouchGallery.prototype.destroyYouTubePlayer = function(item) {
+        item.player.destroy();
+        item.player = null;
+        item.playerContainer.children().remove();
+        item.poster.removeClass('slide-out');
+        this.showBars();
+        this.enableScrolling();
+    };
+
+
+
+    // -------[ VIMEO ]-------
 
     /**
      * Creates a Vimeo item in the gallery
@@ -220,103 +267,17 @@
     );
 
     /**
-     * Creates a generic video player item in the gallery
-     * @param  {Object} item 
-     * @return {jQuery}      A jQuery-wrapped DOM element
-     */
-    TouchGallery.prototype.createVideoPlayer = function(item) {
-        var id = 'video-' + (this.videoCounter++),
-            fragment = this._createFragment(this.videoPlayerTemplate({
-                id    : id,
-                src   : item.img.src,
-                video : item.src
-            }));
-
-        item.poster = $(fragment.querySelector('.poster'));
-        item.closeButton = $(fragment.querySelector('.close-button'));
-        item.playerContainer = $(fragment.querySelector('#' + id));
-
-        var self = this;
-        item.closeButton.on('tap', function(ev) {
-            item.poster.removeClass('slide-out');
-            self.enableScrolling();
-            self.showBars();
-        });
-
-        return fragment;
-    };
-
-    TouchGallery.prototype.videoPlayerTemplate = tmpl(
-        '<div class="poster">' +
-            '<div class="top"><img src="<%= src %>"/></div>' +
-            '<div class="bottom"><img src="<%= src %>"/></div>' +
-            '<div class="play-icon"></div>' +
-        '</div>' +
-        '<div class="player-container">' +
-            '<div id="<%= id %>"><video controls src="<%= video %>"></video></div>' +
-        '</div>' +
-        '<div class="left"></div>' +
-        '<div class="right"><div class="close-button">X</div></div>'
-    );
-
-    /**
-     * Loads the player for YouTube items
+     * Loads up the Vimeo player for the item
      * @param  {Object} item The item being activated
      */
-    TouchGallery.prototype.activateYouTubePlayer = function(item) {
-        this.stopAutoplay();
+    TouchGallery.prototype.activateVimeoPlayer = function(item) {
         this.hideBars();
         this.disableScrolling();
 
         item.poster.addClass('slide-out');
 
-        item.player = new YT.Player(item.playerContainer.get(0), {
-            width   : this.list.width() - 200,
-            height  : this.list.height(),
-            videoId : item.id,
-            events  : {
-                onReady       : function() { console.log(arguments); },
-                onStateChange : function() { console.log(arguments); },
-                onError       : function() { console.log(arguments); }
-            }
-        });
-
-        var self = this;
-        item.closeButton.on('tap', function(ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            self.destroyYouTubePlayer(item);
-        });
-    };
-
-    /**
-     * Destroys the selected YouTube player instance
-     * @param  {Object} item
-     */
-    TouchGallery.prototype.destroyYouTubePlayer = function(item) {
-        item.player.destroy();
-        item.player = null;
-        item.listItem.children().remove();
-        item.listItem.append(this.createYouTubeVideo(item));
-
-        this.repositionImages();
-        this.showBars();
-        this.enableScrolling();
-    };
-
-    /**
-     * Loads up the Vimeo player for the item
-     * @param  {Object} item The item being activated
-     */
-    TouchGallery.prototype.activateVimeoPlayer = function(item) {
-        this.stopAutoplay();
-        this.hideBars();
-        this.disableScrolling();
-
-        item.poster.addClass('slide-out').remove();
-
         var iframe = $('<iframe></iframe>').attr({
-            width                 : this.list.width() - 200,
+            width                 : this.list.width() - 100,
             height                : this.list.height(),
             src                   : 'http://player.vimeo.com/video/' + item.id + '?api=1&player_id=' + item.playerContainer.attr('id'),
             frameborder           : '0',
@@ -339,12 +300,66 @@
 
     TouchGallery.prototype.destroyVimeoPlayer = function(item) {
         item.player = null;
-        item.listItem.children().remove();
-        item.listItem.append(this.createVimeoVideo(item));
-        this.repositionImages();
+        item.listItem.find('iframe').remove();
+        item.poster.removeClass('slide-out');
+        item.player = null;
         this.showBars();
         this.enableScrolling();
     };
+
+
+    // --------[ CUSTOM VIDEO ]-------
+
+    /**
+     * Creates a generic video player item in the gallery
+     * @param  {Object} item 
+     * @return {jQuery}      A jQuery-wrapped DOM element
+     */
+    TouchGallery.prototype.createVideoPlayer = function(item) {
+        var id = 'video-' + (this.videoCounter++),
+            fragment = this._createFragment(this.videoPlayerTemplate({
+                id    : id,
+                src   : item.img.src,
+                video : item.src
+            }));
+
+        item.poster = $(fragment.querySelector('.poster'));
+        item.closeButton = $(fragment.querySelector('.close-button'));
+        item.playerContainer = $(fragment.querySelector('#' + id));
+
+        var self = this;
+        item.closeButton.on('tap', function(ev) {
+            item.poster.removeClass('slide-out');
+            item.playerContainer.find('video')[0].pause();
+            item.playerContainer.find('video').remove();
+            self.enableScrolling();
+            self.showBars();
+        });
+
+        return fragment;
+    };
+
+    TouchGallery.prototype.videoPlayerTemplate = tmpl(
+        '<div class="poster">' +
+            '<div class="top"><img src="<%= src %>"/></div>' +
+            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="play-icon"></div>' +
+        '</div>' +
+        '<div class="player-container">' +
+            '<div id="<%= id %>" class="video-player"></div>' +
+        '</div>' +
+        '<div class="left"></div>' +
+        '<div class="right"><div class="close-button">X</div></div>'
+    );
+
+    TouchGallery.prototype.activateVideoPlayer = function(item) {
+        var video = $('<video src="' + item.src + '" controls></video>');
+        video.appendTo(item.playerContainer);
+        video[0].load();
+        video[0].play();
+    };
+
+    
 
     TouchGallery.prototype._createFragment = function(html) {
         var fragment = document.createDocumentFragment();
@@ -446,7 +461,6 @@
      */
     TouchGallery.prototype.moveTo = function(idx, withoutTransition) {
         this.currentItem = clamp(idx, 0, this.items.length - 1);
-        this.updateMetadata();
         if (withoutTransition) {
             this.targetPosition = this.position = this.getPositionForIndex(this.currentItem);
             this.draw();
@@ -454,6 +468,7 @@
             this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
         }
+        this.updateMetadata();
     };
 
     /**
@@ -523,7 +538,6 @@
 
     TouchGallery.prototype.handleTouchStart = function(ev) {
         if (!this._scrolling) return;
-        this.stopAutoplay();
         var touch = this.interacting ? this._findTouch(ev.changedTouches) : ev.changedTouches[0];
         if (touch) {
             ev.preventDefault();
@@ -584,13 +598,12 @@
 
     TouchGallery.prototype.handleControlButtonClick = function(ev) {
         ev.preventDefault();
+
         if ($(ev.target).hasClass('prev'))
             this.goToPrevious();
+
         if ($(ev.target).hasClass('next'))
             this.goToNext();
-        if ($(ev.target).hasClass('togglePlay')) {
-            if (this.autoplayTimer) this.stopAutoplay(); else this.startAutoplay();
-        }
     };
 
     TouchGallery.prototype.handleTap = function() {
@@ -603,6 +616,7 @@
             this.hideBars();
             this.disableScrolling();
             item.poster.addClass('slide-out');
+            this.activateVideoPlayer(item);
         } else if (item.type == 'image') {
             this.stopAutoplay();
             this.toggleBars();
@@ -625,13 +639,8 @@
      * Handles viewport resize events
      */
     TouchGallery.prototype.handleResize = function() {
-        // when the phone is turned we need to stop autoplay to avoid edge cases where
-        // resizing the container breaks the scrolling
-        this.stopAutoplay();
-
         this.list.css('opacity', 0);
-
-        setTimeout(this.repositionImages, 0);
+        setTimeout(this.repositionImages, 100);
     };
 
     /**
@@ -658,26 +667,6 @@
 
     TouchGallery.prototype.disableScrolling = function() {
         this._scrolling = false;
-    };
-
-    TouchGallery.prototype.startAutoplay = function() {
-        if (this.autoplayTimer) return;
-        this.autoplayTimer = setInterval(bind(this, advance), this.autoplayInterval);
-
-        this.container.find('.controls a.togglePlay').addClass('active');
-
-        function advance() {
-            if (this.currentItem == this.items.length - 1)
-                this.stopAutoplay();
-            else
-                this.goToNext();
-        }
-    };
-
-    TouchGallery.prototype.stopAutoplay = function() {
-        if (this.autoplayTimer) clearInterval(this.autoplayTimer);
-        this.autoplayTimer = null;
-        this.container.find('.controls a.togglePlay').removeClass('active');
     };
 
 
