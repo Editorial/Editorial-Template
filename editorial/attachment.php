@@ -129,6 +129,7 @@ if ($isMobileGallery)
 			?>
 			],
 			<?php printf("logo: '%s',", Editorial::getOption('logo-gallery')); ?>
+			<?php printf("backLink: '%s',", get_permalink($parentId)); ?>
             readyHandler: function() {
                 // do nothing
             }
