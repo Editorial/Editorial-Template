@@ -38,7 +38,7 @@
 
         // hook up events
         var self = this;
-        window.addEventListener('resize', function() { viewporter.refresh(); });
+        if (!ios()) window.addEventListener('resize', function() { viewporter.refresh(); });
         window.addEventListener('orientationchange', function() { viewporter.refresh(); });
         window.addEventListener('viewportchange', this.handleResize);
 
