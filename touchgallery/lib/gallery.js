@@ -11,6 +11,7 @@
         this.readyHandler = (options.readyHandler) ? options.readyHandler : function() {};
         
         this.logo = options.logo || 'logo-gallery.png';
+        this.backLink = options.backLink || '#';
 
         // set the initial values
         this.position        = null;
@@ -65,7 +66,7 @@
                        '<a class="prev" href="#">&laquo;</a>' +
                        '<a class="next" href="#">&raquo;</a>' +
                     '</span>' +
-                    '<a class="back" href="/">x</a>' +
+                    '<a class="back" href="<%= backLink %>">x</a>' +
                 '</div>' +
             '</div>' +
             '<div class="bottom-bar">' +
@@ -122,7 +123,7 @@
      * Initialises the component structure and positions the images
      */
     TouchGallery.prototype.init = function() {
-        this.container.append(this.template({ logo: this.logo }));
+        this.container.append(this.template({ logo: this.logo, backLink: this.backLink }));
         this.list = this.container.find('.items');
         this.items.forEach(function(item) {
             var listItem = $('<li></li>');
@@ -615,13 +616,14 @@
     };
 
     TouchGallery.prototype.handleControlButtonClick = function(ev) {
-        ev.preventDefault();
-
-        if ($(ev.target).hasClass('prev'))
+        if ($(ev.target).hasClass('prev')) {
+            ev.preventDefault();
             this.goToPrevious();
-
-        if ($(ev.target).hasClass('next'))
+        }
+        if ($(ev.target).hasClass('next')) {
+            ev.preventDefault();
             this.goToNext();
+        }
     };
 
     TouchGallery.prototype.handleInfoButtonClick = function(ev) {
