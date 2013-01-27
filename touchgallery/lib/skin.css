@@ -236,8 +236,13 @@ body {
 .touch-gallery .poster .top {
   background: none;
 }
-.touch-gallery .bottom-bar h2 {
+.touch-gallery .bottom-bar .counter {
   padding: 10px 15px 2px;
+  font-size: 12px;
+  line-height: 15px;
+}
+.touch-gallery .bottom-bar h2 {
+  padding: 0 15px 2px;
   font-size: 12px;
   line-height: 15px;
   font-weight: bold;
@@ -327,8 +332,13 @@ body {
     width: 150px;
     height: 150px;
   }
-  .touch-gallery .bottom-bar h2 {
+  .touch-gallery .bottom-bar .counter {
     padding: 20px 30px 2px;
+    font-size: 24px;
+    line-height: 27px;
+  }
+  .touch-gallery .bottom-bar h2 {
+    padding: 0 30px 2px;
     font-size: 24px;
     line-height: 27px;
   }
