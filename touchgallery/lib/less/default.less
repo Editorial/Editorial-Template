@@ -4,6 +4,8 @@
 
 body {
 	background:@bodyBackground url(img/bgr.png) 0 0 repeat;
+	font: 100%/20px @baseFont;
+	color: @textColor;
 }
 
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -123,12 +125,18 @@ body {
 	}
 
 	.bottom-bar {
-		p {
-			padding: 10px 15px;
+		h2 {
+			padding: 10px 15px 2px;
 			font-size: 12px;
 			line-height: 15px;
 			font-weight: bold;
 			text-transform: uppercase;
+		}
+
+		p {
+			padding: 0 15px 15px;
+			font-size: 12px;
+			line-height: 15px;
 		}
 
 		.permalink {

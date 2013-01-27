@@ -29,7 +29,7 @@
         this._scrolling = true;
 
         // configuration
-        this.swipeLength      = 0.15; // swipe length must cross at least 15% of minimum screen dimension
+        this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -68,8 +68,8 @@
                 '</div>' +
             '</div>' +
             '<div class="bottom-bar">' +
-                '<p>This is the description text</p>' +
-                '<a href="#" class="permalink">Permalink</a>' +
+                '<h2>This is the title</h2>' +
+                '<p class="description">This is the description</p>' +
             '</div>' +
         '</div>';
 
@@ -101,7 +101,7 @@
                 case 'video':
                     item.img = new Image;
                     item.img.onload = done;
-                    item.img.src = item.poster;
+                    item.img.src = item.posterImg;
                     waitingToLoad++;
                     return true;
             }
@@ -356,7 +356,7 @@
     );
 
     TouchGallery.prototype.activateVideoPlayer = function(item) {
-        var video = $('<video controls preload poster="' + item.poster  + '" src="' + item.src + '"></video>');
+        var video = $('<video controls preload poster="' + item.posterImg + '" src="' + item.src + '"></video>');
         video.appendTo(item.playerContainer);
         video.css({ width: '100%', height: '100%' });
         video[0].load();
@@ -502,8 +502,8 @@
 
     TouchGallery.prototype.updateMetadata = function() {
         var item = this.items[this.currentItem];
-        $('.bottom-bar p', this.container).text(item.description || '');
-        $('.bottom-bar .permalink', this.container).attr('href', item.link || '#');
+        $('.bottom-bar h2', this.container).text(item.title || '');
+        $('.bottom-bar .description', this.container).text(item.description || '');
     };
 
 
