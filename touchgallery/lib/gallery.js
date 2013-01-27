@@ -29,7 +29,7 @@
         this._scrolling = true;
 
         // configuration
-        this.swipeLength      = 0.15; // swipe length must cross at least 15% of minimum screen dimension
+        this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
 
         // bind event handlers' context to this component instance
         this.constructor.boundHandlers.forEach(function(name) {
@@ -101,7 +101,7 @@
                 case 'video':
                     item.img = new Image;
                     item.img.onload = done;
-                    item.img.src = item.poster;
+                    item.img.src = item.posterImg;
                     waitingToLoad++;
                     return true;
             }
@@ -356,7 +356,7 @@
     );
 
     TouchGallery.prototype.activateVideoPlayer = function(item) {
-        var video = $('<video controls preload poster="' + item.poster  + '" src="' + item.src + '"></video>');
+        var video = $('<video controls preload poster="' + item.posterImg + '" src="' + item.src + '"></video>');
         video.appendTo(item.playerContainer);
         video.css({ width: '100%', height: '100%' });
         video[0].load();
