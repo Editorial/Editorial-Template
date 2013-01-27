@@ -58,10 +58,13 @@
         '<div class="touch-gallery">' +
             '<ul class="items"></ul>' +
             '<div class="top-bar">' +
-                '<a class="logo" href="#">Logo</a>' +
+                '<a class="logo" href="#"><img src="logo-gallery.png" alt="Logo"></a>' +
                 '<div class="controls">' +
-                    '<a class="prev">&laquo;</a>' +
-                    '<a class="next">&raquo;</a>' +
+                    '<span class="group">' +
+                       '<a class="prev" href="#">&laquo;</a>' +
+                       '<a class="next" href="#">&raquo;</a>' +
+                    '</span>' +
+                    '<a class="back" href="/">x</a>' +
                 '</div>' +
             '</div>' +
             '<div class="bottom-bar">' +
@@ -185,7 +188,7 @@
             '<div id="<%= id %>"></div>' +
         '</div>' +
         '<div class="left"></div>' +
-        '<div class="right"><div class="close-button">X</div></div>'
+        '<div class="right"><div class="close-button"><span>X</span></div></div>'
     );
 
     /**
@@ -263,7 +266,7 @@
             '<div id="<%= id %>"></div>' +
         '</div>' +
         '<div class="left"></div>' +
-        '<div class="right"><div class="close-button">X</div></div>'
+        '<div class="right"><div class="close-button"><span>X</span></div></div>'
     );
 
     /**
@@ -349,7 +352,7 @@
             '<div id="<%= id %>" class="video-player"></div>' +
         '</div>' +
         '<div class="left"></div>' +
-        '<div class="right"><div class="close-button">X</div></div>'
+        '<div class="right"><div class="close-button"><span>X</span></div></div>'
     );
 
     TouchGallery.prototype.activateVideoPlayer = function(item) {
