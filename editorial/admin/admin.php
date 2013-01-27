@@ -3,6 +3,9 @@
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
 
+require_once locate_template('/admin/metaboxes.php');    // Custom metaboxes
+require_once locate_template('/admin/add-media-ui.php'); // Custom add media
+
 /**
  * Editorial Admin class
  *
@@ -80,6 +83,14 @@ class Editorial_Admin
 	{
 		// setup admin menu
 		add_action('admin_menu', array($this, 'menus'));
+		
+		/* Fire our meta box setup function on the post editor screen. */
+		add_action( 'load-post.php', 'editorial_post_meta_boxes_setup' );
+		add_action( 'load-post-new.php', 'editorial_post_meta_boxes_setup' );
+		add_filter('media_view_strings', 'my_plugin_image_tabs', 10, 2);
+		add_filter( 'attachment_fields_to_edit', 'xf_attachment_fields', 10, 2 );
+		add_action('wp_ajax_parse_embed_editorial', 'fetch_video');
+		//	add_action('wp_ajax_editorial_pre_submit_validation', 'editorial_pre_submit_validation');
 		
     // check for update and if the version is valid
     $this->checkUpdate();
