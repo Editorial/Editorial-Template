@@ -13,7 +13,7 @@
 $EditorialId = 'gallery';
 $EditorialClass = 'clear';
 $needsHTML5player = false;
-$isMobileGallery = true;
+$isMobileGallery = false;
 
 $translations = Editorial::getOption('translations');
 
@@ -123,11 +123,12 @@ if ($isMobileGallery)
 					$type   = 'video';
 				}
 				// @todo check attachments
-				$items[] = sprintf("{ src: '%s', type: '%s', description: '' }", $src, $type);
+				$items[] = sprintf("{ src: '%s', type: '%s', description: '%s' }", $src, $type, $attachment->post_content);
 			}
 			echo implode(', ', $items);
 			?>
-            ],
+			],
+			<?php printf("logo: '%s',", Editorial::getOption('logo-gallery')); ?>
             readyHandler: function() {
                 // do nothing
             }
