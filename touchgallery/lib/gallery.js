@@ -498,7 +498,8 @@
 
     TouchGallery.prototype.updateMetadata = function() {
         var item = this.items[this.currentItem];
-        $('.bottom-bar p', this.container.querySelector).text(item.description || '');
+        $('.bottom-bar p', this.container).text(item.description || '');
+        $('.bottom-bar .permalink', this.container).attr('href', item.link || '#');
     };
 
 
