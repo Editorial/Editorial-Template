@@ -149,6 +149,8 @@
         this.moveTo(0, true);
 
         this.readyHandler();
+
+        setTimeout(bind(this, function() { this.hideBars(); }), 2000);
     };
 
 
@@ -475,6 +477,7 @@
             this.targetPosition = this.position = this.getPositionForIndex(this.currentItem);
             this.draw();
         } else {
+            this.hideBars();
             this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
         }
