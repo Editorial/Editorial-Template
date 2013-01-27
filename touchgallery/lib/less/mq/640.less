@@ -1,0 +1,752 @@
+/* <start> 00 GLOBAL ================================================================================================ */
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* content */
+
+h1,
+.exposed {
+	margin: 15px 0;
+	font-size: 70px;
+	line-height: 72px;
+}
+
+.default {
+	.lead {
+		margin: 0 0 26px;
+		font-size: 24px;
+		line-height: 30px;
+	}
+
+	p {
+		margin: 0 0 27px;
+		font-size: 18px;
+		line-height: 25px;
+	}
+}
+
+.content {
+	margin-top: 30px;
+}
+
+/* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+#footer {
+	position: relative;
+}
+
+/* licencing */
+
+.licencing {
+	margin: 0 25px 50px;
+
+	p {
+		padding: 0 20px;
+		text-align: left;
+	}
+}
+
+.pf-mobile {
+	display: none;
+}
+
+.pf-other {
+	width: 94%;
+	height: 100px;
+	display: block;
+
+	li {
+		width: 1.4%;
+		height: 100px;
+	}
+
+	b {
+		//text-indent: -999em;
+		font-family: @baseFont;
+		fony-size: 11px;
+	}
+
+	.line-1,
+	.line-2,
+	.line-3,
+	.line-4,
+	.line-5, {
+		i {
+			top: 80px;
+		}
+	}
+
+	.line-6,
+	.line-7,
+	.line-8,
+	.line-9,
+	.line-10,
+	.line-11,
+	.line-12,
+	.line-13,
+	.line-14,
+	.line-15 {
+		i {
+			top: 60px;
+		}
+	}
+
+	.line-16,
+	.line-17,
+	.line-18,
+	.line-19,
+	.line-20,
+	.line-21,
+	.line-22,
+	.line-23,
+	.line-24,
+	.line-25,
+	.line-26,
+	.line-27,
+	.line-28,
+	.line-29,
+	.line-30 {
+		i {
+			top: 40px;
+		}
+	}
+
+	.line-31,
+	.line-32,
+	.line-33,
+	.line-34,
+	.line-35,
+	.line-36,
+	.line-37,
+	.line-38,
+	.line-39,
+	.line-40,
+	.line-41,
+	.line-42,
+	.line-43,
+	.line-44,
+	.line-45,
+	.line-46,
+	.line-47,
+	.line-48,
+	.line-49,
+	.line-50 {
+		i {
+			top: 20px;
+		}
+	}
+
+	.line-51,
+	.line-52,
+	.line-53,
+	.line-54,
+	.line-55,
+	.line-56,
+	.line-57,
+	.line-58,
+	.line-59,
+	.line-60,
+	.line-61,
+	.line-62,
+	.line-63 {
+		i {
+			top: 0;
+		}
+	}
+
+	.line-26 {
+		i {
+			width: 100%;
+		}
+	}
+
+	.line-63 {
+		i {
+			width: 3px;
+		}
+	}
+
+
+	.line-6,
+	.line-11,
+	.line-16,
+	.line-21,
+	.line-26,
+	.line-31,
+	.line-36,
+	.line-41,
+	.line-46,
+	.line-51 {
+		border-color: #ccc;
+
+		&.sold {
+			border-color: #ccc;
+		}
+
+		&.current {
+			border-color: #666;
+		}
+	}
+
+	.step-2,
+	.step-3,
+	.step-4,
+	.step-5 {
+		i {
+			&:after {
+				height: 22px;
+			}
+		}
+	}
+
+	.step-1 {
+		em {
+			top: 54px;
+		}
+	}
+
+	.step-2 {
+		em {
+			top: 34px;
+		}
+	}
+
+	.step-3 {
+		em {
+			top: 14px;
+		}
+	}
+
+	.step-4 {
+		em {
+			top: -6px;
+		}
+	}
+
+	.step-5 {
+		em {
+			top: -26px;
+		}
+	}
+}
+
+.try-and-buy {
+	padding: 0 0 44px;
+	width: 100%;
+	float: left;
+}
+
+.try {
+	padding-right: 328px;
+	top: 283px;
+	left: 0;
+	position: absolute;
+	float: left;
+}
+
+.to-demo,
+.to-trial {
+	border-top: 1px solid #e6e6e6;
+	text-align: left;
+
+	margin-left: 25px;
+	margin-right: 25px;
+	padding-top: 22px;
+	padding-left: 0;
+	padding-right: 0;
+
+	h3 {
+		padding: 0 0 13px;
+	}
+
+	p {
+		text-align: left;
+	}
+}
+
+.to-demo {
+	//margin-top: 43px;
+	min-height: 141px;
+}
+
+.to-trial  {
+	min-height: 129px;
+}
+
+/* testing tools */
+
+#go-25up,
+#go-25down {
+	display: inline;
+}
+
+.inquiry,
+.wpcf7-form {
+	.message-input {
+		width: 43%;
+		float: left;
+	}
+
+	.action {
+		padding: 54px 0 0;
+		width: 250px;
+		float: right;
+	}
+}
+
+
+/* newsletter */
+
+.updates {
+	//margin: 0 0 28px;
+	padding: 27px 15px 0;
+}
+
+.price-tag {
+	margin:-55px 11px 0 25px;
+	float: right;
+
+	/*figure {
+		width: 42%;
+		float: left;
+		display: block;
+	}*/
+}
+
+.subscription {
+	padding-top: 40px;
+}
+
+
+/* connect */
+
+.twitter-follow-button {
+	margin-bottom: 15px;
+}
+
+/* copyright */
+
+.copyright {
+	width: 435px;
+}
+
+/* TYPEKIT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.wf-loading {
+	.cart {
+		h1 {
+			height: 72px;
+		}
+	}
+}
+
+/* </end> 00 GLOBAL ================================================================================================= */
+
+
+
+/* PAGES ============================================================================================================ */
+
+
+
+/* <start> 01 HOME PAGE ============================================================================================= */
+
+/* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.home {
+	background-image: url(../images/bgr/home.jpg);
+}
+
+/* HEADER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.home {
+	#header {
+		padding-top: 445px;
+	}
+}
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* content */
+
+
+.home {
+	.content {
+		h3 {
+			width: 100%;
+			background-position: 0 16px;
+			text-align: left;
+		}
+	}
+
+	h3 {
+		em {
+			padding: 0 15px 0 0;
+			background: #f7f7f7;
+		}
+	}
+
+	.entry-summary {
+		margin: 0 0 50px;
+		font-size: 22px;
+		line-height: 30px;
+	}
+}
+
+.home {
+	.content {
+		margin-top: 0;
+	}
+
+	h3 {
+		em {
+			padding: 0 15px;
+		}
+	}
+}
+
+/* features */
+
+.abilities {
+	li {
+		padding: 0 0 0 13%;
+		width: 37%;
+		float: left;
+	}
+}
+
+.goodies {
+	float: left;
+}
+
+/* abilities */
+
+/* ASIDE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* </end> 01 HOME PAGE ============================================================================================== */
+
+
+
+/* <start> 02 PURCHASE ============================================================================================== */
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* process */
+
+.process {
+	figure {
+		margin: 0 0 15px;
+		width: auto;
+	}
+
+	.tablets {
+		text-align: center;
+		width: 100%;
+		margin: 0 auto 15px;
+	}
+
+	figure {
+		img {
+			margin: 0 auto;
+		}
+	}
+}
+
+/* buy-form */
+
+.paypal-info p {
+	margin: 16px 0 0;
+}
+
+/* errors */
+
+.message {
+	min-height: 67px;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+
+	.lead,
+	p,
+	ol {
+		margin-left: 100px;
+	}
+
+	h3 {
+		padding: 0 0 0 5px;
+		font-size: 100px;
+		color: #e6ddc3;
+		display: block;
+		top: 37px;
+		left: 42px;
+		position: absolute;
+		z-index: -1;
+	}
+}
+
+/* transaction */
+
+/* transaction-loading */
+
+#transaction-loading {
+	height: 200px;
+}
+
+/* download */
+
+.download {
+	margin: 0 auto 9px;
+	width: 258px;
+	font-size: 18px;
+	line-height: 28px;
+
+	em {
+		padding: 18px 0 14px 88px;
+		font-style: normal;
+		background-position: -358px -109px;
+		display: block;
+	}
+}
+
+/* save */
+
+/* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.cart .copyright,
+.domains .copyright {
+	background-position: -27px -895px;
+}
+
+/* </end> 02 PURCHASE =============================================================================================== */
+
+
+
+/* <start> 03 SUPPORT =============================================================================================== */
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.help-list .main h1,
+.help-single .main h3,
+.about .content h1,
+.tearms .content h1 {
+	margin: 15px 0 17px;
+}
+
+.help-list {
+	.main {
+		margin: 0 auto 25px;
+	}
+}
+
+.info {
+	.lead {
+		font-size: 28px;
+		line-height: 35px;
+	}
+}
+
+.level {
+	h2 {
+		width: 100%;
+		background-position: 0 17px;
+		text-align: left;
+		float: left;
+	}
+}
+
+.level h2 em,
+.helpful h4 em,
+.related h4 em {
+	padding: 0 15px 0 0;
+	background: #f7f7f7;
+}
+
+.helpful,
+.related {
+	h4 {
+		background-position: top left;
+	}
+}
+
+
+/* ASIDE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.ie8 {
+	.questions {
+		li {
+			a {
+				&:before {
+					left: -28px;
+					top: -1px;
+				}
+			}
+		}
+	}
+
+	.related {
+		.questions {
+			a{
+				&:before {
+					left: 0;
+					top: 10px;
+				}
+			}
+		}
+	}
+}
+
+/* </end> 03 SUPPORT ================================================================================================ */
+
+
+
+/* <start> 04 ABOUT ================================================================================================= */
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* content */
+
+.about {
+	.content {
+		padding-top: 0;
+		overflow: visible;
+	}
+}
+
+/* makers */
+
+.makers {
+	.title {
+		margin: 0 0 5px;
+	}
+
+	li {
+		background-position: -1412px 22px;
+	}
+
+	.miha {
+		background-position: 100px 100px;
+	}
+}
+
+#dust {
+	width: 600px;
+	top: -10px;
+}
+
+/* </end> 04 ABOUT ================================================================================================== */
+
+
+
+/* <start> 05 DOMAINS =============================================================================================== */
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.domains-no {
+	h1 {
+		text-align: left;
+	}
+}
+
+#domains-no {
+	font-size: 72px;
+	top: 75px;
+	left: 77px;
+}
+
+.ie7 {
+	#domains-no {
+		line-height: 72px;
+		top: 60px;
+	}
+}
+
+.domains {
+	.process {
+		figure {
+			top: 17px;
+			width: 186px;
+		}
+	}
+}
+
+.manage {
+	label {
+		float: left;
+	}
+
+	#domains {
+		input {
+			width: 84.5%;
+			float: right;
+		}
+	}
+
+	h3 {
+		margin: 19px 0 31px;
+		font-size: 24px;
+	}
+}
+
+#manage-form {
+	margin: 0 0 0 -15px;
+	padding: 13px 0 0 15px;
+}
+
+/* </end> 05 DOMAINS ================================================================================================ */
+
+
+
+/* <start> 06 404 =================================================================================================== */
+
+/* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.lost {
+	h2 {
+		span {
+			display: block;
+		}
+	}
+
+	figure {
+		margin: 0 0 41px;
+
+		img {
+			width: auto;
+		}
+	}
+}
+
+/* </end> 06 404 ==================================================================================================== */
+
+
+
+/* <start> 07 FEATURES ============================================================================================== */
+
+.off-canvas {
+	.content {
+		margin-top: 0;
+	}
+
+	.col-1 {
+		width: 48%;
+		float: left;
+	}
+
+	.col-2 {
+		width: 48%;
+		float: right;
+	}
+
+	.col-3 {
+		.features-list {
+			li {
+				width: auto;
+				float: left;
+				clear: none;
+				margin-right: 20px;
+			}
+		}
+	}
+}
+
+/* </end> 07 FEATURES =============================================================================================== */
