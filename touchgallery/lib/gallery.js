@@ -446,6 +446,7 @@
      */
     TouchGallery.prototype.moveTo = function(idx, withoutTransition) {
         this.currentItem = clamp(idx, 0, this.items.length - 1);
+        this.updateMetadata();
         if (withoutTransition) {
             this.targetPosition = this.position = this.getPositionForIndex(this.currentItem);
             this.draw();
@@ -478,6 +479,11 @@
      */
     TouchGallery.prototype.getPositionForIndex = function(idx) {
         return idx * this.list.width();
+    };
+
+    TouchGallery.prototype.updateMetadata = function() {
+        var item = this.items[this.currentItem];
+        $('.bottom-bar p', this.container.querySelector).text(item.description || '');
     };
 
 
