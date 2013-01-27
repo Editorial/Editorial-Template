@@ -10,7 +10,7 @@
 
         this.readyHandler = (options.readyHandler) ? options.readyHandler : function() {};
         
-        if (options.template) this.template = options.template;
+        this.logo = options.logo || 'logo-gallery.png';
 
         // set the initial values
         this.position        = null;
@@ -55,11 +55,11 @@
         'init', 'tick'
     ];
 
-    TouchGallery.prototype.template =
+    TouchGallery.prototype.template = tmpl(
         '<div class="touch-gallery">' +
             '<ul class="items"></ul>' +
             '<div class="top-bar">' +
-                '<a class="logo" href="#"><img src="logo-gallery.png" alt="Logo"></a>' +
+                '<a class="logo" href="#"><img src="<%= logo %>" alt="Logo"></a>' +
                 '<div class="controls">' +
                     '<span class="group">' +
                        '<a class="prev" href="#">&laquo;</a>' +
@@ -69,11 +69,13 @@
                 '</div>' +
             '</div>' +
             '<div class="bottom-bar">' +
+                '<span class="counter">0 / 0</span>' +
                 '<h2>This is the title</h2>' +
                 '<p class="description">This is the description</p>' +
                 '<a href="#" class="info-icon">i</a>' +
             '</div>' +
-        '</div>';
+        '</div>'
+    );
 
     TouchGallery.prototype.preloadImages = function(callback) {
         var waitingToLoad = 0;
@@ -117,7 +119,7 @@
      * Initialises the component structure and positions the images
      */
     TouchGallery.prototype.init = function() {
-        this.container.append(this.template);
+        this.container.append(this.template({ logo: this.logo }));
         this.list = this.container.find('.items');
         this.items.forEach(function(item) {
             var listItem = $('<li></li>');
@@ -506,6 +508,7 @@
 
     TouchGallery.prototype.updateMetadata = function() {
         var item = this.items[this.currentItem];
+        $('.bottom-bar .counter', this.container).text((this.currentItem + 1) + ' / ' + this.items.length);
         $('.bottom-bar h2', this.container).text(item.title || '');
         $('.bottom-bar .description', this.container).text(item.description || '');
     };
@@ -590,9 +593,9 @@
     TouchGallery.prototype.handleTouchEnd = function(ev) {
         if (!this._scrolling) return;
         ev.preventDefault();
-        this.touchId      = null;
-        this.touchCoords  = null;
-        this.interacting  = false;
+        this.touchId     = null;
+        this.touchCoords = null;
+        this.interacting = false;
         var diff = this.targetPosition - this.initialPosition;
         if (Math.abs(diff) / Math.min(this.list.width(), this.list.height()) > this.swipeLength) {
             if (diff > 0) this.goToNext(); else this.goToPrevious();
@@ -652,8 +655,8 @@
      * Handles viewport resize events
      */
     TouchGallery.prototype.handleResize = function() {
-        //this.list.css('opacity', 0);
-        setTimeout(this.repositionImages, 0);
+        this.repositionImages();
+        //setTimeout(this.repositionImages, 0);
     };
 
     /**
