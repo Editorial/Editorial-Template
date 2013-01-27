@@ -1,4 +1,7 @@
 <?php
+
+if (!$isMobileGallery)
+{
 // show footer if not on 404 page
 if ($EditorialId != 'notfound')
 {
@@ -72,10 +75,10 @@ if ($EditorialId != 'notfound')
 }
 ?>
 
+<?php } ?>
 <?php if (Editorial::isMobileDevice()) { ?>
 <script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/hide-address-bar.js"></script>
 <?php } ?>
-
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/plugins.js"></script>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/script.js"></script>
 <?php wp_footer(); ?>

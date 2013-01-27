@@ -64,9 +64,10 @@
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelement-and-player.js"></script>
 
 <?php if ($isMobileGallery) { ?>
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/photoswipe.css">
-<script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/klass.min.js"></script>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/code.photoswipe.jquery-3.0.4.js"></script>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.css"/>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/skin.css"/>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.min.js"></script>
+<script src="//www.youtube.com/iframe_api"></script>
 <?php } ?>
 
 
@@ -92,6 +93,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
 <body class="<?php echo $EditorialId; ?> <?php echo $EditorialClass; ?>">
 
+<?php if (!$isMobileGallery) { ?>
 <header id="header" class="clear" role="banner">
 	<h1 id="brand" class="vcard">
 		<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
@@ -135,3 +137,4 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	}
 ?>
 </header>
+<?php } ?>
