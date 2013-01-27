@@ -38,6 +38,7 @@
 
         // hook up events
         var self = this;
+        window.addEventListener('resize', function() { viewporter.refresh(); });
         window.addEventListener('orientationchange', function() { viewporter.refresh(); });
         window.addEventListener('viewportchange', this.handleResize);
 
@@ -48,7 +49,7 @@
 
     TouchGallery.boundHandlers = [
         'handleTouchStart', 'handleTouchMove', 'handleTouchEnd',
-        'handleControlButtonClick',
+        'handleControlButtonClick', 'handleInfoButtonClick',
         'handleResize', 'handleTap',
         'repositionImages',
         'init', 'tick'
@@ -70,6 +71,7 @@
             '<div class="bottom-bar">' +
                 '<h2>This is the title</h2>' +
                 '<p class="description">This is the description</p>' +
+                '<a href="#" class="info-icon">i</a>' +
             '</div>' +
         '</div>';
 
@@ -139,6 +141,8 @@
         var controls = this.container.find('.top-bar .controls');
         controls.on('click', 'a', this.handleControlButtonClick);
 
+        this.container.find('.bottom-bar .info-icon').on('click', this.handleInfoButtonClick);
+
         this.repositionImages();
         this.moveTo(0, true);
 
@@ -202,7 +206,7 @@
         item.poster.addClass('slide-out');
 
         item.player = new YT.Player(item.playerContainer.get(0), {
-            width   : this.list.width() - 100,
+            width   : this.list.width() - 200,
             height  : this.list.height(),
             videoId : item.id,
             events  : {
@@ -280,7 +284,7 @@
         item.poster.addClass('slide-out');
 
         var iframe = $('<iframe></iframe>').attr({
-            width                 : this.list.width() - 100,
+            width                 : this.list.width() - 200,
             height                : this.list.height(),
             src                   : 'http://player.vimeo.com/video/' + item.id + '?api=1&player_id=' + item.playerContainer.attr('id'),
             frameborder           : '0',
@@ -611,6 +615,11 @@
             this.goToNext();
     };
 
+    TouchGallery.prototype.handleInfoButtonClick = function(ev) {
+        ev.preventDefault();
+        this.container.find('.bottom-bar').toggleClass('expanded');
+    };
+
     TouchGallery.prototype.handleTap = function() {
         var item = this.items[this.currentItem];
         if (item.type == 'youtube') {
@@ -623,7 +632,6 @@
             item.poster.addClass('slide-out');
             this.activateVideoPlayer(item);
         } else if (item.type == 'image') {
-            this.stopAutoplay();
             this.toggleBars();
         }
     };
@@ -644,8 +652,8 @@
      * Handles viewport resize events
      */
     TouchGallery.prototype.handleResize = function() {
-        this.list.css('opacity', 0);
-        setTimeout(this.repositionImages, 100);
+        //this.list.css('opacity', 0);
+        setTimeout(this.repositionImages, 0);
     };
 
     /**
