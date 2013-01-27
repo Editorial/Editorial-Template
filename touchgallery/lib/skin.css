@@ -361,7 +361,60 @@ body {
 }
 /* 768px */
 @media only screen and (min-width: 768px) {
-  
+  /* GALLERY SKIN 2.0 ================================================================================================= */
+  /* touch-gallery ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  .touch-gallery .top-bar {
+    height: 100px;
+  }
+  .touch-gallery .top-bar .logo {
+    width: 188px;
+    top: 38px;
+    left: 30px;
+  }
+  .touch-gallery .top-bar .controls .group {
+    margin-left: -101px;
+  }
+  .touch-gallery .top-bar .controls .prev,
+  .touch-gallery .top-bar .controls .next,
+  .touch-gallery .top-bar .controls .back {
+    width: 100px;
+    height: 100px;
+  }
+  .touch-gallery .top-bar .controls .prev {
+    background-position: -123px -31px;
+  }
+  .touch-gallery .top-bar .controls .next {
+    background-position: -226px -31px;
+  }
+  .touch-gallery .top-bar .controls .back {
+    background-position: -121px -102px;
+  }
+  .touch-gallery .items .left,
+  .touch-gallery .items .right {
+    background: none;
+  }
+  .touch-gallery .items .right .close-button {
+    margin-top: -30px;
+    margin-left: -70px;
+    width: 80px;
+    height: 80px;
+  }
+  .touch-gallery .items .right .close-button span {
+    width: 80px;
+    height: 80px;
+    background-position: -131px -111px;
+  }
+  .touch-gallery .items li .play-icon {
+    margin-top: -75px;
+    margin-left: -75px;
+    width: 150px;
+    height: 150px;
+  }
+  .touch-gallery .bottom-bar p {
+    padding: 20px 30px;
+    font-size: 24px;
+    line-height: 27px;
+  }
 }
 /* 992px */
 @media only screen and (min-width: 992px) {
