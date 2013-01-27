@@ -131,6 +131,7 @@
         this.list.get(0).addEventListener('touchstart', this.handleTouchStart);
         this.list.get(0).addEventListener('touchmove', this.handleTouchMove);
         this.list.get(0).addEventListener('touchend', this.handleTouchEnd);
+        this.list.get(0).addEventListener('touchcancel', this.handleTouchEnd);
 
         var controls = this.container.find('.top-bar .controls');
         controls.on('click', 'a', this.handleControlButtonClick);
