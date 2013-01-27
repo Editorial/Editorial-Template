@@ -38,7 +38,7 @@
 
         // hook up events
         var self = this;
-        window.addEventListener('resize', function() { viewporter.refresh(); });
+        if (!Browsers.ios()) window.addEventListener('resize', function() { viewporter.refresh(); });
         window.addEventListener('orientationchange', function() { viewporter.refresh(); });
         window.addEventListener('viewportchange', this.handleResize);
 
@@ -83,22 +83,25 @@
         this.items = this.items.filter(function(item) {
             switch(item.type) {
                 case 'image':
-                    item.img        = new Image;
-                    item.img.onload = done;
-                    item.img.src    = item.src;
+                    item.img         = new Image;
+                    item.img.onload  = done;
+                    item.img.onerror = done;
+                    item.img.src     = item.src;
                     waitingToLoad++;
                     return true;
                 case 'youtube':
-                    item.img        = new Image;
-                    item.img.onload = done;
-                    item.img.src    = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
+                    item.img         = new Image;
+                    item.img.onload  = done;
+                    item.img.onerror = done;
+                    item.img.src     = 'http://img.youtube.com/vi/' + item.id + '/hqdefault.jpg';
                     waitingToLoad++;
                     return true;
                 case 'vimeo':
                     $.getJSON('http://vimeo.com/api/v2/video/' + item.id + '.json?callback=?', function(data) {
-                        item.img        = new Image;
-                        item.img.onload = done;
-                        item.img.src    = data[0].thumbnail_large;
+                        item.img         = new Image;
+                        item.img.onload  = done;
+                        item.img.onerror = done;
+                        item.img.src     = data[0].thumbnail_large;
                     });
                     waitingToLoad++;    
                     return true;
@@ -149,6 +152,8 @@
         this.moveTo(0, true);
 
         this.readyHandler();
+
+        setTimeout(bind(this, function() { this.hideBars(); }), 2000);
     };
 
 
@@ -475,6 +480,7 @@
             this.targetPosition = this.position = this.getPositionForIndex(this.currentItem);
             this.draw();
         } else {
+            this.hideBars();
             this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
         }

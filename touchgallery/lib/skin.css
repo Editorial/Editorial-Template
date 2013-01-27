@@ -236,8 +236,13 @@ body {
 .touch-gallery .poster .top {
   background: none;
 }
-.touch-gallery .bottom-bar h2 {
+.touch-gallery .bottom-bar .counter {
   padding: 10px 15px 2px;
+  font-size: 12px;
+  line-height: 15px;
+}
+.touch-gallery .bottom-bar h2 {
+  padding: 0 15px 2px;
   font-size: 12px;
   line-height: 15px;
   font-weight: bold;
@@ -248,8 +253,13 @@ body {
   font-size: 12px;
   line-height: 15px;
 }
-.touch-gallery .bottom-bar .permalink {
-  display: none;
+.touch-gallery .bottom-bar .info-icon {
+  width: 30px;
+  height: 30px;
+  background: lime;
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 /* 480px */
 @media only screen and (min-width: 480px) {
@@ -330,10 +340,20 @@ body {
     width: 150px;
     height: 150px;
   }
-  .touch-gallery .bottom-bar p {
-    padding: 20px 30px;
+  .touch-gallery .bottom-bar .counter {
+    padding: 20px 30px 2px;
     font-size: 24px;
     line-height: 27px;
+  }
+  .touch-gallery .bottom-bar h2 {
+    padding: 0 30px 2px;
+    font-size: 24px;
+    line-height: 27px;
+  }
+  .touch-gallery .bottom-bar p {
+    padding: 0 30px 30px;
+    font-size: 24px;
+    line-height: 30px;
   }
 }
 /* 992px */
