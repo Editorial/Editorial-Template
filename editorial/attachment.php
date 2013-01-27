@@ -13,7 +13,7 @@
 $EditorialId = 'gallery';
 $EditorialClass = 'clear';
 $needsHTML5player = false;
-$isMobileGallery = false;
+$isMobileGallery = isset($_GET['mobile']) ? true : false;
 
 $translations = Editorial::getOption('translations');
 

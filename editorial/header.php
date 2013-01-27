@@ -22,6 +22,13 @@
 <head>
 <meta charset="utf-8">
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
+<?php if ($isMobileGallery) { ?>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.css"/>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/skin.css"/>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.min.js"></script>
+<script src="//www.youtube.com/iframe_api"></script>
+<?php } else { ?>
 <script>if(('devicePixelRatio' in window)&&devicePixelRatio > 1){document.cookie = 'retina=1; path=/';}</script>
 <?php
 /*
@@ -62,15 +69,6 @@
 <script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/jquery-1.7.2.min.js">\x3C/script>')</script>
 
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelement-and-player.js"></script>
-
-<?php if ($isMobileGallery) { ?>
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.css"/>
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/skin.css"/>
-<script src="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.min.js"></script>
-<script src="//www.youtube.com/iframe_api"></script>
-<?php } ?>
-
-
 <?php add_theme_support('automatic-feed-links'); ?>
 <?php wp_head(); ?><?php
 /*
@@ -87,6 +85,7 @@ var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);_gaq.push(['_t
 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
 </script>-->
+<?php } ?>
 <script src="http://use.typekit.com/nlh6xyy.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
 </head>
