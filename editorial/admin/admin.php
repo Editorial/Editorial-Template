@@ -731,8 +731,8 @@ class Editorial_Admin
 	       'families' => array(
 	           array(
 					'id'         => 'nljb', // Minion Pro
-					'subset'     => 'regular',
-					'variations' => array('4', 'n4', '6', 'n6'),
+					'subset'     => 'default',
+					'variations' => array('n4', 'i4', 'n6', 'i6'),
     	           //'id' => 'gkmg' // Droid Sans
 	           ),
 	       ),
