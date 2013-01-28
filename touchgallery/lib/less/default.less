@@ -13,7 +13,8 @@ body {
 .controls .prev,
 .controls .next,
 .controls .back,
-.close-button span {
+.close-button span,
+.bottom-bar .info-icon {
 	background-image: url(img/sprite.png);
 	background-repeat: no-repeat;
 }
@@ -30,10 +31,12 @@ body {
 .touch-gallery {
 
 	.top-bar {
+		background : rgba(0, 0, 0, .75);
+
 		.logo {
 			width: 94px;
 			display: block;
-			top: 19px;
+			top: 20px;
 			left: 15px;
 
 			img {
@@ -44,10 +47,10 @@ body {
 		.controls {
 			border-left: 1px solid #000;
 			border-right: 1px solid rgba(255, 255, 255, .2);
-			width: 152px;
+			width: 158px;
 			top: 0;
 			left: auto;
-			right: 15px;
+			right: 0;
 
 			.group {
 				position: static;
@@ -60,7 +63,7 @@ body {
 				border-right: 1px solid #000;
 				border-left: 1px solid rgba(255, 255, 255, .2);
 				.rounded(0);
-				width: 50px;
+				width: 52px;
 				height: 50px;
 				display: block;
 				.ir();
@@ -125,14 +128,22 @@ body {
 	}
 
 	.bottom-bar {
+		background : rgba(0, 0, 0, .75);
+
+		.info {
+			margin: 0 50px 0 0;
+			padding: 8px 15px 10px;
+			border-right: 1px solid rgba(255, 255, 255, .2);
+		}
+
 		.counter {
-			padding: 10px 15px 2px;
+			margin: 0 0 2px;
 			font-size: 12px;
 			line-height: 15px;
 		}
 		
 		h2 {
-			padding: 0 15px 2px;
+			marign: 0 0 7px;
 			font-size: 12px;
 			line-height: 15px;
 			font-weight: bold;
@@ -140,18 +151,20 @@ body {
 		}
 
 		p {
-			padding: 0 15px 15px;
+			margin: 0 0 5px;
 			font-size: 12px;
 			line-height: 15px;
 		}
 
 		.info-icon {
-			width: 30px;
-			height: 30px;
-			background: lime;
+			width: 50px;
+			height: 50px;
+			background-position: -2px -124px;
+			display: block;
+			.ir();
 			position: absolute;
-			top: 10px;
-			right: 15px;
+			top: 0;
+			right: 0;
 		}
 	}
 

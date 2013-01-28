@@ -144,7 +144,8 @@ body {
 .controls .prev,
 .controls .next,
 .controls .back,
-.close-button span {
+.close-button span,
+.bottom-bar .info-icon {
   background-image: url(img/sprite.png);
   background-repeat: no-repeat;
 }
@@ -153,10 +154,13 @@ body {
   background: none;
 }
 /* touch-gallery ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.touch-gallery .top-bar {
+  background: rgba(0, 0, 0, 0.75);
+}
 .touch-gallery .top-bar .logo {
   width: 94px;
   display: block;
-  top: 19px;
+  top: 20px;
   left: 15px;
 }
 .touch-gallery .top-bar .logo img {
@@ -165,10 +169,10 @@ body {
 .touch-gallery .top-bar .controls {
   border-left: 1px solid #000;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
-  width: 152px;
+  width: 158px;
   top: 0;
   left: auto;
-  right: 15px;
+  right: 0;
 }
 .touch-gallery .top-bar .controls .group {
   position: static;
@@ -182,7 +186,7 @@ body {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  width: 50px;
+  width: 52px;
   height: 50px;
   display: block;
   overflow: hidden;
@@ -236,30 +240,41 @@ body {
 .touch-gallery .poster .top {
   background: none;
 }
+.touch-gallery .bottom-bar {
+  background: rgba(0, 0, 0, 0.75);
+}
+.touch-gallery .bottom-bar .info {
+  margin: 0 50px 0 0;
+  padding: 8px 15px 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
 .touch-gallery .bottom-bar .counter {
-  padding: 10px 15px 2px;
+  margin: 0 0 2px;
   font-size: 12px;
   line-height: 15px;
 }
 .touch-gallery .bottom-bar h2 {
-  padding: 0 15px 2px;
+  marign: 0 0 7px;
   font-size: 12px;
   line-height: 15px;
   font-weight: bold;
   text-transform: uppercase;
 }
 .touch-gallery .bottom-bar p {
-  padding: 0 15px 15px;
+  margin: 0 0 5px;
   font-size: 12px;
   line-height: 15px;
 }
 .touch-gallery .bottom-bar .info-icon {
-  width: 30px;
-  height: 30px;
-  background: lime;
+  width: 50px;
+  height: 50px;
+  background-position: -2px -124px;
+  display: block;
+  overflow: hidden;
+  text-indent: -999em;
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 0;
+  right: 0;
 }
 /* 480px */
 @media only screen and (min-width: 480px) {
@@ -282,7 +297,7 @@ body {
   .touch-gallery .top-bar .controls .back {
     position: absolute;
     top: 0;
-    right: 15px;
+    right: 0;
   }
 }
 /* 640px */
@@ -307,17 +322,21 @@ body {
   .touch-gallery .top-bar .controls .prev,
   .touch-gallery .top-bar .controls .next,
   .touch-gallery .top-bar .controls .back {
-    width: 100px;
+    width: 102px;
     height: 100px;
   }
   .touch-gallery .top-bar .controls .prev {
-    background-position: -123px -31px;
+    background-position: -122px -29px;
   }
   .touch-gallery .top-bar .controls .next {
-    background-position: -226px -31px;
+    background-position: -224px -29px;
   }
   .touch-gallery .top-bar .controls .back {
     background-position: -121px -102px;
+  }
+  .touch-gallery .player-container {
+    left: 120px;
+    right: 120px;
   }
   .touch-gallery .items .left,
   .touch-gallery .items .right {
@@ -340,20 +359,29 @@ body {
     width: 150px;
     height: 150px;
   }
+  .touch-gallery .bottom-bar .info {
+    margin: 0 100px 0 0;
+    padding: 21px 30px 8px;
+  }
   .touch-gallery .bottom-bar .counter {
-    padding: 20px 30px 2px;
+    padding: 0 0 3px;
     font-size: 24px;
     line-height: 27px;
   }
   .touch-gallery .bottom-bar h2 {
-    padding: 0 30px 2px;
+    margin: 0 0 12px;
     font-size: 24px;
     line-height: 27px;
   }
   .touch-gallery .bottom-bar p {
-    padding: 0 30px 30px;
+    margin: 0 0 20px;
     font-size: 24px;
     line-height: 30px;
+  }
+  .touch-gallery .bottom-bar .info-icon {
+    width: 100px;
+    height: 100px;
+    background-position: -118px -179px;
   }
 }
 /* 992px */
