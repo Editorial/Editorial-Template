@@ -15,8 +15,8 @@
 ?>
 
 
-	<h2><?php _e('Editorial', 'Editorial'); ?> &mdash; <?php _e('Masthead', 'Editorial'); ?></h2>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+	<h2><?php _e('Editorial', 'Editorial'); ?> &mdash; <?php _e('Colophon', 'Editorial'); ?></h2>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
 		// set up sorting
@@ -45,14 +45,15 @@
 						<h3 class="hndle"><span><?php _e('General', 'Editorial'); ?></span></h3>
 						<div class="inside">
 			  			<div class="table table_content">
-			  				<label><?php _e('Enable Masthead', 'Editorial'); ?> <input type="checkbox" name="colophon-enabled"<?php echo !Editorial::getOption('colophon-enabled') ? '' : ' checked="checked"'; ?> /></label>
+			  				<p>some description...</p>
+			  				<label><?php _e('Enable Colophon', 'Editorial'); ?> <input type="checkbox" name="colophon-enabled"<?php echo !Editorial::getOption('colophon-enabled') ? '' : ' checked="checked"'; ?> /></label>
 			  			</div>
 			  		</div>
 				  </div>
 
 			    <div class="postbox " style="display: block; ">
 						<div class="handlediv" title="Click to toggle"><br></div>
-						<h3 class="hndle"><span><?php _e('Team members', 'Editorial'); ?></span></h3>
+						<h3 class="hndle"><span><?php _e('Team', 'Editorial'); ?></span></h3>
 						<div class="inside">
 			  			<div class="table table_content">
 			  				<?php
@@ -76,7 +77,7 @@
 														// user data not loaded
 														continue;
 													}
-													echo Editorial_Admin::displayUser($data, $title);
+													Editorial_Admin::displayUser($data, $title);
 													$alreadyShown[] = $id;
 												}
 											}
@@ -87,7 +88,7 @@
 													// skip already shown users
 													continue;
 												}
-												echo Editorial_Admin::displayUser($user, '', !(bool)$authors);
+												Editorial_Admin::displayUser($user, '', !(bool)$authors);
 											}
 											echo '</ul>';
 										}

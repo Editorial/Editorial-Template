@@ -85,12 +85,12 @@
 
   <div class="postbox " style="display: block; ">
 		<div class="handlediv" title="Click to toggle"><br></div>
-		<h3 class="hndle"><span><?php _e('Black &amp; White featured images', 'Editorial'); ?></span></h3>
+		<h3 class="hndle"><span><?php _e('Black &amp; white cover photos', 'Editorial'); ?></span></h3>
 			<div class="inside">
   			<div class="table table_content">
 
-  				<label><?php _e('Apply black & white effect to featured images') ?> <input type="checkbox" name="black-and-white"<?php echo !Editorial::getOption('black-and-white') ? '' : ' checked="checked"'; ?> /></label>
-          <p class="note"><?php _e('The effect will appear on the home page and article lists, but not within article pages', 'Editorial'); ?></p>
+  				<label><?php _e('Enable black &amp; white covers') ?> <input type="checkbox" name="black-and-white"<?php echo !Editorial::getOption('black-and-white') ? '' : ' checked="checked"'; ?> /></label>
+          <p class="note"><?php _e('Black &amp; white photos will appear on the main page but not on subpages.', 'Editorial'); ?></p>
         
   			</div>
   		</div>
@@ -99,13 +99,13 @@
 
   <div class="postbox " style="display: block; ">
 		<div class="handlediv" title="Click to toggle"><br></div>
-		<h3 class="hndle"><span><?php _e('Comments moderation', 'Editorial'); ?></span></h3>
+		<h3 class="hndle"><span><?php _e('Karma settings', 'Editorial'); ?></span></h3>
 			<div class="inside">
   			<div class="table table_content">
 
-  				<label><?php _e('Enable users to moderate inappropriate comments by voting', 'Editorial') ?> <input type="checkbox" name="karma"<?php echo !Editorial::getOption('karma') ? '' : ' checked="checked"'; ?> /></label><br />
+  				<label><?php _e('Enable karma comment votes', 'Editorial') ?> <input type="checkbox" name="karma"<?php echo !Editorial::getOption('karma') ? '' : ' checked="checked"'; ?> /></label><br />
           <input type="text" name="karma-treshold" value="<?php echo Editorial::getOption('karma-treshold'); ?>" />
-          <p class="note karma"><?php _e('Number of votes required to hide an inappropriate comment', 'Editorial'); ?></p>
+          <p class="note karma"><?php _e('Karma treashold controls when the comments with downvotes are hidden.', 'Editorial'); ?></p>
         <div class="clear"></div>
   			</div>
   		</div>
