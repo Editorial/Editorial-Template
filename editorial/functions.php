@@ -1500,6 +1500,35 @@ EOF;
         // server bw image
         return self::bwString($originalImage);
     }
+
+	/**
+	 * Get vimeo video id from url. If id is not found 0 is returned.
+	 *
+	 * @param  string $url
+	 * @return int
+	 */
+	static function getVimeoId($url)
+	{
+		$result = preg_match('/(\d+)/', $url, $matches);
+		$id = 0;
+		if ($result)
+		{
+		    $id = $matches[0];
+		}
+		return $id;
+	}
+	
+	/**
+	 * Get youtube video id from url.
+	 *
+	 * @param  string $url
+	 * @return int
+	 */
+	static function getYoutubeId($url)
+	{
+		parse_str(parse_url( $url, PHP_URL_QUERY ), $vars);
+		return $vars['v'];
+	}
     
     /*************************************/
     /************ Twitter as comments ****/

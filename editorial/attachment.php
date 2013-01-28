@@ -97,37 +97,60 @@ if ($isMobileGallery)
     function onYouTubeIframeAPIReady() {
         t = new TouchGallery({
             container : '#viewporter',
-            items     : [
-			<?php 
+            items     : <?php 
 			$items = array();
 			foreach ($attachments as $attachment)
 			{
-				$src    = Editorial::getImage($attachment->ID, 'landscape');
-				$poster = $src;
-				$type   = 'image';
+				$item   = array(
+					'src' => Editorial::getImage($attachment->ID, 'landscape'),
+					'type' => 'image',
+					'description' => $attachment->post_content,
+					'title' => $attachment->post_title,
+				);
 				if (Editorial::is_image($attachment->post_mime_type))
 				{
-					$poster = $src;
-					$type   = 'image';
+					$metadata = wp_get_attachment_metadata($attachment->ID);
+					if (isset($metadata['embed_type']) && isset($metadata['provider_name']) && isset($metadata['_wp_attachment_url']))
+					{
+						$url = $metadata['_wp_attachment_url'];
+						$provider = strtolower($metadata['provider_name']);
+						if ($provider == 'vimeo')
+						{
+							// extract id from url
+							$id = Editorial::getVimeoId($url);
+						}
+						else if ($provider == 'youtube')
+						{
+							$id = Editorial::getYoutubeId($url);
+						}
+						else
+						{
+							// skip it
+							continue;
+						}
+						unset($item['src']);
+						$item['type'] = $provider;
+						$item['id']   = $id;
+						$item['title'] = $attachment->post_excerpt;
+						unset($item['description']);
+					}
 				}
 				else if (Editorial::is_video($attachment->post_mime_type))
 				{
-					$src    = wp_get_attachment_url($attachment->ID);
-					$poster = get_bloginfo('template_directory')."/images/mgallery_video1.png";
-					$type   = 'video';
+					$item['src']       = wp_get_attachment_url($attachment->ID);
+					$item['posterImg'] = get_bloginfo('template_directory')."/images/mgallery_video1.png";
+					$item['type']      = 'video';
 				}
 				else if (Editorial::is_audio($attachment->post_mime_type))
 				{
-					$src    = wp_get_attachment_url($attachment->ID);
-					$poster = get_bloginfo('template_directory')."/images/mgallery_video1.png";
-					$type   = 'video';
+					$item['src']       = wp_get_attachment_url($attachment->ID);
+					$item['posterImg'] = get_bloginfo('template_directory')."/images/mgallery_video1.png";
+					$item['type']      = 'audio';
 				}
-				// @todo check attachments
-				$items[] = sprintf("{ src: '%s', type: '%s', description: '%s' }", $src, $type, $attachment->post_content);
+				$items[] = $item;
 			}
-			echo implode(', ', $items);
-			?>
-			],
+			echo json_encode($items);
+			?>,
 			<?php printf("logo: '%s',", Editorial::getOption('logo-gallery')); ?>
 			<?php printf("backLink: '%s',", get_permalink($parentId)); ?>
             readyHandler: function() {
@@ -147,11 +170,26 @@ if ($isMobileGallery)
         <section id="media">
             <figure>
 <?php
-                    if (Editorial::is_image($post->post_mime_type)) {
-?>
-                <span class="photo-adapt"><img src="<?php echo $imageUrl ?>" class="photo" alt="<?php echo $imageMeta['alt']; ?>"></span>
-<?php
-                    } else if (Editorial::is_audio($post->post_mime_type)) {
+					$metadata = false;
+					if (Editorial::is_image($post->post_mime_type)) 
+					{
+						// check for metadata
+						$metadata = wp_get_attachment_metadata($attachment->ID);
+						if (isset($metadata['embed_type']) && isset($metadata['provider_name']) && isset($metadata['_wp_attachment_url']))
+						{
+							the_content();
+						}
+						else
+						{
+							printf(
+								'<span class="photo-adapt"><img src="%s" class="photo" alt="%s"></span>',
+								$imageUrl,
+								$imageMeta['alt']
+							);
+						}
+					} 
+					else if (Editorial::is_audio($post->post_mime_type))
+					{
 ?>
                 <audio id="player" src="<?php echo $attachmentUrl ?>" type="<?php echo $post->post_mime_type; ?>" controls="controls"></audio>
 <?php
@@ -163,7 +201,7 @@ if ($isMobileGallery)
 ?>
                 <figcaption<?php echo Editorial::is_video($post->post_mime_type) ? ' id="video-fc"' : ''; ?>>
                     <h3><?php the_title(); ?></h3>
-                    <?php the_content(); ?>
+                    <?php echo isset($metadata['embed_type']) ? get_the_excerpt() : get_the_content(); ?>
                 </figcaption>
             </figure>
         </section>
@@ -248,7 +286,7 @@ if ($isMobileGallery)
             <fieldset id="embed">
                 <h4><label for="embed-code"><?php echo $translations['gallery']['Embed code']; ?></label></h4>
                 <p><?php echo $translations['gallery']['There is no need for downloading and uploading it to your blog/website when you can easily embed it.']; ?></p>
-                <input id="embed-code" value="<?php echo get_permalink($post->ID); ?>">
+                <input id="embed-code" value="<?php echo isset($metadata['embed_type']) ? htmlspecialchars(get_the_content()) : get_permalink($post->ID); ?>">
             </fieldset>
         </aside>
     </article>

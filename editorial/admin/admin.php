@@ -730,7 +730,9 @@ class Editorial_Admin
 	       'badge' => false,
 	       'families' => array(
 	           array(
-    	           'id' => 'nljb' // Minion Pro
+					'id'         => 'nljb', // Minion Pro
+					'subset'     => 'regular',
+					'variations' => array('4', 'n4', '6', 'n6'),
     	           //'id' => 'gkmg' // Droid Sans
 	           ),
 	       ),
