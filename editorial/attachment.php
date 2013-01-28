@@ -131,8 +131,8 @@ if ($isMobileGallery)
 						unset($item['src']);
 						$item['type'] = $provider;
 						$item['id']   = $id;
-						$item['title'] = $attachment->post_excerpt;
-						unset($item['description']);
+						$item['title'] = $attachment->post_title;
+						$item['description'] = $attachment->post_excerpt;
 					}
 				}
 				else if (Editorial::is_video($attachment->post_mime_type))
