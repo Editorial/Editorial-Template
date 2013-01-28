@@ -93,10 +93,10 @@ function wp_print_editorial_media_templates() {
 				<span><?php _e('Title'); ?></span>
 				<input type="text" value="{{ data.title }}" {{ maybeReadOnly }} />
 			</label>
-			<!--label class="setting" data-setting="caption">
+			<label class="setting" data-setting="caption">
 				<span><?php _e('Caption'); ?></span>
 				<textarea {{ maybeReadOnly }}>{{ data.caption }}</textarea>
-			</label-->
+			</label>
 		<# if ( 'image' === data.type ) { #>
 			<!--label class="setting" data-setting="alt">
 				<span><?php _e('Alt Text'); ?></span>
@@ -112,7 +112,7 @@ function wp_print_editorial_media_templates() {
 		<h3><?php _e('Attachment Display Settings'); ?></h3>
 
 		<# if ( 'image' === data.type ) { #>
-			<!--label class="setting">
+			<label class="setting">
 				<span><?php _e('Alignment'); ?></span>
 				<select class="alignment"
 					data-setting="align"
@@ -133,7 +133,7 @@ function wp_print_editorial_media_templates() {
 						<?php esc_attr_e('None'); ?>
 					</option>
 				</select>
-			</label-->
+			</label>
 		<# } #>
 
 		<div class="setting">
@@ -221,6 +221,7 @@ function wp_print_editorial_media_templates() {
 		<div class="thumbnail video">
 			<img src="{{ data.model.data.url }}" draggable="false" />
 		</div>
+		<input type="hidden" name="media-type" value="video" class="media-type"/>
 		<div class="message-editorial"></div>
 		<?php if ( ! apply_filters( 'disable_captions', '' ) ) : ?>
 			<label class="setting caption video">

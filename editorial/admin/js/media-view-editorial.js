@@ -320,7 +320,7 @@ jQuery(document)
 								var mdl = this.model.props;
 								var thisObj = this;
 								if (data.url != '') {
-									mdl.set('error', "Processing... Pls wait...");
+									mdl.set('error', "Loading...");
 								jQuery.when(
 										jQuery.ajax({
 															url : ''+ wpDir+ '/wp-admin/admin-ajax.php',
@@ -337,7 +337,7 @@ jQuery(document)
 										.then(
 												function(data) {
 													if (!data.error && data.data.type == 'video') {
-														mdl.set('error', "Inserting ...");
+														mdl.set('error', "Loading ...");
 														if(isGalleryMode){
 															 type = 'video';
 															 mdl.set('data', data.data);
@@ -368,6 +368,7 @@ jQuery(document)
 															  controller.content.mode('browse');
 														} else {
 															type = 'video';
+															console.log(data);
 															mdl.set('data', data.data);
 															mdl.set('thumbnail', data.data.url);
 															mdl.set('title', data.data.title);
