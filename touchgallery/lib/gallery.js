@@ -27,8 +27,9 @@
         this.tapCandidate    = null;
         this.videoCounter    = 0;
 
-        this._scrolling    = true;
-        this._barHideTimer = null;
+        this._scrolling                = true;
+        this._videoActivateTimer       = null;
+        this._userRequestedBarsVisible = false;
 
         // configuration
         this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
@@ -156,6 +157,8 @@
         this.moveTo(0, true);
 
         this.readyHandler();
+
+        setTimeout(bind(this, function() { this.hideBars(); }), 2000);
     };
 
 
@@ -242,8 +245,8 @@
         item.player = null;
         item.playerContainer.children().remove();
         item.poster.removeClass('slide-out');
-        this.showBars();
         this.enableScrolling();
+        if (this._userRequestedBarsVisible) this.showBars();
     };
 
 
@@ -319,8 +322,8 @@
         item.listItem.find('iframe').remove();
         item.poster.removeClass('slide-out');
         item.player = null;
-        this.showBars();
         this.enableScrolling();
+        if (this._userRequestedBarsVisible) this.showBars();
     };
 
 
@@ -349,7 +352,7 @@
             item.playerContainer.find('video')[0].pause();
             item.playerContainer.find('video').remove();
             self.enableScrolling();
-            self.showBars();
+            if (self._userRequestedBarsVisible) self.showBars();
         });
 
         return fragment;
@@ -489,25 +492,24 @@
             this.tick();
         }
         this.updateMetadata();
-        this.showBars();
 
-        if (this._barHideTimer) clearTimeout(this._barHideTimer);
-        this._barHideTimer = setTimeout(bind(this, function() {
-            this.hideBars();
-            var item = this.items[this.currentItem];
-            switch(item.type) {
-                case 'youtube':
-
-                    this.activateYouTubePlayer(item);
-                    break;
-                case 'vimeo':
-                    this.activateVimeoPlayer(item);
-                    break;
-                case 'video':
-                    this.activateVideoPlayer(item);
-                    break;
-            }
-        }), 2000);
+        var item = this.items[this.currentItem];
+        if (this._videoActivateTimer) clearTimeout(this._videoActivateTimer);
+        if (item.type != 'image') {
+            this._videoActivateTimer = setTimeout(bind(this, function() {
+                switch(item.type) {
+                    case 'youtube':
+                        this.activateYouTubePlayer(item);
+                        break;
+                    case 'vimeo':
+                        this.activateVimeoPlayer(item);
+                        break;
+                    case 'video':
+                        this.activateVideoPlayer(item);
+                        break;
+                }
+            }), 1000);
+        }
 
     };
 
@@ -592,9 +594,9 @@
             }
             this.interacting = true;
             this.tick();
-            if (this._barHideTimer) {
-                clearTimeout(this._barHideTimer);
-                this._barHideTimer = null;
+            if (this._videoActivateTimer) {
+                clearTimeout(this._videoActivateTimer);
+                this._videoActivateTimer = null;
             }
         }
     };
@@ -656,9 +658,9 @@
     TouchGallery.prototype.handleInfoButtonClick = function(ev) {
         ev.preventDefault();
         this.container.find('.bottom-bar').toggleClass('expanded');
-        if (this._barHideTimer) {
-            clearTimeout(this._barHideTimer);
-            this._barHideTimer = null;
+        if (this._videoActivateTimer) {
+            clearTimeout(this._videoActivateTimer);
+            this._videoActivateTimer = null;
         }
     };
 
@@ -671,7 +673,7 @@
         } else if (item.type == 'video') {
             this.activateVideoPlayer(item);
         } else if (item.type == 'image') {
-            this.toggleBars();
+            this.toggleBars(true);
         }
     };
 
@@ -698,19 +700,23 @@
     /**
      * Fades out the top and bottom bars
      */
-    TouchGallery.prototype.hideBars = function() {
+    TouchGallery.prototype.hideBars = function(byUser) {
+        if (byUser) this._userRequestedBarsVisible = false;
         this.container.find('.top-bar,.bottom-bar').addClass('fade-out');
     };
 
     /**
      * Shows the top and bottom bars
      */
-    TouchGallery.prototype.showBars = function() {
+    TouchGallery.prototype.showBars = function(byUser) {
+        if (byUser) this._userRequestedBarsVisible = true;
         this.container.find('.top-bar,.bottom-bar').removeClass('fade-out');
     };
 
-    TouchGallery.prototype.toggleBars = function() {
-        this.container.find('.top-bar,.bottom-bar').toggleClass('fade-out');
+    TouchGallery.prototype.toggleBars = function(byUser) {
+        var bars = this.container.find('.top-bar,.bottom-bar');
+        bars.toggleClass('fade-out');
+        if (byUser) this._userRequestedBarsVisible = !bars.hasClass('fade-out');
     };
 
     TouchGallery.prototype.enableScrolling = function() {
