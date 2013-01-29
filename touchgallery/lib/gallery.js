@@ -26,6 +26,7 @@
         this.touchId         = null;
         this.tapCandidate    = null;
         this.videoCounter    = 0;
+        this.videoTimeout    = 2000;
 
         this._scrolling                = true;
         this._videoActivateTimer       = null;
@@ -508,7 +509,7 @@
                         this.activateVideoPlayer(item);
                         break;
                 }
-            }), 1000);
+            }), this.videoTimeout);
         }
 
     };
