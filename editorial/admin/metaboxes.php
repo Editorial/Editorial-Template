@@ -63,14 +63,14 @@ function editorial_save_post_gallery_mode_meta( $post_id, $post ) {
 
     	<?php wp_nonce_field( basename( __FILE__ ), 'editorial_post_gallery_mode_nonce' ); ?>
 
-			<!--<label for="editorial-post-gallery-mode" class="checkbox toggle ios"">
+			<label for="editorial-post-gallery-mode" class="checkbox toggle ios"">
 				<input type="checkbox" name="editorial-post-gallery-mode" id="editorial-post-gallery-mode-input" value="1" <?php if ($checked) echo 'checked="checked"'; ?>   />
 				<p>
 					<span class="on" onclick="gallerySwitch(this)"><span><?php _e( "Gallery", 'editorial' ); ?></span></span>
 					<span class="off" onclick="gallerySwitch(this)"><span><?php _e( "In-line", 'editorial' ); ?></span></span>
 				</p>
 				<a class="slide-button"></a>
-			</label>-->
+			</label>
 
 			<select id="gallery-switch">
 				<option value="1"><?php _e( "Gallery", 'editorial' ); ?></option>

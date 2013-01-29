@@ -394,7 +394,7 @@ text-shadow: 0 -1px 0 #1b3b6f;
 .ios.toggle input:first-of-type:checked ~ .slide-button,
 .ios.switch .slide-button {
 		background-color: #21759B;
-	/*	background-image: linear-gradient(to bottom, #2A95C5, #21759B);*/
+  /*  background-image: linear-gradient(to bottom, #2A95C5, #21759B);*/
 background: -webkit-linear-gradient(top, #2A95C5, #21759B 50%, #21759B 50%, #21759B);
 background: -moz-linear-gradient(top, #2A95C5, #21759B 50%, #21759B 50%, #21759B);
 background: -o-linear-gradient(top, #2A95C5, #21759B 50%, #21759B 50%, #21759B);
@@ -418,10 +418,10 @@ text-shadow: 0 -1px 0 #1b3b6f;
 color: #7f7f7f;
 }
 
+}
 .attachment.selected .check {
 	display: none !important
 }
-
 
 
 
