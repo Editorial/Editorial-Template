@@ -156,8 +156,6 @@
         this.moveTo(0, true);
 
         this.readyHandler();
-
-        setTimeout(bind(this, function() { this.hideBars(); }), 2000);
     };
 
 
@@ -371,6 +369,9 @@
     );
 
     TouchGallery.prototype.activateVideoPlayer = function(item) {
+        this.hideBars();
+        this.disableScrolling();
+        item.poster.addClass('slide-out');
         var video = $('<video controls preload poster="' + item.posterImg + '" src="' + item.src + '"></video>');
         video.appendTo(item.playerContainer);
         video.css({ width: '100%', height: '100%' });
@@ -486,11 +487,28 @@
         } else {
             this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
-            if (this._barHideTimer) clearTimeout(this._barHideTimer);
-            this._barHideTimer = setTimeout(bind(this, function() { this.hideBars(); }), 2000);
         }
         this.updateMetadata();
         this.showBars();
+
+        if (this._barHideTimer) clearTimeout(this._barHideTimer);
+        this._barHideTimer = setTimeout(bind(this, function() {
+            this.hideBars();
+            var item = this.items[this.currentItem];
+            switch(item.type) {
+                case 'youtube':
+
+                    this.activateYouTubePlayer(item);
+                    break;
+                case 'vimeo':
+                    this.activateVimeoPlayer(item);
+                    break;
+                case 'video':
+                    this.activateVideoPlayer(item);
+                    break;
+            }
+        }), 2000);
+
     };
 
     /**
@@ -638,6 +656,10 @@
     TouchGallery.prototype.handleInfoButtonClick = function(ev) {
         ev.preventDefault();
         this.container.find('.bottom-bar').toggleClass('expanded');
+        if (this._barHideTimer) {
+            clearTimeout(this._barHideTimer);
+            this._barHideTimer = null;
+        }
     };
 
     TouchGallery.prototype.handleTap = function() {
@@ -647,9 +669,6 @@
         } else if (item.type == 'vimeo') { 
             if (!item.player) this.activateVimeoPlayer(item);
         } else if (item.type == 'video') {
-            this.hideBars();
-            this.disableScrolling();
-            item.poster.addClass('slide-out');
             this.activateVideoPlayer(item);
         } else if (item.type == 'image') {
             this.toggleBars();
