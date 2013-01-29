@@ -20,7 +20,7 @@ get_header(); ?>
 
 <div class="content" role="main">
 	<article class="features hentry">
-		<h3 class="entry-title"><em>Everything you need, <span>nothing you don’t</span></em></h3>
+		<h3 class="entry-title">Everything you need, <span>nothing you don’t</span></h3>
 		<p class="entry-summary">This is not your ordinary vanilla template. It is a mixture of spices
 		which transcend Wordpress into the ultimate digital publishing tool for independent journalists,
 		(professional) bloggers and everybody else with a burning passion for curating content. It’s a
