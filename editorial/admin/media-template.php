@@ -246,7 +246,7 @@ function wp_print_editorial_media_templates() {
 
 				<div class="thumbnail test">
 					<div class="centered">
-					<# if (data.is_embed_video){ #><img src="/wp-includes/images/crystal/video.png" class="icon" draggable="false" style="z-index:10" /><# } #>
+					<# if (data.is_embed_video){ #><img src="<?php bloginfo('template_directory') ?>/images/video-icon.png" class="icon" draggable="false" style="z-index:10" /><# } #>
 						<img src="{{ data.size.url }}" draggable="false" />
 					</div>
 				</div>
