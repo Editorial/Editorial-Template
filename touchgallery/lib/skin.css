@@ -334,10 +334,6 @@ body {
   .touch-gallery .top-bar .controls .back {
     background-position: -121px -102px;
   }
-  .touch-gallery .player-container {
-    left: 120px;
-    right: 120px;
-  }
   .touch-gallery .items .left,
   .touch-gallery .items .right {
     background: none;
