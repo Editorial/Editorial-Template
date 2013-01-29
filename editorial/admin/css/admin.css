@@ -434,21 +434,27 @@ color: #7f7f7f;
 
 .gallery-switch {
 	position: relative;
+	height: 24px;
 }
 
 .gallery-switch .text {
-	float: left;
+	position: absolute;
+	top: 3px;
+	left: 96px;
+	color: #999;
 }
 
 .ui-switch {
+	width: 77px;
 	display: inline-block;
 	border: solid 1px #666f76;
-	position: relative;
 	cursor: pointer;
 	font-family: arial, sans-serif;
 	font-size: 12px;
 	border-radius: 3px;
-	float: left;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .ui-switch:focus {
@@ -489,21 +495,31 @@ color: #7f7f7f;
 }
 
 .ui-switch-upper {
-	height: 20px; width: auto;
+	height: 22px;
+	width: auto;
 	margin: 5px;
 	position: absolute;
 	z-index: 101;
 }
 
 .ui-switch-handle {
+	margin-left: -2px;
 	border: 1px solid #666f76;
 	display: block;
-	height: 22px;
+	height: 20px;
 	width: 20px;
 	position: absolute;
-	top: -8px; left: -15px;
-	border-radius: 3px;
-	background: lime;
+	top: -6px;
+	left: -15px;
+	border-radius: 4px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f7f7f7 5%, #f7f7f7 50%, #dfdfdf 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(5%,#f7f7f7), color-stop(50%,#f7f7f7), color-stop(100%,#dfdfdf)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f7f7f7 5%,#f7f7f7 50%,#dfdfdf 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f7f7f7 5%,#f7f7f7 50%,#dfdfdf 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f7f7f7 5%,#f7f7f7 50%,#dfdfdf 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f7f7f7 5%,#f7f7f7 50%,#dfdfdf 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dfdfdf',GradientType=0 ); /* IE6-9 */
 }
 
 .ui-switch-.disabled .ui-switch-handle:after {
@@ -541,32 +557,44 @@ color: #7f7f7f;
 .ui-switch-off {
 	display: block;
 	float: left;
-	line-height: 18px;
+	line-height: 20px;
 	color: white;
 	background: #fff;
 	padding: 0 10px;
-	border: solid 1px black;
 	text-align: center;
 	text-decoration: none;
 }
 
 .ui-switch-on {
 	border-right: none;
-	border-color: #006600;
 	padding-right: 20px;
-	background: #0b9a15;
+	background: #21769c; /* Old browsers */
+	background: -moz-linear-gradient(top, #21769c 0%, #2a93c3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#21769c), color-stop(100%,#2a93c3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #21769c 0%,#2a93c3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #21769c 0%,#2a93c3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #21769c 0%,#2a93c3 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #21769c 0%,#2a93c3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#21769c', endColorstr='#2a93c3',GradientType=0 ); /* IE6-9 */
 }
 
 .ui-switch-off {
 	border-left: none;
-	border-color: #660000;
 	padding-left: 20px;
-	background: #9c1010;
+	background: #dfdfdf; /* Old browsers */
+	background: -moz-linear-gradient(top,  #dfdfdf 0%, #e6e6e6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dfdfdf), color-stop(100%,#e6e6e6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #dfdfdf 0%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #dfdfdf 0%,#e6e6e6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #dfdfdf 0%,#e6e6e6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #dfdfdf 0%,#e6e6e6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dfdfdf', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+	color: #333;
 }
+
 
 .ui-switch.disabled .ui-switch-on,
 .ui-switch.disabled .ui-switch-off {
-	border-color: #333;
 
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
 	filter: alpha(opacity=50); /* IE 5-7 */
@@ -581,6 +609,10 @@ color: #7f7f7f;
 .ui-switch-off:hover {
 	color: white;
 	text-decoration: none;
+}
+
+.ui-switch-off:hover {
+	color: #333;
 }
 
 .ui-switch, .ui-switch * {
