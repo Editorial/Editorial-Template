@@ -487,9 +487,10 @@
             this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
             if (this._barHideTimer) clearTimeout(this._barHideTimer);
-            this._barHideTimer = setTimeout(bind(this, function() { this.hideBars();}), 2000);
+            this._barHideTimer = setTimeout(bind(this, function() { this.hideBars(); }), 2000);
         }
         this.updateMetadata();
+        this.showBars();
     };
 
     /**
@@ -621,7 +622,6 @@
                 this.tapCandidate = false;
             }
         }
-        this.showBars();
     };
 
     TouchGallery.prototype.handleControlButtonClick = function(ev) {
