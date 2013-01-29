@@ -215,8 +215,8 @@
         item.poster.addClass('slide-out');
 
         item.player = new YT.Player(item.playerContainer.get(0), {
-            width   : this.list.width() - 200,
-            height  : this.list.height(),
+            width   : item.listItem.find('.player-container').width(),
+            height  : item.listItem.find('.player-container').height(),
             videoId : item.id,
             events  : {
                 onReady       : function() { console.log(arguments); },
@@ -293,8 +293,8 @@
         item.poster.addClass('slide-out');
 
         var iframe = $('<iframe></iframe>').attr({
-            width                 : this.list.width() - 200,
-            height                : this.list.height(),
+            width                 : item.listItem.find('.player-container').width(),
+            height                : item.listItem.find('.player-container').height(),
             src                   : 'http://player.vimeo.com/video/' + item.id + '?api=1&player_id=' + item.playerContainer.attr('id'),
             frameborder           : '0',
             webkitAllowFullScreen : 'yes',
