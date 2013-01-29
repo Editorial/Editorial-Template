@@ -70,9 +70,11 @@
                 '</div>' +
             '</div>' +
             '<div class="bottom-bar">' +
-                '<span class="counter">0 / 0</span>' +
-                '<h2>This is the title</h2>' +
-                '<p class="description">This is the description</p>' +
+                '<div class="info">' +
+                    '<span class="counter">0 / 0</span>' +
+                    '<h2>This is the title</h2>' +
+                    '<p class="description">This is the description</p>' +
+                '</div>' +
                 '<a href="#" class="info-icon">i</a>' +
             '</div>' +
         '</div>'

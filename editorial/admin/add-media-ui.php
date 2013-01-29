@@ -2,13 +2,14 @@
 
 global $post, $fields;
 
-function xf_attachment_fields( $form_fields, $post ) {
-    unset( $form_fields['image-size'], $form_fields['align'], $form_fields['image_alt'],
-     $form_fields['post_title'], $form_fields['post_excerpt'], $form_fields['post_content'],
-            $form_fields['url'], $form_fields['menu_order'], $form_fields['image_url'] );
+function editorial_attachment_fields( $form_fields, $post ) {
+    unset( $form_fields['image-size'], $form_fields['align'], $form_fields['image_alt']
+     /*,$form_fields['post_title'], $form_fields['post_excerpt'], $form_fields['post_content'],
+            $form_fields['url'], $form_fields['menu_order']/*, $form_fields['image_url'] */);
     return $form_fields;
 }
-function my_plugin_image_tabs ($strings, $post)
+
+function editorial_image_tabs ($strings, $post)
 {
     global $galleryMode, $post;
     $post_id = $post->ID;
@@ -24,6 +25,7 @@ function my_plugin_image_tabs ($strings, $post)
     add_action('admin_enqueue_scripts', 'load_js_scripts', 5);
     add_action('admin_footer-post-new.php', 'restart_tabs', 5);
     add_action('admin_footer-post.php', 'restart_tabs', 5);
+    add_filter( 'attachment_fields_to_edit', 'editorial_attachment_fields_to_edit', 10, 2 );
 
     // print_r($strings);
     $strings['insertGallery'] = __('Save gallery');
@@ -44,6 +46,18 @@ function my_plugin_image_tabs ($strings, $post)
     return $strings;
 }
 
+function editorial_attachment_fields_to_edit( $fields, $post ) {
+
+	$fields['media_type'] = array(
+	'label' => 'Media Type',
+	'input' => 'html',
+	'html' => '<input type="hidden" class="media-type" />',
+	'show_in_edit' => true,
+	'show_in_modal' => true,
+	);
+
+	return $fields;
+}
 function remove_media_library_tab($tabs) {
 
     unset($tabs['library']);
@@ -97,26 +111,29 @@ function fetch_video(){
                 if ( 0 === strpos( $upload['basedir'], ABSPATH ) )
                     $error_path = str_replace( ABSPATH, '', $upload['basedir'] ) . $upload['subdir'];
                 else
-                    $error_path = basename( $upload['basedir'] ) . $upload['subdir'];
+                  $error_path = basename( $upload['basedir'] ) . $upload['subdir'];
 
                 $message = sprintf( __( 'Unable to create directory %s. Is its parent directory writable by the server?' ), $error_path );
                 return array( 'error' => $message );
             }
+           // print_r($dataArray);
 
        		 if (copy($file, $new_file) ) {
        		     $attachment = array(
        		             'post_mime_type' => $filetype['type'],
-       		             'post_title' => $filename,
-       		             'post_content' => $dataArray['html'],
-       		             'post_excerpt' => $dataArray['title'],
+       		             'post_title' => $dataArray['title'],
+       		             'post_name' => $dataArray['title'],
+       		             'post_content' =>$url,
+       		             'post_excerpt' => isset($dataArray['description'])?$dataArray['description']:'',
        		             'post_author' => $logged_in_user,
        		             'post_status' => 'inherit',
        		             'post_type' => 'attachment',
        		             'post_parent' => $postId,
-       		             'guid' => $upload['baseurl'] . '/' . $filename
+       		             'guid' => $upload['url'].'/' .$filename
        		     );
+       		   //  print_r($upload);
        		   /*  $attachment_id = wp_insert_post( $attachment );*/
-       		     $attachment_id = wp_insert_attachment($attachment, $filename, $postId);
+       		     $attachment_id = wp_insert_attachment($attachment, $upload['subdir'].'/'.$filename, $postId);
 
 
        		     $attach_data = wp_generate_attachment_metadata( $attachment_id, $new_file );
