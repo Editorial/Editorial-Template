@@ -14,6 +14,8 @@
         this._canvas = null;
 
         this.render = bind(this, this.render);
+
+        this.init();
     }
 
     Radial.prototype.init = function() {
