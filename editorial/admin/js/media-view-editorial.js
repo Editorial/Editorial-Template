@@ -103,6 +103,7 @@ jQuery(document)
 
 								}
 							});
+
 					media.view.Attachment.Details = media.view.Attachment.Details
 					.extend({
 						template : media
@@ -121,16 +122,39 @@ jQuery(document)
 					var origBrowser = wp.media.view.AttachmentsBrowser, origFilters = media.view.AttachmentFilters,
 					origFrame = media.view.MediaFrame.Select,
 					origEmbed = media.view.Embed,
+					origAttachmentLibraryView = media.view.Attachment.Library,
 					EmbedUrl = media.view.EmbedUrl;
 
+					media.view.Attachment.Library = media.view.Attachment.Library.extend({
+						className: 'attachment ets',
+						template:  media.template('attachment-editorial'),
+
+						initialize: function() {
+
+							  origAttachmentLibraryView.prototype.initialize.apply(
+										this, arguments);
+							 if (this.model && this.model.get('id')){
+								if (undefined != this.model.get('compat')) {
+									 var compact = this.model.get('compat');
+									 this.model.set('is_embed_video', (undefined != compact.item &&  '' != compact.item));
+								}
+
+							 }
+
+
+						}
+
+					});
 					media.view.EmbedLink = media.view.EmbedLink.extend({
 						template: (isGalleryMode)?media.template('embed-link-settings-editorial'):media.template('embed-smartlink-settings-editorial')
 					});
+
 					media.view.AttachmentsBrowser = media.view.AttachmentsBrowser.extend({
+						className: 'attachments-browser editorial',
 						createSingle: function() {
 							origBrowser.prototype.createSingle.apply( this, arguments );
 							var sidebar = this.sidebar;
-							sidebar.unset('compat');
+						//	sidebar.unset('compat');
 							sidebar.unset('display');
 						}
 					});
@@ -216,7 +240,7 @@ jQuery(document)
 
 								deferred.resolve();
 
-								if (/* state !== frame.state() ||*/ url !== state.props.get('url') )
+								if (/* state !== frame.state() ||*/ url !== state.props.get('url') || state.props.get('url') == templateImgDir+"/no_image.png")
 									return;
 								state.set({
 									type: 'image'
@@ -316,11 +340,12 @@ jQuery(document)
 							var type = this.model.get('type'), constructor;
 							if ('image' === type || 'link' === type) {
 								var data = this.model.props.attributes;
+
 								var ctrl = this.controller;
 								var mdl = this.model.props;
 								var thisObj = this;
 								if (data.url != '') {
-									mdl.set('error', "Loading...");
+									mdl.set('error', "Loading. Please wait a moment...");
 								jQuery.when(
 										jQuery.ajax({
 															url : ''+ wpDir+ '/wp-admin/admin-ajax.php',
@@ -337,10 +362,11 @@ jQuery(document)
 										.then(
 												function(data) {
 													if (!data.error && data.data.type == 'video') {
-														mdl.set('error', "Loading ...");
+														mdl.set('error', "Loading. Please wait a moment...");
 														if(isGalleryMode){
 															 type = 'video';
 															 mdl.set('data', data.data);
+
 															 constructor = media.view.EmbedVideo;
 															 var gallery = wp.media.gallery, Uploader = wp.Uploader, complete;
 
@@ -357,6 +383,8 @@ jQuery(document)
 															  attachment.set( _.extend( data, { uploading: false }) );
 															  wp.media.model.Attachment.get( data.id, attachment );
 															  attachment.fetch();
+															  if (data.data.type == 'video')
+															  attachment.set('is_embed_video', 'true')
 															  complete = Uploader.queue.all( function( attachment ) {
 																	return ! attachment.get('uploading');
 																});
@@ -366,6 +394,7 @@ jQuery(document)
 															  Uploader.queue.length = 0;
 															  selection.add( attachment ? [ attachment ] : [] );
 															  controller.content.mode('browse');
+															  jQuery(".media-frame select.attachment-filters").hide();
 														} else {
 															type = 'video';
 															console.log(data);
@@ -400,7 +429,9 @@ jQuery(document)
 													} else {
 														type = 'link';
 														constructor = media.view.EmbedLink;
-														if (data.success != undefined && !data.success) mdl.set('error', "Sorry we can not fetch this content at this time, pls check the url and try again!");
+														if (data.success != undefined && !data.success) {
+															mdl.set('error', "Whoops. No go. Please check the URL for typos and try again.");
+														}
 													}
 
 													thisObj.settings(new constructor({
@@ -430,10 +461,10 @@ jQuery(document)
 						}
 					});
 					media.view.EmbedImage = media.view.EmbedImage.extend({
-						template : media
-								.template('embed-image-settings-editorial')
+						template : media.template('embed-image-settings-editorial')
 
 					});
+
 
 					media.controller.GalleryAdd = media.controller.GalleryAdd.extend({
 						activate: function() {
@@ -533,14 +564,17 @@ jQuery(document)
 											var ids = jQuery(el).attr('gallery');
 											if (!ids || undefined == ids ) sh = '[gallery]';
 											else sh = '['+ids+']';
+
 											frame = gallery.edit(sh);
+
 											var workflow = wp.media.gallery.frame,options = workflow.options;
 											frame.setState('gallery-library');
 											frame.content.mode('browse');
 											wp.Uploader.queue.reset();
-											jQuery(".media-frame select.attachment-filters").hide();
-											jQuery(".attachment.selected .check").hide();
 											jQuery(".attachments-browser").addClass("gallery-editor");
+											jQuery(".attachment.selected .check").hide();
+											jQuery(".media-frame select.attachment-filters").hide();
+											//console.log(jQuery(".media-frame select.attachment-filters"));
 
 											frame.state('gallery-edit').on(
 													'update',
@@ -570,180 +604,6 @@ jQuery(document)
 					}*/
 
 
-
-
-
-					// custom state : this controller contains your application logic
-
-					wp.media.controller.Custom = wp.media.controller.State.extend({
-
-
-
-					initialize: function(){
-
-					// this model contains all the relevant data needed for the application
-
-					this.props = new Backbone.Model({ custom_data: '' });
-
-					this.props.on( 'change:custom_data', this.refresh, this );
-
-					},
-
-					// called each time the model changes
-
-					refresh: function() {
-
-					// update the toolbar
-
-					this.frame.toolbar.get().refresh();
-
-					},
-
-					// called when the toolbar button is clicked
-
-					customAction: function(){
-
-					console.log(this.props.get('custom_data'));
-
-					}
-
-					});
-
-
-
-					// custom toolbar : contains the buttons at the bottom
-
-					wp.media.view.Toolbar.Custom = wp.media.view.Toolbar.extend({
-
-					initialize: function() {
-
-					_.defaults( this.options, {
-
-					event: 'custom_event',
-
-					close: false,
-
-					items: {
-
-					custom_event: {
-
-					text: wp.media.view.l10n.customButton, // added via 'media_view_strings' filter,
-
-					style: 'primary',
-
-					priority: 80,
-
-					requires: false,
-
-					click: this.customAction
-
-					}
-
-					}
-
-					});
-
-
-
-					wp.media.view.Toolbar.prototype.initialize.apply( this, arguments );
-
-					},
-
-
-
-					// called each time the model changes
-
-					refresh: function() {
-
-					// you can modify the toolbar behaviour in response to user actions here
-
-					// disable the button if there is no custom data
-
-					var custom_data = this.controller.state().props.get('custom_data');
-
-					this.get('custom_event').model.set( 'disabled', ! custom_data );
-
-					// call the parent refresh
-
-					wp.media.view.Toolbar.prototype.refresh.apply( this, arguments );
-
-					},
-
-					// triggered when the button is clicked
-
-					customAction: function(){
-
-					this.controller.state().customAction();
-
-					}
-
-					});
-
-
-
-					// custom content : this view contains the main panel UI
-
-					wp.media.view.Custom = wp.media.View.extend({
-
-					className: 'media-custom',
-
-					// bind view events
-
-					events: {
-
-					'input': 'custom_update',
-
-					'keyup': 'custom_update',
-
-					'change': 'custom_update'
-
-					},
-
-
-
-					initialize: function() {
-
-					// create an input
-
-					this.input = this.make( 'input', {
-
-					type: 'text',
-
-					value: this.model.get('custom_data')
-
-					});
-
-					// insert it in the view
-
-					this.$el.append(this.input);
-
-					// re-render the view when the model changes
-
-					this.model.on( 'change:custom_data', this.render, this );
-
-					},
-
-					render: function(){
-
-					this.input.value = this.model.get('custom_data');
-
-					return this;
-
-					},
-
-					custom_update: function( event ) {
-
-					this.model.set( 'custom_data', event.target.value );
-
-					}
-
-					});
-
-
-
-
-
-					// supersede the default MediaFrame.Post view
 
 					var oldMediaFrame = wp.media.view.MediaFrame.Post;
 
@@ -797,78 +657,6 @@ jQuery(document)
 								}
 							});
 						}
-						/*,
-					initialize: function() {
-					oldMediaFrame.prototype.initialize.apply( this, arguments );
-					this.states.add([
-
-					new wp.media.controller.Custom({
-
-					id: 'my-action',
-
-					menu: 'default', // menu event = menu:render:default
-
-					content: 'custom',
-
-					title: wp.media.view.l10n.customMenuTitle, // added via 'media_view_strings' filter
-
-					priority: 200,
-
-					toolbar: 'main-my-action', // toolbar event = toolbar:create:main-my-action
-
-					type: 'link'
-
-					})
-
-					]);
-
-
-
-					this.on( 'content:render:custom', this.customContent, this );
-
-					this.on( 'toolbar:create:main-my-action', this.createCustomToolbar, this );
-
-					this.on( 'toolbar:render:main-my-action', this.renderCustomToolbar, this );
-
-					},
-
-					createCustomToolbar: function(toolbar){
-
-					toolbar.view = new wp.media.view.Toolbar.Custom({
-
-					controller: this
-
-					});
-
-					},
-
-
-
-					customContent: function(){
-
-					// this view has no router
-
-					this.$el.addClass('hide-router');
-
-
-
-					// custom content view
-
-					var view = new wp.media.view.Custom({
-
-					controller: this,
-
-					model: this.state().props
-
-					});
-
-
-
-					this.content.set( view );
-
-					}
-
-*/
 
 					});
 				});

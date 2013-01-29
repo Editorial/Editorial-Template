@@ -1,10 +1,9 @@
 <?php
-
+require_once locate_template('/admin/metaboxes.php');       // Custom metaboxes
+require_once locate_template('/admin/add-media-ui.php');       // Custom add media
+define('SCRIPT_DEBUG', true);
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
-
-require_once locate_template('/admin/metaboxes.php');    // Custom metaboxes
-require_once locate_template('/admin/add-media-ui.php'); // Custom add media
 
 /**
  * Editorial Admin class
@@ -18,12 +17,19 @@ require_once locate_template('/admin/add-media-ui.php'); // Custom add media
 class Editorial_Admin
 {
 	/**
-	 * Available pages
+	 * Look & Feel page
 	 */
 	const PAGE_LOOK = 'look';
+
+	/**
+	 * Share page
+	 */
 	const PAGE_SHARE = 'sharing';
+
 	const PAGE_CUSTOMIZE = 'customstyle';
+
 	const CHILD_THEME = 'editorial-child';
+
 	const PAGE_TRANSLATIONS = 'translations';
 
 	/**
@@ -57,6 +63,7 @@ class Editorial_Admin
 		'karma-treshold',
 		'twitter-share',
 		'twitter-account',
+		'twitter-related',
 		'facebook-share',
 		'google-share',
 		'colophon-enabled',
@@ -83,15 +90,15 @@ class Editorial_Admin
 	{
 		// setup admin menu
 		add_action('admin_menu', array($this, 'menus'));
-
 		/* Fire our meta box setup function on the post editor screen. */
 		add_action( 'load-post.php', 'editorial_post_meta_boxes_setup' );
 		add_action( 'load-post-new.php', 'editorial_post_meta_boxes_setup' );
 		add_filter('media_view_strings', 'editorial_image_tabs', 10, 2);
 		add_filter( 'attachment_fields_to_edit', 'editorial_attachment_fields', 10, 2 );
 		add_action('wp_ajax_parse_embed_editorial', 'fetch_video');
-		//	add_action('wp_ajax_editorial_pre_submit_validation', 'editorial_pre_submit_validation');
-		
+		remove_filter('attachment_fields_to_edit', array('Editorial','hide_some_attachment_fields'), 11, 2 );
+		add_filter( 'attachment_fields_to_edit', 'editorial_attachment_fields_to_edit', 10, 2 );
+	//	add_action('wp_ajax_editorial_pre_submit_validation', 'editorial_pre_submit_validation');
     // check for update and if the version is valid
     $this->checkUpdate();
 
@@ -104,7 +111,7 @@ class Editorial_Admin
     	{
     		Editorial::setOption('child-theme', false);
     	}
-    	
+
     }
 
     if (Editorial::getOption('translations') === false)
@@ -113,11 +120,12 @@ class Editorial_Admin
 				//dump('no translations!');
 				Editorial::setOption('translations', Editorial::getTranslations());
 			}
-    
+
 	}
 
 	public function child_theme_deleted($data)
 	{
+		dump($data);
 		return $data;
 	}
 	/**
@@ -218,37 +226,47 @@ class Editorial_Admin
 		}
 		// display intended page
 		$this->_page = $page;
-		
+
 		// force typekit?
 		if (array_key_exists('typekit', $_GET))
 		{
 		    $this->typekit();
 		}
-		
+
 	    // handle posts
 		$this->_handlePost();
-        
+
         // add font notice
         if (!Editorial::getOption('typekit-kit'))
         {
-            $this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.'));
+            add_action('admin_notices', array($this, 'fontNotice'));
         }
-        
-        // if black and white option is selected check that we can create them
+
+        // if black and white option is selected we need writable cache
         if (Editorial::getOption('black-and-white'))
         {
-            if (!Editorial::canCreateBWImages())
+            if (!is_dir(WP_CACHE_DIR))
             {
-                $this->_showNotice(__('<strong>Black &amp; white images are disabled</strong>. Please make sure the PHP GD library is installed.')." ");
-                // disable bw photos for now, the user will get notified of the error
-                Editorial::setOption('black-and-white', false);
+                try
+                {
+                	Editorial::createPath(WP_CACHE_DIR, 0777);
+                }
+                catch (Exception $e)
+                {}
+            }
+            // can we cache now?
+            if (!Editorial::canCache())
+            {
+                add_action('admin_notices', array($this, 'cacheNotice'));
+								// disable bw photos for now, the user will get notified of the error
+								Editorial::setOption('black-and-white', false);
             }
         }
-		
+
 		// include template settings page
 		include 'settings.php';
 	}
-	
+
 	/**
 	 * Handle post
 	 *
@@ -342,10 +360,10 @@ class Editorial_Admin
 		$uploadfiles = $files['logo-image'];
 
   	if (is_array($uploadfiles)) {
-  		foreach ($uploadfiles['name'] as $key => $value) 
+  		foreach ($uploadfiles['name'] as $key => $value)
   		{
   			// look only for uploded files
-	      if ($uploadfiles['error'][$key] == 0) 
+	      if ($uploadfiles['error'][$key] == 0)
 	      {
 
 	        $filetmp = $uploadfiles['tmp_name'][$key];
@@ -451,7 +469,7 @@ class Editorial_Admin
 		switch_theme( $this_theme_template, $child_theme_name );
 
 	}
-	
+
 	/**
 	 * Handle checkboxes
 	 *
@@ -467,6 +485,19 @@ class Editorial_Admin
                 Editorial::setOption($check, false);
             }
         }
+	}
+
+	/**
+	 * Add notice that fonts are not enabled
+	 *
+	 * @return void
+	 * @author Miha Hribar
+	 */
+	public function fontNotice()
+	{
+		// notices can be disabled
+		if (Editorial::getOption('disable-admin-notices')) return;
+		$this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.'));
 	}
 
 	/**
@@ -523,31 +554,31 @@ class Editorial_Admin
 			add_filter('themes_api', array($this, 'my_theme_api_call'), 10, 3);
 		//}
 	}
-	
+
 	public function check_for_update($checked_data)
 	{
 		global $wp_version;
 
 		if(function_exists('wp_get_theme')){
 		  $theme_data = wp_get_theme(get_option('template'));
-		  $theme_version = $theme_data->Version;  
+		  $theme_version = $theme_data->Version;
 		} else {
 		  $theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
 		  $theme_version = $theme_data['Version'];
-		}    
+		}
 		$theme_base = get_option('template');
 
 		$request = array(
 			'slug' => $theme_base,
-			'version' => $theme_version 
+			'version' => $theme_version
 		);
 		// Start checking for an update
 		$send_for_check = array(
 			'body' => array(
-				'action' => 'theme_update', 
+				'action' => 'theme_update',
 				'request' => serialize($request),
 				'api-key' => md5(get_bloginfo('url')),
-				'blog-url' => get_bloginfo('url') //site_url() 
+				'blog-url' => get_bloginfo('url') //site_url()
 			),
 			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
 		);
@@ -574,16 +605,16 @@ class Editorial_Admin
 	{
 		if(function_exists('wp_get_theme')){
 		  $theme_data = wp_get_theme(get_option('template'));
-		  $theme_version = $theme_data->Version;  
+		  $theme_version = $theme_data->Version;
 		} else {
 		  $theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
 		  $theme_version = $theme_data['Version'];
-		}    
+		}
 		$theme_base = get_option('template');
-	
+
 		if ($args->slug != $theme_base)
 			return false;
-		
+
 		// Get the current version
 
 		$args->version = $theme_version;
@@ -594,11 +625,11 @@ class Editorial_Admin
 			$res = new WP_Error('themes_api_failed', __('An Unexpected HTTP Error occurred during the API request.</p> <p><a href="?" onclick="document.location.reload(); return false;">Try again</a>'), $request->get_error_message());
 		} else {
 			$res = unserialize($request['body']);
-			
+
 			if ($res === false)
 				$res = new WP_Error('themes_api_failed', __('An unknown error occurred'), $request['body']);
 		}
-		
+
 		return $res;
 
 	}
@@ -624,9 +655,9 @@ class Editorial_Admin
 	 */
 	public function invalidNotice()
 	{
-		$this->_showNotice(__('<strong>This is a non-licenced copy of Editorial theme.</strong>. If you like our work please support it by purchasing a licence at <a href="http://editorialtemplate.com/">editorialtemplate.com</a>.', 'Editorial'));
+		$this->_showNotice(__('<strong>You are using an ilegal copy of the Editorial theme</strong>. You can purchase additional licences on <a href="http://editorialtemplate.com/purchase">editorialtemplate.com</a>. Your domain has been logged in our system for investigation.', 'Editorial'));
 	}
-	
+
 	/**
 	 * Show notice
 	 *
@@ -655,15 +686,16 @@ class Editorial_Admin
 						md5(strtolower(trim($user->user_email))),
 						20
 					);
+
 		return sprintf('<li id="user_%1$d">
 					<span class="handle">handle</span>
 					<img src="%5$s" class="photo" width="20" height="20" />
 					<input type="checkbox" name="author[]" value="%1$d"%4$s />
 					<strong>%2$s</strong>
-					<input type="text" name="title[]" value="%3$s" placeholder="Role description" />
+					<input type="text" name="title[]" value="%3$s" placeholder="Author title" />
 				</li>', $user->ID, $user->display_name, $title, ($checked ? ' checked="checked"' : ''), $gravatar);
 	}
-	
+
 	/**
 	 * Generate a new editorial kit on typekit
 	 *
@@ -689,7 +721,7 @@ class Editorial_Admin
             $this->_typekitCreateKit();
 		}
 	}
-	
+
     /**
      * Fetch typekit info
      *
@@ -714,7 +746,7 @@ class Editorial_Admin
     	    }
     	}
     }
-	
+
 	/**
 	 * Create typekit kit with MinionPro
 	 *
@@ -730,24 +762,17 @@ class Editorial_Admin
 	       'badge' => false,
 	       'families' => array(
 	           array(
-					'id'         => 'nljb', // Minion Pro
-					'subset'     => 'default',
-					'variations' => array('n4', 'i4', 'n6', 'i6'),
+    	           'id' => 'nljb' // Minion Pro
     	           //'id' => 'gkmg' // Droid Sans
 	           ),
 	       ),
 	    );
-	    
+
 	    list($code, $response) = $this->_typekitAPICall('kits', $params);
 	    $data = json_decode($response, true);
 	    if ($code != 200)
 	    {
-	        $notice = __('<strong>Error!</strong> Typekit fonts were not enabled.', 'Editorial');
-	        if ($data && $data['errors'])
-	        {
-	            $notice .= ' '.implode(' ', $data['errors']);
-	        }
-	        $this->_showNotice($notice);
+	        $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit fonts were not enabled. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
 	        return;
 	    }
 	    // success?
@@ -759,7 +784,7 @@ class Editorial_Admin
 	        $this->_typekitPublish();
 	    }
 	}
-	
+
 	/**
 	 * Publish kit
 	 *
@@ -772,12 +797,7 @@ class Editorial_Admin
 		$data = json_decode($response, true);
 		if ($code != 200)
 		{
-		    $notice = __('<strong>Error!</strong> Typekit kit was created but not published.', 'Editorial');
-		    if ($data && $data['errors'])
-		    {
-		        $notice .= ' '.implode(' ', $data['errors']);
-		    }
-		    $this->_showNotice($notice);
+		    $this->_showNotice(sprintf(__('<strong>Error!</strong> Typekit kit was created but not published. Reason: %s.', 'Editorial'), implode(' ', $data['errors'])));
             return;
 		}
 		else
@@ -785,7 +805,7 @@ class Editorial_Admin
 		    $this->_showNotice(sprintf(__('<strong>Success!</strong> Typekit font has been created and is being published as we speak. Should take a couple of minutes to see the difference on your website so keep your pants on.')));
 		}
 	}
-	
+
 	/**
 	 * Typekit API call
 	 *
@@ -800,7 +820,7 @@ class Editorial_Admin
            'https://typekit.com/api/v1/json/%s',
            $call
         );
-        
+
 	    // setup curl
 		$ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -813,10 +833,6 @@ class Editorial_Admin
             if (is_array($params) && count($params))
             {
                 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
-            }
-            else
-            {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, false);
             }
         }
         // execute request
@@ -839,8 +855,9 @@ class Editorial_Admin
 				}
 
     	}
-    	
+
     }
+
 }
 
 // add admin capabilites
