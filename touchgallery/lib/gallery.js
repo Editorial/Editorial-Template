@@ -27,7 +27,8 @@
         this.tapCandidate    = null;
         this.videoCounter    = 0;
 
-        this._scrolling = true;
+        this._scrolling    = true;
+        this._barHideTimer = null;
 
         // configuration
         this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
@@ -483,9 +484,10 @@
             this.targetPosition = this.position = this.getPositionForIndex(this.currentItem);
             this.draw();
         } else {
-            this.hideBars();
             this.targetPosition = this.getPositionForIndex(this.currentItem);
             this.tick();
+            if (this._barHideTimer) clearTimeout(this._barHideTimer);
+            this._barHideTimer = setTimeout(bind(this, function() { this.hideBars();}), 2000);
         }
         this.updateMetadata();
     };
@@ -571,6 +573,10 @@
             }
             this.interacting = true;
             this.tick();
+            if (this._barHideTimer) {
+                clearTimeout(this._barHideTimer);
+                this._barHideTimer = null;
+            }
         }
     };
 
@@ -615,6 +621,7 @@
                 this.tapCandidate = false;
             }
         }
+        this.showBars();
     };
 
     TouchGallery.prototype.handleControlButtonClick = function(ev) {
