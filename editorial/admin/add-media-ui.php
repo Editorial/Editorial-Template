@@ -188,6 +188,8 @@ function load_js_scripts()
 {
     wp_register_script( 'media-view-editorial', get_template_directory_uri() . '/admin/js/media-view-editorial.js', array( 'jquery' ) );
     wp_enqueue_script( 'media-view-editorial');
+    wp_register_script( 'switchControl', get_template_directory_uri() . '/admin/js/jquery.switch.js', array( 'jquery' ) );
+    wp_enqueue_script( 'switchControl');
     wp_register_style( 'admin-css-editorial', get_template_directory_uri() . '/admin/css/admin.css');
     wp_enqueue_style( 'admin-css-editorial');
 

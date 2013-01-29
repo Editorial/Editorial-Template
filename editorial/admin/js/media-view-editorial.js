@@ -872,3 +872,21 @@ jQuery(document)
 
 					});
 				});
+
+jQuery(function(){
+	var t = jQuery("#gallery-switch");
+	if (t.length) {
+
+		t.switchify().data('switch').bind('switch:slide', function(e, type) {
+			e.preventDefault();
+
+			var controls = jQuery(this).data('controls'),
+					s = jQuery('div.gallery-switch').find('div.text');
+			controls[type]({ silent: true });
+
+			if (type == 'on') s.html(gallerySwVal1);
+			else s.html(gallerySwVal2);
+
+		});
+	}
+});
