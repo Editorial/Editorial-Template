@@ -244,7 +244,7 @@ function wp_print_editorial_media_templates() {
 				<div class="media-progress-bar"><div></div></div>
 			<# } else if ( 'image' === data.type ) { #>
 
-				<div class="thumbnail test">
+				<div class="thumbnail">
 					<div class="centered">
 					<# if (data.is_embed_video){ #><img src="<?php bloginfo('template_directory') ?>/images/video-icon.png" class="icon" draggable="false" style="z-index:10" /><# } #>
 						<img src="{{ data.size.url }}" draggable="false" />
