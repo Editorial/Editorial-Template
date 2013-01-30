@@ -235,6 +235,8 @@
      * @param  {Object} item The item being activated
      */
     TouchGallery.prototype.activateYouTubePlayer = function(item, autoDismiss) {
+        var played = false;
+
         this.hideBars();
         this.disableScrolling();
 
@@ -246,7 +248,9 @@
             videoId : item.id,
             events  : {
                 onReady       : function() { console.log(arguments); },
-                onStateChange : function() { console.log(arguments); },
+                onStateChange : function(ev) {
+                    if (ev.data > -1) played = true;
+                },
                 onError       : function() { console.log(arguments); }
             }
         });
@@ -267,7 +271,7 @@
                     clearInterval(this._videoDismissTimer);
                     this._videoDismissTimer = null;
                     item.counterTimer.value = 0;
-                    this.destroyYouTubePlayer(item);
+                    if (!played) this.destroyYouTubePlayer(item);
                 } else {
                     item.counterTimer.value = elapsed;
                 }
@@ -350,6 +354,8 @@
      * @param  {Object} item The item being activated
      */
     TouchGallery.prototype.activateVimeoPlayer = function(item, autoDismiss) {
+        var played = false;
+
         this.hideBars();
         this.disableScrolling();
 
@@ -366,7 +372,9 @@
         }).appendTo(item.playerContainer);
 
         item.player = new VimeoCommunicator(iframe[0]);
-        item.player.on('received', function(data) { console.warn(data); });
+        item.player.on('received', function(data) {
+            if (data.event == 'play' || data.event == 'playProgress') played = true;
+        });
 
         var self = this;
 
@@ -385,7 +393,7 @@
                     clearInterval(this._videoDismissTimer);
                     this._videoDismissTimer = null;
                     item.counterTimer.value = 0;
-                    this.destroyVimeoPlayer(item);
+                    if (!played) this.destroyVimeoPlayer(item);
                 } else {
                     item.counterTimer.value = elapsed;
                 }
@@ -445,9 +453,9 @@
 
         var self = this;
         item.closeButton.on('tap', function(ev) {
-            
-            self.destroyVideoPlayer();
-            
+            ev.preventDefault();
+            ev.stopPropagation();
+            self.destroyVideoPlayer(item);
         });
 
         return fragment;
@@ -475,7 +483,9 @@
         video.css({ width: '100%', height: '100%' });
         video[0].load();
         video[0].play();
-        video[0].pause();
+
+        var played = false;
+        video[0].addEventListener('play', function() { played = true; });
 
         if (autoDismiss) {
             var startTime = +new Date;
@@ -486,7 +496,7 @@
                     clearInterval(this._videoDismissTimer);
                     this._videoDismissTimer = null;
                     item.counterTimer.value = 0;
-                    this.destroyVideoPlayer(item);
+                    if (!played) this.destroyVideoPlayer(item);
                 } else {
                     item.counterTimer.value = elapsed;
                 }
