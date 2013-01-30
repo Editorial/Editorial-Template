@@ -25,7 +25,6 @@ function editorial_image_tabs ($strings, $post)
     add_action('admin_enqueue_scripts', 'load_js_scripts', 5);
     add_action('admin_footer-post-new.php', 'restart_tabs', 5);
     add_action('admin_footer-post.php', 'restart_tabs', 5);
-    add_filter( 'attachment_fields_to_edit', 'editorial_attachment_fields_to_edit', 10, 2 );
 
     // print_r($strings);
     $strings['insertGallery'] = __('Save gallery');
@@ -38,7 +37,7 @@ function editorial_image_tabs ($strings, $post)
     unset($strings['createGalleryTitle']);
     unset($strings['insertFromUrlTitle']);
  //   $strings['createGalleryTitle'] = '';
-    $strings['addToGalleryTitle'] = __('Media gallery for '.$post->post_title, 'editorial');
+    $strings['addToGalleryTitle'] = __('Media gallery', 'editorial');
     $strings['addToGallery'] = __('Save gallery', 'editorial');
     $strings['customMenuTitle'] = __('Custom Menu Title', 'custom');
 
@@ -47,15 +46,25 @@ function editorial_image_tabs ($strings, $post)
 }
 
 function editorial_attachment_fields_to_edit( $fields, $post ) {
-
-	$fields['media_type'] = array(
-	'label' => 'Media Type',
-	'input' => 'html',
-	'html' => '<input type="hidden" class="media-type" />',
-	'show_in_edit' => true,
-	'show_in_modal' => true,
-	);
-
+	$file = wp_get_attachment_metadata($post->ID, true);
+	unset($fields['buttons'] );
+	if ($file['embed_type'] == 'video') {
+		$fields['media_url'] = array(
+		'label' => 'URL',
+		'input' => 'html',
+		'meta' => 'media_url',
+		'value' => $file['embed_type'],
+		'html' => $file['_wp_attachment_url'],
+		'show_in_edit' => false,
+		'show_in_modal' => true,
+		);
+		$fields['media_type'] = array(
+		'input' => 'hidden',
+		'value' => $file['embed_type'],
+		'show_in_edit' => true,
+		'show_in_modal' => true,
+		);
+	}
 	return $fields;
 }
 function remove_media_library_tab($tabs) {
@@ -91,8 +100,13 @@ function fetch_video(){
         if ($data) {
             $dataArray = (array)$data;
             $type = (isset($dataArray['type'])?$dataArray['type']:'video');
-           // print_r($dataArray);exit();
-
+            //print_r($data);exit();
+			if (!$data OR ($type == 'video' &&  (strtolower($data->provider_name) != 'youtube' && strtolower($data->provider_name) != 'vimeo')))	{
+				$erroData['error'] = 'can not fetch';
+				$erroData['success'] = false;
+				echo json_encode($erroData);
+				exit();
+			}
             $dataArray['type'] = 'video';
 
             if ($type == 'video' && isset($dataArray['thumbnail_url'])){
@@ -180,7 +194,9 @@ function restart_tabs()
   ?>
 <script type="text/javascript">
     var templateDir = "<?php bloginfo('template_directory') ?>/admin";
-    var wpDir = "<?php bloginfo('wpurl') ?>";
+    var templateImgDir = "<?php bloginfo('template_directory') ?>/images";
+    var wpDir = "<?php bloginfo('wpurl');
+     ?>";
     </script>
 <?php
 }

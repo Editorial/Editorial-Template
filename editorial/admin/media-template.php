@@ -42,7 +42,6 @@ function wp_print_editorial_media_templates() {
 			<input type="checkbox" data-setting="_orderbyRandom" />
 		</label-->
 	</script>
-
     <script type="text/html" id="tmpl-attachment-details-editorial">
 		<h3>
 			<?php _e('Attachment Details'); ?>
@@ -103,10 +102,12 @@ function wp_print_editorial_media_templates() {
 				<input type="text" value="{{ data.alt }}" {{ maybeReadOnly }} />
 			</label-->
 		<# } #>
-			<label class="setting" data-setting="description">
-				<span><?php _e('Description'); ?></span>
-				<textarea {{ maybeReadOnly }}>{{ data.description }}</textarea>
-			</label>
+		<# if ( 'image' === data.type ) { #>
+			<!--label class="setting" data-setting="description">
+				<span><?php _e('Content'); ?></span>
+				<textarea readonly="readonly">{{ data.description }}</textarea>
+			</label-->
+		<# } #>
 	</script>
 	<script type="text/html" id="tmpl-attachment-display-settings-editorial">
 		<h3><?php _e('Attachment Display Settings'); ?></h3>
@@ -218,11 +219,13 @@ function wp_print_editorial_media_templates() {
 
 	</script>
 	<script type="text/html" id="tmpl-embed-video-settings-editorial">
-		<div class="thumbnail video">
+	<div class="message-editorial"></div>
+	<br>
+	<div class="thumbnail video">
 			<img src="{{ data.model.data.url }}" draggable="false" />
 		</div>
 		<input type="hidden" name="media-type" value="video" class="media-type"/>
-		<div class="message-editorial"></div>
+
 		<?php if ( ! apply_filters( 'disable_captions', '' ) ) : ?>
 			<label class="setting caption video">
 				<span><?php _e('Caption'); ?></span>
@@ -232,9 +235,52 @@ function wp_print_editorial_media_templates() {
 
 	</script>
 	<script type="text/html" id="tmpl-embed-link-settings-editorial">
-		<div class="thumbnail link">
-			<img src="{{ data.model.url }}" draggable="false" />
-		</div>
+
 		<div class="editorial-message">{{ data.model.error }}</div>
+	</script>
+	<script type="text/html" id="tmpl-attachment-editorial">
+		<div class="attachment-preview type-{{ data.type }} subtype-{{ data.subtype }} {{ data.orientation }}">
+			<# if ( data.uploading ) { #>
+				<div class="media-progress-bar"><div></div></div>
+			<# } else if ( 'image' === data.type ) { #>
+
+				<div class="thumbnail test">
+					<div class="centered">
+					<# if (data.is_embed_video){ #><img src="<?php bloginfo('template_directory') ?>/images/video-icon.png" class="icon" draggable="false" style="z-index:10" /><# } #>
+						<img src="{{ data.size.url }}" draggable="false" />
+					</div>
+				</div>
+			<# } else { #>
+				<img src="{{ data.icon }}" class="icon" draggable="false" />
+				<div class="filename">
+					<div>{{ data.filename }}</div>
+				</div>
+			<# } #>
+
+			<# if ( data.buttons.close ) { #>
+				<a class="close media-modal-icon" href="#" title="<?php _e('Remove'); ?>"></a>
+			<# } #>
+
+			<# if ( data.buttons.check ) { #>
+				<a class="check" href="#" title="<?php _e('Deselect'); ?>"><div class="media-modal-icon"></div></a>
+			<# } #>
+		</div>
+		<#
+		var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly';
+		if ( data.describe ) { #>
+			<# if ( 'image' === data.type ) { #>
+				<input type="text" value="{{ data.caption }}" class="describe" data-setting="caption"
+					placeholder="<?php esc_attr_e('Caption this image&hellip;'); ?>" {{ maybeReadOnly }} />
+			<# } else { #>
+				<input type="text" value="{{ data.title }}" class="describe" data-setting="title"
+					<# if ( 'video' === data.type ) { #>
+						placeholder="<?php esc_attr_e('Describe this video&hellip;'); ?>"
+					<# } else if ( 'audio' === data.type ) { #>
+						placeholder="<?php esc_attr_e('Describe this audio file&hellip;'); ?>"
+					<# } else { #>
+						placeholder="<?php esc_attr_e('Describe this media file&hellip;'); ?>"
+					<# } #> {{ maybeReadOnly }} />
+			<# } #>
+		<# } #>
 	</script>
 	<?php }?>
