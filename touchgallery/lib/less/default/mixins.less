@@ -67,6 +67,14 @@
 	background-repeat: repeat-x;
 }
 
+// .box-sizing(value);
+
+.box-sizing(@box-sizing: border-box) {
+	-moz-box-sizing: @box-sizing;
+	-webkit-box-sizing: @box-sizing;
+	box-sizing: @box-sizing;
+}
+
 // .bordered(COLOR, COLOR, COLOR, COLOR);
 
 .bordered(@top-color: #eee, @right-color: #eee, @bottom-color: #eee, @left-color: #eee) {
