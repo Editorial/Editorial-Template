@@ -100,11 +100,11 @@ function fetch_video(){
         if ($data) {
             $dataArray = (array)$data;
             $type = (isset($dataArray['type'])?$dataArray['type']:'video');
-           // print_r($dataArray);exit();
-			if ($type == 'video' &&  (strtolower($data->provider_name) != 'youtube' && strtolower($data->provider_name) != 'vimeo'))	{
-				$data['error'] = 'can not fetch';
-				$data['success'] = false;
-				echo json_encode($data);
+            //print_r($data);exit();
+			if (!$data OR ($type == 'video' &&  (strtolower($data->provider_name) != 'youtube' && strtolower($data->provider_name) != 'vimeo')))	{
+				$erroData['error'] = 'can not fetch';
+				$erroData['success'] = false;
+				echo json_encode($erroData);
 				exit();
 			}
             $dataArray['type'] = 'video';
