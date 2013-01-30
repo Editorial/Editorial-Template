@@ -16,6 +16,7 @@
         this.render = bind(this, this.render);
 
         this.init();
+        this.render();
     }
 
     Radial.prototype.init = function() {
@@ -48,7 +49,7 @@
     };
 
     Radial.prototype.getAngleForValue = function(val) {
-        return (clamp(val, this.min, this.max - 0.001) - this.min) / (this.max - this.min) * Math.PI * 2 - Math.PI / 2;
+        return (clamp(val, this.min, this.max) - this.min) / (this.max - this.min) * Math.PI * 2 - Math.PI / 2;
     };
 
     this.Radial = Radial;

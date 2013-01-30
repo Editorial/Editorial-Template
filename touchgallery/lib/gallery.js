@@ -27,9 +27,11 @@
         this.tapCandidate    = null;
         this.videoCounter    = 0;
         this.videoTimeout    = 2000;
+        this.videoDismiss    = 5000;
 
         this._scrolling                = true;
         this._videoActivateTimer       = null;
+        this._videoDismissTimer        = null;
         this._userRequestedBarsVisible = false;
 
         // configuration
@@ -192,6 +194,26 @@
         item.closeButton = $(fragment.querySelector('.close-button'));
         item.playerContainer = $(fragment.querySelector('#' + id));
 
+        item.playTimer = new Radial({
+            container : fragment.querySelector('.play-icon'),
+            width     : 87,
+            height    : 87,
+            barWidth  : 4,
+            min       : 0,
+            max       : this.videoTimeout,
+            value     : 0
+        });
+
+        item.counterTimer = new Radial({
+            container : fragment.querySelector('.counter-timer'),
+            width     : 40,
+            height    : 40,
+            barWidth  : 4,
+            min       : 0,
+            max       : this.videoDismiss,
+            value     : 0
+        });
+
         return fragment;
     };
 
@@ -204,7 +226,7 @@
         '<div class="player-container">'+
             '<div id="<%= id %>"></div>' +
         '</div>' +
-        '<div class="left"></div>' +
+        '<div class="left"><div class="counter-timer"></div></div>' +
         '<div class="right"><div class="close-button"><span>X</span></div></div>'
     );
 
@@ -212,7 +234,7 @@
      * Loads the player for YouTube items
      * @param  {Object} item The item being activated
      */
-    TouchGallery.prototype.activateYouTubePlayer = function(item) {
+    TouchGallery.prototype.activateYouTubePlayer = function(item, autoDismiss) {
         this.hideBars();
         this.disableScrolling();
 
@@ -235,6 +257,23 @@
             ev.stopPropagation();
             self.destroyYouTubePlayer(item);
         });
+
+        if (autoDismiss) {
+            var startTime = +new Date;
+            if (this._videoDismissTimer) clearInterval(this._videoDismissTimer);
+            this._videoDismissTimer = setInterval(bind(this, function() {
+                var elapsed = new Date - startTime;
+                if (elapsed > this.videoDismiss) {
+                    clearInterval(this._videoDismissTimer);
+                    this._videoDismissTimer = null;
+                    item.counterTimer.value = 0;
+                    this.destroyYouTubePlayer(item);
+                } else {
+                    item.counterTimer.value = elapsed;
+                }
+                item.counterTimer.render();
+            }), 16);
+        }
     };
 
     /**
@@ -270,6 +309,26 @@
         item.closeButton = $(fragment.querySelector('.close-button'));
         item.playerContainer = $(fragment.querySelector('#' + id));
 
+        item.playTimer = new Radial({
+            container : fragment.querySelector('.play-icon'),
+            width     : 87,
+            height    : 87,
+            barWidth  : 4,
+            min       : 0,
+            max       : this.videoTimeout,
+            value     : 0
+        });
+
+        item.counterTimer = new Radial({
+            container : fragment.querySelector('.counter-timer'),
+            width     : 40,
+            height    : 40,
+            barWidth  : 4,
+            min       : 0,
+            max       : this.videoDismiss,
+            value     : 0
+        });
+
         return fragment;
     };
 
@@ -282,7 +341,7 @@
         '<div class="player-container">'+
             '<div id="<%= id %>"></div>' +
         '</div>' +
-        '<div class="left"></div>' +
+        '<div class="left"><div class="counter-timer"></div></div>' +
         '<div class="right"><div class="close-button"><span>X</span></div></div>'
     );
 
@@ -290,7 +349,7 @@
      * Loads up the Vimeo player for the item
      * @param  {Object} item The item being activated
      */
-    TouchGallery.prototype.activateVimeoPlayer = function(item) {
+    TouchGallery.prototype.activateVimeoPlayer = function(item, autoDismiss) {
         this.hideBars();
         this.disableScrolling();
 
@@ -316,6 +375,23 @@
             ev.stopPropagation();
             self.destroyVimeoPlayer(item);
         });
+
+        if (autoDismiss) {
+            var startTime = +new Date;
+            if (this._videoDismissTimer) clearInterval(this._videoDismissTimer);
+            this._videoDismissTimer = setInterval(bind(this, function() {
+                var elapsed = new Date - startTime;
+                if (elapsed > this.videoDismiss) {
+                    clearInterval(this._videoDismissTimer);
+                    this._videoDismissTimer = null;
+                    item.counterTimer.value = 0;
+                    this.destroyVimeoPlayer(item);
+                } else {
+                    item.counterTimer.value = elapsed;
+                }
+                item.counterTimer.render();
+            }), 16);
+        }
     };
 
     TouchGallery.prototype.destroyVimeoPlayer = function(item) {
@@ -347,13 +423,31 @@
         item.closeButton = $(fragment.querySelector('.close-button'));
         item.playerContainer = $(fragment.querySelector('#' + id));
 
+        item.playTimer = new Radial({
+            container : fragment.querySelector('.play-icon'),
+            width     : 87,
+            height    : 87,
+            barWidth  : 4,
+            min       : 0,
+            max       : this.videoTimeout,
+            value     : 0
+        });
+
+        item.counterTimer = new Radial({
+            container : fragment.querySelector('.counter-timer'),
+            width     : 40,
+            height    : 40,
+            barWidth  : 4,
+            min       : 0,
+            max       : this.videoDismiss,
+            value     : 0
+        });
+
         var self = this;
         item.closeButton.on('tap', function(ev) {
-            item.poster.removeClass('slide-out');
-            item.playerContainer.find('video')[0].pause();
-            item.playerContainer.find('video').remove();
-            self.enableScrolling();
-            if (self._userRequestedBarsVisible) self.showBars();
+            
+            self.destroyVideoPlayer();
+            
         });
 
         return fragment;
@@ -368,11 +462,11 @@
         '<div class="player-container">' +
             '<div id="<%= id %>" class="video-player"></div>' +
         '</div>' +
-        '<div class="left"></div>' +
+        '<div class="left"><div class="counter-timer"></div></div>' +
         '<div class="right"><div class="close-button"><span>X</span></div></div>'
     );
 
-    TouchGallery.prototype.activateVideoPlayer = function(item) {
+    TouchGallery.prototype.activateVideoPlayer = function(item, autoDismiss) {
         this.hideBars();
         this.disableScrolling();
         item.poster.addClass('slide-out');
@@ -381,6 +475,32 @@
         video.css({ width: '100%', height: '100%' });
         video[0].load();
         video[0].play();
+        video[0].pause();
+
+        if (autoDismiss) {
+            var startTime = +new Date;
+            if (this._videoDismissTimer) clearInterval(this._videoDismissTimer);
+            this._videoDismissTimer = setInterval(bind(this, function() {
+                var elapsed = new Date - startTime;
+                if (elapsed > this.videoDismiss) {
+                    clearInterval(this._videoDismissTimer);
+                    this._videoDismissTimer = null;
+                    item.counterTimer.value = 0;
+                    this.destroyVideoPlayer(item);
+                } else {
+                    item.counterTimer.value = elapsed;
+                }
+                item.counterTimer.render();
+            }), 16);
+        }
+    };
+
+    TouchGallery.prototype.destroyVideoPlayer = function(item) {
+        item.poster.removeClass('slide-out');
+        item.playerContainer.find('video')[0].pause();
+        item.playerContainer.find('video').remove();
+        this.enableScrolling();
+        if (this._userRequestedBarsVisible) this.showBars();
     };
 
     
@@ -495,23 +615,34 @@
         this.updateMetadata();
 
         var item = this.items[this.currentItem];
-        if (this._videoActivateTimer) clearTimeout(this._videoActivateTimer);
-        if (item.type != 'image') {
-            this._videoActivateTimer = setTimeout(bind(this, function() {
-                switch(item.type) {
-                    case 'youtube':
-                        this.activateYouTubePlayer(item);
-                        break;
-                    case 'vimeo':
-                        this.activateVimeoPlayer(item);
-                        break;
-                    case 'video':
-                        this.activateVideoPlayer(item);
-                        break;
-                }
-            }), this.videoTimeout);
-        }
 
+        if (this._videoActivateTimer) clearInterval(this._videoActivateTimer);
+
+        if (item.type != 'image') {
+            var startTime = +new Date;
+            this._videoActivateTimer = setInterval(bind(this, function() {
+                var elapsed = new Date - startTime;
+                if (elapsed > this.videoTimeout) {
+                    switch(item.type) {
+                        case 'youtube':
+                            this.activateYouTubePlayer(item, true);
+                            break;
+                        case 'vimeo':
+                            this.activateVimeoPlayer(item, true);
+                            break;
+                        case 'video':
+                            this.activateVideoPlayer(item, true);
+                            break;
+                    }
+                    item.playTimer.value = 0;
+                    clearInterval(this._videoActivateTimer);
+                    this._videoActivateTimer = null;
+                } else {
+                    item.playTimer.value = elapsed;
+                }
+                item.playTimer.render();
+            }), 16);
+        }
     };
 
     /**
@@ -596,8 +727,12 @@
             this.interacting = true;
             this.tick();
             if (this._videoActivateTimer) {
-                clearTimeout(this._videoActivateTimer);
+                clearInterval(this._videoActivateTimer);
                 this._videoActivateTimer = null;
+            }
+            if (this._videoDismissTimer) {
+                clearInterval(this._videoDismissTimer);
+                this._videoDismissTimer = null;
             }
         }
     };
