@@ -44,9 +44,10 @@
 
         // hook up events
         var self = this;
-        if (!Browsers.ios()) window.addEventListener('resize', function() { viewporter.refresh(); });
-        window.addEventListener('orientationchange', function() { viewporter.refresh(); });
+        window.addEventListener('orientationchange', function() { setTimeout(function() { viewporter.refresh(); }, 100); });
         window.addEventListener('viewportchange', this.handleResize);
+
+        viewporter.preventPageScroll();
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -285,7 +286,7 @@
      * @param  {Object} item
      */
     TouchGallery.prototype.destroyYouTubePlayer = function(item) {
-        item.player.destroy();
+        if (item.player) item.player.destroy();
         item.player = null;
         item.playerContainer.children().remove();
         item.poster.removeClass('slide-out');
@@ -718,7 +719,7 @@
     };
 
     TouchGallery.prototype.draw = function() {
-        this.list.get(0).style.webkitTransform = 'translate(' + (-this.position) + 'px, 0)';
+        this.list.get(0).style.webkitTransform = 'translate3d(' + (-this.position) + 'px, 0, 0)';
     };
 
 
@@ -796,7 +797,7 @@
             this.goToPrevious();
         }
         if ($(ev.target).hasClass('next')) {
-            ev.preventDefault();
+            //ev.preventDefault();
             this.goToNext();
         }
     };
