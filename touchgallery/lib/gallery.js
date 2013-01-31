@@ -44,7 +44,7 @@
 
         // hook up events
         var self = this;
-        window.addEventListener('orientationchange', function() { setTimeout(function() { viewporter.refresh(); }, 100); });
+        window.addEventListener('orientationchange', function() { viewporter.refresh(); self.handleResize(); });
         window.addEventListener('viewportchange', this.handleResize);
 
         viewporter.preventPageScroll();
@@ -841,7 +841,6 @@
      */
     TouchGallery.prototype.handleResize = function() {
         this.repositionImages();
-        //setTimeout(this.repositionImages, 0);
     };
 
     /**
