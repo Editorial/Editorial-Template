@@ -121,12 +121,12 @@
 }
 
 .touch-gallery .player-container {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: auto !important;
-    height: auto !important;
+    top      : 0;
+    left     : 60px;
+    bottom   : 0;
+    right    : 60px;
+    width    : auto !important;
+    height   : auto !important;
     overflow : hidden;
 }
 
