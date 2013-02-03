@@ -45,7 +45,7 @@
         // hook up events
         var self = this;
         window.addEventListener('orientationchange', function() { viewporter.refresh(); self.handleResize(); });
-        //window.addEventListener('viewportchange', this.handleResize);
+        window.addEventListener('viewportchange', this.handleResize);
 
         document.addEventListener('touchmove', function(ev) {
             ev.preventDefault();
