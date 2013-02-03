@@ -710,6 +710,7 @@ h1 {margin:0 0 22px;}
 #single,#common {padding:29px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 22px;font-size:24px;line-height:30px;}
 #single .entry-content p,#comments .show,#comments h4 {font-size:18px;line-height:25px;}
+#single .entry-content img {width:100%;}
 .layout-list #single h1,.layout-grid #single h1 {margin-top:0;}
 #comments .show {font-style:italic;}
 
@@ -949,7 +950,7 @@ position:absolute;top:12px;left:38px;}
 .gallery-portrait #media {margin:0 0 30px;}
 .gallery-portrait #media figure {margin:0 auto;width:460px;}
 .gallery-portrait .photo-adapt,.gallery-portrait .mejs-container {margin:0 auto 15px;width:446px;}
-.gallery #media #video {width:614px;max-width:none;}
+.gallery #media #video,.gallery #media iframe {width:628px !important; height:423px !important;max-width:none;}
 #video iframe {width:614px;height:462px;}
 
 #comments blockquote {clear:none;}
