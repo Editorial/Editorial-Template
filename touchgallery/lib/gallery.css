@@ -52,7 +52,12 @@
     background      : url(../play-button.png) center no-repeat transparent;
     background-size : 100% 100%;
     padding-top     : 3px;
-    padding-left    : 2px;
+    padding-left    : 3px;
+}
+
+.touch-gallery .items li .play-icon canvas {
+    width: 95%;
+    height: 95%;
 }
 
 .touch-gallery .poster {
@@ -116,12 +121,12 @@
 }
 
 .touch-gallery .player-container {
-    top      : 0;
-    left     : 60px;
-    bottom   : 0;
-    right    : 60px;
-    width    : auto !important;
-    height   : auto !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: auto !important;
+    height: auto !important;
     overflow : hidden;
 }
 

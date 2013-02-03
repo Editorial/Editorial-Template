@@ -45,9 +45,11 @@
         // hook up events
         var self = this;
         window.addEventListener('orientationchange', function() { viewporter.refresh(); self.handleResize(); });
-        window.addEventListener('viewportchange', this.handleResize);
+        //window.addEventListener('viewportchange', this.handleResize);
 
-        viewporter.preventPageScroll();
+        document.addEventListener('touchmove', function(ev) {
+            ev.preventDefault();
+        });
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -241,6 +243,13 @@
         this.hideBars();
         this.disableScrolling();
 
+        var endTrigger = createOneShotFunction(function() { item.poster.addClass('slide-done'); });
+
+        // when listening for transitionEnd events, Androids sometimes don't trigger
+        // the end event, setting a timeout for those cases.
+        item.poster.one('webkitTransitionEnd', endTrigger);
+        setTimeout(endTrigger, 250);
+
         item.poster.addClass('slide-out');
 
         item.player = new YT.Player(item.playerContainer.get(0), {
@@ -289,7 +298,7 @@
         if (item.player) item.player.destroy();
         item.player = null;
         item.playerContainer.children().remove();
-        item.poster.removeClass('slide-out');
+        item.poster.removeClass('slide-out slide-done');
         this.enableScrolling();
         if (this._userRequestedBarsVisible) this.showBars();
     };
@@ -359,6 +368,13 @@
 
         this.hideBars();
         this.disableScrolling();
+
+        var endTrigger = createOneShotFunction(function() { item.poster.addClass('slide-done'); });
+
+        // when listening for transitionEnd events, Androids sometimes don't trigger
+        // the end event, setting a timeout for those cases.
+        item.poster.one('webkitTransitionEnd', endTrigger);
+        setTimeout(endTrigger, 250);
 
         item.poster.addClass('slide-out');
 
@@ -478,7 +494,16 @@
     TouchGallery.prototype.activateVideoPlayer = function(item, autoDismiss) {
         this.hideBars();
         this.disableScrolling();
+
+        var endTrigger = createOneShotFunction(function() { item.poster.addClass('slide-done'); });
+
+        // when listening for transitionEnd events, Androids sometimes don't trigger
+        // the end event, setting a timeout for those cases.
+        item.poster.one('webkitTransitionEnd', endTrigger);
+        setTimeout(endTrigger, 250);
+
         item.poster.addClass('slide-out');
+
         var video = $('<video controls preload poster="' + item.posterImg + '" src="' + item.src + '"></video>');
         video.appendTo(item.playerContainer);
         video.css({ width: '100%', height: '100%' });
@@ -642,7 +667,7 @@
                             this.activateVimeoPlayer(item, true);
                             break;
                         case 'video':
-                            this.activateVideoPlayer(item, true);
+                            this.activateVideoPlayer(item, false);
                             break;
                     }
                     item.playTimer.value = 0;

@@ -16,6 +16,14 @@
         return Math.max(a, Math.min(b, n));
     };
 
+    this.createOneShotFunction = function(fn) {
+        var fired = false;
+        return function() {
+            if (!fired) fn.apply(this, arguments);
+            fired = true;
+        };
+    };
+
     // requestAnimationFrame implementation
     (function() {
         var lastTime = 0;
