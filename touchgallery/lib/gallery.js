@@ -222,8 +222,8 @@
 
     TouchGallery.prototype.youtubeVideoTemplate = tmpl(
         '<div class="poster">' +
-            '<div class="top"><img src="<%= src %>"/></div>' +
-            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="top"><div class="image-container"><img src="<%= src %>"/></div></div>' +
+            '<div class="bottom"><div class="image-container"><img src="<%= src %>"/></div></div>' +
             '<div class="play-icon"></div>' +
         '</div>' +
         '<div class="player-container">'+
@@ -348,8 +348,8 @@
 
     TouchGallery.prototype.vimeoVideoTemplate = tmpl(
         '<div class="poster">' +
-            '<div class="top"><img src="<%= src %>"/></div>' +
-            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="top"><div class="image-container"><img src="<%= src %>"/></div></div>' +
+            '<div class="bottom"><div class="image-container"><img src="<%= src %>"/></div></div>' +
             '<div class="play-icon"></div>' +
         '</div>' +
         '<div class="player-container">'+
@@ -480,8 +480,8 @@
 
     TouchGallery.prototype.videoPlayerTemplate = tmpl(
         '<div class="poster">' +
-            '<div class="top"><img src="<%= src %>"/></div>' +
-            '<div class="bottom"><img src="<%= src %>"/></div>' +
+            '<div class="top"><div class="image-container"><img src="<%= src %>"/></div></div>' +
+            '<div class="bottom"><div class="image-container"><img src="<%= src %>"/></div></div>' +
             '<div class="play-icon"></div>' +
         '</div>' +
         '<div class="player-container">' +
