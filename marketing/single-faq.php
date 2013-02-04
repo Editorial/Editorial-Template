@@ -18,10 +18,6 @@
 				<?php the_content(); ?>
 			</section>
 			<?php endwhile; endif; ?>
-			<section>
-				<h4>None of the above answers your question?</h4>
-				<p class="notice">Then please feel free to use our <a href="https://editorialtemplate.uservoice.com/">Support forum</a>.</p>
-			</section>
 		</div>
 
 		<aside class="related" role="complementary">

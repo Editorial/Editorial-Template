@@ -260,6 +260,13 @@ function theme_options_do_page() {
 						<input id="em_theme_options[enquiry]" type="text" name="em_theme_options[enquiry]" value="<?php esc_attr_e($options['enquiry']); ?>" />
 					</td>
 				</tr>
+				<tr>
+					<th>FAQ categories</th>
+					<td>
+						<textarea id="em_theme_options[faqcats]" name="em_theme_options[faqcats]" rows="4" cols="40"><?php esc_attr_e($options['faqcats']); ?></textarea>
+						<br><span>Define FAQ categories to show on the page by entering their slugs in order of appearance and separated by comma.</span>
+					</td>
+				</tr>
 			</table>
 			<p>
 				<input type="submit" value="<?php _e('Save Options'); ?>" />

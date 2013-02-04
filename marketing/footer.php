@@ -12,11 +12,12 @@ if (!is_404())
 ?>
 <footer id="footer" role="contentinfo">
 <?php
-	if ( !is_page_template('cart.php') && !is_page_template('manager.php') )
+	if ( !is_page_template('cart.php') && !is_page_template('manager.php'))
 	{
 		$Purchase = new Purchase();
 		$currentCount = $Purchase->getCount();
 		$currentPrice = $Purchase->getPricingForCount($currentCount);
+		if(!is_post_type_archive('faq') && !is_singular('faq')) {
 ?>
 	<div class="try-and-buy">
 		<h2><em>Price <span>&amp;</span> licencing</em></h2>
@@ -147,7 +148,7 @@ if (!is_404())
 			</ul>
 			<ul class="price-flow pf-other">
 			<?php
-			
+
 			$stepCount = 0;
 			for ($i = 1; $i <= 63; $i++)
 			{
@@ -167,7 +168,7 @@ if (!is_404())
 				{
 					$style = 'sold';
 				}
-				else if ($price == $currentPrice && $count/20 <= ($currentCount/20)-1) 
+				else if ($price == $currentPrice && $count/20 <= ($currentCount/20)-1)
 				{
 					$style = 'active';
 				}
@@ -185,7 +186,7 @@ if (!is_404())
 					$i == 61 ? '<b>&infin;</b>' : ($count <= 1000 && $count % 100 == 0 ? sprintf('<b>%d</b>', $count) : '')
 				);
 			}
-			
+
 			?>
 			</ul>
 		</section>
@@ -217,7 +218,10 @@ if (!is_404())
 			</section>
 		</div>
 	</div>
-	<?php  get_sidebar('complementary');  ?>
+	<?php
+		get_sidebar('complementary');
+	}
+	?>
 	<div class="updates">
 		<div class="adapt">
 			<article class="connect">

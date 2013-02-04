@@ -6,15 +6,23 @@
 
 		<?php
 			// get FAQ categories
-			$faqcats = wp_cache_get('faqcats');
-			if($faqcats === false) {
-				$faqcats = get_terms('faqcat', array(
-					'orderby' => 'id',
-					'fields'  => 'ids'
-				));
-				wp_cache_set('faqcats', $faqcats);
+			$options = get_option('em_theme_options');
+			if(isset($options['faqcats']) && !empty($options['faqcats'])) {
+				$faqcatslugs = explode(',', $options['faqcats']);
+				foreach($faqcatslugs as $faqcatslug) {
+					$t = get_term_by('slug', trim($faqcatslug), 'faqcat');
+					$faqcats[] = $t->term_id;
+				}
+			} else {
+				$faqcats = wp_cache_get('faqcats');
+				if($faqcats === false) {
+					$faqcats = get_terms('faqcat', array(
+						'orderby' => 'id',
+						'fields'  => 'ids'
+					));
+					wp_cache_set('faqcats', $faqcats);
+				}
 			}
-			//var_dump($faqcats);
 
 
 			// get posts from each category
@@ -36,7 +44,6 @@
 				}
 				wp_cache_set('faq_posts', $faq_grouped_posts);
 			}
-			//var_dump($faq_categorized_posts);die();
 		?>
 		<section class="level">
 			<h2><em>Frequently asked questions about Editorial</em></h2>
