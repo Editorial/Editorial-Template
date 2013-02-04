@@ -710,7 +710,7 @@ h1 {margin:0 0 22px;}
 #single,#common {padding:29px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 22px;font-size:24px;line-height:30px;}
 #single .entry-content p,#comments .show,#comments h4 {font-size:18px;line-height:25px;}
-#single .entry-content img {width:100%;}
+#single .entry-content img {width:100% !important;height:auto !important;}
 .layout-list #single h1,.layout-grid #single h1 {margin-top:0;}
 #comments .show {font-style:italic;}
 
