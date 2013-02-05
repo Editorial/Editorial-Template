@@ -243,7 +243,7 @@
         this.hideBars();
         this.disableScrolling();
 
-        var endTrigger = createOneShotFunction(function() { item.poster.addClass('slide-done'); });
+        var endTrigger = createOneShotFunction(function() { item.listItem.addClass('slide-done'); });
 
         // when listening for transitionEnd events, Androids sometimes don't trigger
         // the end event, setting a timeout for those cases.
@@ -298,7 +298,8 @@
         if (item.player) item.player.destroy();
         item.player = null;
         item.playerContainer.children().remove();
-        item.poster.removeClass('slide-out slide-done');
+        item.poster.removeClass('slide-out');
+        item.listItem.removeClass('slide-done');
         this.enableScrolling();
         if (this._userRequestedBarsVisible) this.showBars();
     };
@@ -369,7 +370,7 @@
         this.hideBars();
         this.disableScrolling();
 
-        var endTrigger = createOneShotFunction(function() { item.poster.addClass('slide-done'); });
+        var endTrigger = createOneShotFunction(function() { item.listItem.addClass('slide-done'); });
 
         // when listening for transitionEnd events, Androids sometimes don't trigger
         // the end event, setting a timeout for those cases.
@@ -423,6 +424,7 @@
         item.player = null;
         item.listItem.find('iframe').remove();
         item.poster.removeClass('slide-out');
+        item.listItem.removeClass('slide-done');
         item.player = null;
         this.enableScrolling();
         if (this._userRequestedBarsVisible) this.showBars();
@@ -495,7 +497,7 @@
         this.hideBars();
         this.disableScrolling();
 
-        var endTrigger = createOneShotFunction(function() { item.poster.addClass('slide-done'); });
+        var endTrigger = createOneShotFunction(function() { item.listItem.addClass('slide-done'); });
 
         // when listening for transitionEnd events, Androids sometimes don't trigger
         // the end event, setting a timeout for those cases.
@@ -533,6 +535,7 @@
 
     TouchGallery.prototype.destroyVideoPlayer = function(item) {
         item.poster.removeClass('slide-out');
+        item.listItem.removeClass('slide-done');
         item.playerContainer.find('video')[0].pause();
         item.playerContainer.find('video').remove();
         this.enableScrolling();
