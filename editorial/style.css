@@ -67,8 +67,8 @@ background-color:transparent;}
 .notfound {padding:0;}
 
 #primary,#rss,.inside #single footer,.inside-portrait #single footer,#tabs,#navigate ul,#embed,.notice,
-#comments article,#paging,.layout-list .featured article,#team li,.featured article,#widgets .adapt,#widgets .group,.widget
-{background:url(images/bgr/lines.gif) repeat-x;}
+#comments article,#paging,.layout-list .featured article,#team li,.featured article,#widgets .adapt,#widgets .group,.widget,
+blockquote, blockquote p {background:url(images/bgr/lines.gif) repeat-x;}
 
 #find,#primary li,#primary .selected a,#tabs li,#footer nav li,#rss li,#footer .xoxo li,#media-count,footer nav .selected a,
 #layout a,.vote-for em,.vote-against em,#navigate li,.entry-content ul li,.widget li
@@ -86,6 +86,8 @@ address .fn,.entry-content h2,#try {font-family:minion-pro,georgia,serif;font-we
 h1,h2 {margin:0 0 11px;font-size:35px;line-height:35px;}
 #common h2 {margin:6px 0 4px;font-size:22px;line-height:30px;}
 h3 {font-size:28px;margin:0 0 10px;}
+.entry-content h3 {font-size:18px;line-height:22px;font-weight:600;}
+.entry-content h4 {margin:0 0 15px;font-size:14px;line-height:20px;text-transform:uppercase;}
 
 .notfound h1 {margin:62px 0 0;font-size:60px;line-height:70px;text-align:center;}
 .notfound h2 {margin:-100px 0 0;font-size:200px;color:#f2f2f2;text-align:center;position:relative;z-index:-1;}
@@ -111,6 +113,8 @@ ul,ol,menu {list-style:none;}
 li ul,li ol,menu li {margin:0;font-size:1em;}
 dl,dd {margin-bottom:1.5em;}
 dt{font-weight:normal;}
+blockquote {margin:0 0 15px;padding:15px 0 0;}
+blockquote p {padding:0 0 15px;font-size:24px;line-height:30px;color:#999;background-position:bottom;}
 blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
 b,strong{font-weight:bold;}
 i,em {font-style:italic;font-family:minion-pro-italic;}
