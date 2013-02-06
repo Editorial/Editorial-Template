@@ -362,6 +362,7 @@ body{margin:0 auto;min-width:320px;}
 .features-inside h3{margin:2px 0 13px;}
 .features-inside figure{padding:0 0 49px;}
 .features-inside li{line-height:20px;padding:0 0 7px 10px;position:relative;}.features-inside li:before{content:'- ';position:absolute;top:0;left:0;}
+.features-inside .no-bullets li:before{content:'';}
 .features-nav{border-left:2px solid #e6e6e6;float:left;}.features-nav ul{margin:0;padding:0 0 10px;width:100%;float:left;}
 .features-nav li{margin-top:-1px;padding:9px 0 7px;width:100%;background-position:-603px -58px;float:left;}.features-nav li:first-child{margin-top:0;padding-top:17px;}
 .features-nav .selected h4{color:#999;}
