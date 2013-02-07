@@ -453,7 +453,8 @@ EOF;
                 'commentstatusdiv',
                 'commentsdiv',
                 'authordiv',
-                'revisionsdiv'
+                'revisionsdiv',
+				'postcustom',
             );
         }
         // removed 'postcustom',
@@ -1541,6 +1542,7 @@ EOF;
         Unauthenticated calls are permitted 150 requests per hour
         */
 
+		debug(sprintf('getTwitterMentions(%d)', $postID));
 
         self::$TwitterApiCallCounter++;
 
@@ -1550,18 +1552,16 @@ EOF;
             }
 
         $permalink = get_permalink( $postID );
-        //$permalink = "http://techcrunch.com/2012/09/18/alleged-leaked-ipad-mini-pics-show-lightening-port-odd-hole-on-the-back/";
-        //$testString = 'Justin Bieber';
 
         $last_tweet_id = get_post_meta($postID, 'twitter_last_comment_id', true);
-        //dump( $last_tweet_id );
         $url = "http://search.twitter.com/search.json?rpp=100&since_id=".$last_tweet_id."&q=".urlencode( $permalink );
-        //dump($url);
+		debug($url);
         $response = wp_remote_retrieve_body( wp_remote_get( $url ) );
 
         $data = json_decode( $response );
 
         if ( empty( $data->results ) ) {
+				debug('no commments found');
                 update_post_meta( $postID, 'twitter_last_comment_id', $data->max_id_str );
                 return; //$data;
             }
@@ -1578,6 +1578,7 @@ EOF;
                     'comment_date_gmt'     => date('Y-m-d H:i:s', strtotime( $tweet->created_at ) ),
                     'comment_type'         => 'tweet'
                 );
+				debug(sprintf('Found new comment for post %d:', $postID, json_encode($comment)));
 
                 wp_insert_comment( $comment );
           }
@@ -1589,7 +1590,7 @@ EOF;
 
     public static function getFacebookMentions( $postID )
     {
-
+		debug(sprintf('getFacebookMentions(%d)', $postID));
         $permalink = urlencode( get_permalink( $postID ) );
         //$permalink = "http://facebook.com";
         //$permalink = 'http://techcrunch.com/2012/10/02/google-announces-new-lightbox-ad-format-advertisers-only-pay-when-users-expand-the-ad/';
@@ -1597,11 +1598,12 @@ EOF;
             $last_fb_time = get_post_meta($postID, 'fb_last_comment_time', true);
 
         $url = "https://graph.facebook.com/search?q=". $permalink ."&type=POST&&since=".$last_fb_time;
-
+		debug($url);
         $response = wp_remote_retrieve_body( wp_remote_get( $url ) );
         $data = json_decode( $response );
 
         if ( empty( $data ) ) {
+				debug('no commments found');
                 update_post_meta( $postID, 'fb_last_comment_time', time() );
                 return; //$data;
             }
@@ -1618,6 +1620,7 @@ EOF;
                     'comment_date_gmt'     => date('Y-m-d H:i:s', strtotime( $fb_post->created_time ) ),
                     'comment_type'         => 'facebook'
                 );
+				debug(sprintf('Found new comment for post %d:', $postID, json_encode($comment)));
 
                 wp_insert_comment( $comment );
           }
