@@ -1558,6 +1558,7 @@ EOF;
             }
 
             imagefilter($im, IMG_FILTER_GRAYSCALE);
+            imagesavealpha($im,true); // perserve alpha channel
 
             switch ($extension)
             {
