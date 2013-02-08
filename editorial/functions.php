@@ -221,6 +221,50 @@ class Editorial
         add_action('admin_init', array('Editorial','set_user_metaboxes'));
         add_action('after_setup_theme', array('Editorial','theme_setup'));
 
+		// filter content (clenaup images, iframes etc.)
+		add_filter('the_content', array('Editorial', 'filterContentCleanup'));
+    }
+    
+    /**
+     * Content cleanup filter
+     *
+     * @param string $content
+     * @return void
+     */
+    public static function filterContentCleanup($content)
+    {
+        // detect images and remove class and width&height params
+        preg_match_all('/(<img[^>]+>)/i', $content, $matches, PREG_SET_ORDER);
+        $toReplace = array();
+        foreach ($matches as $img)
+        {
+            // match all the things we don't want and remove them
+            $patterns = array(
+                '/class="[^"]*"/',
+                "/class='[^']*'/",
+                '/width="[^"]*"/',
+                "/width='[^']*'/",
+                "/width=\d*/",
+                '/height="[^"]*"/',
+                "/height='[^']*'/",
+                "/height=\d*/",
+            );
+            $replacements = array('', '', '', '', '', '', '', '');
+            $replaced = preg_replace($patterns, $replacements, $img[0]);
+            // save what we just replaced for later
+            if ($replaced != $img[0])
+            {
+                $toReplace[$img[0]] = $replaced;
+            }
+        }
+        
+        // remove all in one go
+        if (count($toReplace))
+        {
+            $content = str_replace(array_keys($toReplace), array_values($toReplace), $content);
+        }
+        
+        return $content;
     }
 
     public static function get_page_by_post_name($name) {
