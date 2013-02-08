@@ -5,7 +5,6 @@
  * @package    Editorial
  * @copyright  Copyright (c) 2011, Editorial
  * @link       http://www.editorialtemplate.com
- * @author     Miha Hribar
  * @version    1.0
  */
 
@@ -116,7 +115,7 @@ $translations = Editorial::getOption('translations');
 ?>
             </footer>
         </section>
-        
+
         <section id="media">
             <figure>
                 <a href="<?php echo $attachmentUrl ?>" id="to-gallery">
@@ -136,7 +135,7 @@ $translations = Editorial::getOption('translations');
                 <?php } ?>
             </figure>
         </section>
-        
+
         <section class="entry-content">
             <?php the_content(); ?>
         </section>
