@@ -74,7 +74,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 </script>
 </head>
 
-<body class="cart save trial-page">
+<body <?php body_class(); ?>>
 <?php if (!is_home() && !is_404()) { ?>
 <header id="header" role="banner">
 	<div class="adapt">
