@@ -1,9 +1,9 @@
 /*
 Theme Name: Editorial
 Theme URI: http://editorialtemplate.com/
-Description: The 2010 default theme for WordPress.
-Author: Matjaz Korosec
-Author URI: twitter.com/matjazkorosec
+Description: EDITORIAL is the ultimate WordPress theme designed specially for digital magazines.
+Author: Editorial Template
+Author URI: http://editorialtemplate.com
 Version: 1.0
  _  _  ___ ___ _   _  ___
 |_ | \  |   | / \ |_)  |   /\  |
@@ -128,16 +128,16 @@ small {font-size:1em;}
 label,input[type='submit'] {cursor:pointer}
 .submit input {border:1px solid #fff;padding:7px 10px 5px;width:147px;font-family:minion-pro,georgia,serif;font-weight:600;
 font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;
-	background:#eee;
-	background:-moz-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
-	background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d7d7d7),color-stop(.5,#fff));
-	background:-o-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
-	background:-ms-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
-	background:linear-gradient(top,#fff,#fff 50%,#d7d7d7);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#d7d7d7',GradientType=0);
-	-moz-box-shadow:0 0 4px rgba(0,0,0,.5);
-	-webkit-box-shadow:0 0 4px rgba(0,0,0,.5);
-	box-shadow:0 0 4px rgba(0,0,0,.5);
+    background:#eee;
+    background:-moz-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
+    background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d7d7d7),color-stop(.5,#fff));
+    background:-o-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
+    background:-ms-linear-gradient(top,#fff,#fff 50%,#d7d7d7);
+    background:linear-gradient(top,#fff,#fff 50%,#d7d7d7);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#d7d7d7',GradientType=0);
+    -moz-box-shadow:0 0 4px rgba(0,0,0,.5);
+    -webkit-box-shadow:0 0 4px rgba(0,0,0,.5);
+    box-shadow:0 0 4px rgba(0,0,0,.5);
 }
 
 /* 4.LINKS __________________________________________________________________________________________________________ */
@@ -162,22 +162,22 @@ figcaption p {color:#a5a5a5;}
 #media-gallery header {width:100%;height:60px;background:#333;background:rgba(0,0,0,.75);position:absolute;top:0;left:0; z-index:1;}
 #logo-white {width:89px;position:absolute;top:24px;left:10px;}
 #remote {width:141px;position:absolute;top:11px;right:63px;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	-moz-box-shadow:0 1px 1px rgba(0,0,0,.65);
-	-webkit-box-shadow:0 1px 1px rgba(0,0,0,.65);
-	box-shadow:0 1px 1px rgba(0,0,0,.65);
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
+    -moz-box-shadow:0 1px 1px rgba(0,0,0,.65);
+    -webkit-box-shadow:0 1px 1px rgba(0,0,0,.65);
+    box-shadow:0 1px 1px rgba(0,0,0,.65);
 }
 #remote li {float:left;}
 #m-prev {
-	-moz-border-radius-topleft:20px;
-	-webkit-border-top-left-radius:20px;
-	border-top-left-radius:20px;
-	-moz-border-radius-bottomleft:20px;
-	-webkit-border-bottom-left-radius:20px;
-	border-bottom-left-radius:20px;
-	border-right-color:#b2b2b2;border-right-color:rgba(0,0,0,.35);}
+    -moz-border-radius-topleft:20px;
+    -webkit-border-top-left-radius:20px;
+    border-top-left-radius:20px;
+    -moz-border-radius-bottomleft:20px;
+    -webkit-border-bottom-left-radius:20px;
+    border-bottom-left-radius:20px;
+    border-right-color:#b2b2b2;border-right-color:rgba(0,0,0,.35);}
 #m-prev.disabled {opacity:.7;}
 #m-prev span {width:48px;background-position:14px 10px;}
 #m-prev.disabled span {background-position:14px -25px;}
@@ -185,24 +185,24 @@ figcaption p {color:#a5a5a5;}
 #m-slide span {width:39px;background-position:-36px 10px;}
 #m-slide.running span {background-position:-76px 10px;}
 #m-next {
-	-moz-border-radius-topright:20px;
-	-webkit-border-top-right-radius:20px;
-	border-top-right-radius:20px;
-	-moz-border-radius-bottomright:20px;
-	-webkit-border-bottom-right-radius:20px;
-	border-bottom-right-radius:20px;
-	border-left-color:#666;}
+    -moz-border-radius-topright:20px;
+    -webkit-border-top-right-radius:20px;
+    border-top-right-radius:20px;
+    -moz-border-radius-bottomright:20px;
+    -webkit-border-bottom-right-radius:20px;
+    border-bottom-right-radius:20px;
+    border-left-color:#666;}
 #m-next.disabled {opacity:.7;}
 #m-next.disabled span {background-position:-119px -24px;}
 #m-next span {width:48px;background-position:-118px 10px;}
 #m-back,.m-toggle,.m-embed {
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	-moz-box-shadow:0 0 2px #000;
-	-webkit-box-shadow:0 0 2px #000;
-	box-shadow:0 0 2px #000;
-	position:absolute;top:12px;}
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
+    -moz-box-shadow:0 0 2px #000;
+    -webkit-box-shadow:0 0 2px #000;
+    box-shadow:0 0 2px #000;
+    position:absolute;top:12px;}
 #m-back {bottom:inherit;top:11px;right:10px;z-index:1;}
 #m-back span {width:40px;background-position:-170px 11px;}
 #m-back b,#m-back em {display:none;}
@@ -215,25 +215,25 @@ figcaption p {color:#a5a5a5;}
 .m-embed span {width:38px;background-position:-79px -62px;}
 
 .m-button {border:1px solid #585856;outline:none;
-	background:#ececec;
-	background:-moz-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
-	background:-webkit-gradient(linear,left top,left bottom,from(rgba(192,192,192,.45)),to(rgba(255,255,255,.05)));
-	background:-o-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
-	background:-ms-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
-	background:linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
-	display:block;}
+    background:#ececec;
+    background:-moz-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
+    background:-webkit-gradient(linear,left top,left bottom,from(rgba(192,192,192,.45)),to(rgba(255,255,255,.05)));
+    background:-o-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
+    background:-ms-linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
+    background:linear-gradient(top,rgba(192,192,192,.45),rgba(255,255,255,.05));
+    display:block;}
 .m-button span {height:38px;display:block;text-indent:-999em;}
 .pressed {border-color:#f4f4f4;border-color:rgba(255,255,255,.2);
-	background:#f3f3f3;
-	background:-moz-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
-	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.1)),to(rgba(255,255,255,.1)),
-	color-stop(.5,rgba(255,255,255,.15)));
-	background:-o-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
-	background:-ms-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
-	background:linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
-	-moz-box-shadow:inset 0 5px 5px #000;
-	-webkit-box-shadow:inset 0 5px 5px #000;
-	box-shadow:inset 0 5px 5px #000;
+    background:#f3f3f3;
+    background:-moz-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
+    background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.1)),to(rgba(255,255,255,.1)),
+    color-stop(.5,rgba(255,255,255,.15)));
+    background:-o-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
+    background:-ms-linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
+    background:linear-gradient(top,rgba(255,255,255,.1),rgba(255,255,255,.1) 50%,rgba(255,255,255,.15));
+    -moz-box-shadow:inset 0 5px 5px #000;
+    -webkit-box-shadow:inset 0 5px 5px #000;
+    box-shadow:inset 0 5px 5px #000;
 }
 
 #loading {display:none;}
@@ -310,9 +310,9 @@ color:#999;text-transform:uppercase;display:block;}
 /* 8.BANNER _________________________________________________________________________________________________________ */
 
 #header,.content {border-bottom:1px solid #bfbfbf;
-	-moz-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
-	-webkit-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
-	box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
+    -moz-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
+    -webkit-box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
+    box-shadow:0 10px 10px -10px rgba(0,0,0,.3);
 }
 .notfound #header,.notfound .content {border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
 #header {margin:0 0 18px;}
@@ -455,18 +455,18 @@ background-position:0 -220px;}
 #embed-code {margin:0 0 20px;width:100%;color:#999;}
 
 .favorize label,.score,.coin {border:1px solid #bfbfbf;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
 }
 .favorize label {margin:0 5px 0 0;
-	background:#ddd;
-	background:-moz-linear-gradient(top,#fff,#fff 55%,#ddd);
-	background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ddd),color-stop(0.55,#fff));
-	background:-o-linear-gradient(top,#fff,#fff 55%,#ddd);
-	background:-ms-linear-gradient(top,#fff,#fff 55%,#ddd);
-	background:linear-gradient(top,#fff,#fff 55%,#ddd);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#dddddd',GradientType=0);
+    background:#ddd;
+    background:-moz-linear-gradient(top,#fff,#fff 55%,#ddd);
+    background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ddd),color-stop(0.55,#fff));
+    background:-o-linear-gradient(top,#fff,#fff 55%,#ddd);
+    background:-ms-linear-gradient(top,#fff,#fff 55%,#ddd);
+    background:linear-gradient(top,#fff,#fff 55%,#ddd);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#dddddd',GradientType=0);
 display:block;float:left;}
 .favorize fieldset {float:left;position:relative;}
 .favorize input {margin:2px 5px 0 0;float:left;}
@@ -663,10 +663,10 @@ h1 {margin:0 0 22px;}
 #remote {margin-left:-76px;top:9px;left:50%;}
 /*#logo-white {left:auto;right:14px;}*/
 /*#m-back {*/
-	/*-moz-border-radius:0;*/
-	/*-webkit-border-radius:0;*/
-	/*border-radius:0;*/
-	/*border:none;box-shadow:none;background:none;left:14px;top:26px;bottom:auto;z-index:2;}*/
+    /*-moz-border-radius:0;*/
+    /*-webkit-border-radius:0;*/
+    /*border-radius:0;*/
+    /*border:none;box-shadow:none;background:none;left:14px;top:26px;bottom:auto;z-index:2;}*/
 /*#m-back span {width:auto;height:auto;font:10px helvetica,arial,sans-serif;color:#fff;text-transform:uppercase;*/
 /*text-indent:0;background:none;}*/
 /*#media-elements h2 {margin:14px 14px 5px;width:50%;float:left;}*/
@@ -730,9 +730,9 @@ h1 {margin:0 0 22px;}
 #tabs {overflow:hidden;}
 #tabs ul {margin:0 0 0 -3px;border-top:1px solid #a6a6a6;}
 #tabs li {text-decoration:none;background:none;
-	-moz-box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
-	-webkit-box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
-	box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
+    -moz-box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
+    box-shadow:inset 3px 3px 3px rgba(0,0,0,.2);
 }
 #tabs .selected {display:block;}
 #tabs .no-feedback li {width:50%;}
@@ -965,38 +965,38 @@ position:absolute;top:12px;left:38px;}
 #layout {width:48%;text-transform:uppercase;display:block;position:absolute;top:22px;right:0;}
 #layout p {margin:0 0 3px;float:right;}
 .switch {margin:0 0 20px;padding:2px;height:26px;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	-ms-border-radius:3px;
-	border-radius:3px;
-	background:#e2e2e2;
-	background:-moz-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
-	background:-webkit-gradient(linear,left top,left bottom,from(#999),to(#e6e6e6),color-stop(.5,#f3f3f3));
-	background:-o-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
-	background:-ms-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
-	background:linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999',endColorstr='#e6e6e6',GradientType=0);
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    -ms-border-radius:3px;
+    border-radius:3px;
+    background:#e2e2e2;
+    background:-moz-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
+    background:-webkit-gradient(linear,left top,left bottom,from(#999),to(#e6e6e6),color-stop(.5,#f3f3f3));
+    background:-o-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
+    background:-ms-linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
+    background:linear-gradient(top,#999,#f3f3f3 50%,#e6e6e6);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999',endColorstr='#e6e6e6',GradientType=0);
 clear:both;float:right;}
 #layout li {padding:0;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	-ms-border-radius:3px;
-	border-radius:3px;
-	opacity:.5;float:left;}
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    -ms-border-radius:3px;
+    border-radius:3px;
+    opacity:.5;float:left;}
 #layout a {padding:7px 10px 5px 30px;color:#595959;text-shadow:1px 1px 0 #fff;display:block;}
 #layout .list {background-position:11px -113px;}
 #layout .grid {background-position:-89px -113px;}
 #layout .selected {opacity:1;
-	background:#f6f6f6;
-	background:-moz-linear-gradient(top,#fff,#fff 40%,#d6d6d6);
-	background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d6d6d6),color-stop(.4,#fff));
-	background:-o-linear-gradient(top,#fff,#fff 40%,#d6d6d6);
-	background:-ms-linear-gradient(top,#fff,#fff 40%,#d6d6d6);
-	background:linear-gradient(top,#fff,#fff 40%,#d6d6d6);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#d6d6d6',GradientType=0);
-	-moz-box-shadow:0 0 2px rgba(0,0,0,.8);
-	-webkit-box-shadow:0 0 2px rgba(0,0,0,.8);
-	box-shadow:0 0 2px rgba(0,0,0,.8);
+    background:#f6f6f6;
+    background:-moz-linear-gradient(top,#fff,#fff 40%,#d6d6d6);
+    background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#d6d6d6),color-stop(.4,#fff));
+    background:-o-linear-gradient(top,#fff,#fff 40%,#d6d6d6);
+    background:-ms-linear-gradient(top,#fff,#fff 40%,#d6d6d6);
+    background:linear-gradient(top,#fff,#fff 40%,#d6d6d6);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#d6d6d6',GradientType=0);
+    -moz-box-shadow:0 0 2px rgba(0,0,0,.8);
+    -webkit-box-shadow:0 0 2px rgba(0,0,0,.8);
+    box-shadow:0 0 2px rgba(0,0,0,.8);
 }
 
 .inside-portrait #to-gallery {width:70%;}
