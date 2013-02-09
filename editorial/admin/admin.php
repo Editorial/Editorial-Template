@@ -854,7 +854,7 @@ class Editorial_Admin
 // add admin capabilites
 $Editorial = new Editorial_Admin();
 
-add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
+//add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
 /**
  * Register the required plugins for this theme.
  *
@@ -882,6 +882,11 @@ function my_theme_register_required_plugins() {
         array(
             'name' 		=> 'Disqus Comment System',
             'slug' 		=> 'disqus-comment-system',
+            'required' 	=> false,
+        ),
+        array(
+            'name' 		=> 'Social',
+            'slug' 		=> 'social',
             'required' 	=> false,
         ),
     );

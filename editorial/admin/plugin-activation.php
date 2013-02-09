@@ -69,7 +69,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
           *
           * @var string Parent menu slug. Defaults to 'themes.php'.
           */
-        public $parent_menu_slug = 'themes.php';
+        public $parent_menu_slug = 'admin.php';
 
         /**
           * Parent URL slug for URL references.
@@ -81,7 +81,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
           *
           * @var string Parent URL slug. Defaults to 'themes.php'.
           */
-        public $parent_url_slug = 'themes.php';
+        public $parent_url_slug = 'admin.php';
 
         /**
           * Name of the querystring argument for the admin page.
@@ -90,7 +90,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
           *
           * @var string
           */
-        public $menu = 'install-required-plugins';
+        public $menu = 'editorial-comments';
 
         /**
          * Text domain for localization support.
@@ -126,7 +126,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
          *
          * @var boolean
          */
-        public $is_automatic = false;
+        public $is_automatic = true;
 
         /**
          * Optional message to display before the plugins table.
@@ -404,7 +404,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
          *
          * @return boolean True on success, false on failure
          */
-        protected function do_plugin_install() {
+        public function do_plugin_install() {
 
             /** All plugin information will be stored in an array for processing */
             $plugin = array();
@@ -495,28 +495,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
                     }
                 }
 
-                /** Display message based on if all plugins are now active or not */
-                $complete = array();
-                foreach ( $this->plugins as $plugin ) {
-                    if ( ! is_plugin_active( $plugin['file_path'] ) ) {
-                        echo '<p><a href="' . add_query_arg( 'page', $this->menu, admin_url( $this->parent_url_slug ) ) . '" title="' . esc_attr( $this->strings['return'] ) . '" target="_parent">' . __( $this->strings['return'], $this->domain ) . '</a></p>';
-                        $complete[] = $plugin;
-                        break;
-                    }
-                    /** Nothing to store */
-                    else {
-                        $complete[] = '';
-                    }
-                }
-
-                /** Filter out any empty entries */
-                $complete = array_filter( $complete );
-
-                /** All plugins are active, so we display the complete string and hide the plugin menu */
-                if ( empty( $complete ) ) {
-                    echo '<p>' .  sprintf( $this->strings['complete'], '<a href="' . admin_url() . '" title="' . __( 'Return to the Dashboard', $this->domain ) . '">' . __( 'Return to the Dashboard', $this->domain ) . '</a>' ) . '</p>';
-                    echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
-                }
+                // redirect back to editorial
+                printf(
+                    '<script type="text/javascript">window.location.href = "%s%s";</script>',
+                    get_admin_url(),
+                    'admin.php?page=editorial-comments&installed=1'
+                );
 
                 return true;
             }

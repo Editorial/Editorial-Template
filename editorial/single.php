@@ -138,7 +138,7 @@ $translations = Editorial::getOption('translations');
 
         <section class="entry-content">
             <?php
-            if (Editorial::getCommentSystem() == Editorial::COMMENT_FACEBOOK)
+            if (class_exists('Facebook_Comments'))
             {
                 // remove fb comment box from filters -> we're showing it on a separate page
                 $priority = apply_filters( 'facebook_content_filter_priority', 30 );
