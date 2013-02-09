@@ -75,8 +75,8 @@
 $translations = Editorial::getOption('translations');
 ?>
 <?php if (Editorial::getOption('typekit-kit')) { ?>
-<script src="http://use.typekit.com/<?php echo Editorial::getOption('typekit-kit');?>.js"></script>
-<script>try{Typekit.load();}catch(e){}</script>
+<script type="text/javascript" src="//use.typekit.com/<?php echo Editorial::getOption('typekit-kit');?>.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php } ?>
 <?php } ?>
 </head>
@@ -85,46 +85,46 @@ $translations = Editorial::getOption('translations');
 
 <?php if (!$isMobileGallery) { ?>
 <header id="header" class="clear" role="banner">
-	<h1 id="brand" class="vcard">
-		<a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
-			<img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small') ?>" alt="<?php bloginfo('name'); ?>">
-		</a>
-	</h1>
-	<form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
-		<fieldset>
-			<legend class="v-hidden"><?php echo $translations['search']['search']; ?></legend>
-			<label for="query" class="v-hidden"><?php echo $translations['search']['query']; ?></label>
-			<input type="search" id="query" name="s" placeholder="<?php echo $translations['search']['search']; ?>" value="<?php echo get_search_query(); ?>">
-			<input type="submit" id="find" class="ir" value="<?php echo $translations['search']['search']; ?>">
-		</fieldset>
-	</form>
+    <h1 id="brand" class="vcard">
+        <a href="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>" class="url">
+            <img class="fn org logo" src="<?php echo is_home() ? Editorial::getOption('logo-big') : Editorial::getOption('logo-small') ?>" alt="<?php bloginfo('name'); ?>">
+        </a>
+    </h1>
+    <form id="search" role="search" method="get" action="<?php echo (defined('WP_SITEURL'))? WP_SITEURL : get_bloginfo('url'); ?>">
+        <fieldset>
+            <legend class="v-hidden"><?php echo $translations['search']['search']; ?></legend>
+            <label for="query" class="v-hidden"><?php echo $translations['search']['query']; ?></label>
+            <input type="search" id="query" name="s" placeholder="<?php echo $translations['search']['search']; ?>" value="<?php echo get_search_query(); ?>">
+            <input type="submit" id="find" class="ir" value="<?php echo $translations['search']['search']; ?>">
+        </fieldset>
+    </form>
 <?php
-	// show main navigation if not on 404 page
-	if ($EditorialId != 'notfound')
-	{
-		$settings = array(
-			'theme_location' => 'main-nav',
-			'container'      => false,
-			'menu_class'     => '',
-			'menu_id'        => '',
-			'depth'          => 1,
-			'walker'         => new EditorialNav(),
-			'echo'           => false,
-		);
-		$menu = wp_nav_menu($settings);
-		// looks weird, but this is the only way to count them bastards.
-		$menuItems = substr_count($menu,'<li');
-		if ($menuItems > 5)
-		{
-			// we're hoarding
-			$settings['menu_class'] = 'hoarding';
-			$menu = wp_nav_menu($settings);
-		}
-		echo '	<nav id="primary" role="navigation">
-		'.$menu.'
-	</nav>
+    // show main navigation if not on 404 page
+    if ($EditorialId != 'notfound')
+    {
+        $settings = array(
+            'theme_location' => 'main-nav',
+            'container'      => false,
+            'menu_class'     => '',
+            'menu_id'        => '',
+            'depth'          => 1,
+            'walker'         => new EditorialNav(),
+            'echo'           => false,
+        );
+        $menu = wp_nav_menu($settings);
+        // looks weird, but this is the only way to count them bastards.
+        $menuItems = substr_count($menu,'<li');
+        if ($menuItems > 5)
+        {
+            // we're hoarding
+            $settings['menu_class'] = 'hoarding';
+            $menu = wp_nav_menu($settings);
+        }
+        echo '	<nav id="primary" role="navigation">
+        '.$menu.'
+    </nav>
 ';
-	}
+    }
 ?>
 </header>
 <?php } ?>
