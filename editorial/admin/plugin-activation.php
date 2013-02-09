@@ -495,6 +495,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
                     }
                 }
 
+                // if plugin is social force default theme comments
+                if ($plugin['slug'] == 'social' && !get_option('social_use_standard_comments'))
+                {
+                    update_option('social_use_standard_comments', 1);
+                }
+
                 // redirect back to editorial
                 printf(
                     '<script type="text/javascript">window.location.href = "%s%s";</script>',

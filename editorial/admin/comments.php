@@ -43,6 +43,12 @@ else
         $tmg->plugins = array($activate);
         $tmg->force_activation();
 
+        // if plugin is social force default theme comments
+        if ($type == 'social' && !get_option('social_use_standard_comments'))
+        {
+            update_option('social_use_standard_comments', 1);
+        }
+
         printf(
             '<div class="updated fade"><p>Plugin %s activated.</p></div>',
             $activate['name']
