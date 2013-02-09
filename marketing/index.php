@@ -12,7 +12,7 @@ get_header(); ?>
 	<div class="adapt">
 		<hgroup id="brand">
 			<h1><em>Edit</em>orial</h1>
-			<h2 class="note">is the ultimate WordPress theme designed specially for digital magazines.</h2>
+			<h2 class="note">is the ultimate WordPress theme <span>designed specially for digital magazines.</span></h2>
 		</hgroup>
 		<p id="cta"><a href="http://demo.editorialtemplate.com/">view live demo</a>.</p>
 	</div>

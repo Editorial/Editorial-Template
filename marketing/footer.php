@@ -22,7 +22,7 @@ if (!is_404())
 	<div class="try-and-buy">
 		<h2><em>Price <span>&amp;</span> licencing</em></h2>
 		<section class="licencing">
-			<p class="early-bird">Exculsive early bird prices for the first 1000 licences:</p>
+			<p class="early-bird"><strong>Exculsive early bird prices</strong> for the first 1000 licences:</p>
 			<ul class="price-flow pf-mobile">
 				<li class="line-1 step-1 current">
 					<em>&euro;10</em>

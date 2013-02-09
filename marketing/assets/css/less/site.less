@@ -331,13 +331,25 @@ body {
 		font-size: 24px;
 		line-height: 24px;
 		text-align: center;
-		background-position: 400px 400px;
+		position: relative;
 
 		em {
+			padding: 0 15px;
+			background: #f7f7f7;
 			font-style: normal;
-
+			
 			span {
 				font-style: italic;
+			}
+
+			&:before {
+				content: '';
+				border-top: 1px solid #ccc;
+				position: absolute;
+				top: 14px;
+				left: 0;
+				right: 0;
+				z-index: -1;
 			}
 		}
 	}
