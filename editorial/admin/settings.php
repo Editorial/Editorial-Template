@@ -113,6 +113,10 @@ fieldset.e-translations textarea{
     display: block;
 }
 
+#comment_provider p img {
+    float: right;
+    padding: 0 1em 0 1em;
+}
 
 </style>
 <div id="editorial" class="wrap">
@@ -130,7 +134,7 @@ jQuery(document).ready(function(){
     jQuery('#comment_provider select').change(function() {
         jQuery('#comment_provider .provider').hide();
         jQuery('#comments_'+jQuery(this).val()).show();
-    });
+    }).change();
 });
 
 

@@ -501,6 +501,15 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
                     update_option('social_use_standard_comments', 1);
                 }
 
+                // if plugin activated is facebook enable facebook comments
+                if ($plugin['slug'] == 'facebook' && !get_option('facebook_comments_enabled'))
+                {
+                    $opt = get_option('facebook_post_features');
+                    $opt['comments'] = 1;
+                    update_option('facebook_post_features', $opt);
+                    update_option('facebook_comments_enabled', 1);
+                }
+
                 // redirect back to editorial
                 printf(
                     '<script type="text/javascript">window.location.href = "%s%s";</script>',

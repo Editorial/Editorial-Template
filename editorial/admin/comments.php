@@ -49,6 +49,15 @@ else
             update_option('social_use_standard_comments', 1);
         }
 
+        // if plugin activated is facebook enable facebook comments
+        if ($type == 'facebook' && !get_option('facebook_comments_enabled'))
+        {
+            $opt = get_option('facebook_post_features');
+            $opt['comments'] = 1;
+            update_option('facebook_post_features', $opt);
+            update_option('facebook_comments_enabled', 1);
+        }
+
         printf(
             '<div class="updated fade"><p>Plugin %s activated.</p></div>',
             $activate['name']
@@ -100,7 +109,8 @@ else
                     <h3 class="hndle"><span><?php _e('Social integration', 'Editorial'); ?></span></h3>
                     <div class="inside">
                         <div class="table table_content">
-                            <p>Brought to you by Mailchimp, Social Plugin for Wordpress is a perfect companion to the Editorial theme. Integrate WordPress with Twitter and Facebook, so you can collect everything people are saying about your blog in one place.</p>
+                            <p>Brought to you by <a href="http://mailchimp.com/" rel="nofollow">MailChimp</a>, <a href="http://mailchimp.com/social-plugin-for-wordpress/" rel="nofollow">Social</a> is a lightweight plugin that handles a lot of the heavy lifting of making your blog seamlessly integrate with social networking sites <a href="http://twitter.com/" rel="nofollow">Twitter</a> and <a href="http://facebook.com/" rel="nofollow">Facebook</a>.</p>
+                            <p>When publishing to Facebook and Twitter, the discussion is likely to continue there. Through Social, we can aggregate the various mentions, retweets, @replies, comments and responses and republish them as WordPress comments.</p>
                             <?php
 
                             $plugins = get_plugins();
@@ -158,6 +168,7 @@ else
                 <h3 class="hndle"><span><?php _e('Disqus integration', 'Editorial'); ?></span></h3>
                 <div class="inside">
                     <div class="table table_content">
+                        <p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/admin/disqus.png" /> Disqus, pronounced "discuss", is a service and tool for web comments and discussions. Disqus makes commenting easier and more interactive, while connecting websites and commenters across a thriving discussion community.</p>
                         <p>The Disqus comment system replaces your WordPress comment system with your comments hosted and powered by Disqus.</p>
                         <?php
 
@@ -202,7 +213,7 @@ else
                 <h3 class="hndle"><span><?php _e('Facebook integration', 'Editorial'); ?></span></h3>
                 <div class="inside">
                     <div class="table table_content">
-                        <p>Make your WordPress site social in a couple of clicks, powered by Facebook.</p>
+                        <p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/admin/facebook.png" /> The Facebook plugin for WordPress adds Facebook social plugins to your WordPress site. Associate your WordPress site with a free Facebook application identifier to enable advanced features such as automatically sharing new posts to an author's Facebook timeline or your site's Facebook page. This plugin is developed by Facebook with extra support for popular plugins and themes.</p>
                         <?php
 
                         $fb = 'facebook/facebook.php';
