@@ -291,20 +291,20 @@ box-shadow:         0px -5px 12px red;
   /* touch-gallery ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   .touch-gallery .items .left {
     width: auto;
-    height: 80px;
-    top: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: none;
-  }
-  .touch-gallery .items .right {
-    width: auto;
     top: 0;
     left: 0;
     right: 0;
     bottom: auto;
     height: 80px;
+    display: none;
+  }
+  .touch-gallery .items .right {
+    width: auto;
+    height: 80px;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: none;
   }
   .touch-gallery .items .right .close-button {
