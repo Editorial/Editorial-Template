@@ -25,30 +25,27 @@ the_post();
 				$Trial = new Trial();
 				try {
 					$Trial->insert($_POST['trial_email']);
-					echo '			<div class="trial-success">Thank you for applying!</div>';
+					echo '			<h2 class="trial-success">Thank you for applying!</h2>';
 					$success = true;
 				} catch(Exception $e) {
-					echo '			<div class="trial-error">' . $e->getMessage() . '</div>';
+					echo '			<p class="trial-error">' . $e->getMessage() . '</p>';
 				}
 			}
 			if($success == false) {
 ?>
-			<div class="trial-form">
-				<form action="/trial/" method="post">
-					<p><input type="email" name="trial_email"><input type="submit" value="Apply"></p>
-				</form>
-			</div>
-<?php } ?>
-<!--
-			<form class="nl-form" method="post">
-				<label for="nl-email">Your e-mail address</label>
-				<input type="text" name="nl-email" id="nl-email">
-				<input type="checkbox" name="nl-newsletter" id="nl-newsletter">
-				<label for="nl-newsletter">Subscribe to Editorial newsletter and be the first to find about
-				special offers, tips & tricks and updates.</label>
-				<input type="submit" value="Start free trial">
+			<form class="trial-form" action="/trial/" method="post">
+				<fieldset class="get-trial">
+					<label for="trial_email">Your e-mail address</label>
+					<input type="email" name="trial_email" id="trial_email">
+				</fieldset>
+				<fieldset class="subscribe">
+					<input type="checkbox" name="t-newsletter" id="t-newsletter">
+					<label for="t-newsletter">Subscribe to Editorial newsletter and be the first to find about
+					special offers, tips & tricks and updates.</label>
+				</fieldset>
+				<input type="submit" class="submit" value="Start free trial">
 			</form>
--->
+<?php } ?>
 		</div>
 	</section>
 </div>

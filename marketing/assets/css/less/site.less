@@ -1892,15 +1892,6 @@ div.wpcf7 img.ajax-loader {
 	}
 }
 
-.trial-page {
-	.order {
-		.help {
-			font-size: 13px;
-			line-height: 20px;
-		}
-	}
-}
-
 
 /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -2597,3 +2588,84 @@ div.wpcf7 img.ajax-loader {
 }
 
 /* </end> 07 FEATURES =============================================================================================== */
+
+
+
+/* <start> 08 TRIAL PAGE ============================================================================================ */
+
+.trial-form {
+	.get-trial {
+		text-align: center;
+
+		label {
+			margin: 0 0 11px;
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			color: #333;
+		}
+
+		input {
+			margin: 0 auto;
+			border: 1px solid #a6a6a6;
+			border-color:#a6a6a6 #d9d9d9 #d9d9d9 #a6a6a6;
+			padding: 8px 12px;
+			width: 326px;
+			.box-shadow(0 1px 18px rgba(0, 153, 204, .35));
+		}
+	}
+
+	.subscribe {
+		padding: 16px 0 0;
+
+		input {
+			float: left;
+		}
+
+		label {
+			margin: 0 0 16px;
+			width: 302px;
+			font-size: 12px;
+			line-height: 15px;
+			color: #999;
+			float: right;
+		}
+	}
+
+	.submit {
+		margin: 0 auto;
+		width: 160px;
+		.redButton();
+		padding: 13px 0;
+		border: none;
+		.double-box-shadow(1px 0 1px rgba(0, 0, 0, .5), 0 2px 4px rgba(0, 0, 0, .3));
+	}
+}
+
+.trial-page {
+	.order {
+		.help {
+			font-size: 13px;
+			line-height: 20px;
+		}
+
+		.action {
+			margin: 0 auto 0;
+			padding: 33px 0 20px;
+			width: 328px;
+			background: url(../images/dsg/get-trial.png) 63px 0 no-repeat;
+
+			.trial-error {
+				margin: -20px 0 0;
+				color: #d00;
+			}
+
+			.trial-success {
+				margin: 55px 0 100px;
+				text-align: center;
+			}
+		}
+	}
+}
+
+/* </end> 07 TRIAL PAGE ============================================================================================= */
