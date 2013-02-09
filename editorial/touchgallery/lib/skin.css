@@ -228,7 +228,7 @@ body {
   text-indent: -999em;
   position: static;
 }
-.touch-gallery .items .video {
+.touch-gallery .items .slide-done {
   background: #323335 url(img/bgr.png) 0 0 repeat;
 }
 .touch-gallery .poster {
