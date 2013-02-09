@@ -79,7 +79,7 @@ background-color:transparent;}
 
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
-h1,h1 a,h2,h2 a,h3,h4,h5,h6 {font-weight:normal;color:#262626;}
+h1,h1 a,h2,h2 a,h3,h4,h5,h6 {/*font-weight:normal;*/color:#262626;}
 .home h1,.home-portrait h1,.featured h2,#comments cite,#paging .more,#embed h4,.message .lead,#common h2,#team .fn,
 address .fn,.entry-content h2,#try {font-family:minion-pro,georgia,serif;font-weight:600;}
 .home h1,.home-portrait h1,.featured h2,#comments cite,#paging .more {color:#ccc;text-decoration:underline;}
