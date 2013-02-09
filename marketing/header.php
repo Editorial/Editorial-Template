@@ -20,10 +20,10 @@
  Based on: 320 and Up boilerplate extension
 
 -->
-<!--[if IEMobile 7 ]><html class="iem7" manifest="default.appcache?v=1"><![endif]-->
-<!--[if IE 7 ]><html class="ie7" lang="en"><![endif]-->
-<!--[if IE 8 ]><html class="ie8" lang="en"><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<!--[if IEMobile 7 ]><html class="iem7<?php if (is_home()) { echo 'home-bgr'; } ?>" manifest="default.appcache?v=1"><![endif]-->
+<!--[if IE 7 ]><html class="ie7<?php if (is_home()) { echo 'home-bgr'; } ?>" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie8<?php if (is_home()) { echo 'home-bgr'; } ?>" lang="en"><![endif]--><!-- add below to html!! manifest="default.appcache?v=1" -->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="<?php if (is_home()) { echo 'home-bgr'; } ?>" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <title><?php
@@ -74,7 +74,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 </script>
 </head>
 
-<body <?php body_class(); ?>>
+<body class="cart save trial-page">
 <?php if (!is_home() && !is_404()) { ?>
 <header id="header" role="banner">
 	<div class="adapt">

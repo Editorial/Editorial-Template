@@ -3,16 +3,16 @@
 /* root */
 
 html {
-	//overflow-y: hidden;
-	//background: @bodyBackground;
+	background: @bodyBackground;
+}
 
-	background: url(../images/bgr/bgr-home.png) 50% 0 no-repeat;
+.home-bgr {
+	background:@bodyBackground url(../images/bgr/bgr-home.png) 50% 0 no-repeat;
 }
 
 body {
 	margin: 0 auto;
 	min-width: 320px;
-	//background: @bodyBackground url(../images/bgr/body.jpg) repeat-x;
 }
 
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -81,7 +81,7 @@ body {
 	width: 100%;
 	text-align: center;
 	background: #333;
-	background: rgba(0, 0, 0, .8);
+	background: rgba(0, 0, 0, .8) url(../images/bgr/nav.png) bottom repeat-x;
 
 	hgroup {
 		margin: 0 0 31px;
@@ -176,51 +176,16 @@ body {
 	}
 }
 
-// css animations
-@import "styles/animations.less";
-
-.primary a {
-	&:hover {
-		color: #fff;
-		-moz-animation-name: glow;
-		-moz-animation-duration: 1s;
-		-moz-animation-iteration-count: infinite;
-		-moz-animation-direction: alternate;
-		-moz-animation-timing-function: ease-in-out;
-		-webkit-animation-name: glow;
-		-webkit-animation-duration: 1s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-direction: alternate;
-		-webkit-animation-timing-function: ease-in-out;
-		animation-name: glow;
-		animation-duration: 1s;
-		animation-iteration-count: infinite;
-		animation-direction: alternate;
-		animation-timing-function: ease-in-out;
-	}
-}
-
-.primary {
-	.selected {
-		a {
-			&:hover {
-				-moz-animation: none;
-				-webkit-animation: none;
-				animation: none;
-			}
-		}
-	}
-}
 
 #home {
 	a {
 		background-position: center 0;
 	}
 
-	a:hover,
-	&.selected {
-		background-position: center -56px;
-	}
+//	a:hover,
+//	&.selected {
+//		background-position: center -56px;
+//	}
 }
 
 #features {
@@ -228,12 +193,12 @@ body {
 		background-position: center -112px;
 	}
 
-	a:hover,
-	&.selected {
-		a {
-			background-position: center -168px;
-		}
-	}
+//	a:hover,
+//	&.selected {
+//		a {
+//			background-position: center -168px;
+//		}
+//	}
 }
 
 #help {
@@ -241,10 +206,10 @@ body {
 		background-position: center -224px;
 	}
 
-	a:hover,
-	&.selected a {
-		background-position: center -280px;
-	}
+//	a:hover,
+//	&.selected a {
+//		background-position: center -280px;
+//	}
 }
 
 #about {
@@ -252,10 +217,10 @@ body {
 		background-position: center -336px;
 	}
 
-	a:hover,
-	&.selected a {
-		background-position: center -392px;
-	}
+//	a:hover,
+//	&.selected a {
+//		background-position: center -392px;
+//	}
 }
 
 #purchase {
@@ -1923,6 +1888,15 @@ div.wpcf7 img.ajax-loader {
 				color: #999;
 				text-align: center;
 			}
+		}
+	}
+}
+
+.trial-page {
+	.order {
+		.help {
+			font-size: 13px;
+			line-height: 20px;
 		}
 	}
 }

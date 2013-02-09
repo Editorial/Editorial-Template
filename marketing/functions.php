@@ -129,6 +129,13 @@ function editorial_body_classes( $classes )
 		$classes[] = 'off-canvas';
 	}
 
+	if (is_page_template('page-trial.php'))
+	{
+		$classes[] = 'cart';
+		$classes[] = 'save';
+		$classes[] = 'trial-page';
+	}
+
 	/*if ( is_singular() && ! is_home() && ! is_page_template( 'showcase.php' ) && ! is_page_template( 'sidebar-page.php' ) )
 		$classes[] = 'singular';
 */

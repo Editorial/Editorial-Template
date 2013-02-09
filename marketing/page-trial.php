@@ -6,36 +6,51 @@ the_post();
 ?>
 
 <div class="content" role="main">
-	<article class="main default hentry">
-		<h1 class="entry-title"><?php the_title(); ?></h1>
-		<div class="entry-content">
+	<section class="process">
+		<header>
+			<h1><em>Free</em> trial</h1>
+		</header>
+		<figure class="trial">
+			<img src="<?php bloginfo( 'template_directory' ); ?>/assets/images/dsg/free-trial.png" alt="Free trial">
+		</figure>
+	</section>
+	<section class="order">
+		<div class="info">
 			<?php the_content(); ?>
-			<?php
-				$success = false;
-				if(isset($_POST['trial_email'])) {
-					$Trial = new Trial();
-					try {
-						$Trial->insert($_POST['trial_email']);
-						echo '<div class="trial-success">Thank you for applying!</div>';
-						$success = true;
-					} catch(Exception $e) {
-						echo '<div class="trial-error">' . $e->getMessage() . '</div>';
-					}
-				}
-				if($success == false) {
-			?>
-				<div class="trial-form">
-					<form action="/trial/" method="post">
-						<p><input type="email" name="trial_email"><input type="submit" value="Apply"></p>
-					</form>
-				</div>
-			<?php } ?>
 		</div>
-		<footer class="v-hidden">
-			<time class="published" datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
-			<a class="author include" href="#editorial">Editorial</a>
-		</footer>
-	</article>
+		<div class="action">
+<?php
+			$success = false;
+			if(isset($_POST['trial_email'])) {
+				$Trial = new Trial();
+				try {
+					$Trial->insert($_POST['trial_email']);
+					echo '			<div class="trial-success">Thank you for applying!</div>';
+					$success = true;
+				} catch(Exception $e) {
+					echo '			<div class="trial-error">' . $e->getMessage() . '</div>';
+				}
+			}
+			if($success == false) {
+?>
+			<div class="trial-form">
+				<form action="/trial/" method="post">
+					<p><input type="email" name="trial_email"><input type="submit" value="Apply"></p>
+				</form>
+			</div>
+<?php } ?>
+<!--
+			<form class="nl-form" method="post">
+				<label for="nl-email">Your e-mail address</label>
+				<input type="text" name="nl-email" id="nl-email">
+				<input type="checkbox" name="nl-newsletter" id="nl-newsletter">
+				<label for="nl-newsletter">Subscribe to Editorial newsletter and be the first to find about
+				special offers, tips & tricks and updates.</label>
+				<input type="submit" value="Start free trial">
+			</form>
+-->
+		</div>
+	</section>
 </div>
 
 <?php get_footer(); ?>
