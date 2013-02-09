@@ -24,8 +24,8 @@
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
 <?php if ($isMobileGallery) { ?>
 <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.css"/>
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/skin.css"/>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/lib/gallery.css"/>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/lib/skin.css"/>
 <script src="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.min.js"></script>
 <script src="//www.youtube.com/iframe_api"></script>
 <?php } else { ?>
