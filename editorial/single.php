@@ -137,7 +137,15 @@ $translations = Editorial::getOption('translations');
         </section>
 
         <section class="entry-content">
-            <?php the_content(); ?>
+            <?php
+            if (Editorial::getCommentSystem() == Editorial::COMMENT_FACEBOOK)
+            {
+                // remove fb comment box from filters -> we're showing it on a separate page
+                $priority = apply_filters( 'facebook_content_filter_priority', 30 );
+                remove_filter( 'the_content', array( 'Facebook_Comments', 'the_content_comments_box' ), $priority);
+            }
+            the_content();
+            ?>
         </section>
     </article>
 <?php

@@ -70,6 +70,12 @@ class Editorial
      */
     public static $commentCounter = 0;
 
+    /**
+     * Comment systems
+     */
+    const COMMENT_WORDPRESS = 0;
+    const COMMENT_DISQUS    = 1;
+    const COMMENT_FACEBOOK  = 2;
 
     /**
     * default translations
@@ -958,18 +964,20 @@ EOF;
     {
         $thumbId = get_post_thumbnail_id($postId);
         $commentCount = get_comments_number($postId);
+        if ($commentCount == -1) $commentCount = 0; // fb fix
         $attachmentCount = count(get_children(array('post_parent' => $postId)));
         $translations = self::getOption('translations');
+        $comments = comments_open() || self::getCommentSystem() != self::COMMENT_WORDPRESS;
 ?>
     <nav id="tabs" role="navigation">
-        <ul <?php echo comments_open() ? "" : "class='no-feedback'" ?>>
+        <ul <?php echo $comments ? "" : "class='no-feedback'" ?>>
             <li<?php echo $selected == 'article' ?  ' class="selected"' : '' ?>>
                 <a href="<?php echo get_permalink($postId); ?>"><?php echo $translations['single_article']['Article']; ?></a>
             </li>
             <li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
                 <a href="<?php echo get_attachment_link($thumbId); ?>"><?php echo $translations['single_article']['Gallery'];  echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
             </li>
-            <?php if (comments_open()) { ?>
+            <?php if ($comments) { ?>
             <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
                 <a href="<?php echo self::commentsLink($postId); ?>"><?php echo $translations['single_article']['Feedback'];  echo $commentCount ? ' <em>'.$commentCount.'</em>' : ''; ?></a>
             </li>
@@ -1609,6 +1617,35 @@ EOF;
     {
         parse_str(parse_url( $url, PHP_URL_QUERY ), $vars);
         return $vars['v'];
+    }
+
+    /**
+     * Get comment system is use
+     *
+     * @uses self::COMMENT_WORDPRESS
+     * @uses self::COMMENT_DISQUS
+     * @uses self::COMMENT_FACEBOOK
+     * @return int
+     */
+    public static function getCommentSystem()
+    {
+        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        $system = self::COMMENT_WORDPRESS;
+        if (is_plugin_active('disqus-comment-system/disqus.php'))
+        {
+            $system = self::COMMENT_DISQUS;
+        }
+        else if (is_plugin_active('facebook/facebook.php'))
+        {
+            $options = get_option('facebook_post_features');
+            $enabled = get_option('facebook_comments_enabled');
+            if ($enabled && isset($options['comments']) && $options['comments'])
+            {
+                $system = self::COMMENT_FACEBOOK;
+            }
+        }
+
+        return $system;
     }
 }
 
