@@ -10,16 +10,13 @@ $valid_plugins = array(
 
 if (isset($_GET['plugin']) && in_array($_GET['plugin'], $valid_plugins))
 {
-    // save which plugin we are installing
-    Editorial::setOption('comment-plugin', $_GET['plugin']);
+    // install plugin
     $tmg->do_plugin_install();
 }
 else
 {
     if (isset($_GET['activate']) && in_array($_GET['activate'], $valid_plugins))
     {
-        // save which plugin we are activating
-        Editorial::setOption('comment-plugin', $_GET['plugin']);
         $type = $_GET['activate'];
         // by default activate disqus
         $activate = array(
@@ -99,8 +96,12 @@ else
         echo '<div class="updated fade"><p>Plugin installed and activated.</p></div>';
     }
 
-    $selected = Editorial::getOption('comment-plugin');
-    if (!$selected)
+    // forces a specific provider to open
+    if (isset($_GET['open']) && in_array($_GET['open'], $valid_plugins))
+    {
+        $selected = $_GET['open'];
+    }
+    else
     {
         $system = Editorial::getCommentSystem();
         $selected = 'social';
@@ -112,6 +113,14 @@ else
         {
             $selected = 'facebook';
         }
+    }
+
+    // check if more than one comments are open
+    $enabled = Editorial::getEnabledCommentSystems();
+    if (count($enabled) > 1)
+    {
+        $last = array_pop($enabled);
+        echo '<div class="error fade"><p>You are using more than one comment system. Please choose between '.implode(', ', $enabled).' and '.$last.'.</p></div>';
     }
 ?>
 
@@ -159,7 +168,7 @@ else
                                 if (is_plugin_inactive($social))
                                 {
                                     printf(
-                                        '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=social">Activate plugin</a></p>',
+                                        '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=social&open=social">Activate plugin</a></p>',
                                         get_admin_url()
                                     );
                                 }
@@ -221,7 +230,7 @@ else
                             if (is_plugin_inactive($disqus))
                             {
                                 printf(
-                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=discus-comment-system">Activate plugin</a></p>',
+                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=disqus&open=disqus">Activate plugin</a></p>',
                                     get_admin_url()
                                 );
                             }
@@ -266,7 +275,7 @@ else
                             if (is_plugin_inactive($fb))
                             {
                                 printf(
-                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=facebook">Activate plugin</a></p>',
+                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=facebook&open=facebook">Activate plugin</a></p>',
                                     get_admin_url()
                                 );
                             }

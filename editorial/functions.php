@@ -1647,6 +1647,34 @@ EOF;
 
         return $system;
     }
+
+    /**
+     * Get a list of enabled comment systems
+     *
+     * @return array
+     */
+    public static function getEnabledCommentSystems()
+    {
+        $enabled = array();
+        if (is_plugin_active('disqus-comment-system/disqus.php'))
+        {
+            $enabled[] = 'Disqus';
+        }
+        if (is_plugin_active('social/social.php'))
+        {
+            $enabled[] = 'Social';
+        }
+        if (is_plugin_active('facebook/facebook.php'))
+        {
+            $options = get_option('facebook_post_features');
+            $en = get_option('facebook_comments_enabled');
+            if ($en && isset($options['comments']) && $options['comments'])
+            {
+                $enabled[] = 'Facebook';
+            }
+        }
+        return $enabled;
+    }
 }
 
 /**

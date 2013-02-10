@@ -511,10 +511,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
                 }
 
                 // redirect back to editorial
+                $slug = $plugin['slug'];
+                if ($slug == 'disqus-comment-system') $slug = 'disqus';
                 printf(
                     '<script type="text/javascript">window.location.href = "%s%s";</script>',
                     get_admin_url(),
-                    'admin.php?page=editorial-comments&installed=1'
+                    'admin.php?page=editorial-comments&installed=1&open='.$slug
                 );
 
                 return true;

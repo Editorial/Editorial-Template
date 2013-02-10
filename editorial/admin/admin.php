@@ -317,8 +317,6 @@ class Editorial_Admin
                 // checkboxes are special
                 $checkboxes = array(
                     'black-and-white',
-                    'disable-admin-notices',
-                    'karma',
                 );
                 $this->_handleCheckboxes($checkboxes);
                 $this->_saveLogoImages( $_FILES );
@@ -329,6 +327,12 @@ class Editorial_Admin
                     'facebook-share',
                     'google-share',
                     //'readability-share',
+                );
+                $this->_handleCheckboxes($checkboxes);
+                break;
+            case self::PAGE_COMMENTS:
+                $checkboxes = array(
+                    'karma',
                 );
                 $this->_handleCheckboxes($checkboxes);
                 break;
