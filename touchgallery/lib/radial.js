@@ -36,6 +36,8 @@
             h      = this.height / 2;
 
         ctx.clearRect(0, 0, this.width, this.height);
+
+        if (this.value <= this.min) return;
         
         // pie slice
         ctx.beginPath();
