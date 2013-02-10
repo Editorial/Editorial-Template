@@ -1150,8 +1150,7 @@ display:block;position:absolute;right:52px;z-index:1;}
 .layout-list .featured article {margin-left:0;}
 .featured .f2,.featured .f4 {float:left;}
 .home-portrait .featured .f2,.home-portrait .featured .f4 {float:right;}
-.featured .info,.featured p {width:auto;}
-.featured .info {padding-top:0;}
+.featured .info {width:auto;padding-top:0;}
 .home-portrait .featured .info {float:none;}
 .inside-portrait .featured .info {width:auto;}
 .layout-list .featured .info {padding-top:10px;}
