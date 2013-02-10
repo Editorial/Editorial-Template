@@ -230,11 +230,9 @@
 
 	//inquiry form
 	$('form.wpcf7-form').find('h2').click(function(){
-		t = $(this);
+		var t = $(this);
 		t.toggleClass('opened');
-		t.next('div.adapt').slideToggle(function(){
-
-		});
+		t.next('div.adapt').slideToggle();
 	});
 
 })();
