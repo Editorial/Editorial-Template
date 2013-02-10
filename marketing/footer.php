@@ -253,75 +253,77 @@ if (!is_404())
 <?php
 			}
 ?>
-	<div class="adapt">
-		<nav class="support" role="navigation">
-			<div class="col">
-				<h4>Help &amp; support</h4>
-				<?php
+	<div class="bgr">
+		<div class="adapt">
+			<nav class="support" role="navigation">
+				<div class="col">
+					<h4>Help &amp; support</h4>
+					<?php
 
-				$settings = array(
-					'theme_location' => 'help-nav',
-					'container'      => false,
-					'menu_class'     => '',
-					'menu_id'        => '',
-					'depth'          => 1,
-					'walker'         => new EditorialNav(),
-				);
-				wp_nav_menu($settings);
+					$settings = array(
+						'theme_location' => 'help-nav',
+						'container'      => false,
+						'menu_class'     => '',
+						'menu_id'        => '',
+						'depth'          => 1,
+						'walker'         => new EditorialNav(),
+					);
+					wp_nav_menu($settings);
 
-				?>
-			</div>
-			<div class="col">
-				<h4>About</h4>
-				<?php
+					?>
+				</div>
+				<div class="col">
+					<h4>About</h4>
+					<?php
 
-				$settings = array(
-					'theme_location' => 'about-nav',
-					'container'      => false,
-					'menu_class'     => '',
-					'menu_id'        => '',
-					'depth'          => 1,
-					'walker'         => new EditorialNav(),
-				);
-				wp_nav_menu($settings);
+					$settings = array(
+						'theme_location' => 'about-nav',
+						'container'      => false,
+						'menu_class'     => '',
+						'menu_id'        => '',
+						'depth'          => 1,
+						'walker'         => new EditorialNav(),
+					);
+					wp_nav_menu($settings);
 
-				?>
-			</div>
-			<div class="col">
-				<h4>Legal notice</h4>
-				<?php
+					?>
+				</div>
+				<div class="col">
+					<h4>Legal notice</h4>
+					<?php
 
-				$settings = array(
-					'theme_location' => 'legal-nav',
-					'container'      => false,
-					'menu_class'     => '',
-					'menu_id'        => '',
-					'depth'          => 1,
-					'walker'         => new EditorialNav(),
-				);
-				wp_nav_menu($settings);
+					$settings = array(
+						'theme_location' => 'legal-nav',
+						'container'      => false,
+						'menu_class'     => '',
+						'menu_id'        => '',
+						'depth'          => 1,
+						'walker'         => new EditorialNav(),
+					);
+					wp_nav_menu($settings);
 
-				?>
-			</div>
-		</nav>
-		<section class="copyright">
-			<p><strong>Copyright (c) 2013 <em id="editorial" class="vcard"><a href="http://editorialtemplate.com/" class="fn org url">Editorial</a></em>.</strong></p>
-			<p>
-				Brought to you with help of
-				<span class="vcard">
-					<a href="http://twitter.com/malarkey" class="url fn nickname" target="_blank">@malarkey</a>’s
-					<span class="note">320-up boilerplate</span>,
-				</span>
-				<span class="vcard">
-					<a href="http://twitter.com/benedikrok" class="url fn nickname" target="_blank">@benedikrok</a>’s
-				 	<span class="note">icon wizardry</span>
-				</span>
-				<span class="vcard">
-					and <span class="note">photography</span> by
-					<a href="http://twitter.com/jakavinsek" class="url fn nickname" target="_blank">@jakavinsek</a>.
-				</span>
-			</p>
-		</section>
+					?>
+				</div>
+			</nav>
+			<section class="copyright">
+				<p><strong>Copyright (c) 2013 <em id="editorial" class="vcard"><a href="http://editorialtemplate.com/" class="fn org url">Editorial</a></em>.</strong></p>
+				<p>
+					Brought to you with help of
+					<span class="vcard">
+						<a href="http://twitter.com/malarkey" class="url fn nickname" target="_blank">@malarkey</a>’s
+						<span class="note">320-up boilerplate</span>,
+					</span>
+					<span class="vcard">
+						<a href="http://twitter.com/benedikrok" class="url fn nickname" target="_blank">@benedikrok</a>’s
+						<span class="note">icon wizardry</span>
+					</span>
+					<span class="vcard">
+						and <span class="note">photography</span> by
+						<a href="http://twitter.com/jakavinsek" class="url fn nickname" target="_blank">@jakavinsek</a>.
+					</span>
+				</p>
+			</section>
+		</div>
 	</div>
 </footer>
 

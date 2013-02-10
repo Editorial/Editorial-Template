@@ -30,6 +30,24 @@ Do not delete.
 <a href="" id="enquiry-cancel">Cancel and close</a> or [submit class:enquiry-button "Send Enquiry"]
 </div>
 ---------------------------------
+
+			<h2><em>Send inquiry</em></h2>
+			<div class="adapt">
+				<fieldset class="title-input">
+					<label for="msg">Dear Editorial team,</label>
+					[textarea* msg 40x3 id:msg class:enquiry-textarea watermark "I am writing about …"]
+				</fieldset>
+				<fieldset class="message-input">
+					<label for="name">Yours sincerely,</label>
+					[text* name id:name class:enquiry-text watermark "Your name"]
+					[email* uemail id:uemail class:enquiry-text watermark "Your e-mail address"]
+				</fieldset>
+				<fieldset class="action">
+					<span class="cancel"><a href="/" id="enquiry-cancel">Cancel and close</a> or</span>
+					[submit class:sendit "Send Enquiry"]
+				</fieldset>
+			</div>
+
 */
 		if($cfid) echo do_shortcode('[contact-form-7 id="' . $cfid . '" title="Enquiry"]'); ?>
 	</div>

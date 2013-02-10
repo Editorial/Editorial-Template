@@ -91,6 +91,7 @@
 	float: left;
 }
 
+#email {text-align:left;}
 
 #subscribe-form fieldset {
 	width: auto;
@@ -115,6 +116,13 @@
 	top: 270px;
 }
 
+.try-and-buy {
+	h2 {
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+}
+
 /* licencing */
 
 .licencing {
@@ -127,15 +135,20 @@
 
 .send-inquiry {
 	margin: 0 60px;
-	border: 1px solid #e8e5dc;
-	border-width: 0 1px;
-	float: left;
+	position: relative;
+
+	.wpcf7 {
+		width: 100%;
+		border: 1px solid #e8e5dc;
+		border-width: 0 1px;
+		float: left;
+	}
 }
 
 .inquiry,
 .wpcf7-form {
 	.adapt {
-		padding: 0 8%;
+		padding: 0 8% 22px;
 	}
 }
 

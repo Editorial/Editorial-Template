@@ -310,8 +310,14 @@ body {
 /* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 #footer {
-	padding: 0 0 22px;
 	text-align: center;
+
+	.bgr {
+		width: 100%;
+		padding: 10px 0 22px;
+		background: #f5fafa;
+		float: left;
+	}
 
 	h4 {
 		margin: 1px 0 2px;
@@ -327,7 +333,7 @@ body {
 	text-align: left;
 
 	h2 {
-		margin: 0 0 25px;
+		margin: 0 15px 31px;
 		font-size: 24px;
 		line-height: 24px;
 		text-align: center;
@@ -355,7 +361,7 @@ body {
 	}
 
 	p {
-		margin: 0 0 15px;
+		margin: 0 0 17px;
 		font-size: 13px;
 		line-height: 20px;
 		color: #595959;
@@ -439,7 +445,7 @@ body {
 	}
 
 	.adapt {
-		padding: 0 15px;
+		padding: 0 15px 8px;
 	}
 
 	fieldset {
@@ -463,6 +469,13 @@ body {
 
 	.opened {
 		color: #ccc5b2;
+		color: rgba(204, 197, 178, .3);
+
+		em {
+			//text-shadow:0 2px 3px rgba(0, 0, 0, .3);
+			text-shadow: none;
+			text-shadow:0 1px 1px #fff, rgba(0, 0, 0, .3);
+		}
 	}
 
 	textarea,
@@ -472,7 +485,7 @@ body {
 		padding: 0;
 		width: 100%;
 		font:bold 24px/40px @minion-pro;
-		color: #bcb6b4;
+		color: #3f2e1f;
 		font-style: italic;
 		background: url(../images/bgr/lines.png) top left;
 		outline: none;
@@ -495,7 +508,12 @@ body {
 	}
 
 	.title-input {
-		margin: 15px 0 20px;
+		margin: 9px 0 36px;
+
+		label {
+			padding: 0 0 20px;
+			display: block;
+		}
 	}
 
 	.message-input {
@@ -528,7 +546,7 @@ body {
 	}
 
 	.cancel {
-		margin: 7px 0 0;
+		margin: 10px 0 0;
 		float: left;
 	}
 
@@ -1100,6 +1118,7 @@ div.wpcf7 img.ajax-loader {
 		&:before {
 			top: 13px;
 			left: 16px;
+			background-position: -410px -238px;
 		}
 	}
 
@@ -1109,10 +1128,10 @@ div.wpcf7 img.ajax-loader {
 /* newsletter */
 
 .updates {
-	margin: 0 0 10px;
 	padding-top: 40px;
+	width: 100%;
 	background: #fff;
-	clear: both;
+	float: left;
 
 	p {
 		margin: 0 0 12px;
@@ -1131,7 +1150,7 @@ div.wpcf7 img.ajax-loader {
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
 	border-radius: 40px;
-	padding: 15px 15px 10px;
+	padding: 13px 15px 11px;
 	width: 100%;
 	font-size: 14px;
 	color: #bfbfbf;
@@ -1148,25 +1167,25 @@ div.wpcf7 img.ajax-loader {
 
 .continue {
 	margin: 0 auto;
-	border: 1px solid #fff;
-	padding: 13px 14px 10px;
+	//border: 1px solid #fff;\
+	width: 110px;
+	border: none;
+	padding: 15px 14px 11px;
 	color: #666;
 	font-size: 12px;
 	font-weight: bold;
 	text-transform: uppercase;
 	text-shadow: 0 1px 1px #fff;
-	//background: #ededed;
 	.rounded(40px);
-
-	.double-box-shadow(1px 0 1px rgba(0, 0, 0, .5), 0 2px 4px rgba(0, 0, 0, .3));
-	/*
+	background: #ededed;
 	background: #d9d9d9 url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZhZmFmYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkOWQ5ZDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background: -moz-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	background: -webkit-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	background: -o-linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	background: linear-gradient(top, #fff 0%, #fafafa 50%, #d9d9d9 100%);
 	.box-shadow(0 2px 2px rgba(0, 0, 0, .2));
-	*/
+	.double-box-shadow(0 1px 1px rgba(0, 0, 0, .3), 0 2px 5px rgba(0, 0, 0, .2));
+
 }
 
 /* connect */
