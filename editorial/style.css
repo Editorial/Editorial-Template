@@ -86,8 +86,8 @@ address .fn,.entry-content h2,#try {font-family:minion-pro,georgia,serif;font-we
 h1,h2 {margin:0 0 11px;font-size:35px;line-height:35px;}
 #common h2 {margin:6px 0 4px;font-size:22px;line-height:30px;}
 h3 {font-size:28px;margin:0 0 10px;}
-.entry-content h3 {font-size:18px;line-height:22px;font-weight:600;}
-.entry-content h4 {margin:0 0 15px;font-size:14px;line-height:20px;text-transform:uppercase;}
+.entry-content h3 {margin:0 0 22px;font-size:18px;line-height:22px;font-weight:600;}
+.entry-content h4 {margin:0 0 18px;font-size:14px;line-height:20px;text-transform:uppercase;}
 
 .notfound h1 {margin:62px 0 0;font-size:60px;line-height:70px;text-align:center;}
 .notfound h2 {margin:-100px 0 0;font-size:200px;color:#f2f2f2;text-align:center;position:relative;z-index:-1;}
@@ -113,8 +113,8 @@ ul,ol,menu {list-style:none;}
 li ul,li ol,menu li {margin:0;font-size:1em;}
 dl,dd {margin-bottom:1.5em;}
 dt{font-weight:normal;}
-.entry-content blockquote {margin:0 0 15px;padding:15px 0 0;}
-.entry-content blockquote p {padding:0 0 15px;font-size:24px;line-height:30px;color:#999;background-position:bottom;}
+.entry-content blockquote {margin:8px 0 16px;padding:27px 0 0;width:100%;float:left;}
+.entry-content blockquote p {padding:0 0 34px;font-size:24px;line-height:30px;font-style:italic;color:#999;background-position:bottom;}
 blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
 b,strong{font-weight:bold;}
 i,em {font-style:italic;font-family:minion-pro-italic;}
@@ -644,7 +644,7 @@ h1 {margin:0 0 22px;}
 
 /* 3.TYPOGRAPHY _____________________________________________________________________________________________________ */
 
-.entry-content h2 {margin:0 0 5px;font-size:22px;line-height:25px;}
+.entry-content h2 {margin:0 0 21px;font-size:22px;line-height:25px;}
 .entry-content p+ul,.entry-content p+ol {margin-top:-20px;}
 .entry-content p+table {margin-top:-10px;}
 .entry-content p {margin:0 0 25px;}
@@ -714,6 +714,7 @@ h1 {margin:0 0 22px;}
 #single,#common {padding:29px 0 0;position:relative;}
 #intro .entry-summary {margin:0 0 22px;font-size:24px;line-height:30px;}
 #single .entry-content p,#comments .show,#comments h4 {font-size:18px;line-height:25px;}
+#single .entry-content blockquote p {font-size:24px;line-height:30px;}
 #single .entry-content img {width:100% !important;height:auto !important;}
 .layout-list #single h1,.layout-grid #single h1 {margin-top:0;}
 #comments .show {font-style:italic;}

@@ -24,8 +24,8 @@
 <title><?php bloginfo('name'); ?><?php wp_title('&ndash;'); ?></title>
 <?php if ($isMobileGallery) { ?>
 <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/lib/gallery.css"/>
-<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/lib/skin.css"/>
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/lib/gallery.css">
+<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/lib/skin.css">
 <script src="<?php echo get_bloginfo('template_directory'); ?>/touchgallery/gallery.min.js"></script>
 <script src="//www.youtube.com/iframe_api"></script>
 <?php } else { ?>
@@ -75,8 +75,8 @@
 $translations = Editorial::getOption('translations');
 ?>
 <?php if (Editorial::getOption('typekit-kit')) { ?>
-<script type="text/javascript" src="//use.typekit.com/<?php echo Editorial::getOption('typekit-kit');?>.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script src="//use.typekit.com/<?php echo Editorial::getOption('typekit-kit');?>.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
 <?php } ?>
 <?php } ?>
 </head>
