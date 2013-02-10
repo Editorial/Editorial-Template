@@ -40,8 +40,8 @@ function editorial_save_post_gallery_mode_meta( $post_id, $post ) {
     /* Get the meta value of the custom field key. */
     $meta_value = get_post_meta( $post_id, $meta_key, true );
 
-	if ($new_meta_value == null || $new_meta_value == '') $new_meta_value = '0';
-	//var_dump($new_meta_value);
+    if ($new_meta_value == null || $new_meta_value == '') $new_meta_value = '0';
+    //var_dump($new_meta_value);
     /* If a new meta value was added and there was no previous value, add it. */
     if ( ($new_meta_value === '0' || $new_meta_value)  && '' == $meta_value )
         add_post_meta( $post_id, $meta_key, $new_meta_value, true );
@@ -56,15 +56,15 @@ function editorial_save_post_gallery_mode_meta( $post_id, $post ) {
 }
 /* Display the post meta box. */
     function editorial_post_gallery_mode_meta_box( $object, $box ) {
-    	$value =  get_post_meta( $object->ID, 'editorial_post_gallery_mode', true );
-    	$checked = true;
-    	if (isset($value) && $value === '0') $checked = false;
+        $value =  get_post_meta( $object->ID, 'editorial_post_gallery_mode', true );
+        $checked = true;
+        if (isset($value) && $value === '0') $checked = false;
         ?>
 
-    	<?php wp_nonce_field( basename( __FILE__ ), 'editorial_post_gallery_mode_nonce' ); ?>
-			<select id="gallery-switch" name="editorial-post-gallery-mode">
-				<option value="1"<?php echo $checked ? ' selected' : ''; ?>><?php _e( "Gallery", 'editorial' ); ?></option>
-				<option value="0"<?php echo !$checked ? ' selected' : ''; ?>><?php _e( "In-line", 'editorial' ); ?></option>
-			</select>
-			<script>var gallerySwVal1 = '<?php _e( "Recommended", 'editorial' ); ?>', gallerySwVal2 = '<?php _e( "Insert items alongside text", 'editorial' ); ?>';</script>
+        <?php wp_nonce_field( basename( __FILE__ ), 'editorial_post_gallery_mode_nonce' ); ?>
+            <select id="gallery-switch" name="editorial-post-gallery-mode">
+                <option value="1"<?php echo $checked ? ' selected' : ''; ?>><?php _e( "Gallery", 'editorial' ); ?></option>
+                <option value="0"<?php echo !$checked ? ' selected' : ''; ?>><?php _e( "In-line", 'editorial' ); ?></option>
+            </select>
+            <script>var gallerySwVal1 = '<?php _e( "Recommended", 'editorial' ); ?>', gallerySwVal2 = '<?php _e( "Insert items alongside text", 'editorial' ); ?>';</script>
     <?php }

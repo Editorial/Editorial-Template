@@ -63,6 +63,36 @@ else
             $activate['name']
         );
     }
+    else if (isset($_GET['deactivate']) && in_array($_GET['deactivate'], $valid_plugins))
+    {
+        // remove comment setting
+        Editorial::setOption('comment-plugin', false);
+        $type = $_GET['deactivate'];
+        $deactivate = array(
+            'name' 		=> 'Disqus Comment System',
+            'slug' 		=> 'disqus-comment-system',
+            'force_deactivation' => true,
+        );
+        // activate facebook
+        if ($type == 'facebook')
+        {
+            $deactivate['name'] = 'Facebook';
+            $deactivate['slug'] = 'facebook';
+        }
+        // activate social
+        if ($type == 'social')
+        {
+            $deactivate['name'] = 'Social';
+            $deactivate['slug'] = 'social';
+        }
+        $tmg->plugins = array($deactivate);
+        $tmg->force_deactivation();
+
+        printf(
+            '<div class="updated fade"><p>Plugin %s deactivated.</p></div>',
+            $deactivate['name']
+        );
+    }
 
     if (isset($_GET['installed']))
     {
@@ -136,7 +166,10 @@ else
                                 else if (is_plugin_active($social))
                                 {
                                     printf(
-                                        '<p><a class="button-primary" href="%soptions-general.php?page=social.php">Plugin settings</a></p>',
+                                        '<p>
+                                            <a class="button-primary" href="%1$soptions-general.php?page=social.php">Plugin settings</a>
+                                            <a class="button-primary" href="%1$sadmin.php?page=editorial-comments&deactivate=social">Deactivate plugin</a>
+                                        </p>',
                                         get_admin_url()
                                     );
                                 }
@@ -195,7 +228,10 @@ else
                             else if (is_plugin_active($disqus))
                             {
                                 printf(
-                                    '<p><a class="button-primary" href="%sedit-comments.php?page=disqus#adv">Plugin settings</a></p>',
+                                    '<p>
+                                        <a class="button-primary" href="%1$sedit-comments.php?page=disqus#adv">Plugin settings</a>
+                                        <a class="button-primary" href="%1$sadmin.php?page=editorial-comments&deactivate=disqus">Deactivate plugin</a>
+                                    </p>',
                                     get_admin_url()
                                 );
                             }
@@ -237,7 +273,10 @@ else
                             else if (is_plugin_active($fb))
                             {
                                 printf(
-                                    '<p><a class="button-primary" href="%sadmin.php?page=facebook-application-settings">Plugin settings</a></p>',
+                                    '<p>
+                                        <a class="button-primary" href="%1$sadmin.php?page=facebook-application-settings">Plugin settings</a>
+                                        <a class="button-primary" href="%1$sadmin.php?page=editorial-comments&deactivate=facebook">Deactivate plugin</a>
+                                    </p>',
                                     get_admin_url()
                                 );
                             }
