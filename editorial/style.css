@@ -487,8 +487,8 @@ right:0;top:0;}
 .favorize .coin.negative {border-color:#d00;background:#d00;}
 
 #team,#team li {width:100%;float:left;}
-#team {margin:13px 0 30px;}
-#team li {padding:11px 0 0;}
+#team {margin:0 0 30px;}
+#team li {background-position:bottom;}
 #team img {margin:1px 20px 10px 0;float:left;}
 #team figcaption {display:inline;}
 #team .title {margin:-1px 0 10px;font-family:minion-pro,georgia,serif;font-size:22px;font-variant:small-caps;
