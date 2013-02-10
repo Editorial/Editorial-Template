@@ -33,6 +33,7 @@
         this._videoActivateTimer       = null;
         this._videoDismissTimer        = null;
         this._userRequestedBarsVisible = false;
+        this._preloader                = null;
 
         // configuration
         this.swipeLength = 0.15; // swipe length must cross at least 15% of minimum screen dimension
@@ -50,6 +51,8 @@
         document.addEventListener('touchmove', function(ev) {
             ev.preventDefault();
         });
+
+        this.showPreloader();
 
         // start preloading images before initialising structure
         // to allow measuring images sizes before initial display
@@ -87,6 +90,18 @@
             '</div>' +
         '</div>'
     );
+
+    TouchGallery.prototype.showPreloader = function() {
+        this._preloader = $('<div id="preloader"></div>').appendTo(this.container);
+        var cl = new CanvasLoader('preloader');
+        cl.setColor('#404040'); // default is '#000000'
+        cl.setDiameter(30); // default is 40
+        cl.setDensity(53); // default is 40
+        cl.setRange(1); // default is 1.3
+        cl.setSpeed(5); // default is 2
+        cl.setFPS(30); // default is 24
+        cl.show(); // Hidden by default
+    };
 
     TouchGallery.prototype.preloadImages = function(callback) {
         var waitingToLoad = 0;
@@ -165,6 +180,9 @@
         this.readyHandler();
 
         setTimeout(bind(this, function() { this.hideBars(); }), 2000);
+
+        this._preloader.remove();
+        this._preloader = null;
     };
 
 
