@@ -199,9 +199,9 @@
 
         item.playTimer = new Radial({
             container : fragment.querySelector('.play-icon'),
-            width     : 87,
-            height    : 87,
-            barWidth  : 4,
+            width     : 174,
+            height    : 174,
+            barWidth  : 8,
             min       : 0,
             max       : this.videoTimeout,
             value     : 0
@@ -209,9 +209,9 @@
 
         item.counterTimer = new Radial({
             container : fragment.querySelector('.counter-timer'),
-            width     : 40,
-            height    : 40,
-            barWidth  : 4,
+            width     : 80,
+            height    : 80,
+            barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
             value     : 0
@@ -326,9 +326,9 @@
 
         item.playTimer = new Radial({
             container : fragment.querySelector('.play-icon'),
-            width     : 87,
-            height    : 87,
-            barWidth  : 4,
+            width     : 174,
+            height    : 174,
+            barWidth  : 8,
             min       : 0,
             max       : this.videoTimeout,
             value     : 0
@@ -336,9 +336,9 @@
 
         item.counterTimer = new Radial({
             container : fragment.querySelector('.counter-timer'),
-            width     : 40,
-            height    : 40,
-            barWidth  : 4,
+            width     : 80,
+            height    : 80,
+            barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
             value     : 0
@@ -452,9 +452,9 @@
 
         item.playTimer = new Radial({
             container : fragment.querySelector('.play-icon'),
-            width     : 87,
-            height    : 87,
-            barWidth  : 4,
+            width     : 174,
+            height    : 174,
+            barWidth  : 8,
             min       : 0,
             max       : this.videoTimeout,
             value     : 0
@@ -462,9 +462,9 @@
 
         item.counterTimer = new Radial({
             container : fragment.querySelector('.counter-timer'),
-            width     : 40,
-            height    : 40,
-            barWidth  : 4,
+            width     : 80,
+            height    : 80,
+            barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
             value     : 0
