@@ -214,7 +214,8 @@
             barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
-            value     : 0
+            value     : this.videoDismiss,
+            mirror    : true
         });
 
         return fragment;
@@ -257,11 +258,11 @@
             height  : item.listItem.find('.player-container').height(),
             videoId : item.id,
             events  : {
-                onReady       : function() { console.log(arguments); },
+                onReady       : function() {},
                 onStateChange : function(ev) {
                     if (ev.data > -1) played = true;
                 },
-                onError       : function() { console.log(arguments); }
+                onError       : function() {}
             }
         });
 
@@ -347,7 +348,8 @@
             barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
-            value     : 0
+            value     : this.videoDismiss,
+            mirror    : true
         });
 
         return fragment;
@@ -479,7 +481,8 @@
             barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
-            value     : 0
+            value     : this.videoDismiss,
+            mirror    : true
         });
 
         var self = this;

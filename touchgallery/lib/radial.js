@@ -10,6 +10,7 @@
         this.height      = options.height      || 64;
         this.fill        = options.fill        || '#fff';
         this.barWidth    = options.barWidth    || 4;
+        this.mirror      = options.mirror      || false;
 
         this._canvas = null;
 
@@ -40,16 +41,16 @@
         ctx.beginPath();
         ctx.fillStyle = this.fill;
         ctx.moveTo(Math.cos(zero) * r + w, Math.sin(target) * r + h);
-        ctx.arc(w, h, r, zero, target, false);
+        ctx.arc(w, h, r, zero, target, !!this.mirror);
         ctx.lineTo(Math.cos(target) * (r - this.barWidth) + w, Math.sin(target) * (r - this.barWidth) + h);
-        ctx.arc(w, h, (r - this.barWidth), target, zero, true);
+        ctx.arc(w, h, (r - this.barWidth), target, zero, !this.mirror);
         ctx.closePath();
         ctx.fill();
 
     };
 
     Radial.prototype.getAngleForValue = function(val) {
-        return (clamp(val, this.min, this.max) - this.min) / (this.max - this.min) * Math.PI * 2 - Math.PI / 2;
+        return (this.mirror ? -1 : 1) * (clamp(val, this.min, this.max) - this.min) / (this.max - this.min) * Math.PI * 2 - Math.PI / 2;
     };
 
     this.Radial = Radial;
