@@ -129,8 +129,8 @@ body{margin:0 auto;min-width:320px;}
 .home .content h3{margin:0 0 25px;font-size:20px;line-height:20px;text-align:center;background-position:300px 300px;}
 .home h3 em,.level h2 em,.helpful h4 em,.related h4 em{font-style:normal;}
 .edit span{display:none;}
-#footer{text-align:center;}#footer .bgr{width:100%;padding:10px 0 22px;background:#f5fafa;float:left;}
-#footer h4{margin:1px 0 2px;}
+#footer{text-align:center;}#footer h4{margin:1px 0 2px;}
+.home #footer .bgr{width:100%;padding:10px 0 22px;background:#f5fafa;float:left;}
 .try-and-buy{margin:0;position:relative;text-align:left;}.try-and-buy h2{margin:0 15px 31px;font-size:24px;line-height:24px;text-align:center;position:relative;}.try-and-buy h2 em{padding:0 15px;background:#f7f7f7;font-style:normal;}.try-and-buy h2 em span{font-style:italic;}
 .try-and-buy h2 em:before{content:'';border-top:1px solid #ccc;position:absolute;top:14px;left:0;right:0;z-index:-1;}
 .try-and-buy p{margin:0 0 17px;font-size:13px;line-height:20px;color:#595959;text-align:left;}
