@@ -117,6 +117,116 @@ class Editorial_Admin
             Editorial::setOption('translations', Editorial::getTranslations());
         }
 
+        // plugin activation hook
+        register_activation_hook('disqus-comment-system/disqus.php', array('Editorial_Admin', 'disqusActivationHook'));
+        register_activation_hook('social/social.php', array('Editorial_Admin', 'socialActivationHook'));
+        register_activation_hook('facebook/facebook.php', array('Editorial_Admin', 'facebookActivationHook'));
+    }
+
+    /**
+     * Disqus activation hook
+     *
+     * @return void
+     */
+    public static function disqusActivationHook()
+    {
+        self::pluginActivateHook('disqus');
+    }
+
+    /**
+     * Social activation hook
+     *
+     * @return void
+     */
+    public static function socialActivationHook()
+    {
+        self::pluginActivateHook('social');
+    }
+
+    /**
+     * Facebook activation hook
+     *
+     * @return void
+     */
+    public static function facebookActivationHook()
+    {
+        self::pluginActivateHook('facebook');
+    }
+
+    /**
+     * Activate plugin and deactivate the rest
+     *
+     * @param  string $type
+     * @return void
+     */
+    public function pluginActivateHook($type)
+    {
+        if ($type == 'disqus-comment-system')
+        {
+            $type = 'disqus';
+        }
+
+        $all = array(
+            'social'   => 'social/social.php',
+            'disqus'   => 'disqus-comment-system/disqus.php',
+            'facebook' => 'facebook/facebook.php',
+        );
+        // go through all and deactivate if different from type
+        foreach ($all as $plugin => $path)
+        {
+            if ($plugin != $type)
+            {
+                if (is_plugin_active($path))
+                {
+                    // facebook need special care
+                    if ($plugin == 'facebook')
+                    {
+                        if (Editorial::areFacebookCommentsActive())
+                        {
+                            // remove comment flag for posts
+                            self::deactivateFacebookComments();
+                        }
+                        continue;
+                    }
+                    // deactivate plugin
+                    $tmg = new TGM_Plugin_Activation;
+                    $tmg->plugins = array(array(
+                        'slug' => $path,
+                        'force_deactivation' => true,
+                    ));
+                    $tmg->force_deactivation();
+                    //debug('Deactivate '.$path);
+                }
+            }
+        }
+    }
+
+    /**
+     * Activate facebook comments
+     *
+     * @return void
+     */
+    public static function activateFacebookComments()
+    {
+        $opt = get_option('facebook_post_features');
+        $opt['comments'] = 1;
+        update_option('facebook_post_features', $opt);
+        update_option('facebook_comments_enabled', 1);
+    }
+
+    /**
+     * Deactivate facebook comments
+     *
+     * @return void
+     */
+    public static function deactivateFacebookComments()
+    {
+        $opt = get_option('facebook_post_features');
+        if (array_key_exists('comments', $opt))
+        {
+            unset($opt['comments']);
+        }
+        update_option('facebook_post_features', $opt);
     }
 
     public function child_theme_deleted($data)

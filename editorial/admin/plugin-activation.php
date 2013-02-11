@@ -502,13 +502,13 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
                 }
 
                 // if plugin activated is facebook enable facebook comments
-                if ($plugin['slug'] == 'facebook' && !get_option('facebook_comments_enabled'))
+                if ($plugin['slug'] == 'facebook' && !Editorial::areFacebookCommentsActive())
                 {
-                    $opt = get_option('facebook_post_features');
-                    $opt['comments'] = 1;
-                    update_option('facebook_post_features', $opt);
-                    update_option('facebook_comments_enabled', 1);
+                    Editorial_Admin::activateFacebookComments();
                 }
+
+                // call plugin activation hook
+                Editorial_Admin::pluginActivateHook($plugin['slug']);
 
                 // redirect back to editorial
                 $slug = $plugin['slug'];

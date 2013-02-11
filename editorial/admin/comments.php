@@ -20,16 +20,24 @@ else
         $type = $_GET['activate'];
         // by default activate disqus
         $activate = array(
-            'name' 		=> 'Disqus Comment System',
-            'slug' 		=> 'disqus-comment-system',
             'required' 	=> false,
             'force_activation' => true,
         );
+        // activate disqus
+        if ($type == 'disqus' || $type == 'disqus-comment-system')
+        {
+            $activate['name'] = 'Disqus Comment System';
+            $activate['slug'] = 'disqus-comment-system';
+        }
         // activate facebook
         if ($type == 'facebook')
         {
-            $activate['name'] = 'Facebook';
-            $activate['slug'] = 'facebook';
+            // if plugin is already active just activate comments later on
+            if (!is_plugin_active('facebook/facebook.php'))
+            {
+                $activate['name'] = 'Facebook';
+                $activate['slug'] = 'facebook';
+            }
         }
         // activate social
         if ($type == 'social')
@@ -37,8 +45,17 @@ else
             $activate['name'] = 'Social';
             $activate['slug'] = 'social';
         }
-        $tmg->plugins = array($activate);
-        $tmg->force_activation();
+
+        // activate if you got em
+        if (count($activate) > 2)
+        {
+            $tmg->plugins = array($activate);
+            $tmg->force_activation();
+
+            // if we activate via tmg the plugin activatin hook does not get called
+            // so call it by hand (it deactivates other plugins)
+            Editorial_Admin::pluginActivateHook($activate['slug']);
+        }
 
         // if plugin is social force default theme comments
         if ($type == 'social' && !get_option('social_use_standard_comments'))
@@ -47,16 +64,16 @@ else
         }
 
         // if plugin activated is facebook enable facebook comments
-        if ($type == 'facebook' && !get_option('facebook_comments_enabled'))
+        if ($type == 'facebook')
         {
-            $opt = get_option('facebook_post_features');
-            $opt['comments'] = 1;
-            update_option('facebook_post_features', $opt);
-            update_option('facebook_comments_enabled', 1);
+            Editorial_Admin::activateFacebookComments();
+            Editorial_Admin::pluginActivateHook('facebook');
         }
 
+        if ($type == 'disqus') $activate['name'] = 'Disqus';
+        if ($type == 'facebook') $activate['name'] = 'Facebook';
         printf(
-            '<div class="updated fade"><p>Plugin %s activated.</p></div>',
+            '<div class="updated fade"><p>Activated %s comments.</p></div>',
             $activate['name']
         );
     }
@@ -82,11 +99,21 @@ else
             $deactivate['name'] = 'Social';
             $deactivate['slug'] = 'social';
         }
-        $tmg->plugins = array($deactivate);
-        $tmg->force_deactivation();
+
+        if ($type == 'facebook')
+        {
+            // only deactivate comments
+            Editorial_Admin::deactivateFacebookComments();
+        }
+        else
+        {
+            // deactivate
+            $tmg->plugins = array($deactivate);
+            $tmg->force_deactivation();
+        }
 
         printf(
-            '<div class="updated fade"><p>Plugin %s deactivated.</p></div>',
+            '<div class="updated fade"><p>%s comments deactivated.</p></div>',
             $deactivate['name']
         );
     }
@@ -272,20 +299,20 @@ else
                         }
                         else
                         {
-                            if (is_plugin_inactive($fb))
-                            {
-                                printf(
-                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=facebook&open=facebook">Activate plugin</a></p>',
-                                    get_admin_url()
-                                );
-                            }
-                            else if (is_plugin_active($fb))
+                            if (Editorial::areFacebookCommentsActive())
                             {
                                 printf(
                                     '<p>
                                         <a class="button-primary" href="%1$sadmin.php?page=facebook-application-settings">Plugin settings</a>
-                                        <a class="button-primary" href="%1$sadmin.php?page=editorial-comments&deactivate=facebook">Deactivate plugin</a>
+                                        <a class="button-primary" href="%1$sadmin.php?page=editorial-comments&deactivate=facebook">Deactivate comments</a>
                                     </p>',
+                                    get_admin_url()
+                                );
+                            }
+                            else
+                            {
+                                printf(
+                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=facebook&open=facebook">Activate comments</a></p>',
                                     get_admin_url()
                                 );
                             }

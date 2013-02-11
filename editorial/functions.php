@@ -1664,16 +1664,23 @@ EOF;
         {
             $enabled[] = 'Social';
         }
-        if (is_plugin_active('facebook/facebook.php'))
+        if (is_plugin_active('facebook/facebook.php') && self::areFacebookCommentsActive())
         {
-            $options = get_option('facebook_post_features');
-            $en = get_option('facebook_comments_enabled');
-            if ($en && isset($options['comments']) && $options['comments'])
-            {
-                $enabled[] = 'Facebook';
-            }
+            $enabled[] = 'Facebook';
         }
         return $enabled;
+    }
+
+    /**
+     * Are facebook comments active on post?
+     *
+     * @return bool
+     */
+    public static function areFacebookCommentsActive()
+    {
+        $options = get_option('facebook_post_features');
+        $en = get_option('facebook_comments_enabled');
+        return $en && isset($options['comments']) && $options['comments'];
     }
 }
 
