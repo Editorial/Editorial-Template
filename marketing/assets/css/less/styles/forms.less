@@ -244,25 +244,16 @@ form p, .domain .info p, .info .help, .promo .info p {
 }
 
 .go, .download {
-	border: 1px solid #8a0500;
 	text-transform: uppercase;
 	color: #f7f7f7;
 	font-weight: bold;
 	letter-spacing: .4px;
-	background: #b10700;
 	display: block;
-	-moz-border-radius: 40px;
-	-webkit-border-radius: 40px;
 	border-radius: 40px;
-	text-shadow: 0 -1px 1px rgba(0, 0, 0, .7);
-	-moz-box-shadow: 0 0 2px 3px rgba(0, 0, 0, .2);
-	-webkit-box-shadow: 0 0 2px 3px rgba(0, 0, 0, .2);
-	box-shadow: 0 0 2px 3px rgba(0, 0, 0, .2);
-	background: #b00e00 url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RkMGIwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM4MjAzMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top, #dd0b00, #820300);
-	background: -webkit-gradient(linear, left top, left bottom, from(#dd0b00), to(#820300));
-	background: -o-linear-gradient(top, #dd0b00, #820300);
-	background: linear-gradient(top, #dd0b00, #820300);
+	.redButton();
+	padding: 13px 0;
+	border: none;
+	.double-box-shadow(1px 0 1px rgba(0, 0, 0, .5), 0 2px 4px rgba(0, 0, 0, .3));
 }
 
 .download-expired {
@@ -276,8 +267,7 @@ form p, .domain .info p, .info .help, .promo .info p {
 
 .go {
 	margin: 0 auto;
-	//padding: 10px 31px;
-	padding: 10px 26px 10px 48px;
+	padding: 11px 26px 11px 48px;
 	font-size: 13px;
 	line-height: 28px;
 	display: block;
@@ -289,7 +279,7 @@ form p, .domain .info p, .info .help, .promo .info p {
 		width: 22px;
 		height: 18px;
 		display: block;
-		background: url(../images/bgr/sprite.png) -410px -240px no-repeat;
+		background: url(../images/bgr/sprite.png) -410px -239px no-repeat;
 		position: absolute;
 		top: 16px;
 		left: 21px;
