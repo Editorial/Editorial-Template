@@ -5,6 +5,7 @@ $tmg = new TGM_Plugin_Activation;
 $valid_plugins = array(
     'social',
     'disqus',
+    'disqus-comment-system',
     'facebook',
 );
 
@@ -177,6 +178,7 @@ else
                         <div class="table table_content">
                             <p>Brought to you by <a href="http://mailchimp.com/" rel="nofollow">MailChimp</a>, <a href="http://mailchimp.com/social-plugin-for-wordpress/" rel="nofollow">Social</a> is a lightweight plugin that handles a lot of the heavy lifting of making your blog seamlessly integrate with social networking sites <a href="http://twitter.com/" rel="nofollow">Twitter</a> and <a href="http://facebook.com/" rel="nofollow">Facebook</a>.</p>
                             <p>When publishing to Facebook and Twitter, the discussion is likely to continue there. Through Social, we can aggregate the various mentions, retweets, @replies, comments and responses and republish them as WordPress comments.</p>
+                            <p>By <a href="http://crowdfavorite.com/" title="Visit author homepage">Crowd Favorite</a> | <a href="http://mailchimp.com/social-plugin-for-wordpress/" title="Visit plugin site">Visit plugin site</a></p>
                             <?php
 
                             $plugins = get_plugins();
@@ -239,6 +241,7 @@ else
                     <div class="table table_content">
                         <p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/admin/disqus.png" /> Disqus, pronounced "discuss", is a service and tool for web comments and discussions. Disqus makes commenting easier and more interactive, while connecting websites and commenters across a thriving discussion community.</p>
                         <p>The Disqus comment system replaces your WordPress comment system with your comments hosted and powered by Disqus.</p>
+                        <p>By <a href="http://disqus.com/" title="Visit author homepage">Disqus </a> | <a href="http://disqus.com/" title="Visit plugin site">Visit plugin site</a></p>
                         <?php
 
                         // check if plugin is installed
@@ -286,6 +289,7 @@ else
                 <div class="inside">
                     <div class="table table_content">
                         <p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/admin/facebook.png" /> The Facebook plugin for WordPress adds Facebook social plugins to your WordPress site. Associate your WordPress site with a free Facebook application identifier to enable advanced features such as automatically sharing new posts to an author's Facebook timeline or your site's Facebook page. This plugin is developed by Facebook with extra support for popular plugins and themes.</p>
+                        <p>By <a href="https://developers.facebook.com/wordpress/" title="Visit author homepage">Facebook</a> | <a href="http://wordpress.org/extend/plugins/facebook/" title="Visit plugin site">Visit plugin site</a></p>
                         <?php
 
                         $fb = 'facebook/facebook.php';
