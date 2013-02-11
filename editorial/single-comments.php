@@ -21,6 +21,12 @@ if (Editorial::isAjax())
     exit();
 }
 
+// extra css for disqus?
+if (Editorial::getCommentSystem() == Editorial::COMMENT_DISQUS)
+{
+    $extraCSS = array('editorial-disqus.css');
+}
+
 // header settings
 $EditorialId = 'feedback';
 $EditorialClass = 'clear';

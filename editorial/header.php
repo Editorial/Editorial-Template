@@ -57,21 +57,25 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('stylesheet_url'); ?>">
-
+<?php
+if (isset($extraCSS))
+{
+    foreach ($extraCSS as $css)
+    {
+        printf('<link rel="stylesheet" href="%s/%s">', get_bloginfo('template_directory'), $css);
+    }
+}
+?>
 <?php if ($needsHTML5player) { ?>
 <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelementplayer.min.css">
 <?php } ?>
-
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/modernizr-2.0.6.min.js"></script>
-
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/jquery-1.7.2.min.js">\x3C/script>')</script>
-
 <script src="<?php echo get_bloginfo('template_directory'); ?>/js/libs/mediaelement/mediaelement-and-player.js"></script>
 <?php add_theme_support('automatic-feed-links'); ?>
-<?php wp_head(); ?><?php
-
+<?php wp_head(); ?>
+<?php
 $translations = Editorial::getOption('translations');
 ?>
 <?php if (Editorial::getOption('typekit-kit')) { ?>
