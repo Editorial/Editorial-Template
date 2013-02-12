@@ -21,7 +21,7 @@ if($has_child){
 <div id="post-body" class="metabox-holder columns-2">
 
 
-<div id="postbox-container" class="postbox-container">  
+<div id="postbox-container" class="postbox-container">
 <div id="normal-sortables" class="meta-box-sortables ui-sortable">
 
 
@@ -37,7 +37,7 @@ if($has_child){
       <p>
         A child theme allows you to safely customize Editorial default style. Even when the parent theme is updated, your custom changes will not be overwritten.
       </p>
-        
+
       <form action="admin.php?page=editorial-customstyle" method="POST">
         <input type="hidden" name="create-theme" value="1" />
         <p class="submit">
@@ -46,7 +46,7 @@ if($has_child){
       </form>
 
       <?php
-      else: 
+      else:
       ?>
 
         <?php
@@ -82,7 +82,7 @@ if($has_child){
 
 
 
-<?php include 'faq_custom.php'; ?>
+<?php $faqGroup = 1; include 'faq.php'; ?>
 
 </div>
 </div>

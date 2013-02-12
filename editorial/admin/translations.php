@@ -10,7 +10,7 @@
     <!-- meta box containers here -->
 
 
-  <div id="postbox-container" class="postbox-container">  
+  <div id="postbox-container" class="postbox-container">
   <div id="normal-sortables" class="meta-box-sortables ui-sortable">
 
     <form action="" method="post">
@@ -53,6 +53,6 @@
 
 
 
-<?php include 'faq_translations.php'; ?>
+<?php $faqGroup = 2; include 'faq.php'; ?>
 </div>
 </div>

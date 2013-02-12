@@ -1467,7 +1467,7 @@ EOF;
      *
      * @return string
      */
-    public static function getImage($photoId, $type, $feature = false)
+    public static function getImage($photoId, $type, $featured = false)
     {
         $imageData = wp_get_attachment_image_src((int)$photoId, $type);
         if (!is_array($imageData) || !isset($imageData[0]))
@@ -1478,6 +1478,10 @@ EOF;
 
         $originalImage = $imageData[0];
         $originalPath = self::getImagePath($originalImage);
+        if (!is_file($originalPath))
+        {
+            return self::getBlankImage($featured);
+        }
         $extension = pathinfo($originalPath, PATHINFO_EXTENSION);
 
         // check that we have an image we can convert

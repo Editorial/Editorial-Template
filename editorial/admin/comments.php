@@ -334,7 +334,7 @@ else
 
 
 <!-- FAQ BOX -->
-<?php include 'faq_look.php'; ?>
+<?php $faqGroup = 2; include 'faq.php'; ?>
 
 </div>
 </div>
