@@ -15,7 +15,12 @@
             jQuery.get('<?php echo get_bloginfo('template_directory').'/admin/load-faq.php'; ?>', function(data) {
                 var faq = jQuery(data);
                 var group = faq.find('.group').eq(editorialGroup);
-                jQuery('#editorial-faq').empty().append(group.find('.questions'));
+                var questions = group.find('.questions');
+                questions.find('a').each(function() {
+                    jQuery(this).attr('href', 'http://editorialtemplate.com'+jQuery(this).attr('href'));
+                    jQuery(this).attr('target', '_blank');
+                });
+                jQuery('#editorial-faq').empty().append(questions);
             })
             .fail(function(e) {
                 jQuery('#editorial-faq').empty();
