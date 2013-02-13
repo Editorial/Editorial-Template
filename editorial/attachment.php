@@ -176,7 +176,25 @@ if ($isMobileGallery)
                         $metadata = wp_get_attachment_metadata($attachment->ID);
                         if (isset($metadata['embed_type']) && isset($metadata['provider_name']) && isset($metadata['_wp_attachment_url']))
                         {
+                            ob_start();
                             the_content();
+                            $content = ob_get_contents();
+                            preg_match('/width="(\d+)"/', $content, $matches);
+                            if (count($matches) > 1)
+                            {
+                                $width = 628;
+                                $ratio = $width/$matches[1];
+                                $content = str_replace($matches[0], 'width="'.$width.'"', $content);
+
+                                // find height
+                                preg_match('/height="(\d+)"/', $content, $matches);
+                                if (count($matches) > 1)
+                                {
+                                    $content = str_replace($matches[0], 'height="'.ceil($matches[1]*$ratio).'"', $content);
+                                }
+                            }
+                            ob_end_clean();
+                            echo $content;
                         }
                         else
                         {
