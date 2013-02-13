@@ -12,7 +12,7 @@ if (!is_404())
 ?>
 <footer id="footer" role="contentinfo">
 <?php
-	if ( !is_page_template('cart.php') && !is_page_template('manager.php'))
+	if ( !is_page_template('cart.php') && !is_page_template('manager.php') && !is_page('trial'))
 	{
 		$Purchase = new Purchase();
 		$currentCount = $Purchase->getCount();
