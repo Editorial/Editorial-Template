@@ -349,7 +349,7 @@ display:block;}
 .featured h3 {margin:0 0 24px;}
 .featured p {display:none;}
 .featured footer,#exposed footer,.inside #single footer,.inside-portrait #single footer,#comments time,#paging p,
-footer h3,.widget h4,#single footer em,#media-count,.notice em {font-family:helvetica,arial,sans-serif;}
+footer h3,.widget h4,#single footer em,#media-count/*,.notice em*/ {font-family:helvetica,arial,sans-serif;}
 .featured footer,#exposed footer,.inside #single footer,.inside-portrait #single footer,#comments time,#paging p,
 footer h3,.widget h4 {padding:0 0 5px;font-size:10px;line-height:12px;text-transform:uppercase;}
 .featured time,#exposed time,#single time,.inside #single footer em,.inside-portrait #single footer em,

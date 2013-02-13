@@ -316,7 +316,7 @@ transform: skew(20deg);
 }
 
 .android.toggle .slide-button {
-border-radius: 2px;
+border-radius: 3px;
 
 background-color: #848484;
 }
@@ -439,13 +439,14 @@ color: #7f7f7f;
 
 .gallery-switch .text {
 	position: absolute;
-	top: 3px;
+	top: 4px;
 	left: 96px;
 	color: #999;
 }
 
 .ui-switch {
-	width: 77px;
+	width: 78px;
+	height: 22px;
 	display: inline-block;
 	border: solid 1px #666f76;
 	cursor: pointer;
@@ -455,6 +456,7 @@ color: #7f7f7f;
 	position: absolute;
 	top: 0;
 	left: 0;
+	box-shadow: 1px 1px 2px #fff;
 }
 
 .ui-switch:focus {
@@ -483,19 +485,20 @@ color: #7f7f7f;
 }
 
 .ui-switch-mask {
-	height: 30px;
+	height: 22px;
 	/*margin: 2px 4px;*/
 	overflow: hidden;
+	border-radius: 3px;
 }
 
 .ui-switch-master {
-	height: 24px;
+	height: 22px;
 	position: relative;
 	left: 0;
 }
 
 .ui-switch-upper {
-	height: 22px;
+	height: 16px;
 	width: auto;
 	margin: 5px;
 	position: absolute;
@@ -503,10 +506,10 @@ color: #7f7f7f;
 }
 
 .ui-switch-handle {
-	margin-left: -2px;
+	margin-left: -1px;
 	border: 1px solid #666f76;
 	display: block;
-	height: 20px;
+	height: 22px;
 	width: 20px;
 	position: absolute;
 	top: -6px;
@@ -542,7 +545,7 @@ color: #7f7f7f;
 }
 
 .ui-switch-lower {
-	height: 20px;
+	height: 22px;
 	width: 1000px;
 	/*margin: 5px;*/
 	position: absolute;
@@ -560,9 +563,13 @@ color: #7f7f7f;
 	line-height: 20px;
 	color: white;
 	background: #fff;
-	padding: 0 10px;
+	padding: 1px 12px 3px;
 	text-align: center;
 	text-decoration: none;
+	border-radius: 3px;
+	-moz-box-shadow:inset 1px 0 1px rgba(0, 0, 0, .4);
+	-webkit-box-shadow:inset 1px 0 1px rgba(0, 0, 0, .4);
+	box-shadow:inset 1px 0 1px rgba(0, 0, 0, .4);
 }
 
 .ui-switch-on {
