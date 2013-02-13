@@ -154,26 +154,28 @@
 			}
 
 			if (countActiveSteps > 2) {
+
+				var first = 0;
 				for(var j = countActiveSteps; j > 0 ; j--) {
 					var nthJ = graph.find('li:nth-child(' + j + ')'),
-							isStep = nthJ.attr('class').match(/step-/i) ? true : false;
+							isStep = nthJ.attr('class').match(/step-/i) ? true : false,
+							price = nthJ.find('em').text();
 					if(pass === 1) {
 						nthJ.removeClass('active').addClass('sold');
 					}
 					if (isStep) {
 						pass = 1;
-
-						//update price tag's price
-						//console.log(nthJ.find('em').text().substr(1));
-						//$('#price-tag').html(nthJ.find('em').text().substr(1));
-
 					}
+					//update price tag's price
+					//if (first == 0 && price != '') console.log(price.substr(1));
+					if (first == 0 && price != '') $('#pricetag').html(price.substr(1));
+					first++;
 				}
 			}
 		}
 
 		//testingTOOL
-		/*(function() {
+		(function() {
 			$('section.licencing').append('' +
 			'<div id="counter" style="position:absolute;left:50%;bottom:8px;z-index:999;background:yellow;">' +
 			'	<div style="min-width:30px;min-height:30px;">' +
@@ -202,7 +204,7 @@
 		})();
 
 		//onResize
-		$(window).on('resize', function(){ flow($('#sold').val()); });*/
+		$(window).on('resize', function(){ flow($('#sold').val()); });
 
 	}
 
