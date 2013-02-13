@@ -129,7 +129,7 @@ function editorial_body_classes( $classes )
 		$classes[] = 'off-canvas';
 	}
 
-	if (is_page_template('page-trial.php'))
+	if (is_page('trial'))
 	{
 		$classes[] = 'cart';
 		$classes[] = 'save';
