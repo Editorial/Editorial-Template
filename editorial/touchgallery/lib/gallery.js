@@ -99,7 +99,7 @@
         cl.setDensity(53); // default is 40
         cl.setRange(1); // default is 1.3
         cl.setSpeed(5); // default is 2
-        cl.setFPS(30); // default is 24
+        cl.setFPS(15); // default is 24
         cl.show(); // Hidden by default
     };
 
@@ -232,8 +232,7 @@
             barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
-            value     : this.videoDismiss,
-            mirror    : true
+            value     : 0
         });
 
         return fragment;
@@ -287,6 +286,9 @@
         item.playTimer.value = 0;
         item.playTimer.render();
 
+        item.counterTimer.value = 0;
+        item.counterTimer.render();
+
         var self = this;
         item.closeButton.on('tap', function(ev) {
             ev.preventDefault();
@@ -305,13 +307,10 @@
                     item.counterTimer.value = 0;
                     if (!played) this.destroyYouTubePlayer(item);
                 } else {
-                    item.counterTimer.value = elapsed;
+                    item.counterTimer.value = this.videoDismiss - elapsed;
                 }
                 item.counterTimer.render();
             }), 16);
-            item.listItem.find('.counter-timer').show();
-        } else {
-            item.listItem.find('.counter-timer').hide();
         }
     };
 
@@ -366,8 +365,7 @@
             barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
-            value     : this.videoDismiss,
-            mirror    : true
+            value     : 0
         });
 
         return fragment;
@@ -408,6 +406,9 @@
         item.playTimer.value = 0;
         item.playTimer.render();
 
+        item.counterTimer.value = 0;
+        item.counterTimer.render();
+
         var iframe = $('<iframe></iframe>').attr({
             width                 : item.listItem.find('.player-container').width(),
             height                : item.listItem.find('.player-container').height(),
@@ -442,13 +443,10 @@
                     item.counterTimer.value = 0;
                     if (!played) this.destroyVimeoPlayer(item);
                 } else {
-                    item.counterTimer.value = elapsed;
+                    item.counterTimer.value = this.videoDismiss - elapsed;
                 }
                 item.counterTimer.render();
             }), 16);
-            item.listItem.find('.counter-timer').show();
-        } else {
-            item.listItem.find('.counter-timer').hide();
         }
     };
 
@@ -499,8 +497,7 @@
             barWidth  : 8,
             min       : 0,
             max       : this.videoDismiss,
-            value     : this.videoDismiss,
-            mirror    : true
+            value     : 0
         });
 
         var self = this;
@@ -551,6 +548,9 @@
         item.playTimer.value = 0;
         item.playTimer.render();
 
+        item.counterTimer.value = 0;
+        item.counterTimer.render();
+
         if (autoDismiss) {
             var startTime = +new Date;
             if (this._videoDismissTimer) clearInterval(this._videoDismissTimer);
@@ -566,9 +566,6 @@
                 }
                 item.counterTimer.render();
             }), 16);
-            item.listItem.find('.counter-timer').show();
-        } else {
-            item.listItem.find('.counter-timer').hide();
         }
     };
 
@@ -812,6 +809,11 @@
                 clearInterval(this._videoDismissTimer);
                 this._videoDismissTimer = null;
             }
+
+            if (this.items[this.currentItem].playTimer) {
+                this.items[this.currentItem].playTimer.value = 0;
+                this.items[this.currentItem].playTimer.render();
+            }
         }
     };
 
@@ -974,6 +976,11 @@
 
 
     // export the class to the global namespace
+    this.TouchGallery = TouchGallery;
+
+})(Zepto);
+
+bal namespace
     this.TouchGallery = TouchGallery;
 
 })(Zepto);
