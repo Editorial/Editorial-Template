@@ -191,7 +191,8 @@ if (!is_404())
 			</ul>
 		</section>
 		<section class="price-tag">
-			<h4>Editorial theme</h4>
+<!--			<h4>Editorial theme</h4>-->
+			<h4><em>Edit</em>orial<sup>2</sup></h4>
 			<ul class="included">
 				<li>All listed features</li>
 				<li>Free compatibility updates</li>
@@ -201,7 +202,7 @@ if (!is_404())
 			</ul>
 			<p class="price">
 				<span class="label">Total</span>
-				<strong><em>&euro;</em><b id="pricetag"><?php echo $currentPrice; ?></b>.<sup>00</sup></strong>
+				<strong><em>&euro;</em><b id="pricetag"><?php echo $currentPrice; ?></b></strong>
 				<a href="/purchase/" class="go">Purchase</a>
 			</p>
 		</section>
