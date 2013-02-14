@@ -151,6 +151,7 @@ if ($isMobileGallery)
             echo json_encode($items);
             ?>,
             <?php printf("logo: '%s',", Editorial::getOption('logo-gallery')); ?>
+            <?php echo "preloader: 'http://beta.editorialtemplate.com/wp-content/themes/editorial/touchgallery/preloader.gif',"; ?>
             <?php printf("backLink: '%s',", get_permalink($parentId)); ?>
             readyHandler: function() {
                 // do nothing

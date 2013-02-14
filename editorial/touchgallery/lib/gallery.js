@@ -10,8 +10,9 @@
 
         this.readyHandler = (options.readyHandler) ? options.readyHandler : function() {};
         
-        this.logo = options.logo || 'logo-gallery.png';
-        this.backLink = options.backLink || '#';
+        this.logo      = options.logo      || 'logo-gallery.png';
+        this.backLink  = options.backLink  || '#';
+        this.preloader = options.preloader || 'preloader.gif';
 
         // set the initial values
         this.position        = null;
