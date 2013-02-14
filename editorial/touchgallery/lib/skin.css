@@ -205,6 +205,10 @@ body {
 .touch-gallery .items .right {
   background: none;
 }
+.touch-gallery .items .left .counter-timer canvas {
+  width: 40px;
+  height: 40px;
+}
 .touch-gallery .items .right .close-button {
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3b3c3e), to(#323335));
   background-image: -webkit-linear-gradient(top, #3b3c3e, #323335);
@@ -397,8 +401,6 @@ box-shadow:         0px -5px 12px red;
     background: none;
   }
   .touch-gallery .items .left .counter-timer {
-    margin-top: -30px;
-    margin-left: -10px;
     width: 80px;
     height: 80px;
   }
