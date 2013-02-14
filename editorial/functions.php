@@ -1635,18 +1635,13 @@ EOF;
     {
         require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
         $system = self::COMMENT_WORDPRESS;
-        if (is_plugin_active('disqus-comment-system/disqus.php'))
+        if (self::areDisqusCommentsActive())
         {
             $system = self::COMMENT_DISQUS;
         }
-        else if (is_plugin_active('facebook/facebook.php'))
+        else if (self::areFacebookCommentsActive())
         {
-            $options = get_option('facebook_post_features');
-            $enabled = get_option('facebook_comments_enabled');
-            if ($enabled && isset($options['comments']) && $options['comments'])
-            {
-                $system = self::COMMENT_FACEBOOK;
-            }
+            $system = self::COMMENT_FACEBOOK;
         }
 
         return $system;
@@ -1660,19 +1655,45 @@ EOF;
     public static function getEnabledCommentSystems()
     {
         $enabled = array();
-        if (is_plugin_active('disqus-comment-system/disqus.php'))
+        if (self::areDisqusCommentsActive())
         {
             $enabled[] = 'Disqus';
         }
-        if (is_plugin_active('social/social.php'))
+        if (self::areSocialCommentsActive())
         {
             $enabled[] = 'Social';
         }
-        if (is_plugin_active('facebook/facebook.php') && self::areFacebookCommentsActive())
+        if (self::areFacebookCommentsActive())
         {
             $enabled[] = 'Facebook';
         }
         return $enabled;
+    }
+
+    /**
+     * Are disqus comments active
+     *
+     * @return bool
+     */
+    public static function areDisqusCommentsActive()
+    {
+        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        if (is_plugin_active('disqus-comment-system/disqus.php'))
+        {
+            return (bool)get_option('disqus_active');
+        }
+        return false;
+    }
+
+    /**
+     * Are social comments active
+     *
+     * @return bool
+     */
+    public static function areSocialCommentsActive()
+    {
+        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        return is_plugin_active('social/social.php');
     }
 
     /**
@@ -1682,9 +1703,14 @@ EOF;
      */
     public static function areFacebookCommentsActive()
     {
-        $options = get_option('facebook_post_features');
-        $en = get_option('facebook_comments_enabled');
-        return $en && isset($options['comments']) && $options['comments'];
+        require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        if (is_plugin_active('facebook/facebook.php'))
+        {
+            $options = get_option('facebook_post_features');
+            $en = get_option('facebook_comments_enabled');
+            return $en && isset($options['comments']) && $options['comments'];
+        }
+        return false;
     }
 }
 

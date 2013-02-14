@@ -215,6 +215,16 @@ class Editorial_Admin
     }
 
     /**
+     * Activate disqus comments
+     *
+     * @return void
+     */
+    public static function activateDisqusComments()
+    {
+        update_option('disqus_active', 1);
+    }
+
+    /**
      * Deactivate facebook comments
      *
      * @return void

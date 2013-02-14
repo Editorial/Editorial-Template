@@ -71,6 +71,11 @@ else
             Editorial_Admin::pluginActivateHook('facebook');
         }
 
+        if ($type == 'disqus' || $type == 'disqus-comment-system')
+        {
+            Editorial_Admin::activateDisqusComments();
+        }
+
         if ($type == 'disqus') $activate['name'] = 'Disqus';
         if ($type == 'facebook') $activate['name'] = 'Facebook';
         printf(
@@ -257,20 +262,20 @@ else
                         }
                         else
                         {
-                            if (is_plugin_inactive($disqus))
-                            {
-                                printf(
-                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=disqus&open=disqus">Activate plugin</a></p>',
-                                    get_admin_url()
-                                );
-                            }
-                            else if (is_plugin_active($disqus))
+                            if (Editorial::areDisqusCommentsActive())
                             {
                                 printf(
                                     '<p>
                                         <a class="button-primary" href="%1$sedit-comments.php?page=disqus#adv">Plugin settings</a>
                                         <a class="button-primary" href="%1$sadmin.php?page=editorial-comments&deactivate=disqus">Deactivate plugin</a>
                                     </p>',
+                                    get_admin_url()
+                                );
+                            }
+                            else
+                            {
+                                printf(
+                                    '<p><a class="button-primary" href="%sadmin.php?page=editorial-comments&activate=disqus&open=disqus">Activate plugin</a></p>',
                                     get_admin_url()
                                 );
                             }
