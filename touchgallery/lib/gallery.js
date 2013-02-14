@@ -92,15 +92,7 @@
     );
 
     TouchGallery.prototype.showPreloader = function() {
-        this._preloader = $('<div id="preloader"></div>').appendTo(this.container);
-        var cl = new CanvasLoader('preloader');
-        cl.setColor('#404040'); // default is '#000000'
-        cl.setDiameter(30); // default is 40
-        cl.setDensity(53); // default is 40
-        cl.setRange(1); // default is 1.3
-        cl.setSpeed(5); // default is 2
-        cl.setFPS(15); // default is 24
-        cl.show(); // Hidden by default
+        this._preloader = $('<img src="preloader.gif" id="preloader"/>').appendTo(this.container);
     };
 
     TouchGallery.prototype.preloadImages = function(callback) {
@@ -181,7 +173,7 @@
 
         setTimeout(bind(this, function() { this.hideBars(); }), 2000);
 
-        this._preloader.remove();
+        //this._preloader.remove();
         this._preloader = null;
     };
 
