@@ -243,7 +243,7 @@ form p, .domain .info p, .info .help, .promo .info p {
 	padding: 0;
 }
 
-.go, .download {
+.go, .download,.go-alt {
 	text-transform: uppercase;
 	color: #f7f7f7;
 	font-weight: bold;
@@ -280,6 +280,53 @@ form p, .domain .info p, .info .help, .promo .info p {
 		height: 18px;
 		display: block;
 		background: url(../images/bgr/sprite.png) -410px -239px no-repeat;
+		position: absolute;
+		top: 16px;
+		left: 21px;
+	}
+}
+
+.go {
+	margin: 0 auto;
+	padding: 11px 26px 11px 48px;
+	font-size: 13px;
+	line-height: 28px;
+	display: block;
+	width: 76px;
+	position: relative;
+
+	&:before {
+		content: ' ';
+		width: 22px;
+		height: 18px;
+		display: block;
+		background: url(../images/bgr/sprite.png) -410px -239px no-repeat;
+		position: absolute;
+		top: 16px;
+		left: 21px;
+	}
+}
+
+.go-alt {
+	.grayButton();
+	margin: 0 auto;
+	padding: 12px 22px 10px 42px;
+	white-space: nowrap;
+	font-size: 13px;
+	color: #09c;
+	line-height: 28px;
+	display: block;
+	width: 86px;
+	position: relative;
+	//float: left;
+	.double-box-shadow(0 1px 5px rgba(0, 0, 0, .3), 0 2px 4px rgba(0, 0, 0, .3));
+
+	&:before {
+		content: ' ';
+		width: 22px;
+		height: 18px;
+		display: block;
+		background: url(../images/bgr/sprite-new.png) -636px -405px no-repeat;
 		position: absolute;
 		top: 16px;
 		left: 21px;

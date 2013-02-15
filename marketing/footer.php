@@ -341,7 +341,7 @@ var cta;
 if(!localStorage.getItem('returning')) {
 	// first time visitor
 	localStorage.setItem('returning', true);
-	cta = '<a href="/features/" class="go alt">Learn More</a> or ';
+	cta = '<a href="/features/" class="go-alt">Learn More</a> or ';
 } else {
 	// returning visitor
 	cta = '<a href="/purchase/" class="go">Purchase</a> or ';
