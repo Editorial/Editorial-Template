@@ -93,7 +93,7 @@
     );
 
     TouchGallery.prototype.showPreloader = function() {
-        this._preloader = $('<img src="preloader.gif" id="preloader"/>').appendTo(this.container);
+        this._preloader = $('<img src="' + this.preloader + '" id="preloader"/>').appendTo(this.container);
     };
 
     TouchGallery.prototype.preloadImages = function(callback) {
