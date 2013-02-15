@@ -151,7 +151,7 @@ if ($isMobileGallery)
             echo json_encode($items);
             ?>,
             <?php printf("logo: '%s',", Editorial::getOption('logo-gallery')); ?>
-            <?php echo "preloader: '".get_bloginfo('template_directory')."/touchgallery/preloader.gif',"; ?>
+            <?php printf("preloader: '%s/touchgallery/preloader.gif',", get_bloginfo('template_directory')); ?>
             <?php printf("backLink: '%s',", get_permalink($parentId)); ?>
             readyHandler: function() {
                 // do nothing
