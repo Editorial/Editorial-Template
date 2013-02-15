@@ -82,7 +82,7 @@ if($has_child){
 
 
 
-<?php $faqGroup = 1; include 'faq.php'; ?>
+<?php $faqGroup = 'customize'; include 'faq.php'; ?>
 
 </div>
 </div>

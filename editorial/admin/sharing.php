@@ -65,7 +65,7 @@
 
 
 
-    <?php $faqGroup = 3; include 'faq.php'; ?>
+    <?php $faqGroup = 'sharing'; include 'faq.php'; ?>
   </div>
 </div>
 

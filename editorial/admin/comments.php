@@ -339,7 +339,7 @@ else
 
 
 <!-- FAQ BOX -->
-<?php $faqGroup = 2; include 'faq.php'; ?>
+<?php $faqGroup = 'comments'; include 'faq.php'; ?>
 
 </div>
 </div>

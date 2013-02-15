@@ -53,6 +53,6 @@
 
 
 
-<?php $faqGroup = 2; include 'faq.php'; ?>
+<?php $faqGroup = 'translations'; include 'faq.php'; ?>
 </div>
 </div>

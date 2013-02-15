@@ -132,7 +132,7 @@
 
 
 <!-- FAQ BOX -->
-<?php $faqGroup = 0; include 'faq.php'; ?>
+<?php $faqGroup = 'look'; include 'faq.php'; ?>
 
 </div>
 </div>
