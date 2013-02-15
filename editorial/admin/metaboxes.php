@@ -17,6 +17,14 @@ function editorial_add_post_meta_boxes() {
     'side',					// Context
     'high'					// Priority
     );
+//     add_meta_box(
+//     'editorial-post-gallery-mode',			// Unique ID
+//      esc_html__( 'Display media as', 'editorial' ),		// Title
+//     'editorial_post_gallery_mode_meta_box',		// Callback function
+//     'page',					// Admin page (or post type)
+//     'side',					// Context
+//     'high'					// Priority
+//     );
 }
 /* Save the meta box's post metadata. */
 function editorial_save_post_gallery_mode_meta( $post_id, $post ) {

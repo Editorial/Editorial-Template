@@ -43,6 +43,11 @@
 			</ol>
 		</aside>
 
+		<section class="level">
+			<h4>None of the above answers your question?</h4>
+			<p class="notice">Then please feel free to use our <a href="https://editorialtemplate.uservoice.com/">Support forum</a>.</p>
+		</section>
+
 	</article>
 </div>
 

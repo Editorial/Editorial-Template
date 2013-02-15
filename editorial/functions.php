@@ -1785,7 +1785,7 @@ Editorial::setup();
 
 include 'admin/admin.php';
 
-//add_action('publish_page', 'add_custom_field_automatically');
+add_action('publish_page', 'add_custom_field_automatically');
 add_action('publish_post', 'add_custom_field_automatically');
 function add_custom_field_automatically($post_ID) {
     global $wpdb;
