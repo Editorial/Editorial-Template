@@ -422,6 +422,10 @@ background-color:#fff;background-position:-32px -42px;position:absolute;bottom:0
 
 .notfound article {min-height:320px;}
 
+.fb-social-plugin span {width:100% !important;}
+.fb-social-plugin iframe {width:100% !important;}
+
+
 
 /* 12.COMPLIMENTARY _________________________________________________________________________________________________ */
 
