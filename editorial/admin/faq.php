@@ -13,17 +13,15 @@
         jQuery(function(){
             // fetch the specified group from editorialtemplate.com -> need to use a bridge to load it
             jQuery.getJSON('<?php echo get_bloginfo('template_directory').'/admin/load-faq.php'; ?>', function(data) {
-                /*var faq = jQuery(data);
-                var group = faq.find('.group').eq(editorialGroup);
-                var questions = group.find('.questions');
-                questions.find('a').each(function() {
-                    jQuery(this).attr('href', 'http://editorialtemplate.com'+jQuery(this).attr('href'));
-                    jQuery(this).attr('target', '_blank');
-                });
-                jQuery('#editorial-faq').empty().append(questions);*/
-                jQuery('#editorial-faq').empty();
+                var faq = jQuery('#editorial-faq');
+                faq.empty();
                 jQuery.each(data[editorialGroup], function(key, val) {
-                    jQuery('#editorial-faq').append('<p><a href="'+val.href+'" target="_blank">'+val.title+'</a></p>');
+                    var txt = '<h4>'+key+'</h4><ol>';
+                    jQuery.each(val, function(key, val) {
+                        txt += '<li><a href="'+val.href+'" target="_blank">'+val.title+'</a></li>'
+                    });
+                    txt += '</ol>';
+                    faq.append(txt);
                 });
             })
             .fail(function(e) {
