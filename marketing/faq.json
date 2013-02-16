@@ -1,52 +1,124 @@
 {
 	"look": [
 		{
-			"title": "Look Does Editorial work with the latest version of WordPress?",
-			"href": "http://editorialtemplate.com/faq/8/does-editorial-work-with-the-latest-version-of-wordpress"
+			"title": "Header and footer",
+			"href": "http://editorialtemplate.com/documentation/header-and-footer/"
 		},
 		{
-			"title": "How often is Editorial updated?",
-			"href": "http://editorialtemplate.com/faq/10/how-often-is-editorial-updated"
+			"title": "Home page",
+			"href": "http://editorialtemplate.com/documentation/home-page/"
+		},
+		{
+			"title": "Categories, Tags & Search",
+			"href": "http://editorialtemplate.com/documentation/categories-tags-search/"
+		},
+		{
+			"title": "Post",
+			"href": "http://editorialtemplate.com/documentation/post/"
+		},
+		{
+			"title": "Page",
+			"href": "http://editorialtemplate.com/documentation/page/"
+		},
+		{
+			"title": "Editorial structure",
+			"href": "http://editorialtemplate.com/documentation/editorial-structure/"
+		},
+		{
+			"title": "Recommended WordPress Settings",
+			"href": "http://editorialtemplate.com/documentation/recommended-wordpress-settings/"
+		},
+		{
+			"title": "Categories",
+			"href": "http://editorialtemplate.com/documentation/setup-categories/"
+		},
+		{
+			"title": "Tags",
+			"href": "http://editorialtemplate.com/documentation/setup-tags/"
+		},
+		{
+			"title": "Pages",
+			"href": "http://editorialtemplate.com/documentation/setup-pages/"
+		},
+		{
+			"title": "Menus",
+			"href": "http://editorialtemplate.com/documentation/setup-menus/"
+		},
+		{
+			"title": "Posts",
+			"href": "http://editorialtemplate.com/documentation/posts/"
+		},
+		{
+			"title": "Comments and feedback",
+			"href": "http://editorialtemplate.com/documentation/comments-and-feedback/"
+		},
+		{
+			"title": "Users",
+			"href": "http://editorialtemplate.com/documentation/setup-users/"
+		},
+		{
+			"title": "Masthead",
+			"href": "http://editorialtemplate.com/documentation/masthead/"
 		}
 	],
 	"comments": [
 		{
-			"title": "Comments Does Editorial work with the latest version of WordPress?",
-			"href": "http://editorialtemplate.com/faq/8/does-editorial-work-with-the-latest-version-of-wordpress"
+			"title": "Post",
+			"href": "http://editorialtemplate.com/documentation/categories-tags-search/"
 		},
 		{
-			"title": "How often is Editorial updated?",
-			"href": "http://editorialtemplate.com/faq/10/how-often-is-editorial-updated"
+			"title": "Comments & feedback",
+			"href": "http://editorialtemplate.com/documentation/comments-and-feedback/"
+		},
+		{
+			"title": "Recommended WordPress Settings",
+			"href": "http://editorialtemplate.com/documentation/recommended-wordpress-settings/"
+		},
+		{
+			"title": "Plugins",
+			"href": "http://editorialtemplate.com/documentation/plugins/"
 		}
 	],
 	"sharing": [
 		{
-			"title": "Sharing Does Editorial work with the latest version of WordPress?",
-			"href": "http://editorialtemplate.com/faq/8/does-editorial-work-with-the-latest-version-of-wordpress"
+			"title": "Post",
+			"href": "http://editorialtemplate.com/documentation/categories-tags-search/"
 		},
 		{
-			"title": "How often is Editorial updated?",
-			"href": "http://editorialtemplate.com/faq/10/how-often-is-editorial-updated"
+			"title": "Basic customisation from admin panel",
+			"href": "http://editorialtemplate.com/documentation/basic-customisation-from-admin-panel/"
 		}
 	],
 	"customize": [
 		{
-			"title": "Customize Does Editorial work with the latest version of WordPress?",
-			"href": "http://editorialtemplate.com/faq/8/does-editorial-work-with-the-latest-version-of-wordpress"
+			"title": "Header and footer",
+			"href": "http://editorialtemplate.com/documentation/header-and-footer/"
 		},
 		{
-			"title": "How often is Editorial updated?",
-			"href": "http://editorialtemplate.com/faq/10/how-often-is-editorial-updated"
+			"title": "Home page",
+			"href": "http://editorialtemplate.com/documentation/home-page/"
+		},
+		{
+			"title": "Categories, Tags & Search",
+			"href": "http://editorialtemplate.com/documentation/categories-tags-search/"
+		},
+		{
+			"title": "Post",
+			"href": "http://editorialtemplate.com/documentation/post/"
+		},
+		{
+			"title": "Page",
+			"href": "http://editorialtemplate.com/documentation/page/"
+		},
+		{
+			"title": "Advanced CSS customisation",
+			"href": "http://editorialtemplate.com/documentation/advanced-css-customisation/"
 		}
 	],
 	"translations": [
 		{
-			"title": "Translations Does Editorial work with the latest version of WordPress?",
-			"href": "http://editorialtemplate.com/faq/8/does-editorial-work-with-the-latest-version-of-wordpress"
-		},
-		{
-			"title": "How often is Editorial updated?",
-			"href": "http://editorialtemplate.com/faq/10/how-often-is-editorial-updated"
+			"title": "Translating the interface",
+			"href": "http://editorialtemplate.com/documentation/translating-the-interface/"
 		}
 	]
 }
