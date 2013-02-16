@@ -61,24 +61,30 @@
         <h3 class="hndle"><span><?php _e('Typekit settings', 'Editorial'); ?></span></h3>
             <div class="inside">
               <div class="table table_content">
-
                   <fieldset>
-            <label><?php _e('Typekit API Token', 'Editorial'); ?><br /><input type="text" name="typekit-token" value="<?php echo !Editorial::getOption('typekit-token') ? '' : Editorial::getOption('typekit-token'); ?>" placeholder="Enter Typekit API Token" /></label>
-            <?php
+                    <label><?php _e('Typekit API Token', 'Editorial'); ?><br />
+                        <input
+                            type="text"
+                            name="typekit-token"
+                            value="<?php echo !Editorial::getOption('typekit-token') ? '' : Editorial::getOption('typekit-token'); ?>"
+                            placeholder="Enter Typekit API Token"
+                            class="<?php echo Editorial::getOption('typekit-token') && !Editorial::getOption('typekit-kit') ? 'ok' : 'error' ?>"
+                        />
+                    </label>
+                    <?php
 
-            if (Editorial::getOption('typekit-token') && !Editorial::getOption('typekit-kit'))
-            {
-                // kit create failed
-                echo '<p class="note">'.__('The Typekit font creation did not work. <a href="?page=editorial&typekit">Try again?</a>', 'Editorial').'</p>';
-            }
+                    if (Editorial::getOption('typekit-token') && !Editorial::getOption('typekit-kit'))
+                    {
+                        // kit create failed
+                        echo '<p class="note">'.__('The Typekit font creation did not work. <a href="?page=editorial&typekit">Try again?</a>', 'Editorial').'</p>';
+                    }
 
-            ?>
-            <p class="note"><?php _e('You will need a <a href="http://typekit.com" target="_blank">typekit</a> account to enable custom font for Editorial template. <br />But no worries, we will handle that for you. Just head over to your Typekit account and <a href="https://typekit.com/account/tokens">generate one</a>. <br/>Editorial template uses font MinionPro which is available on Typekit for <em>$24.99/year</em>.', 'Editorial'); ?></p>
-          </fieldset>
-
+                    ?>
+                    <p class="note"><?php _e('You will need a <a href="http://typekit.com" target="_blank">typekit</a> account to enable custom font for Editorial template. <br />But no worries, we will handle that for you. Just head over to your Typekit account and <a href="https://typekit.com/account/tokens">generate one</a>. <br/>Editorial template uses font MinionPro which is available on Typekit for <em>$24.99/year</em>.', 'Editorial'); ?></p>
+                  </fieldset>
               </div>
           </div>
-  </div>
+    </div>
 
 
 

@@ -44,7 +44,7 @@
     cursor: move;
     width: 15px;
     height: 17px;
-    background: url(<?php echo get_bloginfo('template_directory'); ?>/images/handle.png) no-repeat;
+    background: url(<?php echo get_bloginfo('template_directory'); ?>/images/admin/handle.png) no-repeat;
     text-indent: -99999px;
     outline: none;
     margin-right: 10px;
@@ -116,6 +116,15 @@ fieldset.e-translations textarea{
 #comment_provider p img {
     float: right;
     padding: 0 1em 0 1em;
+}
+
+input.ok {
+    background: #F4FFE5 url(<?php echo get_bloginfo('template_directory'); ?>/images/admin/accept.png) right no-repeat;
+    border-color: #ADCC84;
+}
+
+input.error {
+    background: #fff url(<?php echo get_bloginfo('template_directory'); ?>/images/admin/delete.png) right no-repeat;
 }
 
 </style>
