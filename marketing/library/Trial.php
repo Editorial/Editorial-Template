@@ -28,9 +28,10 @@ class Trial
 	 * Insert a new entry into the trial system
 	 *
 	 * @param  string $email
+	 * @param  bool   $subscribe
 	 * @return void
 	 */
-	public function insert($email)
+	public function insert($email, $subscribe = false)
 	{
 		global $wpdb;
 
@@ -52,6 +53,13 @@ class Trial
 		if ($this->isCurrentlyInTrial($email))
 		{
 			throw new Exception('Email is currently already in trial.');
+		}
+
+		// insert into mailchimp newsletter list
+		if ($subscribe)
+		{
+			$api = new MCAPI(MAILCHIMP_API_KEY);
+			$api->listSubscribe(MAILCHIMP_LIST_ID, $email);
 		}
 
 		return $wpdb->insert(

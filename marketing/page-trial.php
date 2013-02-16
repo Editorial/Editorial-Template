@@ -24,7 +24,7 @@ the_post();
 			if(isset($_POST['trial_email'])) {
 				$Trial = new Trial();
 				try {
-					$Trial->insert($_POST['trial_email']);
+					$Trial->insert($_POST['trial_email'], isset($_POST['t-newsletter']) && $_POST['t-newsletter'] == 'on');
 					echo '			<h2 class="trial-success">Thank you for applying!</h2>';
 					$success = true;
 				} catch(Exception $e) {

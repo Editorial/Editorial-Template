@@ -11,6 +11,7 @@ require_once 'library/Account.php';
 require_once 'library/Domain.php';
 require_once 'library/Promo.php';
 require_once 'library/Trial.php';
+require_once 'library/MCAPI.php';
 
 // for debuggin purposes
 function dump($object = '')
@@ -61,6 +62,10 @@ define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
 define('PAYPAL_VERSION',     '56.0');
 define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
 define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
+
+// mailchimp settings
+define('MAILCHIMP_API_KEY', '643f4816cf9cec07e88fceff786ebc6d-us2');
+define('MAILCHIMP_LIST_ID', '356cc54588');
 
 /**
  * Adds classes to the array of body classes.
