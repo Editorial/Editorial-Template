@@ -117,7 +117,7 @@ dt{font-weight:normal;}
 .entry-content blockquote p {padding:0 0 34px;font-size:24px;line-height:30px;font-style:italic;color:#999;background-position:bottom;}
 blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
 b,strong{font-weight:bold;}
-i,em {font-style:italic;font-family:minion-pro-italic;}
+i,em {font-style:italic;}
 sup,sub {font-size:75%;line-height:0;position:relative;}
 sup {top:-.5em;}
 sub {bottom:-.25em;}
@@ -394,9 +394,9 @@ background-color:#fff;background-position:-32px -42px;position:absolute;bottom:0
 #comments h2 {color:#f2f2f2;top:0;left:0;display:none;}
 #comments section,#comments blockquote {padding:12px 0 0;}
 #comments blockquote {clear:both;}
-#comments cite {margin:-1px 0 4px;font-size:18px;line-height:25px;display:block;}
+#comments cite {margin:-1px 0 4px;font-size:18px;text-decoration:none;line-height:25px;display:block;color:#999;}
 #comments .no-link {text-decoration:none;}
-#comments cite a,#comments .no-link {color:#333;}
+#comments cite a,#comments .no-link {color:#333; text-decoration: underline;}
 #comments time {padding:0 0 8px;display:block;}
 
 .bad-comment,.trackback {color:#999;}
