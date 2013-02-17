@@ -106,8 +106,10 @@ $s = ' class="selected"';
 	<li id="features"<?php if(is_page_template('custom_features.php')) echo $s; ?>><a href="/features/">Features</a></li>
 	<li id="help"<?php     if(is_post_type_archive('faq') || is_singular('faq')) echo $s; ?>><a href="/documentation/">Documentation</a></li>
 	<li id="about"<?php    if(is_page('about')) echo $s; ?>><a href="/about/">About</a></li>
-	<li id="purchase"<?php if(is_page('purchase')) echo $s; ?>><a href="/purchase/">Purchase</a></li>
+	<?php if (!is_page('purchase') && !is_page('transaction') && !is_page('download')) { ?>
+	<li id="purchase"><a href="/purchase/">Purchase</a></li>
 	<li id="demo"><a href="http://demo.editorialtemplate.com/">View live demo</a> or</li>
+	<?php } ?>
 </ul>
 
 		</nav>
