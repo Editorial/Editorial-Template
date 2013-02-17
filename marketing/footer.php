@@ -191,7 +191,6 @@ if (!is_404())
 			</ul>
 		</section>
 		<section class="price-tag">
-<!--			<h4>Editorial theme</h4>-->
 			<h4><em>Edit</em>orial<sup>2</sup></h4>
 			<ul class="included">
 				<li>All listed features</li>
