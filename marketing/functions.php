@@ -293,8 +293,8 @@ function theme_options_do_page() {
 function create_post_types() {
 	register_post_type('faq', array(
 		'labels'              => array(
-			'name'              => __('FAQs'),
-			'singular_name'     => __('FAQ')
+			'name'              => __('Documentation'),
+			'singular_name'     => __('Documentation')
 		),
 		'supports'            => array('title', 'editor'),
 		'taxonomies'          => array('faqcat'),
@@ -311,8 +311,8 @@ add_action('init', 'create_post_types');
 function create_taxonomies() {
 	register_taxonomy('faqcat', 'faq', array(
 		'labels'          => array(
-			'name'          => __('FAQ Categories'),
-			'singular_name' => __('FAQ Category')
+			'name'          => __('Categories'),
+			'singular_name' => __('Category')
 		),
 		'hierarchical'    => true,
 		'public'          => true,
