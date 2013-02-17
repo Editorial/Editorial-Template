@@ -49,7 +49,7 @@ form p,.domain .info p,.info .help,.promo .info p{font:12px/15px helvetica,arial
 #buy-form{padding:5px 0 0;clear:both;}
 .licenses{margin:0 0 10px;}
 .licenses ol{margin:0;padding:0 0 10px;width:100%;background-position:500px 500px;float:left;}
-.licenses input,.domain input,.manage #domains input{margin:2px 0 0;border:none;width:100%;background:none;-webkit-appearance:none;opacity:1;}
+.licenses input,.domain input,.manage #domains input{margin:2px 0 0;border:none;width:100%;background:none;-webkit-appearance:none;-webkit-text-fill-color:#262121;opacity:1;}
 .licenses input,.domain input{font-size:18px;line-height:20px;color:#262121;}
 .licenses label,.manage label{margin:0 0 13px;border-bottom:1px solid #ccc;padding:7px 0 4px;color:#999;display:block;}
 .manage label{margin:0;border:none;}
@@ -104,7 +104,7 @@ form p,.domain .info p,.info .help,.promo .info p{font:12px/15px helvetica,arial
 html{background:#f7f7f7;}
 .home-bgr{background:#f7f7f7 url(../images/bgr/bgr-home.png) 50% 0 no-repeat;}
 body{margin:0 auto;min-width:320px;}
-.abilities li,.price-tag,.price strong,.included li,.support .col,.copyright,#brand a,.primary li,.process ol,.process li,.licenses ol,.order .action,.download em,.process figure,.leading,.level h2,.ribbon h1,#manage-form,.helpful h4,.related h4,.features-links,.main h2,.licencing h2,#purchase b{background-image:url(../images/bgr/sprite.png);background-repeat:no-repeat;}
+.abilities li,.price-tag,.price strong,.included li,.support .col,.copyright,#brand a,.primary li,.process ol,.process li,.licenses ol,.order .action,.download em,.process figure,.leading,.level h2,.ribbon h1,#manage-form,.helpful h4,.related h4,.features-links,.home .main h2,.licencing h2,#purchase b{background-image:url(../images/bgr/sprite.png);background-repeat:no-repeat;}
 .price-tag,.price-tag h4,.connect,.go-try em,.social li,.subscription{background-image:url(../images/bgr/sprite-new.png);background-repeat:no-repeat;}
 .level li,.level .group,.makers li{background-image:url(../images/bgr/lines.png);background-repeat:no-repeat;}
 #header hgroup,.content,.updates,.support,.copyright,.support{padding-left:15px;padding-right:15px;}
