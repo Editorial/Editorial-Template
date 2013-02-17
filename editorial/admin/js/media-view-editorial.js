@@ -17,7 +17,6 @@ function ptq(q) {
     }
     return q;
 }
-
 jQuery(document)
         .on(
                 'ready',
@@ -126,7 +125,7 @@ jQuery(document)
                         initialize: function() {
                             // If we haven't been provided a `library`, create a `Selection`.
                             if ( ! this.get('library') )
-                                this.set( 'library', media.query({ type: 'image' }) );
+                                this.set( 'library', media.query({  }) );
                             this.debouncedScan = _.debounce( _.bind( this.scan, this ), 200 );
                             this.props = new Backbone.Model({ url: '' });
                             this.props.on( 'change:url', this.debouncedScan, this );
@@ -192,7 +191,7 @@ jQuery(document)
                                 if (/* state !== frame.state() ||*/ url !== state.props.get('url') || state.props.get('url') == templateImgDir+"/no_image.png")
                                     return;
                                 state.set({
-                                    type: 'image'
+                                    type: ['image', 'video']
                                 });
 
                                 state.props.set({
@@ -416,6 +415,13 @@ jQuery(document)
 
 
                     media.controller.GalleryAdd = media.controller.GalleryAdd.extend({
+                    	initialize: function() {
+                			// If we haven't been provided a `library`, create a `Selection`.
+                			if ( ! this.get('library') )
+                				this.set( 'library', media.query({}) );
+
+                			media.controller.Library.prototype.initialize.apply( this, arguments );
+                		},
                         activate: function() {
                             var library = this.get('library'),
                                 edit    = this.frame.state('gallery-edit').get('library');
