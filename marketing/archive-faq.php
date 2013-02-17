@@ -2,7 +2,7 @@
 
 <div class="content" role="main">
 	<article class="main">
-		<h1><em>Help</em> &amp; support</h1>
+		<h1><em>Document</em>ation</h1>
 
 		<?php
 			// get FAQ categories
@@ -46,7 +46,7 @@
 			}
 		?>
 		<section class="level">
-			<h2><em>Frequently asked questions about Editorial</em></h2>
+			<h2><em>Problems! We hear you. Keep your pants on and look for answers</em></h2>
 			<?php foreach($faq_grouped_posts as $group) : ?>
 				<div class="group">
 					<h3><?php echo $group['title']; ?></h3>

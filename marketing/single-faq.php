@@ -2,7 +2,7 @@
 
 <div class="content" role="main">
 	<article class="main">
-		<h1><em>Help</em> &amp; support</h1>
+		<h1><em>Document</em>ation</h1>
 
 		<div class="read">
 			<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
@@ -22,7 +22,7 @@
 
 		<aside class="related" role="complementary">
 			<h4><em>Related questions</em></h4>
-			<p>This question is about “<?php echo $this_cat_name; ?>”. You might want to take a look
+			<p>This question is about &quot;<?php echo $this_cat_name; ?>&quot;. You might want to take a look
 			at some more questions from the same category.</p>
 			<?php
 				$related = get_posts(array(

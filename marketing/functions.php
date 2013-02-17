@@ -67,10 +67,6 @@ define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?c
 define('MAILCHIMP_API_KEY', '643f4816cf9cec07e88fceff786ebc6d-us2');
 define('MAILCHIMP_LIST_ID', '356cc54588');
 
-// disable plugin js
-define('WPCF7_LOAD_JS', false);
-define('WPCF7_LOAD_CSS', false);
-
 /**
  * Adds classes to the array of body classes.
  */
@@ -154,10 +150,10 @@ function editorial_body_classes( $classes )
 add_filter( 'body_class', 'editorial_body_classes' );
 
 register_nav_menus(array(
-	'main-nav'  => __('Main menu'),
-	'help-nav'  => __('Help & Support footer menu'),
-	'about-nav' => __('About footer menu'),
-	'legal-nav' => __('Legal footer menu')
+	'main-nav'  	=> __('Main menu'),
+	'help-nav'  	=> __('Help & Support footer menu'),
+	'about-nav' 	=> __('About footer menu'),
+	'editorial-nav'	=> __('Editorial')
 ));
 
 // add excerpt to pages
@@ -306,7 +302,7 @@ function create_post_types() {
 		'exclude_from_search' => false,
 		'has_archive'         => true,
 		'rewrite'             => array(
-			'slug'	=> 'documentation'
+			'slug'	=> 'documentation',
 		)
 	));
 }
@@ -320,7 +316,9 @@ function create_taxonomies() {
 		),
 		'hierarchical'    => true,
 		'public'          => true,
-		'rewrite'         => false
+		'rewrite'         => array(
+			'slug'	=> 'documentation',
+		)
 	));
 }
 add_action('init', 'create_taxonomies', 0);

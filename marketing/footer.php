@@ -257,11 +257,11 @@ if (!is_404())
 		<div class="adapt">
 			<nav class="support" role="navigation">
 				<div class="col">
-					<h4>Help &amp; support</h4>
+					<h4>Editorial</h4>
 					<?php
 
 					$settings = array(
-						'theme_location' => 'help-nav',
+						'theme_location' => 'editorial-nav',
 						'container'      => false,
 						'menu_class'     => '',
 						'menu_id'        => '',
