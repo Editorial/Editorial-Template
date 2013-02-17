@@ -316,9 +316,7 @@ function create_taxonomies() {
 		),
 		'hierarchical'    => true,
 		'public'          => true,
-		'rewrite'         => array(
-			'slug'	=> 'documentation',
-		)
+		'rewrite'         => false,
 	));
 }
 add_action('init', 'create_taxonomies', 0);
