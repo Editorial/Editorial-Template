@@ -203,14 +203,39 @@ body {
 }
 
 #help {
+
 	a {
 		background-position: center -224px;
+		height: 12px;
+		overflow: hidden;
+
+		span {
+			display: block;
+			color: transparent;
+			position: relative;
+			height: 50px;
+
+			&:before {
+				content: 'Help';
+				position: absolute;
+				top: 1px;
+				left: 50%;
+				margin-left: -14px;
+				border-left: none;
+				color: #7f7f7f;
+			}
+		}
 	}
 
-//	a:hover,
-//	&.selected a {
-//		background-position: center -280px;
-//	}
+	&.selected {
+		a {
+			span {
+				&:before {
+					color: #fff;
+				}
+			}
+		}
+	}
 }
 
 #about {

@@ -104,7 +104,7 @@ $s = ' class="selected"';
 <ul>
 	<li id="home"<?php     if(is_front_page()) echo $s; ?>><a href="/">Home</a></li>
 	<li id="features"<?php if(is_page_template('custom_features.php')) echo $s; ?>><a href="/features/">Features</a></li>
-	<li id="help"<?php     if(is_post_type_archive('faq') || is_singular('faq')) echo $s; ?>><a href="/documentation/">Documentation</a></li>
+	<li id="help"<?php     if(is_post_type_archive('faq') || is_singular('faq')) echo $s; ?>><a href="/documentation/"><span>Documentation</span></a></li>
 	<li id="about"<?php    if(is_page('about')) echo $s; ?>><a href="/about/">About</a></li>
 	<?php if (!is_page('purchase') && !is_page('transaction') && !is_page('download')) { ?>
 	<li id="purchase"><a href="/purchase/">Purchase</a></li>
