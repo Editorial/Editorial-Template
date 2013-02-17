@@ -64,6 +64,7 @@ else
 }
 
 // session?
+$promo = false;
 if (isset($_SESSION) && count($_SESSION))
 {
     if (array_key_exists('licences', $_SESSION))
