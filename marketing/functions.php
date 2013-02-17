@@ -67,6 +67,10 @@ define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?c
 define('MAILCHIMP_API_KEY', '643f4816cf9cec07e88fceff786ebc6d-us2');
 define('MAILCHIMP_LIST_ID', '356cc54588');
 
+// disable plugin js
+define('WPCF7_LOAD_JS', false);
+define('WPCF7_LOAD_CSS', false);
+
 /**
  * Adds classes to the array of body classes.
  */
