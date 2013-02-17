@@ -273,11 +273,11 @@ if (!is_404())
 					?>
 				</div>
 				<div class="col">
-					<h4>About</h4>
+					<h4>Help &amp; Support</h4>
 					<?php
 
 					$settings = array(
-						'theme_location' => 'about-nav',
+						'theme_location' => 'help-nav',
 						'container'      => false,
 						'menu_class'     => '',
 						'menu_id'        => '',
@@ -289,11 +289,11 @@ if (!is_404())
 					?>
 				</div>
 				<div class="col">
-					<h4>Help &amp; Support</h4>
+					<h4>About</h4>
 					<?php
 
 					$settings = array(
-						'theme_location' => 'help-nav',
+						'theme_location' => 'about-nav',
 						'container'      => false,
 						'menu_class'     => '',
 						'menu_id'        => '',
