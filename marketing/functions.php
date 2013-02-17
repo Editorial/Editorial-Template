@@ -305,7 +305,9 @@ function create_post_types() {
 		'public'              => true,
 		'exclude_from_search' => false,
 		'has_archive'         => true,
-		'rewrite'             => true
+		'rewrite'             => array(
+			'slug'	=> 'documentation'
+		)
 	));
 }
 add_action('init', 'create_post_types');
