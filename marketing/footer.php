@@ -210,7 +210,7 @@ if (!is_404())
 			<section class="to-trial">
 				<h3>Free 14 days trial</h3>
 				<p>It will take you less than a minute to start testing. No credit card required. Experience it for yourself.
-				<a href="http://trial.editorialtempalte.com/" class="go-try"><em>Start your free trial</em></a></p>
+				<a href="/trial/" class="go-try"><em>Start your free trial</em></a></p>
 			</section>
 			<section class="to-demo">
 				<h3>Demonstration</h3>
