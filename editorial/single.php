@@ -19,6 +19,7 @@ the_post();
 // id depends on the type of the first posts image
 $EditorialId = 'inside';
 
+$children = get_children(array('post_parent' => $post->ID));
 if (has_post_thumbnail())
 {
     $thumbId = get_post_thumbnail_id($post->ID);
@@ -39,9 +40,16 @@ if (has_post_thumbnail())
 
     $thumbnailUrl = Editorial::getImage($thumbId, $EditorialId == 'inside' ? 'landscape' : 'portrait', true);
 }
+else if (count($children))
+{
+    // post does not have thumbnail, make an exception -> take first from children
+    $thumbnailUrl = Editorial::getBlankImage(true);
+    $media = current($children);
+    $attachmentUrl = get_attachment_link($media->ID);
+    $attachmentsCount = count($children);
+}
 else
 {
-    $thumbnailUrl = get_bloginfo('template_directory').'/images/no_image_big.png';
     $thumbnailUrl = Editorial::getBlankImage(true);
     $attachmentUrl = '#';
     $attachmentsCount = 0;
@@ -120,12 +128,9 @@ $translations = Editorial::getOption('translations');
             <figure>
                 <a href="<?php echo $attachmentUrl ?>" id="to-gallery">
                     <img src="<?php echo $thumbnailUrl; ?>" alt="<?php echo $imageMeta->alt ?  $imageMeta->alt : $imageMeta->title; ?>" class="photo">
-                    <?php             if ($attachmentsCount > 1) {
-                    ?>
+                    <?php if ($attachmentsCount > 1) { ?>
                     <em id="media-count">1/<?php echo $attachmentsCount; ?></em>
-                    <?php
-                    }
-                    ?>
+                    <?php } ?>
                 </a>
                 <?php if (isset($imageMeta)) { ?>
                 <figcaption>

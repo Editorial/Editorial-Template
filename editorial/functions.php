@@ -963,9 +963,20 @@ EOF;
     public static function tabNavigation($postId, $selected = 'article')
     {
         $thumbId = get_post_thumbnail_id($postId);
+        $children = get_children(array('post_parent' => $postId));
+        if (!$thumbId)
+        {
+            // figure out if we can take something from attached files
+            if (count($children))
+            {
+                $attachment = current($children);
+                $thumbId    = $attachment->ID;
+            }
+        }
+        $attachmentLink = !$thumbId ? '#' : get_attachment_link($thumbId);
         $commentCount = get_comments_number($postId);
         if ($commentCount == -1) $commentCount = 0; // fb fix
-        $attachmentCount = count(get_children(array('post_parent' => $postId)));
+        $attachmentCount = count($children);
         $translations = self::getOption('translations');
         $comments = comments_open() || self::getCommentSystem() != self::COMMENT_WORDPRESS;
 ?>
@@ -975,7 +986,7 @@ EOF;
                 <a href="<?php echo get_permalink($postId); ?>"><?php echo $translations['single_article']['Article']; ?></a>
             </li>
             <li<?php echo $selected == 'gallery' ?  ' class="selected"' : '' ?>>
-                <a href="<?php echo get_attachment_link($thumbId); ?>"><?php echo $translations['single_article']['Gallery'];  echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
+                <a href="<?php echo $attachmentLink; ?>"><?php echo $translations['single_article']['Gallery'];  echo $attachmentCount ? ' <em>'.$attachmentCount.'</em>' : ''; ?></a>
             </li>
             <?php if ($comments) { ?>
             <li<?php echo $selected == 'comments' ? ' class="selected"' : '' ?>>
