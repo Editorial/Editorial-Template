@@ -221,7 +221,7 @@ class Editorial
         $widgets = wp_get_sidebars_widgets();
         self::$widgetCount = isset($widgets[EDITORIAL_WIDGET]) && is_array($widgets[EDITORIAL_WIDGET]) ? count($widgets[EDITORIAL_WIDGET]) : 0;
 
-        add_filter('attachment_fields_to_edit', array('Editorial','hideSomeAttachmentFields'), 11, 2 );
+       // add_filter('attachment_fields_to_edit', array('Editorial','hideSomeAttachmentFields'), 11, 2 );
         add_filter('media_upload_tabs', array('Editorial','removeMediaLibraryTab'));
         add_filter('admin_head_media_upload_gallery_form', array('Editorial','hideGalerySettingsDiv'));
         add_filter('type_url_form_media', array('Editorial','hideTypeUrlFields'));
