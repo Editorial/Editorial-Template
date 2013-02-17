@@ -47,8 +47,19 @@ get_header(); ?>
 					<a href="http://twitter.com/natannikolic" target="_blank">@natannikolic</a></p>
 				</li>
 			</ul>
-			<h3>Feel free to drop a line or two</h3>
-			<p id="mailto">hello <span>at</span> editorialtemplate <span>dot</span> com</p>
+			<h3>Brought to you with the help of</h3>
+			<p>
+				<a href="https://twitter.com/tanjapislar">Tanja Pislar</a>'s long term GENERAL CODE CONTRIBUTION, 
+				<a href="https://github.com/KrofDrakula">Klemen Slavic</a>'s custom written MULTIMEDIA GALLERY interface for touch screens, 
+				<a href="https://twitter.com/ladushki">Larissa Bobkova</a>'s solution for a simpler GALLERY ADMINISTRATION, 
+				<a href="https://twitter.com/janhancic">Jan Hancic</a>'s solution for RESPONSIVE IMAGES, 
+				<a href="http://twistedpoly.com/">Nejc Polovsak</a>'s pixelicious 3D RENDER showing off our home page, 
+				<a href="http://www.jakavinsek.com/">Jaka Vinsek</a>'s PHOTOGRAPHY used for pseudo magazine covers, 
+				<a href="http://dribbble.com/benedik">Rok Benedik</a>'s ICONS we use through our website, and finally 
+				<a href="https://twitter.com/malarkey">Andy Clarke</a>'s 320-up BOILERPLATE which kickstarted our CSS. 
+				Our words are (mostly) set in <a href="http://en.wikipedia.org/wiki/Robert_Slimbach">Robert Slimbach</a>'s gorgeous Minion Pro FONT, 
+				served with <a href="https://typekit.com/fonts/minion-pro">Adobe Typekit</a>.
+			</p>
 		</aside>
 		<footer class="v-hidden">
 			<time class="published" datetime="2011-10-20T20:00:00+01:00">10/20/2011</time>
