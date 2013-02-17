@@ -289,11 +289,11 @@ if (!is_404())
 					?>
 				</div>
 				<div class="col">
-					<h4>Legal notice</h4>
+					<h4>Help &amp; Support</h4>
 					<?php
 
 					$settings = array(
-						'theme_location' => 'legal-nav',
+						'theme_location' => 'help-nav',
 						'container'      => false,
 						'menu_class'     => '',
 						'menu_id'        => '',
