@@ -149,7 +149,7 @@ body{margin:0 auto;min-width:320px;}
 .inquiry .adapt,.wpcf7-form .adapt{padding:0 15px 8px;}
 .inquiry fieldset,.wpcf7-form fieldset{border:none;width:100%;float:left;}
 .inquiry h2,.wpcf7-form h2{padding:6px 0 11px;font-size:24px;line-height:30px;color:#09c;position:relative;z-index:1;}.inquiry h2 em,.wpcf7-form h2 em{padding:0 15px;font-style:normal;text-shadow:-1px 0 1px rgba(0, 0, 0, 0.25);background:#fdfdf3 url(../images/bgr/inquiry.png);}.inquiry h2 em:before,.wpcf7-form h2 em:before{content:'';border-top:1px solid rgba(230, 224, 206, 0.5);position:absolute;top:22px;left:15px;right:15px;z-index:-1;}
-.inquiry .opened,.wpcf7-form .opened{color:#ccc5b2;color:rgba(204, 197, 178, 0.3);}.inquiry .opened em,.wpcf7-form .opened em{text-shadow:none;text-shadow:0 1px 1px #ffffff,rgba(0, 0, 0, 0.3);}
+.inquiry .opened,.wpcf7-form .opened{color:#ccc5b2;color:rgba(204, 197, 178, 0.3);}.inquiry .opened em,.wpcf7-form .opened em{text-shadow:0 1px 1px #ffffff,0 0 1px rgba(0, 0, 0, 0.2);}
 .inquiry textarea,.wpcf7-form textarea,.inquiry .message-input input,.wpcf7-form .message-input input{margin:0;border:none;padding:0;width:100%;font:bold 24px/40px minion-pro,Times,'Times new roman',serif;color:#3f2e1f;font-style:italic;background:url(../images/bgr/lines.png) top left;outline:none;}
 .inquiry textarea,.wpcf7-form textarea{height:241px;font-style:italic;}
 .inquiry .edited,.wpcf7-form .edited{color:#b0b0b0;}
