@@ -205,7 +205,7 @@ class EditorialNav extends Walker_Nav_Menu
 	function start_el(&$output, $item, $depth, $args)
 	{
 		$ids = array(
-			'Features'       => 'features',
+			//'Features'       => 'features',
 			'Purchase'       => 'purchase',
 			'Help & Support' => 'help',
 			'About'          => 'about',
