@@ -10,6 +10,7 @@ html {
 	background:@bodyBackground url(../images/bgr/bgr-home.png) 50% 0 no-repeat;
 }
 
+
 body {
 	margin: 0 auto;
 	min-width: 320px;
@@ -1412,10 +1413,17 @@ div.wpcf7 img.ajax-loader {
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .home {
-	background-image: url(../images/bgr/home-480.jpg);
-	background-position: 50% 0;
-	background-repeat: no-repeat;
+	background:@bodyBackground url(../images/bgr/home-480.jpg) 50% -160px no-repeat;
 }
+
+.home {
+	background-image: url(../images/bgr/home-480@2x.jpg), url(../images/bgr/home-480.jpg);
+	background-position: 50% -160px;
+	background-repeat: no-repeat;
+	background-color: @bodyBackground;
+	background-size: 480px 568px;
+}
+
 
 /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 

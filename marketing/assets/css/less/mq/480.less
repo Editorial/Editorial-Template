@@ -310,8 +310,17 @@ h1,
 /* bgr images +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .home {
-	background-image: url(../images/bgr/home-640.jpg);
+	background:@bodyBackground url(../images/bgr/home-640.jpg) 50% -80px no-repeat;
 }
+
+.home {
+	background-image: url(../images/bgr/home-640@2x.jpg), url(../images/bgr/home-640.jpg);
+	background-position: 50% -80px;
+	background-repeat: no-repeat;
+	background-color: @bodyBackground;
+	background-size: 768px 460px;
+}
+
 
 /* MAIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
