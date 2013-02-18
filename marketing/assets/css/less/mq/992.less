@@ -964,6 +964,25 @@ h1,
 		
 		h2 {
 			clear: both;
+			position: relative;
+
+			em {
+				//margin: 0 auto;
+				padding: 0 15px;
+				//max-width: 90%;
+				font-style: normal;
+				background: #f7f7f7;
+
+				&:before {
+					content: '';
+					border-top: 1px solid #ccc;
+					position: absolute;
+					top: 14px;
+					left: 0;
+					right: 0;
+					z-index: -1;
+				}
+			}
 		}
 
 		.lead {
