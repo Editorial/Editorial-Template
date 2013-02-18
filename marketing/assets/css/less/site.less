@@ -337,6 +337,7 @@ body {
 
 #footer {
 	text-align: center;
+	z-index: 1;
 
 	h4 {
 		margin: 1px 0 2px;
@@ -485,11 +486,24 @@ body {
 		font-size: 24px;
 		line-height: 30px;
 		color: #09c;
-		
+		position: relative;
+		z-index: 1;
+
 		em {
 			padding: 0 15px;
 			font-style: normal;
 			text-shadow: -1px 0 1px rgba(0, 0, 0, .25);
+			background:#fdfdf3 url(../images/bgr/inquiry.png);
+
+			&:before {
+				content: '';
+				border-top: 1px solid rgba(230, 224, 206, .5);
+				position: absolute;
+				top: 22px;
+				left: 15px;
+				right: 15px;
+				z-index: -1;
+			}
 		}
 	}
 
