@@ -219,6 +219,16 @@
 			t.toggleClass('opened');
 			t.next('div.adapt').slideToggle();
 		});
+		
+		wpcf7.find('.cancel a').click(function() {
+			var t = wpcf7.find('h2');
+			t.toggleClass('opened');
+			t.next('div.adapt').slideToggle();
+			return false;
+		});
+		
+		// disable submit button by default
+		wpcf7.find('input[type="submit"]').attr('disabled', 'disabled');
 
 		//green button
 		fields.on('keydown keyup change', function(){
@@ -231,7 +241,10 @@
 			});
 
 			wpcf7s.removeClass('go-green');
-			if (invalid == 0 && isValidEmail($('#uemail').val())) wpcf7s.addClass('go-green');
+			if (invalid == 0 && isValidEmail($('#uemail').val())) {
+				wpcf7s.addClass('go-green');
+				wpcf7.find('input[type="submit"]').attr('disabled', false);
+			}
 
 		});
 	}
