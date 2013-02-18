@@ -241,6 +241,7 @@
 			});
 
 			wpcf7s.removeClass('go-green');
+			wpcf7.find('input[type="submit"]').attr('disabled', 'disabled');
 			if (invalid == 0 && isValidEmail($('#uemail').val())) {
 				wpcf7s.addClass('go-green');
 				wpcf7.find('input[type="submit"]').attr('disabled', false);
