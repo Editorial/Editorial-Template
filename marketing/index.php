@@ -31,8 +31,8 @@ get_header(); ?>
 					<img src="/wp-content/themes/marketing/assets/images/dsg/feature-02.png" alt="Devices">
 				</figure>
 				<h4>Desktop, tablets and mobile</h4>
-				<p>Editorial’s layout seamlessly adapts and tailors your content to any device running a modern web browser. In other 
-					words we went a long way to help you reach and satisfy a broad and diverse audience.</p>
+				<p>Editorial’s layout seamlessly adapts and tailors your content to any device running a modern web browser. 
+					In other words Editorial goes a long way to help you reach a broad audience and satisfy their diverse needs.</p>
 				<p class="more"><a href="/features/devices/">More about devices</a></p>
 			</section>
 			<section id="photography">
@@ -40,9 +40,9 @@ get_header(); ?>
 					<img src="/wp-content/themes/marketing/assets/images/dsg/feature-03.png" alt="Images">
 				</figure>
 				<h4>Landscape &amp; portrait photography</h4>
-				<p>The most prominent pages use clever templates that change the layout based on the featured image’s orientation. 
-					Editorial handles all image ratios and automatically creates all the required sizes and thumbnails. Even for Retina 
-					displays. So you can focus on the bigger picture.</p>
+				<p>Editorial uses clever templates that change the layout based on the featured image’s orientation. It also handles 
+					any image ratios and automatically creates all the required sizes and thumbnails. Even for Retina displays. So you 
+					can focus on the bigger picture.</p>
 				<p class="more"><a href="/features/images/">More about images</a></p>
 			</section>
 			<section id="reading">
@@ -61,8 +61,8 @@ get_header(); ?>
 				</figure>
 				<h4>Media Gallery</h4>
 				<p>In the world of mobile devices, an image can be worth thousands of words, or just three: &quot;Flash Plugin Required&quot;. 
-					The Media Gallery uses a HTML5 player to deliver images and video to all supported devices, along with a spectacular 
-					touch-based browsing interface for the smarter ones.</p>
+					The Media Gallery uses a HTML5 player to deliver video on all supported devices, along with a spectacular touch-based browsing 
+					interface for the smarter ones.</p>
 				<p class="more"><a href="/features/multimedia/">More about video</a></p>
 			</section>
 			<section id="feedback">
@@ -80,8 +80,8 @@ get_header(); ?>
 					<img src="/wp-content/themes/marketing/assets/images/dsg/feature-07.png" alt="Code">
 				</figure>
 				<h4>Machine friendly</h4>
-				<p>Not all your readers are human, so we made sure your robot friends will also be able to understand your content. 
-					Everything you publish is semantically structured to offer best possible search engine optimisation (SEO), painless 
+				<p>Not all readers are human, so we made sure that even our robot friends will be able to understand your content. Everything 
+					you publish with Editorial is semantically structured to offer best possible search engine optimisation (SEO), painless 
 					social media sharing, and RSS/XML data portability.</p>
 				<p class="more"><a href="/features/code/">More about code</a></p>
 			</section>
