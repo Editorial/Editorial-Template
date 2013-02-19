@@ -44,7 +44,7 @@ class Promo
         else
         {
             // validate code
-            if ($this->getDiscount($data['code']) == 0)
+            if ($this->getDiscount($data['code']) !== 0)
             {
                 throw new Exception('Code already exists or is invalid.');
             }
@@ -90,7 +90,7 @@ class Promo
             $wpdb->escape($code)
         ));
         // return the discount amount
-        return $promo != false && strtotime($promo->date_valid) >= time() && $promo->count > 0 ? $promo->discount : 0;
+        return ($promo != false && strtotime($promo->date_valid) >= time() && $promo->count) > 0 ? $promo->discount : 0;
     }
     
     /**
