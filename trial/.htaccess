@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^([^\.]+)\.trial\.local$
+RewriteRule ^/(.*)$      trial.local/%1/$1 [L,R]
