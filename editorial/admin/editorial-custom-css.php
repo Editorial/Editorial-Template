@@ -1,7 +1,7 @@
 /*
 Theme Name:     Editorial Custom
 Description:    Custom Editorial Styles
-Author:         Matjaz Korosec
+Author:         Editorial Template
 Version:        1.0
 Template:       <?php echo $this_theme_template, "\n"; ?>
 
