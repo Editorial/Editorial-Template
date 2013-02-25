@@ -12,8 +12,6 @@ IMPORTANT!! DO NOT MODIFY THE LINES ABOVE ^^
 @import url("../<?php echo $this_theme_name; ?>/style.css");
 /**********************************************************/
 
-
-
 /*
 
 Here are some prepared options for customization.
@@ -28,22 +26,8 @@ option 01 change colors:
 
 option 02 change font:
 - S&R "minion-pro,georgia,serif" {default typography with Typekit}
-- S&R "minion-pro-italic" {italic typography with Typekit}
 - S&R "helvetica,arial,sans-serif" {form fields, image captions etc.}
 
-// ! ob spremembi fonta popravit se font-size (ker se drugace sesuje naslovnca -> zaradi fixnih boxov) + narekovaji gredo v kurac
-
-
-option 03 change font sizes & line-heights:
--
-
-- default
-- titles
--
-
-+ body background color kako zamenjat
-
-- kvoute (jim notri dat)
 */
 
 
@@ -86,7 +70,6 @@ h1 em,caption,#comments-form li em,.qa em,.message li,#errors .lead,#primary .se
 #exposed footer a,.inside #single footer a,.inside-portrait #single footer a,.notice strong,#paging strong,#navigate a,
 #team .title,.notfound h1,.widget h4 {color:#d00;}
 .submit input {font-family:minion-pro,georgia,serif;}
-i,em {font-family:minion-pro-italic;}
 h1 em,#comments-form li em,.qa em,input,textarea,table {font-family:helvetica,arial,sans-serif;}
 
 
