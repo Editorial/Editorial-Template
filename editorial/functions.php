@@ -116,8 +116,7 @@ class Editorial
             'Slideshow' => 'Slideshow',
             'Next' => 'Next',
             'Back to article' => 'Back to article',
-            'Embed code' => 'Embed code',
-            "There is no need for downloading and uploading it to your blog/website when you can easily embed it." => "There's no need for downloading and uploading it to your blog/website when you can easily embed it.",
+            'Share this' => 'Share this',
             ),
         //comments
         'comments' => array(

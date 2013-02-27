@@ -68,7 +68,7 @@
                             name="typekit-token"
                             value="<?php echo !Editorial::getOption('typekit-token') ? '' : Editorial::getOption('typekit-token'); ?>"
                             placeholder="Enter Typekit API Token"
-                            class="<?php echo Editorial::getOption('typekit-token') && !Editorial::getOption('typekit-kit') ? 'ok' : 'error' ?>"
+                            class="<?php echo (Editorial::getOption('typekit-token') && Editorial::getOption('typekit-kit')) ? 'ok' : 'error' ?>"
                         />
                     </label>
                     <?php

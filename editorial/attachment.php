@@ -304,8 +304,7 @@ if ($isMobileGallery)
                 }
 ?>
             <fieldset id="embed">
-                <h4><label for="embed-code"><?php echo $translations['gallery']['Embed code']; ?></label></h4>
-                <p><?php echo $translations['gallery']['There is no need for downloading and uploading it to your blog/website when you can easily embed it.']; ?></p>
+                <h4><label for="embed-code"><?php echo $translations['gallery']['Share this']; ?></label></h4>
                 <input id="embed-code" value="<?php echo isset($metadata['embed_type']) ? htmlspecialchars(get_the_content()) : get_permalink($post->ID); ?>">
             </fieldset>
         </aside>
