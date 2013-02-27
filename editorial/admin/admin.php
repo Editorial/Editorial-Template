@@ -693,14 +693,18 @@ class Editorial_Admin
             $response = unserialize($raw_response['body']);
 
         // Feed the update data into WP updater
-        if (!empty($response)) {
+        if (!empty($response))
+        {
             $checked_data->response[$theme_base] = $response;
             //var_dump($response);
             if (! $this->_checkVersion($response))
             {
                 return false;
             }
-
+        }
+        else
+        {
+            Editorial::setOption('pirates', false);
         }
 
         return $checked_data;
@@ -963,9 +967,9 @@ class Editorial_Admin
      */
     public function displayWarning()
     {
-        $response = wp_remote_get('http://editorialtemplate.com/pirates/message.html');
         if (Editorial::getOption('pirates'))
         {
+            $response = wp_remote_get('http://editorialtemplate.com/pirates/message.html');
             if( !is_wp_error( $response ) )
             {
                echo $response['body'];
