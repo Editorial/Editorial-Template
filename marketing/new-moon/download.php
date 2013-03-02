@@ -33,7 +33,7 @@ define('DB_HOST', 'localhost');
 
 if(!empty($_GET['key'])){
   //check the DB for the key
-  $resCheck = mysql_query("SELECT * FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_escape_string($_GET['key'])."' LIMIT 1");
+  $resCheck = mysql_query("SELECT * FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_real_escape_string($_GET['key'])."' LIMIT 1");
   $arrCheck = mysql_fetch_assoc($resCheck);
 
 //var_dump($arrCheck);
@@ -58,7 +58,7 @@ if(!empty($_GET['key'])){
           echo $strFile;
          
 					//update the DB to say this file has been downloaded
-					mysql_query("DELETE FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_escape_string($_GET['key'])."'");
+					mysql_query("DELETE FROM wp_autoupdate_downloads WHERE downloadkey = '".mysql_real_escape_string($_GET['key'])."'");
           //mysql_query("UPDATE wp_autoupdate_downloads SET downloads = downloads + 1 WHERE downloadkey = '".mysql_escape_string($_GET['key'])."' LIMIT 1");
           
           exit;
