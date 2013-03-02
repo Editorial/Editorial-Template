@@ -106,7 +106,7 @@ $s = ' class="selected"';
 	<li id="about"<?php    if(is_page('masthead')) echo $s; ?>><a href="/masthead/">About</a></li>
 	<?php if (!is_page('purchase') && !is_page('transaction') && !is_page('download')) { ?>
 	<li id="purchase"><a href="/purchase/">Purchase</a></li>
-	<li id="demo"><a href="http://demo.editorialtemplate.com/">View live demo</a> or</li>
+	<li id="demo"><a href="http://demo.editorialtemplate.com/">View demo</a>, <a href="http://editorialtemplate.com/trial/">start free trial</a> or</li>
 	<?php } ?>
 </ul>
 
