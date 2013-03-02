@@ -2745,7 +2745,15 @@ div.wpcf7 img.ajax-loader {
 			border-color:#a6a6a6 #d9d9d9 #d9d9d9 #a6a6a6;
 			padding: 8px 12px;
 			width: 256px;
-			.box-shadow(0 1px 18px rgba(0, 153, 204, .35));
+			-webkit-transition: all .3s ease-in-out;
+			-moz-transition: all .3s ease-in-out;
+			-ms-transition: all .3s ease-in-out;
+			-o-transition: all .3s ease-in-out;
+			outline: none;
+
+			&:focus {
+				.box-shadow(0 1px 18px rgba(0, 153, 204, .35));
+			}
 		}
 	}
 
@@ -2781,6 +2789,10 @@ div.wpcf7 img.ajax-loader {
 
 		input {
 			float: left;
+
+			&:focus {
+				.box-shadow(0 1px 18px rgba(0, 153, 204, .35));
+			}
 		}
 	}
 
@@ -2813,7 +2825,6 @@ div.wpcf7 img.ajax-loader {
 				text-transform: uppercase;
 				float: left;
 				padding: 6px;
-				.box-shadow(none);
 			}
 		}
 	}
