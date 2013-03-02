@@ -334,7 +334,7 @@ if(!localStorage.getItem('returning')) {
 	// returning visitor
 	cta = '<a href="/purchase/" class="go">Purchase</a>';
 }
-jQuery(function($) { $('#cta').append(cta); });
+jQuery(function($) { $('#cta').prepend(cta); });
 </script>
 <?php endif; ?>
 <noscript>Your browser does not support JavaScript!</noscript>
