@@ -2737,17 +2737,8 @@ div.wpcf7 img.ajax-loader {
 .trial-form {
 	//max-width: 290px;
 
-	.get-trial {
-		text-align: center;
-
-		label {
-			margin: 0 0 11px;
-			display: block;
-			font-size: 14px;
-			font-weight: bold;
-			color: #333;
-		}
-
+	.get-trial,
+	.captcha {
 		input {
 			margin: 0 auto;
 			border: 1px solid #a6a6a6;
@@ -2758,20 +2749,72 @@ div.wpcf7 img.ajax-loader {
 		}
 	}
 
-	.subscribe {
-		padding: 16px 0 0;
+	.get-trial {
+		text-align: center;
 
-		input {
-			float: left;
+		label {
+			margin: 0 0 11px;
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			color: #333;
 		}
+	}
 
+	.subscribe,
+	.captcha {
 		label {
 			margin: 0 0 16px;
 			width: 232px;
 			font-size: 12px;
 			line-height: 15px;
-			color: #999;
 			float: right;
+		}
+	}
+
+	.subscribe {
+		padding: 16px 0 0;
+
+		label {
+			color: #999;
+		}
+
+		input {
+			float: left;
+		}
+	}
+
+	.captcha {
+		padding-top: 20px;
+		text-align: center;
+
+		label {
+			margin-bottom: 10px;
+			width: 100%;
+			float: left;
+		}
+
+		.qa {
+			margin: 0 auto;
+			width: 100px;
+
+			span {
+				padding: 5px 0 0;
+				font-size: 14px;
+				letter-spacing: 1px;
+				float: left;
+			}
+
+			input {
+				margin: 0 0 0 5px;
+				width: 36px;
+				font-size: 14px;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				float: left;
+				padding: 6px;
+				.box-shadow(none);
+			}
 		}
 	}
 
