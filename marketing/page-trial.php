@@ -61,10 +61,10 @@ the_post();
 					special offers, tips &amp; tricks and updates.</label>
 				</fieldset>
 				<fieldset class="captcha">
-					<label for="trial_captcha"<?php if($success == false) echo ' class="error"'; ?>><?php echo $riddle['notice']; ?></label>
+					<label for="trial_captcha"<?php if($red == true) echo ' class="error"'; ?>><?php echo $riddle['notice']; ?></label>
 					<div class="qa">
 						<span><?php echo $riddle['riddle'] ?></span>
-						<input type="text" name="trial_captcha" id="trial_captcha"<?php if($success == false) echo ' class="error"'; ?>>
+						<input type="text" name="trial_captcha" id="trial_captcha"<?php if($red == true) echo ' class="error"'; ?>>
 					</div>
 				</fieldset>
 				<input type="submit" class="submit" value="Start free trial">
