@@ -13,6 +13,8 @@ require_once 'library/Promo.php';
 require_once 'library/Trial.php';
 require_once 'library/MCAPI.php';
 
+session_start();
+
 // for debuggin purposes
 function dump($object = '')
 {
@@ -320,6 +322,40 @@ function create_taxonomies() {
 	));
 }
 add_action('init', 'create_taxonomies', 0);
+
+/**
+ * Make new riddle as captcha
+ *
+ * @return array
+ */
+function editorial_riddle()
+{
+    // catpcha translations
+    $translations = array(
+        __('first',  'Editorial'),
+        __('second', 'Editorial'),
+        __('third',  'Editorial'),
+        __('forth',  'Editorial'),
+        __('fifth',  'Editorial'),
+        __('sixth',  'Editorial'),
+    );
+    // captcha settings
+    $captcha = strtoupper(substr(md5(microtime()),0,6));
+    // select two random characters
+    $all = array(0,1,2,3,4,5);
+    $selected = array_rand($all, 2);
+    $_SESSION['riddle'] = array(
+        'captcha'  => $captcha,
+        'chars'    => array(
+            $selected[0] => $captcha[$selected[0]],
+            $selected[1] => $captcha[$selected[1]]
+        ),
+    );
+    return array(
+        'notice' => sprintf(__('Please enter the <strong>%s</strong> and <strong>%s</strong> character', 'Editorial'), $translations[$selected[0]], $translations[$selected[1]]),
+        'riddle' => $captcha
+    );
+}
 
 
 include 'admin/admin.php';
