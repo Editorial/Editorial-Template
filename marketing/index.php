@@ -14,7 +14,7 @@ get_header(); ?>
 			<h1><em>Edit</em>orial<sup>2</sup></h1>
 			<h2 class="note">is a responsive WordPress theme <span>designed especially for digital magazines</span></h2>
 		</hgroup>
-		<p id="cta"><a href="http://demo.editorialtemplate.com/">view live demo</a>.</p>
+		<p id="cta"><a href="http://demo.editorialtemplate.com/">View demo</a>, <a href="http://editorialtemplate.com/trial/">start free trial</a> <span class="t">or</span> </p>
 	</div>
 </header>
 

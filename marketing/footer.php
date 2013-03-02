@@ -329,12 +329,12 @@ var cta;
 if(!localStorage.getItem('returning')) {
 	// first time visitor
 	localStorage.setItem('returning', true);
-	cta = '<a href="/features/" class="go-alt">Learn More</a> or ';
+	cta = '<a href="/features/" class="go-alt">Learn More</a> ';
 } else {
 	// returning visitor
-	cta = '<a href="/purchase/" class="go">Purchase</a> or ';
+	cta = '<a href="/purchase/" class="go">Purchase</a>';
 }
-jQuery(function($) { $('#cta').prepend(cta); });
+jQuery(function($) { $('#cta').append(cta); });
 </script>
 <?php endif; ?>
 <noscript>Your browser does not support JavaScript!</noscript>
