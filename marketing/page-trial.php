@@ -52,17 +52,17 @@ the_post();
 					<label for="trial_email">Your e-mail address</label>
 					<input type="email" name="trial_email" id="trial_email">
 				</fieldset>
+				<fieldset class="subscribe">
+					<input type="checkbox" name="t-newsletter" id="t-newsletter">
+					<label for="t-newsletter">Subscribe to Editorial newsletter and be the first to find about
+					special offers, tips &amp; tricks and updates.</label>
+				</fieldset>
 				<fieldset class="captcha">
 					<label for="trial_captcha"><?php echo $riddle['notice']; ?></label>
 					<div class="qa">
 						<span><?php echo $riddle['riddle'] ?></span>
 						<input type="text" name="trial_captcha" id="trial_captcha">
 					</div>
-				</fieldset>
-				<fieldset class="subscribe">
-					<input type="checkbox" name="t-newsletter" id="t-newsletter">
-					<label for="t-newsletter">Subscribe to Editorial newsletter and be the first to find about
-					special offers, tips &amp; tricks and updates.</label>
 				</fieldset>
 				<input type="submit" class="submit" value="Start free trial">
 			</form>

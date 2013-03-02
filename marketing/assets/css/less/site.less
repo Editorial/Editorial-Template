@@ -2745,10 +2745,7 @@ div.wpcf7 img.ajax-loader {
 			border-color:#a6a6a6 #d9d9d9 #d9d9d9 #a6a6a6;
 			padding: 8px 12px;
 			width: 256px;
-			-webkit-transition: all .3s ease-in-out;
-			-moz-transition: all .3s ease-in-out;
-			-ms-transition: all .3s ease-in-out;
-			-o-transition: all .3s ease-in-out;
+			.transition(all .3s ease-in-out);
 			outline: none;
 
 			&:focus {
@@ -2797,7 +2794,7 @@ div.wpcf7 img.ajax-loader {
 	}
 
 	.captcha {
-		padding-top: 20px;
+		padding: 2px 0 20px;
 		text-align: center;
 
 		label {
@@ -2808,7 +2805,7 @@ div.wpcf7 img.ajax-loader {
 
 		.qa {
 			margin: 0 auto;
-			width: 100px;
+			width: 104px;
 
 			span {
 				padding: 5px 0 0;
@@ -2848,7 +2845,7 @@ div.wpcf7 img.ajax-loader {
 
 		.action {
 			margin: 0 auto 0;
-			padding: 33px 0 20px;
+			padding: 0 0 20px;
 			width: 260px;
 			background: url(../images/dsg/get-trial.png) 32px 0 no-repeat;
 			//background: url(../images/dsg/get-trial.png) 63px 0 no-repeat;
