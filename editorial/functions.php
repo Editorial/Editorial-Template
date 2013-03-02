@@ -20,7 +20,7 @@ function debug($message)
     error($message);
 }
 
-define ('EDITORIAL_VERSION', '2.0');
+define ('EDITORIAL_VERSION', '2.1');
 define ('EDITORIAL_UPDATE_API', 'http://editorialtemplate.com/new-moon/');
 //define ('EDITORIAL_UPDATE_API', 'http://localhost:8888/editorial-marketing/new-moon/');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
