@@ -21,6 +21,7 @@ the_post();
 		<div class="action">
 <?php
 			$success = false;
+			$red = false;
 			if(isset($_POST['trial_email']) && isset($_POST['trial_captcha'])) {
 				// check riddle
 				$riddle = array_values($_SESSION['riddle']['chars']);
@@ -30,7 +31,9 @@ the_post();
 					|| $first  != strtolower($_POST['trial_captcha'][0])
 					|| $second != strtolower($_POST['trial_captcha'][1]))
 				{
-					echo '			<p class="trial-error">Invalid captcha.</p>';
+
+					$red = true;
+					//echo '			<p class="trial-error">Invalid captcha.</p>';
 				}
 				else
 				{
@@ -58,10 +61,10 @@ the_post();
 					special offers, tips &amp; tricks and updates.</label>
 				</fieldset>
 				<fieldset class="captcha">
-					<label for="trial_captcha"><?php echo $riddle['notice']; ?></label>
+					<label for="trial_captcha"<?php if($success == false) echo ' class="error"'; ?>><?php echo $riddle['notice']; ?></label>
 					<div class="qa">
 						<span><?php echo $riddle['riddle'] ?></span>
-						<input type="text" name="trial_captcha" id="trial_captcha">
+						<input type="text" name="trial_captcha" id="trial_captcha"<?php if($success == false) echo ' class="error"'; ?>>
 					</div>
 				</fieldset>
 				<input type="submit" class="submit" value="Start free trial">
