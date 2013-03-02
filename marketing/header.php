@@ -11,7 +11,7 @@
  |_ | \  |   | / \ |_)  |   /\  |
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
- Version: 1.0 (11/2011)
+ Version: 2.1 (03/2013)
 
  Design: Natan Nikolic (twitter.com/natannikolic)
  Programming: Miha Hribar (twitter.com/mihahribar)
@@ -57,7 +57,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
 <link rel="apple-touch-icon-precomposed" href="<?php bloginfo( 'template_directory' ); ?>/assets/images/touch/apple-touch-icon.png">
-<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?20111224">
+<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/style.css?20130302">
 <script src="<?php bloginfo( 'template_directory' ); ?>/assets/js/libs/modernizr-2.0.6.min.js"></script>
 <script type="text/javascript" src="//use.typekit.net/sue6gqc.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
