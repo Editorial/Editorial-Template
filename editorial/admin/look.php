@@ -95,7 +95,7 @@
             <div class="inside">
               <div class="table table_content">
 
-                  <label><?php _e('Apply black & white effect to featured images') ?> <input type="checkbox" name="black-and-white"<?php echo !Editorial::getOption('black-and-white') ? '' : ' checked="checked"'; ?> /></label>
+                  <label><?php _e('Apply black & white effect to featured images', 'Editorial') ?> <input type="checkbox" name="black-and-white"<?php echo !Editorial::getOption('black-and-white') ? '' : ' checked="checked"'; ?> /></label>
           <p class="note"><?php _e('The effect will appear on the home page and article lists, but not within article pages', 'Editorial'); ?></p>
 
               </div>

@@ -1,12 +1,12 @@
 {
     "versions" :[
         { 
-            "version" : "2.1",
+            "version" : "2.2",
             "date": "2013-03-02",
             "author"  : "Editorial",
             "name" :       "Editorial Template", 
-            "requires":    "3.1", 
-            "tested" :     "3.1",
+            "requires":    "3.5", 
+            "tested" :     "3.5",
             "screenshot_url": "http://editorialtemplate.com/screenshot.png" 
         }
     ],

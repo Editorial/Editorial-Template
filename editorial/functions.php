@@ -22,7 +22,7 @@ function debug($message)
 
 define ('EDITORIAL_VERSION', '2.1');
 define ('EDITORIAL_UPDATE_API', 'http://editorialtemplate.com/new-moon/');
-//define ('EDITORIAL_UPDATE_API', 'http://localhost:8888/editorial-marketing/new-moon/');
+//define ('EDITORIAL_UPDATE_API', 'http://marketing.local/wp-content/themes/marketing/new-moon/');
 define ('EDITORIAL_OPTIONS', 'editorial_options');
 // social networks
 define ('EDITORIAL_FACEBOOK',    'facebook-share');
@@ -185,9 +185,9 @@ class Editorial
         {
             // widget ready sidebar
             register_sidebar(array(
-                'name'          => __('Footer widget area', 'editorial'),
+                'name'          => __('Footer widget area', 'Editorial'),
                 'id'            => 'footer-widgets',
-                'description'   => __('Footer widget area', 'editorial'),
+                'description'   => __('Footer widget area', 'Editorial'),
                 //'before_widget' => '<section class="widget %2$s">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<h4>',
@@ -376,7 +376,7 @@ class Editorial
             $caption = '
             <tr>
                 <th valign="top" scope="row" class="label">
-                    <span class="alignleft"><label for="caption">' . __('Description') . '</label></span>
+                    <span class="alignleft"><label for="caption">' . __('Description', 'Editorial') . '</label></span>
                 </th>
                 <td class="field"><input id="caption" name="caption" value="" type="text" /></td>
             </tr>';
@@ -387,11 +387,11 @@ class Editorial
         }
 
         return '
-        <p class="media-types"><label><input type="radio" name="media_type" value="image" id="image-only"' . checked( 'image-only', $view, false ) . ' /> ' . __( 'Image' ) . '</label> &nbsp; &nbsp; <label><input type="radio" name="media_type" value="generic" id="not-image"' . checked( 'not-image', $view, false ) . ' /> ' . __( 'Audio, Video, or Other File' ) . '</label></p>
+        <p class="media-types"><label><input type="radio" name="media_type" value="image" id="image-only"' . checked( 'image-only', $view, false ) . ' /> ' . __( 'Image', 'Editorial' ) . '</label> &nbsp; &nbsp; <label><input type="radio" name="media_type" value="generic" id="not-image"' . checked( 'not-image', $view, false ) . ' /> ' . __( 'Audio, Video, or Other File', 'Editorial' ) . '</label></p>
         <table class="describe ' . $table_class . '"><tbody>
             <tr>
                 <th valign="top" scope="row" class="label" style="width:130px;">
-                    <span class="alignleft"><label for="src">' . __('URL') . '</label></span>
+                    <span class="alignleft"><label for="src">' . __('URL', 'Editorial') . '</label></span>
                     <span class="alignright"><abbr id="status_img" title="required" class="required">*</abbr></span>
                 </th>
                 <td class="field"><input id="src" name="src" value="" type="text" aria-required="true" onblur="addExtImage.getImageData()" /></td>
@@ -399,7 +399,7 @@ class Editorial
 
             <tr>
                 <th valign="top" scope="row" class="label">
-                    <span class="alignleft"><label for="title">' . __('Title') . '</label></span>
+                    <span class="alignleft"><label for="title">' . __('Title', 'Editorial') . '</label></span>
                     <span class="alignright"><abbr title="required" class="required">*</abbr></span>
                 </th>
                 <td class="field"><input id="title" name="title" value="" type="text" aria-required="true" /></td>
@@ -414,7 +414,7 @@ class Editorial
             <tr class="not-image">
                 <td></td>
                 <td>
-                    ' . get_submit_button( __( 'Use as featured' ), 'button', 'insertonlybutton', false ) . '
+                    ' . get_submit_button( __( 'Use as featured', 'Editorial' ), 'button', 'insertonlybutton', false ) . '
                 </td>
             </tr>
         </tbody></table>';
@@ -472,19 +472,19 @@ EOF;
         {
             if ( !EMPTY_TRASH_DAYS )
             {
-                $delete = "<a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete'>" . __( 'Delete Permanently' ) . '</a>';
+                $delete = "<a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete'>" . __( 'Delete Permanently', 'Editorial' ) . '</a>';
             }
             elseif ( !MEDIA_TRASH )
             {
-                $delete = "<a href='#' class='del-link' onclick=\"document.getElementById('del_attachment_$attachment_id').style.display='block';return false;\">" . __( 'Delete' ) . "</a>
+                $delete = "<a href='#' class='del-link' onclick=\"document.getElementById('del_attachment_$attachment_id').style.display='block';return false;\">" . __( 'Delete', 'Editorial' ) . "</a>
                 <div id='del_attachment_$attachment_id' class='del-attachment' style='display:none;'>" . sprintf( __( 'You are about to delete <strong>%s</strong>.' ), $filename ) . "
-                     <a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='button'>" . __( 'Continue' ) . "</a>
-                     <a href='#' class='button' onclick=\"this.parentNode.style.display='none';return false;\">" . __( 'Cancel' ) . "</a>
+                     <a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='button'>" . __( 'Continue', 'Editorial' ) . "</a>
+                     <a href='#' class='button' onclick=\"this.parentNode.style.display='none';return false;\">" . __( 'Cancel', 'Editorial' ) . "</a>
                      </div>";
             }
             else
             {
-                $delete = "<a href='" . wp_nonce_url( "post.php?action=trash&amp;post=$attachment_id", 'trash-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete'>" . __( 'Move to Trash' ) . "</a><a href='" . wp_nonce_url( "post.php?action=untrash&amp;post=$attachment_id", 'untrash-attachment_' . $attachment_id ) . "' id='undo[$attachment_id]' class='undo hidden'>" . __( 'Undo' ) . "</a>";
+                $delete = "<a href='" . wp_nonce_url( "post.php?action=trash&amp;post=$attachment_id", 'trash-attachment_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete'>" . __( 'Move to Trash', 'Editorial' ) . "</a><a href='" . wp_nonce_url( "post.php?action=untrash&amp;post=$attachment_id", 'untrash-attachment_' . $attachment_id ) . "' id='undo[$attachment_id]' class='undo hidden'>" . __( 'Undo', 'Editorial' ) . "</a>";
             }
         }
         else
@@ -603,7 +603,7 @@ EOF;
      */
     public static function adminInit()
     {
-        if ((get_current_theme() != 'Editorial') && (get_current_theme() != 'Editorial Custom') )
+        if ((wp_get_theme()->Name != 'Editorial') && (wp_get_theme()->Name != 'Editorial Custom') )
         {
             // not using editorial theme
             return;
@@ -655,8 +655,8 @@ EOF;
     {
         // we have main navigation and footer navigation
         register_nav_menus(array(
-            'main-nav'   => __( 'Main menu' ),
-            'footer-nav' => __( 'Footer menu' )
+            'main-nav'   => __( 'Main menu', 'Editorial' ),
+            'footer-nav' => __( 'Footer menu', 'Editorial' )
         ));
 
         if(function_exists("add_post_type_support")) //support 3.1 and greater
@@ -705,7 +705,7 @@ EOF;
     {
         if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == "")
         {
-            wp_die( __('Please enable referrers in your browser, or, if you\'re a spammer, bugger off!') );
+            wp_die( __('Please enable referrers in your browser, or, if you\'re a spammer, bugger off!', 'Editorial') );
         }
     }
 
@@ -720,7 +720,7 @@ EOF;
         $link = sprintf(
             '<a href="%1$s" title="%2$s" class="fn n url">%3$s</a>',
             get_author_posts_url( $authordata->ID, $authordata->user_nicename ),
-            esc_attr( sprintf( __( 'Posts by %s' ), get_the_author() ) ),
+            esc_attr( sprintf( __( 'Posts by %s', 'Editorial' ), get_the_author() ) ),
             get_the_author()
         );
         echo apply_filters('the_author_posts_link', $link);
@@ -1816,6 +1816,7 @@ colophon page template custom meta boxes
 
 
 function colophon_page_add_meta_boxes() {
+	if (!isset($_GET['post']) && !isset($_POST['post_ID'])) return;
     $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
   $page_template = get_post_meta( $post_id, '_wp_page_template', true );
   // var_dump($page_template);
@@ -1961,8 +1962,9 @@ function colophon_save_custom_post_meta( $post_id) {
 
     // verify this came from the our screen and with proper authorization,
   // because save_post can be triggered at other times
-  if ( !wp_verify_nonce( $_POST['editorial_colophon_authors_noncename'], plugin_basename( __FILE__ ) ) ||
-          !wp_verify_nonce( $_POST['editorial_colophon_enabled_noncename'], plugin_basename( __FILE__ ) )
+  if ( !isset($_POST['editorial_colophon_authors_noncename']) 
+	   || !wp_verify_nonce( $_POST['editorial_colophon_authors_noncename'], plugin_basename( __FILE__ ) )
+       || !wp_verify_nonce( $_POST['editorial_colophon_enabled_noncename'], plugin_basename( __FILE__ ) )
       )
       return;
 
@@ -2013,7 +2015,7 @@ add_action( 'future_page', 'colophon_save_custom_post_meta' );
 
     function editorial_comment_columns( $columns )
     {
-        $columns['comment_type'] = __( 'Type' );
+        $columns['comment_type'] = __( 'Type', 'Editorial' );
         return $columns;
     }
     add_filter( 'manage_edit-comments_columns', 'editorial_comment_columns' );
@@ -2033,10 +2035,10 @@ add_action( 'future_page', 'colophon_save_custom_post_meta' );
     function add_comment_type_filter($filters)
     {
         $f = array(
-            'comment' => __( 'Comments' ),
-            'tweet' => __( 'Tweets' ),
-            'facebook' => __( 'Facebook' ),
-            'pings' => __( 'Pings' ),
+            'comment' => __( 'Comments', 'Editorial' ),
+            'tweet' => __( 'Tweets', 'Editorial' ),
+            'facebook' => __( 'Facebook', 'Editorial' ),
+            'pings' => __( 'Pings', 'Editorial' ),
             );
         return $f;
     }

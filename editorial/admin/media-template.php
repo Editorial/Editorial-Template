@@ -6,10 +6,10 @@ function wp_print_editorial_media_templates() {
         $class .= ' ie7';
     ?>
     <script type="text/html" id="tmpl-gallery-settings-editorial">
-		<!--h3><?php _e('Gallery Settings'); ?></h3>
+		<!--h3><?php _e('Gallery Settings', 'Editorial'); ?></h3>
 
 		<label class="setting">
-			<span><?php _e('Link To'); ?></span>
+			<span><?php _e('Link To', 'Editorial'); ?></span>
 			<select class="link-to"
 				data-setting="link"
 				<# if ( data.userSettings ) { #>
@@ -26,7 +26,7 @@ function wp_print_editorial_media_templates() {
 		</label>
 
 		<label class="setting">
-			<span><?php _e('Columns'); ?></span>
+			<span><?php _e('Columns', 'Editorial'); ?></span>
 			<select class="columns" name="columns"
 				data-setting="columns">
 				<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
@@ -38,16 +38,16 @@ function wp_print_editorial_media_templates() {
 		</label>
 
 		<label class="setting">
-			<span><?php _e( 'Random Order' ); ?></span>
+			<span><?php _e( 'Random Order', 'Editorial' ); ?></span>
 			<input type="checkbox" data-setting="_orderbyRandom" />
 		</label-->
 	</script>
     <script type="text/html" id="tmpl-attachment-details-editorial">
 		<h3>
-			<?php _e('Attachment Details'); ?>
+			<?php _e('Attachment Details', 'Editorial'); ?>
 			<span class="settings-save-status">
 				<span class="spinner"></span>
-				<span class="saved"><?php esc_html_e('Saved.'); ?></span>
+				<span class="saved"><?php esc_html_e('Saved.', 'Editorial'); ?></span>
 			</span>
 		</h3>
 		<div class="attachment-info">
@@ -70,13 +70,13 @@ function wp_print_editorial_media_templates() {
 					<# } #>
 
 					<# if ( data.can.save ) { #>
-						<a class="edit-attachment" href="{{ data.editLink }}&amp;image-editor" target="_blank"><?php _e( 'Edit Image' ); ?></a>
-						<a class="refresh-attachment" href="#"><?php _e( 'Refresh' ); ?></a>
+						<a class="edit-attachment" href="{{ data.editLink }}&amp;image-editor" target="_blank"><?php _e( 'Edit Image', 'Editorial' ); ?></a>
+						<a class="refresh-attachment" href="#"><?php _e( 'Refresh', 'Editorial' ); ?></a>
 					<# } #>
 				<# } #>
 
 				<# if ( ! data.uploading && data.can.remove ) { #>
-					<a class="delete-attachment" href="#"><?php _e( 'Delete Permanently' ); ?></a>
+					<a class="delete-attachment" href="#"><?php _e( 'Delete Permanently', 'Editorial' ); ?></a>
 				<# } #>
 
 				<div class="compat-meta">
@@ -89,32 +89,32 @@ function wp_print_editorial_media_templates() {
 
 		<# var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly'; #>
 			<label class="setting" data-setting="title">
-				<span><?php _e('Title'); ?></span>
+				<span><?php _e('Title', 'Editorial'); ?></span>
 				<input type="text" value="{{ data.title }}" {{ maybeReadOnly }} />
 			</label>
 			<label class="setting" data-setting="caption">
-				<span><?php _e('Caption'); ?></span>
+				<span><?php _e('Caption', 'Editorial'); ?></span>
 				<textarea {{ maybeReadOnly }}>{{ data.caption }}</textarea>
 			</label>
 		<# if ( 'image' === data.type ) { #>
 			<!--label class="setting" data-setting="alt">
-				<span><?php _e('Alt Text'); ?></span>
+				<span><?php _e('Alt Text', 'Editorial'); ?></span>
 				<input type="text" value="{{ data.alt }}" {{ maybeReadOnly }} />
 			</label-->
 		<# } #>
 		<# if ( 'image' === data.type ) { #>
 			<!--label class="setting" data-setting="description">
-				<span><?php _e('Content'); ?></span>
+				<span><?php _e('Content', 'Editorial'); ?></span>
 				<textarea readonly="readonly">{{ data.description }}</textarea>
 			</label-->
 		<# } #>
 	</script>
 	<script type="text/html" id="tmpl-attachment-display-settings-editorial">
-		<h3><?php _e('Attachment Display Settings'); ?></h3>
+		<h3><?php _e('Attachment Display Settings', 'Editorial'); ?></h3>
 
 		<# if ( 'image' === data.type ) { #>
 			<label class="setting">
-				<span><?php _e('Alignment'); ?></span>
+				<span><?php _e('Alignment', 'Editorial'); ?></span>
 				<select class="alignment"
 					data-setting="align"
 					<# if ( data.userSettings ) { #>
@@ -139,7 +139,7 @@ function wp_print_editorial_media_templates() {
 
 		<div class="setting">
 			<label>
-				<span><?php _e('Link To'); ?></span>
+				<span><?php _e('Link To', 'Editorial'); ?></span>
 				<select class="link-to"
 					data-setting="link"
 					<# if ( data.userSettings ) { #>
@@ -165,7 +165,7 @@ function wp_print_editorial_media_templates() {
 
 		<# if ( 'undefined' !== typeof data.sizes ) { #>
 			<label class="setting">
-				<span><?php _e('Size'); ?></span>
+				<span><?php _e('Size', 'Editorial'); ?></span>
 				<select class="size" name="size"
 					data-setting="size"
 					<# if ( data.userSettings ) { #>
@@ -177,7 +177,7 @@ function wp_print_editorial_media_templates() {
 						//'thumbnail' => __('Thumbnail'),
 					//	'medium'    => __('Medium'),
 						//'large'     => __('Large'),
-						'full'      => __('Full Size'),
+						'full'      => __('Full Size', 'Editorial'),
 					) );
 
 					foreach ( $sizes as $value => $name ) : ?>
@@ -201,7 +201,7 @@ function wp_print_editorial_media_templates() {
 		<div class="message-editorial"></div>
 		<?php if ( ! apply_filters( 'disable_captions', '' ) ) : ?>
 			<label class="setting caption">
-				<span><?php _e('Caption'); ?></span>
+				<span><?php _e('Caption', 'Editorial'); ?></span>
 				<textarea data-setting="caption" >{{ data.model.title }}</textarea>
 			</label>
 		<?php endif; ?>
@@ -213,7 +213,7 @@ function wp_print_editorial_media_templates() {
 		</div>
 		<div class="message-editorial"></div>
 		<label class="setting">
-			<span><?php _e('Title'); ?></span>
+			<span><?php _e('Title', 'Editorial'); ?></span>
 			<input type="text" class="alignment" data-setting="title" value="{{ data.model.title }}" />
 		</label>
 
@@ -228,7 +228,7 @@ function wp_print_editorial_media_templates() {
 
 		<?php if ( ! apply_filters( 'disable_captions', '' ) ) : ?>
 			<label class="setting caption video">
-				<span><?php _e('Caption'); ?></span>
+				<span><?php _e('Caption', 'Editorial'); ?></span>
 				<textarea data-setting="caption" >{{ data.model.data.title }}</textarea>
 			</label>
 		<?php endif; ?>
@@ -258,11 +258,11 @@ function wp_print_editorial_media_templates() {
 			<# } #>
 
 			<# if ( data.buttons.close ) { #>
-				<a class="close media-modal-icon" href="#" title="<?php _e('Remove'); ?>"></a>
+				<a class="close media-modal-icon" href="#" title="<?php _e('Remove', 'Editorial'); ?>"></a>
 			<# } #>
 
 			<# if ( data.buttons.check ) { #>
-				<a class="check" href="#" title="<?php _e('Deselect'); ?>"><div class="media-modal-icon"></div></a>
+				<a class="check" href="#" title="<?php _e('Deselect', 'Editorial'); ?>"><div class="media-modal-icon"></div></a>
 			<# } #>
 		</div>
 		<#

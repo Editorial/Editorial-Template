@@ -12,7 +12,7 @@
 		})
 	});
 	</script>
-	<p><?php _e('Order users as they will appear on the colophon page. You can uncheck the ones that you do not wish to show there.'); ?></p>
+	<p><?php _e('Order users as they will appear on the colophon page. You can uncheck the ones that you do not wish to show there.', 'Editorial'); ?></p>
 	<form action="" method="post">
 	<?php
 

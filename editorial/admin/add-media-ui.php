@@ -27,7 +27,7 @@ function editorial_image_tabs ($strings, $post)
     add_action('admin_footer-post.php', 'restart_tabs', 5);
 
     // print_r($strings);
-    $strings['insertGallery'] = __('Save gallery');
+    $strings['insertGallery'] = __('Save gallery', 'Editorial');
     if ($galleryMode) {
       //  unset($strings['insertMediaTitle']);
     } else {
@@ -37,11 +37,11 @@ function editorial_image_tabs ($strings, $post)
     unset($strings['createGalleryTitle']);
     unset($strings['insertFromUrlTitle']);
  //   $strings['createGalleryTitle'] = '';
-    $strings['addToGalleryTitle'] = __('Media gallery', 'editorial');
-    $strings['addToGallery'] = __('Save gallery', 'editorial');
-    $strings['customMenuTitle'] = __('Custom Menu Title', 'custom');
+    $strings['addToGalleryTitle'] = __('Media gallery', 'Editorial');
+    $strings['addToGallery'] = __('Save gallery', 'Editorial');
+    $strings['customMenuTitle'] = __('Custom Menu Title', 'Editorial');
 
-    $strings['customButton'] = __('Custom Button', 'custom');
+    $strings['customButton'] = __('Custom Button', 'Editorial');
     return $strings;
 }
 
@@ -127,7 +127,7 @@ function fetch_video(){
                 else
                   $error_path = basename( $upload['basedir'] ) . $upload['subdir'];
 
-                $message = sprintf( __( 'Unable to create directory %s. Is its parent directory writable by the server?' ), $error_path );
+                $message = sprintf( __( 'Unable to create directory %s. Is its parent directory writable by the server?', 'Editorial' ), $error_path );
                 return array( 'error' => $message );
             }
            // print_r($dataArray);
@@ -160,7 +160,7 @@ function fetch_video(){
                         wp_update_attachment_metadata( $attachment_id,  $attach_data );
                      }
             } else {
-                return array( 'success'=>false, 'error' => sprintf( __( 'Could not write file %s' ), $new_file ) );
+                return array( 'success'=>false, 'error' => sprintf( __( 'Could not write file %s', 'Editorial' ), $new_file ) );
             }
 
             clearstatcache();

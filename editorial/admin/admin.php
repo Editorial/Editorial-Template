@@ -2,7 +2,7 @@
 require_once locate_template('/admin/metaboxes.php');          // Custom metaboxes
 require_once locate_template('/admin/add-media-ui.php');       // Custom add media
 require_once locate_template('/admin/plugin-activation.php');  // Plugin activation
-define('SCRIPT_DEBUG', true);
+// define('SCRIPT_DEBUG', true);
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
 
@@ -352,7 +352,7 @@ class Editorial_Admin
     {
         if (!in_array($page, $this->_pages) || !current_user_can('administrator'))
         {
-            wp_die( __('You do not have sufficient permissions to access this page.'));
+            wp_die( __('You do not have sufficient permissions to access this page.', 'Editorial'));
         }
         // display intended page
         $this->_page = $page;
@@ -369,7 +369,7 @@ class Editorial_Admin
         // add font notice
         if (!Editorial::getOption('typekit-kit'))
         {
-            $this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.'));
+            $this->_showNotice(__('<strong>Editorial Typekit fonts are currently disabled.</strong> <a href="admin.php?page=editorial">Enable them</a> to get the most out of the Editorial theme.', 'Editorial'));
         }
 
         // if black and white option is selected check that we can create them
@@ -377,7 +377,7 @@ class Editorial_Admin
         {
             if (!Editorial::canCreateBWImages())
             {
-                $this->_showNotice(__('<strong>Black &amp; white images are disabled</strong>. Please make sure the PHP GD library is installed.')." ");
+                $this->_showNotice(__('<strong>Black &amp; white images are disabled</strong>. Please make sure the PHP GD library is installed.', 'Editorial')." ");
 -                // disable bw photos for now, the user will get notified of the error
 -                Editorial::setOption('black-and-white', false);
             }
@@ -565,7 +565,7 @@ class Editorial_Admin
         // Validate theme name
         $new_theme_path = $theme_root.'/'.$child_theme_name;
         if ( file_exists( $child_theme_name ) ) {
-            return new WP_Error( 'exists', __( 'Theme directory already exists' ) );
+            return new WP_Error( 'exists', __( 'Theme directory already exists', 'Editorial' ) );
         }
 
         mkdir( $new_theme_path );
@@ -615,7 +615,7 @@ class Editorial_Admin
      */
     public function cacheNotice()
     {
-        $this->_showNotice(__('<strong>Cache folder is missing or not writable</strong>. Please make sure the cache folder, located in <code>/wp-content/cache</code> exists and is writable by the server.')." ");
+        $this->_showNotice(__('<strong>Cache folder is missing or not writable</strong>. Please make sure the cache folder, located in <code>/wp-content/cache</code> exists and is writable by the server.', 'Editorial')." ");
     }
 
     /**
@@ -732,12 +732,12 @@ class Editorial_Admin
         $request = wp_remote_post(EDITORIAL_UPDATE_API, $request_string);
 
         if (is_wp_error($request)) {
-            $res = new WP_Error('themes_api_failed', __('An Unexpected HTTP Error occurred during the API request.</p> <p><a href="?" onclick="document.location.reload(); return false;">Try again</a>'), $request->get_error_message());
+            $res = new WP_Error('themes_api_failed', __('An Unexpected HTTP Error occurred during the API request.</p> <p><a href="?" onclick="document.location.reload(); return false;">Try again</a>', 'Editorial'), $request->get_error_message());
         } else {
             $res = unserialize($request['body']);
 
             if ($res === false)
-                $res = new WP_Error('themes_api_failed', __('An unknown error occurred'), $request['body']);
+                $res = new WP_Error('themes_api_failed', __('An unknown error occurred', 'Editorial'), $request['body']);
         }
 
         return $res;
@@ -917,7 +917,7 @@ class Editorial_Admin
         }
         else
         {
-            $this->_showNotice(sprintf(__('<strong>Success!</strong> Typekit font has been created and is being published as we speak. Should take a couple of minutes to see the difference on your website so keep your pants on.')));
+            $this->_showNotice(sprintf(__('<strong>Success!</strong> Typekit font has been created and is being published as we speak. Should take a couple of minutes to see the difference on your website so keep your pants on.', 'Editorial')));
         }
     }
 
@@ -1020,7 +1020,7 @@ function my_theme_register_required_plugins() {
     );
 
     // Change this to your theme text domain, used for internationalising strings
-    $theme_text_domain = 'editorial';
+    $theme_text_domain = 'Editorial';
 
     /**
      * Array of configuration settings. Amend each line as needed.
