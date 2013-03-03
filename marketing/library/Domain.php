@@ -101,5 +101,44 @@ class Domain
 		);
 	}
 	
-
+	/**
+	 * Get all domains in the system
+	 *
+	 * @return array
+	 */
+	public function findAll()
+	{
+		global $wpdb;
+		return $wpdb->get_results(
+		    'SELECT * FROM `domain`',
+            ARRAY_A
+		);
+	}
+	
+	/**
+	 * Insert a domain without account (to avoid pirate message)
+	 *
+	 * @param  string $domain
+	 * @return array
+	 */
+	public function insertFake($domain)
+	{
+		global $wpdb;
+		
+		$found = $wpdb->get_results('SELECT * FROM `domain` WHERE `name` = "' . $wpdb->escape($domain). '"', ARRAY_A);
+		
+		if ($found)
+		{
+		    throw new Exception('Domain already exists');
+		}
+		
+		$wpdb->insert(
+			'domain',
+			array(
+				'account_id' => 0,
+				'name'       => $wpdb->escape($domain),
+				'last_check' => date('Y-m-d H:i:s'),
+			)
+		);
+	}
 }

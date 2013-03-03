@@ -20,14 +20,12 @@
 class Marketing_Admin
 {
     /**
-     * Payments page
+     * Admin page
      */
     const PAGE_PAYMENTS = 'payments';
-
-    /**
-     * Promo code page
-     */
-    const PAGE_PROMO = 'promo';
+    const PAGE_PROMO    = 'promo';
+    const PAGE_TRIAL    = 'trial';
+    const PAGE_DOMAINS  = 'domains';
 
     /**
      * Pages users are allowed to include
@@ -37,6 +35,8 @@ class Marketing_Admin
     private $_pages = array(
         self::PAGE_PAYMENTS,
         self::PAGE_PROMO,
+        self::PAGE_TRIAL,
+        self::PAGE_DOMAINS,
     );
 
     /**
@@ -59,7 +59,6 @@ class Marketing_Admin
      * Constructor
      *
      * @return void
-     * @author Miha Hribar
      */
     public function __construct()
     {
@@ -70,7 +69,6 @@ class Marketing_Admin
      * Add menu to wordpress administration
      *
      * @return void
-     * @author Miha Hribar
      */
     public function menus()
     {
@@ -98,13 +96,28 @@ class Marketing_Admin
             'marketing-'.self::PAGE_PROMO,
             array($this, 'promo')
         );
+        add_submenu_page(
+            'marketing',
+            'Trial',
+            'Trial',
+            'administrator',
+            'marketing-'.self::PAGE_TRIAL,
+            array($this, 'trial')
+        );
+        add_submenu_page(
+            'marketing',
+            'Domains',
+            'Domains',
+            'administrator',
+            'marketing-'.self::PAGE_DOMAINS,
+            array($this, 'domains')
+        );
     }
     
     /**
      * Display page
      *
      * @return void
-     * @author Miha Hribar
      */
     private function _displayPage($page)
     {
@@ -116,7 +129,6 @@ class Marketing_Admin
      * Payments
      *
      * @return void
-     * @author Miha Hribar
      */
     public function payments()
     {
@@ -127,11 +139,30 @@ class Marketing_Admin
      * Promo codes
      *
      * @return void
-     * @author Miha Hribar
      */
     public function promo()
     {
     	$this->_displayPage(self::PAGE_PROMO);
+    }
+    
+    /**
+     * Trial
+     *
+     * @return void
+     */
+    public function trial()
+    {
+    	$this->_displayPage(self::PAGE_TRIAL);
+    }
+    
+    /**
+     * Domains
+     *
+     * @return void
+     */
+    public function domains()
+    {
+    	$this->_displayPage(self::PAGE_DOMAINS);
     }
 }
 

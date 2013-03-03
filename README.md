@@ -8,3 +8,5 @@ Here is a brief description of each of the folders in this repository:
 * **editorial**: Editorial wordpress theme.
 * **html**: HTML template for the Editorial theme.
 * **marketing**: Editorial marketing wordpress theme.
+* **trial**: Editorial trial system.
+* **touchgallery**: Editorial custom touch gallery.

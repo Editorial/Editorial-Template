@@ -137,6 +137,20 @@ class Trial
 	}
 	
 	/**
+	 * Find active trials
+	 *
+	 * @return array
+	 */
+	public function findInTrial()
+	{
+		global $wpdb;
+		return $wpdb->get_results(
+		    'SELECT * FROM `trial` WHERE status = 1 OR status = 2',
+            ARRAY_A
+		);
+	}
+	
+	/**
 	 * Generate a random string, starting with a character and not a number
 	 * so we don't have any problems with legacy browsers
 	 *
