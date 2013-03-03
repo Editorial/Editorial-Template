@@ -112,7 +112,7 @@ mysql.query('SELECT * FROM `trial` WHERE `status` = 0 ORDER BY `date_created` LI
                     to: trial.email,
                     cc: config.mail.cc,
                     subject: 'Your Editorial Trial Is Ready',
-                    text: "Howdy!\n\nYour Editorial trial is ready. You can access it at "+trialPath+" with username admin and password "+password+".\n\nEditorial team."
+                    text: "Hello!\n\nYour Editorial trial is ready. You can access it at "+trialPath+"/wp-admin with username admin and password "+password+".\n\nEditorial team."
                   };
 
                   // send mail with defined transport object
