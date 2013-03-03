@@ -1,0 +1,33 @@
+h1. Editorial Trial system
+
+Editorial trial system sets up a trial run of the wordpress theme by setting up an entirely separate wordpress system for each user. It is built on node.js, mysql and uses zombie.js to automate wordpress installations.
+
+A cron is running (decided against using _gearman_ or some such system so that does not become a dependancy - since they are not very wide spread on regular hosting providers) and takes 2 new trials and sets them up, sending an email to the user with the link and password.
+
+After a week an email "Are you happy with our theme" email is sent, and another a day before the trial runs out.
+
+On the last day the content is exported and the file is sent to the user. Everything is deleted from the database and the filesystem.
+
+All trials are within one database using trial id prefixes (consisting of 5 random character and numbers).
+
+h2. Overview of folders and files
+
+* *config.js.dist* - self explanatory
+* *files/* - an entire wordpress installation is extracted and prepared with the editorial theme already extracted in the appropriate folder under _themes_
+* *package.json* - trial dependencies
+* *trial/* - contains all trials, trial.editorialtemplate.com points here
+* *trial.js* - main file
+
+h2. Installation
+
+Node.js is required to run the trial system. All dependencies can be installed via NPM.
+
+<pre>
+$ npm install
+</pre>
+
+h2. Runing
+
+Trial system is run by a cron, but you can run it by hand by issuing the following command.
+
+<pre>$ node trial.js</pre>
