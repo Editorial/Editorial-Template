@@ -45,10 +45,15 @@
 	// Add a page number if necessary:
 	if ( $paged >= 2 || $page >= 2 )
 		echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
-
-?></title>
+/*
+ *
 <meta name="description" content="<?php bloginfo('description'); ?>">
 <link rel="image_src" href="http://editorialtemplate.com/wp-content/themes/marketing/assets/images/dsg/sheets.png">
+ *
+ */
+
+
+?></title>
 <meta name="author" content="Programming: Miha Hribar, Front-end: Matjaž Korošec, Design: Natan Nikolič">
 <meta name="keywords" content="Editorial, wordpress, theme, template, magazine, widgets, responsive, adaptive, design, photography, HTML5, CSS3, readability, typography, SEO, widgets, admin, panel, colophon">
 <meta name="viewport" content="width=device-width,target-densitydpi=160dpi,initial-scale=1">
@@ -63,6 +68,14 @@
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php
 	wp_head();
+?>
+<?php
+	if (is_home()) {
+?>
+<meta property="og:image" content="http://editorialtemplate.com/images/editorial-02.jpg">
+<meta property="og:image" content="http://editorialtemplate.com/images/editorial-03.jpg">
+<?php
+	}
 ?>
 <script>
 var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-23356248-1']);_gaq.push(['_trackPageview']);
