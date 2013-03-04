@@ -410,7 +410,7 @@ get_header();
 				</div>
 				<div class="i-agree">
 					<input type="checkbox" value="yes" name="i-agree" id="i-agree"<?php echo $agree ? ' checked' : ''; ?>>
-					<label for="i-agree">I have read and agree with <a href="/" target="_blank">Terms of use</a> &amp; <a href="/" target="_blank">Privacy policy</a>.</label>
+					<label for="i-agree">I have read and agree with <a href="/terms-of-use/" target="_blank">Terms of use</a> &amp; <a href="/privacy-policy/" target="_blank">Privacy policy</a>.</label>
 				</div>
 			</fieldset>
 			<fieldset class="submit">

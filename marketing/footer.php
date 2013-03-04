@@ -309,7 +309,7 @@ if (!is_404())
 				<p><strong>Copyright (c) 2011-<?php echo date('Y'); ?> <em id="editorial" class="vcard"><a href="http://editorialtemplate.com/" class="fn org url">Editorial</a></em>.</strong></p>
 				<p>
 					Powered by WordPress and burning passion.<br />
-					<a href="/terms/">Terms of use</a> • <a href="/privacy/">Privacy policy</a>
+					<a href="/terms-of-use/">Terms of use</a> • <a href="/privacy-policy/">Privacy policy</a>
 				</p>
 			</section>
 		</div>
