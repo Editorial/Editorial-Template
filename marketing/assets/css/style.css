@@ -108,7 +108,7 @@ body{margin:0 auto;min-width:320px;}
 .price-tag,.price-tag h4,.connect,.go-try em,.social li,.subscription{background-image:url(../images/bgr/sprite-new.png);background-repeat:no-repeat;}
 .level li,.level .group,.makers li{background-image:url(../images/bgr/lines.png);background-repeat:no-repeat;}
 #header hgroup,.content,.updates,.support,.copyright,.support{padding-left:15px;padding-right:15px;}
-#header{margin:0 0 10px;width:100%;text-align:center;background:#333;background:rgba(0, 0, 0, 0.8) url(../images/bgr/nav.png) bottom repeat-x;}#header hgroup{margin:0 0 31px;text-align:center;}
+#header{margin:0 0 10px;width:100%;text-align:center;background:#333;background:rgba(0, 0, 0, 0.8) url(../images/bgr/nav.png) bottom repeat-x;position:relative;z-index:1;}#header hgroup{margin:0 0 31px;text-align:center;}
 #header video{margin:0 0 6px;width:100%;height:420px;}
 #header p{margin:0 15px;font-size:16px;line-height:48px;color:#999;clear:both;}
 #brand{float:left;display:none;}#brand a{background-position:-348px -197px;}

@@ -363,7 +363,7 @@ get_header();
 					<p>Which domain/s will you be using the theme on?
 					Every issued copy of the theme is licensed to a single domain.
 					But don’t worry, you can change the domain for your license/s anytime.
-					See our <a href="/faq/" target="_blank">FAQ</a> for more information.</p>
+					See our <a href="/documentation/" target="_blank">FAQ</a> for more information.</p>
 				</div>
 				<ol id="domains">
 <?php

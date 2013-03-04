@@ -130,7 +130,7 @@ get_header(); ?>
 				</ol>
 				<div class="info">
 					<p>Every issued copy of the theme is licenced to a single domain.<br>
-					See our <a href="/faq/">FAQ</a> for more information.</p>
+					See our <a href="/documentation/">FAQ</a> for more information.</p>
 				</div>
 			</fieldset>
 			<fieldset class="submit">

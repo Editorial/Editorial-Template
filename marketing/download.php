@@ -115,7 +115,7 @@ get_header(); ?>
 			<p>
 				To provide the highest level of security the download time is active only for 24
 				hours from the transaction competition. You can read more about this issue in our
-				<a href="/faq/">FAQ section</a>. We are also more than happy to answer your
+				<a href="/documentation/">FAQ section</a>. We are also more than happy to answer your
 				questions on twitter.
 			</p>
 		<?php
@@ -127,9 +127,9 @@ get_header(); ?>
 		?>
 			<h2>Boy do we have a shiny update for you.</h2>
 			<p class="leading">Please download and install this update. The update process is fairly simple
-				but we recommend following our <a href="/">step by step guide</a> just in case.</p>
+				but we recommend following our <a href="/documentation/">step by step guide</a> just in case.</p>
 			<p class="help">
-				You can read more about updates in our <a href="/faq/">FAQ section</a>. You can also follow us on twitter
+				You can read more about updates in our <a href="/documentation/">FAQ section</a>. You can also follow us on twitter
 				for help and latest news on updates.
 			</p>
 		<?php
@@ -140,7 +140,7 @@ get_header(); ?>
 			<h2>Thank you for your purchase.</h2>
 			<p class="leading">We wish you all the best with your project &amp; happy publishing with
 			<a href="/" class="brand"><em>EDIT</em>ORIAL</a>.</p>
-			<p class="help">If you need any help with instalation please see our <a href="/faq/">FAQ section</a>.<br>
+			<p class="help">If you need any help with instalation please see our <a href="/documentation/">FAQ section</a>.<br>
 			And don’t forget to follow us on Twitter and tell us about your project.</p>
 		<?php
 				} // if ( $update)
