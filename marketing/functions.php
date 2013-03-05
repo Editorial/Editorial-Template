@@ -39,31 +39,31 @@ define('EDITORIAL_MAIL_FROM',      'no-reply@editorialtemplate.com');
 define('EDITORIAL_MAIL_FROM_NAME', 'Editorial');
 
 // Paypal config
-//define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
-//define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
-//define('PAYPAL_USER',        'natan_api1.editorialtemplate.com');
-//define('PAYPAL_EMAIL',       'natan@editorialtemplate.com');
-//define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
-//define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
-//define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
-//define('PAYPAL_VERSION',     '56.0');
-//define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
-//define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
+define('PAYPAL_URL',         'https://www.paypal.com/webscr?cmd=_express-checkout&token=%s');
+define('PAYPAL_IPN',         'https://www.paypal.com/webscr');
+define('PAYPAL_USER',        'natan_api1.editorialtemplate.com');
+define('PAYPAL_EMAIL',       'natan@editorialtemplate.com');
+define('PAYPAL_PASSWORD',    'VRTWSN2UZ24JMSFV');
+define('PAYPAL_SIGNATURE',   'AFcWxV21C7fd0v3bYYYRCpSSRl31ASTVr99HvDh6qnPOHxQRPgZnEWfo');
+define('PAYPAL_ENDPOINT',    'https://api-3t.paypal.com/nvp');
+define('PAYPAL_VERSION',     '56.0');
+define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
+define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
 
 // licence pricing
 define('LICENCE_COST', 150.00); // deprecated
 
 // sandbox
-define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
-define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
-define('PAYPAL_USER',        'shop_1291577744_biz_api1.hribar.info');
-define('PAYPAL_EMAIL',       'shop_1291577744_biz@hribar.info');
-define('PAYPAL_PASSWORD',    '1291577754');
-define('PAYPAL_SIGNATURE',   'AzWvEuogApa37pmV5w.Qo7jcZb-jArsE790LFPjmJsXXGikSjH4TCIIg');
-define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
-define('PAYPAL_VERSION',     '56.0');
-define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
-define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
+//define('PAYPAL_URL',         'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s');
+//define('PAYPAL_IPN',         'https://www.sandbox.paypal.com/cgi-bin/webscr');
+//define('PAYPAL_USER',        'shop_1291577744_biz_api1.hribar.info');
+//define('PAYPAL_EMAIL',       'shop_1291577744_biz@hribar.info');
+//define('PAYPAL_PASSWORD',    '1291577754');
+//define('PAYPAL_SIGNATURE',   'AzWvEuogApa37pmV5w.Qo7jcZb-jArsE790LFPjmJsXXGikSjH4TCIIg');
+//define('PAYPAL_ENDPOINT',    'https://api-3t.sandbox.paypal.com/nvp');
+//define('PAYPAL_VERSION',     '56.0');
+//define('PAYPAL_CONFIRM_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/transaction/');
+//define('PAYPAL_CANCEL_URL',  'http://' . $_SERVER['SERVER_NAME'] . '/purchase/?cancel');
 
 // mailchimp settings
 define('MAILCHIMP_API_KEY', '643f4816cf9cec07e88fceff786ebc6d-us2');

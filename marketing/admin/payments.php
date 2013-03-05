@@ -18,6 +18,8 @@ else if (array_key_exists('complete', $_GET))
 
 $payments = $Purchase->findConfirmed();
 
+printf('<p>Total number of purchases: <strong>%d</strong></p>', count($payments));
+
 if (count($payments))
 {
     echo '<table cellspacing="0">
