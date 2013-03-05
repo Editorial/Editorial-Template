@@ -35,7 +35,7 @@
 	wp_title( '|', true, 'right' );
 
 	// Add the blog name.
-	bloginfo( 'name' );
+	//if (!is_home()) { bloginfo( 'name' ); }
 
 	// Add the blog description for the home/front page.
 	//$site_description = get_bloginfo( 'description', 'display' );
@@ -43,8 +43,8 @@
 		//echo " | $site_description";
 
 	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
+	//if ( $paged >= 2 || $page >= 2 )
+		//echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
 /*
  *
 <meta name="description" content="<?php bloginfo('description'); ?>">
