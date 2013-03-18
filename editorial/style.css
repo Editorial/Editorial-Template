@@ -366,6 +366,7 @@ footer h3,.widget h4 {padding:0 0 5px;font-size:10px;line-height:12px;text-trans
 #single,#common {margin:0 0 10px;}
 .inside #single,.inside-portrait #single {overflow:hidden;}
 .layout-list #single h1,.layout-grid #single h1 {margin:15px 0 21px;width:100%;float:left;}
+#single .entry-content img {width:100% !important;height:auto !important;}
 #intro .entry-summary {margin:0 0 13px;font-size:20px;line-height:26px;position:relative;}
 #intro .entry-summary:before,#intro .entry-summary:after {width:230px;height:230px;font-size:600px;line-height:600px;
 color:#f4f4f4;overflow:hidden;position:absolute;z-index:-1;}
@@ -543,6 +544,7 @@ footer h3,.widget h4 {margin:20px 0 0;}
 #footer .xoxo {margin:0 0 5px;width:100%;float:left;}
 #footer .xoxo li {font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase;background-position:-549px -101px;float:left;}
 #footer .xoxo a {padding:5px 12px 4px;display:block;}
+#footer .xoxo .selected a {background:none;}
 
 #editorial {font-style:normal;}
 
@@ -720,7 +722,6 @@ h1 {margin:0 0 22px;}
 #intro .entry-summary {margin:0 0 22px;font-size:24px;line-height:30px;}
 #single .entry-content p,#comments .show,#comments h4 {font-size:18px;line-height:25px;}
 #single .entry-content blockquote p {font-size:24px;line-height:30px;}
-#single .entry-content img {width:100% !important;height:auto !important;}
 .layout-list #single h1,.layout-grid #single h1 {margin-top:0;}
 #comments .show {font-style:italic;}
 
