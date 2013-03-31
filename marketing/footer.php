@@ -12,7 +12,7 @@ if (!is_404())
 ?>
 <footer id="footer" role="contentinfo">
 <?php
-	if ( !is_page_template('cart.php') && !is_page_template('manager.php') && !is_page('trial'))
+	if ( !is_page_template('cart.php') && !is_page_template('manager.php') && !is_page('trial') && !is_page('transaction'))
 	{
 		$Purchase = new Purchase();
 		$currentCount = $Purchase->getCount();
@@ -253,7 +253,7 @@ if (!is_404())
 <?php
 			}
 ?>
-	<div class="bgr">
+	<div class="bgr<?php if (is_page_template('cart.php') || is_page_template('manager.php') || is_page('trial') || is_page('transaction')) { ?> is-gray<?php } ?>">
 		<div class="adapt">
 			<nav class="support" role="navigation">
 				<div class="col">
