@@ -4,7 +4,7 @@
  |_ | \  |   | / \ |_)  |   /\  |
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
- Version: 2.1 (03/2013)
+ Version: 2.2 (04/2013)
 
  Design: Natan Nikolic (twitter.com/natannikolic)
  Programming: Miha Hribar (twitter.com/mihahribar)
@@ -53,7 +53,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo Editorial::getOption('touch-icon'); ?>">
 <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 <link rel="apple-touch-icon-precomposed" href="<?php echo Editorial::getOption('touch-icon'); ?>">
-<link rel="shortcut icon" href="<?php echo get_bloginfo('url') . Editorial::getOption('favicon'); ?>">
+<link rel="shortcut icon" href="<?php echo Editorial::getOption('favicon'); ?>">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="<?php echo get_bloginfo('stylesheet_url'); ?>">
