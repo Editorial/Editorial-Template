@@ -636,7 +636,7 @@ class Editorial_Admin
         {
             if (!is_array($data) || !isset($data['valid']) || !$data['valid'])
             {
-                add_action('admin_notices', array($this, 'invalidNotice'));
+                //add_action('admin_notices', array($this, 'invalidNotice'));
                 Editorial::setOption('pirates', true);
                 return false;
             }
