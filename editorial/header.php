@@ -4,7 +4,7 @@
  |_ | \  |   | / \ |_)  |   /\  |
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
- Version: 2.2 (04/2013)
+ Version: 2.3 (04/2013)
 
  Design: Natan Nikolic (twitter.com/natannikolic)
  Programming: Miha Hribar (twitter.com/mihahribar)
