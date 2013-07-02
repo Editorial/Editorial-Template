@@ -109,7 +109,7 @@ get_header(); ?>
 			<h2>Your purchase download has expired.</h2>
 			<p class="leading">
 				We sincerely apologise for the inconvenience. Please
-				<a href="mailto:support@editorialtemplate.com?subject=Help!%20My%20download%20link%20has%20expired.%20My%20purchase%20ID%20is%20#">contact our support</a>
+				<a href="mailto:hello@editorialtemplate.com?subject=Help!%20My%20download%20link%20has%20expired.%20My%20purchase%20ID%20is%20#">contact our support</a>
 				to help you resolve this issue.
 			</p>
 			<p>
