@@ -28,11 +28,11 @@
                                 <fieldset>
                                     <p class="logos"><img src="<?php echo Editorial::getOption('logo-big'); ?>" alt="Big logo" /></p>
                                     <input type="file" name="logo-image[logo-big]"/>
-                                    <p class="note"><?php _e('Big logo is displayed on first page only. Recommended dimension 356x70px', 'Editorial'); ?></p>
+                                    <p class="note"><?php _e('Big logo is displayed on first page only. Recommended dimension 371x50px', 'Editorial'); ?></p>
 
                                     <p class="logos"><img src="<?php echo  Editorial::getOption('logo-small'); ?>" alt="Small logo" /></p>
                                     <input type="file" name="logo-image[logo-small]"/>
-                                    <p class="note"><?php _e('Small logo is displayd on all subpages. Reommended dimension 200x40px', 'Editorial'); ?></p>
+                                    <p class="note"><?php _e('Small logo is displayd on all subpages. Reommended dimension 261x35px', 'Editorial'); ?></p>
 
                                     <p class="logos"><img src="<?php echo  Editorial::getOption('logo-gallery'); ?>" alt="Gallery logo" class="gallery" /></p>
                                     <input type="file" name="logo-image[logo-gallery]"/>
