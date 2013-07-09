@@ -1149,12 +1149,10 @@ display:block;position:absolute;right:52px;z-index:1;}
 /* 9.NAVIGATION _____________________________________________________________________________________________________ */
 
 #primary {padding:10px 0;}
-/*#primary .selected a,footer nav .selected a {background-position:right -38px;}*/
 #primary li {width:20%;}
 #primary .hoarding li {width:auto;}
-/*#rss a {padding:11px 12px 8px;}*/
-/*#footer nav a {padding:8px 12px;display:block;}*/
-
+#primary a {-moz-transition:color 0.5s ease;-webkit-transition:color 0.5s ease;transition:color 0.5s ease;}
+#primary a:hover {color:#d00;}
 
 /* 10.CONTENT _______________________________________________________________________________________________________ */
 /* 11.MAIN __________________________________________________________________________________________________________ */
