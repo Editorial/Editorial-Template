@@ -4,9 +4,6 @@
  |_ |_/ _|_  | \_/ | \ _|_ /~~\ |_
 
  File: script.js
- Version: 1.1 (02/2012)
- Authors: Miha Hribar (twitter.com/mihahribar),
-          Matjaz Korosec (twitter.com/matjazkorosec)
 
  */
 
