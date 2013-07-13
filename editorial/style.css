@@ -1,11 +1,11 @@
 /*
 
- Theme Name: Editorial
- Theme URI: http://editorialtemplate.com/
- Description: EDITORIAL is a responsive WordPress theme designed especially for digital magazines.
- Author: Editorial Template
- Author URI: http://editorialtemplate.com
- Version: 2.3 (04/2013)
+ Theme Name:     Editorial
+ Theme URI:      http://editorialtemplate.com/
+ Description:    EDITORIAL is a responsive WordPress theme designed especially for digital magazines.
+ Author:         Editorial Template
+ Author URI:     http://editorialtemplate.com
+ Version:        2.3 (04/2013)
 
   _  _  ___ ___ _   _  ___
  |_ | \  |   | / \ |_)  |   /\  |
@@ -103,10 +103,6 @@ blockquote p, #widgets .group, #widgets .adapt {
 	background: url(images/bgr/sprite.png) no-repeat;
 }
 
-.m-button span {
-	background: url(images/bgr/mobile-gallery.png) no-repeat;
-}
-
 /* 2.HEADINGS _______________________________________________________________________________________________________ */
 
 h1, h1 a, h2, h2 a, h3, h4, h5, h6 {
@@ -119,7 +115,7 @@ h1, h1 a, h2, h2 a, h3, h4, h5, h6 {
 	font-weight: 600;
 }
 
-.home h1, .home-portrait h1, .featured h2, #comments cite, #paging .more {
+#comments cite, #paging .more {
 	color: #ccc;
 	text-decoration: underline;
 }
@@ -677,8 +673,11 @@ table .right {
 	font: 600 13px/15px minion-pro, georgia, serif;
 	letter-spacing: 2px;
 	text-transform: uppercase;
-	background-position: 300px 300px;
 	float: left;
+}
+
+#rss li {
+	background-position: 300px 300px;
 }
 
 #primary a, #footer nav a, #rss a, .widget li a, #tabs a {
@@ -1239,8 +1238,6 @@ footer h3, .widget h4 {
 
 .favorize label, .score, .coin {
 	border: 1px solid #bfbfbf;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
 
@@ -1404,12 +1401,6 @@ footer h3, .widget h4 {
 	float: left;
 }
 
-.widget li {
-	font-size: 13px;
-	color: #262626;
-	float: left;
-}
-
 .widget li a {
 	margin: 2px 12px 6px 0;
 	font-family: minion-pro, georgia, serif;
@@ -1541,12 +1532,7 @@ footer h3, .widget h4 {
 	font-size: 11px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	background-position: -549px -101px;
 	float: left;
-}
-
-#footer .xoxo .selected a {
-	background: none;
 }
 
 #editorial {
@@ -1576,7 +1562,7 @@ body {
 }
 
 a:link {
-	-webkit-tap-highlight-color: rgb(52, 158, 219);
+	-webkit-tap-highlight-color: #d00;
 }
 
 ::-webkit-selection {
@@ -1720,7 +1706,8 @@ div, input, textarea {
 }
 
 /* 16.TEMPLATE SPECIFICS ____________________________________________________________________________________________ */
-/* 17.TYPEKIT__ _____________________________________________________________________________________________________ */
+/* 17.MODERNIZR _____________________________________________________________________________________________________ */
+/* 18.TYPEKIT fix ___________________________________________________________________________________________________ */
 
 .wf-loading .content h1, .wf-loading h2, .wf-loading article h3, .wf-loading section h3, .wf-loading h4, .wf-loading p,
 .wf-loading ul li, .wf-loading #comments cite {
@@ -2588,9 +2575,6 @@ body {
 	margin: 0 0 20px;
 	padding: 2px;
 	height: 26px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-ms-border-radius: 3px;
 	border-radius: 3px;
 	background: #e2e2e2;
 	background: -moz-linear-gradient(top, #999, #f3f3f3 50%, #e6e6e6);
@@ -2605,9 +2589,6 @@ body {
 
 #layout li {
 	padding: 0;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-ms-border-radius: 3px;
 	border-radius: 3px;
 	opacity: .5;
 	float: left;
@@ -2918,13 +2899,13 @@ body {
 	width: auto;
 }
 
-#primary a, .entry-title a, .widget a, #footer a {
+#primary a, .entry-title a,.feedback #single h1 a, .widget a, #footer a {
 	-moz-transition: color 0.5s ease;
 	-webkit-transition: color 0.5s ease;
 	transition: color 0.5s ease;
 }
 
-#primary a:hover, .entry-title a:hover, .widget a:hover, #footer a:hover {
+#primary a:hover, .entry-title a:hover,.feedback #single h1 a:hover, .widget a:hover, #footer a:hover {
 	color: #d00;
 }
 
@@ -3010,7 +2991,6 @@ body {
 	margin-left: 16px;
 	width: 228px;
 	min-height: 485px;
-	background: none;
 	float: left;
 }
 
@@ -3282,12 +3262,8 @@ body {
 	width: 976px;
 }
 
-#widgets .group {
-	background-position: -100px -100px;
-}
-
 #widgets .widgets-1 .group {
-	background-position: center bottom;
+	/*background-position: center bottom;*/
 }
 
 #widgets .widgets-3 .group, #widgets .widgets-4 .group {
