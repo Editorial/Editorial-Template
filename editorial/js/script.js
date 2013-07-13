@@ -10,11 +10,6 @@
 
  */
 
-//LOCAL DEV
-//document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
-
-
-
 var changeViewport = function () {
 	if (window.orientation == 90 || window.orientation == -90) {
 		$('meta[name="viewport"]').attr('content', 'height=device-width,width=device-height,initial-scale=1.0,maximum-scale=1.0');
@@ -38,8 +33,6 @@ if (iDevice) {
 		},false);
 	}
 }
-
-
 
 
 $(function(){
