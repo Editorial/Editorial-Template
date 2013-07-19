@@ -46,7 +46,7 @@ else
 
 <div class="content clear" role="main">
     <article id="common" class="hentry">
-        <h1 class="entry-title">Masthead</h1>
+        <h1 class="entry-title"><?php echo the_title(); ?></h1>
         <section class="entry-content">
             <?php echo the_content(); ?>
         </section>
