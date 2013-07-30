@@ -312,6 +312,13 @@ class Editorial
         }
     }
 
+    public static function removeInactiveWidgets()
+    {
+    	$widgets = get_option('sidebars_widgets');
+		$widgets['wp_inactive_widgets'] = array();
+		update_option('sidebars_widgets', $widgets);
+    }
+
     /**
      * Theme setup
      *
@@ -322,6 +329,7 @@ class Editorial
         if (false == get_option('theme_was_installed'))
         {
             Editorial::createColophonPage();
+            Editorial::removeInactiveWidgets();
             Editorial::setOption('colophon-enabled', true);
             add_action('admin_notices', array('Editorial', 'showWelcomeNotice'));
             update_option('theme_was_installed', '1');
