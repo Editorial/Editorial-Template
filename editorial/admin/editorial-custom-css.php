@@ -255,7 +255,7 @@ tbody tr:nth-child(2n+2) td {
 }
 
 #comments-form li label, #layout p, #layout li, .qa em {
-	font-size: 10px;
+	font-size: 10px
 	line-height: 14px;
 	font-family: helvetica, arial, sans-serif;
 	color: #999;
