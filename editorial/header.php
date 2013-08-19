@@ -85,7 +85,7 @@ $translations = Editorial::getOption('translations');
 <?php } ?>
 </head>
 
-<body class="<?php echo $EditorialId; ?> <?php echo $EditorialClass; ?>">
+<body <?php body_class($EditorialId.' '.$EditorialClass); ?>>
 
 <?php if (!$isMobileGallery) { ?>
 <header id="header" class="clear" role="banner">
